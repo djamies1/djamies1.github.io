@@ -10,13 +10,14 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --ink: #0e0e0e; --cream: #f5f0e8; --gold: #c9a84c; --gold-light: #e8d5a3;
+    --gold-dim: rgba(201,168,76,0.15); --gold-border: rgba(201,168,76,0.35);
     --rust: #c4572a; --muted: #777; --card: #fff; --border: #e0d8cc;
     --amazon: #FF9900; --pac: #1a4f9e; --falck: #c0392b; --led: #27ae60; --ey: #4a4a5a;
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
 
-  /* HERO */
+  /* ── HERO ── */
   .hero {
     min-height: 100vh; background: var(--ink); display: grid; place-items: center;
     position: relative; overflow: hidden; padding: 4rem 2rem;
@@ -51,13 +52,13 @@
   .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.22); font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; z-index: 1; animation: bounce 2.5s infinite; }
   @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
 
-  /* LAYOUT */
+  /* ── SHARED LAYOUT ── */
   .section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
   .section-label { font-size: 0.68rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
   .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem,5vw,2.8rem); font-weight: 700; margin-bottom: 3rem; line-height: 1.1; }
   .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-  /* ABOUT */
+  /* ── ABOUT ── */
   .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
   @media(max-width:700px){ .about-grid{ grid-template-columns:1fr; gap:2rem; } }
   .about-stats { display: flex; flex-direction: column; gap: 1.25rem; }
@@ -69,31 +70,119 @@
   .cert-badges { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.5rem; }
   .badge { background: var(--ink); color: var(--gold); font-size: 0.7rem; padding: 0.32rem 0.7rem; border-radius: 2px; letter-spacing: 0.04em; border: 1px solid rgba(201,168,76,0.3); }
 
-  /* TIMELINE */
-  .timeline-section { background: var(--ink); }
-  .timeline-inner { max-width: 1100px; margin: 0 auto; padding: 6rem 2rem; }
-  .timeline-inner .section-title { color: #fff; }
-  .timeline { position: relative; padding-left: 2.5rem; }
-  .timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold) 0%, rgba(201,168,76,0.08) 100%); }
-  .timeline-item { position: relative; padding-bottom: 3.5rem; }
-  .timeline-item:last-child { padding-bottom: 0; }
-  .timeline-dot { position: absolute; left: -2.9rem; top: 0.3rem; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--ink); box-shadow: 0 0 0 3px rgba(201,168,76,0.3); }
-  .dot-amazon { background: var(--amazon); }
-  .dot-pac    { background: var(--pac); }
-  .dot-falck  { background: var(--falck); }
-  .dot-led    { background: var(--led); }
-  .dot-ey     { background: var(--ey); }
-  .timeline-date { font-size: 0.69rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.35rem; }
-  .timeline-role { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: #fff; margin-bottom: 0.15rem; }
-  .timeline-company { font-size: 0.87rem; font-weight: 500; color: var(--gold-light); margin-bottom: 0.85rem; }
-  .highlight-pill { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.35); color: var(--gold); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.28rem 0.7rem; border-radius: 2px; margin-bottom: 0.9rem; }
-  .timeline-bullets { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.45rem; max-width: 700px; }
-  .timeline-bullets li { font-size: 0.9rem; line-height: 1.65; color: rgba(255,255,255,0.52); padding-left: 1.1rem; position: relative; }
-  .timeline-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); opacity: 0.65; font-size: 0.75rem; top: 0.15rem; }
-  .sub-role { margin-top: 1.6rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.07); }
-  .sub-role .timeline-role { font-size: 1.15rem; }
+  /* ── CAREER SCRUBBER SECTION ── */
+  .career-section {
+    background: var(--ink);
+    padding: 6rem 0;
+  }
+  .career-section-header {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+  }
+  .career-section-header .section-label { color: var(--gold); }
+  .career-section-header .section-title { color: #fff; margin-bottom: 0.5rem; }
+  .career-section-header .section-subtitle {
+    font-size: 0.8rem; color: rgba(255,255,255,0.3); letter-spacing: 0.1em;
+  }
 
-  /* SKILLS */
+  .timeline-explorer {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 520px;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    padding: 0 2rem;
+    position: relative;
+  }
+
+  /* scrubber column */
+  .scrubber-col {
+    display: flex; flex-direction: column; align-items: center;
+    position: relative; padding: 1rem 0; user-select: none;
+  }
+  .track {
+    flex: 1; width: 4px; background: rgba(255,255,255,0.08);
+    border-radius: 4px; position: relative; cursor: pointer;
+  }
+  .track-fill {
+    position: absolute; top: 0; left: 0; width: 100%;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.35));
+    border-radius: 4px; pointer-events: none;
+  }
+  .track-notch {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    width: 10px; height: 2px; background: rgba(255,255,255,0.18); border-radius: 1px; pointer-events: none;
+  }
+  .track-notch.active-notch { background: var(--gold); width: 16px; }
+  .scrubber-handle {
+    position: absolute; left: 50%; transform: translate(-50%, -50%);
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--gold); border: 3px solid var(--ink);
+    box-shadow: 0 0 0 3px var(--gold-border), 0 4px 20px rgba(201,168,76,0.4);
+    cursor: grab; transition: box-shadow 0.15s; z-index: 10;
+  }
+  .scrubber-handle:active { cursor: grabbing; }
+  .scrubber-handle.dragging { box-shadow: 0 0 0 6px var(--gold-border), 0 4px 30px rgba(201,168,76,0.55); }
+  .year-bubble {
+    position: absolute; left: 48px; transform: translateY(-50%);
+    background: var(--gold); color: var(--ink);
+    font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
+    padding: 0.18rem 0.55rem; border-radius: 3px;
+    white-space: nowrap; pointer-events: none; z-index: 9;
+  }
+  .year-label {
+    position: absolute; right: calc(100% + 8px); transform: translateY(-50%);
+    font-size: 0.6rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.2);
+    pointer-events: none; white-space: nowrap;
+  }
+
+  /* content column */
+  .content-col {
+    padding: 0.5rem 0 0.5rem 3.5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .year-watermark {
+    position: absolute; right: -0.5rem; top: 50%; transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(6rem, 16vw, 12rem); font-weight: 900;
+    color: rgba(255,255,255,0.025); pointer-events: none; line-height: 1;
+  }
+  .card-wrapper { position: relative; z-index: 1; min-height: 340px; display: flex; align-items: center; }
+
+  .job-card {
+    position: absolute; width: 100%;
+    opacity: 0; transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .job-card.active {
+    opacity: 1; transform: translateX(0);
+    pointer-events: auto; position: relative;
+  }
+  .job-card.exit { opacity: 0; transform: translateX(-20px); }
+
+  .card-eyebrow { font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .card-role { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,3.5vw,2.4rem); font-weight: 700; line-height: 1.1; color: #fff; margin-bottom: 0.35rem; }
+  .card-company { font-size: 0.95rem; font-weight: 500; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+  .company-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .card-divider { width: 44px; height: 2px; background: var(--gold); border-radius: 1px; margin-bottom: 1.25rem; opacity: 0.55; }
+  .card-highlight { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--gold-dim); border: 1px solid var(--gold-border); color: var(--gold); font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.26rem 0.65rem; border-radius: 2px; margin-bottom: 1rem; }
+  .card-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; max-width: 540px; }
+  .card-bullets li { font-size: 0.88rem; line-height: 1.65; color: rgba(255,255,255,0.5); padding-left: 1.1rem; position: relative; }
+  .card-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); opacity: 0.65; font-size: 0.72rem; top: 0.18rem; }
+
+  /* progress dots */
+  .progress-dots { display: flex; gap: 0.4rem; align-items: center; margin-top: 1.75rem; }
+  .pdot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.15); transition: all 0.2s; cursor: pointer; }
+  .pdot.active { background: var(--gold); width: 20px; border-radius: 3px; }
+  .pdot:hover:not(.active) { background: rgba(255,255,255,0.35); }
+
+  .scrubber-hint { font-size: 0.62rem; color: rgba(255,255,255,0.18); letter-spacing: 0.1em; margin-top: 0.6rem; }
+
+  /* ── SKILLS ── */
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px,1fr)); gap: 1.25rem; }
   .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1.6rem; transition: transform 0.2s, box-shadow 0.2s; }
   .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
@@ -104,30 +193,39 @@
   .skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
   .skill-tag { background: var(--cream); border: 1px solid var(--border); font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 2px; color: #555; }
 
-  /* EDUCATION */
+  /* ── EDUCATION ── */
   .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; }
   .edu-card { border-left: 3px solid var(--gold); padding-left: 1.25rem; }
   .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem; line-height: 1.3; }
   .edu-school { font-size: 0.87rem; color: var(--rust); font-weight: 500; margin-bottom: 0.15rem; }
   .edu-year { font-size: 0.74rem; color: var(--muted); letter-spacing: 0.1em; }
 
-  /* INTERESTS */
+  /* ── INTERESTS ── */
   .interests-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
   .interest-chip { display: flex; align-items: center; gap: 0.4rem; background: var(--card); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 100px; font-size: 0.85rem; color: var(--ink); }
 
-  /* CONTACT */
+  /* ── CONTACT ── */
   .contact-section { background: var(--ink); text-align: center; padding: 6rem 2rem; }
   .contact-section .section-label { color: var(--gold); }
   .contact-section .section-title { color: #fff; margin-bottom: 0.75rem; }
   .contact-subtitle { color: rgba(255,255,255,0.42); margin-bottom: 2.5rem; font-size: 0.95rem; }
   .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
   footer { text-align: center; padding: 2rem; font-size: 0.72rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+  /* ── MOBILE ── */
+  @media(max-width:640px) {
+    .timeline-explorer { height: auto; grid-template-columns: 60px 1fr; padding: 0 1rem; }
+    .content-col { padding-left: 1.5rem; }
+    .year-watermark { display: none; }
+    .card-wrapper { min-height: 280px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
 <section class="hero">
   <div class="hero-inner">
     <p class="hero-eyebrow">Business Intelligence &amp; Data Analytics</p>
@@ -142,7 +240,9 @@
   <p class="scroll-hint">↓ scroll</p>
 </section>
 
-<!-- ABOUT -->
+<!-- ══════════════════════════════
+     ABOUT
+══════════════════════════════ -->
 <div class="section">
   <p class="section-label">About</p>
   <h2 class="section-title">Who I Am</h2>
@@ -177,85 +277,44 @@
 
 <hr class="divider">
 
-<!-- CAREER TIMELINE -->
-<section class="timeline-section">
-  <div class="timeline-inner">
+<!-- ══════════════════════════════
+     INTERACTIVE CAREER SCRUBBER
+══════════════════════════════ -->
+<section class="career-section" id="career">
+  <div class="career-section-header">
     <p class="section-label">Career</p>
-    <h2 class="section-title" style="color:#fff;">Work History</h2>
-    <div class="timeline">
+    <h2 class="section-title">Work History</h2>
+    <p class="section-subtitle">drag the handle · scroll · use arrow keys</p>
+  </div>
 
-      <div class="timeline-item">
-        <div class="timeline-dot dot-amazon"></div>
-        <p class="timeline-date">Mar 2022 — Present · 3+ yrs</p>
-        <h3 class="timeline-role">Business Intelligence Engineer</h3>
-        <p class="timeline-company">Amazon · Seattle, WA</p>
-        <div class="highlight-pill">🛰️ Currently: Amazon Leo (Project Kuiper) — Satellite Internet Go-To-Market</div>
-        <ul class="timeline-bullets">
-          <li>Building financial analytics products for Amazon Leo (formerly Project Kuiper) as the satellite internet service moves toward general availability — creating go-to-market data infrastructure from the ground up.</li>
-          <li>Developed and maintained a critical suite of BI dashboards with 5,000+ monthly accesses and 600+ active users across HR, Finance, and Talent Acquisition.</li>
-          <li>Engineered row-level security for dashboards accessed by 10,000+ AWS managers, ensuring data governance and privacy compliance at scale.</li>
-          <li>Used Python with Amazon SageMaker to build ML models simulating compensation range cost modifications, enabling data-driven scenario analysis for HR and Finance decision-making.</li>
-          <li>Spearheaded adoption of QuickSight Q (ML-powered natural language querying) for 100+ users, reducing ad-hoc query requests by 40%.</li>
-          <li>Delivered automated ETL pipelines in Redshift using SQL and dependency management tooling; produced comprehensive user guides and video walkthroughs to drive BI tool adoption.</li>
-        </ul>
+  <div class="timeline-explorer" id="explorer">
+
+    <!-- LEFT: scrubber -->
+    <div class="scrubber-col" id="scrubberCol">
+      <div class="track" id="track">
+        <div class="track-fill" id="trackFill"></div>
+        <!-- notches injected by JS -->
+        <div class="scrubber-handle" id="handle"></div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot dot-pac"></div>
-        <p class="timeline-date">Oct 2017 — Mar 2022 · 4 yrs 6 mos</p>
-        <h3 class="timeline-role">Business Intelligence Developer</h3>
-        <p class="timeline-company">PAC Worldwide · Redmond, WA · Apr 2020 – Mar 2022</p>
-        <ul class="timeline-bullets">
-          <li>Designed and implemented the company's enterprise data warehouse — overseeing pipeline orchestration, cleansing, incremental loads, and monitoring.</li>
-          <li>Developed interactive Power BI dashboards and Jet Reports for financial and operational reporting across the business.</li>
-          <li>Automated multi-entity ERP data migrations using ETL frameworks, improving speed and reliability of go-live transitions.</li>
-          <li>Built sales forecasting pipelines leveraging ML models and BI dashboards, improving forecast accuracy.</li>
-        </ul>
-        <div class="sub-role">
-          <h3 class="timeline-role">Financial Planning &amp; Analysis Manager</h3>
-          <p class="timeline-company">PAC Worldwide · Oct 2017 – Apr 2020</p>
-          <ul class="timeline-bullets">
-            <li>Partnered with the CFO and executive leadership to develop actionable financial insights and reporting.</li>
-            <li>Built a collaborative budgeting tool to streamline forecasting across departments.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot dot-falck"></div>
-        <p class="timeline-date">Aug 2015 — Sep 2017 · 2 yrs 3 mos</p>
-        <h3 class="timeline-role">Financial Analyst</h3>
-        <p class="timeline-company">Falck USA · Bothell, WA</p>
-        <ul class="timeline-bullets">
-          <li>Delivered financial analysis and reporting for a multi-site healthcare services organisation, sharpening both analytical rigour and stakeholder communication skills.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot dot-led"></div>
-        <p class="timeline-date">May 2013 — Jul 2015 · 2 yrs 1 mo</p>
-        <h3 class="timeline-role">Financial Controller</h3>
-        <p class="timeline-company">Inspired LED LLC · Tempe, AZ</p>
-        <ul class="timeline-bullets">
-          <li>Managed full-cycle accounting and financial control for a growing LED lighting manufacturer, gaining hands-on experience across every facet of a small business's finance function.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot dot-ey"></div>
-        <p class="timeline-date">Jun 2014 — Aug 2014 · 3 mos</p>
-        <h3 class="timeline-role">Assurance (Audit) Intern</h3>
-        <p class="timeline-company">Ernst &amp; Young · Seattle, WA</p>
-        <ul class="timeline-bullets">
-          <li>Supported audit engagements at one of the Big Four — the foundation of a disciplined, detail-oriented approach to finance and data.</li>
-        </ul>
-      </div>
-
+      <div class="year-bubble" id="yearBubble">2013</div>
     </div>
+
+    <!-- RIGHT: content -->
+    <div class="content-col">
+      <div class="year-watermark" id="yearWatermark">2013</div>
+      <div class="card-wrapper" id="cardWrapper">
+        <!-- cards injected by JS -->
+      </div>
+      <div class="progress-dots" id="progressDots"></div>
+      <p class="scrubber-hint">↑ ↓ arrow keys &nbsp;·&nbsp; drag handle &nbsp;·&nbsp; scroll wheel</p>
+    </div>
+
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- ══════════════════════════════
+     SKILLS
+══════════════════════════════ -->
 <div class="section">
   <p class="section-label">Expertise</p>
   <h2 class="section-title">Technical Skills</h2>
@@ -324,7 +383,9 @@
 
 <hr class="divider">
 
-<!-- EDUCATION -->
+<!-- ══════════════════════════════
+     EDUCATION
+══════════════════════════════ -->
 <div class="section">
   <p class="section-label">Education</p>
   <h2 class="section-title">Academic Background</h2>
@@ -349,7 +410,9 @@
 
 <hr class="divider">
 
-<!-- INTERESTS -->
+<!-- ══════════════════════════════
+     INTERESTS
+══════════════════════════════ -->
 <div class="section" style="padding-top:4rem;padding-bottom:4rem;">
   <p class="section-label">Outside of Work</p>
   <h2 class="section-title" style="margin-bottom:1.5rem;">Interests</h2>
@@ -363,7 +426,9 @@
   </div>
 </div>
 
-<!-- CONTACT -->
+<!-- ══════════════════════════════
+     CONTACT
+══════════════════════════════ -->
 <section class="contact-section" id="contact">
   <p class="section-label">Contact</p>
   <h2 class="section-title">Let's Connect</h2>
@@ -377,6 +442,316 @@
 <footer>
   <p>© 2026 David Jamieson · Business Intelligence Engineer · Kirkland, WA</p>
 </footer>
+
+<!-- ══════════════════════════════
+     SCRUBBER JAVASCRIPT
+══════════════════════════════ -->
+<script>
+const jobs = [
+  {
+    startYear: 2013, endYear: 2015,
+    role: "Financial Controller",
+    company: "Inspired LED LLC",
+    location: "Tempe, AZ",
+    color: "#27ae60",
+    bullets: [
+      "Managed full-cycle accounting and financial control for a growing LED lighting manufacturer.",
+      "Gained hands-on experience across every facet of a small business's finance function — AR, AP, payroll, reporting.",
+      "Built the financial reporting foundation that supported the company's rapid product expansion."
+    ]
+  },
+  {
+    startYear: 2014, endYear: 2014,
+    role: "Assurance (Audit) Intern",
+    company: "Ernst & Young",
+    location: "Seattle, WA",
+    color: "#4a4a5a",
+    bullets: [
+      "Supported audit engagements at one of the Big Four accounting firms.",
+      "Developed a disciplined, detail-oriented approach to financial analysis that underpins everything since.",
+      "Gained exposure to enterprise-level financial controls and compliance frameworks."
+    ]
+  },
+  {
+    startYear: 2015, endYear: 2017,
+    role: "Financial Analyst",
+    company: "Falck USA",
+    location: "Bothell, WA",
+    color: "#c0392b",
+    bullets: [
+      "Delivered financial analysis and reporting for a multi-site healthcare services organisation.",
+      "Sharpened stakeholder communication skills by presenting insights to operational leadership.",
+      "Developed forecasting models to support cost management across multiple business units."
+    ]
+  },
+  {
+    startYear: 2017, endYear: 2020,
+    role: "FP&A Manager",
+    company: "PAC Worldwide",
+    location: "Redmond, WA",
+    color: "#1a4f9e",
+    bullets: [
+      "Partnered with the CFO and executive leadership to develop actionable financial insights and reporting.",
+      "Built a collaborative budgeting tool to streamline forecasting across departments.",
+      "Began transitioning the finance function toward a data-driven, analytics-first approach — a pivot that led to the BI Developer role."
+    ]
+  },
+  {
+    startYear: 2020, endYear: 2022,
+    role: "Business Intelligence Developer",
+    company: "PAC Worldwide",
+    location: "Redmond, WA",
+    color: "#1a4f9e",
+    bullets: [
+      "Designed and implemented the company's enterprise data warehouse from the ground up.",
+      "Developed interactive Power BI dashboards and Jet Reports for financial and operational reporting.",
+      "Automated multi-entity ERP data migrations using ETL frameworks, improving go-live reliability.",
+      "Built ML-powered sales forecasting pipelines that measurably improved forecast accuracy."
+    ]
+  },
+  {
+    startYear: 2022, endYear: 2023,
+    role: "Business Intelligence Engineer",
+    company: "Amazon",
+    location: "Seattle, WA",
+    color: "#FF9900",
+    bullets: [
+      "Developed a critical suite of BI dashboards with 5,000+ monthly accesses and 600+ active users across HR, Finance, and TA.",
+      "Engineered row-level security for dashboards accessed by 10,000+ AWS managers, ensuring data governance at scale.",
+      "Delivered automated ETL pipelines in Redshift and drove UAT with cross-functional stakeholders.",
+      "Spearheaded QuickSight Q (ML-powered NLQ) adoption for 100+ users, cutting ad-hoc query requests by 40%."
+    ]
+  },
+  {
+    startYear: 2023, endYear: 2026,
+    role: "BI Engineer — Amazon Leo",
+    company: "Amazon (Project Kuiper)",
+    location: "Seattle, WA",
+    color: "#FF9900",
+    highlight: "🛰️ Satellite Internet · Going to Market",
+    bullets: [
+      "Building financial analytics products for Amazon Leo (formerly Project Kuiper) ahead of general availability.",
+      "Creating go-to-market data infrastructure for a satellite internet service — architected from the ground up.",
+      "Used Python with SageMaker to build ML models for compensation range cost simulation and scenario analysis.",
+      "Enabling data-driven financial decision-making for HR and Finance leadership at Amazon scale."
+    ]
+  }
+];
+
+// ── state
+let currentIndex = 0;
+let isDragging = false;
+
+// ── elements
+const track      = document.getElementById('track');
+const trackFill  = document.getElementById('trackFill');
+const handle     = document.getElementById('handle');
+const yearBubble = document.getElementById('yearBubble');
+const yearWM     = document.getElementById('yearWatermark');
+const cardWrap   = document.getElementById('cardWrapper');
+const dotsEl     = document.getElementById('progressDots');
+const scrubCol   = document.getElementById('scrubberCol');
+
+// ── build track notches
+function buildNotches() {
+  jobs.forEach((job, i) => {
+    const pct = (i / (jobs.length - 1)) * 100;
+
+    const notch = document.createElement('div');
+    notch.className = 'track-notch';
+    notch.style.top = pct + '%';
+    notch.dataset.index = i;
+    track.appendChild(notch);
+
+    const lbl = document.createElement('div');
+    lbl.className = 'year-label';
+    lbl.style.top = pct + '%';
+    lbl.textContent = job.startYear;
+    track.appendChild(lbl);
+  });
+}
+
+// ── build progress dots
+function buildDots() {
+  dotsEl.innerHTML = '';
+  jobs.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'pdot' + (i === currentIndex ? ' active' : '');
+    d.title = jobs[i].role;
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+}
+
+// ── build cards
+function buildCards() {
+  cardWrap.innerHTML = '';
+  jobs.forEach((job, i) => {
+    const card = document.createElement('div');
+    card.className = 'job-card' + (i === currentIndex ? ' active' : '');
+    card.id = 'card-' + i;
+
+    const endLabel = job.endYear >= 2026 ? 'Present' : job.endYear;
+    const dateRange = job.startYear === job.endYear
+      ? String(job.startYear)
+      : `${job.startYear} – ${endLabel}`;
+
+    card.innerHTML = `
+      <p class="card-eyebrow">${dateRange} &nbsp;·&nbsp; ${job.location}</p>
+      <h2 class="card-role">${job.role}</h2>
+      <p class="card-company">
+        <span class="company-dot" style="background:${job.color}"></span>
+        ${job.company}
+      </p>
+      ${job.highlight ? `<div class="card-highlight">${job.highlight}</div>` : ''}
+      <div class="card-divider"></div>
+      <ul class="card-bullets">
+        ${job.bullets.map(b => `<li>${b}</li>`).join('')}
+      </ul>
+    `;
+    cardWrap.appendChild(card);
+  });
+}
+
+// ── update handle & fill position from a 0–1 fraction
+function updateHandlePosition(frac) {
+  const trackRect = track.getBoundingClientRect();
+  const colRect   = scrubCol.getBoundingClientRect();
+  const px = frac * trackRect.height;
+
+  handle.style.top    = px + 'px';
+  trackFill.style.height = px + 'px';
+
+  // year bubble position relative to scrubberCol
+  const bubbleTop = (trackRect.top - colRect.top) + px;
+  yearBubble.style.top = bubbleTop + 'px';
+}
+
+// ── navigate to a job index
+function goTo(index, animate = true) {
+  const clamped = Math.max(0, Math.min(jobs.length - 1, index));
+  if (clamped === currentIndex && animate) return;
+
+  // exit old card
+  const old = document.getElementById('card-' + currentIndex);
+  if (old) {
+    old.classList.remove('active');
+    if (animate) {
+      old.classList.add('exit');
+      setTimeout(() => old && old.classList.remove('exit'), 350);
+    }
+  }
+
+  currentIndex = clamped;
+
+  // enter new card
+  const next = document.getElementById('card-' + currentIndex);
+  if (next) next.classList.add('active');
+
+  // update visuals
+  const frac = currentIndex / (jobs.length - 1);
+  updateHandlePosition(frac);
+
+  const yr = jobs[currentIndex].startYear;
+  yearBubble.textContent = yr;
+  yearWM.textContent     = yr;
+
+  // dots
+  document.querySelectorAll('.pdot').forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+
+  // notches
+  document.querySelectorAll('.track-notch').forEach((n, i) => n.classList.toggle('active-notch', i === currentIndex));
+}
+
+// ── convert a clientY to 0–1 fraction along the track
+function fracFromClientY(clientY) {
+  const rect = track.getBoundingClientRect();
+  return Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
+}
+
+function indexFromFrac(frac) {
+  return Math.round(frac * (jobs.length - 1));
+}
+
+// ── drag: mouse
+handle.addEventListener('mousedown', e => {
+  isDragging = true;
+  handle.classList.add('dragging');
+  e.preventDefault();
+});
+
+track.addEventListener('mousedown', e => {
+  if (e.target === handle) return;
+  const frac = fracFromClientY(e.clientY);
+  goTo(indexFromFrac(frac));
+  isDragging = true;
+  handle.classList.add('dragging');
+});
+
+document.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  const frac = fracFromClientY(e.clientY);
+  const idx  = indexFromFrac(frac);
+  yearBubble.textContent = jobs[Math.max(0, Math.min(jobs.length - 1, idx))].startYear;
+  yearWM.textContent     = yearBubble.textContent;
+  updateHandlePosition(frac);
+  goTo(idx, false);
+});
+
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+  handle.classList.remove('dragging');
+});
+
+// ── drag: touch
+handle.addEventListener('touchstart', e => {
+  isDragging = true;
+  handle.classList.add('dragging');
+  e.preventDefault();
+}, { passive: false });
+
+track.addEventListener('touchstart', e => {
+  const frac = fracFromClientY(e.touches[0].clientY);
+  goTo(indexFromFrac(frac));
+  isDragging = true;
+  handle.classList.add('dragging');
+}, { passive: true });
+
+document.addEventListener('touchmove', e => {
+  if (!isDragging) return;
+  const frac = fracFromClientY(e.touches[0].clientY);
+  updateHandlePosition(frac);
+  goTo(indexFromFrac(frac), false);
+}, { passive: true });
+
+document.addEventListener('touchend', () => {
+  isDragging = false;
+  handle.classList.remove('dragging');
+});
+
+// ── keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex + 1); }
+  if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  { e.preventDefault(); goTo(currentIndex - 1); }
+});
+
+// ── scroll wheel (only when hovering the career section)
+document.getElementById('explorer').addEventListener('wheel', e => {
+  e.preventDefault();
+  goTo(e.deltaY > 0 ? currentIndex + 1 : currentIndex - 1);
+}, { passive: false });
+
+// ── init
+buildNotches();
+buildCards();
+buildDots();
+
+// wait for layout then set initial position
+requestAnimationFrame(() => requestAnimationFrame(() => goTo(0, false)));
+
+// re-init on resize
+window.addEventListener('resize', () => updateHandlePosition(currentIndex / (jobs.length - 1)));
+</script>
 
 </body>
 </html>
