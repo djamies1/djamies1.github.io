@@ -36,9 +36,12 @@ BG_COLOR = (10, 10, 10)          # near-black background
 TITLE_COLOR = (210, 50, 50)      # red title
 TEXT_COLOR = (220, 220, 220)     # light grey body text
 PADDING_X = 80                   # left/right margin in pixels
-TITLE_FONT_SIZE = 56
+TITLE_FONT_SIZE = 72
 BODY_FONT_SIZE = 46
 LINE_SPACING = 1.5               # multiplier on font size
+
+# ── Scroll ────────────────────────────────────────────────────────────────────
+DEFAULT_SCROLL_SPEED = 50        # pixels per second
 
 # ── Audio ─────────────────────────────────────────────────────────────────────
 DEFAULT_VOICE = "en-US-ChristopherNeural"   # deep male, works well for horror
@@ -60,8 +63,43 @@ WINDOWS_FONTS = [
     "C:/Windows/Fonts/segoeui.ttf",
 ]
 
-def _load_font(size: int) -> ImageFont.FreeTypeFont:
-    for path in WINDOWS_FONTS:
+# Body font — Roboto Regular
+BODY_FONTS = [
+    "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/Roboto-Regular.ttf",  # per-user install (static)
+    "C:/Windows/Fonts/Roboto-Regular.ttf",   # system-wide install
+]
+WINDOWS_FONTS_BOLD = [
+    "C:/Windows/Fonts/arialbd.ttf",
+    "C:/Windows/Fonts/calibrib.ttf",
+    "C:/Windows/Fonts/segoeuib.ttf",
+]
+
+# Display font used for title and end card — creepy style
+DISPLAY_FONTS = [
+    "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/Creepster-Regular.ttf",  # per-user install
+    "C:/Windows/Fonts/Creepster-Regular.ttf",  # system-wide install
+    "C:/Windows/Fonts/Creepster.ttf",
+    "Creepster-Regular.ttf",                    # fallback: same folder as script
+    "Creepster.ttf",
+]
+
+def _load_font(size: int, bold: bool = False, display: bool = False, body: bool = False) -> ImageFont.FreeTypeFont:
+    if display:
+        for path in DISPLAY_FONTS:
+            try:
+                return ImageFont.truetype(path, size)
+            except OSError:
+                pass
+        print("  Warning: Creepster font not found, falling back to bold Arial.")
+    if body:
+        for path in BODY_FONTS:
+            try:
+                return ImageFont.truetype(path, size)
+            except OSError:
+                pass
+        print("  Warning: Roboto font not found, falling back to Arial.")
+    paths = WINDOWS_FONTS_BOLD if bold else WINDOWS_FONTS
+    for path in paths:
         try:
             return ImageFont.truetype(path, size)
         except OSError:
@@ -89,35 +127,60 @@ def _wrap(text: str, font: ImageFont.FreeTypeFont, max_width: int) -> list[str]:
 
 # ── Core rendering ────────────────────────────────────────────────────────────
 
+SUBSCRIBE_TEXT = "Subscribe for more bedtime stories..."
+
 def render_story_image(title: str, body: str) -> Image.Image:
-    title_font = _load_font(TITLE_FONT_SIZE)
-    body_font = _load_font(BODY_FONT_SIZE)
+    title_font = _load_font(TITLE_FONT_SIZE, bold=True, display=True)
+    body_font = _load_font(BODY_FONT_SIZE, body=True)
     draw_width = WIDTH - PADDING_X * 2
 
     title_lines = _wrap(title, title_font, draw_width)
     body_lines = _wrap(body, body_font, draw_width)
+    subscribe_lines = _wrap(SUBSCRIBE_TEXT, title_font, draw_width)
 
     lh_title = int(TITLE_FONT_SIZE * LINE_SPACING)
     lh_body = int(BODY_FONT_SIZE * LINE_SPACING)
 
+    title_block_h = len(title_lines) * lh_title
+    subscribe_block_h = len(subscribe_lines) * lh_title
+
+    # Place the title centered vertically on the very first frame
+    title_y = HEIGHT // 2 - title_block_h // 2
+
     content_height = (
-        len(title_lines) * lh_title
-        + 60
-        + len(body_lines) * lh_body
+        title_block_h + 120          # title + gap
+        + len(body_lines) * lh_body  # body
+        + 120                         # gap before subscribe
+        + subscribe_block_h           # subscribe text
     )
-    total_height = HEIGHT + content_height + HEIGHT
+
+    # Total image: title_y offset + content + one trailing blank screen
+    total_height = title_y + content_height + HEIGHT
 
     img = Image.new("RGB", (WIDTH, total_height), BG_COLOR)
     draw = ImageDraw.Draw(img)
 
-    y = HEIGHT
+    # Title — centered horizontally
+    y = title_y
     for line in title_lines:
-        draw.text((PADDING_X, y), line, font=title_font, fill=TITLE_COLOR)
+        w = draw.textlength(line, font=title_font)
+        x = (WIDTH - w) // 2
+        draw.text((x, y), line, font=title_font, fill=TITLE_COLOR)
         y += lh_title
-    y += 60
+    y += 120
+
+    # Body
     for line in body_lines:
         draw.text((PADDING_X, y), line, font=body_font, fill=TEXT_COLOR)
         y += lh_body
+    y += 120
+
+    # Subscribe text — centered, same style as title
+    for line in subscribe_lines:
+        w = draw.textlength(line, font=title_font)
+        x = (WIDTH - w) // 2
+        draw.text((x, y), line, font=title_font, fill=TITLE_COLOR)
+        y += lh_title
 
     return img
 
@@ -162,7 +225,11 @@ def create_video(
     music_path: str | None,
     music_volume: float,
     max_words: int | None,
+    narration: bool = True,
+    scroll_speed: int | None = None,
 ) -> None:
+    if scroll_speed is None:
+        scroll_speed = DEFAULT_SCROLL_SPEED
     title = story["title"]
     body = story["body"]
 
@@ -174,43 +241,66 @@ def create_video(
 
     print(f'\nRendering: "{title}"')
     print(f"  Words  : {len(body.split())}")
-    print(f"  Voice  : {voice}")
 
-    # 1. Generate TTS to a temp file
-    with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
-        tts_path = tmp.name
+    audio = None
 
-    narration_text = f"{title}. {body}"
-    print("  Generating narration... (this may take a moment)")
-    generate_narration(narration_text, voice, tts_path)
+    if narration:
+        print(f"  Voice  : {voice}")
+        # Generate TTS to a temp file
+        with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+            tts_path = tmp.name
 
-    narration = AudioFileClip(tts_path)
-    duration = narration.duration
-    print(f"  Duration : {duration:.1f}s  ({duration/60:.1f} min)")
+        print("  Generating narration... (this may take a moment)")
+        generate_narration(f"{title}. {body}", voice, tts_path)
 
-    # 2. Mix in background music if provided
-    if music_path:
-        print(f"  Music  : {music_path}")
-        bg = AudioFileClip(music_path)
-        bg = _loop_audio(bg, duration).with_volume_scaled(music_volume)
-        audio = CompositeAudioClip([narration, bg])
+        narration_clip = AudioFileClip(tts_path)
+        duration = narration_clip.duration
+        print(f"  Duration : {duration:.1f}s  ({duration/60:.1f} min)")
+
+        if music_path:
+            print(f"  Music  : {music_path}")
+            bg = AudioFileClip(music_path)
+            bg = _loop_audio(bg, duration).with_volume_scaled(music_volume)
+            audio = CompositeAudioClip([narration_clip, bg])
+        else:
+            audio = narration_clip
     else:
-        audio = narration
+        print("  Narration : off")
+        # Duration driven by scroll speed — calculate after image is rendered
+        duration = None  # set below once we know image height
 
-    # 3. Render scrolling video timed to narration length
+        if music_path:
+            print(f"  Music  : {music_path}")
+
+    # 3. Render scrolling video
     img = render_story_image(title, body)
     arr = np.array(img)
     max_scroll = img.height - HEIGHT
-    scroll_speed = max_scroll / duration   # px/s auto-calculated
 
-    print(f"  Scroll speed : {scroll_speed:.1f} px/s (auto)")
+    if narration:
+        # Scroll speed auto-fitted to narration length
+        scroll_speed = max_scroll / duration
+        print(f"  Scroll speed : {scroll_speed:.1f} px/s (auto)")
+    else:
+        # Duration driven by fixed scroll speed
+        duration = max_scroll / scroll_speed
+        print(f"  Scroll speed : {scroll_speed} px/s")
+        print(f"  Duration : {duration:.1f}s  ({duration/60:.1f} min)")
+        if music_path:
+            bg = AudioFileClip(music_path)
+            bg = _loop_audio(bg, duration).with_volume_scaled(music_volume)
+            audio = bg
+
     print(f"  Output : {output_path}\n")
 
     def make_frame(t: float):
         y = min(int(t * scroll_speed), max_scroll)
         return arr[y : y + HEIGHT]
 
-    clip = VideoClip(make_frame, duration=duration).with_audio(audio)
+    clip = VideoClip(make_frame, duration=duration)
+    if audio is not None:
+        clip = clip.with_audio(audio)
+
     clip.write_videofile(
         output_path,
         fps=FPS,
@@ -219,8 +309,8 @@ def create_video(
         logger="bar",
     )
 
-    # Clean up temp TTS file
-    Path(tts_path).unlink(missing_ok=True)
+    if narration:
+        Path(tts_path).unlink(missing_ok=True)
     print(f"\nDone! Saved to: {output_path}")
 
 
@@ -252,6 +342,14 @@ def main():
     parser.add_argument(
         "--max-words", type=int, default=None,
         help="Trim story body to this many words (useful for short-form clips)"
+    )
+    parser.add_argument(
+        "--no-narration", action="store_true",
+        help="Skip TTS narration (music only, or silent)"
+    )
+    parser.add_argument(
+        "--speed", type=int, default=DEFAULT_SCROLL_SPEED,
+        help=f"Scroll speed in px/s when --no-narration is used (default: {DEFAULT_SCROLL_SPEED})"
     )
     parser.add_argument("--out", default=None, help="Output .mp4 filename")
     parser.add_argument("--list", action="store_true", help="List stories and exit")
@@ -290,6 +388,8 @@ def main():
         music_path=args.music,
         music_volume=args.music_volume,
         max_words=args.max_words,
+        narration=not args.no_narration,
+        scroll_speed=args.speed,
     )
 
 

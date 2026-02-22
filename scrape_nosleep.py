@@ -10,6 +10,7 @@ Usage:
 
 import argparse
 import json
+import re
 import sys
 import time
 import urllib.request
@@ -26,6 +27,17 @@ def fetch_json(url: str) -> dict:
         return json.loads(resp.read().decode())
 
 
+def clean_body(text: str) -> str:
+    """Remove URLs and markdown links from story text."""
+    # Replace markdown links [text](url) with just the text
+    text = re.sub(r'\[([^\]]+)\]\(https?://[^\)]+\)', r'\1', text)
+    # Remove bare URLs
+    text = re.sub(r'https?://\S+', '', text)
+    # Clean up any double spaces or trailing whitespace left behind
+    text = re.sub(r' {2,}', ' ', text)
+    return text.strip()
+
+
 def fetch_story_body(permalink: str) -> str:
     """Fetch the full selftext for a single post."""
     url = f"https://www.reddit.com{permalink}.json?limit=1"
@@ -35,7 +47,7 @@ def fetch_story_body(permalink: str) -> str:
         # "[removed]" or "[deleted]" means content is gone
         if selftext in ("[removed]", "[deleted]", ""):
             return ""
-        return selftext
+        return clean_body(selftext)
     except Exception as exc:
         print(f"  Warning: could not fetch body ({exc})", file=sys.stderr)
         return ""
