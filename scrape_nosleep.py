@@ -73,6 +73,10 @@ def scrape(sort: str = "top", time_filter: str = "month", limit: int = 10) -> li
 
         body = fetch_story_body(d["permalink"])
 
+        if len(body.split()) > 1000:
+            print(f"  Skipping (>{1000} words)", file=sys.stderr)
+            continue
+
         stories.append({
             "id": d["id"],
             "title": title,
@@ -102,7 +106,7 @@ def main():
         dest="time_filter",
         help="Time window (only applies to --sort top)",
     )
-    parser.add_argument("--limit", type=int, default=10, help="Max stories to fetch (max 100)")
+    parser.add_argument("--limit", type=int, default=100, help="Max stories to fetch (max 100)")
     parser.add_argument("--out", default="nosleep_stories.json", help="Output JSON file")
     args = parser.parse_args()
 
