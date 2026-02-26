@@ -451,7 +451,7 @@ function startAnimationLoop() {
       }
     });
 
-    if (globe) globe.particlesData(satData.filter(d => !isNaN(d.lat)));
+    if (globe) globe.particlesData([satData.filter(d => !isNaN(d.lat))]);
   })();
 }
 
