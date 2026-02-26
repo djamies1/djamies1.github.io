@@ -232,15 +232,15 @@
 </div>
 
 <!-- ── Libraries (order matters: globe.gl → satellite.js → app) ── -->
-<script src="https://cdn.jsdelivr.net/npm/globe.gl@2.27.1/dist/globe.gl.min.js"></script>
-<script src="https://unpkg.com/satellite.js@5.0.0/dist/satellite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
+<script src="https://cdn.jsdelivr.net/npm/satellite.js/dist/satellite.min.js"></script>
 <script>
 // ═══════════════════════════════════════════════════════
 //  LIVE SATELLITE TRACKER — djamies1.github.io
 // ═══════════════════════════════════════════════════════
 
 const EARTH_RADIUS_KM = 6371;
-const CACHE_KEY = 'satTracker_gp_v3';
+const CACHE_KEY = 'satTracker_gp_v4';
 const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
 const CELESTRAK_URL = 'https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=JSON';
@@ -366,6 +366,12 @@ async function loadSatelliteData() {
     return;
   }
 
+  if (typeof satellite === 'undefined') {
+    setStatus('⚠ satellite.js failed to load — please refresh.');
+    console.error('satellite.js library not available');
+    return;
+  }
+
   setStatus('Parsing TLE data…');
   setProgress(38);
 
@@ -407,13 +413,13 @@ function initGlobe() {
 
   globe = new Globe(el)
     .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg')
-    .atmosphereColor('rgba(201,168,76,0.22)')
+    .atmosphereColor('#c9a84c')
     .backgroundColor('rgba(14,14,14,1)')
     .particlesData([])
     .particleLat('lat')
     .particleLng('lng')
     .particleAltitude('alt')
-    .particleColor(function(d) { return d.color; })
+    .particlesColor(function(d) { return d.color; })
     .particleRadius(0.3)
     .onParticleHover(onSatHover)
     .onParticleClick(onSatClick);
