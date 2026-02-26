@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Satellite Tracker — David Jamieson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0e0e0e; --cream: #f5f0e8; --gold: #c9a84c; --gold-light: #e8d5a3;
+    --gold-dim: rgba(201,168,76,0.15); --gold-border: rgba(201,168,76,0.35);
+  }
+
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--ink); font-family: 'DM Sans', sans-serif; color: #fff; }
+
+  /* ── Globe container ── */
+  #globe-container { position: fixed; inset: 0; z-index: 0; }
+
+  /* ── Loading overlay ── */
+  #loading-overlay {
+    position: fixed; inset: 0; background: var(--ink);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 1000; transition: opacity 0.7s ease;
+  }
+  #loading-overlay.fade-out { opacity: 0; pointer-events: none; }
+
+  .spinner {
+    width: 52px; height: 52px;
+    border: 3px solid rgba(201,168,76,0.18);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1.5rem;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700; color: var(--gold);
+    margin-bottom: 0.45rem;
+  }
+  .loading-status {
+    font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; min-height: 1.2em;
+  }
+  .progress-bar-wrap {
+    width: 220px; height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%; background: var(--gold); border-radius: 2px; width: 0%;
+    transition: width 0.35s ease;
+  }
+
+  /* ── Header ── */
+  #header {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 1.25rem 1.75rem;
+    display: flex; align-items: center;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(14,14,14,0.82) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  #header a, #header button { pointer-events: auto; }
+
+  .back-link {
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; white-space: nowrap;
+  }
+  .back-link:hover { color: var(--gold); }
+
+  .header-center {
+    position: absolute; left: 50%; transform: translateX(-50%); text-align: center;
+  }
+  .header-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1; }
+  .header-subtitle { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-top: 0.18rem; }
+
+  /* ── Count badge ── */
+  #count-badge {
+    position: fixed; top: 78px; left: 50%; transform: translateX(-50%);
+    background: rgba(14,14,14,0.72); border: 1px solid var(--gold-border);
+    color: var(--gold-light); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 0.3rem 1rem; border-radius: 100px;
+    z-index: 100; white-space: nowrap;
+    backdrop-filter: blur(8px);
+    opacity: 0; transition: opacity 0.5s ease;
+  }
+  #count-badge.visible { opacity: 1; }
+
+  /* ── Controls panel ── */
+  #controls {
+    position: fixed; bottom: 2rem; left: 1.75rem;
+    background: rgba(14,14,14,0.88); border: 1px solid var(--gold-border);
+    border-radius: 6px; padding: 1rem 1.2rem;
+    z-index: 100; min-width: 210px;
+    backdrop-filter: blur(12px);
+    opacity: 0; transition: opacity 0.5s ease;
+  }
+  #controls.visible { opacity: 1; }
+
+  .ctrl-row { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.8rem; }
+  .ctrl-row:last-child { margin-bottom: 0; }
+
+  #play-btn {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 1px solid var(--gold-border); background: var(--gold-dim);
+    color: var(--gold); font-size: 0.7rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; flex-shrink: 0;
+    line-height: 1;
+  }
+  #play-btn:hover { background: rgba(201,168,76,0.28); }
+
+  #utc-time { font-size: 0.67rem; color: rgba(255,255,255,0.45); font-family: monospace; letter-spacing: 0.04em; }
+
+  .speed-label { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.32); flex-shrink: 0; }
+  #speed-val { font-size: 0.7rem; color: var(--gold); min-width: 34px; text-align: right; flex-shrink: 0; }
+
+  #speed-slider {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 2px; border-radius: 2px;
+    background: rgba(255,255,255,0.12); outline: none; cursor: pointer;
+  }
+  #speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 11px; height: 11px; border-radius: 50%;
+    background: var(--gold); cursor: pointer;
+  }
+  #speed-slider::-moz-range-thumb {
+    width: 11px; height: 11px; border-radius: 50%; background: var(--gold);
+    cursor: pointer; border: none;
+  }
+
+  /* ── Orbit legend ── */
+  .legend { margin-top: 0.7rem; padding-top: 0.7rem; border-top: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; gap: 0.3rem; }
+  .legend-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.65rem; color: rgba(255,255,255,0.48); }
+  .legend-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .legend-range { color: rgba(255,255,255,0.22); font-size: 0.6rem; margin-left: auto; }
+
+  /* ── Satellite tooltip ── */
+  #tooltip {
+    position: fixed; top: 78px; right: 1.75rem;
+    background: rgba(14,14,14,0.92); border: 1px solid var(--gold-border);
+    border-radius: 6px; padding: 0.85rem 1rem;
+    z-index: 200; min-width: 195px; max-width: 255px;
+    backdrop-filter: blur(12px);
+    opacity: 0; pointer-events: none; transition: opacity 0.18s ease;
+  }
+  #tooltip.visible { opacity: 1; }
+
+  .tt-name { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-weight: 700; color: #fff; margin-bottom: 0.55rem; line-height: 1.25; }
+  .tt-row { display: flex; justify-content: space-between; font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-bottom: 0.18rem; gap: 0.5rem; }
+  .tt-row span:last-child { color: rgba(255,255,255,0.78); text-align: right; }
+  .tt-band { display: inline-block; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.13rem 0.42rem; border-radius: 2px; margin-top: 0.4rem; border: 1px solid; }
+
+  /* ── Mobile tweaks ── */
+  @media (max-width: 600px) {
+    #controls { bottom: 1rem; left: 1rem; min-width: 180px; }
+    #tooltip { right: 1rem; top: 72px; max-width: 200px; }
+    .header-center { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading overlay -->
+<div id="loading-overlay">
+  <div class="spinner"></div>
+  <div class="loading-title">Satellite Tracker</div>
+  <div class="loading-status" id="loading-status">Initialising…</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+</div>
+
+<!-- Globe (full-screen) -->
+<div id="globe-container"></div>
+
+<!-- Header -->
+<div id="header">
+  <a href="../index.html" class="back-link">← David Jamieson</a>
+  <div class="header-center">
+    <div class="header-title">Live Satellite Tracker</div>
+    <div class="header-subtitle">Real-time orbital positions</div>
+  </div>
+</div>
+
+<!-- Count badge -->
+<div id="count-badge">Loading…</div>
+
+<!-- Controls panel -->
+<div id="controls">
+  <div class="ctrl-row">
+    <button id="play-btn" title="Play / Pause" aria-label="Play or Pause simulation">&#9646;&#9646;</button>
+    <div id="utc-time">—</div>
+  </div>
+  <div class="ctrl-row">
+    <span class="speed-label">Speed</span>
+    <input type="range" id="speed-slider" min="-1" max="1.699" step="0.05" value="0.477" aria-label="Simulation speed">
+    <span id="speed-val">3×</span>
+  </div>
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#4fc3f7"></div>
+      <span>LEO</span>
+      <span class="legend-range">0–2,000 km</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#c9a84c"></div>
+      <span>MEO</span>
+      <span class="legend-range">2,000–35,000 km</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#e8d5a3"></div>
+      <span>GEO</span>
+      <span class="legend-range">35,000–36,500 km</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#f48fb1"></div>
+      <span>HEO</span>
+      <span class="legend-range">36,500+ km</span>
+    </div>
+  </div>
+</div>
+
+<!-- Satellite tooltip -->
+<div id="tooltip">
+  <div class="tt-name" id="tt-name"></div>
+  <div class="tt-row"><span>Altitude</span><span id="tt-alt"></span></div>
+  <div class="tt-row"><span>Country</span><span id="tt-country"></span></div>
+  <div class="tt-row"><span>Launch</span><span id="tt-launch"></span></div>
+  <div><span class="tt-band" id="tt-band"></span></div>
+</div>
+
+<!-- ── Libraries (order matters: globe.gl → satellite.js → app) ── -->
+<script src="https://cdn.jsdelivr.net/npm/globe.gl@2.27.1/dist/globe.gl.min.js"></script>
+<script src="https://unpkg.com/satellite.js@5.0.0/dist/satellite.min.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════
+//  LIVE SATELLITE TRACKER — djamies1.github.io
+// ═══════════════════════════════════════════════════════
+
+const EARTH_RADIUS_KM = 6371;
+const CACHE_KEY = 'satTracker_gp_v2';
+const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
+
+const CELESTRAK_URL = 'https://celestrak.org/GP/query.php?GROUP=active&FORMAT=json';
+const FETCH_URLS = [
+  CELESTRAK_URL,
+  'https://corsproxy.io/?' + CELESTRAK_URL,
+  'https://api.allorigins.win/raw?url=' + encodeURIComponent(CELESTRAK_URL)
+];
+
+// ── Orbit classification ────────────────────────────────────────────────────
+function classifyOrbit(altKm) {
+  if (altKm < 2000)  return { band: 'LEO', color: '#4fc3f7' };
+  if (altKm < 35000) return { band: 'MEO', color: '#c9a84c' };
+  if (altKm < 36500) return { band: 'GEO', color: '#e8d5a3' };
+  return { band: 'HEO', color: '#f48fb1' };
+}
+
+// ── DOM refs ────────────────────────────────────────────────────────────────
+const statusEl    = document.getElementById('loading-status');
+const progressEl  = document.getElementById('progress-bar');
+const overlay     = document.getElementById('loading-overlay');
+const countBadge  = document.getElementById('count-badge');
+const controlsEl  = document.getElementById('controls');
+const tooltip     = document.getElementById('tooltip');
+const playBtn     = document.getElementById('play-btn');
+const utcTimeEl   = document.getElementById('utc-time');
+const speedSlider = document.getElementById('speed-slider');
+const speedValEl  = document.getElementById('speed-val');
+
+// ── Helpers ─────────────────────────────────────────────────────────────────
+function setStatus(msg)    { statusEl.textContent = msg; }
+function setProgress(pct)  { progressEl.style.width = pct + '%'; }
+
+function dismissOverlay() {
+  overlay.classList.add('fade-out');
+  setTimeout(() => { overlay.style.display = 'none'; }, 750);
+  countBadge.classList.add('visible');
+  controlsEl.classList.add('visible');
+}
+
+// ── State ────────────────────────────────────────────────────────────────────
+let globe;
+let satellites  = []; // { satrec, name, country, launch }
+let simTime     = new Date();
+let playing     = true;
+let speedMult   = 3;  // simulation × real-time
+
+// timeStepMs: ms of sim-time to advance per animation frame (at ~60fps):
+//   1× realtime = 1000/60 ≈ 16.7ms/frame
+//   3× = 50ms/frame → 3 sim-seconds per real-second  ✓
+function frameStep() { return (1000 / 60) * speedMult; }
+
+// ── Speed slider (log scale: -1 → 0.1×, 1.699 → 50×) ────────────────────────
+function sliderToMult(v) { return Math.pow(10, parseFloat(v)); }
+
+function updateSpeedDisplay() {
+  speedMult = sliderToMult(speedSlider.value);
+  const label = speedMult < 10 ? speedMult.toFixed(1) + '×' : Math.round(speedMult) + '×';
+  speedValEl.textContent = label;
+}
+
+speedSlider.addEventListener('input', updateSpeedDisplay);
+updateSpeedDisplay(); // sync on load
+
+// ── Play / Pause ──────────────────────────────────────────────────────────────
+playBtn.addEventListener('click', () => {
+  playing = !playing;
+  playBtn.innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+});
+
+// ── Data fetching with sessionStorage cache ───────────────────────────────────
+async function fetchWithCache() {
+  // Try cache first
+  try {
+    const cached = sessionStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const { data, ts } = JSON.parse(cached);
+      if (Date.now() - ts < CACHE_TTL_MS) {
+        setStatus('Loading from cache…');
+        return data;
+      }
+    }
+  } catch (_) { /* sessionStorage unavailable or parse error */ }
+
+  // Fetch chain
+  let lastErr;
+  for (let i = 0; i < FETCH_URLS.length; i++) {
+    const label = i === 0 ? 'Fetching from CelesTrak…'
+                : i === 1 ? 'Trying proxy fallback…'
+                :           'Trying secondary fallback…';
+    setStatus(label);
+    setProgress(10 + i * 12);
+    try {
+      const ctrl = new AbortController();
+      const tid  = setTimeout(() => ctrl.abort(), 20000);
+      const resp = await fetch(FETCH_URLS[i], { signal: ctrl.signal });
+      clearTimeout(tid);
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const data = await resp.json();
+      // Persist to cache
+      try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ data, ts: Date.now() })); } catch (_) {}
+      return data;
+    } catch (e) {
+      console.warn('Fetch attempt', i + 1, 'failed:', e.message);
+      lastErr = e;
+    }
+  }
+  throw lastErr;
+}
+
+// ── Parse & filter TLE records ────────────────────────────────────────────────
+async function loadSatelliteData() {
+  setStatus('Connecting to CelesTrak…');
+  setProgress(5);
+
+  let rawData;
+  try {
+    rawData = await fetchWithCache();
+  } catch (e) {
+    setStatus('⚠ Network error — please refresh to retry.');
+    console.error('Could not load satellite data:', e);
+    return;
+  }
+
+  setStatus('Parsing TLE data…');
+  setProgress(38);
+
+  const now    = new Date();
+  const parsed = [];
+
+  for (const obj of rawData) {
+    if (!obj.TLE_LINE1 || !obj.TLE_LINE2) continue;
+    try {
+      const satrec = satellite.twoline2satrec(obj.TLE_LINE1.trim(), obj.TLE_LINE2.trim());
+      if (!satrec || satrec.error !== 0) continue;
+      // Pre-filter: test propagation to skip decayed/invalid satrecs
+      const test = satellite.propagate(satrec, now);
+      if (!test || !test.position || typeof test.position !== 'object') continue;
+      if (isNaN(test.position.x)) continue;
+      parsed.push({
+        satrec,
+        name:    (obj.OBJECT_NAME || 'Unknown').trim(),
+        country: obj.COUNTRY_CODE || '—',
+        launch:  obj.LAUNCH_DATE  || '—'
+      });
+    } catch (_) { /* skip malformed entries */ }
+  }
+
+  satellites = parsed;
+  console.log('Valid satellites:', satellites.length);
+
+  setStatus('Loaded ' + satellites.length.toLocaleString() + ' satellites');
+  setProgress(72);
+  initGlobe();
+}
+
+// ── Globe initialisation ──────────────────────────────────────────────────────
+function initGlobe() {
+  setStatus('Initialising globe…');
+  setProgress(82);
+
+  const el = document.getElementById('globe-container');
+
+  globe = new Globe(el)
+    .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg')
+    .atmosphereColor('rgba(201,168,76,0.22)')
+    .backgroundColor('rgba(14,14,14,1)')
+    .particlesData([])
+    .particleLat('lat')
+    .particleLng('lng')
+    .particleAltitude('alt')
+    .particleColor(function(d) { return d.color; })
+    .particleRadius(0.3)
+    .onParticleHover(onSatHover)
+    .onParticleClick(onSatClick);
+
+  countBadge.textContent = satellites.length.toLocaleString() + ' satellites tracked';
+
+  // Handle resize
+  window.addEventListener('resize', () => {
+    globe.width(window.innerWidth).height(window.innerHeight);
+  });
+
+  setProgress(92);
+  setStatus('Starting simulation…');
+
+  // Wait a tick for the globe canvas to paint before hiding overlay
+  setTimeout(() => {
+    setProgress(100);
+    setTimeout(() => {
+      dismissOverlay();
+      startAnimationLoop();
+    }, 350);
+  }, 600);
+}
+
+// ── Animation loop ────────────────────────────────────────────────────────────
+function startAnimationLoop() {
+  function frame() {
+    if (playing) {
+      simTime = new Date(simTime.getTime() + frameStep());
+    }
+
+    // UTC clock
+    const iso = simTime.toISOString();
+    utcTimeEl.textContent = iso.slice(0, 10) + ' ' + iso.slice(11, 19) + ' UTC';
+
+    // Propagate all satellites
+    const positions = [];
+    const gmst = satellite.gstime(simTime);
+
+    for (const sat of satellites) {
+      try {
+        const result = satellite.propagate(sat.satrec, simTime);
+        if (!result || !result.position || typeof result.position !== 'object') continue;
+        const geo   = satellite.eciToGeodetic(result.position, gmst);
+        const altKm = geo.height; // satellite.js returns height in km
+
+        if (isNaN(altKm) || altKm < -100 || altKm > 120000) continue;
+
+        const latDeg = satellite.degreesLat(geo.latitude);
+        const lngDeg = satellite.degreesLong(geo.longitude);
+        if (isNaN(latDeg) || isNaN(lngDeg)) continue;
+
+        const { band, color } = classifyOrbit(altKm);
+        positions.push({
+          lat:     latDeg,
+          lng:     lngDeg,
+          alt:     altKm / EARTH_RADIUS_KM,  // normalised to Earth radii (globe.gl unit)
+          color,
+          band,
+          altKm:   Math.round(altKm),
+          name:    sat.name,
+          country: sat.country,
+          launch:  sat.launch
+        });
+      } catch (_) { /* skip any per-frame propagation error */ }
+    }
+
+    if (globe) globe.particlesData(positions);
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+}
+
+// ── Hover handler ─────────────────────────────────────────────────────────────
+function onSatHover(sat) {
+  if (!sat) { tooltip.classList.remove('visible'); return; }
+
+  document.getElementById('tt-name').textContent    = sat.name;
+  document.getElementById('tt-alt').textContent     = sat.altKm.toLocaleString() + ' km';
+  document.getElementById('tt-country').textContent = sat.country;
+  document.getElementById('tt-launch').textContent  = sat.launch;
+
+  const bandEl = document.getElementById('tt-band');
+  bandEl.textContent    = sat.band;
+  bandEl.style.color    = sat.color;
+  bandEl.style.borderColor = sat.color;
+
+  tooltip.classList.add('visible');
+}
+
+// ── Click handler — camera fly-to ────────────────────────────────────────────
+function onSatClick(sat) {
+  if (!sat || !globe) return;
+  globe.pointOfView({ lat: sat.lat, lng: sat.lng, altitude: 0.5 }, 1500);
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', loadSatelliteData);
+</script>
+
+</body>
+</html>
