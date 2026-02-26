@@ -231,27 +231,28 @@
   <div><span class="tt-band" id="tt-band"></span></div>
 </div>
 
-<!-- ── Libraries (order matters: globe.gl → satellite.js → app) ── -->
+<!-- ── Libraries ── -->
 <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
-<script src="https://cdn.jsdelivr.net/npm/satellite.js/dist/satellite.min.js"></script>
-<script>
+<script type="module">
 // ═══════════════════════════════════════════════════════
 //  LIVE SATELLITE TRACKER — djamies1.github.io
 // ═══════════════════════════════════════════════════════
 
+import * as satellite from 'https://esm.sh/satellite.js';
+
 const EARTH_RADIUS_KM = 6371;
-const CACHE_KEY = 'satTracker_gp_v4';
+const CACHE_KEY = 'satTracker_tle_v1';
 const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
-const CELESTRAK_URL = 'https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=JSON';
+// TLE text format — the only CelesTrak format that includes TLE_LINE1/LINE2
+const CELESTRAK_URL = 'https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=TLE';
 const FETCH_URLS = [
   CELESTRAK_URL,
   'https://corsproxy.io/?' + CELESTRAK_URL,
-  'https://api.allorigins.win/raw?url=' + encodeURIComponent(CELESTRAK_URL),
-  'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(CELESTRAK_URL)
+  'https://api.allorigins.win/raw?url=' + encodeURIComponent(CELESTRAK_URL)
 ];
 
-// ── Orbit classification ────────────────────────────────────────────────────
+// ── Orbit classification ─────────────────────────────────────────────────────
 function classifyOrbit(altKm) {
   if (altKm < 2000)  return { band: 'LEO', color: '#4fc3f7' };
   if (altKm < 35000) return { band: 'MEO', color: '#c9a84c' };
@@ -259,7 +260,7 @@ function classifyOrbit(altKm) {
   return { band: 'HEO', color: '#f48fb1' };
 }
 
-// ── DOM refs ────────────────────────────────────────────────────────────────
+// ── DOM refs ─────────────────────────────────────────────────────────────────
 const statusEl    = document.getElementById('loading-status');
 const progressEl  = document.getElementById('progress-bar');
 const overlay     = document.getElementById('loading-overlay');
@@ -271,9 +272,9 @@ const utcTimeEl   = document.getElementById('utc-time');
 const speedSlider = document.getElementById('speed-slider');
 const speedValEl  = document.getElementById('speed-val');
 
-// ── Helpers ─────────────────────────────────────────────────────────────────
-function setStatus(msg)    { statusEl.textContent = msg; }
-function setProgress(pct)  { progressEl.style.width = pct + '%'; }
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function setStatus(msg)   { statusEl.textContent = msg; }
+function setProgress(pct) { progressEl.style.width = pct + '%'; }
 
 function dismissOverlay() {
   overlay.classList.add('fade-out');
@@ -284,27 +285,20 @@ function dismissOverlay() {
 
 // ── State ────────────────────────────────────────────────────────────────────
 let globe;
-let satellites  = []; // { satrec, name, country, launch }
-let simTime     = new Date();
-let playing     = true;
-let speedMult   = 3;  // simulation × real-time
+let satData  = []; // { satrec, name, launch, lat, lng, alt, band, color, altKm }
+let simTime  = new Date();
+let playing  = true;
+let speedMult = 3;
 
-// timeStepMs: ms of sim-time to advance per animation frame (at ~60fps):
-//   1× realtime = 1000/60 ≈ 16.7ms/frame
-//   3× = 50ms/frame → 3 sim-seconds per real-second  ✓
 function frameStep() { return (1000 / 60) * speedMult; }
 
 // ── Speed slider (log scale: -1 → 0.1×, 1.699 → 50×) ────────────────────────
-function sliderToMult(v) { return Math.pow(10, parseFloat(v)); }
-
 function updateSpeedDisplay() {
-  speedMult = sliderToMult(speedSlider.value);
-  const label = speedMult < 10 ? speedMult.toFixed(1) + '×' : Math.round(speedMult) + '×';
-  speedValEl.textContent = label;
+  speedMult = Math.pow(10, parseFloat(speedSlider.value));
+  speedValEl.textContent = speedMult < 10 ? speedMult.toFixed(1) + '×' : Math.round(speedMult) + '×';
 }
-
 speedSlider.addEventListener('input', updateSpeedDisplay);
-updateSpeedDisplay(); // sync on load
+updateSpeedDisplay();
 
 // ── Play / Pause ──────────────────────────────────────────────────────────────
 playBtn.addEventListener('click', () => {
@@ -312,38 +306,30 @@ playBtn.addEventListener('click', () => {
   playBtn.innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
 });
 
-// ── Data fetching with sessionStorage cache ───────────────────────────────────
+// ── Fetch with sessionStorage cache (stores raw text) ────────────────────────
 async function fetchWithCache() {
-  // Try cache first
   try {
     const cached = sessionStorage.getItem(CACHE_KEY);
     if (cached) {
-      const { data, ts } = JSON.parse(cached);
-      if (Date.now() - ts < CACHE_TTL_MS) {
-        setStatus('Loading from cache…');
-        return data;
-      }
+      const { text, ts } = JSON.parse(cached);
+      if (Date.now() - ts < CACHE_TTL_MS) { setStatus('Loading from cache…'); return text; }
     }
-  } catch (_) { /* sessionStorage unavailable or parse error */ }
+  } catch (_) {}
 
-  // Fetch chain
   let lastErr;
   for (let i = 0; i < FETCH_URLS.length; i++) {
-    const label = i === 0 ? 'Fetching from CelesTrak…'
-                : i === 1 ? 'Trying proxy fallback…'
-                :           'Trying secondary fallback…';
-    setStatus(label);
-    setProgress(10 + i * 12);
+    setStatus(i === 0 ? 'Fetching from CelesTrak…' : i === 1 ? 'Trying proxy fallback…' : 'Trying secondary fallback…');
+    setProgress(10 + i * 15);
     try {
       const ctrl = new AbortController();
-      const tid  = setTimeout(() => ctrl.abort(), 20000);
+      const tid  = setTimeout(() => ctrl.abort(), 25000);
       const resp = await fetch(FETCH_URLS[i], { signal: ctrl.signal });
       clearTimeout(tid);
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const data = await resp.json();
-      // Persist to cache
-      try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ data, ts: Date.now() })); } catch (_) {}
-      return data;
+      const text = await resp.text();
+      if (!text.includes('1 ') || text.length < 100) throw new Error('Response does not look like TLE data');
+      try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ text, ts: Date.now() })); } catch (_) {}
+      return text;
     } catch (e) {
       console.warn('Fetch attempt', i + 1, 'failed:', e.message);
       lastErr = e;
@@ -352,54 +338,59 @@ async function fetchWithCache() {
   throw lastErr;
 }
 
-// ── Parse & filter TLE records ────────────────────────────────────────────────
+// ── Parse 3-line TLE text ─────────────────────────────────────────────────────
+function parseTLE(rawText) {
+  // Split on newlines before name lines (lines not starting with '1' or '2')
+  const chunks = rawText.replace(/\r/g, '')
+    .split(/\n(?=[^12\s])/)
+    .filter(c => c.trim());
+
+  const now    = new Date();
+  const parsed = [];
+
+  for (const chunk of chunks) {
+    const parts = chunk.split('\n').map(l => l.trim()).filter(Boolean);
+    if (parts.length < 3) continue;
+    const [nameLine, line1, line2] = parts;
+    if (!line1.startsWith('1 ') || !line2.startsWith('2 ')) continue;
+
+    try {
+      const satrec = satellite.twoline2satrec(line1, line2);
+      if (!satrec || satrec.error !== 0) continue;
+      // Pre-filter: skip satrecs that won't propagate
+      if (!satellite.propagate(satrec, now)?.position) continue;
+
+      // Extract launch year from international designator (TLE line1 cols 10-11)
+      const yr2     = line1.substring(9, 11).trim();
+      const launch  = yr2 ? String((parseInt(yr2) > 56 ? 1900 : 2000) + parseInt(yr2)) : '—';
+
+      parsed.push({ satrec, name: nameLine.replace(/^0 /, '').trim(), launch });
+    } catch (_) {}
+  }
+  return parsed;
+}
+
+// ── Load satellite data ───────────────────────────────────────────────────────
 async function loadSatelliteData() {
   setStatus('Connecting to CelesTrak…');
   setProgress(5);
 
-  let rawData;
+  let rawText;
   try {
-    rawData = await fetchWithCache();
+    rawText = await fetchWithCache();
   } catch (e) {
     setStatus('⚠ Network error — please refresh to retry.');
     console.error('Could not load satellite data:', e);
     return;
   }
 
-  if (typeof satellite === 'undefined') {
-    setStatus('⚠ satellite.js failed to load — please refresh.');
-    console.error('satellite.js library not available');
-    return;
-  }
-
   setStatus('Parsing TLE data…');
-  setProgress(38);
+  setProgress(42);
 
-  const now    = new Date();
-  const parsed = [];
+  satData = parseTLE(rawText);
+  console.log('Valid satellites:', satData.length);
 
-  for (const obj of rawData) {
-    if (!obj.TLE_LINE1 || !obj.TLE_LINE2) continue;
-    try {
-      const satrec = satellite.twoline2satrec(obj.TLE_LINE1.trim(), obj.TLE_LINE2.trim());
-      if (!satrec || satrec.error !== 0) continue;
-      // Pre-filter: test propagation to skip decayed/invalid satrecs
-      const test = satellite.propagate(satrec, now);
-      if (!test || !test.position || typeof test.position !== 'object') continue;
-      if (isNaN(test.position.x)) continue;
-      parsed.push({
-        satrec,
-        name:    (obj.OBJECT_NAME || 'Unknown').trim(),
-        country: obj.COUNTRY_CODE || '—',
-        launch:  obj.LAUNCH_DATE  || '—'
-      });
-    } catch (_) { /* skip malformed entries */ }
-  }
-
-  satellites = parsed;
-  console.log('Valid satellites:', satellites.length);
-
-  setStatus('Loaded ' + satellites.length.toLocaleString() + ' satellites');
+  setStatus('Loaded ' + satData.length.toLocaleString() + ' satellites');
   setProgress(72);
   initGlobe();
 }
@@ -407,108 +398,74 @@ async function loadSatelliteData() {
 // ── Globe initialisation ──────────────────────────────────────────────────────
 function initGlobe() {
   setStatus('Initialising globe…');
-  setProgress(82);
+  setProgress(84);
 
   const el = document.getElementById('globe-container');
 
+  // Globe global is set by the UMD script tag above
   globe = new Globe(el)
     .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg')
     .atmosphereColor('#c9a84c')
     .backgroundColor('rgba(14,14,14,1)')
-    .particlesData([])
     .particleLat('lat')
     .particleLng('lng')
     .particleAltitude('alt')
-    .particlesColor(function(d) { return d.color; })
-    .particleRadius(0.3)
+    .particlesColor(d => d.color)
     .onParticleHover(onSatHover)
     .onParticleClick(onSatClick);
 
-  countBadge.textContent = satellites.length.toLocaleString() + ' satellites tracked';
+  setTimeout(() => globe.pointOfView({ altitude: 3.5 }));
 
-  // Handle resize
-  window.addEventListener('resize', () => {
-    globe.width(window.innerWidth).height(window.innerHeight);
-  });
+  countBadge.textContent = satData.length.toLocaleString() + ' satellites tracked';
+  window.addEventListener('resize', () => globe.width(window.innerWidth).height(window.innerHeight));
 
-  setProgress(92);
+  setProgress(94);
   setStatus('Starting simulation…');
-
-  // Wait a tick for the globe canvas to paint before hiding overlay
-  setTimeout(() => {
-    setProgress(100);
-    setTimeout(() => {
-      dismissOverlay();
-      startAnimationLoop();
-    }, 350);
-  }, 600);
+  setTimeout(() => { setProgress(100); setTimeout(() => { dismissOverlay(); startAnimationLoop(); }, 300); }, 500);
 }
 
 // ── Animation loop ────────────────────────────────────────────────────────────
 function startAnimationLoop() {
-  function frame() {
-    if (playing) {
-      simTime = new Date(simTime.getTime() + frameStep());
-    }
+  (function frame() {
+    requestAnimationFrame(frame);
 
-    // UTC clock
+    if (playing) simTime = new Date(+simTime + frameStep());
+
     const iso = simTime.toISOString();
     utcTimeEl.textContent = iso.slice(0, 10) + ' ' + iso.slice(11, 19) + ' UTC';
 
-    // Propagate all satellites
-    const positions = [];
     const gmst = satellite.gstime(simTime);
+    satData.forEach(d => {
+      const eci = satellite.propagate(d.satrec, simTime);
+      if (eci?.position) {
+        const geo = satellite.eciToGeodetic(eci.position, gmst);
+        d.lat   = satellite.radiansToDegrees(geo.latitude);
+        d.lng   = satellite.radiansToDegrees(geo.longitude);
+        d.alt   = geo.height / EARTH_RADIUS_KM;
+        d.altKm = Math.round(geo.height);
+        const cls  = classifyOrbit(geo.height);
+        d.band  = cls.band;
+        d.color = cls.color;
+      } else {
+        d.lat = NaN;
+      }
+    });
 
-    for (const sat of satellites) {
-      try {
-        const result = satellite.propagate(sat.satrec, simTime);
-        if (!result || !result.position || typeof result.position !== 'object') continue;
-        const geo   = satellite.eciToGeodetic(result.position, gmst);
-        const altKm = geo.height; // satellite.js returns height in km
-
-        if (isNaN(altKm) || altKm < -100 || altKm > 120000) continue;
-
-        const latDeg = satellite.degreesLat(geo.latitude);
-        const lngDeg = satellite.degreesLong(geo.longitude);
-        if (isNaN(latDeg) || isNaN(lngDeg)) continue;
-
-        const { band, color } = classifyOrbit(altKm);
-        positions.push({
-          lat:     latDeg,
-          lng:     lngDeg,
-          alt:     altKm / EARTH_RADIUS_KM,  // normalised to Earth radii (globe.gl unit)
-          color,
-          band,
-          altKm:   Math.round(altKm),
-          name:    sat.name,
-          country: sat.country,
-          launch:  sat.launch
-        });
-      } catch (_) { /* skip any per-frame propagation error */ }
-    }
-
-    if (globe) globe.particlesData(positions);
-
-    requestAnimationFrame(frame);
-  }
-
-  requestAnimationFrame(frame);
+    if (globe) globe.particlesData(satData.filter(d => !isNaN(d.lat)));
+  })();
 }
 
 // ── Hover handler ─────────────────────────────────────────────────────────────
 function onSatHover(sat) {
   if (!sat) { tooltip.classList.remove('visible'); return; }
-
-  document.getElementById('tt-name').textContent    = sat.name;
-  document.getElementById('tt-alt').textContent     = sat.altKm.toLocaleString() + ' km';
-  document.getElementById('tt-country').textContent = sat.country;
-  document.getElementById('tt-launch').textContent  = sat.launch;
-
+  document.getElementById('tt-name').textContent   = sat.name;
+  document.getElementById('tt-alt').textContent    = sat.altKm.toLocaleString() + ' km';
+  document.getElementById('tt-country').textContent = '—';
+  document.getElementById('tt-launch').textContent = sat.launch;
   const bandEl = document.getElementById('tt-band');
-  bandEl.textContent    = sat.band;
-  bandEl.style.color    = sat.color;
+  bandEl.textContent = sat.band;
+  bandEl.style.color = sat.color;
   bandEl.style.borderColor = sat.color;
-
   tooltip.classList.add('visible');
 }
 
@@ -518,8 +475,7 @@ function onSatClick(sat) {
   globe.pointOfView({ lat: sat.lat, lng: sat.lng, altitude: 0.5 }, 1500);
 }
 
-// ── Boot ──────────────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', loadSatelliteData);
+loadSatelliteData();
 </script>
 
 </body>
