@@ -393,11 +393,9 @@ function initGlobe() {
     .htmlElement(d => {
       const el = document.createElement('div');
       el.innerHTML = '🛰️';
-      el.style.cssText = 'font-size:22px;line-height:1;cursor:pointer;user-select:none;' +
-        'filter:drop-shadow(0 0 4px #cc00ff) drop-shadow(0 0 8px #8750ff);' +
-        'transition:filter 0.15s;';
-      el.addEventListener('mouseover', () => { onSatHover(d); el.style.filter = 'drop-shadow(0 0 8px #cc00ff) drop-shadow(0 0 16px #cc00ff)'; });
-      el.addEventListener('mouseout',  () => { onSatHover(null); el.style.filter = 'drop-shadow(0 0 4px #cc00ff) drop-shadow(0 0 8px #8750ff)'; });
+      el.style.cssText = 'font-size:11px;line-height:1;cursor:pointer;user-select:none;';
+      el.addEventListener('mouseover', () => onSatHover(d));
+      el.addEventListener('mouseout',  () => onSatHover(null));
       el.addEventListener('click', () => onSatClick(d));
       return el;
     });
