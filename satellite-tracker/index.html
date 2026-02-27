@@ -200,22 +200,22 @@
   </div>
   <div class="legend">
     <div class="legend-item">
-      <div class="legend-dot" style="background:#4fc3f7"></div>
+      <div class="legend-dot" style="background:#b499ff"></div>
       <span>LEO</span>
       <span class="legend-range">0–2,000 km</span>
     </div>
     <div class="legend-item">
-      <div class="legend-dot" style="background:#c9a84c"></div>
+      <div class="legend-dot" style="background:#8750ff"></div>
       <span>MEO</span>
       <span class="legend-range">2,000–35,000 km</span>
     </div>
     <div class="legend-item">
-      <div class="legend-dot" style="background:#e8d5a3"></div>
+      <div class="legend-dot" style="background:#e9e0ff"></div>
       <span>GEO</span>
       <span class="legend-range">35,000–36,500 km</span>
     </div>
     <div class="legend-item">
-      <div class="legend-dot" style="background:#f48fb1"></div>
+      <div class="legend-dot" style="background:#9d7dff"></div>
       <span>HEO</span>
       <span class="legend-range">36,500+ km</span>
     </div>
@@ -252,12 +252,12 @@ const FETCH_URLS = [
   'https://api.allorigins.win/raw?url=' + encodeURIComponent(CELESTRAK_URL)
 ];
 
-// ── Orbit classification ─────────────────────────────────────────────────────
+// ── Orbit classification — Leo brand purples ──────────────────────────────────
 function classifyOrbit(altKm) {
-  if (altKm < 2000)  return { band: 'LEO', color: '#4fc3f7' };
-  if (altKm < 35000) return { band: 'MEO', color: '#c9a84c' };
-  if (altKm < 36500) return { band: 'GEO', color: '#e8d5a3' };
-  return { band: 'HEO', color: '#f48fb1' };
+  if (altKm < 2000)  return { band: 'LEO', color: '#b499ff' }; // Krypton tint-02 (lavender)
+  if (altKm < 35000) return { band: 'MEO', color: '#8750ff' }; // Krypton primary
+  if (altKm < 36500) return { band: 'GEO', color: '#e9e0ff' }; // Krypton lightest
+  return { band: 'HEO', color: '#9d7dff' };                    // Krypton tint-01
 }
 
 // ── DOM refs ─────────────────────────────────────────────────────────────────
@@ -405,7 +405,7 @@ function initGlobe() {
   // Globe global is set by the UMD script tag above
   globe = new Globe(el)
     .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg')
-    .atmosphereColor('#c9a84c')
+    .atmosphereColor('#8750ff')
     .backgroundColor('rgba(14,14,14,1)')
     .particleLat('lat')
     .particleLng('lng')
