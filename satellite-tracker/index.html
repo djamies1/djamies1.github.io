@@ -179,8 +179,8 @@
 <div id="header">
   <a href="../index.html" class="back-link">← David Jamieson</a>
   <div class="header-center">
-    <div class="header-title">Live Satellite Tracker</div>
-    <div class="header-subtitle">Real-time orbital positions</div>
+    <div class="header-title">Amazon Leo Satellite Tracker</div>
+    <div class="header-subtitle">Project Kuiper — live orbital positions</div>
   </div>
 </div>
 
@@ -200,24 +200,9 @@
   </div>
   <div class="legend">
     <div class="legend-item">
-      <div class="legend-dot" style="background:#b499ff"></div>
-      <span>LEO</span>
-      <span class="legend-range">0–2,000 km</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-dot" style="background:#8750ff"></div>
-      <span>MEO</span>
-      <span class="legend-range">2,000–35,000 km</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-dot" style="background:#e9e0ff"></div>
-      <span>GEO</span>
-      <span class="legend-range">35,000–36,500 km</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-dot" style="background:#9d7dff"></div>
-      <span>HEO</span>
-      <span class="legend-range">36,500+ km</span>
+      <div class="legend-dot" style="background:#cc00ff"></div>
+      <span>Kuiper LEO</span>
+      <span class="legend-range">~590–630 km</span>
     </div>
   </div>
 </div>
@@ -241,23 +226,23 @@
 import * as satellite from 'https://esm.sh/satellite.js';
 
 const EARTH_RADIUS_KM = 6371;
-const CACHE_KEY = 'satTracker_tle_v1';
+const CACHE_KEY = 'satTracker_kuiper_v1';
 const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
-// TLE text format — the only CelesTrak format that includes TLE_LINE1/LINE2
-const CELESTRAK_URL = 'https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=TLE';
+// Kuiper-only TLE feed
+const CELESTRAK_URL = 'https://celestrak.org/NORAD/elements/gp.php?GROUP=kuiper&FORMAT=TLE';
 const FETCH_URLS = [
   CELESTRAK_URL,
   'https://corsproxy.io/?' + CELESTRAK_URL,
   'https://api.allorigins.win/raw?url=' + encodeURIComponent(CELESTRAK_URL)
 ];
 
-// ── Orbit classification — Leo brand purples ──────────────────────────────────
+// ── Orbit classification — all Kuiper sats are LEO, single neon purple ────────
 function classifyOrbit(altKm) {
-  if (altKm < 2000)  return { band: 'LEO', color: '#b499ff' }; // Krypton tint-02 (lavender)
-  if (altKm < 35000) return { band: 'MEO', color: '#8750ff' }; // Krypton primary
-  if (altKm < 36500) return { band: 'GEO', color: '#e9e0ff' }; // Krypton lightest
-  return { band: 'HEO', color: '#9d7dff' };                    // Krypton tint-01
+  if (altKm < 2000)  return { band: 'LEO', color: '#cc00ff' };
+  if (altKm < 35000) return { band: 'MEO', color: '#cc00ff' };
+  if (altKm < 36500) return { band: 'GEO', color: '#cc00ff' };
+  return { band: 'HEO', color: '#cc00ff' };
 }
 
 // ── DOM refs ─────────────────────────────────────────────────────────────────
