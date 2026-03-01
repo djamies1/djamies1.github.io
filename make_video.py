@@ -45,7 +45,7 @@ LINE_SPACING = 1.5               # multiplier on font size
 PARAGRAPH_GAP = 70               # extra pixels of space between paragraphs
 
 # ── Scroll ────────────────────────────────────────────────────────────────────
-DEFAULT_SCROLL_SPEED = 40        # pixels per second
+DEFAULT_SCROLL_SPEED = 50        # pixels per second
 MAX_VIDEO_DURATION   = 180       # seconds — YouTube Shorts limit (3 minutes)
 
 # ── Audio ─────────────────────────────────────────────────────────────────────
@@ -677,8 +677,8 @@ def main():
         help="Disable reverb post-processing on narration (reverb is on by default)"
     )
     parser.add_argument(
-        "--no-narration", action="store_true",
-        help="Skip TTS narration (music only, or silent)"
+        "--narration", action="store_true",
+        help="Enable TTS narration (off by default)"
     )
     parser.add_argument(
         "--speed", type=int, default=DEFAULT_SCROLL_SPEED,
@@ -715,9 +715,10 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
 
     def _make_output(index: int, story: dict) -> str:
+        post_id = story.get("id", "unknown")
         safe = "".join(c if c.isalnum() or c in " _-" else "" for c in story["title"])
-        safe = safe.strip().replace(" ", "_")[:40]
-        return str(out_dir / f"nosleep_{index:02d}_{safe}.mp4")
+        safe = safe.strip().replace(" ", "_")[:30]
+        return str(out_dir / f"nosleep_{index:02d}_{post_id}_{safe}.mp4")
 
     def _run(index: int, story: dict, output: str) -> None:
         create_video(
@@ -727,7 +728,7 @@ def main():
             music_path=args.music,
             music_volume=args.music_volume,
             max_words=args.max_words,
-            narration=not args.no_narration,
+            narration=args.narration,
             scroll_speed=args.speed,
             background_path=args.background,
             max_duration=args.max_duration,

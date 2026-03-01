@@ -15,3 +15,8 @@ nul
 __pycache__/
 *.pyc
 *.pyo
+
+# YouTube upload credentials and state (keep off git)
+client_secrets.json
+token.json
+uploaded.json
