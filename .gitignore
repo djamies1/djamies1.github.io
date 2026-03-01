@@ -22,3 +22,13 @@ __pycache__/
 client_secrets.json
 token.json
 uploaded.json
+
+# TikTok upload credentials and state
+tiktok_creds.json
+tiktok_token.json
+uploaded_tiktok.json
+
+# Instagram upload credentials and state
+instagram_creds.json
+instagram_token.json
+uploaded_instagram.json
