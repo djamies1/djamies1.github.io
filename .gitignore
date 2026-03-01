@@ -1,1 +1,24 @@
 .claude/
+
+# Generated video output
+video_output/
+
+# Large binary media assets (store these locally, not in git)
+background_images/
+horror_music/
+
+# Generated data files
+nosleep_stories.json
+
+# Windows artifacts
+nul
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# YouTube upload credentials and state (keep off git)
+client_secrets.json
+token.json
+uploaded.json
