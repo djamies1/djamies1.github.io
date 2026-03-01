@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — djamies1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0e0e0e; --cream: #f5f0e8; --gold: #c9a84c;
+    --muted: #777; --border: #e0d8cc;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); }
+
+  header {
+    background: var(--ink); padding: 1.5rem 2rem;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  header a {
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+  }
+  header a:hover { text-decoration: underline; }
+  header span { color: rgba(255,255,255,0.2); font-size: 0.8rem; }
+
+  .page { max-width: 760px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  .eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.38em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(2rem,5vw,3rem);
+    font-weight: 700; margin-bottom: 0.5rem; line-height: 1.1;
+  }
+  .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 3rem; }
+
+  h2 {
+    font-family: 'Playfair Display', serif; font-size: 1.2rem;
+    font-weight: 700; margin: 2.5rem 0 0.75rem;
+    border-left: 3px solid var(--gold); padding-left: 0.8rem;
+  }
+  p { font-size: 0.95rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 1rem; }
+  ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { font-size: 0.95rem; line-height: 1.85; color: #2a2a2a; margin-bottom: 0.3rem; }
+  a { color: var(--ink); }
+
+  footer {
+    text-align: center; padding: 2rem; font-size: 0.72rem;
+    color: var(--muted); border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/">← djamies1.github.io</a>
+  <span>/</span>
+  <a href="/privacy">Privacy Policy</a>
+</header>
+
+<div class="page">
+  <p class="eyebrow">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Last updated: March 2026</p>
+
+  <p>This Privacy Policy describes how the personal automation tools operated by David Jamieson
+  ("I", "me", or "my") handle information when you use applications or scripts connected to
+  this domain, including tools that interact with the TikTok, Instagram, and YouTube APIs.</p>
+
+  <h2>1. Who This Applies To</h2>
+  <p>These tools are personal automation scripts used solely by the account owner (David Jamieson)
+  to manage and publish content to social media platforms. They are not public-facing applications
+  and are not available for download or use by third parties.</p>
+
+  <h2>2. Data I Collect</h2>
+  <p>These tools do not collect, store, or process personal data from any third party. The only
+  data handled is:</p>
+  <ul>
+    <li>OAuth access tokens issued by TikTok, Instagram, and YouTube to the account owner.
+        These tokens are stored locally on the account owner's device and are never transmitted
+        to any server I operate.</li>
+    <li>Metadata about published videos (e.g. video title, upload timestamp, platform media ID),
+        stored locally for deduplication purposes.</li>
+    <li>Publicly available Reddit post content (titles and story text) accessed via the Reddit
+        public JSON API for the purpose of producing video content.</li>
+  </ul>
+
+  <h2>3. Data I Do Not Collect</h2>
+  <p>I do not collect:</p>
+  <ul>
+    <li>Personal information from any user other than the account owner</li>
+    <li>Cookies, analytics, or tracking data of any kind</li>
+    <li>Passwords or login credentials</li>
+    <li>Device identifiers, IP addresses, or location data</li>
+  </ul>
+
+  <h2>4. Third-Party Services</h2>
+  <p>These tools interact with the following third-party APIs on behalf of the account owner:</p>
+  <ul>
+    <li><strong>TikTok for Developers</strong> — content publishing via the TikTok Content Posting API</li>
+    <li><strong>Meta Graph API</strong> — content publishing via the Instagram Reels API</li>
+    <li><strong>YouTube Data API v3</strong> — content publishing via Google's YouTube API</li>
+    <li><strong>Reddit Public API</strong> — reading publicly available story content</li>
+  </ul>
+  <p>Each platform's own privacy policy governs how they handle data processed through their APIs.</p>
+
+  <h2>5. Data Sharing</h2>
+  <p>I do not share, sell, or disclose any data to third parties. No analytics services, advertising
+  networks, or data brokers receive any information through these tools.</p>
+
+  <h2>6. Data Retention</h2>
+  <p>OAuth tokens are stored locally on the account owner's device and can be deleted at any time
+  by removing the token files. Upload tracking records are also stored locally and are not
+  transmitted anywhere.</p>
+
+  <h2>7. Security</h2>
+  <p>Credential files (client secrets, access tokens) are stored locally and excluded from version
+  control via <code>.gitignore</code>. Access to these files is limited to the account owner's
+  local machine.</p>
+
+  <h2>8. Changes to This Policy</h2>
+  <p>This policy may be updated from time to time. The "Last updated" date at the top of this page
+  reflects when it was last revised.</p>
+
+  <h2>9. Contact</h2>
+  <p>If you have any questions about this Privacy Policy, you can reach me at
+  <a href="mailto:david.jamieson.bz@gmail.com">david.jamieson.bz@gmail.com</a>.</p>
+</div>
+
+<footer>
+  <p>© 2026 David Jamieson · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></p>
+</footer>
+
+</body>
+</html>
