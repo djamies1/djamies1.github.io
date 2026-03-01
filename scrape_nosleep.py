@@ -1,15 +1,17 @@
 """
-Horror story scraper — pulls top posts from multiple subreddits.
-Saves combined, deduplicated results as JSON for video production use.
+Horror story scraper — pulls posts from multiple subreddits across sort modes.
+Merges results into a JSON file for video production use, never overwriting
+stories that have already been rendered or uploaded.
 
 Default subreddits:
     r/nosleep, r/creepystories, r/scarystories, r/writersofhorror
 
 Usage:
-    python scrape_nosleep.py
+    python scrape_nosleep.py --comprehensive      # recommended: all-time + hot + new
+    python scrape_nosleep.py                      # top/all-time only (quick refresh)
+    python scrape_nosleep.py --sort hot           # hot stories only
+    python scrape_nosleep.py --sort new           # newest stories only
     python scrape_nosleep.py --sort top --time week --limit 25
-    python scrape_nosleep.py --subreddits nosleep scarystories
-    python scrape_nosleep.py --sort hot --limit 5 --out stories.json
 """
 
 import argparse
@@ -35,6 +37,18 @@ DEFAULT_SUBREDDITS = [
     "scarystories",
     "writersofhorror",
 ]
+
+# Passes run in --comprehensive mode. Each is (sort, time_filter).
+# hot/new ignore time_filter but we pass "all" as a harmless placeholder.
+COMPREHENSIVE_PASSES = [
+    ("top", "all"),    # all-time best — highest quality pool
+    ("top", "year"),   # this year's best — catches newer classics
+    ("top", "month"),  # this month's best — recent quality
+    ("hot", "all"),    # currently trending
+    ("new", "all"),    # freshest posts
+]
+
+MIN_WORDS = 50   # stories shorter than this won't make a meaningful video
 
 
 def fetch_json(url: str, retries: int = 4) -> dict:
@@ -100,7 +114,7 @@ def scrape_subreddit(subreddit: str, sort: str = "top",
     """
     Fetch qualifying posts from a single subreddit, paginating until `target`
     qualifying stories are collected or Reddit has no more posts to return.
-    A qualifying story is a self-post with a non-empty body of ≤1000 words.
+    A qualifying story is a self-post with a body between MIN_WORDS and 1000 words.
     """
     print(f"\n── r/{subreddit} ──────────────────────────────────────", file=sys.stderr)
 
@@ -146,6 +160,9 @@ def scrape_subreddit(subreddit: str, sort: str = "top",
                 continue
 
             words = body.split()
+            if len(words) < MIN_WORDS:
+                print(f"  Skipping '{title[:50]}' (<{MIN_WORDS} words)", file=sys.stderr)
+                continue
             if len(words) > 1000:
                 print(f"  Skipping '{title[:50]}' (>{1000} words)", file=sys.stderr)
                 continue
@@ -237,17 +254,21 @@ def main():
     parser.add_argument(
         "--time",
         choices=["hour", "day", "week", "month", "year", "all"],
-        default="month",
+        default="all",
         dest="time_filter",
-        help="Time window (only applies to --sort top)",
+        help="Time window (only applies to --sort top, default: all)",
     )
-    parser.add_argument("--limit", type=int, default=100,
-                        help="Target number of qualifying stories per subreddit (default: 100). Paginates automatically.")
+    parser.add_argument("--limit", type=int, default=50,
+                        help="Target number of qualifying stories per subreddit per pass (default: 50).")
     parser.add_argument("--out", default="nosleep_stories.json", help="Output JSON file")
+    parser.add_argument(
+        "--comprehensive", action="store_true",
+        help=(
+            "Run all sort/time combinations (top/all, top/year, top/month, hot, new) "
+            "to build the largest possible story pool. Recommended for first run."
+        ),
+    )
     args = parser.parse_args()
-
-    print(f"Scraping {len(args.subreddits)} subreddit(s): {', '.join(f'r/{s}' for s in args.subreddits)}",
-          file=sys.stderr)
 
     # Load existing stories so we never lose metadata for already-rendered/uploaded ones
     existing_stories: list = []
@@ -256,31 +277,46 @@ def main():
             existing_stories = json.load(f)
     existing_ids = {s["id"] for s in existing_stories}
 
-    fresh = scrape_all(
-        subreddits=args.subreddits,
-        sort=args.sort,
-        time_filter=args.time_filter,
-        target=args.limit,
-    )
+    passes = COMPREHENSIVE_PASSES if args.comprehensive else [(args.sort, args.time_filter)]
+    total_new = 0
 
-    # Merge: keep all existing stories, append truly new ones
-    new_stories = [s for s in fresh if s["id"] not in existing_ids]
-    stories = existing_stories + new_stories
+    for sort, time_filter in passes:
+        label = f"{sort}/{time_filter}" if sort == "top" else sort
+        print(f"\n{'='*60}", file=sys.stderr)
+        print(f"Pass: {label} — {len(args.subreddits)} subreddit(s)", file=sys.stderr)
+        print(f"{'='*60}", file=sys.stderr)
 
-    if new_stories:
-        print(f"\nAdded {len(new_stories)} new story/stories to '{args.out}'.", file=sys.stderr)
+        fresh = scrape_all(
+            subreddits=args.subreddits,
+            sort=sort,
+            time_filter=time_filter,
+            target=args.limit,
+        )
+
+        new_stories = [s for s in fresh if s["id"] not in existing_ids]
+        for s in new_stories:
+            existing_ids.add(s["id"])
+            existing_stories.append(s)
+        total_new += len(new_stories)
+        print(f"\n  {len(new_stories)} new stories from pass [{label}]", file=sys.stderr)
+
+    # Re-sort the full combined list by score
+    existing_stories.sort(key=lambda s: s["score"], reverse=True)
+
+    if total_new:
+        print(f"\nAdded {total_new} new story/stories to '{args.out}'.", file=sys.stderr)
     else:
         print(f"\nNo new stories found — '{args.out}' is up to date.", file=sys.stderr)
 
     with open(args.out, "w", encoding="utf-8") as f:
-        json.dump(stories, f, ensure_ascii=False, indent=2)
+        json.dump(existing_stories, f, ensure_ascii=False, indent=2)
 
-    print(f"\nSaved {len(stories)} stories total to {args.out}", file=sys.stderr)
+    print(f"\nSaved {len(existing_stories)} stories total to {args.out}", file=sys.stderr)
 
     # Print a quick summary table to stdout
     print(f"\n{'#':<4} {'Score':<7} {'Words':<7} {'Subreddit':<18} Title")
     print("-" * 85)
-    for i, s in enumerate(stories, 1):
+    for i, s in enumerate(existing_stories, 1):
         print(f"{i:<4} {s['score']:<7} {s['word_count']:<7} {s['subreddit']:<18} {s['title'][:40]}")
 
 
