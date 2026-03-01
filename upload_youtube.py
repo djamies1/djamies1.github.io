@@ -36,7 +36,10 @@ UPLOADED_FILE    = "uploaded.json"
 CLIENT_SECRETS   = "client_secrets.json"
 TOKEN_FILE       = "token.json"
 
-SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
+SCOPES = [
+    "https://www.googleapis.com/auth/youtube.upload",
+    "https://www.googleapis.com/auth/youtube.readonly",
+]
 
 DEFAULT_PRIVACY = "public"
 DEFAULT_DELAY   = 10  # seconds between uploads
@@ -211,6 +214,10 @@ def main():
         "--dry-run", action="store_true",
         help="Preview what would be uploaded without actually uploading.",
     )
+    parser.add_argument(
+        "--sync", action="store_true",
+        help="Query your YouTube channel and add any already-uploaded videos to uploaded.json before uploading new ones.",
+    )
     args = parser.parse_args()
 
     # Load stories
@@ -221,6 +228,40 @@ def main():
 
     video_dir = Path(VIDEO_OUTPUT_DIR)
     uploaded  = load_uploaded()
+
+    # --sync: fetch channel videos from YouTube and match to stories
+    if args.sync:
+        print("Syncing uploaded.json with your YouTube channel...")
+        youtube      = get_authenticated_service()
+        story_by_title = {s["title"]: s for s in stories}
+        next_page    = None
+        synced       = 0
+        while True:
+            kwargs = dict(part="snippet", forMine=True, type="video", maxResults=50)
+            if next_page:
+                kwargs["pageToken"] = next_page
+            resp = youtube.search().list(**kwargs).execute()
+            for item in resp.get("items", []):
+                vid_id    = item["id"]["videoId"]
+                yt_title  = item["snippet"]["title"]
+                # Strip the suffix we add so we can match back to the story title
+                base_title = yt_title.replace(" | r/nosleep Horror Story", "").strip()
+                story      = story_by_title.get(base_title)
+                if story and story["id"] not in uploaded:
+                    uploaded[story["id"]] = {
+                        "youtube_id":  vid_id,
+                        "youtube_url": f"https://www.youtube.com/watch?v={vid_id}",
+                        "title":       story["title"],
+                        "author":      story.get("author", ""),
+                        "uploaded_at": item["snippet"]["publishedAt"],
+                    }
+                    print(f"  Synced: [{story['id']}] {base_title}")
+                    synced += 1
+            next_page = resp.get("nextPageToken")
+            if not next_page:
+                break
+        save_uploaded(uploaded)
+        print(f"Sync complete — {synced} new entries added to uploaded.json.\n")
 
     # Collect stories that are rendered but not yet uploaded, preserving story order
     pending = []

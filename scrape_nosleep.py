@@ -249,27 +249,33 @@ def main():
     print(f"Scraping {len(args.subreddits)} subreddit(s): {', '.join(f'r/{s}' for s in args.subreddits)}",
           file=sys.stderr)
 
-    stories = scrape_all(
+    # Load existing stories so we never lose metadata for already-rendered/uploaded ones
+    existing_stories: list = []
+    if Path(args.out).exists():
+        with open(args.out, encoding="utf-8") as f:
+            existing_stories = json.load(f)
+    existing_ids = {s["id"] for s in existing_stories}
+
+    fresh = scrape_all(
         subreddits=args.subreddits,
         sort=args.sort,
         time_filter=args.time_filter,
         target=args.limit,
     )
 
-    # Filter out stories that already have a video in video_output/
-    existing_ids = _existing_video_ids(VIDEO_OUTPUT_FOLDER)
-    if existing_ids:
-        before = len(stories)
-        stories = [s for s in stories if s.get("id") not in existing_ids]
-        skipped = before - len(stories)
-        if skipped:
-            print(f"\nSkipped {skipped} story/stories already rendered in '{VIDEO_OUTPUT_FOLDER}/'.",
-                  file=sys.stderr)
+    # Merge: keep all existing stories, append truly new ones
+    new_stories = [s for s in fresh if s["id"] not in existing_ids]
+    stories = existing_stories + new_stories
+
+    if new_stories:
+        print(f"\nAdded {len(new_stories)} new story/stories to '{args.out}'.", file=sys.stderr)
+    else:
+        print(f"\nNo new stories found — '{args.out}' is up to date.", file=sys.stderr)
 
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(stories, f, ensure_ascii=False, indent=2)
 
-    print(f"\nSaved {len(stories)} stories to {args.out}", file=sys.stderr)
+    print(f"\nSaved {len(stories)} stories total to {args.out}", file=sys.stderr)
 
     # Print a quick summary table to stdout
     print(f"\n{'#':<4} {'Score':<7} {'Words':<7} {'Subreddit':<18} Title")
