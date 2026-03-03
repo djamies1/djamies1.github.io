@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Instagram Auth</title>
+  <style>
+    body { font-family: monospace; padding: 2em; background: #111; color: #eee; }
+    #token { font-size: 0.95em; background: #222; padding: 1em; border-radius: 4px; word-break: break-all; }
+    button { margin-top: 1em; padding: 0.5em 1em; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Instagram Authorization</h2>
+  <p>Copy the token below and paste it into your terminal:</p>
+  <div id="token">Loading...</div>
+  <button onclick="navigator.clipboard.writeText(document.getElementById('token').innerText)">Copy to clipboard</button>
+  <script>
+    // Token is returned in the URL fragment (#access_token=...)
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    const token = params.get('access_token');
+    if (token) {
+      document.getElementById('token').innerText = token;
+    } else {
+      // Also check query string in case response_type=code was used
+      const query = new URLSearchParams(window.location.search);
+      const code = query.get('code');
+      if (code) {
+        document.getElementById('token').innerText = code;
+      } else {
+        document.getElementById('token').innerText = 'No token found. Full URL: ' + window.location.href;
+      }
+    }
+  </script>
+</body>
+</html>
