@@ -155,6 +155,7 @@ def scrape_reddit(subreddit: str, sort: str = "top",
                 "url":                article_url,
                 "source":             f"r/{subreddit}",
                 "score":              d["score"],
+                "created_utc":        d.get("created_utc"),   # Unix timestamp — used for freshness filtering
                 "scraped_at":         datetime.now(timezone.utc).isoformat(),
             })
 
