@@ -796,7 +796,7 @@ def main():
         description="Generate a scrolling nosleep video with narration and music."
     )
     parser.add_argument("--json", default="nosleep_stories.json")
-    parser.add_argument("--index", type=int, default=0, help="Story index (default: 0)")
+    parser.add_argument("--index", type=int, default=None, help="Story index — if omitted, all stories are processed (skipping existing)")
     parser.add_argument("--voice", default=None, help="edge-tts voice name (default: auto-detected from narrator gender)")
     parser.add_argument("--music", default=MUSIC_FOLDER, help="Path to a music file or folder to pick from randomly (default: '%(default)s')")
     parser.add_argument(
@@ -880,7 +880,7 @@ def main():
             reverb=not args.no_reverb,
         )
 
-    if args.all:
+    if args.all or args.index is None:
         print(f"Batch mode: generating {len(stories)} videos...\n")
         for i, story in enumerate(stories):
             # Match by post ID so re-sorting after a re-scrape doesn't re-render existing videos
