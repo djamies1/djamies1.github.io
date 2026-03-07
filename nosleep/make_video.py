@@ -769,6 +769,7 @@ def create_video(
         audio_codec="aac",
         logger=None,
     )
+    clip.close()
     print()  # end the progress line
 
     if narration:
