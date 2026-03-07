@@ -6,9 +6,11 @@ video_output/
 # Large binary media assets (store these locally, not in git)
 background_images/
 horror_music/
+music/
 
 # Generated data files
 nosleep_stories.json
+goodnews_stories.json
 
 # Windows artifacts
 nul
@@ -32,3 +34,6 @@ uploaded_tiktok.json
 instagram_creds.json
 instagram_token.json
 uploaded_instagram.json
+
+# Good Vibrations credentials and state
+goodnews_creds.json
