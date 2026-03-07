@@ -20,11 +20,9 @@ Usage:
 import argparse
 import base64
 import hashlib
-import http.server
 import json
 import secrets
 import sys
-import threading
 import time
 import webbrowser
 from pathlib import Path
@@ -42,11 +40,11 @@ TOKEN_FILE       = "tiktok_token.json"
 
 AUTH_URL      = "https://www.tiktok.com/v2/auth/authorize/"
 TOKEN_URL     = "https://open.tiktokapis.com/v2/oauth/token/"
-POST_INIT_URL = "https://open.tiktokapis.com/v2/post/video/init/"
+POST_INIT_URL = "https://open.tiktokapis.com/v2/post/publish/inbox/video/init/"
 STATUS_URL    = "https://open.tiktokapis.com/v2/post/publish/status/fetch/"
 
-REDIRECT_URI = "http://localhost:8080/callback"
-SCOPES       = "video.publish,video.upload"
+REDIRECT_URI = "https://djamies1.github.io/tiktok_callback.html"
+SCOPES       = "video.upload"
 
 # "SELF_ONLY" = draft visible only to you — safe default so you can review first
 DEFAULT_PRIVACY = "SELF_ONLY"
@@ -78,22 +76,11 @@ def _pkce_pair() -> tuple[str, str]:
 
 
 def _capture_callback() -> str:
-    """Start a one-shot local HTTP server and return the OAuth callback path."""
-    result = {}
-
-    class _Handler(http.server.BaseHTTPRequestHandler):
-        def do_GET(self):
-            result["path"] = self.path
-            self.send_response(200)
-            self.end_headers()
-            self.wfile.write(b"Authorised! You can close this tab.")
-
-        def log_message(self, *args):
-            pass  # suppress server logs
-
-    server = http.server.HTTPServer(("localhost", 8080), _Handler)
-    server.handle_request()
-    return result["path"]
+    """Prompt the user to paste the redirect URL from the browser."""
+    print("\nAfter logging in, you'll be redirected to your GitHub Pages callback page.")
+    print("Copy the code shown there and paste it below.")
+    code = input("Paste the code here: ").strip()
+    return f"/?code={code}"
 
 
 def load_token() -> dict | None:
@@ -116,7 +103,7 @@ def _refresh_token(creds: dict, token: dict) -> dict:
         "refresh_token": token["refresh_token"],
     })
     resp.raise_for_status()
-    new_token = resp.json()["data"]
+    new_token = resp.json()
     new_token["_fetched_at"] = time.time()
     save_token(new_token)
     return new_token
@@ -163,7 +150,7 @@ def get_access_token() -> str:
         "code_verifier": verifier,
     })
     resp.raise_for_status()
-    token = resp.json()["data"]
+    token = resp.json()
     token["_fetched_at"] = time.time()
     save_token(token)
     return token["access_token"]
@@ -196,7 +183,9 @@ def build_caption(story: dict) -> str:
 def upload_video(access_token: str, video_path: str, story: dict, privacy: str) -> str:
     """Upload a video to TikTok via the Content Posting API. Returns the publish_id."""
     size        = Path(video_path).stat().st_size
-    chunk_count = (size + CHUNK_SIZE - 1) // CHUNK_SIZE
+    # Upload as a single chunk (inbox endpoint supports up to 128 MB per chunk)
+    chunk_size  = size
+    chunk_count = 1
     headers     = {
         "Authorization": f"Bearer {access_token}",
         "Content-Type":  "application/json; charset=UTF-8",
@@ -204,22 +193,15 @@ def upload_video(access_token: str, video_path: str, story: dict, privacy: str) 
 
     # Step 1: Initialise the post
     init_resp = requests.post(POST_INIT_URL, headers=headers, json={
-        "post_info": {
-            "title":                    story["title"][:150],
-            "privacy_level":            privacy,
-            "disable_duet":             False,
-            "disable_comment":          False,
-            "disable_stitch":           False,
-            "video_cover_timestamp_ms": 1000,
-        },
         "source_info": {
             "source":            "FILE_UPLOAD",
             "video_size":        size,
-            "chunk_size":        CHUNK_SIZE,
+            "chunk_size":        chunk_size,
             "total_chunk_count": chunk_count,
         },
     })
-    init_resp.raise_for_status()
+    if not init_resp.ok:
+        sys.exit(f"ERROR {init_resp.status_code}: {init_resp.text}")
     data       = init_resp.json()["data"]
     publish_id = data["publish_id"]
     upload_url = data["upload_url"]
@@ -228,8 +210,8 @@ def upload_video(access_token: str, video_path: str, story: dict, privacy: str) 
     print(f"  Uploading: {Path(video_path).name}")
     with open(video_path, "rb") as fh:
         for i in range(chunk_count):
-            chunk = fh.read(CHUNK_SIZE)
-            start = i * CHUNK_SIZE
+            chunk = fh.read(chunk_size)
+            start = i * chunk_size
             end   = start + len(chunk) - 1
             resp  = requests.put(
                 upload_url,

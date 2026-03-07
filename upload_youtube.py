@@ -8,17 +8,20 @@ Prerequisites:
   3. pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
 Usage:
-    python upload_youtube.py              # upload pending videos (up to --limit)
-    python upload_youtube.py --limit 3    # upload at most 3 videos this run
-    python upload_youtube.py --dry-run    # preview without uploading
-    python upload_youtube.py --privacy public   # upload as public immediately
-    python upload_youtube.py --delay 30   # seconds to wait between uploads
+    python upload_youtube.py                        # upload 3 videos: first immediately, then +8h, +16h
+    python upload_youtube.py --limit 3              # upload at most 3 videos this run
+    python upload_youtube.py --stagger-hours 6      # stagger at +6h, +12h intervals instead
+    python upload_youtube.py --no-stagger           # upload all immediately with the same privacy setting
+    python upload_youtube.py --dry-run              # preview without uploading
+    python upload_youtube.py --privacy public       # privacy for the first (immediate) video
+    python upload_youtube.py --delay 30             # seconds to wait between uploads
 """
 
 import argparse
 import json
 import sys
 import time
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from google.auth.transport.requests import Request
@@ -41,9 +44,10 @@ SCOPES = [
     "https://www.googleapis.com/auth/youtube.readonly",
 ]
 
-DEFAULT_PRIVACY = "public"
-DEFAULT_DELAY   = 10  # seconds between uploads
-DEFAULT_LIMIT   = 3   # max uploads per run
+DEFAULT_PRIVACY      = "public"
+DEFAULT_DELAY        = 10   # seconds between uploads
+DEFAULT_LIMIT        = 3    # max uploads per run
+DEFAULT_STAGGER_HOURS = 8   # hours between scheduled videos (video 2 = +8h, video 3 = +16h, ...)
 
 YOUTUBE_CATEGORY_ENTERTAINMENT = "24"
 
@@ -141,8 +145,21 @@ def build_description(story: dict) -> str:
 
 # ── Upload ─────────────────────────────────────────────────────────────────────
 
-def upload_video(youtube, video_path: str, story: dict, privacy: str) -> str:
-    """Upload one video using the resumable protocol.  Returns the YouTube video ID."""
+def upload_video(youtube, video_path: str, story: dict, privacy: str,
+                 publish_at: str | None = None) -> str:
+    """
+    Upload one video using the resumable protocol.  Returns the YouTube video ID.
+    If publish_at is an RFC 3339 UTC string (e.g. '2026-03-02T18:00:00.000Z'),
+    the video is uploaded as private and scheduled to go public at that time.
+    """
+    status_body: dict = {"selfDeclaredMadeForKids": False}
+    if publish_at:
+        # YouTube requires privacyStatus=private when scheduling a publishAt
+        status_body["privacyStatus"] = "private"
+        status_body["publishAt"]     = publish_at
+    else:
+        status_body["privacyStatus"] = privacy
+
     body = {
         "snippet": {
             "title":       build_title(story),
@@ -150,10 +167,7 @@ def upload_video(youtube, video_path: str, story: dict, privacy: str) -> str:
             "tags":        TAGS,
             "categoryId":  YOUTUBE_CATEGORY_ENTERTAINMENT,
         },
-        "status": {
-            "privacyStatus":           privacy,
-            "selfDeclaredMadeForKids": False,
-        },
+        "status": status_body,
     }
 
     media = MediaFileUpload(
@@ -217,6 +231,15 @@ def main():
     parser.add_argument(
         "--sync", action="store_true",
         help="Query your YouTube channel and add any already-uploaded videos to uploaded.json before uploading new ones.",
+    )
+    parser.add_argument(
+        "--stagger-hours", type=float, default=DEFAULT_STAGGER_HOURS,
+        help=f"Hours between each scheduled video after the first (default: {DEFAULT_STAGGER_HOURS}). "
+             "Video 1 posts immediately, video 2 at +N hours, video 3 at +2N hours, etc.",
+    )
+    parser.add_argument(
+        "--no-stagger", action="store_true",
+        help="Disable staggered scheduling — upload all videos with the same privacy setting immediately.",
     )
     args = parser.parse_args()
 
@@ -294,11 +317,25 @@ def main():
         return
 
     youtube = get_authenticated_service()
+    run_start = datetime.now(timezone.utc)
 
     for i, (story, video_path) in enumerate(to_upload):
+        # Compute publish_at for staggered scheduling
+        if args.no_stagger or i == 0:
+            publish_at = None  # first video (or stagger disabled) — post immediately
+        else:
+            publish_at = (
+                run_start + timedelta(hours=args.stagger_hours * i)
+            ).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+
         print(f"\n[{i + 1}/{len(to_upload)}] {story['title']}")
+        if publish_at:
+            print(f"  Scheduled: {publish_at} (+{args.stagger_hours * i:.0f}h)")
+        else:
+            print(f"  Privacy  : {args.privacy} (immediate)")
+
         try:
-            video_id = upload_video(youtube, str(video_path), story, args.privacy)
+            video_id = upload_video(youtube, str(video_path), story, args.privacy, publish_at)
         except HttpError as exc:
             print(f"  ERROR: {exc}")
             if exc.status_code == 403:
@@ -311,9 +348,13 @@ def main():
             "title":       story["title"],
             "author":      story["author"],
             "uploaded_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            **({"publish_at": publish_at} if publish_at else {}),
         }
         save_uploaded(uploaded)
-        print(f"  Live at: https://www.youtube.com/watch?v={video_id}")
+        if publish_at:
+            print(f"  Uploaded (scheduled): https://www.youtube.com/watch?v={video_id}")
+        else:
+            print(f"  Live at: https://www.youtube.com/watch?v={video_id}")
 
         if i < len(to_upload) - 1:
             print(f"  Waiting {args.delay}s before next upload...")

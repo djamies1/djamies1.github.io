@@ -7,12 +7,19 @@ Requirements:
     pip install moviepy Pillow edge-tts numpy pedalboard
 
 Usage:
-    python make_video.py --index 0
+    python make_video.py --index 0                       # single story with narration (default)
+    python make_video.py --all                           # render every story with narration
+    python make_video.py --index 0 --no-narration        # scroll only, no audio
     python make_video.py --index 0 --music spooky.mp3
     python make_video.py --index 0 --voice en-US-JennyNeural
+    python make_video.py --index 0 --no-reverb
     python make_video.py --index 0 --max-words 400
     python make_video.py --list
     python make_video.py --list-voices
+
+Narration is ON by default. Scroll speed is automatically matched to narration
+duration so the text and audio finish at the same time (capped at 3 minutes).
+Pass --no-narration for a silent scroll-only video.
 """
 
 import argparse
@@ -49,15 +56,17 @@ DEFAULT_SCROLL_SPEED = 50        # pixels per second
 MAX_VIDEO_DURATION   = 180       # seconds — YouTube Shorts limit (3 minutes)
 
 # ── Audio ─────────────────────────────────────────────────────────────────────
-DEFAULT_VOICE     = "en-GB-RyanNeural"  # British male — dramatic, works well for horror
-DEFAULT_TTS_RATE  = "-15%"              # speaking speed relative to normal (-15% = slower)
-DEFAULT_TTS_PITCH = "-5Hz"             # voice pitch adjustment (-5Hz = slightly lower)
+DEFAULT_VOICE        = "en-GB-RyanNeural"   # British male — dramatic, works well for horror
+DEFAULT_FEMALE_VOICE = "en-GB-SoniaNeural"  # British female — matches Ryan's accent
+DEFAULT_TTS_RATE  = "-25%"              # speaking speed relative to normal (-25% = slower)
+DEFAULT_TTS_PITCH = "-10Hz"            # voice pitch adjustment (-10Hz = noticeably lower)
 DEFAULT_REVERB    = True                # apply subtle reverb to narration by default
 MUSIC_FOLDER      = "horror_music"      # folder of music tracks to pick from randomly
 MUSIC_VOLUME      = 0.15               # background music level (0.0–1.0)
 
 # A few good voices to try:
-#   en-GB-RyanNeural         — British male, dramatic (default)
+#   en-GB-RyanNeural         — British male, dramatic (default male)
+#   en-GB-SoniaNeural        — British female (default female)
 #   en-US-ChristopherNeural  — deep, calm male
 #   en-US-GuyNeural          — neutral male
 #   en-US-JennyNeural        — clear female
@@ -203,6 +212,22 @@ def _parse_inline(text: str) -> list[Word]:
             result.append((word, bold, italic, strike))
 
     return result
+
+
+def _strip_markdown(text: str) -> str:
+    """Strip markdown formatting symbols for clean TTS — keeps the words, drops the syntax."""
+    import re
+    text = re.sub(r'\^(\S+)', '', text)                                  # ^superscript
+    text = re.sub(r'`(.*?)`', r'\1', text)                              # `code`
+    text = re.sub(r'\*\*\*(.*?)\*\*\*', r'\1', text, flags=re.DOTALL)  # ***bold italic***
+    text = re.sub(r'\*\*(.*?)\*\*', r'\1', text, flags=re.DOTALL)      # **bold**
+    text = re.sub(r'\*(.*?)\*', r'\1', text, flags=re.DOTALL)          # *italic*
+    text = re.sub(r'~~(.*?)~~', r'\1', text, flags=re.DOTALL)          # ~~strikethrough~~
+    text = re.sub(r'_(.*?)_', r'\1', text, flags=re.DOTALL)            # _italic_
+    text = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', text)              # [link](url)
+    text = re.sub(r'^#{1,6}\s+', '', text, flags=re.MULTILINE)         # # headings
+    text = re.sub(r'^[-*]{3,}$', '', text, flags=re.MULTILINE)         # --- rules
+    return text
 
 
 def _pick_font(fonts: dict, bold: bool, italic: bool):
@@ -477,7 +502,7 @@ def apply_audio_effects(input_path: str, output_path: str) -> None:
     Reads `input_path`, writes processed audio to `output_path` (WAV).
     Settings are tuned for a creepy, slightly cavernous narration sound.
     """
-    from pedalboard import Pedalboard, Reverb  # type: ignore
+    from pedalboard import Pedalboard, Reverb, LowpassFilter  # type: ignore
     from pedalboard.io import AudioFile        # type: ignore
 
     with AudioFile(input_path) as f:
@@ -485,13 +510,14 @@ def apply_audio_effects(input_path: str, output_path: str) -> None:
         sample_rate = f.samplerate
 
     board = Pedalboard([
+        LowpassFilter(cutoff_frequency_hz=4000),  # muffle highs — distant/underground feel
         Reverb(
-            room_size=0.40,    # medium-large room — spacious but not washy
-            damping=0.65,      # darker tail — absorbs high frequencies
-            wet_level=0.18,    # 18% reverb mixed in — subtle, not overwhelming
-            dry_level=0.82,    # 82% dry voice remains clear
+            room_size=0.65,    # large cavernous space
+            damping=0.45,      # less damping — longer, brighter tail
+            wet_level=0.28,    # more reverb in the mix
+            dry_level=0.72,    # less dry signal
             freeze_mode=0.0,
-        )
+        ),
     ])
     processed = board(audio, sample_rate)
 
@@ -499,12 +525,76 @@ def apply_audio_effects(input_path: str, output_path: str) -> None:
         f.write(processed)
 
 
+# ── Narrator gender detection ─────────────────────────────────────────────────
+
+def _detect_narrator_gender(title: str, body: str) -> str:
+    """
+    Heuristically detect narrator gender from story text.
+    Returns 'female', 'male', or 'neutral' (neutral defaults to male voice).
+
+    Scoring approach — higher score wins:
+      +2 per match  : strong relational indicators (my husband / my wife)
+      +1 per match  : weaker relational indicators (my boyfriend / my girlfriend)
+      +3 per match  : explicit self-identification ("I'm a woman", "as a man", etc.)
+    """
+    import re
+    text = (title + " " + body).lower()
+
+    female_score = 0
+    male_score   = 0
+
+    # Strong relational indicators
+    female_score += len(re.findall(r'\bmy husband\b', text)) * 2
+    male_score   += len(re.findall(r'\bmy wife\b', text)) * 2
+
+    # Weaker relational indicators
+    female_score += len(re.findall(r'\bmy boyfriend\b', text))
+    male_score   += len(re.findall(r'\bmy girlfriend\b', text))
+
+    # Explicit self-identification
+    female_patterns = [
+        r"\bi'?m a (woman|girl|lady|female|mother|mom)\b",
+        r"\bi am a (woman|girl|lady|female|mother|mom)\b",
+        r"\bas a (woman|girl|lady|female|mother|mom)\b",
+        r"\bi'?m (pregnant|nursing)\b",
+    ]
+    male_patterns = [
+        r"\bi'?m a (man|guy|boy|male|father|dad|dude|bloke)\b",
+        r"\bi am a (man|guy|boy|male|father|dad)\b",
+        r"\bas a (man|guy|boy|male|father|dad)\b",
+    ]
+    for p in female_patterns:
+        female_score += len(re.findall(p, text)) * 3
+    for p in male_patterns:
+        male_score += len(re.findall(p, text)) * 3
+
+    if female_score > male_score:
+        return 'female'
+    if male_score > female_score:
+        return 'male'
+    return 'neutral'
+
+
+# ── TTS rate helpers ──────────────────────────────────────────────────────────
+
+def _rate_to_multiplier(rate_str: str) -> float:
+    """Convert edge-tts rate string to a speed multiplier.  '-15%' → 0.85, '+10%' → 1.10"""
+    pct = float(rate_str.strip().lstrip('+').rstrip('%'))
+    return 1.0 + pct / 100.0
+
+
+def _multiplier_to_rate(mult: float) -> str:
+    """Convert a speed multiplier back to an edge-tts rate string.  1.10 → '+10%', 0.85 → '-15%'"""
+    pct = (mult - 1.0) * 100.0
+    return f"{'+' if pct >= 0 else ''}{pct:.0f}%"
+
+
 # ── Main video builder ────────────────────────────────────────────────────────
 
 def create_video(
     story: dict,
     output_path: str,
-    voice: str,
+    voice: str | None,
     music_path: str | None,
     music_volume: float,
     max_words: int | None,
@@ -536,50 +626,10 @@ def create_video(
 
     audio = None
 
-    reverb_path = None  # track extra temp file for cleanup
-    if narration:
-        print(f"  Voice  : {voice}  (rate={tts_rate}, pitch={tts_pitch})")
-        # Generate TTS to a temp file
-        with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
-            tts_path = tmp.name
-
-        print("  Generating narration... (this may take a moment)")
-        generate_narration(f"{title}. {body}", voice, tts_path,
-                           rate=tts_rate, pitch=tts_pitch)
-
-        # Optionally apply reverb post-processing
-        if reverb:
-            print("  Applying reverb...")
-            with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp2:
-                reverb_path = tmp2.name
-            apply_audio_effects(tts_path, reverb_path)
-            narration_clip = AudioFileClip(reverb_path)
-        else:
-            narration_clip = AudioFileClip(tts_path)
-
-        duration = narration_clip.duration
-        # Enforce max_duration cap — trim narration audio if it's too long
-        if duration > max_duration:
-            print(f"  Trimming narration from {duration:.1f}s to {max_duration:.0f}s (--max-duration)")
-            narration_clip = narration_clip.subclipped(0, max_duration)
-            duration = max_duration
-        print(f"  Duration : {duration:.1f}s  ({duration/60:.1f} min)")
-
-        if music_path:
-            bg = AudioFileClip(music_path)
-            bg = _loop_audio(bg, duration).with_volume_scaled(music_volume)
-            audio = CompositeAudioClip([narration_clip, bg])
-        else:
-            audio = narration_clip
-    else:
-        print("  Narration : off")
-        # Duration driven by scroll speed — calculate after image is rendered
-        duration = None  # set below once we know image height
-
-    # 3. Render scrolling video
+    # ── Render image first so max_scroll is known before TTS ─────────────────
     background_path = _resolve_background(background_path)
     bg_arr = load_background_image(background_path)
-    bg_float = bg_arr.astype(np.float32)                   # pre-convert once
+    bg_float = bg_arr.astype(np.float32)
 
     author = story.get("author", "unknown")
     img, subscribe_center_y = render_story_image(title, author, body)
@@ -592,11 +642,96 @@ def create_video(
     text_alpha     = text_arr[:, :, 3:4].astype(np.float32) / 255.0
     text_inv_alpha = 1.0 - text_alpha
 
+    # Auto-select voice based on narrator gender unless overridden via --voice
+    if voice is None:
+        gender = _detect_narrator_gender(title, body)
+        if gender == 'female':
+            voice = DEFAULT_FEMALE_VOICE
+            print(f"  Gender : female detected → {voice}")
+        else:
+            voice = DEFAULT_VOICE
+            print(f"  Gender : {'neutral' if gender == 'neutral' else 'male'} detected → {voice}")
+    else:
+        print(f"  Voice  : {voice} (manual override)")
+
+    reverb_path = None  # track extra temp file for cleanup
     if narration:
-        # Scroll speed auto-fitted to narration length
+        effective_rate = tts_rate
+        print(f"  Voice  : {voice}  (rate={effective_rate}, pitch={tts_pitch})")
+
+        with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+            tts_path = tmp.name
+
+        print("  Generating narration... (this may take a moment)")
+        generate_narration(f"{title}. {_strip_markdown(body)}", voice, tts_path,
+                           rate=effective_rate, pitch=tts_pitch)
+
+        _raw_clip = AudioFileClip(tts_path)
+        raw_duration = _raw_clip.duration
+        _raw_clip.close()
+
+        # If narration is too long, speed up the voice to fit.
+        # We target 6s under max_duration to leave headroom for reverb tail and
+        # rate-string rounding — guaranteeing no speech content is ever clipped.
+        tts_target = max_duration - 6
+        if raw_duration > tts_target:
+            speedup = raw_duration / tts_target
+            new_mult = _rate_to_multiplier(effective_rate) * speedup
+            effective_rate = _multiplier_to_rate(new_mult)
+            print(f"  Narration too long ({raw_duration:.1f}s) — "
+                  f"re-generating at {effective_rate} to fit under {max_duration:.0f}s")
+            Path(tts_path).unlink(missing_ok=True)
+            with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+                tts_path = tmp.name
+            generate_narration(f"{title}. {_strip_markdown(body)}", voice, tts_path,
+                               rate=effective_rate, pitch=tts_pitch)
+
+            # Re-verify: rate-string rounding can still cause a small overrun.
+            # If so, do one corrective pass targeting a harder floor.
+            _verify = AudioFileClip(tts_path)
+            regen_duration = _verify.duration
+            _verify.close()
+            if regen_duration > tts_target:
+                speedup2 = regen_duration / (tts_target - 3)
+                new_mult2 = _rate_to_multiplier(effective_rate) * speedup2
+                effective_rate = _multiplier_to_rate(new_mult2)
+                Path(tts_path).unlink(missing_ok=True)
+                with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+                    tts_path = tmp.name
+                print(f"  Correcting rate rounding — re-generating at {effective_rate}")
+                generate_narration(f"{title}. {_strip_markdown(body)}", voice, tts_path,
+                                   rate=effective_rate, pitch=tts_pitch)
+
+        # Optionally apply reverb post-processing
+        if reverb:
+            print("  Applying reverb...")
+            with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp2:
+                reverb_path = tmp2.name
+            apply_audio_effects(tts_path, reverb_path)
+            narration_clip = AudioFileClip(reverb_path)
+        else:
+            narration_clip = AudioFileClip(tts_path)
+
+        duration = narration_clip.duration
+        # Hard-clamp to max_duration: rate-string rounding and reverb tail can both
+        # push the final clip slightly over the limit even after the speedup pass.
+        if duration > max_duration:
+            duration = max_duration
+            narration_clip = narration_clip.subclipped(0, duration)
+        print(f"  Duration : {duration:.1f}s  ({duration/60:.1f} min)")
+
+        # Scroll speed exactly matches narration — text and audio finish together
         scroll_speed = max_scroll / duration
         print(f"  Scroll speed : {scroll_speed:.1f} px/s (auto)")
+
+        if music_path:
+            bg = AudioFileClip(music_path)
+            bg = _loop_audio(bg, duration).with_volume_scaled(music_volume)
+            audio = CompositeAudioClip([narration_clip, bg])
+        else:
+            audio = narration_clip
     else:
+        print("  Narration : off")
         # Auto-increase speed if needed to stay within max_duration
         min_speed = max_scroll / max_duration
         if scroll_speed < min_speed:
@@ -612,8 +747,15 @@ def create_video(
 
     print(f"  Output : {output_path}\n")
 
+    total_frames = int(duration * FPS)
+    _rendered = [0]
+
     def make_frame(t: float):
         y = min(int(t * scroll_speed), max_scroll)
+        _rendered[0] += 1
+        if _rendered[0] % 30 == 0 or _rendered[0] == total_frames:
+            pct = _rendered[0] / total_frames * 100
+            print(f"\r  Rendering : {pct:.0f}%  ({_rendered[0]}/{total_frames} frames)", end="", flush=True)
         return (bg_float * text_inv_alpha[y:y+HEIGHT] + text_rgb_float[y:y+HEIGHT] * text_alpha[y:y+HEIGHT]).astype(np.uint8)
 
     clip = VideoClip(make_frame, duration=duration)
@@ -625,8 +767,9 @@ def create_video(
         fps=FPS,
         codec="libx264",
         audio_codec="aac",
-        logger="bar",
+        logger=None,
     )
+    print()  # end the progress line
 
     if narration:
         Path(tts_path).unlink(missing_ok=True)
@@ -654,7 +797,7 @@ def main():
     )
     parser.add_argument("--json", default="nosleep_stories.json")
     parser.add_argument("--index", type=int, default=0, help="Story index (default: 0)")
-    parser.add_argument("--voice", default=DEFAULT_VOICE, help="edge-tts voice name")
+    parser.add_argument("--voice", default=None, help="edge-tts voice name (default: auto-detected from narrator gender)")
     parser.add_argument("--music", default=MUSIC_FOLDER, help="Path to a music file or folder to pick from randomly (default: '%(default)s')")
     parser.add_argument(
         "--music-volume", type=float, default=MUSIC_VOLUME,
@@ -677,8 +820,8 @@ def main():
         help="Disable reverb post-processing on narration (reverb is on by default)"
     )
     parser.add_argument(
-        "--narration", action="store_true",
-        help="Enable TTS narration (off by default)"
+        "--no-narration", action="store_true", dest="no_narration",
+        help="Disable TTS narration (narration is on by default)"
     )
     parser.add_argument(
         "--speed", type=int, default=DEFAULT_SCROLL_SPEED,
@@ -728,7 +871,7 @@ def main():
             music_path=args.music,
             music_volume=args.music_volume,
             max_words=args.max_words,
-            narration=args.narration,
+            narration=not args.no_narration,
             scroll_speed=args.speed,
             background_path=args.background,
             max_duration=args.max_duration,

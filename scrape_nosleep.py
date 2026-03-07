@@ -4,14 +4,15 @@ Merges results into a JSON file for video production use, never overwriting
 stories that have already been rendered or uploaded.
 
 Default subreddits:
-    r/nosleep, r/creepystories, r/scarystories, r/writersofhorror
+    r/nosleep, r/creepystories, r/scarystories,
+    r/DarkTales, r/libraryofshadows, r/Odd_directions, r/TheCrypticCompendium
 
 Usage:
-    python scrape_nosleep.py --comprehensive      # recommended: all-time + hot + new
-    python scrape_nosleep.py                      # top/all-time only (quick refresh)
-    python scrape_nosleep.py --sort hot           # hot stories only
-    python scrape_nosleep.py --sort new           # newest stories only
-    python scrape_nosleep.py --sort top --time week --limit 25
+    python scrape_nosleep.py                      # comprehensive by default: all-time + hot + new
+    python scrape_nosleep.py --quick              # single pass (top/all-time only, faster)
+    python scrape_nosleep.py --quick --sort hot   # quick pass, hot stories only
+    python scrape_nosleep.py --quick --sort new   # quick pass, newest stories only
+    python scrape_nosleep.py --quick --sort top --time week --limit 25
 """
 
 import argparse
@@ -35,7 +36,10 @@ DEFAULT_SUBREDDITS = [
     "nosleep",
     "creepystories",
     "scarystories",
-    "writersofhorror",
+    "DarkTales",
+    "libraryofshadows",
+    "Odd_directions",
+    "TheCrypticCompendium",
 ]
 
 # Passes run in --comprehensive mode. Each is (sort, time_filter).
@@ -49,6 +53,76 @@ COMPREHENSIVE_PASSES = [
 ]
 
 MIN_WORDS = 50   # stories shorter than this won't make a meaningful video
+
+# ── Discussion-post filter ─────────────────────────────────────────────────────
+# These catch meta/community posts that aren't actual horror stories.
+# Checked against the post title before fetching the body (saves API calls).
+
+# Reddit flairs that reliably indicate non-story content
+DISCUSSION_FLAIRS = {
+    "meta", "discussion", "announcement", "off-topic", "off topic",
+    "community", "recommendations", "rec", "resource", "help", "advice",
+    "question", "monthly", "weekly", "mod post", "modpost", "contest",
+    "submission call", "submissions", "promo", "promotion",
+}
+
+# Title patterns that indicate craft/community posts rather than horror stories
+DISCUSSION_PATTERNS = [re.compile(p, re.IGNORECASE) for p in [
+    # Community/group solicitation
+    r"\bwould anyone\b",
+    r"\bdoes anyone\b",
+    r"\banyone (else|interested|here)\b",
+    r"\bif anyone\b",
+    r"\bhow did you\b",
+    r"\bwhat do you think\b",
+    r"\blooking for\b",
+    r"\bwriter[s']* group\b",
+    r"\bwriting group\b",
+    r"\bdiscord server\b",
+    r"\bany feedback\b",
+    # Submission calls / recruitment
+    r"\bseek(ing)? (submissions?|writers?|authors?)\b",
+    r"\bsubmissions? (wanted|seeking|open|needed|call)\b",
+    r"\bwriters? wanted\b",
+    # Self-promotion / publishing announcements
+    r"\bmy (debut|first) (novel|book|short story collection|story collection)\b",
+    r"\bsold my (first )?(story|book|novel)\b",
+    r"\bpublished my\b",
+    r"\b(released|launched) my (first |debut )?(novel|book|collection)\b",
+    r"\bfirst story published\b",
+    r"\brelease day\b",
+    r"\bmy book\b",
+    r"\bbook rec(ommendation)?[s:]?\b",
+    r"\bon sale\b",
+    r"\bfree (on|with|via)\b",
+    # Craft / industry discussion
+    r"\bwriter[s']* block\b",
+    r"\bself[- ]publish",
+    r"\btips (and|for|to)\b",
+    r"\b(any )?advice (for|on|about)\b",
+    r"\bvoiceover\b",
+    r"\bwattpad\b",
+    r"\bkindle\b",
+    r"\banthology\b",
+    r"\bhorror writers?\b",
+    r"\bhomies\b",
+    r"\bnovella\b",
+    r"\bpodcast\b",
+    r"\bkickstarter\b",
+    r"\bpatreon\b",
+    r"\bcreative space[s]?\b",
+    r"\bsite launch(ing)?\b",
+    r"\bdropped (a|my)\b",
+]]
+
+
+def is_discussion_post(post_data: dict) -> bool:
+    """Return True if the post looks like a meta/community/craft post, not a horror story."""
+    flair = (post_data.get("link_flair_text") or "").lower().strip()
+    if flair and any(flair == f or flair.startswith(f) for f in DISCUSSION_FLAIRS):
+        return True
+    title = post_data.get("title", "")
+    return any(p.search(title) for p in DISCUSSION_PATTERNS)
 
 
 def fetch_json(url: str, retries: int = 4) -> dict:
@@ -153,6 +227,12 @@ def scrape_subreddit(subreddit: str, sort: str = "top",
                 continue
 
             title = d["title"]
+
+            # Skip meta/discussion/community posts before hitting the API again
+            if is_discussion_post(d):
+                print(f"  Skipping '{title[:60]}' (discussion/meta)", file=sys.stderr)
+                continue
+
             body  = fetch_story_body(d["permalink"])
 
             if not body:
@@ -262,11 +342,8 @@ def main():
                         help="Target number of qualifying stories per subreddit per pass (default: 50).")
     parser.add_argument("--out", default="nosleep_stories.json", help="Output JSON file")
     parser.add_argument(
-        "--comprehensive", action="store_true",
-        help=(
-            "Run all sort/time combinations (top/all, top/year, top/month, hot, new) "
-            "to build the largest possible story pool. Recommended for first run."
-        ),
+        "--quick", action="store_true",
+        help="Single pass only (top/all-time by default). Faster but less thorough.",
     )
     args = parser.parse_args()
 
@@ -277,7 +354,7 @@ def main():
             existing_stories = json.load(f)
     existing_ids = {s["id"] for s in existing_stories}
 
-    passes = COMPREHENSIVE_PASSES if args.comprehensive else [(args.sort, args.time_filter)]
+    passes = [(args.sort, args.time_filter)] if args.quick else COMPREHENSIVE_PASSES
     total_new = 0
 
     for sort, time_filter in passes:

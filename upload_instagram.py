@@ -12,20 +12,23 @@ Prerequisites:
   4. Run once to authenticate — browser will open for Facebook Login.
 
 Usage:
-    python upload_instagram.py              # upload pending videos (up to --limit)
-    python upload_instagram.py --limit 3    # upload at most 3 videos this run
-    python upload_instagram.py --dry-run    # preview without uploading
+    python upload_instagram.py           # upload 1 pending video
+    python upload_instagram.py --dry-run # preview without uploading
 """
 
 import argparse
 import http.server
 import json
+import re
+import subprocess
 import sys
+import tempfile
 import time
 import webbrowser
 from pathlib import Path
 from urllib.parse import urlencode, parse_qs, urlparse
 
+import imageio_ffmpeg
 import requests
 
 # ── Constants ─────────────────────────────────────────────────────────────────
@@ -42,12 +45,12 @@ TOKEN_URL    = f"{GRAPH_BASE}/oauth/access_token"
 REDIRECT_URI = "http://localhost:8080/callback"
 
 # Permissions needed for content publishing
-SCOPES = "instagram_content_publish,instagram_basic,pages_show_list,pages_read_engagement"
+SCOPES = "instagram_basic,instagram_content_publish,pages_show_list,pages_read_engagement"
 
-DEFAULT_LIMIT = 3
-DEFAULT_DELAY = 10
+MAX_REEL_DURATION  = 60   # empirical safe limit for Reels via the Content Publishing API
+MAX_REEL_SIZE_MB   = 7.5  # empirical safe file size limit (dev mode appears to cap at ~8 MB)
 
-CHUNK_SIZE = 10 * 1024 * 1024  # 10 MB per chunk
+CHUNK_SIZE = 5 * 1024 * 1024  # 5 MB per chunk
 
 # ── Credentials ───────────────────────────────────────────────────────────────
 
@@ -98,9 +101,9 @@ def save_token(token: dict) -> None:
 def _exchange_for_long_lived(creds: dict, short_token: str) -> dict:
     """Exchange a short-lived token for a long-lived one (valid ~60 days)."""
     resp = requests.get(TOKEN_URL, params={
-        "grant_type":       "fb_exchange_token",
-        "client_id":        creds["app_id"],
-        "client_secret":    creds["app_secret"],
+        "grant_type":        "fb_exchange_token",
+        "client_id":         creds["app_id"],
+        "client_secret":     creds["app_secret"],
         "fb_exchange_token": short_token,
     })
     resp.raise_for_status()
@@ -114,24 +117,18 @@ def _refresh_token(creds: dict, token: dict) -> dict:
     return _exchange_for_long_lived(creds, token["access_token"])
 
 
-def _find_ig_user_id(access_token: str) -> str:
-    """
-    Walk the user's Facebook Pages to find the linked Instagram Business Account ID.
-    Raises RuntimeError if none is found.
-    """
+def _find_ig_user_id(access_token: str, creds: dict) -> str:
+    """Get the Instagram Business Account ID, using ig_user_id from creds if set."""
+    if creds.get("ig_user_id"):
+        print(f"  Using Instagram User ID from credentials: {creds['ig_user_id']}")
+        return creds["ig_user_id"]
+
     pages_resp = requests.get(f"{GRAPH_BASE}/me/accounts", params={
         "access_token": access_token,
         "fields":       "id,name",
     })
     pages_resp.raise_for_status()
     pages = pages_resp.json().get("data", [])
-
-    if not pages:
-        raise RuntimeError(
-            "No Facebook Pages found on this account.\n"
-            "You need a Facebook Page linked to your Instagram Business/Creator account.\n"
-            "See SOCIAL_MEDIA_SETUP.md for setup instructions."
-        )
 
     for page in pages:
         ig_resp = requests.get(f"{GRAPH_BASE}/{page['id']}", params={
@@ -145,9 +142,9 @@ def _find_ig_user_id(access_token: str) -> str:
             return ig_data["id"]
 
     raise RuntimeError(
-        "No Instagram Business/Creator account found linked to your Facebook Pages.\n"
-        "Make sure your Instagram account is set to Business or Creator and connected to a Facebook Page.\n"
-        "See SOCIAL_MEDIA_SETUP.md for setup instructions."
+        "Could not auto-detect Instagram User ID.\n"
+        "Add your Instagram Business Account ID to instagram_creds.json:\n"
+        '  {"app_id": "...", "app_secret": "...", "ig_user_id": "YOUR_ID"}'
     )
 
 
@@ -198,7 +195,7 @@ def get_access_token() -> tuple[str, str]:
 
     # Auto-detect Instagram User ID and store it with the token
     print("Detecting your Instagram User ID...")
-    token["ig_user_id"] = _find_ig_user_id(token["access_token"])
+    token["ig_user_id"] = _find_ig_user_id(token["access_token"], creds)
     save_token(token)
 
     return token["access_token"], token["ig_user_id"]
@@ -228,11 +225,33 @@ def build_caption(story: dict) -> str:
 
 # ── Upload ─────────────────────────────────────────────────────────────────────
 
+def remux_faststart(video_path: str) -> str:
+    """Remux an MP4 to move the moov atom to the start (required by Instagram).
+    Returns the path to a temporary faststart file."""
+    ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
+    tmp = tempfile.NamedTemporaryFile(suffix=".mp4", delete=False)
+    tmp.close()
+    subprocess.run(
+        [ffmpeg, "-y", "-i", video_path, "-c", "copy", "-movflags", "+faststart", tmp.name],
+        check=True, capture_output=True,
+    )
+    return tmp.name
+
+
 def upload_video(access_token: str, ig_user_id: str, video_path: str, story: dict) -> str:
     """
     Upload a video as an Instagram Reel using the resumable upload protocol.
     Returns the published media ID.
     """
+    print("  Remuxing for faststart...")
+    faststart_path = remux_faststart(video_path)
+    try:
+        return _upload_video_inner(access_token, ig_user_id, faststart_path, story)
+    finally:
+        Path(faststart_path).unlink(missing_ok=True)
+
+
+def _upload_video_inner(access_token: str, ig_user_id: str, video_path: str, story: dict) -> str:
     size = Path(video_path).stat().st_size
 
     # Step 1: Create a media container
@@ -245,7 +264,8 @@ def upload_video(access_token: str, ig_user_id: str, video_path: str, story: dic
             "access_token": access_token,
         },
     )
-    container_resp.raise_for_status()
+    if not container_resp.ok:
+        sys.exit(f"ERROR {container_resp.status_code}: {container_resp.text}")
     container_data = container_resp.json()
     container_id   = container_data["id"]
     upload_uri     = container_data["uri"]
@@ -260,14 +280,16 @@ def upload_video(access_token: str, ig_user_id: str, video_path: str, story: dic
             resp   = requests.post(
                 upload_uri,
                 data=chunk,
+                params={"access_token": access_token},
                 headers={
-                    "Authorization": f"OAuth {access_token}",
-                    "Content-Type":  "video/mp4",
-                    "file_size":     str(size),
-                    "offset":        str(offset),
+                    "Content-Type":   "video/mp4",
+                    "Content-Length": str(len(chunk)),
+                    "file_size":      str(size),
+                    "offset":         str(offset),
                 },
             )
-            resp.raise_for_status()
+            if not resp.ok:
+                sys.exit(f"ERROR {resp.status_code} on chunk {i}: {resp.text}")
             pct = int((i + 1) / chunk_count * 100)
             print(f"    {pct}% ...", end="\r")
     print("    Upload complete.          ")
@@ -299,10 +321,20 @@ def upload_video(access_token: str, ig_user_id: str, video_path: str, story: dic
         },
     )
     publish_resp.raise_for_status()
-    media_id = publish_resp.json()["id"]
-    return media_id
+    return publish_resp.json()["id"]
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
+
+def get_video_duration(video_path: str) -> float:
+    """Return video duration in seconds by parsing ffmpeg output."""
+    ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
+    result = subprocess.run([ffmpeg, "-i", video_path], capture_output=True, text=True)
+    match = re.search(r"Duration: (\d+):(\d+):(\d+\.\d+)", result.stderr)
+    if match:
+        h, m, s = int(match.group(1)), int(match.group(2)), float(match.group(3))
+        return h * 3600 + m * 60 + s
+    return 0.0
+
 
 def find_video_for_story(story_id: str, video_dir: Path) -> Path | None:
     for path in video_dir.glob(f"nosleep_*_{story_id}_*.mp4"):
@@ -313,13 +345,9 @@ def find_video_for_story(story_id: str, video_dir: Path) -> Path | None:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Upload rendered nosleep videos to Instagram Reels.",
+        description="Upload one rendered nosleep video to Instagram Reels.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    parser.add_argument("--limit",   type=int, default=DEFAULT_LIMIT,
-                        help="Maximum number of videos to upload per run.")
-    parser.add_argument("--delay",   type=int, default=DEFAULT_DELAY,
-                        help="Seconds to wait between uploads.")
     parser.add_argument("--dry-run", action="store_true",
                         help="Preview what would be uploaded without actually uploading.")
     args = parser.parse_args()
@@ -333,6 +361,7 @@ def main():
     uploaded  = load_uploaded()
 
     pending = []
+    skipped_long = 0
     for story in stories:
         sid = story["id"]
         if sid in uploaded:
@@ -340,45 +369,44 @@ def main():
         video_path = find_video_for_story(sid, video_dir)
         if video_path is None:
             continue
+        duration = get_video_duration(str(video_path))
+        size_mb  = video_path.stat().st_size / (1024 * 1024)
+        if duration > MAX_REEL_DURATION or size_mb > MAX_REEL_SIZE_MB:
+            skipped_long += 1
+            continue
         pending.append((story, video_path))
+
+    if skipped_long:
+        print(f"Skipped {skipped_long} video(s) exceeding {MAX_REEL_DURATION}s or {MAX_REEL_SIZE_MB}MB (not eligible for Reels via API).\n")
 
     if not pending:
         print("Nothing to upload — all rendered videos have already been uploaded to Instagram.")
         return
 
-    to_upload = pending[:args.limit]
-    print(f"Found {len(pending)} pending video(s).  Uploading {len(to_upload)} (limit: {args.limit}).\n")
+    story, video_path = pending[0]
+    print(f"Found {len(pending)} pending video(s).  Uploading next: {story['title']}\n")
 
     if args.dry_run:
-        print("DRY RUN — no uploads will be made.\n")
-        for story, path in to_upload:
-            print(f"  [{story['id']}] {story['title']}")
-            print(f"         File: {path.name}\n")
+        print("DRY RUN — no upload will be made.")
+        print(f"  [{story['id']}] {story['title']}")
+        print(f"  File: {video_path.name}")
         return
 
     access_token, ig_user_id = get_access_token()
 
-    for i, (story, video_path) in enumerate(to_upload):
-        print(f"\n[{i + 1}/{len(to_upload)}] {story['title']}")
-        try:
-            media_id = upload_video(access_token, ig_user_id, str(video_path), story)
-        except (requests.HTTPError, RuntimeError) as exc:
-            print(f"  ERROR: {exc}")
-            break
+    try:
+        media_id = upload_video(access_token, ig_user_id, str(video_path), story)
+    except (requests.HTTPError, RuntimeError) as exc:
+        sys.exit(f"  ERROR: {exc}")
 
-        uploaded[story["id"]] = {
-            "instagram_media_id": media_id,
-            "title":              story["title"],
-            "author":             story["author"],
-            "uploaded_at":        time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        }
-        save_uploaded(uploaded)
-        print(f"  Done (media_id: {media_id})")
-
-        if i < len(to_upload) - 1:
-            print(f"  Waiting {args.delay}s before next upload...")
-            time.sleep(args.delay)
-
+    uploaded[story["id"]] = {
+        "instagram_media_id": media_id,
+        "title":              story["title"],
+        "author":             story["author"],
+        "uploaded_at":        time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
+    save_uploaded(uploaded)
+    print(f"  Done (media_id: {media_id})")
     print(f"\nDone.  {len(uploaded)} total video(s) uploaded to Instagram.")
 
 
