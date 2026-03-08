@@ -184,11 +184,13 @@ def fetch_story_body(permalink: str) -> str:
 
 
 def scrape_subreddit(subreddit: str, sort: str = "top",
-                     time_filter: str = "month", target: int = 100) -> list[dict]:
+                     time_filter: str = "month", target: int = 100,
+                     exclude_ids: set | None = None) -> list[dict]:
     """
     Fetch qualifying posts from a single subreddit, paginating until `target`
     qualifying stories are collected or Reddit has no more posts to return.
     A qualifying story is a self-post with a body between MIN_WORDS and 1000 words.
+    Stories whose IDs are in `exclude_ids` are skipped and don't count toward `target`.
     """
     print(f"\n── r/{subreddit} ──────────────────────────────────────", file=sys.stderr)
 
@@ -224,6 +226,10 @@ def scrape_subreddit(subreddit: str, sort: str = "top",
 
             # Skip non-text posts
             if not d.get("is_self", False):
+                continue
+
+            # Skip stories we've already uploaded (or otherwise excluded)
+            if exclude_ids and d["id"] in exclude_ids:
                 continue
 
             title = d["title"]
@@ -273,17 +279,20 @@ def scrape_subreddit(subreddit: str, sort: str = "top",
 
 
 def scrape_all(subreddits: list[str], sort: str = "top",
-               time_filter: str = "month", target: int = 100) -> list[dict]:
+               time_filter: str = "month", target: int = 100,
+               exclude_ids: set | None = None) -> list[dict]:
     """
     Scrape multiple subreddits, deduplicate by post ID, and sort by score descending.
     `target` is the number of qualifying stories to collect per subreddit.
+    Stories in `exclude_ids` are skipped and don't count toward `target`.
     Adds a 2-second pause between subreddits to be polite to Reddit's API.
     """
     seen_ids: set[str] = set()
     all_stories: list[dict] = []
 
     for i, subreddit in enumerate(subreddits):
-        stories = scrape_subreddit(subreddit, sort=sort, time_filter=time_filter, target=target)
+        stories = scrape_subreddit(subreddit, sort=sort, time_filter=time_filter,
+                                   target=target, exclude_ids=exclude_ids)
         for story in stories:
             if story["id"] not in seen_ids:
                 seen_ids.add(story["id"])

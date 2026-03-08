@@ -132,12 +132,15 @@ def main():
     # ── Step 1: Optionally scrape for fresh stories ───────────────────────────
     stories = load_stories()
     existing_ids = {s["id"] for s in stories}
+    uploaded = load_uploaded()
 
     if not args.no_scrape:
-        print("Scraping for fresh stories (top/week + hot)...")
+        print(f"Scraping for fresh stories (top/week + hot) — stopping at {args.limit} per subreddit...")
         total_new = 0
+        exclude = set(uploaded.keys()) | existing_ids
         for sort, time_filter in DAILY_SCRAPE_PASSES:
-            fresh = scrape_all(DEFAULT_SUBREDDITS, sort=sort, time_filter=time_filter, target=20)
+            fresh = scrape_all(DEFAULT_SUBREDDITS, sort=sort, time_filter=time_filter,
+                               target=args.limit, exclude_ids=exclude)
             new = [s for s in fresh if s["id"] not in existing_ids]
             for s in new:
                 existing_ids.add(s["id"])
@@ -150,7 +153,6 @@ def main():
         print(f"Skipping scrape — using {len(stories)} existing stories.\n")
 
     # ── Step 2: Find top unuploaded stories ───────────────────────────────────
-    uploaded = load_uploaded()
     candidates = [s for s in stories if s["id"] not in uploaded]
 
     if not candidates:
