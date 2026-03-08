@@ -24,11 +24,14 @@ Pass --no-narration for a silent scroll-only video.
 
 import argparse
 import asyncio
+import io
 import json
 import math
 import random
 import sys
 import tempfile
+import urllib.parse
+import urllib.request
 from pathlib import Path
 
 import numpy as np
@@ -307,6 +310,47 @@ DEFAULT_BACKGROUND = BACKGROUND_FOLDER    # can also be a single image file path
 VIDEO_OUTPUT_FOLDER = "video_output"      # folder where rendered .mp4 files are saved
 LOGO_CROP_BOTTOM = 70    # pixels to crop from bottom to remove watermark
 OVERLAY_OPACITY = 140    # 0–255: how dark the overlay is (140 ≈ 55% black)
+
+# ── AI background generation (Pollinations.ai) ────────────────────────────────
+POLLINATIONS_URL = (
+    "https://image.pollinations.ai/prompt/{prompt}"
+    "?width=1080&height=1920&nologo=true&seed={seed}"
+)
+IMAGE_TIMEOUT = 90  # seconds — Pollinations can be slow on first request
+
+
+def _story_to_image_prompt(title: str) -> str:
+    return f"Creepy background image that is dark and slightly faded. The theme is {title}"
+
+
+def fetch_ai_background(title: str, story_id: str) -> np.ndarray:
+    """Fetch an AI-generated background from Pollinations.ai based on the story title."""
+    prompt  = _story_to_image_prompt(title)
+    encoded = urllib.parse.quote(prompt)
+    seed    = abs(hash(story_id)) % 99999
+    url     = POLLINATIONS_URL.format(prompt=encoded, seed=seed)
+
+    print(f"  Background : fetching AI image from Pollinations.ai...")
+    req = urllib.request.Request(url, headers={"User-Agent": "nosleep-video/1.0"})
+    with urllib.request.urlopen(req, timeout=IMAGE_TIMEOUT) as resp:
+        img_data = resp.read()
+
+    img = Image.open(io.BytesIO(img_data)).convert("RGB")
+
+    # Resize to fill frame
+    scale = max(WIDTH / img.width, HEIGHT / img.height)
+    new_w = int(img.width * scale)
+    new_h = int(img.height * scale)
+    img   = img.resize((new_w, new_h), Image.LANCZOS)
+    left  = (new_w - WIDTH) // 2
+    top   = (new_h - HEIGHT) // 2
+    img   = img.crop((left, top, left + WIDTH, top + HEIGHT))
+
+    # Dark overlay for text readability
+    overlay = Image.new("RGBA", img.size, (0, 0, 0, OVERLAY_OPACITY))
+    img = Image.alpha_composite(img.convert("RGBA"), overlay).convert("RGB")
+
+    return np.array(img)
 
 
 def _resolve_background(path: str) -> str:
@@ -638,8 +682,12 @@ def create_video(
     audio = None
 
     # ── Render image first so max_scroll is known before TTS ─────────────────
-    background_path = _resolve_background(background_path)
-    bg_arr = load_background_image(background_path)
+    try:
+        bg_arr = fetch_ai_background(title, story.get("id", "unknown"))
+    except Exception as e:
+        print(f"  Background : AI fetch failed ({e}) — falling back to local images")
+        background_path = _resolve_background(background_path)
+        bg_arr = load_background_image(background_path)
     bg_float = bg_arr.astype(np.float32)
 
     author = story.get("author", "unknown")
