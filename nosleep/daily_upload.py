@@ -6,9 +6,9 @@ Reads nosleep_stories.json, finds the top stories not yet in uploaded.json,
 renders videos for them on the fly, and uploads to YouTube with staggered scheduling.
 
 Usage:
-    python daily_upload.py                  # render & upload 3 stories
+    python daily_upload.py                  # scrape, render & upload 3 stories
     python daily_upload.py --limit 5        # process 5 stories instead
-    python daily_upload.py --scrape         # do a quick scrape first to refresh the story pool
+    python daily_upload.py --no-scrape      # skip scraping, use existing story pool as-is
     python daily_upload.py --no-stagger     # upload all immediately
     python daily_upload.py --dry-run        # preview without rendering or uploading
 """
@@ -104,8 +104,8 @@ def main():
         help="Number of stories to process per run.",
     )
     parser.add_argument(
-        "--scrape", action="store_true",
-        help="Do a quick scrape (top/week + hot) before selecting stories.",
+        "--no-scrape", action="store_true",
+        help="Skip scraping — use existing nosleep_stories.json as-is.",
     )
     parser.add_argument(
         "--stagger-hours", type=float, default=DEFAULT_STAGGER_HOURS,
@@ -133,7 +133,7 @@ def main():
     stories = load_stories()
     existing_ids = {s["id"] for s in stories}
 
-    if args.scrape:
+    if not args.no_scrape:
         print("Scraping for fresh stories (top/week + hot)...")
         total_new = 0
         for sort, time_filter in DAILY_SCRAPE_PASSES:
@@ -146,6 +146,8 @@ def main():
         stories.sort(key=lambda s: s["score"], reverse=True)
         save_stories(stories)
         print(f"Scrape complete — {total_new} new stories added.\n")
+    else:
+        print(f"Skipping scrape — using {len(stories)} existing stories.\n")
 
     # ── Step 2: Find top unuploaded stories ───────────────────────────────────
     uploaded = load_uploaded()
