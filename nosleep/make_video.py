@@ -473,7 +473,18 @@ async def _tts(text: str, voice: str, path: str, rate: str, pitch: str) -> None:
 def generate_narration(text: str, voice: str, path: str,
                        rate: str = DEFAULT_TTS_RATE,
                        pitch: str = DEFAULT_TTS_PITCH) -> None:
-    asyncio.run(_tts(text, voice, path, rate, pitch))
+    import time
+    for attempt in range(5):
+        try:
+            asyncio.run(_tts(text, voice, path, rate, pitch))
+            return
+        except Exception as e:
+            if attempt < 4:
+                wait = 2 ** attempt
+                print(f"  TTS error (attempt {attempt + 1}/5): {e} — retrying in {wait}s...")
+                time.sleep(wait)
+            else:
+                raise
 
 
 async def _list_voices() -> None:
