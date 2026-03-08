@@ -53,7 +53,7 @@ PARAGRAPH_GAP = 70               # extra pixels of space between paragraphs
 
 # ── Scroll ────────────────────────────────────────────────────────────────────
 DEFAULT_SCROLL_SPEED = 50        # pixels per second
-MAX_VIDEO_DURATION   = 180       # seconds — YouTube Shorts limit (3 minutes)
+MAX_VIDEO_DURATION   = 177       # seconds — YouTube Shorts limit (3 min), -3s buffer for platform encoding overhead
 
 # ── Audio ─────────────────────────────────────────────────────────────────────
 DEFAULT_VOICE        = "en-GB-RyanNeural"   # British male — dramatic, works well for horror
