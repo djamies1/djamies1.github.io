@@ -22,7 +22,7 @@ from pathlib import Path
 
 from googleapiclient.errors import HttpError
 
-from scrape_nosleep import scrape_all, DEFAULT_SUBREDDITS
+from scrape_nosleep import scrape_all
 from make_video import (
     create_video,
     VIDEO_OUTPUT_FOLDER,
@@ -49,10 +49,15 @@ from upload_youtube import (
 STORIES_FILE  = "nosleep_stories.json"
 DEFAULT_LIMIT = 3
 
-# Quick scrape passes used when --scrape is passed
+DAILY_SUBREDDITS = [
+    "nosleep",
+    "creepystories",
+    "scarystories",
+]
+
+# Single pass — top stories from the past week
 DAILY_SCRAPE_PASSES = [
     ("top", "week"),
-    ("hot", "all"),
 ]
 
 
@@ -139,7 +144,7 @@ def main():
         total_new = 0
         exclude = set(uploaded.keys()) | existing_ids
         for sort, time_filter in DAILY_SCRAPE_PASSES:
-            fresh = scrape_all(DEFAULT_SUBREDDITS, sort=sort, time_filter=time_filter,
+            fresh = scrape_all(DAILY_SUBREDDITS, sort=sort, time_filter=time_filter,
                                target=args.limit, exclude_ids=exclude)
             new = [s for s in fresh if s["id"] not in existing_ids]
             for s in new:
