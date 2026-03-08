@@ -773,6 +773,7 @@ def create_video(
     print()  # end the progress line
 
     if narration:
+        narration_clip.close()
         Path(tts_path).unlink(missing_ok=True)
         if reverb_path:
             Path(reverb_path).unlink(missing_ok=True)
