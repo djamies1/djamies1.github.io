@@ -58,7 +58,7 @@ REDDIT_PASSES = [
 
 GEMINI_URL = (
     "https://generativelanguage.googleapis.com/v1beta"
-    "/models/gemini-1.5-flash:generateContent"
+    "/models/gemini-2.0-flash-lite:generateContent"
 )
 
 _last_request_at: float = 0.0
@@ -111,6 +111,30 @@ def rewrite_headline(headline: str, api_key: str) -> str:
     except Exception as e:
         print(f"  Warning: Gemini rewrite failed ({e}) — using original", file=sys.stderr)
         return headline
+
+# ── Gemini summary generation ─────────────────────────────────────────────────
+
+def generate_summary(headline: str, api_key: str) -> str:
+    """Generate a 1–2 sentence uplifting summary for the video overlay."""
+    prompt = (
+        "Write a 1-2 sentence uplifting summary of this news story for a short video overlay. "
+        "Keep it warm, human, and positive. Maximum 30 words. "
+        "Return only the summary text, nothing else.\n\n"
+        f"Headline: {headline}"
+    )
+    try:
+        resp = requests.post(
+            GEMINI_URL,
+            params={"key": api_key},
+            json={"contents": [{"parts": [{"text": prompt}]}]},
+            timeout=15,
+        )
+        resp.raise_for_status()
+        text = resp.json()["candidates"][0]["content"]["parts"][0]["text"]
+        return text.strip().strip('"').strip("'")
+    except Exception as e:
+        print(f"  Warning: Gemini summary failed ({e}) — leaving blank", file=sys.stderr)
+        return ""
 
 # ── Reddit scraper ────────────────────────────────────────────────────────────
 
@@ -242,11 +266,15 @@ def main():
                 existing_ids.add(story["id"])
                 all_new.append(story)
 
-    # Rewrite all new headlines
+    # Rewrite all new headlines and generate summaries
     print(f"\nRewriting {len(all_new)} new headlines with Gemini Flash...", file=sys.stderr)
     for i, story in enumerate(all_new):
         print(f"  [{i+1}/{len(all_new)}] {story['original_headline'][:65]}", file=sys.stderr)
         story["rewritten_headline"] = rewrite_headline(story["original_headline"], api_key)
+        time.sleep(0.3)
+        story["summary"] = generate_summary(
+            story.get("rewritten_headline") or story["original_headline"], api_key
+        )
         time.sleep(0.3)  # stay well within 1,500 req/day free tier
 
     # Merge and sort by score (Reddit stories rank above RSS)

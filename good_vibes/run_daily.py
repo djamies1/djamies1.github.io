@@ -25,7 +25,7 @@ from pathlib import Path
 # ── Sibling module imports ─────────────────────────────────────────────────────
 from scrape_goodnews import (
     load_creds, scrape_reddit, scrape_rss,
-    rewrite_headline, REDDIT_SUBREDDITS, RSS_FEEDS,
+    rewrite_headline, generate_summary, REDDIT_SUBREDDITS, RSS_FEEDS,
 )
 from make_video import create_video, VIDEO_OUTPUT_DIR, MUSIC_FOLDER
 from upload_youtube import (
@@ -165,6 +165,16 @@ def main():
             print(f"  Original : {s['original_headline'][:70]}")
             s["rewritten_headline"] = rewrite_headline(s["original_headline"], api_key)
             print(f"  Rewritten: {s['rewritten_headline']}")
+            time.sleep(0.3)
+
+    need_summary = [s for s in picked if not s.get("summary")]
+    if need_summary:
+        _section(f"Generating {len(need_summary)} summary/summaries with Gemini Flash")
+        for s in need_summary:
+            s["summary"] = generate_summary(
+                s.get("rewritten_headline") or s["original_headline"], api_key
+            )
+            print(f"  Summary: {s['summary']}")
             time.sleep(0.3)
 
     # Save any newly scraped stories to goodnews_stories.json

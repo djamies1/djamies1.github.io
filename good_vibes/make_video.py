@@ -37,10 +37,10 @@ DURATION = 20   # seconds — short enough to rewatch, long enough to read
 
 # ── Ken Burns ─────────────────────────────────────────────────────────────────
 ZOOM_START = 1.0
-ZOOM_END   = 1.12   # 12% zoom over the full duration
+ZOOM_END   = 1.06   # 6% zoom — subtle, lets the image breathe
 
 # ── Appearance ────────────────────────────────────────────────────────────────
-BRANDING_TEXT     = "GOOD VIBRATIONS"
+BRANDING_TEXT     = "HOPE SCROLLING"
 BRANDING_COLOR    = (255, 220, 50)     # warm gold
 HEADLINE_COLOR    = (255, 255, 255)    # white
 SOURCE_COLOR      = (200, 200, 200)    # light grey
@@ -52,8 +52,11 @@ SOURCE_FONT_SIZE   = 34
 LINE_SPACING       = 1.35
 PADDING_X          = 80               # horizontal margin each side
 
-GRADIENT_START_Y   = HEIGHT // 2      # dark overlay starts at midpoint
-GRADIENT_MAX_ALPHA = 215              # max darkness at very bottom
+SUMMARY_FONT_SIZE  = 40
+LINK_TEXT          = "Full article in description"
+LINK_FONT_SIZE     = 32
+END_CARD_DURATION  = 4               # seconds at end for the subscribe card
+SUBSCRIBE_LINES    = ["Subscribe for more", "daily hope scrolling"]
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 STORIES_FILE       = "goodnews_stories.json"
@@ -141,63 +144,92 @@ def fetch_background_image(headline: str, story_id: str) -> np.ndarray:
 
 # ── Text overlay ──────────────────────────────────────────────────────────────
 
-def render_text_overlay(headline: str, source: str) -> np.ndarray:
+def render_text_overlay(headline: str, source: str, summary: str = "") -> np.ndarray:
     """
     Pre-render the static text layer as a (HEIGHT, WIDTH, 4) RGBA numpy array.
-    Includes: dark bottom gradient, branding, headline, source credit.
+    Layout: branding + headline + summary near top, link text + source at bottom.
     """
     img  = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
 
-    # Dark gradient covering the bottom half of the frame
-    for y in range(GRADIENT_START_Y, HEIGHT):
-        progress = (y - GRADIENT_START_Y) / (HEIGHT - GRADIENT_START_Y)
-        alpha    = int(GRADIENT_MAX_ALPHA * progress)
+    # Top gradient — dark at top fading to transparent (headline readability)
+    top_h = 620
+    for y in range(top_h):
+        alpha = int(210 * (1 - y / top_h) ** 0.65)
+        draw.line([(0, y), (WIDTH - 1, y)], fill=(0, 0, 0, alpha))
+
+    # Bottom gradient — transparent fading to dark (source/link readability)
+    bot_start = HEIGHT - 230
+    for y in range(bot_start, HEIGHT):
+        alpha = int(175 * ((y - bot_start) / 230))
         draw.line([(0, y), (WIDTH - 1, y)], fill=(0, 0, 0, alpha))
 
     branding_font = _load_font(BRANDING_FONT_SIZE, bold=True)
     headline_font = _load_font(HEADLINE_FONT_SIZE, bold=True)
+    summary_font  = _load_font(SUMMARY_FONT_SIZE,  bold=False)
     source_font   = _load_font(SOURCE_FONT_SIZE,   bold=False)
+    link_font     = _load_font(LINK_FONT_SIZE,     bold=False)
 
     safe_w   = WIDTH - PADDING_X * 2
     center_x = WIDTH // 2
 
-    # ── Branding at top ──────────────────────────────────────────────────────
+    # ── Branding ──────────────────────────────────────────────────────────────
     bw = draw.textlength(BRANDING_TEXT, font=branding_font)
-    draw.text(
-        (center_x - bw // 2, 55),
-        BRANDING_TEXT,
-        font=branding_font,
-        fill=(*BRANDING_COLOR, 220),
-    )
+    draw.text((center_x - bw // 2, 40), BRANDING_TEXT,
+              font=branding_font, fill=(*BRANDING_COLOR, 215))
 
-    # ── Headline — wrapped, large, in the lower 40% of the frame ─────────────
+    # ── Headline (just below branding) ────────────────────────────────────────
     wrapped = _wrap(headline, headline_font, safe_w)
     lh      = int(HEADLINE_FONT_SIZE * LINE_SPACING)
-    block_h = len(wrapped) * lh
-
-    # Centre the block within the bottom zone (60%–92% of height)
-    zone_top = int(HEIGHT * 0.58)
-    zone_h   = int(HEIGHT * 0.34)
-    text_y   = zone_top + max(0, (zone_h - block_h) // 2)
-
+    y       = 105
     for line in wrapped:
         lw = draw.textlength(line, font=headline_font)
         x  = center_x - lw // 2
-        # Drop shadow
-        draw.text((x + 2, text_y + 2), line, font=headline_font, fill=(*SHADOW_COLOR, 180))
-        draw.text((x,     text_y),     line, font=headline_font, fill=(*HEADLINE_COLOR, 255))
-        text_y += lh
+        draw.text((x + 2, y + 2), line, font=headline_font, fill=(*SHADOW_COLOR, 180))
+        draw.text((x,     y),     line, font=headline_font, fill=(*HEADLINE_COLOR, 255))
+        y += lh
 
-    # ── Source credit at very bottom ─────────────────────────────────────────
-    source_text = f"via {source}"
-    sw = draw.textlength(source_text, font=source_font)
-    draw.text(
-        (center_x - sw // 2, HEIGHT - 65),
-        source_text,
-        font=source_font,
-        fill=(*SOURCE_COLOR, 190),
-    )
+    # ── Summary (below headline, lighter style) ───────────────────────────────
+    if summary:
+        y += 18
+        for line in _wrap(summary, summary_font, safe_w)[:3]:
+            lw = draw.textlength(line, font=summary_font)
+            draw.text((center_x - lw // 2, y), line,
+                      font=summary_font, fill=(218, 218, 218, 205))
+            y += int(SUMMARY_FONT_SIZE * LINE_SPACING)
+
+    # ── "Full article in description" ─────────────────────────────────────────
+    lw = draw.textlength(LINK_TEXT, font=link_font)
+    draw.text((center_x - lw // 2, HEIGHT - 100), LINK_TEXT,
+              font=link_font, fill=(210, 210, 210, 190))
+
+    return np.array(img)
+
+
+def render_end_card() -> np.ndarray:
+    """Pre-render the subscribe end card as a (HEIGHT, WIDTH, 4) RGBA array."""
+    img      = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+    draw     = ImageDraw.Draw(img)
+    center_x = WIDTH // 2
+
+    sub_font     = _load_font(68, bold=True)
+    tagline_font = _load_font(44, bold=False)
+
+    lh      = int(68 * 1.3)
+    block_h = len(SUBSCRIBE_LINES) * lh
+    y       = HEIGHT // 2 - block_h // 2 - 25
+
+    for line in SUBSCRIBE_LINES:
+        lw = draw.textlength(line, font=sub_font)
+        x  = center_x - lw // 2
+        draw.text((x + 2, y + 2), line, font=sub_font, fill=(*SHADOW_COLOR, 180))
+        draw.text((x,     y),     line, font=sub_font, fill=(*HEADLINE_COLOR, 255))
+        y += lh
+
+    # Branding tagline below
+    tw = draw.textlength(BRANDING_TEXT, font=tagline_font)
+    draw.text((center_x - tw // 2, y + 22), BRANDING_TEXT,
+              font=tagline_font, fill=(*BRANDING_COLOR, 205))
 
     return np.array(img)
 
@@ -232,6 +264,7 @@ def create_video(story: dict, output_path: str, music_folder: str = MUSIC_FOLDER
     story_id = story["id"]
     headline = story.get("rewritten_headline") or story["original_headline"]
     source   = story["source"]
+    summary  = story.get("summary", "")
 
     print(f'\nRendering: "{headline}"')
     print(f'  Source : {source}')
@@ -248,10 +281,16 @@ def create_video(story: dict, output_path: str, music_folder: str = MUSIC_FOLDER
 
     # 2. Static text overlay (pre-rendered once)
     print("  Rendering text overlay...")
-    text_arr       = render_text_overlay(headline, source)
+    text_arr       = render_text_overlay(headline, source, summary)
     text_alpha     = text_arr[:, :, 3:4].astype(np.float32) / 255.0
     text_rgb_float = text_arr[:, :, :3].astype(np.float32)
     text_inv_alpha = 1.0 - text_alpha
+
+    # End card (pre-rendered once)
+    end_arr       = render_end_card()
+    end_alpha     = end_arr[:, :, 3:4].astype(np.float32) / 255.0
+    end_rgb_float = end_arr[:, :, :3].astype(np.float32)
+    _end_start    = duration - END_CARD_DURATION
 
     # 3. Music
     audio      = None
@@ -265,19 +304,36 @@ def create_video(story: dict, output_path: str, music_folder: str = MUSIC_FOLDER
     _rendered    = [0]
 
     def make_frame(t: float) -> np.ndarray:
-        # Ken Burns: gradually zoom in from ZOOM_START to ZOOM_END
-        z      = ZOOM_START + (ZOOM_END - ZOOM_START) * (t / duration)
-        crop_w = int(WIDTH  / z)
-        crop_h = int(HEIGHT / z)
+        # Ken Burns: ease-in-out zoom during main phase, freeze at max zoom during end card
+        ref_t  = min(t, _end_start)
+        linear = (ref_t / _end_start) if _end_start > 0 else 1.0
+        # Cubic ease-in-out: slow start, smooth middle, slow finish
+        p      = linear * linear * (3.0 - 2.0 * linear)
+        z      = ZOOM_START + (ZOOM_END - ZOOM_START) * p
+        crop_w = round(WIDTH  / z)
+        crop_h = round(HEIGHT / z)
         left   = (WIDTH  - crop_w) // 2
         top    = (HEIGHT - crop_h) // 2
 
-        # Crop the zoomed region from the background, resize to output size
-        bg_crop   = bg_img.crop((left, top, left + crop_w, top + crop_h))
-        bg_frame  = np.array(bg_crop.resize((WIDTH, HEIGHT), Image.BILINEAR), dtype=np.float32)
+        bg_crop  = bg_img.crop((left, top, left + crop_w, top + crop_h))
+        bg_frame = np.array(bg_crop.resize((WIDTH, HEIGHT), Image.LANCZOS), dtype=np.float32)
 
-        # Composite text layer
-        result = bg_frame * text_inv_alpha + text_rgb_float * text_alpha
+        if t < _end_start:
+            # Normal phase — composite main text over background
+            result = bg_frame * text_inv_alpha + text_rgb_float * text_alpha
+        else:
+            # End card phase — fade background dark, cross-fade to subscribe text
+            p        = (t - _end_start) / END_CARD_DURATION          # 0 → 1
+            dark_bg  = np.full((HEIGHT, WIDTH, 3), 12.0, dtype=np.float32)
+            bg_faded = bg_frame * (1.0 - p) + dark_bg * p
+
+            # Main text fades out in first 40% of end card
+            main_fade = max(0.0, 1.0 - p * 2.5)
+            result    = bg_faded * (1.0 - text_alpha * main_fade) + text_rgb_float * text_alpha * main_fade
+
+            # Subscribe text fades in after 30% of end card
+            sub_fade = min(1.0, max(0.0, p * 2.0 - 0.6))
+            result   = result * (1.0 - end_alpha * sub_fade) + end_rgb_float * end_alpha * sub_fade
 
         _rendered[0] += 1
         if _rendered[0] % 30 == 0 or _rendered[0] == total_frames:
