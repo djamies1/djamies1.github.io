@@ -7,6 +7,10 @@ video_output/
 background_images/
 horror_music/
 music/
+riddle_music/
+
+# Scraper progress tracking
+.riddlesdotcom_progress.json
 
 # Generated data files
 nosleep_stories.json
