@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plant Zone Finder</title>
+  <link rel="stylesheet" href="lib/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="top-bar">
+    <div id="title">
+      <span class="leaf">🌱</span>
+      <span>Plant Zone Finder</span>
+    </div>
+    <div id="search-bar">
+      <input
+        id="address-input"
+        type="text"
+        placeholder="Enter address or city..."
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button id="search-btn">Go</button>
+    </div>
+  </header>
+
+  <div id="slider-bar">
+    <div id="season-tabs">
+      <button class="season-btn" data-season="spring">Spring</button>
+      <button class="season-btn" data-season="summer">Summer</button>
+      <button class="season-btn" data-season="autumn">Autumn</button>
+      <button class="season-btn" data-season="winter">Winter</button>
+    </div>
+    <div id="month-tabs"></div>
+  </div>
+
+  <main id="globe-container">
+    <div id="loading-overlay">
+      <div class="spinner"></div>
+      <p id="loading-text">Loading zone data…</p>
+    </div>
+  </main>
+
+  <aside id="info-panel" class="panel-hidden">
+    <button id="panel-close">&times;</button>
+    <div id="panel-content">
+      <div id="zone-header">
+        <span id="zone-badge">--</span>
+        <div id="zone-meta">
+          <p id="zone-name"></p>
+          <p id="zone-temp"></p>
+        </div>
+      </div>
+      <div id="month-display"></div>
+      <div class="plant-section" id="section-startIndoors">
+        <h3>Start Indoors</h3>
+        <ul id="list-startIndoors"></ul>
+      </div>
+      <div class="plant-section" id="section-directSow">
+        <h3>Direct Sow</h3>
+        <ul id="list-directSow"></ul>
+      </div>
+      <div class="plant-section" id="section-transplant">
+        <h3>Transplant Out</h3>
+        <ul id="list-transplant"></ul>
+      </div>
+      <div class="plant-section" id="section-harvest">
+        <h3>Harvest</h3>
+        <ul id="list-harvest"></ul>
+      </div>
+      <p id="no-tasks">Nothing to do this month — rest up!</p>
+    </div>
+  </aside>
+
+  <dialog id="crop-modal" aria-labelledby="modal-crop-name" aria-modal="true">
+    <div id="modal-inner">
+      <header id="modal-header">
+        <div id="modal-title-row">
+          <span id="modal-emoji" aria-hidden="true"></span>
+          <h2 id="modal-crop-name"></h2>
+          <span id="modal-difficulty" class="difficulty-badge"></span>
+        </div>
+        <button id="modal-close" aria-label="Close">&times;</button>
+      </header>
+      <div id="modal-body"></div>
+    </div>
+  </dialog>
+
+  <!-- CDN Libraries -->
+  <script src="lib/leaflet.min.js"></script>
+  <script src="lib/turf.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
