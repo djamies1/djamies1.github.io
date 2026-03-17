@@ -178,7 +178,7 @@ function onZoneClick(feature, layer) {
 function highlightZone() {
   zonesLayer.resetStyle();
   if (selectedLayer) {
-    selectedLayer.setStyle({ fillOpacity: 0.9, weight: 2, color: '#fff' });
+    selectedLayer.setStyle({ fillOpacity: 1.0, weight: 3, color: '#fff', opacity: 1 });
   }
 }
 
