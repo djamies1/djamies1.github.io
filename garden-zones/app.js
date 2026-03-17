@@ -2,12 +2,14 @@
    Plant Zone Finder — app.js
 ────────────────────────────────────────────── */
 
-const SEASON_BG = {
-  winter: 'rgba(59,  130, 246, 0.5)',
-  spring: 'rgba(34,  197,  94, 0.5)',
-  summer: 'rgba(234, 179,   8, 0.5)',
-  autumn: 'rgba(249, 115,  22, 0.5)',
+const SEASON_ICONS = {
+  winter: '❄️',
+  spring: '🌸',
+  summer: '☀️',
+  autumn: '🍂',
 };
+
+let _lastSeasonBg = null;
 
 function getSeasonForMonth(m) {
   if (m >= 3 && m <= 5) return 'spring';
@@ -18,7 +20,27 @@ function getSeasonForMonth(m) {
 
 function updateSeasonBg() {
   const season = getSeasonForMonth(currentMonth);
-  document.getElementById('globe-container').style.background = SEASON_BG[season];
+  if (season === _lastSeasonBg) return;
+  _lastSeasonBg = season;
+
+  const el = document.getElementById('season-bg');
+  if (!el) return;
+  el.innerHTML = '';
+
+  const icon = SEASON_ICONS[season];
+  for (let i = 0; i < 22; i++) {
+    const span = document.createElement('span');
+    span.className = 'season-icon';
+    span.textContent = icon;
+    const size = 12 + Math.random() * 56; // 12–68 px
+    span.style.cssText =
+      `left:${(Math.random() * 96).toFixed(1)}%;` +
+      `top:${(Math.random() * 96).toFixed(1)}%;` +
+      `font-size:${size.toFixed(0)}px;` +
+      `transform:rotate(${(Math.random() * 360).toFixed(0)}deg);` +
+      `animation-delay:${(Math.random() * 0.5).toFixed(2)}s;`;
+    el.appendChild(span);
+  }
 }
 
 const MONTH_NAMES = [
