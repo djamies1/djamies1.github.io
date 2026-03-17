@@ -2,6 +2,25 @@
    Plant Zone Finder — app.js
 ────────────────────────────────────────────── */
 
+const SEASON_BG = {
+  winter: 'rgba(59,  130, 246, 0.5)',
+  spring: 'rgba(34,  197,  94, 0.5)',
+  summer: 'rgba(234, 179,   8, 0.5)',
+  autumn: 'rgba(249, 115,  22, 0.5)',
+};
+
+function getSeasonForMonth(m) {
+  if (m >= 3 && m <= 5) return 'spring';
+  if (m >= 6 && m <= 8) return 'summer';
+  if (m >= 9 && m <= 11) return 'autumn';
+  return 'winter';
+}
+
+function updateSeasonBg() {
+  const season = getSeasonForMonth(currentMonth);
+  document.getElementById('globe-container').style.background = SEASON_BG[season];
+}
+
 const MONTH_NAMES = [
   '', 'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'
@@ -253,10 +272,12 @@ function initMonthSlider() {
   const slider = document.getElementById('month-slider');
   slider.value = currentMonth;
   updateMonthLabels();
+  updateSeasonBg();
 
   slider.addEventListener('input', () => {
     currentMonth = parseInt(slider.value, 10);
     updateMonthLabels();
+    updateSeasonBg();
     if (selectedZone) renderPanel();
   });
 
@@ -267,6 +288,7 @@ function initMonthSlider() {
     currentMonth = parseInt(el.dataset.month, 10);
     slider.value = currentMonth;
     updateMonthLabels();
+    updateSeasonBg();
     if (selectedZone) renderPanel();
   });
 }

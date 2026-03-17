@@ -150,16 +150,15 @@ html, body {
   letter-spacing: 0.02em;
 }
 
-/* Jan + Feb = 2 months */
-.s-winter { flex: 2; background: rgba(96,165,250,0.18); color: #93c5fd; }
-/* Mar–May = 3 months */
-.s-spring { flex: 3; background: rgba(74,222,128,0.18); color: #86efac; }
-/* Jun–Aug = 3 months */
-.s-summer { flex: 3; background: rgba(250,204,21,0.18); color: #fde68a; }
-/* Sep–Nov = 3 months */
-.s-autumn { flex: 3; background: rgba(251,146,60,0.18); color: #fdba74; }
-/* Dec = 1 month — overrides flex from .s-winter */
-.s-dec    { flex: 1; font-size: 12px; }
+/* Flex values match the slider's 11-interval scale so banner and
+   gradient transitions land on exactly the same pixel:
+   winter(Jan-Feb) = 1.5/11, spring/summer/autumn = 3/11 each, Dec = 0.5/11 */
+.s-winter { flex: 1.5; background: rgba(59,130,246,0.22); color: #93c5fd; }
+.s-spring { flex: 3;   background: rgba(34,197,94,0.2);   color: #86efac; }
+.s-summer { flex: 3;   background: rgba(234,179,8,0.2);   color: #fde68a; }
+.s-autumn { flex: 3;   background: rgba(249,115,22,0.2);  color: #fdba74; }
+/* Dec — inherits .s-winter color, overrides flex */
+.s-dec    { flex: 0.5; font-size: 12px; }
 
 /* ── Range slider track ── */
 #month-slider {
@@ -274,6 +273,7 @@ html, body {
 
 #globe-container {
   background: #0a0f1a;
+  transition: background 0.7s ease;
 }
 
 .leaflet-control-attribution {
