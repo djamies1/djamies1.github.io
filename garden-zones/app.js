@@ -15,13 +15,6 @@ const ZONE_COLORS = {
   10: '#f07020', 11: '#e04010', 12: '#cc2000', 13: '#aa0000'
 };
 
-const SEASONS = {
-  spring: { label: 'Spring', months: [3, 4, 5] },
-  summer: { label: 'Summer', months: [6, 7, 8] },
-  autumn: { label: 'Autumn', months: [9, 10, 11] },
-  winter: { label: 'Winter', months: [12, 1, 2] }
-};
-const SEASON_ORDER = ['spring', 'summer', 'autumn', 'winter'];
 
 // ── State ─────────────────────────────────────
 let map, zonesLayer, selectedLayer;
@@ -32,7 +25,6 @@ let cropData = null;        // crops.json
 let selectedFeature = null;
 let selectedZone = null;    // e.g. "7b"
 let currentMonth = new Date().getMonth() + 1;  // 1-12
-let currentSeason = null;
 
 let searchDebounceTimer = null;
 let geocodeController = null;
@@ -251,53 +243,38 @@ function findNearestZone(zoneStr) {
 
 // ── UI initialization ──────────────────────────
 function initUI() {
-  initSeasonTabs();
+  initMonthSlider();
   initSearch();
   initPanelListeners();
   initCropModal();
 }
 
-function initSeasonTabs() {
-  currentSeason = getSeasonForMonth(currentMonth);
-  renderSeasonTabs();
-  renderMonthTabs();
-  document.querySelectorAll('.season-btn').forEach(btn =>
-    btn.addEventListener('click', () => onSeasonClick(btn.dataset.season))
-  );
+function initMonthSlider() {
+  const slider = document.getElementById('month-slider');
+  slider.value = currentMonth;
+  updateMonthLabels();
+
+  slider.addEventListener('input', () => {
+    currentMonth = parseInt(slider.value, 10);
+    updateMonthLabels();
+    if (selectedZone) renderPanel();
+  });
+
+  // Clicking a month label also jumps the slider
+  document.getElementById('month-labels').addEventListener('click', e => {
+    const el = e.target.closest('[data-month]');
+    if (!el) return;
+    currentMonth = parseInt(el.dataset.month, 10);
+    slider.value = currentMonth;
+    updateMonthLabels();
+    if (selectedZone) renderPanel();
+  });
 }
 
-function onSeasonClick(season) {
-  currentSeason = season;
-  currentMonth = SEASONS[season].months[0];
-  renderSeasonTabs();
-  renderMonthTabs();
-  if (selectedZone) renderPanel();
-}
-
-function getSeasonForMonth(m) {
-  for (const [key, s] of Object.entries(SEASONS))
-    if (s.months.includes(m)) return key;
-  return 'spring';
-}
-
-function renderSeasonTabs() {
-  document.querySelectorAll('.season-btn').forEach(btn =>
-    btn.classList.toggle('active', btn.dataset.season === currentSeason)
-  );
-}
-
-function renderMonthTabs() {
-  const container = document.getElementById('month-tabs');
-  container.innerHTML = SEASONS[currentSeason].months
-    .map(m => `<button class="month-btn${m === currentMonth ? ' active' : ''}" data-month="${m}">${MONTH_NAMES[m]}</button>`)
-    .join('');
-  container.querySelectorAll('.month-btn').forEach(btn =>
-    btn.addEventListener('click', () => {
-      currentMonth = parseInt(btn.dataset.month);
-      renderMonthTabs();
-      if (selectedZone) renderPanel();
-    })
-  );
+function updateMonthLabels() {
+  document.querySelectorAll('#month-labels span').forEach(span => {
+    span.classList.toggle('active', parseInt(span.dataset.month, 10) === currentMonth);
+  });
 }
 
 function initPanelListeners() {

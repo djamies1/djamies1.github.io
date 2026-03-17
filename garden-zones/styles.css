@@ -18,7 +18,7 @@
   --accent-dark: #16a34a;
   --panel-width: 360px;
   --topbar-height: 54px;
-  --slider-height: 76px;
+  --slider-height: 82px;
 }
 
 html, body {
@@ -119,40 +119,145 @@ html, body {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
   padding: 6px 16px;
-  gap: 4px;
   z-index: 100;
 }
 
-#season-tabs,
-#month-tabs {
+#month-slider-wrap {
+  flex: 1;
   display: flex;
-  gap: 6px;
+  flex-direction: column;
+  gap: 0;
 }
 
-.season-btn,
-.month-btn {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+/* ── Season colour banner ── */
+#season-banner {
+  display: flex;
+  height: 22px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+}
+
+.s-band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+}
+
+/* Jan + Feb = 2 months */
+.s-winter { flex: 2; background: rgba(96,165,250,0.18); color: #93c5fd; }
+/* Mar–May = 3 months */
+.s-spring { flex: 3; background: rgba(74,222,128,0.18); color: #86efac; }
+/* Jun–Aug = 3 months */
+.s-summer { flex: 3; background: rgba(250,204,21,0.18); color: #fde68a; }
+/* Sep–Nov = 3 months */
+.s-autumn { flex: 3; background: rgba(251,146,60,0.18); color: #fdba74; }
+/* Dec = 1 month — overrides flex from .s-winter */
+.s-dec    { flex: 1; font-size: 12px; }
+
+/* ── Range slider track ── */
+#month-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 0 0 5px 5px;
+  /* Firefox track */
+  border: none;
+  outline: none;
+}
+
+/* Midpoint stops between seasons:
+   Jan(0/11) Feb(1/11) | Mar(2/11) Apr(3/11) May(4/11) | Jun(5/11) Jul(6/11) Aug(7/11) | Sep(8/11) Oct(9/11) Nov(10/11) | Dec(11/11)
+   Transitions at midpoints: 1.5/11=13.64%, 4.5/11=40.91%, 7.5/11=68.18%, 10.5/11=95.45% */
+#month-slider::-webkit-slider-runnable-track {
+  height: 12px;
+  border-radius: 0 0 5px 5px;
+  background: linear-gradient(to right,
+    #3b82f6  0%,      #3b82f6  13.64%,
+    #22c55e  13.64%,  #22c55e  40.91%,
+    #eab308  40.91%,  #eab308  68.18%,
+    #f97316  68.18%,  #f97316  95.45%,
+    #3b82f6  95.45%,  #3b82f6  100%
+  );
+}
+
+#month-slider::-moz-range-track {
+  height: 12px;
+  border-radius: 0 0 5px 5px;
+  background: linear-gradient(to right,
+    #3b82f6  0%,      #3b82f6  13.64%,
+    #22c55e  13.64%,  #22c55e  40.91%,
+    #eab308  40.91%,  #eab308  68.18%,
+    #f97316  68.18%,  #f97316  95.45%,
+    #3b82f6  95.45%,  #3b82f6  100%
+  );
+  border: none;
+}
+
+/* Thumb */
+#month-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -5px; /* center 22px thumb on 12px track */
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2.5px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.55);
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.1s;
+}
+
+#month-slider:hover::-webkit-slider-thumb,
+#month-slider:focus::-webkit-slider-thumb {
+  border-color: var(--accent);
+  transform: scale(1.12);
+}
+
+#month-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2.5px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.55);
+  cursor: pointer;
+}
+
+/* ── Month labels ── */
+#month-labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 2px 0;
+}
+
+#month-labels span {
+  font-size: 10px;
   color: var(--text-muted);
   cursor: pointer;
-  font-size: 12px;
-  padding: 3px 10px;
+  user-select: none;
+  transition: color 0.15s;
+  text-align: center;
 }
 
-.season-btn.active {
-  background: var(--accent-dark);
-  color: var(--text);
-  border-color: var(--accent-dark);
-  font-weight: 600;
-}
-
-.month-btn.active {
+#month-labels span:hover {
   color: var(--accent);
-  border-color: var(--accent);
+}
+
+#month-labels span.active {
+  color: var(--text);
+  font-weight: 700;
 }
 
 /* ──────────────────────────────────────────────

@@ -26,13 +26,30 @@
   </header>
 
   <div id="slider-bar">
-    <div id="season-tabs">
-      <button class="season-btn" data-season="spring">Spring</button>
-      <button class="season-btn" data-season="summer">Summer</button>
-      <button class="season-btn" data-season="autumn">Autumn</button>
-      <button class="season-btn" data-season="winter">Winter</button>
+    <div id="month-slider-wrap">
+      <div id="season-banner">
+        <div class="s-band s-winter"><span>❄️ Winter</span></div>
+        <div class="s-band s-spring"><span>🌸 Spring</span></div>
+        <div class="s-band s-summer"><span>☀️ Summer</span></div>
+        <div class="s-band s-autumn"><span>🍂 Autumn</span></div>
+        <div class="s-band s-winter s-dec"><span>❄️</span></div>
+      </div>
+      <input type="range" id="month-slider" min="1" max="12" step="1">
+      <div id="month-labels">
+        <span data-month="1">Jan</span>
+        <span data-month="2">Feb</span>
+        <span data-month="3">Mar</span>
+        <span data-month="4">Apr</span>
+        <span data-month="5">May</span>
+        <span data-month="6">Jun</span>
+        <span data-month="7">Jul</span>
+        <span data-month="8">Aug</span>
+        <span data-month="9">Sep</span>
+        <span data-month="10">Oct</span>
+        <span data-month="11">Nov</span>
+        <span data-month="12">Dec</span>
+      </div>
     </div>
-    <div id="month-tabs"></div>
   </div>
 
   <main id="globe-container">
