@@ -182,14 +182,17 @@ function highlightZone() {
   }
 }
 
-function selectZoneByString(zoneStr) {
-  const target = zoneStr.toLowerCase().trim();
+function selectZoneByPoint(lat, lng) {
+  const pt = turf.point([lng, lat]);
   let found = false;
   zonesLayer.eachLayer(layer => {
-    if (!found && layer.feature && layer.feature.properties.zone === target) {
-      found = true;
-      onZoneClick(layer.feature, layer);
-    }
+    if (found) return;
+    try {
+      if (layer.feature && turf.booleanPointInPolygon(pt, layer.feature)) {
+        found = true;
+        onZoneClick(layer.feature, layer);
+      }
+    } catch (_) {}
   });
   return found;
 }
@@ -379,13 +382,10 @@ async function onAddressSearch(address) {
       return;
     }
     const { lat, lon } = result;
-    const zone = pointInPolygon(lat, lon);
-    if (!zone) {
+    const found = selectZoneByPoint(lat, lon);
+    if (!found) {
       showToast('No planting zone found at that location');
-      zoomToPoint(lat, lon);
-      return;
     }
-    selectZoneByString(zone);
     zoomToPoint(lat, lon);
   } catch (err) {
     if (err.name !== 'AbortError') {
