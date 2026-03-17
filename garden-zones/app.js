@@ -147,7 +147,7 @@ function styleFeature(feature) {
   const num = parseInt(zone, 10);
   return {
     fillColor: ZONE_COLORS[num] || '#888888',
-    fillOpacity: 0.65,
+    fillOpacity: 1.0,
     color: '#fff',
     weight: 0.3,
     opacity: 0.4
@@ -387,6 +387,7 @@ async function onAddressSearch(address) {
       showToast('No planting zone found at that location');
     }
     zoomToPoint(lat, lon);
+    map.once('moveend', highlightZone);
   } catch (err) {
     if (err.name !== 'AbortError') {
       showToast('Geocoding error: ' + err.message);
