@@ -283,18 +283,6 @@ html, body {
   pointer-events: none;
 }
 
-.season-icon {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  user-select: none;
-  line-height: 1;
-  animation: icon-fade-in 0.6s ease forwards;
-}
-
-@keyframes icon-fade-in {
-  to { opacity: 0.25; }
-}
 
 #globe-container {
   background: transparent;

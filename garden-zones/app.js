@@ -10,6 +10,7 @@ const SEASON_ICONS = {
 };
 
 let _lastSeasonBg = null;
+let _seasonCanvas = null;
 
 function getSeasonForMonth(m) {
   if (m >= 3 && m <= 5) return 'spring';
@@ -22,24 +23,41 @@ function updateSeasonBg() {
   const season = getSeasonForMonth(currentMonth);
   if (season === _lastSeasonBg) return;
   _lastSeasonBg = season;
+  drawSeasonCanvas(season);
+}
 
+function drawSeasonCanvas(season) {
   const el = document.getElementById('season-bg');
   if (!el) return;
-  el.innerHTML = '';
+
+  if (!_seasonCanvas) {
+    _seasonCanvas = document.createElement('canvas');
+    _seasonCanvas.style.cssText = 'position:absolute;inset:0;';
+    el.appendChild(_seasonCanvas);
+  }
+
+  const w = el.offsetWidth || window.innerWidth;
+  const h = el.offsetHeight || window.innerHeight;
+  _seasonCanvas.width = w;
+  _seasonCanvas.height = h;
+
+  const ctx = _seasonCanvas.getContext('2d');
+  ctx.clearRect(0, 0, w, h);
+  ctx.globalAlpha = 0.25;
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'center';
 
   const icon = SEASON_ICONS[season];
   for (let i = 0; i < 2200; i++) {
-    const span = document.createElement('span');
-    span.className = 'season-icon';
-    span.textContent = icon;
-    const size = 12 + Math.random() * 56; // 12–68 px
-    span.style.cssText =
-      `left:${(Math.random() * 96).toFixed(1)}%;` +
-      `top:${(Math.random() * 96).toFixed(1)}%;` +
-      `font-size:${size.toFixed(0)}px;` +
-      `transform:rotate(${(Math.random() * 360).toFixed(0)}deg);` +
-      `animation-delay:${(Math.random() * 0.5).toFixed(2)}s;`;
-    el.appendChild(span);
+    const size = 12 + Math.random() * 56;
+    const x = Math.random() * w;
+    const y = Math.random() * h;
+    ctx.save();
+    ctx.font = `${size | 0}px serif`;
+    ctx.translate(x, y);
+    ctx.rotate(Math.random() * Math.PI * 2);
+    ctx.fillText(icon, 0, 0);
+    ctx.restore();
   }
 }
 
@@ -291,6 +309,9 @@ function initUI() {
   initSearch();
   initPanelListeners();
   initCropModal();
+  window.addEventListener('resize', () => {
+    if (_lastSeasonBg) drawSeasonCanvas(_lastSeasonBg);
+  });
 }
 
 function initMonthSlider() {
