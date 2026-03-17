@@ -28,7 +28,7 @@ function updateSeasonBg() {
   el.innerHTML = '';
 
   const icon = SEASON_ICONS[season];
-  for (let i = 0; i < 220; i++) {
+  for (let i = 0; i < 2200; i++) {
     const span = document.createElement('span');
     span.className = 'season-icon';
     span.textContent = icon;

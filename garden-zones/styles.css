@@ -293,7 +293,7 @@ html, body {
 }
 
 @keyframes icon-fade-in {
-  to { opacity: 0.5; }
+  to { opacity: 0.25; }
 }
 
 #globe-container {
