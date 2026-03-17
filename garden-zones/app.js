@@ -2,9 +2,12 @@
    Plant Zone Finder — app.js
 ────────────────────────────────────────────── */
 
+// ── Season helpers ─────────────────────────────
 let _lastSeasonBg = null;
 
-function getSeasonForMonth(m) {
+function getSeasonForMonth(m, southern = false) {
+  // Flip 6 months for Southern Hemisphere
+  if (southern) m = ((m - 1 + 6) % 12) + 1;
   if (m >= 3 && m <= 5) return 'spring';
   if (m >= 6 && m <= 8) return 'summer';
   if (m >= 9 && m <= 11) return 'autumn';
@@ -12,7 +15,8 @@ function getSeasonForMonth(m) {
 }
 
 function updateSeasonBg() {
-  const season = getSeasonForMonth(currentMonth);
+  const config = COUNTRY_CONFIG[currentCountry];
+  const season = getSeasonForMonth(currentMonth, config?.southern || false);
   if (season === _lastSeasonBg) return;
   _lastSeasonBg = season;
   const el = document.getElementById('season-bg');
@@ -32,16 +36,92 @@ const ZONE_COLORS = {
   10: '#f07020', 11: '#e04010', 12: '#cc2000', 13: '#aa0000'
 };
 
+// Named climate zones (international)
+const NAMED_ZONE_COLORS = {
+  tropical:    '#e04010',
+  subtropical: '#f07020',
+  arid:        '#d4a044',
+  temperate:   '#5ab35a',
+  warm:        '#c8d955',
+  cool:        '#5bb8f0',
+};
+
+function getZoneColor(zone) {
+  const num = parseInt(zone, 10);
+  if (!isNaN(num)) return ZONE_COLORS[num] || '#888888';
+  return NAMED_ZONE_COLORS[(zone || '').toLowerCase()] || '#888888';
+}
+
+// ── Country config ─────────────────────────────
+const COUNTRY_CONFIG = {
+  us: {
+    zonesFile:    './data/zones.geojson',
+    plantingFile: './data/planting.json',
+    center:       [38, -97],
+    bounds:       [[24, -125], [50, -66]],
+    southern:     false,
+    geocodeCCs:   'us',
+    zoneLabel:    z => `Hardiness Zone ${z.toUpperCase()}`,
+    flag:         '🇺🇸',
+    name:         'United States',
+  },
+  au: {
+    zonesFile:    './data/au_zones.geojson',
+    plantingFile: './data/gardenate_au.json',
+    center:       [-27, 133],
+    bounds:       [[-44, 113], [-10, 154]],
+    southern:     true,
+    geocodeCCs:   'au',
+    zoneLabel:    z => `${z.charAt(0).toUpperCase() + z.slice(1)} Climate Zone`,
+    flag:         '🇦🇺',
+    name:         'Australia',
+  },
+  ca: {
+    zonesFile:    './data/ca_zones.geojson',
+    plantingFile: './data/gardenate_ca.json',
+    center:       [56, -96],
+    bounds:       [[42, -141], [83, -53]],
+    southern:     false,
+    geocodeCCs:   'ca',
+    zoneLabel:    z => `Plant Hardiness Zone ${z.toUpperCase()}`,
+    flag:         '🇨🇦',
+    name:         'Canada',
+  },
+  uk: {
+    zonesFile:    './data/uk_zones.geojson',
+    plantingFile: './data/gardenate_uk.json',
+    center:       [54, -2],
+    bounds:       [[49, -11], [61, 3]],
+    southern:     false,
+    geocodeCCs:   'gb',
+    zoneLabel:    z => `${z.charAt(0).toUpperCase() + z.slice(1)}/Temperate Zone`,
+    flag:         '🇬🇧',
+    name:         'United Kingdom',
+  },
+  nz: {
+    zonesFile:    './data/nz_zones.geojson',
+    plantingFile: './data/gardenate_nz.json',
+    center:       [-41, 173],
+    bounds:       [[-48, 165], [-34, 179]],
+    southern:     true,
+    geocodeCCs:   'nz',
+    zoneLabel:    z => `${z.charAt(0).toUpperCase() + z.slice(1)} Climate Zone`,
+    flag:         '🇳🇿',
+    name:         'New Zealand',
+  },
+};
+
 
 // ── State ─────────────────────────────────────
 let map, zonesLayer, selectedLayer;
 let zonesData = null;       // GeoJSON FeatureCollection
-let plantingData = null;    // planting.json
+let plantingData = null;    // planting JSON
 let cropData = null;        // crops.json
 
 let selectedFeature = null;
-let selectedZone = null;    // e.g. "7b"
+let selectedZone = null;    // e.g. "7b" or "temperate"
 let currentMonth = new Date().getMonth() + 1;  // 1-12
+let currentCountry = 'us';
 
 let searchDebounceTimer = null;
 let geocodeController = null;
@@ -51,15 +131,16 @@ document.addEventListener('DOMContentLoaded', loadData);
 
 // ── Data loading ──────────────────────────────
 async function loadData() {
+  const config = COUNTRY_CONFIG[currentCountry];
   setLoadingText('Loading zone data…');
   try {
     const [zonesRes, plantingRes, cropsRes] = await Promise.all([
-      fetch('./data/zones.geojson'),
-      fetch('./data/planting.json'),
+      fetch(config.zonesFile),
+      fetch(config.plantingFile),
       fetch('./data/crops.json')
     ]);
-    if (!zonesRes.ok) throw new Error(`zones.geojson: ${zonesRes.status}`);
-    if (!plantingRes.ok) throw new Error(`planting.json: ${plantingRes.status}`);
+    if (!zonesRes.ok) throw new Error(`zones: ${zonesRes.status}`);
+    if (!plantingRes.ok) throw new Error(`planting: ${plantingRes.status}`);
 
     zonesData = await zonesRes.json();
     plantingData = await plantingRes.json();
@@ -74,20 +155,59 @@ async function loadData() {
   }
 }
 
+async function switchCountry(cc) {
+  if (cc === currentCountry) return;
+  currentCountry = cc;
+  const config = COUNTRY_CONFIG[cc];
+
+  // Reset selection
+  selectedFeature = null;
+  selectedLayer = null;
+  selectedZone = null;
+  hidePanel();
+  _lastSeasonBg = null;
+
+  document.getElementById('loading-overlay').classList.remove('hidden');
+  setLoadingText('Loading zone data…');
+
+  try {
+    const [zonesRes, plantingRes] = await Promise.all([
+      fetch(config.zonesFile),
+      fetch(config.plantingFile),
+    ]);
+    if (!zonesRes.ok) throw new Error(`zones: ${zonesRes.status}`);
+    if (!plantingRes.ok) throw new Error(`planting: ${plantingRes.status}`);
+
+    zonesData = await zonesRes.json();
+    plantingData = await plantingRes.json();
+
+    normalizeZoneProperties();
+
+    if (zonesLayer) map.removeLayer(zonesLayer);
+    zonesLayer = L.geoJSON(zonesData, {
+      style: styleFeature,
+      onEachFeature: attachFeature,
+    }).addTo(map);
+
+    map.fitBounds(config.bounds);
+    updateSeasonBg();
+    document.getElementById('loading-overlay').classList.add('hidden');
+  } catch (err) {
+    setLoadingText('Failed: ' + err.message);
+    console.error(err);
+  }
+}
+
 // Normalize inconsistent property names across GeoJSON sources
 function normalizeZoneProperties() {
   for (const f of zonesData.features) {
     const p = f.properties;
-    // Normalize zone string
     if (!p.zone) {
       if (p.Zone) p.zone = p.Zone;
       else if (p.ZONE) p.zone = p.ZONE;
       else if (p.gridcode) p.zone = gridcodeToZone(p.gridcode);
     }
-    // Ensure zone is lowercase string e.g. "7b"
     if (p.zone) p.zone = String(p.zone).toLowerCase().trim();
-
-    // Normalize temperature range
     if (!p.trange) {
       if (p.Trange) p.trange = p.Trange;
       else if (p.TRANGE) p.trange = p.TRANGE;
@@ -108,21 +228,21 @@ function gridcodeToZone(code) {
 
 // ── Map initialization ─────────────────────────
 function initMap() {
+  const config = COUNTRY_CONFIG[currentCountry];
   const container = document.getElementById('globe-container');
-  map = L.map(container, { center: [38, -97], zoom: 4, minZoom: 3, maxZoom: 12 });
+  map = L.map(container, { center: config.center, zoom: 4, minZoom: 2, maxZoom: 12 });
   zonesLayer = L.geoJSON(zonesData, {
     style: styleFeature,
     onEachFeature: attachFeature
   }).addTo(map);
-  map.fitBounds([[24, -125], [50, -66]]);
+  map.fitBounds(config.bounds);
   document.getElementById('loading-overlay').classList.add('hidden');
 }
 
 function styleFeature(feature) {
   const zone = feature.properties.zone || '';
-  const num = parseInt(zone, 10);
   return {
-    fillColor: ZONE_COLORS[num] || '#888888',
+    fillColor: getZoneColor(zone),
     fillOpacity: 1.0,
     color: '#fff',
     weight: 0.3,
@@ -133,8 +253,10 @@ function styleFeature(feature) {
 function attachFeature(feature, layer) {
   const zone = feature.properties.zone || '?';
   const trange = feature.properties.trange || '';
+  const config = COUNTRY_CONFIG[currentCountry];
+  const label = config.zoneLabel(zone);
   layer.bindTooltip(
-    `<strong>Zone ${zone}</strong>${trange ? '<br>' + trange : ''}`,
+    `<strong>${label}</strong>${trange ? '<br>' + trange : ''}`,
     { sticky: true }
   );
   layer.on('click', () => onZoneClick(feature, layer));
@@ -185,29 +307,25 @@ function hidePanel() {
 function renderPanel() {
   if (!selectedZone) return;
 
-  const zone = selectedZone;
+  const zone  = selectedZone;
   const month = currentMonth;
+  const config = COUNTRY_CONFIG[currentCountry];
 
-  // Zone badge color
-  const num = parseInt(zone, 10);
-  const color = ZONE_COLORS[num] || '#888888';
+  // Zone badge
+  const color = getZoneColor(zone);
   const badge = document.getElementById('zone-badge');
   badge.textContent = zone.toUpperCase();
   badge.style.background = color + '33';
   badge.style.borderColor = color;
   badge.style.color = color;
 
-  document.getElementById('zone-name').textContent = `Hardiness Zone ${zone.toUpperCase()}`;
+  document.getElementById('zone-name').textContent = config.zoneLabel(zone);
   const trange = selectedFeature?.properties?.trange || '';
-  document.getElementById('zone-temp').textContent = trange
-    ? `Avg min: ${trange}`
-    : '';
+  document.getElementById('zone-temp').textContent = trange ? `Avg min: ${trange}` : '';
 
   document.getElementById('month-display').textContent = MONTH_NAMES[month];
 
-  // Get planting data — fall back to nearest zone if exact key missing
   const data = getPlantingData(zone, month);
-
   const sections = ['startIndoors', 'directSow', 'transplant', 'harvest'];
   let hasAny = false;
 
@@ -224,17 +342,14 @@ function renderPanel() {
     }
   }
 
-  const noTasks = document.getElementById('no-tasks');
-  noTasks.style.display = hasAny ? 'none' : 'block';
+  document.getElementById('no-tasks').style.display = hasAny ? 'none' : 'block';
 }
 
 function getPlantingData(zoneStr, month) {
   const monthKey = String(month);
-  // Try exact match
   if (plantingData[zoneStr]?.[monthKey]) {
     return plantingData[zoneStr][monthKey];
   }
-  // Fall back to nearest available zone
   const nearest = findNearestZone(zoneStr);
   if (nearest && plantingData[nearest]?.[monthKey]) {
     return plantingData[nearest][monthKey];
@@ -249,14 +364,10 @@ function findNearestZone(zoneStr) {
   const zoneNumber = parseFloat(zoneStr);
   if (isNaN(zoneNumber)) return availableZones[0];
 
-  let best = null;
-  let bestDist = Infinity;
+  let best = null, bestDist = Infinity;
   for (const z of availableZones) {
     const dist = Math.abs(parseFloat(z) - zoneNumber);
-    if (dist < bestDist) {
-      bestDist = dist;
-      best = z;
-    }
+    if (dist < bestDist) { bestDist = dist; best = z; }
   }
   return best;
 }
@@ -267,6 +378,7 @@ function initUI() {
   initSearch();
   initPanelListeners();
   initCropModal();
+  initCountrySelector();
 }
 
 function initMonthSlider() {
@@ -282,7 +394,6 @@ function initMonthSlider() {
     if (selectedZone) renderPanel();
   });
 
-  // Clicking a month label also jumps the slider
   document.getElementById('month-labels').addEventListener('click', e => {
     const el = e.target.closest('[data-month]');
     if (!el) return;
@@ -316,6 +427,13 @@ function initPanelListeners() {
   });
 }
 
+function initCountrySelector() {
+  const sel = document.getElementById('country-select');
+  if (!sel) return;
+  sel.value = currentCountry;
+  sel.addEventListener('change', () => switchCountry(sel.value));
+}
+
 function initSearch() {
   const input = document.getElementById('address-input');
   const btn = document.getElementById('search-btn');
@@ -325,7 +443,6 @@ function initSearch() {
     if (e.key === 'Enter') triggerSearch();
   });
 
-  // 500ms debounce for auto-search as you type
   input.addEventListener('input', () => {
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(() => {
@@ -347,21 +464,15 @@ async function onAddressSearch(address) {
   btn.textContent = '…';
   btn.disabled = true;
 
-  // Cancel any in-flight geocode
   if (geocodeController) geocodeController.abort();
   geocodeController = new AbortController();
 
   try {
     const result = await nominatimGeocode(address, geocodeController.signal);
-    if (!result) {
-      showToast('Address not found');
-      return;
-    }
+    if (!result) { showToast('Address not found'); return; }
     const { lat, lon } = result;
     const found = selectZoneByPoint(lat, lon);
-    if (!found) {
-      showToast('No planting zone found at that location');
-    }
+    if (!found) showToast('No planting zone found at that location');
     zoomToPoint(lat, lon);
     map.once('moveend', highlightZone);
   } catch (err) {
@@ -376,37 +487,16 @@ async function onAddressSearch(address) {
 }
 
 async function nominatimGeocode(address, signal) {
-  const url = `https://nominatim.openstreetmap.org/search?` +
-    new URLSearchParams({
-      q: address,
-      format: 'json',
-      limit: 1,
-      countrycodes: 'us'
-    });
+  const config = COUNTRY_CONFIG[currentCountry];
+  const params = { q: address, format: 'json', limit: 1 };
+  if (config.geocodeCCs) params.countrycodes = config.geocodeCCs;
 
-  const res = await fetch(url, {
-    signal,
-    headers: { 'Accept-Language': 'en' }
-  });
+  const url = `https://nominatim.openstreetmap.org/search?` + new URLSearchParams(params);
+  const res = await fetch(url, { signal, headers: { 'Accept-Language': 'en' } });
   if (!res.ok) throw new Error(`Nominatim ${res.status}`);
   const data = await res.json();
   if (!data.length) return null;
   return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
-}
-
-function pointInPolygon(lat, lng) {
-  if (!zonesData) return null;
-  const pt = turf.point([lng, lat]);
-  for (const feature of zonesData.features) {
-    try {
-      if (turf.booleanPointInPolygon(pt, feature)) {
-        return feature.properties.zone || null;
-      }
-    } catch (_) {
-      // Skip malformed polygons
-    }
-  }
-  return null;
 }
 
 function zoomToPoint(lat, lng) {
@@ -432,7 +522,6 @@ function initCropModal() {
   const modal = document.getElementById('crop-modal');
   document.getElementById('modal-close').addEventListener('click', () => modal.close());
   modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
-  // Escape key is native to <dialog> — no listener needed
 }
 
 function openCropDetail(name) {

@@ -62,6 +62,27 @@ html, body {
   font-size: 20px;
 }
 
+#country-select-wrap {
+  flex-shrink: 0;
+}
+
+#country-select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 5px 8px;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+  white-space: nowrap;
+}
+
+#country-select:focus {
+  border-color: var(--accent);
+}
+
 #search-bar {
   display: flex;
   gap: 6px;
@@ -569,11 +590,17 @@ html, body {
 
   #title {
     font-size: 14px;
+    flex: 1;
+  }
+
+  #country-select-wrap {
+    flex-shrink: 0;
   }
 
   #search-bar {
     width: 100%;
     max-width: 100%;
+    order: 3;
   }
 
   /* Panel slides from bottom on mobile */
