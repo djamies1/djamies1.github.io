@@ -1,128 +1,2416 @@
 {
   "3a": {
-    "1": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": [] },
-    "2": { "startIndoors": ["Onions", "Leeks"], "directSow": [], "transplant": [], "harvest": [] },
-    "3": { "startIndoors": ["Tomatoes", "Peppers", "Eggplant", "Celery"], "directSow": [], "transplant": [], "harvest": [] },
-    "4": { "startIndoors": ["Squash", "Cucumbers", "Melons"], "directSow": ["Spinach", "Kale", "Lettuce"], "transplant": ["Onions"], "harvest": [] },
-    "5": { "startIndoors": [], "directSow": ["Peas", "Radishes", "Carrots", "Beets"], "transplant": ["Broccoli", "Cabbage"], "harvest": [] },
-    "6": { "startIndoors": [], "directSow": ["Beans", "Corn", "Squash"], "transplant": ["Tomatoes", "Peppers", "Eggplant"], "harvest": ["Lettuce", "Radishes", "Spinach"] },
-    "7": { "startIndoors": [], "directSow": ["Cucumbers", "Beans"], "transplant": ["Squash", "Cucumbers", "Melons"], "harvest": ["Peas", "Lettuce", "Kale"] },
-    "8": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Beans", "Cucumbers", "Squash", "Tomatoes"] },
-    "9": { "startIndoors": ["Broccoli", "Cabbage", "Kale"], "directSow": [], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Corn", "Melons"] },
-    "10": { "startIndoors": [], "directSow": ["Spinach", "Lettuce"], "transplant": ["Broccoli", "Kale"], "harvest": ["Squash", "Pumpkins"] },
-    "11": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Broccoli", "Kale", "Carrots", "Beets"] },
-    "12": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": [] }
+    "1": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    },
+    "2": {
+      "startIndoors": [
+        "Onions",
+        "Leeks",
+        "Shallots",
+        "Chives"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    },
+    "3": {
+      "startIndoors": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Celery",
+        "Tomatillos",
+        "Ground Cherries",
+        "Cauliflower",
+        "Parsley"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    },
+    "4": {
+      "startIndoors": [
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Brussels Sprouts",
+        "Kohlrabi",
+        "Bok Choy"
+      ],
+      "directSow": [
+        "Spinach",
+        "Kale",
+        "Lettuce",
+        "Arugula",
+        "M\u00e2che",
+        "Mustard Greens",
+        "Turnips",
+        "Green Onions",
+        "M\u00e2che"
+      ],
+      "transplant": [
+        "Onions",
+        "Shallots",
+        "Asparagus",
+        "Rhubarb",
+        "Horseradish",
+        "Strawberries"
+      ],
+      "harvest": []
+    },
+    "5": {
+      "startIndoors": [],
+      "directSow": [
+        "Peas",
+        "Radishes",
+        "Carrots",
+        "Beets",
+        "Potatoes",
+        "Parsnips",
+        "Cilantro",
+        "Dill"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Cabbage",
+        "Cauliflower",
+        "Chives",
+        "Sage",
+        "Thyme",
+        "Mint"
+      ],
+      "harvest": []
+    },
+    "6": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Corn",
+        "Squash",
+        "Rutabaga",
+        "Bok Choy"
+      ],
+      "transplant": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Basil",
+        "Tomatillos",
+        "Ground Cherries",
+        "Rosemary",
+        "Oregano"
+      ],
+      "harvest": [
+        "Lettuce",
+        "Radishes",
+        "Spinach",
+        "Arugula",
+        "Mustard Greens",
+        "Turnips",
+        "Kohlrabi"
+      ]
+    },
+    "7": {
+      "startIndoors": [],
+      "directSow": [
+        "Cucumbers",
+        "Beans"
+      ],
+      "transplant": [
+        "Squash",
+        "Cucumbers",
+        "Melons"
+      ],
+      "harvest": [
+        "Peas",
+        "Lettuce",
+        "Kale",
+        "Bok Choy",
+        "Green Onions"
+      ]
+    },
+    "8": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Beans",
+        "Cucumbers",
+        "Squash",
+        "Tomatoes",
+        "Tomatillos",
+        "Ground Cherries",
+        "Potatoes",
+        "Strawberries",
+        "Broccoli",
+        "Cauliflower"
+      ]
+    },
+    "9": {
+      "startIndoors": [
+        "Broccoli",
+        "Cabbage",
+        "Kale"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Corn",
+        "Melons",
+        "Carrots",
+        "Parsnips",
+        "Rutabaga",
+        "Beets"
+      ]
+    },
+    "10": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Kale"
+      ],
+      "harvest": [
+        "Squash",
+        "Pumpkins",
+        "Brussels Sprouts",
+        "Rutabaga"
+      ]
+    },
+    "11": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Broccoli",
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Jerusalem Artichoke"
+      ]
+    },
+    "12": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    }
   },
   "4a": {
-    "1": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": [] },
-    "2": { "startIndoors": ["Onions", "Leeks", "Celery"], "directSow": [], "transplant": [], "harvest": [] },
-    "3": { "startIndoors": ["Tomatoes", "Peppers", "Eggplant", "Broccoli", "Cabbage"], "directSow": [], "transplant": [], "harvest": [] },
-    "4": { "startIndoors": ["Squash", "Cucumbers", "Melons", "Basil"], "directSow": ["Spinach", "Kale", "Lettuce", "Peas"], "transplant": ["Onions", "Broccoli"], "harvest": [] },
-    "5": { "startIndoors": [], "directSow": ["Radishes", "Carrots", "Beets", "Chard"], "transplant": ["Cabbage", "Lettuce"], "harvest": ["Spinach", "Radishes"] },
-    "6": { "startIndoors": [], "directSow": ["Beans", "Corn", "Squash", "Cucumbers"], "transplant": ["Tomatoes", "Peppers", "Eggplant", "Basil", "Squash"], "harvest": ["Peas", "Lettuce", "Kale"] },
-    "7": { "startIndoors": [], "directSow": ["Beans", "Carrots"], "transplant": [], "harvest": ["Beans", "Cucumbers", "Squash", "Beets"] },
-    "8": { "startIndoors": ["Broccoli", "Kale"], "directSow": [], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Corn", "Cucumbers", "Beans"] },
-    "9": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale"], "transplant": ["Broccoli", "Kale"], "harvest": ["Tomatoes", "Peppers", "Squash", "Melons"] },
-    "10": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Broccoli", "Kale", "Squash", "Pumpkins", "Carrots"] },
-    "11": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Kale", "Beets", "Carrots"] },
-    "12": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": [] }
+    "1": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    },
+    "2": {
+      "startIndoors": [
+        "Onions",
+        "Leeks",
+        "Celery",
+        "Shallots",
+        "Chives",
+        "Parsley"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    },
+    "3": {
+      "startIndoors": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Broccoli",
+        "Cabbage",
+        "Cauliflower",
+        "Brussels Sprouts",
+        "Tomatillos",
+        "Ground Cherries"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    },
+    "4": {
+      "startIndoors": [
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Basil",
+        "Kohlrabi",
+        "Bok Choy",
+        "Globe Artichoke"
+      ],
+      "directSow": [
+        "Spinach",
+        "Kale",
+        "Lettuce",
+        "Peas",
+        "Arugula",
+        "M\u00e2che",
+        "Turnips",
+        "Green Onions"
+      ],
+      "transplant": [
+        "Onions",
+        "Broccoli",
+        "Shallots",
+        "Asparagus",
+        "Rhubarb",
+        "Horseradish",
+        "Strawberries"
+      ],
+      "harvest": []
+    },
+    "5": {
+      "startIndoors": [],
+      "directSow": [
+        "Radishes",
+        "Carrots",
+        "Beets",
+        "Chard",
+        "Potatoes",
+        "Parsnips",
+        "Cilantro",
+        "Dill"
+      ],
+      "transplant": [
+        "Cabbage",
+        "Lettuce",
+        "Cauliflower",
+        "Sage",
+        "Thyme",
+        "Mint",
+        "Chives"
+      ],
+      "harvest": [
+        "Spinach",
+        "Radishes",
+        "Arugula",
+        "M\u00e2che",
+        "Turnips"
+      ]
+    },
+    "6": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Corn",
+        "Squash",
+        "Cucumbers",
+        "Rutabaga"
+      ],
+      "transplant": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Basil",
+        "Squash",
+        "Tomatillos",
+        "Ground Cherries",
+        "Rosemary",
+        "Oregano",
+        "Globe Artichoke"
+      ],
+      "harvest": [
+        "Peas",
+        "Lettuce",
+        "Kale",
+        "Bok Choy",
+        "Kohlrabi"
+      ]
+    },
+    "7": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Carrots",
+        "Bok Choy",
+        "Turnips"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Beans",
+        "Cucumbers",
+        "Squash",
+        "Beets",
+        "Green Onions"
+      ]
+    },
+    "8": {
+      "startIndoors": [
+        "Broccoli",
+        "Kale"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Corn",
+        "Cucumbers",
+        "Beans",
+        "Tomatillos",
+        "Ground Cherries",
+        "Potatoes",
+        "Strawberries"
+      ]
+    },
+    "9": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Kale",
+        "Cauliflower"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Squash",
+        "Melons",
+        "Rutabaga"
+      ]
+    },
+    "10": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Broccoli",
+        "Kale",
+        "Squash",
+        "Pumpkins",
+        "Carrots",
+        "Parsnips",
+        "Brussels Sprouts",
+        "Cauliflower"
+      ]
+    },
+    "11": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Beets",
+        "Carrots",
+        "Jerusalem Artichoke"
+      ]
+    },
+    "12": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    }
   },
   "5b": {
-    "1": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": [] },
-    "2": { "startIndoors": ["Onions", "Leeks", "Celery", "Peppers"], "directSow": [], "transplant": [], "harvest": [] },
-    "3": { "startIndoors": ["Tomatoes", "Eggplant", "Broccoli", "Cabbage", "Basil"], "directSow": ["Peas", "Spinach", "Kale"], "transplant": ["Onions"], "harvest": [] },
-    "4": { "startIndoors": ["Squash", "Cucumbers", "Melons"], "directSow": ["Lettuce", "Radishes", "Carrots", "Beets", "Chard"], "transplant": ["Broccoli", "Cabbage"], "harvest": ["Spinach", "Kale"] },
-    "5": { "startIndoors": [], "directSow": ["Beans", "Corn", "Squash", "Cucumbers"], "transplant": ["Tomatoes", "Peppers", "Eggplant", "Basil", "Squash", "Cucumbers"], "harvest": ["Peas", "Lettuce", "Radishes"] },
-    "6": { "startIndoors": [], "directSow": ["Beans", "Carrots", "Beets"], "transplant": ["Melons"], "harvest": ["Lettuce", "Kale", "Beets", "Carrots", "Broccoli"] },
-    "7": { "startIndoors": ["Broccoli", "Kale", "Cabbage"], "directSow": [], "transplant": [], "harvest": ["Beans", "Cucumbers", "Squash", "Beets", "Tomatoes"] },
-    "8": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale", "Radishes"], "transplant": ["Broccoli", "Kale", "Cabbage"], "harvest": ["Tomatoes", "Peppers", "Eggplant", "Corn", "Beans"] },
-    "9": { "startIndoors": [], "directSow": ["Spinach"], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Squash", "Melons", "Pumpkins"] },
-    "10": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Broccoli", "Kale", "Cabbage", "Carrots", "Beets", "Squash"] },
-    "11": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Kale", "Carrots"] },
-    "12": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": [] }
+    "1": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    },
+    "2": {
+      "startIndoors": [
+        "Onions",
+        "Leeks",
+        "Celery",
+        "Peppers",
+        "Shallots",
+        "Chives",
+        "Parsley"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    },
+    "3": {
+      "startIndoors": [
+        "Tomatoes",
+        "Eggplant",
+        "Broccoli",
+        "Cabbage",
+        "Basil",
+        "Cauliflower",
+        "Brussels Sprouts",
+        "Tomatillos",
+        "Ground Cherries",
+        "Globe Artichoke"
+      ],
+      "directSow": [
+        "Peas",
+        "Spinach",
+        "Kale"
+      ],
+      "transplant": [
+        "Onions",
+        "Shallots"
+      ],
+      "harvest": []
+    },
+    "4": {
+      "startIndoors": [
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Kohlrabi",
+        "Bok Choy"
+      ],
+      "directSow": [
+        "Lettuce",
+        "Radishes",
+        "Carrots",
+        "Beets",
+        "Chard",
+        "Arugula",
+        "M\u00e2che",
+        "Turnips",
+        "Green Onions",
+        "Cilantro",
+        "Dill"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Cabbage",
+        "Cauliflower",
+        "Asparagus",
+        "Rhubarb",
+        "Horseradish",
+        "Strawberries",
+        "Chives",
+        "Sage",
+        "Thyme",
+        "Mint"
+      ],
+      "harvest": [
+        "Spinach",
+        "Kale"
+      ]
+    },
+    "5": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Corn",
+        "Squash",
+        "Cucumbers",
+        "Potatoes",
+        "Parsnips"
+      ],
+      "transplant": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Basil",
+        "Squash",
+        "Cucumbers",
+        "Tomatillos",
+        "Ground Cherries",
+        "Globe Artichoke",
+        "Rosemary",
+        "Oregano"
+      ],
+      "harvest": [
+        "Peas",
+        "Lettuce",
+        "Radishes",
+        "Arugula",
+        "Turnips",
+        "Kohlrabi"
+      ]
+    },
+    "6": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Carrots",
+        "Beets",
+        "Rutabaga",
+        "Bok Choy"
+      ],
+      "transplant": [
+        "Melons"
+      ],
+      "harvest": [
+        "Lettuce",
+        "Kale",
+        "Beets",
+        "Carrots",
+        "Broccoli",
+        "Cauliflower",
+        "Bok Choy",
+        "Green Onions",
+        "Peas"
+      ]
+    },
+    "7": {
+      "startIndoors": [
+        "Broccoli",
+        "Kale",
+        "Cabbage"
+      ],
+      "directSow": [
+        "Turnips"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Beans",
+        "Cucumbers",
+        "Squash",
+        "Beets",
+        "Tomatoes",
+        "Potatoes",
+        "Strawberries"
+      ]
+    },
+    "8": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale",
+        "Radishes",
+        "Arugula",
+        "Mustard Greens",
+        "Bok Choy"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Kale",
+        "Cabbage",
+        "Cauliflower"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Corn",
+        "Beans",
+        "Tomatillos",
+        "Ground Cherries"
+      ]
+    },
+    "9": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "M\u00e2che"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Squash",
+        "Melons",
+        "Pumpkins",
+        "Rutabaga"
+      ]
+    },
+    "10": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Broccoli",
+        "Kale",
+        "Cabbage",
+        "Carrots",
+        "Beets",
+        "Squash",
+        "Parsnips",
+        "Brussels Sprouts",
+        "Cauliflower"
+      ]
+    },
+    "11": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Carrots",
+        "Jerusalem Artichoke",
+        "M\u00e2che"
+      ]
+    },
+    "12": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    }
   },
   "6b": {
-    "1": { "startIndoors": ["Onions", "Leeks"], "directSow": [], "transplant": [], "harvest": [] },
-    "2": { "startIndoors": ["Peppers", "Celery", "Broccoli", "Cabbage"], "directSow": [], "transplant": ["Onions"], "harvest": [] },
-    "3": { "startIndoors": ["Tomatoes", "Eggplant", "Basil", "Squash"], "directSow": ["Peas", "Spinach", "Kale", "Lettuce", "Radishes"], "transplant": ["Broccoli", "Cabbage"], "harvest": [] },
-    "4": { "startIndoors": ["Cucumbers", "Melons"], "directSow": ["Carrots", "Beets", "Chard"], "transplant": ["Tomatoes", "Peppers", "Eggplant"], "harvest": ["Spinach", "Lettuce", "Radishes", "Peas"] },
-    "5": { "startIndoors": [], "directSow": ["Beans", "Corn", "Squash", "Cucumbers"], "transplant": ["Basil", "Squash", "Cucumbers", "Melons"], "harvest": ["Lettuce", "Kale", "Broccoli", "Beets", "Carrots"] },
-    "6": { "startIndoors": ["Broccoli", "Kale"], "directSow": ["Beans", "Carrots"], "transplant": [], "harvest": ["Beans", "Cucumbers", "Squash", "Tomatoes", "Peppers"] },
-    "7": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale", "Beets"], "transplant": ["Broccoli", "Kale"], "harvest": ["Tomatoes", "Peppers", "Eggplant", "Corn", "Beans", "Cucumbers"] },
-    "8": { "startIndoors": [], "directSow": ["Radishes", "Carrots", "Chard"], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Squash", "Melons"] },
-    "9": { "startIndoors": [], "directSow": ["Spinach", "Peas"], "transplant": [], "harvest": ["Squash", "Pumpkins", "Sweet Potatoes", "Peppers"] },
-    "10": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Broccoli", "Kale", "Carrots", "Beets", "Cabbage"] },
-    "11": { "startIndoors": ["Onions"], "directSow": [], "transplant": [], "harvest": ["Kale", "Carrots"] },
-    "12": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": [] }
+    "1": {
+      "startIndoors": [
+        "Onions",
+        "Leeks",
+        "Shallots"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    },
+    "2": {
+      "startIndoors": [
+        "Peppers",
+        "Celery",
+        "Broccoli",
+        "Cabbage",
+        "Cauliflower",
+        "Brussels Sprouts",
+        "Globe Artichoke",
+        "Parsley"
+      ],
+      "directSow": [],
+      "transplant": [
+        "Onions",
+        "Shallots"
+      ],
+      "harvest": []
+    },
+    "3": {
+      "startIndoors": [
+        "Tomatoes",
+        "Eggplant",
+        "Basil",
+        "Squash",
+        "Tomatillos",
+        "Ground Cherries",
+        "Kohlrabi",
+        "Bok Choy"
+      ],
+      "directSow": [
+        "Peas",
+        "Spinach",
+        "Kale",
+        "Lettuce",
+        "Radishes",
+        "Arugula",
+        "M\u00e2che",
+        "Turnips",
+        "Green Onions",
+        "Cilantro",
+        "Dill"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Cabbage",
+        "Cauliflower",
+        "Asparagus",
+        "Rhubarb",
+        "Horseradish",
+        "Strawberries"
+      ],
+      "harvest": []
+    },
+    "4": {
+      "startIndoors": [
+        "Cucumbers",
+        "Melons"
+      ],
+      "directSow": [
+        "Carrots",
+        "Beets",
+        "Chard",
+        "Potatoes",
+        "Parsnips"
+      ],
+      "transplant": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Chives",
+        "Sage",
+        "Thyme",
+        "Mint"
+      ],
+      "harvest": [
+        "Spinach",
+        "Lettuce",
+        "Radishes",
+        "Peas",
+        "Arugula",
+        "Turnips",
+        "Kohlrabi"
+      ]
+    },
+    "5": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Corn",
+        "Squash",
+        "Cucumbers",
+        "Peanuts",
+        "Rutabaga",
+        "Bok Choy"
+      ],
+      "transplant": [
+        "Basil",
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Tomatillos",
+        "Ground Cherries",
+        "Globe Artichoke",
+        "Rosemary",
+        "Oregano"
+      ],
+      "harvest": [
+        "Lettuce",
+        "Kale",
+        "Broccoli",
+        "Beets",
+        "Carrots",
+        "Cauliflower",
+        "Bok Choy",
+        "Green Onions"
+      ]
+    },
+    "6": {
+      "startIndoors": [
+        "Broccoli",
+        "Kale"
+      ],
+      "directSow": [
+        "Beans",
+        "Carrots"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Beans",
+        "Cucumbers",
+        "Squash",
+        "Tomatoes",
+        "Peppers",
+        "Peas",
+        "Strawberries",
+        "Potatoes"
+      ]
+    },
+    "7": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale",
+        "Beets",
+        "Arugula",
+        "Turnips",
+        "Bok Choy",
+        "Mustard Greens"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Kale",
+        "Cauliflower"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Corn",
+        "Beans",
+        "Cucumbers",
+        "Tomatillos",
+        "Ground Cherries"
+      ]
+    },
+    "8": {
+      "startIndoors": [],
+      "directSow": [
+        "Radishes",
+        "Carrots",
+        "Chard",
+        "M\u00e2che",
+        "Cilantro"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Squash",
+        "Melons",
+        "Peanuts"
+      ]
+    },
+    "9": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Peas"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Squash",
+        "Pumpkins",
+        "Sweet Potatoes",
+        "Peppers",
+        "Parsnips",
+        "Rutabaga",
+        "Brussels Sprouts"
+      ]
+    },
+    "10": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Broccoli",
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Cabbage",
+        "Cauliflower",
+        "Turnips"
+      ]
+    },
+    "11": {
+      "startIndoors": [
+        "Onions"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Carrots",
+        "Jerusalem Artichoke",
+        "M\u00e2che"
+      ]
+    },
+    "12": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": []
+    }
   },
   "7b": {
-    "1": { "startIndoors": ["Onions", "Leeks", "Broccoli", "Cabbage"], "directSow": ["Spinach", "Kale", "Lettuce"], "transplant": [], "harvest": ["Kale", "Spinach", "Carrots"] },
-    "2": { "startIndoors": ["Peppers", "Celery", "Tomatoes", "Eggplant"], "directSow": ["Peas", "Radishes", "Chard"], "transplant": ["Onions", "Broccoli", "Cabbage"], "harvest": ["Lettuce", "Spinach", "Kale"] },
-    "3": { "startIndoors": ["Basil", "Squash", "Cucumbers", "Melons"], "directSow": ["Carrots", "Beets", "Lettuce"], "transplant": ["Tomatoes", "Peppers", "Celery"], "harvest": ["Peas", "Lettuce", "Radishes", "Broccoli"] },
-    "4": { "startIndoors": [], "directSow": ["Beans", "Corn"], "transplant": ["Basil", "Squash", "Cucumbers", "Melons", "Eggplant"], "harvest": ["Lettuce", "Spinach", "Kale", "Beets", "Carrots"] },
-    "5": { "startIndoors": [], "directSow": ["Squash", "Cucumbers", "Sweet Potatoes"], "transplant": [], "harvest": ["Beans", "Beets", "Broccoli", "Cabbage", "Carrots"] },
-    "6": { "startIndoors": ["Broccoli", "Kale", "Cabbage"], "directSow": ["Beans", "Okra"], "transplant": [], "harvest": ["Cucumbers", "Squash", "Tomatoes", "Peppers", "Beans"] },
-    "7": { "startIndoors": [], "directSow": ["Beans", "Beets", "Carrots"], "transplant": ["Broccoli", "Kale", "Cabbage"], "harvest": ["Tomatoes", "Peppers", "Eggplant", "Okra", "Corn"] },
-    "8": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale", "Radishes"], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Squash", "Melons", "Sweet Potatoes"] },
-    "9": { "startIndoors": [], "directSow": ["Peas", "Chard", "Carrots", "Beets"], "transplant": [], "harvest": ["Squash", "Pumpkins", "Peppers", "Eggplant"] },
-    "10": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale", "Garlic"], "transplant": [], "harvest": ["Broccoli", "Kale", "Carrots", "Beets", "Cabbage"] },
-    "11": { "startIndoors": ["Onions"], "directSow": ["Spinach", "Lettuce"], "transplant": [], "harvest": ["Kale", "Carrots", "Beets", "Broccoli"] },
-    "12": { "startIndoors": ["Onions", "Leeks"], "directSow": [], "transplant": [], "harvest": ["Kale", "Carrots", "Spinach"] }
+    "1": {
+      "startIndoors": [
+        "Onions",
+        "Leeks",
+        "Broccoli",
+        "Cabbage",
+        "Cauliflower",
+        "Shallots",
+        "Parsley"
+      ],
+      "directSow": [
+        "Spinach",
+        "Kale",
+        "Lettuce",
+        "M\u00e2che"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Spinach",
+        "Carrots"
+      ]
+    },
+    "2": {
+      "startIndoors": [
+        "Peppers",
+        "Celery",
+        "Tomatoes",
+        "Eggplant",
+        "Brussels Sprouts",
+        "Tomatillos",
+        "Ground Cherries",
+        "Globe Artichoke"
+      ],
+      "directSow": [
+        "Peas",
+        "Radishes",
+        "Chard",
+        "Arugula",
+        "Turnips",
+        "Green Onions",
+        "Cilantro"
+      ],
+      "transplant": [
+        "Onions",
+        "Broccoli",
+        "Cabbage",
+        "Cauliflower",
+        "Shallots",
+        "Strawberries"
+      ],
+      "harvest": [
+        "Lettuce",
+        "Spinach",
+        "Kale",
+        "M\u00e2che"
+      ]
+    },
+    "3": {
+      "startIndoors": [
+        "Basil",
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Kohlrabi",
+        "Bok Choy"
+      ],
+      "directSow": [
+        "Carrots",
+        "Beets",
+        "Lettuce",
+        "Potatoes",
+        "Parsnips",
+        "Dill",
+        "Mustard Greens"
+      ],
+      "transplant": [
+        "Tomatoes",
+        "Peppers",
+        "Celery",
+        "Asparagus",
+        "Rhubarb",
+        "Horseradish",
+        "Chives",
+        "Sage",
+        "Thyme",
+        "Mint"
+      ],
+      "harvest": [
+        "Peas",
+        "Lettuce",
+        "Radishes",
+        "Broccoli",
+        "Arugula",
+        "Turnips",
+        "Kohlrabi"
+      ]
+    },
+    "4": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Corn",
+        "Peanuts"
+      ],
+      "transplant": [
+        "Basil",
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Eggplant",
+        "Tomatillos",
+        "Ground Cherries",
+        "Globe Artichoke",
+        "Rosemary",
+        "Oregano"
+      ],
+      "harvest": [
+        "Lettuce",
+        "Spinach",
+        "Kale",
+        "Beets",
+        "Carrots",
+        "Cauliflower",
+        "Bok Choy",
+        "Green Onions",
+        "Strawberries"
+      ]
+    },
+    "5": {
+      "startIndoors": [],
+      "directSow": [
+        "Squash",
+        "Cucumbers",
+        "Sweet Potatoes",
+        "Rutabaga"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Beans",
+        "Beets",
+        "Broccoli",
+        "Cabbage",
+        "Carrots",
+        "Potatoes",
+        "Peas"
+      ]
+    },
+    "6": {
+      "startIndoors": [
+        "Broccoli",
+        "Kale",
+        "Cabbage"
+      ],
+      "directSow": [
+        "Beans",
+        "Okra",
+        "Bok Choy"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Cucumbers",
+        "Squash",
+        "Tomatoes",
+        "Peppers",
+        "Beans",
+        "Tomatillos",
+        "Ground Cherries"
+      ]
+    },
+    "7": {
+      "startIndoors": [
+        "Brussels Sprouts",
+        "Cauliflower"
+      ],
+      "directSow": [
+        "Beans",
+        "Beets",
+        "Carrots"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Kale",
+        "Cabbage"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Corn",
+        "Peanuts"
+      ]
+    },
+    "8": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale",
+        "Radishes",
+        "Arugula",
+        "Turnips",
+        "M\u00e2che",
+        "Cilantro",
+        "Mustard Greens"
+      ],
+      "transplant": [
+        "Brussels Sprouts",
+        "Cauliflower"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Squash",
+        "Melons",
+        "Sweet Potatoes",
+        "Bok Choy"
+      ]
+    },
+    "9": {
+      "startIndoors": [],
+      "directSow": [
+        "Peas",
+        "Chard",
+        "Carrots",
+        "Beets",
+        "Green Onions",
+        "Bok Choy"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Squash",
+        "Pumpkins",
+        "Peppers",
+        "Eggplant",
+        "Rutabaga"
+      ]
+    },
+    "10": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale",
+        "Garlic",
+        "Shallots"
+      ],
+      "transplant": [
+        "Strawberries"
+      ],
+      "harvest": [
+        "Broccoli",
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Cabbage",
+        "Cauliflower",
+        "Brussels Sprouts",
+        "Parsnips"
+      ]
+    },
+    "11": {
+      "startIndoors": [
+        "Onions"
+      ],
+      "directSow": [
+        "Spinach",
+        "Lettuce"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Broccoli",
+        "Jerusalem Artichoke",
+        "M\u00e2che"
+      ]
+    },
+    "12": {
+      "startIndoors": [
+        "Onions",
+        "Leeks"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Carrots",
+        "Spinach",
+        "M\u00e2che"
+      ]
+    }
   },
   "8b": {
-    "1": { "startIndoors": ["Onions", "Leeks", "Tomatoes", "Peppers", "Broccoli"], "directSow": ["Spinach", "Kale", "Lettuce", "Peas"], "transplant": [], "harvest": ["Kale", "Spinach", "Broccoli", "Carrots"] },
-    "2": { "startIndoors": ["Eggplant", "Celery", "Basil"], "directSow": ["Radishes", "Chard", "Beets", "Carrots"], "transplant": ["Onions", "Broccoli", "Lettuce"], "harvest": ["Lettuce", "Spinach", "Kale", "Peas"] },
-    "3": { "startIndoors": ["Squash", "Cucumbers", "Melons"], "directSow": ["Beans", "Corn"], "transplant": ["Tomatoes", "Peppers", "Eggplant", "Celery"], "harvest": ["Broccoli", "Radishes", "Lettuce", "Peas"] },
-    "4": { "startIndoors": [], "directSow": ["Squash", "Cucumbers", "Sweet Potatoes", "Okra"], "transplant": ["Basil", "Squash", "Cucumbers", "Melons"], "harvest": ["Lettuce", "Spinach", "Beets", "Carrots", "Kale"] },
-    "5": { "startIndoors": [], "directSow": ["Beans", "Okra"], "transplant": [], "harvest": ["Tomatoes", "Beans", "Cucumbers", "Squash"] },
-    "6": { "startIndoors": ["Broccoli", "Kale", "Cabbage"], "directSow": [], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Eggplant", "Okra", "Corn"] },
-    "7": { "startIndoors": [], "directSow": ["Beans", "Carrots", "Beets"], "transplant": ["Broccoli", "Kale", "Cabbage"], "harvest": ["Tomatoes", "Peppers", "Eggplant", "Squash", "Melons"] },
-    "8": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale", "Radishes", "Peas"], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Sweet Potatoes", "Corn"] },
-    "9": { "startIndoors": [], "directSow": ["Peas", "Chard", "Carrots", "Beets", "Broccoli"], "transplant": [], "harvest": ["Squash", "Pumpkins", "Peppers", "Eggplant", "Beans"] },
-    "10": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale", "Garlic", "Onions"], "transplant": ["Broccoli"], "harvest": ["Broccoli", "Kale", "Carrots", "Beets", "Cabbage"] },
-    "11": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Peas"], "transplant": [], "harvest": ["Kale", "Carrots", "Beets", "Broccoli", "Lettuce"] },
-    "12": { "startIndoors": ["Onions", "Leeks"], "directSow": ["Spinach", "Kale"], "transplant": [], "harvest": ["Kale", "Carrots", "Spinach", "Broccoli"] }
+    "1": {
+      "startIndoors": [
+        "Onions",
+        "Leeks",
+        "Tomatoes",
+        "Peppers",
+        "Broccoli",
+        "Cauliflower",
+        "Tomatillos",
+        "Shallots",
+        "Parsley"
+      ],
+      "directSow": [
+        "Spinach",
+        "Kale",
+        "Lettuce",
+        "Peas",
+        "Arugula",
+        "M\u00e2che",
+        "Cilantro"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Spinach",
+        "Broccoli",
+        "Carrots"
+      ]
+    },
+    "2": {
+      "startIndoors": [
+        "Eggplant",
+        "Celery",
+        "Basil",
+        "Brussels Sprouts",
+        "Globe Artichoke",
+        "Ginger",
+        "Turmeric",
+        "Lemongrass"
+      ],
+      "directSow": [
+        "Radishes",
+        "Chard",
+        "Beets",
+        "Carrots",
+        "Turnips",
+        "Green Onions"
+      ],
+      "transplant": [
+        "Onions",
+        "Broccoli",
+        "Lettuce",
+        "Shallots",
+        "Cauliflower",
+        "Asparagus",
+        "Rhubarb",
+        "Strawberries"
+      ],
+      "harvest": [
+        "Lettuce",
+        "Spinach",
+        "Kale",
+        "Peas",
+        "Arugula",
+        "M\u00e2che"
+      ]
+    },
+    "3": {
+      "startIndoors": [
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Kohlrabi",
+        "Bok Choy"
+      ],
+      "directSow": [
+        "Beans",
+        "Corn",
+        "Potatoes",
+        "Parsnips",
+        "Dill",
+        "Cilantro",
+        "Mustard Greens"
+      ],
+      "transplant": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Celery",
+        "Chives",
+        "Sage",
+        "Thyme",
+        "Mint"
+      ],
+      "harvest": [
+        "Broccoli",
+        "Cauliflower",
+        "Radishes",
+        "Lettuce",
+        "Peas",
+        "Turnips",
+        "Kohlrabi",
+        "Bok Choy"
+      ]
+    },
+    "4": {
+      "startIndoors": [],
+      "directSow": [
+        "Squash",
+        "Cucumbers",
+        "Sweet Potatoes",
+        "Okra",
+        "Peanuts"
+      ],
+      "transplant": [
+        "Basil",
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Tomatillos",
+        "Globe Artichoke",
+        "Ginger",
+        "Turmeric",
+        "Lemongrass",
+        "Rosemary",
+        "Oregano"
+      ],
+      "harvest": [
+        "Lettuce",
+        "Spinach",
+        "Beets",
+        "Carrots",
+        "Kale",
+        "Bok Choy",
+        "Arugula",
+        "Green Onions",
+        "Strawberries"
+      ]
+    },
+    "5": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Okra"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Beans",
+        "Cucumbers",
+        "Squash",
+        "Potatoes",
+        "Tomatillos"
+      ]
+    },
+    "6": {
+      "startIndoors": [
+        "Broccoli",
+        "Kale",
+        "Cabbage"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Corn",
+        "Squash",
+        "Melons",
+        "Peanuts"
+      ]
+    },
+    "7": {
+      "startIndoors": [
+        "Brussels Sprouts",
+        "Cauliflower"
+      ],
+      "directSow": [
+        "Beans",
+        "Carrots",
+        "Beets"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Kale",
+        "Cabbage"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Squash",
+        "Melons"
+      ]
+    },
+    "8": {
+      "startIndoors": [
+        "Kohlrabi",
+        "Bok Choy"
+      ],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale",
+        "Radishes",
+        "Peas",
+        "Arugula",
+        "Turnips",
+        "Cilantro"
+      ],
+      "transplant": [
+        "Brussels Sprouts",
+        "Cauliflower"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Sweet Potatoes",
+        "Corn",
+        "Okra"
+      ]
+    },
+    "9": {
+      "startIndoors": [],
+      "directSow": [
+        "Peas",
+        "Chard",
+        "Carrots",
+        "Beets",
+        "Broccoli",
+        "M\u00e2che",
+        "Mustard Greens",
+        "Green Onions"
+      ],
+      "transplant": [
+        "Strawberries"
+      ],
+      "harvest": [
+        "Squash",
+        "Pumpkins",
+        "Peppers",
+        "Eggplant",
+        "Beans",
+        "Kohlrabi",
+        "Bok Choy",
+        "Ginger",
+        "Turmeric"
+      ]
+    },
+    "10": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale",
+        "Garlic",
+        "Onions",
+        "Shallots",
+        "Cilantro"
+      ],
+      "transplant": [
+        "Broccoli"
+      ],
+      "harvest": [
+        "Broccoli",
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Cabbage",
+        "Brussels Sprouts",
+        "Cauliflower"
+      ]
+    },
+    "11": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Peas"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Broccoli",
+        "Lettuce",
+        "Cauliflower",
+        "Parsnips",
+        "M\u00e2che"
+      ]
+    },
+    "12": {
+      "startIndoors": [
+        "Onions",
+        "Leeks"
+      ],
+      "directSow": [
+        "Spinach",
+        "Kale"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Carrots",
+        "Spinach",
+        "Broccoli",
+        "Lemongrass"
+      ]
+    }
   },
   "9b": {
-    "1": { "startIndoors": ["Tomatoes", "Peppers", "Eggplant", "Basil"], "directSow": ["Peas", "Spinach", "Kale", "Lettuce", "Carrots", "Beets"], "transplant": [], "harvest": ["Kale", "Spinach", "Broccoli", "Carrots", "Lettuce"] },
-    "2": { "startIndoors": ["Squash", "Cucumbers", "Melons"], "directSow": ["Radishes", "Chard", "Broccoli"], "transplant": ["Tomatoes", "Peppers", "Eggplant", "Basil"], "harvest": ["Peas", "Lettuce", "Spinach", "Broccoli", "Radishes"] },
-    "3": { "startIndoors": [], "directSow": ["Beans", "Corn", "Squash", "Cucumbers", "Okra"], "transplant": ["Squash", "Cucumbers", "Melons"], "harvest": ["Lettuce", "Kale", "Beets", "Carrots", "Peas"] },
-    "4": { "startIndoors": [], "directSow": ["Sweet Potatoes", "Okra"], "transplant": [], "harvest": ["Tomatoes", "Beans", "Cucumbers", "Squash"] },
-    "5": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Eggplant", "Okra", "Corn"] },
-    "6": { "startIndoors": ["Broccoli", "Kale", "Cabbage", "Onions"], "directSow": [], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Eggplant", "Okra", "Sweet Potatoes", "Melons"] },
-    "7": { "startIndoors": [], "directSow": ["Beans", "Squash", "Cucumbers"], "transplant": ["Broccoli", "Kale", "Cabbage"], "harvest": ["Peppers", "Eggplant", "Okra"] },
-    "8": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale", "Radishes", "Carrots", "Beets", "Peas"], "transplant": [], "harvest": ["Beans", "Squash", "Sweet Potatoes"] },
-    "9": { "startIndoors": [], "directSow": ["Chard", "Broccoli", "Cabbage"], "transplant": [], "harvest": ["Peppers", "Eggplant", "Squash", "Pumpkins"] },
-    "10": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale", "Garlic", "Onions", "Peas"], "transplant": ["Broccoli", "Cabbage"], "harvest": ["Broccoli", "Kale", "Carrots", "Beets"] },
-    "11": { "startIndoors": ["Tomatoes", "Peppers"], "directSow": ["Spinach", "Lettuce"], "transplant": [], "harvest": ["Kale", "Carrots", "Beets", "Broccoli", "Lettuce"] },
-    "12": { "startIndoors": ["Tomatoes", "Peppers", "Eggplant"], "directSow": ["Spinach", "Kale", "Carrots", "Peas"], "transplant": [], "harvest": ["Kale", "Carrots", "Spinach", "Broccoli", "Lettuce"] }
+    "1": {
+      "startIndoors": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Basil",
+        "Cauliflower",
+        "Brussels Sprouts",
+        "Tomatillos",
+        "Shallots"
+      ],
+      "directSow": [
+        "Peas",
+        "Spinach",
+        "Kale",
+        "Lettuce",
+        "Carrots",
+        "Beets",
+        "Arugula",
+        "M\u00e2che",
+        "Cilantro",
+        "Turnips",
+        "Bok Choy"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Spinach",
+        "Broccoli",
+        "Carrots",
+        "Lettuce"
+      ]
+    },
+    "2": {
+      "startIndoors": [
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Ginger",
+        "Turmeric",
+        "Lemongrass"
+      ],
+      "directSow": [
+        "Radishes",
+        "Chard",
+        "Broccoli",
+        "Green Onions",
+        "Dill",
+        "Mustard Greens",
+        "Potatoes"
+      ],
+      "transplant": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Basil",
+        "Cauliflower",
+        "Asparagus",
+        "Rhubarb",
+        "Strawberries"
+      ],
+      "harvest": [
+        "Peas",
+        "Lettuce",
+        "Spinach",
+        "Broccoli",
+        "Radishes",
+        "Arugula",
+        "Bok Choy",
+        "Turnips"
+      ]
+    },
+    "3": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Corn",
+        "Squash",
+        "Cucumbers",
+        "Okra",
+        "Parsnips",
+        "Peanuts"
+      ],
+      "transplant": [
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Ginger",
+        "Turmeric",
+        "Lemongrass",
+        "Chives",
+        "Sage",
+        "Thyme",
+        "Mint",
+        "Rosemary",
+        "Oregano"
+      ],
+      "harvest": [
+        "Lettuce",
+        "Kale",
+        "Beets",
+        "Carrots",
+        "Peas",
+        "Bok Choy",
+        "Kohlrabi",
+        "Potatoes",
+        "Cauliflower"
+      ]
+    },
+    "4": {
+      "startIndoors": [],
+      "directSow": [
+        "Sweet Potatoes",
+        "Okra"
+      ],
+      "transplant": [
+        "Globe Artichoke",
+        "Tomatillos"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Beans",
+        "Cucumbers",
+        "Squash",
+        "Green Onions",
+        "Strawberries",
+        "Arugula"
+      ]
+    },
+    "5": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Corn",
+        "Peanuts"
+      ]
+    },
+    "6": {
+      "startIndoors": [
+        "Broccoli",
+        "Kale",
+        "Cabbage",
+        "Onions"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Sweet Potatoes",
+        "Melons",
+        "Tomatillos"
+      ]
+    },
+    "7": {
+      "startIndoors": [
+        "Cauliflower",
+        "Brussels Sprouts",
+        "Kohlrabi",
+        "Bok Choy"
+      ],
+      "directSow": [
+        "Beans",
+        "Squash",
+        "Cucumbers"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Kale",
+        "Cabbage"
+      ],
+      "harvest": [
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Ginger",
+        "Turmeric"
+      ]
+    },
+    "8": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale",
+        "Radishes",
+        "Carrots",
+        "Beets",
+        "Peas",
+        "Arugula",
+        "Turnips",
+        "M\u00e2che",
+        "Cilantro",
+        "Mustard Greens"
+      ],
+      "transplant": [
+        "Cauliflower",
+        "Brussels Sprouts",
+        "Kohlrabi",
+        "Bok Choy",
+        "Strawberries"
+      ],
+      "harvest": [
+        "Beans",
+        "Squash",
+        "Sweet Potatoes",
+        "Lemongrass"
+      ]
+    },
+    "9": {
+      "startIndoors": [],
+      "directSow": [
+        "Chard",
+        "Broccoli",
+        "Cabbage",
+        "Green Onions",
+        "Dill"
+      ],
+      "transplant": [
+        "Potatoes"
+      ],
+      "harvest": [
+        "Peppers",
+        "Eggplant",
+        "Squash",
+        "Pumpkins",
+        "Kohlrabi",
+        "Bok Choy"
+      ]
+    },
+    "10": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale",
+        "Garlic",
+        "Onions",
+        "Peas",
+        "Cilantro"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Cabbage",
+        "Cauliflower"
+      ],
+      "harvest": [
+        "Broccoli",
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Brussels Sprouts",
+        "Parsnips"
+      ]
+    },
+    "11": {
+      "startIndoors": [
+        "Tomatoes",
+        "Peppers"
+      ],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Arugula",
+        "Turnips",
+        "Bok Choy",
+        "M\u00e2che"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Broccoli",
+        "Lettuce",
+        "Cauliflower",
+        "Potatoes"
+      ]
+    },
+    "12": {
+      "startIndoors": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant"
+      ],
+      "directSow": [
+        "Spinach",
+        "Kale",
+        "Carrots",
+        "Peas"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Carrots",
+        "Spinach",
+        "Broccoli",
+        "Lettuce",
+        "Brussels Sprouts",
+        "M\u00e2che"
+      ]
+    }
   },
   "10a": {
-    "1": { "startIndoors": [], "directSow": ["Tomatoes", "Peppers", "Eggplant", "Beans", "Corn", "Squash", "Cucumbers", "Peas", "Lettuce", "Kale", "Spinach", "Carrots", "Beets"], "transplant": [], "harvest": ["Kale", "Spinach", "Broccoli", "Carrots", "Lettuce", "Tomatoes"] },
-    "2": { "startIndoors": [], "directSow": ["Melons", "Okra", "Sweet Potatoes", "Basil"], "transplant": ["Tomatoes", "Peppers", "Eggplant"], "harvest": ["Peas", "Lettuce", "Spinach", "Broccoli", "Beans"] },
-    "3": { "startIndoors": [], "directSow": ["Beans", "Corn", "Squash", "Cucumbers", "Okra"], "transplant": ["Squash", "Cucumbers", "Melons", "Basil"], "harvest": ["Tomatoes", "Beans", "Cucumbers", "Squash", "Kale"] },
-    "4": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Eggplant", "Okra", "Corn", "Melons"] },
-    "5": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Eggplant", "Okra", "Sweet Potatoes"] },
-    "6": { "startIndoors": ["Broccoli", "Kale", "Cabbage", "Onions"], "directSow": [], "transplant": [], "harvest": ["Peppers", "Eggplant", "Okra", "Sweet Potatoes", "Melons"] },
-    "7": { "startIndoors": [], "directSow": ["Beans", "Squash", "Cucumbers"], "transplant": ["Broccoli", "Kale", "Cabbage"], "harvest": ["Peppers", "Eggplant", "Okra"] },
-    "8": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale", "Carrots", "Beets", "Peas", "Broccoli"], "transplant": [], "harvest": ["Beans", "Squash", "Sweet Potatoes"] },
-    "9": { "startIndoors": [], "directSow": ["Chard", "Cabbage", "Tomatoes", "Peppers"], "transplant": [], "harvest": ["Peppers", "Eggplant", "Squash", "Pumpkins"] },
-    "10": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale", "Garlic", "Onions", "Carrots", "Beets"], "transplant": ["Broccoli", "Cabbage", "Tomatoes", "Peppers"], "harvest": ["Broccoli", "Kale", "Carrots", "Beets", "Tomatoes"] },
-    "11": { "startIndoors": [], "directSow": ["Tomatoes", "Beans", "Corn", "Squash", "Cucumbers"], "transplant": [], "harvest": ["Kale", "Carrots", "Beets", "Broccoli", "Lettuce", "Tomatoes"] },
-    "12": { "startIndoors": [], "directSow": ["Tomatoes", "Peppers", "Eggplant", "Spinach", "Kale", "Carrots", "Peas", "Beans"], "transplant": [], "harvest": ["Kale", "Carrots", "Spinach", "Broccoli", "Lettuce", "Tomatoes"] }
+    "1": {
+      "startIndoors": [],
+      "directSow": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Beans",
+        "Corn",
+        "Squash",
+        "Cucumbers",
+        "Peas",
+        "Lettuce",
+        "Kale",
+        "Spinach",
+        "Carrots",
+        "Beets",
+        "Arugula",
+        "Bok Choy",
+        "Turnips",
+        "Cilantro",
+        "M\u00e2che"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Spinach",
+        "Broccoli",
+        "Carrots",
+        "Lettuce",
+        "Tomatoes",
+        "Cauliflower"
+      ]
+    },
+    "2": {
+      "startIndoors": [
+        "Ginger",
+        "Turmeric",
+        "Lemongrass"
+      ],
+      "directSow": [
+        "Melons",
+        "Okra",
+        "Sweet Potatoes",
+        "Basil",
+        "Potatoes",
+        "Peanuts",
+        "Green Onions",
+        "Dill",
+        "Mustard Greens"
+      ],
+      "transplant": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Asparagus",
+        "Rhubarb",
+        "Strawberries"
+      ],
+      "harvest": [
+        "Peas",
+        "Lettuce",
+        "Spinach",
+        "Broccoli",
+        "Beans",
+        "Arugula",
+        "Bok Choy"
+      ]
+    },
+    "3": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Corn",
+        "Squash",
+        "Cucumbers",
+        "Okra"
+      ],
+      "transplant": [
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Basil",
+        "Ginger",
+        "Turmeric",
+        "Lemongrass",
+        "Chives",
+        "Sage",
+        "Thyme",
+        "Mint",
+        "Rosemary",
+        "Oregano"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Beans",
+        "Cucumbers",
+        "Squash",
+        "Kale",
+        "Cauliflower",
+        "Broccoli",
+        "Turnips",
+        "Kohlrabi"
+      ]
+    },
+    "4": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Corn",
+        "Melons",
+        "Strawberries",
+        "Bok Choy",
+        "Peas"
+      ]
+    },
+    "5": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Sweet Potatoes",
+        "Peanuts"
+      ]
+    },
+    "6": {
+      "startIndoors": [
+        "Broccoli",
+        "Kale",
+        "Cabbage",
+        "Onions"
+      ],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Sweet Potatoes",
+        "Melons",
+        "Ginger",
+        "Turmeric"
+      ]
+    },
+    "7": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Squash",
+        "Cucumbers"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Kale",
+        "Cabbage"
+      ],
+      "harvest": [
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Lemongrass"
+      ]
+    },
+    "8": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Peas",
+        "Broccoli",
+        "Arugula",
+        "Turnips",
+        "Cilantro",
+        "M\u00e2che",
+        "Mustard Greens",
+        "Bok Choy"
+      ],
+      "transplant": [
+        "Strawberries"
+      ],
+      "harvest": [
+        "Beans",
+        "Squash",
+        "Sweet Potatoes"
+      ]
+    },
+    "9": {
+      "startIndoors": [],
+      "directSow": [
+        "Chard",
+        "Cabbage",
+        "Tomatoes",
+        "Peppers",
+        "Green Onions",
+        "Dill"
+      ],
+      "transplant": [
+        "Potatoes"
+      ],
+      "harvest": [
+        "Peppers",
+        "Eggplant",
+        "Squash",
+        "Pumpkins",
+        "Bok Choy",
+        "Arugula",
+        "Turnips"
+      ]
+    },
+    "10": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale",
+        "Garlic",
+        "Onions",
+        "Carrots",
+        "Beets",
+        "Cilantro",
+        "M\u00e2che",
+        "Peas"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Cabbage",
+        "Tomatoes",
+        "Peppers",
+        "Cauliflower"
+      ],
+      "harvest": [
+        "Broccoli",
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Tomatoes",
+        "Cauliflower",
+        "Potatoes"
+      ]
+    },
+    "11": {
+      "startIndoors": [],
+      "directSow": [
+        "Tomatoes",
+        "Beans",
+        "Corn",
+        "Squash",
+        "Cucumbers",
+        "Arugula",
+        "Turnips",
+        "Bok Choy",
+        "Green Onions"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Broccoli",
+        "Lettuce",
+        "Tomatoes",
+        "Cauliflower"
+      ]
+    },
+    "12": {
+      "startIndoors": [],
+      "directSow": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Spinach",
+        "Kale",
+        "Carrots",
+        "Peas",
+        "Beans",
+        "Cilantro",
+        "M\u00e2che"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Carrots",
+        "Spinach",
+        "Broccoli",
+        "Lettuce",
+        "Tomatoes"
+      ]
+    }
   },
   "11a": {
-    "1": { "startIndoors": [], "directSow": ["Tomatoes", "Peppers", "Eggplant", "Beans", "Corn", "Squash", "Cucumbers", "Melons", "Okra", "Basil", "Lettuce", "Kale"], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Beans", "Cucumbers", "Squash", "Lettuce"] },
-    "2": { "startIndoors": [], "directSow": ["Sweet Potatoes", "Pumpkins"], "transplant": ["Tomatoes", "Peppers", "Eggplant", "Basil"], "harvest": ["Tomatoes", "Peppers", "Beans", "Cucumbers", "Squash"] },
-    "3": { "startIndoors": [], "directSow": ["Beans", "Corn", "Squash", "Cucumbers", "Okra"], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Eggplant", "Okra", "Corn", "Melons"] },
-    "4": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Eggplant", "Okra", "Sweet Potatoes", "Mangoes"] },
-    "5": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Peppers", "Eggplant", "Okra", "Sweet Potatoes", "Mangoes", "Avocados"] },
-    "6": { "startIndoors": [], "directSow": [], "transplant": [], "harvest": ["Peppers", "Eggplant", "Okra", "Sweet Potatoes", "Avocados"] },
-    "7": { "startIndoors": [], "directSow": ["Beans", "Squash", "Cucumbers", "Corn"], "transplant": [], "harvest": ["Peppers", "Eggplant", "Okra", "Avocados"] },
-    "8": { "startIndoors": [], "directSow": ["Tomatoes", "Peppers", "Eggplant", "Lettuce", "Kale", "Spinach", "Carrots", "Beets"], "transplant": [], "harvest": ["Beans", "Squash", "Sweet Potatoes"] },
-    "9": { "startIndoors": [], "directSow": ["Broccoli", "Cabbage", "Chard", "Basil"], "transplant": ["Tomatoes", "Peppers", "Eggplant"], "harvest": ["Squash", "Pumpkins", "Beans"] },
-    "10": { "startIndoors": [], "directSow": ["Spinach", "Lettuce", "Kale", "Garlic", "Onions", "Carrots", "Beets", "Beans", "Corn"], "transplant": ["Broccoli", "Cabbage"], "harvest": ["Tomatoes", "Peppers", "Carrots", "Beets"] },
-    "11": { "startIndoors": [], "directSow": ["Tomatoes", "Peppers", "Beans", "Squash", "Cucumbers"], "transplant": [], "harvest": ["Kale", "Carrots", "Beets", "Broccoli", "Lettuce", "Tomatoes", "Peppers"] },
-    "12": { "startIndoors": [], "directSow": ["Tomatoes", "Peppers", "Eggplant", "Beans", "Corn", "Squash", "Cucumbers", "Melons", "Okra"], "transplant": [], "harvest": ["Tomatoes", "Peppers", "Beans", "Cucumbers", "Squash", "Kale", "Carrots"] }
+    "1": {
+      "startIndoors": [],
+      "directSow": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Beans",
+        "Corn",
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Okra",
+        "Basil",
+        "Lettuce",
+        "Kale",
+        "Arugula",
+        "Bok Choy",
+        "Turnips",
+        "Green Onions",
+        "Cilantro"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Beans",
+        "Cucumbers",
+        "Squash",
+        "Lettuce",
+        "Cauliflower"
+      ]
+    },
+    "2": {
+      "startIndoors": [],
+      "directSow": [
+        "Sweet Potatoes",
+        "Pumpkins",
+        "Peanuts",
+        "Potatoes"
+      ],
+      "transplant": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Basil",
+        "Ginger",
+        "Turmeric",
+        "Lemongrass"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Beans",
+        "Cucumbers",
+        "Squash",
+        "Bok Choy",
+        "Arugula"
+      ]
+    },
+    "3": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Corn",
+        "Squash",
+        "Cucumbers",
+        "Okra",
+        "Green Onions",
+        "Dill"
+      ],
+      "transplant": [
+        "Asparagus",
+        "Rhubarb",
+        "Strawberries",
+        "Chives",
+        "Sage",
+        "Thyme",
+        "Mint",
+        "Rosemary",
+        "Oregano"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Corn",
+        "Melons",
+        "Cauliflower",
+        "Broccoli"
+      ]
+    },
+    "4": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Sweet Potatoes",
+        "Mangoes",
+        "Peanuts",
+        "Strawberries",
+        "Potatoes"
+      ]
+    },
+    "5": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Sweet Potatoes",
+        "Mangoes",
+        "Avocados",
+        "Ginger",
+        "Turmeric"
+      ]
+    },
+    "6": {
+      "startIndoors": [],
+      "directSow": [],
+      "transplant": [],
+      "harvest": [
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Sweet Potatoes",
+        "Avocados",
+        "Lemongrass"
+      ]
+    },
+    "7": {
+      "startIndoors": [],
+      "directSow": [
+        "Beans",
+        "Squash",
+        "Cucumbers",
+        "Corn"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Peppers",
+        "Eggplant",
+        "Okra",
+        "Avocados"
+      ]
+    },
+    "8": {
+      "startIndoors": [],
+      "directSow": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Lettuce",
+        "Kale",
+        "Spinach",
+        "Carrots",
+        "Beets",
+        "Arugula",
+        "Bok Choy",
+        "Turnips",
+        "Cilantro",
+        "Mustard Greens"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Beans",
+        "Squash",
+        "Sweet Potatoes"
+      ]
+    },
+    "9": {
+      "startIndoors": [
+        "Cauliflower",
+        "Broccoli"
+      ],
+      "directSow": [
+        "Broccoli",
+        "Cabbage",
+        "Chard",
+        "Basil",
+        "Green Onions",
+        "Dill"
+      ],
+      "transplant": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Ginger",
+        "Turmeric",
+        "Lemongrass"
+      ],
+      "harvest": [
+        "Squash",
+        "Pumpkins",
+        "Beans",
+        "Bok Choy",
+        "Arugula"
+      ]
+    },
+    "10": {
+      "startIndoors": [],
+      "directSow": [
+        "Spinach",
+        "Lettuce",
+        "Kale",
+        "Garlic",
+        "Onions",
+        "Carrots",
+        "Beets",
+        "Beans",
+        "Corn",
+        "Peas",
+        "Cilantro",
+        "M\u00e2che"
+      ],
+      "transplant": [
+        "Broccoli",
+        "Cabbage",
+        "Cauliflower"
+      ],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Carrots",
+        "Beets",
+        "Ginger",
+        "Turmeric"
+      ]
+    },
+    "11": {
+      "startIndoors": [],
+      "directSow": [
+        "Tomatoes",
+        "Peppers",
+        "Beans",
+        "Squash",
+        "Cucumbers",
+        "Arugula",
+        "Turnips",
+        "Bok Choy",
+        "Green Onions"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Kale",
+        "Carrots",
+        "Beets",
+        "Broccoli",
+        "Lettuce",
+        "Tomatoes",
+        "Peppers",
+        "Cauliflower"
+      ]
+    },
+    "12": {
+      "startIndoors": [],
+      "directSow": [
+        "Tomatoes",
+        "Peppers",
+        "Eggplant",
+        "Beans",
+        "Corn",
+        "Squash",
+        "Cucumbers",
+        "Melons",
+        "Okra",
+        "Peas",
+        "Cilantro"
+      ],
+      "transplant": [],
+      "harvest": [
+        "Tomatoes",
+        "Peppers",
+        "Beans",
+        "Cucumbers",
+        "Squash",
+        "Kale",
+        "Carrots",
+        "Lettuce"
+      ]
+    }
   }
 }

@@ -185,11 +185,12 @@ def fetch_story_body(permalink: str) -> str:
 
 def scrape_subreddit(subreddit: str, sort: str = "top",
                      time_filter: str = "month", target: int = 100,
-                     exclude_ids: set | None = None) -> list[dict]:
+                     exclude_ids: set | None = None,
+                     min_words: int = MIN_WORDS, max_words: int = 1000) -> list[dict]:
     """
     Fetch qualifying posts from a single subreddit, paginating until `target`
     qualifying stories are collected or Reddit has no more posts to return.
-    A qualifying story is a self-post with a body between MIN_WORDS and 1000 words.
+    A qualifying story is a self-post with a body between min_words and max_words.
     Stories whose IDs are in `exclude_ids` are skipped and don't count toward `target`.
     """
     print(f"\n── r/{subreddit} ──────────────────────────────────────", file=sys.stderr)
@@ -246,11 +247,11 @@ def scrape_subreddit(subreddit: str, sort: str = "top",
                 continue
 
             words = body.split()
-            if len(words) < MIN_WORDS:
-                print(f"  Skipping '{title[:50]}' (<{MIN_WORDS} words)", file=sys.stderr)
+            if len(words) < min_words:
+                print(f"  Skipping '{title[:50]}' (<{min_words} words)", file=sys.stderr)
                 continue
-            if len(words) > 1000:
-                print(f"  Skipping '{title[:50]}' (>{1000} words)", file=sys.stderr)
+            if len(words) > max_words:
+                print(f"  Skipping '{title[:50]}' (>{max_words} words)", file=sys.stderr)
                 continue
 
             print(f"  ✓ [{len(stories)+1}/{target}] {title[:60]}", file=sys.stderr)
@@ -280,7 +281,8 @@ def scrape_subreddit(subreddit: str, sort: str = "top",
 
 def scrape_all(subreddits: list[str], sort: str = "top",
                time_filter: str = "month", target: int = 100,
-               exclude_ids: set | None = None) -> list[dict]:
+               exclude_ids: set | None = None,
+               min_words: int = MIN_WORDS, max_words: int = 1000) -> list[dict]:
     """
     Scrape multiple subreddits, deduplicate by post ID, and sort by score descending.
     `target` is the number of qualifying stories to collect per subreddit.
@@ -292,7 +294,8 @@ def scrape_all(subreddits: list[str], sort: str = "top",
 
     for i, subreddit in enumerate(subreddits):
         stories = scrape_subreddit(subreddit, sort=sort, time_filter=time_filter,
-                                   target=target, exclude_ids=exclude_ids)
+                                   target=target, exclude_ids=exclude_ids,
+                                   min_words=min_words, max_words=max_words)
         for story in stories:
             if story["id"] not in seen_ids:
                 seen_ids.add(story["id"])
