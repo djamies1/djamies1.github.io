@@ -302,7 +302,7 @@ html, body {
 }
 
 .leaflet-container {
-  background: transparent !important;
+  background: #0a0f1a !important;
 }
 
 .leaflet-control-attribution {
