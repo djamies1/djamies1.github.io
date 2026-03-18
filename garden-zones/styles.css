@@ -19,6 +19,7 @@
   --panel-width: 360px;
   --topbar-height: 54px;
   --slider-height: 82px;
+  --map-mini-width: 280px;
 }
 
 html, body {
@@ -2096,3 +2097,174 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
 }
 .related-chip:hover { background: var(--surface); border-color: var(--accent-dark); }
 .related-chip.in-season { border-color: rgba(74,222,128,0.4); color: var(--accent); }
+
+/* ──────────────────────────────────────────────
+   Phase 6 — Layout toggle button
+────────────────────────────────────────────── */
+#layout-toggle {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+#layout-toggle:hover { color: var(--accent); border-color: var(--accent); }
+#layout-toggle.garden-active {
+  background: rgba(74,222,128,0.12);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ──────────────────────────────────────────────
+   Phase 6 — Garden mode layout
+────────────────────────────────────────────── */
+body.garden-mode #globe-container {
+  right: auto;
+  width: var(--map-mini-width);
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+body.garden-mode #season-bg {
+  right: auto;
+  width: var(--map-mini-width);
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+body.garden-mode #zone-legend {
+  display: none;
+}
+body.garden-mode #info-panel {
+  left: var(--map-mini-width);
+  right: 0;
+  width: auto;
+  transform: none !important;
+  border-left: 1px solid var(--border);
+}
+body.garden-mode #info-panel.panel-hidden {
+  transform: none !important;
+}
+body.garden-mode #panel-close {
+  display: none;
+}
+/* Two-column plant lists when panel is wide */
+body.garden-mode .plant-section ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 4px;
+}
+
+/* Mobile garden mode: hide map, panel takes full screen */
+@media (max-width: 640px) {
+  body.garden-mode #globe-container { display: none; }
+  body.garden-mode #season-bg { width: 100%; right: 0; }
+  body.garden-mode #info-panel {
+    left: 0;
+    top: calc(var(--topbar-height) + var(--slider-height));
+    bottom: 0;
+    height: auto;
+    width: 100%;
+    transform: translateY(0) !important;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Phase 6 — Harvest ready banner
+────────────────────────────────────────────── */
+#harvest-ready-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(74,222,128,0.1);
+  border: 1px solid rgba(74,222,128,0.4);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+#harvest-ready-banner:hover { background: rgba(74,222,128,0.16); }
+#harvest-ready-banner .hrb-icon { font-size: 20px; }
+#harvest-ready-banner .hrb-text { flex: 1; line-height: 1.4; }
+#harvest-ready-banner .hrb-sub  { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+
+/* ──────────────────────────────────────────────
+   Phase 6 — Journal tab
+────────────────────────────────────────────── */
+#journal-compose {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+#journal-input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 8px 10px;
+  resize: vertical;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+#journal-input:focus { border-color: var(--accent-dark); outline: none; }
+#journal-input::placeholder { color: var(--text-muted); }
+#journal-add-btn {
+  align-self: flex-end;
+  background: rgba(74,222,128,0.12);
+  border: 1px solid rgba(74,222,128,0.35);
+  border-radius: 6px;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  transition: background 0.15s, border-color 0.15s;
+}
+#journal-add-btn:hover { background: rgba(74,222,128,0.2); border-color: var(--accent); }
+#journal-list { display: flex; flex-direction: column; gap: 6px; }
+.journal-entry {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 11px;
+  position: relative;
+}
+.journal-entry-date {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.journal-entry-text {
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.journal-entry-delete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  padding: 2px 4px;
+  opacity: 0;
+  transition: color 0.15s, opacity 0.15s;
+}
+.journal-entry:hover .journal-entry-delete { opacity: 1; }
+.journal-entry-delete:hover { color: #f87171; }

@@ -224,6 +224,8 @@ let currentMonth = new Date().getMonth() + 1;
 
 let myGarden = {};
 let currentPanelTab = 'calendar';
+let layoutMode = localStorage.getItem('pzf-layout') || 'map';
+let journalEntries = [];
 
 let selectedLat = null;
 let selectedLng = null;
@@ -348,6 +350,10 @@ function onZoneClick(feature, layer, lat, lng) {
   showPanel();
   updateURL();
   fetchWeatherAndUpdate();
+  // Auto-switch to garden mode on first zone selection
+  if (layoutMode === 'map') {
+    setTimeout(() => setLayoutMode('garden'), 450);
+  }
 }
 
 function highlightZone() {
@@ -448,7 +454,8 @@ function renderPanel() {
   const ph = document.getElementById('print-header');
   if (ph) ph.textContent = `Plant Zone Finder — Zone ${zone.toUpperCase()} — ${MONTH_NAMES[month]} planting calendar`;
 
-  // Countdown cards + smart digest (use cached weather data)
+  // Harvest banner + Countdown cards + smart digest (use cached weather data)
+  renderHarvestReadyBanner();
   renderCountdownCards();
   renderWeatherStrip();
   renderWateringAlert();
@@ -534,6 +541,8 @@ function initUI() {
   initBrowse();
   initYearCalendar();
   initGarden();
+  initJournal();
+  initLayoutToggle();
   initOnboarding();
   initKeyboardShortcuts();
   initPanelSwipe();
@@ -1092,6 +1101,7 @@ function gardenSetPlanted(name, dateStr) {
 function refreshGardenUI(name) {
   updateGardenBadge();
   checkReminders();
+  renderHarvestReadyBanner();
   if (currentPanelTab === 'garden') renderGardenTab();
   renderFrostAlertBanner();
   renderThisWeek();
@@ -1295,7 +1305,9 @@ function initGarden() {
     document.querySelectorAll('.ptab').forEach(t => t.classList.toggle('active', t === tab));
     document.getElementById('tab-calendar').hidden = (currentPanelTab !== 'calendar');
     document.getElementById('tab-garden').hidden   = (currentPanelTab !== 'garden');
+    document.getElementById('tab-journal').hidden  = (currentPanelTab !== 'journal');
     if (currentPanelTab === 'garden') renderGardenTab();
+    if (currentPanelTab === 'journal') renderJournalTab();
   });
 
   // Garden tab delegated events
@@ -1754,6 +1766,9 @@ function initKeyboardShortcuts() {
         e.preventDefault();
         document.getElementById('address-input')?.focus();
         break;
+      case 'm': case 'M':
+        setLayoutMode(layoutMode === 'garden' ? 'map' : 'garden');
+        break;
       case '?':
         document.getElementById('shortcuts-modal')?.showModal();
         break;
@@ -2139,6 +2154,7 @@ function renderGardenGantt() {
     document.querySelectorAll('.ptab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'calendar'));
     document.getElementById('tab-calendar').hidden = false;
     document.getElementById('tab-garden').hidden   = true;
+    document.getElementById('tab-journal').hidden  = true;
     renderPanel();
     updateURL();
   });
@@ -2397,4 +2413,129 @@ function showHarvestConfetti(el) {
     document.body.appendChild(dot);
     dot.addEventListener('animationend', () => dot.remove());
   }
+}
+
+// ── Phase 6: Layout mode ──────────────────────────
+function setLayoutMode(mode) {
+  layoutMode = mode;
+  document.body.classList.toggle('garden-mode', mode === 'garden');
+  localStorage.setItem('pzf-layout', mode);
+  const btn = document.getElementById('layout-toggle');
+  if (btn) {
+    btn.textContent = mode === 'garden' ? '🗺 Map' : '🌱 Garden';
+    btn.title = mode === 'garden' ? 'Switch to map view' : 'Switch to garden view';
+    btn.classList.toggle('garden-active', mode === 'garden');
+  }
+  // Leaflet needs to recalculate after container resize
+  setTimeout(() => {
+    if (typeof map !== 'undefined' && map) map.invalidateSize();
+  }, 420);
+  // In garden mode, ensure panel is visible
+  if (mode === 'garden' && selectedZone) showPanel();
+}
+
+function initLayoutToggle() {
+  // Apply persisted mode
+  if (layoutMode === 'garden') setLayoutMode('garden');
+  else setLayoutMode('map');
+
+  document.getElementById('layout-toggle')?.addEventListener('click', () => {
+    setLayoutMode(layoutMode === 'garden' ? 'map' : 'garden');
+  });
+}
+
+// ── Phase 6: Harvest-ready banner ────────────────
+function renderHarvestReadyBanner() {
+  const el = document.getElementById('harvest-ready-banner');
+  if (!el) return;
+  const ready = Object.keys(myGarden).filter(n => getGardenStatus(n)?.type === 'ready');
+  if (!ready.length) { el.hidden = true; return; }
+  const names = ready.slice(0, 3).map(n => `${cropData[n]?.emoji || '🌱'} ${n}`).join(', ');
+  const more  = ready.length > 3 ? ` +${ready.length - 3} more` : '';
+  el.hidden = false;
+  el.innerHTML = `
+    <span class="hrb-icon">🌾</span>
+    <div class="hrb-text">
+      <div>${names}${more}</div>
+      <div class="hrb-sub">Ready to harvest — tap to view your garden</div>
+    </div>`;
+  el.onclick = () => {
+    currentPanelTab = 'garden';
+    document.querySelectorAll('.ptab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'garden'));
+    document.getElementById('tab-calendar').hidden = true;
+    document.getElementById('tab-garden').hidden   = false;
+    document.getElementById('tab-journal').hidden  = true;
+    renderGardenTab();
+  };
+}
+
+// ── Phase 6: Journal ──────────────────────────────
+function loadJournal() {
+  try { journalEntries = JSON.parse(localStorage.getItem('pzf-journal') || '[]'); }
+  catch { journalEntries = []; }
+}
+function saveJournal() { localStorage.setItem('pzf-journal', JSON.stringify(journalEntries)); }
+
+function addJournalEntry(text) {
+  const trimmed = text.trim();
+  if (!trimmed) return;
+  journalEntries.unshift({
+    id: Date.now(),
+    date: new Date().toISOString(),
+    text: trimmed,
+  });
+  saveJournal();
+  renderJournalTab();
+}
+
+function deleteJournalEntry(id) {
+  journalEntries = journalEntries.filter(e => e.id !== id);
+  saveJournal();
+  renderJournalTab();
+}
+
+function renderJournalTab() {
+  const list  = document.getElementById('journal-list');
+  const empty = document.getElementById('journal-empty-msg');
+  if (!list) return;
+  if (!journalEntries.length) {
+    list.innerHTML = '';
+    if (empty) empty.hidden = false;
+    return;
+  }
+  if (empty) empty.hidden = true;
+  list.innerHTML = journalEntries.map(e => {
+    const d = new Date(e.date);
+    const dateStr = d.toLocaleDateString(undefined, { weekday:'short', year:'numeric', month:'short', day:'numeric' })
+                  + ' ' + d.toLocaleTimeString(undefined, { hour:'2-digit', minute:'2-digit' });
+    return `<div class="journal-entry" data-id="${e.id}">
+      <div class="journal-entry-date">${dateStr}</div>
+      <div class="journal-entry-text">${e.text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+      <button class="journal-entry-delete" data-id="${e.id}" aria-label="Delete entry">&times;</button>
+    </div>`;
+  }).join('');
+}
+
+function initJournal() {
+  loadJournal();
+
+  const addBtn = document.getElementById('journal-add-btn');
+  const input  = document.getElementById('journal-input');
+  if (addBtn && input) {
+    addBtn.addEventListener('click', () => {
+      addJournalEntry(input.value);
+      input.value = '';
+    });
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        addJournalEntry(input.value);
+        input.value = '';
+      }
+    });
+  }
+
+  document.getElementById('journal-list')?.addEventListener('click', e => {
+    const btn = e.target.closest('.journal-entry-delete');
+    if (btn) { deleteJournalEntry(parseInt(btn.dataset.id, 10)); return; }
+  });
 }

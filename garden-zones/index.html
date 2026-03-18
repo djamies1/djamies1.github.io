@@ -30,6 +30,7 @@
       <span class="leaf">🌱</span>
       <span>Plant Zone Finder</span>
     </div>
+    <button id="layout-toggle" title="Switch to garden view">🌱 Garden</button>
     <button id="metric-toggle" title="Switch to metric units">°F</button>
     <button id="share-btn" title="Share this zone">⎘</button>
     <button id="help-btn" title="Keyboard shortcuts">?</button>
@@ -100,6 +101,7 @@
     <button id="panel-close">&times;</button>
     <div id="panel-content">
       <div id="print-header"></div>
+      <div id="harvest-ready-banner" hidden></div>
       <div id="zone-header">
         <span id="zone-badge">--</span>
         <div id="zone-meta">
@@ -111,6 +113,7 @@
       <div id="panel-tabs">
         <button class="ptab active" data-tab="calendar">📅 This Month</button>
         <button class="ptab" data-tab="garden">🌿 My Garden <span id="garden-count-badge"></span></button>
+        <button class="ptab" data-tab="journal">📓 Journal</button>
       </div>
       <div id="tab-calendar">
         <div id="frost-alert-banner" hidden></div>
@@ -153,6 +156,14 @@
         <div id="garden-gantt"></div>
         <div id="garden-footer"></div>
         <p id="garden-empty-msg" class="garden-empty">No crops saved yet.<br>Tap any crop to add it to your garden.</p>
+      </div>
+      <div id="tab-journal" hidden>
+        <div id="journal-compose">
+          <textarea id="journal-input" placeholder="Log a note — weather, observations, successes…" rows="3"></textarea>
+          <button id="journal-add-btn">Add note</button>
+        </div>
+        <div id="journal-list"></div>
+        <p id="journal-empty-msg" class="garden-empty" hidden>No journal entries yet.<br>Add your first garden note above.</p>
       </div>
     </div>
   </aside>
@@ -261,6 +272,7 @@
         <div class="shortcut-row"><div class="shortcut-keys"><kbd>B</kbd></div><span>Browse all crops</span></div>
         <div class="shortcut-row"><div class="shortcut-keys"><kbd>/</kbd></div><span>Focus address search</span></div>
         <div class="shortcut-row"><div class="shortcut-keys"><kbd>Esc</kbd></div><span>Close modal / browse</span></div>
+        <div class="shortcut-row"><div class="shortcut-keys"><kbd>M</kbd></div><span>Toggle map / garden view</span></div>
         <div class="shortcut-row"><div class="shortcut-keys"><kbd>?</kbd></div><span>Show this help</span></div>
       </div>
     </div>
