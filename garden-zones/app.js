@@ -355,7 +355,7 @@ function onZoneClick(feature, layer, lat, lng) {
   fetchWeatherAndUpdate();
   // Auto-switch to garden mode on first zone selection
   if (layoutMode === 'map') {
-    setTimeout(() => setLayoutMode('garden'), 450);
+    setTimeout(() => { setLayoutMode('garden'); maybeShowInstallBanner(); }, 450);
   }
 }
 
@@ -459,6 +459,7 @@ function renderPanel() {
 
   // Harvest banner + Countdown cards + smart digest (use cached weather data)
   renderHarvestReadyBanner();
+  renderGardenDashboard();
   renderCountdownCards();
   renderWeatherStrip();
   renderWateringAlert();
@@ -547,6 +548,8 @@ function initUI() {
   initJournal();
   initCustomCrops();
   initLayoutToggle();
+  initInstallPrompt();
+  initOfflineIndicator();
   initOnboarding();
   initKeyboardShortcuts();
   initPanelSwipe();
@@ -1185,6 +1188,7 @@ function refreshGardenUI(name) {
   checkReminders();
   renderHarvestReadyBanner();
   updateJournalCropSelect();
+  checkAchievements();
   if (currentPanelTab === 'garden') { renderGardenTab(); renderGrowNext(); }
   renderFrostAlertBanner();
   renderThisWeek();
@@ -1478,11 +1482,13 @@ function renderGardenTab() {
     }
   }
   list.innerHTML = html;
+  renderGardenDashboard();
   renderGardenTasks();
   renderGardenStats();
   renderGardenGantt();
   renderGardenFooter();
   renderGrowNext();
+  checkAchievements();
 }
 
 function renderGardenFooter() {
@@ -2351,6 +2357,7 @@ function renderGardenStats() {
     }
   }
 
+  const earned = getEarned();
   el.innerHTML = `
     <div class="garden-stats-row">
       <span class="garden-stat-item"><span class="garden-stat-value">${names.length}</span> saved</span>
@@ -2359,6 +2366,9 @@ function renderGardenStats() {
     </div>
     ${nextHarvest ? `<div class="garden-stats-next">
       Next harvest: <strong>${cropData?.[nextHarvest]?.emoji || '🌱'} ${nextHarvest}</strong> in ~${nextDays} day${nextDays===1?'':'s'}
+    </div>` : ''}
+    ${earned.size ? `<div class="achievement-shelf" id="achievement-shelf">
+      ${ACHIEVEMENTS.map(a => `<div class="ach-chip${earned.has(a.id) ? ' unlocked' : ''}" title="${a.desc}">${a.icon} ${a.name}</div>`).join('')}
     </div>` : ''}`;
 }
 
@@ -2918,6 +2928,7 @@ function addJournalEntry(text, cropTag) {
     crop: cropTag || null,
   });
   saveJournal();
+  checkAchievements();
   renderJournalTab();
 }
 
@@ -3006,4 +3017,177 @@ function initJournal() {
     journalFilterCrop = chip.dataset.crop;
     renderJournalTab();
   });
+}
+
+// ── Phase 9: Achievements ─────────────────────────
+const ACHIEVEMENTS = [
+  { id: 'first-seed',    icon: '🌱', name: 'First Seed',      desc: 'Add your first crop to My Garden' },
+  { id: 'planner',       icon: '📅', name: 'Planner',         desc: 'Log a planting date for a crop' },
+  { id: 'first-harvest', icon: '🌾', name: 'First Harvest',   desc: 'Log your first harvest' },
+  { id: 'growing-5',     icon: '🌿', name: 'Growing Strong',  desc: 'Grow 5 or more crops at once' },
+  { id: 'growing-10',    icon: '🌻', name: 'Green Thumb',     desc: 'Grow 10 or more crops at once' },
+  { id: 'journaler',     icon: '✍️', name: 'Journaler',       desc: 'Write your first garden journal entry' },
+  { id: 'critic',        icon: '⭐', name: 'Critic',          desc: 'Rate a crop after growing it' },
+  { id: 'companion',     icon: '🤝', name: 'Good Neighbours', desc: 'Add a companion crop recommendation' },
+  { id: 'custom-crop',   icon: '🔬', name: 'Experimenter',    desc: 'Add a custom crop of your own' },
+];
+
+function loadAchievements() {
+  try { return new Set(JSON.parse(localStorage.getItem('pzf-achievements') || '[]')); }
+  catch { return new Set(); }
+}
+function saveAchievements(set) { localStorage.setItem('pzf-achievements', JSON.stringify([...set])); }
+
+let _earnedAchievements = null;
+function getEarned() {
+  if (!_earnedAchievements) _earnedAchievements = loadAchievements();
+  return _earnedAchievements;
+}
+
+function unlockAchievement(id) {
+  const earned = getEarned();
+  if (earned.has(id)) return;
+  earned.add(id);
+  saveAchievements(earned);
+  const def = ACHIEVEMENTS.find(a => a.id === id);
+  if (!def) return;
+  // Show pop-up banner in garden tab if visible, otherwise toast
+  if (currentPanelTab === 'garden') {
+    const banner = document.getElementById('achievement-banner');
+    if (banner) {
+      const div = document.createElement('div');
+      div.className = 'achievement-pop';
+      div.innerHTML = `
+        <span class="achievement-pop-icon">${def.icon}</span>
+        <div class="achievement-pop-body">
+          <strong>Achievement unlocked: ${def.name}</strong>
+          <span>${def.desc}</span>
+        </div>
+        <button class="achievement-pop-dismiss" aria-label="Dismiss">✕</button>`;
+      div.querySelector('.achievement-pop-dismiss').addEventListener('click', () => div.remove());
+      banner.prepend(div);
+      setTimeout(() => div.remove(), 7000);
+    }
+  } else {
+    showToast(`🏆 Achievement: ${def.name}`, 'success');
+  }
+  // Update shelf if visible
+  renderAchievementShelf();
+}
+
+function checkAchievements() {
+  const names  = Object.keys(myGarden);
+  const count  = names.length;
+  const planted = names.filter(n => myGarden[n]?.planted).length;
+  const harvests = names.reduce((s, n) => s + (myGarden[n]?.harvestLog?.length || 0), 0);
+  const rated   = names.some(n => myGarden[n]?.rating);
+  const hasCustom = names.some(n => cropData[n]?.custom);
+
+  if (count >= 1)  unlockAchievement('first-seed');
+  if (planted >= 1) unlockAchievement('planner');
+  if (harvests >= 1) unlockAchievement('first-harvest');
+  if (count >= 5)  unlockAchievement('growing-5');
+  if (count >= 10) unlockAchievement('growing-10');
+  if (journalEntries.length >= 1) unlockAchievement('journaler');
+  if (rated) unlockAchievement('critic');
+  if (hasCustom) unlockAchievement('custom-crop');
+
+  // Companion: check if any garden crop was added via "Grow this next" companion suggestion
+  // Proxy: any garden crop that is in another garden crop's companion list
+  for (const name of names) {
+    const others = names.filter(n => n !== name);
+    if (others.some(n => cropData[n]?.companions?.includes(name))) {
+      unlockAchievement('companion'); break;
+    }
+  }
+}
+
+function renderAchievementShelf() {
+  // Render inside garden-stats section
+  const existing = document.getElementById('achievement-shelf');
+  if (!existing) return;
+  const earned = getEarned();
+  existing.innerHTML = ACHIEVEMENTS.map(a =>
+    `<div class="ach-chip${earned.has(a.id) ? ' unlocked' : ''}" title="${a.desc}">
+      ${a.icon} ${a.name}
+    </div>`
+  ).join('');
+}
+
+// ── Phase 9: Garden dashboard strip ──────────────
+function renderGardenDashboard() {
+  const el = document.getElementById('garden-dashboard');
+  if (!el || !selectedZone) { if (el) el.innerHTML = ''; return; }
+
+  const names   = Object.keys(myGarden);
+  const growing = names.filter(n => myGarden[n]?.planted && getGardenStatus(n)?.type !== 'ready').length;
+  const ready   = names.filter(n => getGardenStatus(n)?.type === 'ready').length;
+  const season  = getSeasonForMonth(currentMonth);
+  const seasonLabel = { spring:'🌸 Spring', summer:'☀️ Summer', autumn:'🍂 Autumn', winter:'❄️ Winter' }[season];
+
+  // Compact weather
+  let weatherHtml = '';
+  if (weatherData?.current) {
+    const t = useMetric ? Math.round(weatherData.current.temperature_2m) + '°C'
+                        : Math.round(weatherData.current.temperature_2m * 9/5 + 32) + '°F';
+    weatherHtml = `<span class="gd-sep">·</span>
+      <span class="gd-weather">${getWmoIcon(weatherData.current.weathercode)} ${t}</span>`;
+  }
+
+  el.innerHTML = `
+    <span class="gd-zone">Zone ${selectedZone.toUpperCase()}</span>
+    <span class="gd-sep">·</span>
+    <span class="gd-season">${seasonLabel}</span>
+    ${weatherHtml}
+    ${names.length ? `<span class="gd-sep">·</span>
+      <span class="gd-stat"><strong>${growing}</strong> growing${ready ? `, <strong>${ready}</strong> ready` : ''}</span>` : ''}
+    <button class="gd-map-btn" id="gd-map-btn">🗺 Change zone</button>`;
+
+  document.getElementById('gd-map-btn')?.addEventListener('click', () => setLayoutMode('map'));
+}
+
+// ── Phase 9: PWA install prompt ───────────────────
+let _installPromptEvent = null;
+
+function initInstallPrompt() {
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    _installPromptEvent = e;
+    // Show banner after first zone selection (not immediately)
+  });
+
+  const acceptBtn  = document.getElementById('install-accept-btn');
+  const dismissBtn = document.getElementById('install-dismiss-btn');
+  const banner     = document.getElementById('install-banner');
+
+  acceptBtn?.addEventListener('click', async () => {
+    if (!_installPromptEvent) return;
+    _installPromptEvent.prompt();
+    const { outcome } = await _installPromptEvent.userChoice;
+    _installPromptEvent = null;
+    banner.hidden = true;
+    if (outcome === 'accepted') showToast('App installed! 🎉', 'success');
+  });
+
+  dismissBtn?.addEventListener('click', () => {
+    banner.hidden = true;
+    localStorage.setItem('pzf-install-dismissed', '1');
+  });
+}
+
+function maybeShowInstallBanner() {
+  if (!_installPromptEvent) return;
+  if (localStorage.getItem('pzf-install-dismissed')) return;
+  const banner = document.getElementById('install-banner');
+  if (banner) banner.hidden = false;
+}
+
+// ── Phase 9: Offline indicator ────────────────────
+function initOfflineIndicator() {
+  const banner = document.getElementById('offline-banner');
+  if (!banner) return;
+  const update = () => { banner.hidden = navigator.onLine; };
+  update();
+  window.addEventListener('online',  update);
+  window.addEventListener('offline', update);
 }

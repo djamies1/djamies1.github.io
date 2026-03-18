@@ -84,6 +84,12 @@
   </div>
 
   <div id="map-resize-handle" hidden></div>
+  <div id="offline-banner" hidden>📵 You're offline — garden data still available</div>
+  <div id="install-banner" hidden>
+    <span>📲 Add Plant Zone Finder to your home screen for quick access</span>
+    <button id="install-accept-btn">Install</button>
+    <button id="install-dismiss-btn">✕</button>
+  </div>
   <div id="season-bg"></div>
   <main id="globe-container">
     <div id="zone-legend">
@@ -152,6 +158,8 @@
         <div id="garden-tip"></div>
       </div>
       <div id="tab-garden" hidden>
+        <div id="garden-dashboard"></div>
+        <div id="achievement-banner"></div>
         <div id="garden-tasks"></div>
         <div id="garden-stats"></div>
         <div id="garden-list"></div>
