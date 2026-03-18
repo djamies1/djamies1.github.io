@@ -343,6 +343,7 @@ function onZoneClick(feature, layer, lat, lng) {
   }
   highlightZone();
   pulseZone();
+  localStorage.setItem('pzf-last-zone', selectedZone);
   renderPanel();
   showPanel();
   updateURL();
@@ -424,6 +425,7 @@ function renderPanel() {
   // Countdown cards + smart digest (use cached weather data)
   renderCountdownCards();
   renderWeatherStrip();
+  renderWateringAlert();
   renderThisWeek();
   renderFrostAlertBanner();
 
@@ -793,11 +795,12 @@ function restoreFromURL() {
     updateSeasonBg();
   }
 
-  if (z && zonesLayer) {
+  const zoneToRestore = z || localStorage.getItem('pzf-last-zone');
+  if (zoneToRestore && zonesLayer) {
     let found = false;
     zonesLayer.eachLayer(layer => {
       if (found) return;
-      if (layer.feature?.properties?.zone === z.toLowerCase()) {
+      if (layer.feature?.properties?.zone === zoneToRestore.toLowerCase()) {
         found = true;
         const c = getZoneCentroid(layer.feature);
         if (c) { selectedLat = c.lat; selectedLng = c.lng; }
@@ -1114,6 +1117,7 @@ function renderGardenTab() {
         (entry.harvestLog?.length) ? `<span class="gi-badge gi-badge--harvests" title="${entry.harvestLog.length} harvest(s) logged">🌾×${entry.harvestLog.length}</span>` : '',
         entry.notes ? '<span class="gi-badge" title="Has notes">📝</span>' : '',
         entry.reminder ? `<span class="gi-badge gi-badge--reminder" title="Reminder: ${entry.reminder}">${reminderDue ? '🔔' : '⏰'}</span>` : '',
+        entry.rating ? renderStars(entry.rating, name, true) : '',
       ].join('');
       html += `<div class="garden-item garden-item--${type}" data-crop="${name}">
         <div class="garden-item-main">
@@ -1214,6 +1218,15 @@ function renderModalGardenBar(name) {
       if (myGarden[name]) { myGarden[name].hasSeeds = e.target.checked; saveGarden(); if (currentPanelTab === 'garden') renderGardenTab(); }
     });
     bar.querySelector('#modal-reminder-input').addEventListener('change', e => gardenSetReminder(name, e.target.value));
+
+    // Inline star rating row
+    const ratingDiv = document.createElement('div');
+    ratingDiv.className = 'modal-garden-rating-row';
+    ratingDiv.innerHTML = `<span>Season rating:</span>${renderStars(myGarden[name]?.rating || 0, name, false)}`;
+    bar.appendChild(ratingDiv);
+    ratingDiv.querySelectorAll('.star-btn').forEach(btn => {
+      btn.addEventListener('click', () => gardenSetRating(name, parseInt(btn.dataset.star, 10)));
+    });
   }
 }
 
@@ -1331,7 +1344,7 @@ async function fetchWeather(lat, lng) {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}` +
       `&current=temperature_2m,weather_code,precipitation` +
       `&daily=temperature_2m_max,temperature_2m_min,weather_code,precipitation_sum` +
-      `&forecast_days=7&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=auto`;
+      `&forecast_days=7&past_days=5&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=auto`;
     const res = await fetch(url);
     if (!res.ok) return;
     weatherData = await res.json();
@@ -1344,6 +1357,7 @@ async function fetchWeatherAndUpdate() {
   await fetchWeather(selectedLat, selectedLng);
   renderWeatherStrip();
   renderFrostAlertBanner();
+  renderWateringAlert();
   renderThisWeek();
 }
 
@@ -1354,21 +1368,47 @@ function renderWeatherStrip() {
   const c = weatherData.current;
   const d = weatherData.daily;
   const toC = f => Math.round((f - 32) * 5 / 9);
+  const toMM = inches => (inches * 25.4).toFixed(1);
   const fmt = f => useMetric ? `${toC(f)}°C` : `${Math.round(f)}°F`;
   const icon = getWmoIcon(c.weather_code);
   const curTemp = fmt(c.temperature_2m);
-  const hasFrost = d.temperature_2m_min.some(t => t < 35);
+
+  // Find today's index (daily array starts at past_days ago)
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const todayIdx = Math.max(0, d.time.findIndex(t => t === todayStr));
+
+  // Soil temp estimate at ~4" depth ≈ 0.85 × mean air temp
+  const meanAirToday = (d.temperature_2m_max[todayIdx] + d.temperature_2m_min[todayIdx]) / 2;
+  const soilF = Math.round(0.85 * meanAirToday);
+  const soilTemp = fmt(soilF);
+  const soilClass = soilF < 45 ? 'wx-soil--cold' : soilF >= 60 ? 'wx-soil--warm' : '';
+
+  const hasFrost = d.temperature_2m_min.slice(todayIdx, todayIdx + 7).some(t => t < 35);
   const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const forecast = d.time.slice(0, 4).map((date, i) => {
-    const hi = fmt(d.temperature_2m_max[i]);
-    const lo = fmt(d.temperature_2m_min[i]);
+
+  // 7-day forecast starting from today
+  const forecastDays = d.time.slice(todayIdx, todayIdx + 7);
+  const forecast = forecastDays.map((date, i) => {
+    const idx = todayIdx + i;
+    const hi = fmt(d.temperature_2m_max[idx]);
+    const lo = fmt(d.temperature_2m_min[idx]);
+    const prec = d.precipitation_sum[idx] || 0;
     const lbl = i === 0 ? 'Today' : i === 1 ? 'Tmrw' : DAYS[new Date(date + 'T12:00:00').getDay()];
-    return `<div class="wx-day"><span class="wx-day-name">${lbl}</span><span class="wx-day-icon">${getWmoIcon(d.weather_code[i])}</span><span class="wx-day-temp">${hi}/${lo}</span></div>`;
+    const precLabel = prec > 0.05 ? (useMetric ? `${toMM(prec)}mm` : `${prec.toFixed(2)}"`) : '';
+    const precDot = prec > 0.05 ? `<span class="wx-prec-dot" title="${precLabel} precip">${prec > 0.3 ? '🌧' : '🌦'}</span>` : '';
+    return `<div class="wx-day">
+      <span class="wx-day-name">${lbl}</span>
+      <span class="wx-day-icon">${getWmoIcon(d.weather_code[idx])}</span>
+      <span class="wx-day-temp">${hi}/${lo}</span>
+      ${precDot}
+    </div>`;
   }).join('');
+
   el.innerHTML = `
     <div class="wx-current">
       <span class="wx-icon">${icon}</span>
       <span class="wx-temp">${curTemp}</span>
+      <span class="wx-soil ${soilClass}" title="Estimated soil temperature at ~4-inch depth">🌱 ${soilTemp}</span>
       ${hasFrost ? '<span class="wx-frost-tag">❄️ Frost risk</span>' : ''}
     </div>
     <div class="wx-forecast">${forecast}</div>
@@ -1549,7 +1589,8 @@ function renderModalGardenSections(name) {
   const body = document.getElementById('modal-body');
   if (!body) return;
   body.querySelector('.modal-garden-section')?.remove();
-  if (!isInGarden(name)) return;
+  body.querySelector('.modal-succession-section')?.remove();
+  if (!isInGarden(name)) { renderSuccessionSection(name); return; }
   const notes = myGarden[name].notes || '';
   const log = myGarden[name].harvestLog || [];
   const today = new Date().toISOString().slice(0, 10);
@@ -1583,6 +1624,9 @@ function renderModalGardenSections(name) {
     gardenLogHarvest(name, date, nt);
     sec.querySelector('#harvest-notes-in').value = '';
   });
+
+  // Succession section
+  renderSuccessionSection(name);
 }
 
 function checkCompanionConflicts(name) {
@@ -1684,6 +1728,110 @@ function showToast(msg, type) {
   if (type) toast.classList.add(`toast--${type}`);
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+// ── Phase 4: Watering alert ─────────────────────
+function renderWateringAlert() {
+  const el = document.getElementById('watering-alert');
+  if (!el) return;
+  if (!weatherData?.daily || !selectedZone) { el.hidden = true; return; }
+  const d = weatherData.daily;
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const todayIdx = d.time.findIndex(t => t === todayStr);
+  if (todayIdx < 2) { el.hidden = true; return; } // Need at least 2 past days
+
+  const pastPrec = d.precipitation_sum.slice(0, todayIdx).reduce((a, b) => a + (b || 0), 0);
+  const dayCount = todayIdx;
+
+  if (pastPrec >= 0.4) { el.hidden = true; return; }
+
+  const growing = Object.keys(myGarden).filter(n => myGarden[n]?.planted);
+  if (!growing.length) { el.hidden = true; return; }
+
+  const precStr = useMetric
+    ? `${(pastPrec * 25.4).toFixed(1)} mm`
+    : `${pastPrec.toFixed(2)}"`;
+  const names = growing.slice(0, 3).join(', ') + (growing.length > 3 ? ` +${growing.length - 3} more` : '');
+  el.innerHTML = `
+    <span class="wa-icon">💧</span>
+    <div class="wa-body">
+      <strong>Dry spell — only ${precStr} rain in ${dayCount} days</strong>
+      <span>${names} may need watering</span>
+    </div>`;
+  el.hidden = false;
+}
+
+// ── Phase 4: Succession planting ────────────────
+function computeSuccessionDates(name) {
+  const c = cropData?.[name];
+  if (!c) return null;
+  const harvestDays = parseHarvestDays(c.days);
+  if (!harvestDays) return null;
+
+  // Interval ≈ harvest time / 3, clamped to 10–28 days
+  const intervalDays = Math.min(28, Math.max(10, Math.round(harvestDays / 3)));
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  // First sow date: planted date (if set) or today
+  let d = myGarden[name]?.planted
+    ? new Date(myGarden[name].planted + 'T00:00:00')
+    : new Date(today);
+
+  // Advance to the first FUTURE interval
+  while (d <= today) d = new Date(d.getTime() + intervalDays * 86400000);
+
+  const dates = [];
+  for (let i = 0; i < 4; i++) {
+    dates.push(d.toISOString().slice(0, 10));
+    d = new Date(d.getTime() + intervalDays * 86400000);
+  }
+  return { intervalDays, dates };
+}
+
+function renderSuccessionSection(name) {
+  const body = document.getElementById('modal-body');
+  if (!body) return;
+  body.querySelector('.modal-succession-section')?.remove();
+  if (!isInGarden(name)) return;
+
+  const result = computeSuccessionDates(name);
+  if (!result) return;
+
+  const { intervalDays, dates } = result;
+  const ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const fmtDate = iso => {
+    const d2 = new Date(iso + 'T00:00:00');
+    return `${ABBR[d2.getMonth()]} ${d2.getDate()}`;
+  };
+
+  const sec = document.createElement('div');
+  sec.className = 'modal-section modal-succession-section';
+  sec.innerHTML = `
+    <div class="modal-section-title">🔄 Succession Planting</div>
+    <p class="succession-tip">Sow every ~${intervalDays} days for continuous harvest.</p>
+    <div class="succession-dates">
+      ${dates.map(iso => `<span class="succession-chip">${fmtDate(iso)}</span>`).join('')}
+    </div>`;
+  body.appendChild(sec);
+}
+
+// ── Phase 4: Crop rating ─────────────────────────
+function gardenSetRating(name, stars) {
+  if (!myGarden[name]) return;
+  myGarden[name].rating = stars === myGarden[name].rating ? 0 : stars; // Toggle off same star
+  saveGarden();
+  refreshGardenUI(name);
+}
+
+function renderStars(rating, name, compact) {
+  if (compact) {
+    if (!rating) return '';
+    return `<span class="gi-badge gi-badge--rating">${'★'.repeat(rating)}</span>`;
+  }
+  return `<div class="crop-rating">
+    ${[1,2,3].map(s => `<button class="star-btn${rating >= s ? ' active' : ''}" data-star="${s}" data-crop="${name}" aria-label="${s} star">★</button>`).join('')}
+    <span class="crop-rating-label">${rating ? ['','Good','Great','Excellent'][rating] : 'Rate it'}</span>
+  </div>`;
 }
 
 // ── Phase 3: Reminders ──────────────────────────
