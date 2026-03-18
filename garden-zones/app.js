@@ -159,6 +159,24 @@ const TIPS = [
 
 let currentTip = '';
 
+// ── Crop categories ────────────────────────────
+const CROP_CATEGORIES = {
+  'Vegetables':  ['Celery','Corn','Eggplant','Ground Cherries','Okra','Peppers','Tomatillos','Tomatoes'],
+  'Brassicas':   ['Bok Choy','Broccoli','Brussels Sprouts','Cabbage','Cauliflower','Collard Greens','Kale','Kohlrabi'],
+  'Root Veg':    ['Beets','Carrots','Celeriac','Horseradish','Jerusalem Artichoke','Parsnips','Potatoes','Radishes','Rutabaga','Sweet Potatoes','Turnips'],
+  'Greens':      ['Arugula','Chard','Endive','Lettuce','Mâche','Mustard Greens','Spinach','Watercress'],
+  'Alliums':     ['Chives','Garlic','Green Onions','Leeks','Onions','Shallots'],
+  'Legumes':     ['Beans','Edamame','Fava Beans','Peanuts','Peas'],
+  'Cucurbits':   ['Cucumbers','Melons','Pumpkins','Squash'],
+  'Herbs':       ['Basil','Cilantro','Dill','Fennel','Mint','Oregano','Parsley','Rosemary','Sage','Thyme'],
+  'Perennials':  ['Asparagus','Globe Artichoke','Rhubarb','Strawberries'],
+  'Tropical':    ['Avocados','Ginger','Lemongrass','Mangoes','Turmeric'],
+};
+
+const CROP_CATEGORY_MAP = {};
+for (const [cat, crops] of Object.entries(CROP_CATEGORIES)) {
+  for (const crop of crops) CROP_CATEGORY_MAP[crop] = cat;
+}
 
 // ── State ─────────────────────────────────────
 let map, zonesLayer, selectedLayer;
@@ -172,6 +190,11 @@ let currentMonth = new Date().getMonth() + 1;
 
 let searchDebounceTimer = null;
 let geocodeController = null;
+
+let browseSearch = '';
+let browseCategory = '';
+let browseDifficulty = '';
+let browseInSeason = false;
 
 // ── Entry point ───────────────────────────────
 document.addEventListener('DOMContentLoaded', loadData);
@@ -272,6 +295,7 @@ function onZoneClick(feature, layer) {
   highlightZone();
   renderPanel();
   showPanel();
+  updateURL();
 }
 
 function highlightZone() {
@@ -368,6 +392,9 @@ function renderPanel() {
 
   document.getElementById('no-tasks').style.display = hasAny ? 'none' : 'block';
 
+  // Year calendar
+  renderYearCalendar();
+
   // Tip
   document.getElementById('garden-tip').innerHTML =
     `<span class="tip-label">💡 Did you know?</span>${currentTip}`;
@@ -402,6 +429,9 @@ function initUI() {
   initPanelListeners();
   initCropModal();
   initZoneLegend();
+  initBrowse();
+  initYearCalendar();
+  restoreFromURL();
 }
 
 function initMonthSlider() {
@@ -415,6 +445,7 @@ function initMonthSlider() {
     updateMonthLabels();
     updateSeasonBg();
     if (selectedZone) renderPanel();
+    updateURL();
   });
 
   document.getElementById('month-labels').addEventListener('click', e => {
@@ -425,6 +456,7 @@ function initMonthSlider() {
     updateMonthLabels();
     updateSeasonBg();
     if (selectedZone) renderPanel();
+    updateURL();
   });
 }
 
@@ -642,6 +674,245 @@ function renderCropDetail(c) {
 function setLoadingText(msg) {
   const el = document.getElementById('loading-text');
   if (el) el.textContent = msg;
+}
+
+// ── URL state ──────────────────────────────────
+function updateURL() {
+  const params = new URLSearchParams();
+  if (selectedZone) params.set('zone', selectedZone);
+  params.set('month', String(currentMonth));
+  history.replaceState(null, '', '?' + params.toString());
+}
+
+function restoreFromURL() {
+  const params = new URLSearchParams(location.search);
+  const z = params.get('zone');
+  const m = parseInt(params.get('month'), 10);
+
+  if (m >= 1 && m <= 12) {
+    currentMonth = m;
+    const slider = document.getElementById('month-slider');
+    if (slider) slider.value = currentMonth;
+    updateMonthLabels();
+    updateSeasonBg();
+  }
+
+  if (z && zonesLayer) {
+    let found = false;
+    zonesLayer.eachLayer(layer => {
+      if (found) return;
+      if (layer.feature?.properties?.zone === z.toLowerCase()) {
+        found = true;
+        onZoneClick(layer.feature, layer);
+      }
+    });
+  }
+}
+
+// ── Year calendar ──────────────────────────────
+function initYearCalendar() {
+  const container = document.getElementById('year-cal-cells');
+  if (!container) return;
+
+  container.addEventListener('click', e => {
+    const cell = e.target.closest('.ycal-cell');
+    if (!cell) return;
+    const m = parseInt(cell.dataset.month, 10);
+    if (!m) return;
+    currentMonth = m;
+    const slider = document.getElementById('month-slider');
+    slider.value = m;
+    updateMonthLabels();
+    updateSeasonBg();
+    renderPanel();
+    updateURL();
+  });
+
+  container.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const cell = e.target.closest('.ycal-cell');
+      if (cell) { e.preventDefault(); cell.click(); }
+    }
+  });
+}
+
+function renderYearCalendar() {
+  const wrapper   = document.getElementById('year-calendar');
+  const container = document.getElementById('year-cal-cells');
+  if (!wrapper || !container) return;
+  if (!selectedZone) { wrapper.hidden = true; return; }
+
+  wrapper.hidden = false;
+  container.innerHTML = '';
+
+  for (let m = 1; m <= 12; m++) {
+    const data  = getPlantingData(selectedZone, m);
+    const count = ['startIndoors','directSow','transplant','harvest']
+      .filter(k => data[k]?.length > 0).length;
+    const pct   = (count / 4 * 100).toFixed(0);
+
+    const cell = document.createElement('div');
+    cell.className = 'ycal-cell' + (m === currentMonth ? ' ycal-active' : '');
+    cell.dataset.month = m;
+    cell.title = MONTH_NAMES[m];
+    cell.setAttribute('role', 'button');
+    cell.setAttribute('tabindex', '0');
+    cell.setAttribute('aria-label', `${MONTH_NAMES[m]}: ${count} activities`);
+    cell.innerHTML = `
+      <div class="ycal-bar-wrap"><div class="ycal-bar-fill" style="height:${pct}%"></div></div>
+      <span class="ycal-label">${MONTH_NAMES[m][0]}</span>`;
+    container.appendChild(cell);
+  }
+}
+
+// ── Browse view ────────────────────────────────
+function initBrowse() {
+  const btn = document.getElementById('browse-btn');
+  if (btn) btn.addEventListener('click', () => toggleBrowse(true));
+
+  const closeBtn = document.getElementById('browse-close');
+  if (closeBtn) closeBtn.addEventListener('click', () => toggleBrowse(false));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      const view = document.getElementById('browse-view');
+      if (view && !view.classList.contains('browse-hidden')) toggleBrowse(false);
+    }
+  });
+
+  const search = document.getElementById('browse-search');
+  if (search) {
+    search.addEventListener('input', () => {
+      browseSearch = search.value.toLowerCase().trim();
+      renderBrowseGrid();
+    });
+  }
+
+  const cats = document.getElementById('browse-cats');
+  if (cats) {
+    cats.addEventListener('click', e => {
+      const chip = e.target.closest('.cat-chip');
+      if (!chip) return;
+      browseCategory = chip.dataset.cat || '';
+      cats.querySelectorAll('.cat-chip').forEach(c => c.classList.toggle('active', c === chip));
+      renderBrowseGrid();
+    });
+  }
+
+  const diff = document.getElementById('browse-difficulty');
+  if (diff) {
+    diff.addEventListener('change', () => {
+      browseDifficulty = diff.value;
+      renderBrowseGrid();
+    });
+  }
+
+  const inSeason = document.getElementById('browse-inseason');
+  if (inSeason) {
+    inSeason.addEventListener('change', () => {
+      browseInSeason = inSeason.checked;
+      renderBrowseGrid();
+    });
+  }
+
+  const grid = document.getElementById('browse-grid');
+  if (grid) {
+    grid.addEventListener('click', e => {
+      const card = e.target.closest('.browse-card');
+      if (card?.dataset.crop) openCropDetail(card.dataset.crop);
+    });
+    grid.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const card = e.target.closest('.browse-card');
+        if (card?.dataset.crop) { e.preventDefault(); openCropDetail(card.dataset.crop); }
+      }
+    });
+  }
+}
+
+function toggleBrowse(show) {
+  const view = document.getElementById('browse-view');
+  const btn  = document.getElementById('browse-btn');
+  if (!view) return;
+  if (show === undefined) show = view.classList.contains('browse-hidden');
+  view.classList.toggle('browse-hidden', !show);
+  if (btn) btn.classList.toggle('active', show);
+  if (show) {
+    renderBrowseGrid();
+    const search = document.getElementById('browse-search');
+    if (search) search.focus();
+  }
+}
+
+function renderBrowseGrid() {
+  const grid = document.getElementById('browse-grid');
+  if (!grid || !cropData) return;
+
+  // Build active set for current zone+month
+  let activeSet = new Set();
+  if (selectedZone) {
+    const d = getPlantingData(selectedZone, currentMonth);
+    ['startIndoors','directSow','transplant','harvest'].forEach(k => (d[k] || []).forEach(c => activeSet.add(c)));
+  }
+
+  // Filter
+  let crops = Object.entries(cropData);
+
+  if (browseCategory) {
+    const catSet = new Set(CROP_CATEGORIES[browseCategory] || []);
+    crops = crops.filter(([name]) => catSet.has(name));
+  }
+
+  if (browseSearch) {
+    crops = crops.filter(([name]) => name.toLowerCase().includes(browseSearch));
+  }
+
+  if (browseDifficulty) {
+    crops = crops.filter(([, c]) => c.difficulty === browseDifficulty);
+  }
+
+  if (browseInSeason && selectedZone) {
+    crops = crops.filter(([name]) => activeSet.has(name));
+  }
+
+  // Disable in-season checkbox when no zone selected
+  const cb = document.getElementById('browse-inseason');
+  if (cb) cb.disabled = !selectedZone;
+
+  // Sort: in-season first (when zone selected), then alphabetical
+  if (selectedZone && !browseInSeason) {
+    crops.sort(([a], [b]) => {
+      const aS = activeSet.has(a) ? 0 : 1;
+      const bS = activeSet.has(b) ? 0 : 1;
+      return aS !== bS ? aS - bS : a.localeCompare(b);
+    });
+  } else {
+    crops.sort(([a], [b]) => a.localeCompare(b));
+  }
+
+  // Update count
+  const countEl = document.getElementById('browse-count');
+  if (countEl) countEl.textContent = `(${crops.length})`;
+
+  if (!crops.length) {
+    grid.innerHTML = '<p class="browse-empty">No crops match your filters.</p>';
+    return;
+  }
+
+  grid.innerHTML = crops.map(([name, c]) => {
+    const cat      = CROP_CATEGORY_MAP[name] || '';
+    const isActive = activeSet.has(name);
+    const diff     = c.difficulty ? c.difficulty.toLowerCase() : '';
+    return `<div class="browse-card${isActive ? ' browse-card--active' : ''}" data-crop="${name}" role="button" tabindex="0">
+      <div class="browse-card-emoji">${c.emoji || '🌱'}</div>
+      <div class="browse-card-name">${name}</div>
+      <div class="browse-card-meta">
+        ${cat  ? `<span class="browse-card-cat">${cat}</span>` : ''}
+        ${diff ? `<span class="diff-dot diff-dot--${diff}" title="${c.difficulty}"></span>` : ''}
+      </div>
+      ${isActive ? '<div class="browse-card-season">In season</div>' : ''}
+    </div>`;
+  }).join('');
 }
 
 let toastTimer = null;

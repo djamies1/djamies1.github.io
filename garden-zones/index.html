@@ -30,6 +30,7 @@
       <span class="leaf">🌱</span>
       <span>Plant Zone Finder</span>
     </div>
+    <button id="browse-btn" title="Browse all crops">Browse</button>
     <div id="search-bar">
       <input
         id="address-input"
@@ -101,6 +102,10 @@
       <div id="frost-dates"></div>
       <div id="month-display"></div>
       <div id="month-context"></div>
+      <div id="year-calendar" hidden>
+        <div class="ycal-title">Year at a glance</div>
+        <div id="year-cal-cells"></div>
+      </div>
       <div class="plant-section" id="section-startIndoors">
         <h3>Start Indoors</h3>
         <ul id="list-startIndoors"></ul>
@@ -135,6 +140,42 @@
       <div id="modal-body"></div>
     </div>
   </dialog>
+
+  <div id="browse-view" class="browse-hidden" role="dialog" aria-label="Browse all crops">
+    <div id="browse-header">
+      <h2 id="browse-title">Browse Crops <span id="browse-count"></span></h2>
+      <button id="browse-close" aria-label="Close">&times;</button>
+    </div>
+    <div id="browse-filters">
+      <input id="browse-search" type="text" placeholder="Search 69 crops…" autocomplete="off" spellcheck="false" />
+      <div id="browse-cats">
+        <button class="cat-chip active" data-cat="">All</button>
+        <button class="cat-chip" data-cat="Vegetables">Vegetables</button>
+        <button class="cat-chip" data-cat="Brassicas">Brassicas</button>
+        <button class="cat-chip" data-cat="Root Veg">Root Veg</button>
+        <button class="cat-chip" data-cat="Greens">Greens</button>
+        <button class="cat-chip" data-cat="Alliums">Alliums</button>
+        <button class="cat-chip" data-cat="Legumes">Legumes</button>
+        <button class="cat-chip" data-cat="Cucurbits">Cucurbits</button>
+        <button class="cat-chip" data-cat="Herbs">Herbs</button>
+        <button class="cat-chip" data-cat="Perennials">Perennials</button>
+        <button class="cat-chip" data-cat="Tropical">Tropical</button>
+      </div>
+      <div id="browse-extra">
+        <select id="browse-difficulty">
+          <option value="">Any difficulty</option>
+          <option value="Easy">Easy</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Hard">Hard</option>
+        </select>
+        <label id="browse-season-label">
+          <input type="checkbox" id="browse-inseason" />
+          <span>In season</span>
+        </label>
+      </div>
+    </div>
+    <div id="browse-grid"></div>
+  </div>
 
   <!-- CDN Libraries -->
   <script src="lib/leaflet.min.js"></script>
