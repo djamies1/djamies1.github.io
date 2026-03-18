@@ -1655,3 +1655,224 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
 .toast--warning { border-left: 3px solid #fbbf24; }
 .toast--error   { border-left: 3px solid #f87171; }
 .toast--info    { border-left: 3px solid #60a5fa; }
+
+/* ──────────────────────────────────────────────
+   Phase 3 — Share button
+────────────────────────────────────────────── */
+#share-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  padding: 4px 8px;
+  transition: color 0.15s, border-color 0.15s;
+}
+#share-btn:hover { color: var(--accent); border-color: var(--accent); }
+#share-btn.shared { color: var(--accent); border-color: var(--accent); }
+
+/* ──────────────────────────────────────────────
+   Phase 3 — Reminder banner
+────────────────────────────────────────────── */
+#reminder-banner {
+  background: rgba(251,191,36,0.07);
+  border: 1px solid rgba(251,191,36,0.3);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+.reminder-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+}
+.reminder-item + .reminder-item { border-top: 1px solid rgba(251,191,36,0.15); margin-top: 3px; padding-top: 6px; }
+.reminder-item-body { flex: 1; line-height: 1.4; }
+.reminder-item-body strong { display: block; font-size: 12px; font-weight: 600; }
+.reminder-item-body span { font-size: 11px; color: var(--text-muted); }
+.reminder-dismiss-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 15px;
+  padding: 2px 4px;
+  transition: color 0.15s;
+}
+.reminder-dismiss-btn:hover { color: var(--text); }
+
+/* ──────────────────────────────────────────────
+   Phase 3 — Calendar crop search
+────────────────────────────────────────────── */
+#calendar-search-wrap {
+  margin-bottom: 10px;
+}
+#calendar-search {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 12px;
+  padding: 6px 10px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+#calendar-search::placeholder { color: var(--text-muted); }
+#calendar-search:focus { border-color: var(--accent-dark); }
+#calendar-search-wrap.hidden { display: none; }
+
+/* ──────────────────────────────────────────────
+   Phase 3 — Garden stats card
+────────────────────────────────────────────── */
+#garden-stats {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+.garden-stats-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.garden-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.garden-stat-value {
+  font-weight: 700;
+  color: var(--text);
+}
+.garden-stat-item--highlight .garden-stat-value { color: var(--accent); }
+.garden-stats-next {
+  margin-top: 7px;
+  padding-top: 7px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.garden-stats-next strong { color: var(--accent); }
+
+/* ──────────────────────────────────────────────
+   Phase 3 — Garden Gantt chart
+────────────────────────────────────────────── */
+#garden-gantt {
+  margin-top: 14px;
+  margin-bottom: 4px;
+}
+.gantt-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 10px 8px;
+  overflow-x: auto;
+}
+.gantt-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-bottom: 7px;
+}
+.gantt-legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 7px;
+}
+.gl-item {
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.gl-item::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+.gl-start::before    { background: #60a5fa66; border: 1px solid #60a5fa; }
+.gl-sow::before      { background: rgba(74,222,128,0.3); border: 1px solid var(--accent); }
+.gl-transplant::before { background: rgba(251,191,36,0.3); border: 1px solid #fbbf24; }
+.gl-harvest::before  { background: rgba(248,113,113,0.3); border: 1px solid #f87171; }
+
+.gantt-grid {
+  display: grid;
+  grid-template-columns: minmax(68px, 90px) repeat(12, 1fr);
+  gap: 2px;
+  min-width: 300px;
+}
+.gantt-label-header { }
+.gantt-header-cell {
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 1px 0 3px;
+  letter-spacing: 0.03em;
+}
+.gantt-header-cell.gantt-cur-month { color: var(--accent); }
+.gantt-crop-label {
+  font-size: 10px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding-right: 4px;
+}
+.gantt-cell {
+  height: 14px;
+  border-radius: 2px;
+  background: transparent;
+  transition: opacity 0.15s;
+  cursor: default;
+}
+.gantt-cell:hover { opacity: 0.8; }
+.gantt-cell--none       { background: transparent; }
+.gantt-cell--start      { background: #60a5fa55; border: 1px solid #60a5fa88; }
+.gantt-cell--sow        { background: rgba(74,222,128,0.25); border: 1px solid rgba(74,222,128,0.5); }
+.gantt-cell--transplant { background: rgba(251,191,36,0.25); border: 1px solid rgba(251,191,36,0.5); }
+.gantt-cell--harvest    { background: rgba(248,113,113,0.25); border: 1px solid rgba(248,113,113,0.5); }
+.gantt-cell--cur        { outline: 1px solid rgba(255,255,255,0.3); outline-offset: -1px; }
+.gantt-cell--start.gantt-cell--cur      { background: #60a5fa88; }
+.gantt-cell--sow.gantt-cell--cur        { background: rgba(74,222,128,0.5); }
+.gantt-cell--transplant.gantt-cell--cur { background: rgba(251,191,36,0.5); }
+.gantt-cell--harvest.gantt-cell--cur    { background: rgba(248,113,113,0.5); }
+
+/* ──────────────────────────────────────────────
+   Phase 3 — Reminder date input in modal bar
+────────────────────────────────────────────── */
+.modal-garden-reminder-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+#modal-reminder-input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 11px;
+  padding: 3px 6px;
+}
+.gi-badge--reminder { color: #fbbf24; }

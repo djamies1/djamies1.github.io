@@ -454,6 +454,12 @@ function renderPanel() {
 
   document.getElementById('no-tasks').style.display = hasAny ? 'none' : 'block';
 
+  // Show crop search and reset it
+  const csWrap = document.getElementById('calendar-search-wrap');
+  if (csWrap) { csWrap.classList.remove('hidden'); }
+  const csInput = document.getElementById('calendar-search');
+  if (csInput && csInput.value) { csInput.value = ''; filterCalendarSearch(''); }
+
   // Year calendar
   renderYearCalendar();
 
@@ -504,6 +510,15 @@ function initUI() {
   initKeyboardShortcuts();
   initPanelSwipe();
   initSliderSwipe();
+  // Share button
+  document.getElementById('share-btn')?.addEventListener('click', shareZone);
+  // Calendar crop search
+  const calSearch = document.getElementById('calendar-search');
+  if (calSearch) {
+    calSearch.addEventListener('input', e => filterCalendarSearch(e.target.value));
+    // Hide search wrap when panel first shown (no zone yet)
+    document.getElementById('calendar-search-wrap')?.classList.add('hidden');
+  }
   restoreFromURL();
 }
 
@@ -1020,6 +1035,7 @@ function gardenSetPlanted(name, dateStr) {
 
 function refreshGardenUI(name) {
   updateGardenBadge();
+  checkReminders();
   if (currentPanelTab === 'garden') renderGardenTab();
   renderFrostAlertBanner();
   renderThisWeek();
@@ -1090,10 +1106,14 @@ function renderGardenTab() {
     for (const { name, status } of items) {
       const c = cropData[name];
       const plantedVal = myGarden[name]?.planted || '';
+      const entry = myGarden[name];
+      const todayStr = new Date().toISOString().slice(0,10);
+      const reminderDue = entry.reminder && entry.reminder <= todayStr;
       const badges = [
-        myGarden[name].hasSeeds ? '<span class="gi-badge gi-badge--seeds" title="Have seeds">🌰</span>' : '',
-        (myGarden[name].harvestLog?.length) ? `<span class="gi-badge gi-badge--harvests" title="${myGarden[name].harvestLog.length} harvest(s) logged">🌾×${myGarden[name].harvestLog.length}</span>` : '',
-        myGarden[name].notes ? '<span class="gi-badge" title="Has notes">📝</span>' : '',
+        entry.hasSeeds ? '<span class="gi-badge gi-badge--seeds" title="Have seeds">🌰</span>' : '',
+        (entry.harvestLog?.length) ? `<span class="gi-badge gi-badge--harvests" title="${entry.harvestLog.length} harvest(s) logged">🌾×${entry.harvestLog.length}</span>` : '',
+        entry.notes ? '<span class="gi-badge" title="Has notes">📝</span>' : '',
+        entry.reminder ? `<span class="gi-badge gi-badge--reminder" title="Reminder: ${entry.reminder}">${reminderDue ? '🔔' : '⏰'}</span>` : '',
       ].join('');
       html += `<div class="garden-item garden-item--${type}" data-crop="${name}">
         <div class="garden-item-main">
@@ -1112,6 +1132,8 @@ function renderGardenTab() {
     }
   }
   list.innerHTML = html;
+  renderGardenStats();
+  renderGardenGantt();
   renderGardenFooter();
 }
 
@@ -1168,6 +1190,7 @@ function renderModalGardenBar(name) {
     bar.innerHTML = `<button class="modal-garden-btn" id="modal-garden-add">☆ Add to My Garden</button>`;
     bar.querySelector('#modal-garden-add').addEventListener('click', () => gardenAdd(name));
   } else {
+    const reminderVal = myGarden[name]?.reminder || '';
     bar.className = 'bar-saved';
     bar.innerHTML = `
       <div class="modal-garden-info">
@@ -1181,18 +1204,23 @@ function renderModalGardenBar(name) {
         <label class="modal-seeds-label">
           <input type="checkbox" id="modal-seeds-check"${hasSeeds ? ' checked' : ''}> Have seeds
         </label>
+        <label class="modal-garden-reminder-label">🔔
+          <input type="date" id="modal-reminder-input" value="${reminderVal}" min="${today}" aria-label="Reminder date">
+        </label>
       </div>`;
     bar.querySelector('#modal-planted-input').addEventListener('change', e => gardenSetPlanted(name, e.target.value));
     bar.querySelector('#modal-garden-remove').addEventListener('click', () => gardenRemove(name));
     bar.querySelector('#modal-seeds-check').addEventListener('change', e => {
       if (myGarden[name]) { myGarden[name].hasSeeds = e.target.checked; saveGarden(); if (currentPanelTab === 'garden') renderGardenTab(); }
     });
+    bar.querySelector('#modal-reminder-input').addEventListener('change', e => gardenSetReminder(name, e.target.value));
   }
 }
 
 function initGarden() {
   loadGarden();
   updateGardenBadge();
+  checkReminders();
 
   document.getElementById('panel-tabs')?.addEventListener('click', e => {
     const tab = e.target.closest('.ptab');
@@ -1656,6 +1684,194 @@ function showToast(msg, type) {
   if (type) toast.classList.add(`toast--${type}`);
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+// ── Phase 3: Reminders ──────────────────────────
+function gardenSetReminder(name, dateStr) {
+  if (!myGarden[name]) return;
+  myGarden[name].reminder = dateStr || null;
+  saveGarden();
+  checkReminders();
+  refreshGardenUI(name);
+}
+
+function checkReminders() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const due = [];
+  for (const [name, entry] of Object.entries(myGarden)) {
+    if (!entry.reminder) continue;
+    const rd = new Date(entry.reminder + 'T00:00:00');
+    const n = Math.round((rd - today) / 86400000);
+    if (n >= -1 && n <= 7) due.push({ name, date: entry.reminder, n });
+  }
+  renderReminderBanner(due);
+}
+
+function renderReminderBanner(due) {
+  const el = document.getElementById('reminder-banner');
+  if (!el) return;
+  if (!due.length) { el.hidden = true; return; }
+  const dayLabel = n => {
+    if (n < 0)  return `${-n} day${-n===1?'':'s'} ago`;
+    if (n === 0) return 'today';
+    if (n === 1) return 'tomorrow';
+    return `in ${n} days`;
+  };
+  el.innerHTML = due.map(({ name, date, n }) => {
+    const c = cropData?.[name];
+    const emoji = c?.emoji || '🌱';
+    const urgency = n <= 1 ? '🔔' : '⏰';
+    return `<div class="reminder-item">
+      <span>${urgency}</span>
+      <div class="reminder-item-body">
+        <strong>${emoji} ${name}</strong>
+        <span>Reminder: ${date} — ${dayLabel(n)}</span>
+      </div>
+      <button class="reminder-dismiss-btn" data-crop="${name}" aria-label="Dismiss reminder">×</button>
+    </div>`;
+  }).join('');
+  el.hidden = false;
+  el.querySelectorAll('.reminder-dismiss-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      gardenSetReminder(btn.dataset.crop, null);
+    });
+  });
+}
+
+// ── Phase 3: Garden stats ────────────────────────
+function renderGardenStats() {
+  const el = document.getElementById('garden-stats');
+  if (!el) return;
+  const names = Object.keys(myGarden);
+  if (!names.length) { el.innerHTML = ''; return; }
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const growing = names.filter(n => myGarden[n]?.planted);
+  const totalHarvests = names.reduce((sum, n) => sum + (myGarden[n]?.harvestLog?.length || 0), 0);
+
+  // Find next upcoming harvest
+  let nextHarvest = null, nextDays = Infinity;
+  for (const name of growing) {
+    const planted = new Date(myGarden[name].planted + 'T00:00:00');
+    const daysPlanted = Math.round((today - planted) / 86400000);
+    const harvestMin = parseHarvestDays(cropData?.[name]?.days);
+    if (harvestMin != null) {
+      const remaining = harvestMin - daysPlanted;
+      if (remaining > 0 && remaining < nextDays) {
+        nextDays = remaining; nextHarvest = name;
+      }
+    }
+  }
+
+  el.innerHTML = `
+    <div class="garden-stats-row">
+      <span class="garden-stat-item"><span class="garden-stat-value">${names.length}</span> saved</span>
+      <span class="garden-stat-item"><span class="garden-stat-value">${growing.length}</span> growing</span>
+      <span class="garden-stat-item"><span class="garden-stat-value">${totalHarvests}</span> harvests</span>
+    </div>
+    ${nextHarvest ? `<div class="garden-stats-next">
+      Next harvest: <strong>${cropData?.[nextHarvest]?.emoji || '🌱'} ${nextHarvest}</strong> in ~${nextDays} day${nextDays===1?'':'s'}
+    </div>` : ''}`;
+}
+
+// ── Phase 3: Garden Gantt ────────────────────────
+function renderGardenGantt() {
+  const el = document.getElementById('garden-gantt');
+  if (!el) return;
+  if (!selectedZone || !plantingData) { el.innerHTML = ''; return; }
+
+  const names = Object.keys(myGarden);
+  // Only include crops that have at least one activity in this zone
+  const MONTH_ABBR = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+
+  const ganttRows = names.map(name => {
+    const months = Array.from({length: 12}, (_, mi) => {
+      const d = getPlantingData(selectedZone, mi + 1);
+      const acts = [];
+      if (d.startIndoors?.includes(name)) acts.push('S');
+      if (d.directSow?.includes(name)) acts.push('D');
+      if (d.transplant?.includes(name)) acts.push('T');
+      if (d.harvest?.includes(name)) acts.push('H');
+      return acts;
+    });
+    return { name, months };
+  }).filter(r => r.months.some(acts => acts.length > 0));
+
+  if (!ganttRows.length) { el.innerHTML = ''; return; }
+
+  // Dominant activity priority: H > T > D > S
+  function dominant(acts) {
+    if (acts.includes('H')) return 'harvest';
+    if (acts.includes('T')) return 'transplant';
+    if (acts.includes('D')) return 'sow';
+    if (acts.includes('S')) return 'start';
+    return 'none';
+  }
+
+  const titleMap = { S: 'Start indoors', D: 'Direct sow', T: 'Transplant', H: 'Harvest' };
+
+  const headerRow = `
+    <div class="gantt-label-header"></div>
+    ${MONTH_ABBR.map((m, i) => `<div class="gantt-header-cell${(i+1) === currentMonth ? ' gantt-cur-month' : ''}">${m}</div>`).join('')}`;
+
+  const dataRows = ganttRows.map(({ name, months }) => {
+    const info = cropData?.[name];
+    const label = `<div class="gantt-crop-label" title="${name}">${info?.emoji || '🌱'} ${name}</div>`;
+    const cells = months.map((acts, mi) => {
+      const type = dominant(acts);
+      const isCur = (mi + 1) === currentMonth;
+      const tip = acts.length ? acts.map(a => titleMap[a]).join(', ') : '—';
+      return `<div class="gantt-cell gantt-cell--${type}${isCur ? ' gantt-cell--cur' : ''}" title="${name}: ${tip}"></div>`;
+    }).join('');
+    return label + cells;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="gantt-wrap">
+      <div class="gantt-title">🗓 Year Plan — My Garden</div>
+      <div class="gantt-legend">
+        <span class="gl-item gl-start">Indoors</span>
+        <span class="gl-item gl-sow">Direct sow</span>
+        <span class="gl-item gl-transplant">Transplant</span>
+        <span class="gl-item gl-harvest">Harvest</span>
+      </div>
+      <div class="gantt-grid">${headerRow}${dataRows}</div>
+    </div>`;
+}
+
+// ── Phase 3: Calendar crop search ───────────────
+function filterCalendarSearch(query) {
+  const q = query.trim().toLowerCase();
+  const sections = ['startIndoors', 'directSow', 'transplant', 'harvest'];
+  let anyVisible = false;
+  for (const key of sections) {
+    const list = document.getElementById(`list-${key}`);
+    const section = document.getElementById(`section-${key}`);
+    if (!list || !section) continue;
+    if (section.classList.contains('hidden')) continue;
+    let sectionVisible = false;
+    for (const li of list.querySelectorAll('li')) {
+      const name = li.dataset.crop || li.querySelector('[data-crop]')?.dataset.crop || li.textContent;
+      const match = !q || name.toLowerCase().includes(q);
+      li.hidden = !match;
+      if (match) { sectionVisible = true; anyVisible = true; }
+    }
+    section.style.display = sectionVisible ? '' : 'none';
+  }
+  const noTasks = document.getElementById('no-tasks');
+  if (noTasks) noTasks.style.display = (!anyVisible && q) ? 'block' : '';
+}
+
+// ── Phase 3: Share zone ──────────────────────────
+function shareZone() {
+  const url = window.location.href;
+  navigator.clipboard?.writeText(url).then(() => {
+    const btn = document.getElementById('share-btn');
+    if (btn) { btn.classList.add('shared'); setTimeout(() => btn.classList.remove('shared'), 2000); }
+    showToast('Zone URL copied ✓', 'success');
+  }).catch(() => {
+    showToast('Copy not supported — copy from address bar', 'info');
+  });
 }
 
 // ── Phase 2: Mobile panel swipe ─────────────────

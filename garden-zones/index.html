@@ -31,6 +31,7 @@
       <span>Plant Zone Finder</span>
     </div>
     <button id="metric-toggle" title="Switch to metric units">°F</button>
+    <button id="share-btn" title="Share this zone">⎘</button>
     <button id="help-btn" title="Keyboard shortcuts">?</button>
     <button id="browse-btn" title="Browse all crops">Browse</button>
     <div id="search-bar">
@@ -113,6 +114,7 @@
       </div>
       <div id="tab-calendar">
         <div id="frost-alert-banner" hidden></div>
+        <div id="reminder-banner" hidden></div>
         <div id="weather-strip" hidden></div>
         <div id="this-week" hidden></div>
         <div id="countdown-cards"></div>
@@ -121,6 +123,9 @@
         <div id="year-calendar" hidden>
           <div class="ycal-title">Year at a glance</div>
           <div id="year-cal-cells"></div>
+        </div>
+        <div id="calendar-search-wrap">
+          <input id="calendar-search" type="text" placeholder="Filter crops…" autocomplete="off" spellcheck="false">
         </div>
         <div class="plant-section" id="section-startIndoors">
           <h3>Start Indoors</h3>
@@ -142,7 +147,9 @@
         <div id="garden-tip"></div>
       </div>
       <div id="tab-garden" hidden>
+        <div id="garden-stats"></div>
         <div id="garden-list"></div>
+        <div id="garden-gantt"></div>
         <div id="garden-footer"></div>
         <p id="garden-empty-msg" class="garden-empty">No crops saved yet.<br>Tap any crop to add it to your garden.</p>
       </div>
