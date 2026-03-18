@@ -155,6 +155,7 @@
         <div id="garden-tasks"></div>
         <div id="garden-stats"></div>
         <div id="garden-list"></div>
+        <div id="grow-next"></div>
         <div id="garden-gantt"></div>
         <div id="garden-footer"></div>
         <p id="garden-empty-msg" class="garden-empty">No crops saved yet.<br>Tap any crop to add it to your garden.</p>
@@ -216,9 +217,21 @@
           <option value="Moderate">Moderate</option>
           <option value="Hard">Hard</option>
         </select>
+        <select id="browse-sort">
+          <option value="">Sort: Default</option>
+          <option value="az">Sort: A → Z</option>
+          <option value="za">Sort: Z → A</option>
+          <option value="fastest">Days: Fastest first</option>
+          <option value="slowest">Days: Slowest first</option>
+          <option value="easy">Difficulty: Easy first</option>
+        </select>
         <label id="browse-season-label">
           <input type="checkbox" id="browse-inseason" />
           <span>In season</span>
+        </label>
+        <label id="browse-companions-label">
+          <input type="checkbox" id="browse-companions" />
+          <span>Grows with my garden</span>
         </label>
       </div>
     </div>

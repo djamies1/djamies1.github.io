@@ -240,6 +240,8 @@ let browseSearch = '';
 let browseCategory = '';
 let browseDifficulty = '';
 let browseInSeason = false;
+let browseSort = '';
+let browseCompanions = false;
 
 // ── Entry point ───────────────────────────────
 document.addEventListener('DOMContentLoaded', loadData);
@@ -1011,6 +1013,22 @@ function initBrowse() {
     });
   }
 
+  const sortSel = document.getElementById('browse-sort');
+  if (sortSel) {
+    sortSel.addEventListener('change', () => {
+      browseSort = sortSel.value;
+      renderBrowseGrid();
+    });
+  }
+
+  const companions = document.getElementById('browse-companions');
+  if (companions) {
+    companions.addEventListener('change', () => {
+      browseCompanions = companions.checked;
+      renderBrowseGrid();
+    });
+  }
+
   const grid = document.getElementById('browse-grid');
   if (grid) {
     grid.addEventListener('click', e => {
@@ -1071,16 +1089,44 @@ function renderBrowseGrid() {
     crops = crops.filter(([name]) => activeSet.has(name));
   }
 
-  // Disable in-season checkbox when no zone selected
+  // Companion filter: crops that are companions to anything in my garden
+  const gardenCompanionSet = new Set();
+  if (browseCompanions || true) { // always build for badge rendering
+    for (const gName of Object.keys(myGarden)) {
+      (cropData[gName]?.companions || []).forEach(c => gardenCompanionSet.add(c));
+    }
+  }
+  if (browseCompanions) {
+    crops = crops.filter(([name]) => gardenCompanionSet.has(name) && !isInGarden(name));
+  }
+
+  // Disable in-season / companion checkboxes when no zone / garden
   const cb = document.getElementById('browse-inseason');
   if (cb) cb.disabled = !selectedZone;
+  const cbC = document.getElementById('browse-companions');
+  if (cbC) cbC.disabled = Object.keys(myGarden).length === 0;
 
-  // Sort: in-season first (when zone selected), then alphabetical
-  if (selectedZone && !browseInSeason) {
+  // Sort
+  const DIFF_ORDER = { Easy: 0, Moderate: 1, Hard: 2 };
+  if (browseSort === 'az') {
+    crops.sort(([a], [b]) => a.localeCompare(b));
+  } else if (browseSort === 'za') {
+    crops.sort(([a], [b]) => b.localeCompare(a));
+  } else if (browseSort === 'fastest') {
+    crops.sort(([, a], [, b]) => (parseHarvestDays(a.days) || 999) - (parseHarvestDays(b.days) || 999));
+  } else if (browseSort === 'slowest') {
+    crops.sort(([, a], [, b]) => (parseHarvestDays(b.days) || 0) - (parseHarvestDays(a.days) || 0));
+  } else if (browseSort === 'easy') {
+    crops.sort(([, a], [, b]) => (DIFF_ORDER[a.difficulty] ?? 9) - (DIFF_ORDER[b.difficulty] ?? 9));
+  } else if (selectedZone && !browseInSeason) {
+    // Default: in-season first, then companions, then alphabetical
     crops.sort(([a], [b]) => {
       const aS = activeSet.has(a) ? 0 : 1;
       const bS = activeSet.has(b) ? 0 : 1;
-      return aS !== bS ? aS - bS : a.localeCompare(b);
+      if (aS !== bS) return aS - bS;
+      const aC = gardenCompanionSet.has(a) ? 0 : 1;
+      const bC = gardenCompanionSet.has(b) ? 0 : 1;
+      return aC !== bC ? aC - bC : a.localeCompare(b);
     });
   } else {
     crops.sort(([a], [b]) => a.localeCompare(b));
@@ -1096,9 +1142,10 @@ function renderBrowseGrid() {
   }
 
   grid.innerHTML = crops.map(([name, c], i) => {
-    const cat      = CROP_CATEGORY_MAP[name] || '';
-    const isActive = activeSet.has(name);
-    const diff     = c.difficulty ? c.difficulty.toLowerCase() : '';
+    const cat          = c.custom ? (c.category || '') : (CROP_CATEGORY_MAP[name] || '');
+    const isActive     = activeSet.has(name);
+    const isCompanion  = gardenCompanionSet.has(name) && !isInGarden(name);
+    const diff         = c.difficulty ? c.difficulty.toLowerCase() : '';
     return `<div class="browse-card${isActive ? ' browse-card--active' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.025}s">
       <div class="browse-card-emoji">${c.emoji || '🌱'}</div>
       <div class="browse-card-name">${name}</div>
@@ -1106,7 +1153,8 @@ function renderBrowseGrid() {
         ${cat  ? `<span class="browse-card-cat">${cat}</span>` : ''}
         ${diff ? `<span class="diff-dot diff-dot--${diff}" title="${c.difficulty}"></span>` : ''}
       </div>
-      ${isActive ? '<div class="browse-card-season">In season</div>' : ''}
+      ${isActive     ? '<div class="browse-card-season">In season</div>'   : ''}
+      ${isCompanion  ? '<div class="browse-card-companion">🤝 Companion</div>' : ''}
       ${isInGarden(name) ? '<div class="browse-card-saved">★ Saved</div>' : ''}
       ${c.custom ? '<div class="browse-card-custom">Custom</div>' : ''}
     </div>`;
@@ -1137,7 +1185,7 @@ function refreshGardenUI(name) {
   checkReminders();
   renderHarvestReadyBanner();
   updateJournalCropSelect();
-  if (currentPanelTab === 'garden') renderGardenTab();
+  if (currentPanelTab === 'garden') { renderGardenTab(); renderGrowNext(); }
   renderFrostAlertBanner();
   renderThisWeek();
   // Re-render open modal bar
@@ -1300,6 +1348,80 @@ function renderGardenTasks() {
   }, { once: true });
 }
 
+// ── Phase 8: Grow this next ───────────────────────
+function buildGrowNextRecommendations() {
+  if (!cropData || !selectedZone) return [];
+
+  const inGarden = new Set(Object.keys(myGarden));
+  const data = getPlantingData(selectedZone, currentMonth);
+  const inSeasonSet = new Set([
+    ...(data.startIndoors || []),
+    ...(data.directSow   || []),
+    ...(data.transplant  || []),
+  ]);
+
+  // Build companion set from garden crops (and which garden crop recommended them)
+  const companionScore = {};  // name -> { score, fromCrops }
+  for (const gName of inGarden) {
+    (cropData[gName]?.companions || []).forEach(c => {
+      if (!inGarden.has(c) && cropData[c]) {
+        if (!companionScore[c]) companionScore[c] = { score: 0, from: [] };
+        companionScore[c].score++;
+        companionScore[c].from.push(gName);
+      }
+    });
+  }
+
+  // Score every non-garden crop
+  const scored = Object.keys(cropData)
+    .filter(name => !inGarden.has(name) && !cropData[name].custom)
+    .map(name => {
+      const companion = companionScore[name] || null;
+      const season    = inSeasonSet.has(name);
+      const score     = (companion ? companion.score * 3 : 0) + (season ? 2 : 0);
+      return { name, score, companion, season };
+    })
+    .filter(r => r.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  return scored.slice(0, 6);
+}
+
+function renderGrowNext() {
+  const el = document.getElementById('grow-next');
+  if (!el) return;
+  const recs = buildGrowNextRecommendations();
+  if (!recs.length) { el.innerHTML = ''; return; }
+
+  el.innerHTML = `<div class="grow-next-header">💡 Grow this next</div>
+    <div class="grow-next-grid">
+      ${recs.map(r => {
+        const c = cropData[r.name];
+        const why = r.companion
+          ? `Companion to your ${r.companion.from.slice(0,2).join(' & ')}`
+          : 'In season now';
+        const tags = [
+          r.companion ? `<span class="grow-next-tag grow-next-tag--companion">🤝 Companion</span>` : '',
+          r.season    ? `<span class="grow-next-tag grow-next-tag--season">In season</span>`    : '',
+        ].join('');
+        return `<div class="grow-next-card" data-crop="${r.name}">
+          <div class="grow-next-emoji">${c.emoji || '🌱'}</div>
+          <div class="grow-next-name">${r.name}</div>
+          <div class="grow-next-why">${why}</div>
+          <div class="grow-next-tags">${tags}</div>
+          <button class="grow-next-add-btn" data-crop="${r.name}">+ Add</button>
+        </div>`;
+      }).join('')}
+    </div>`;
+
+  el.addEventListener('click', e => {
+    const addBtn = e.target.closest('.grow-next-add-btn');
+    if (addBtn) { e.stopPropagation(); gardenAdd(addBtn.dataset.crop); renderGrowNext(); return; }
+    const card = e.target.closest('.grow-next-card');
+    if (card?.dataset.crop) openCropDetail(card.dataset.crop);
+  }, { once: true });
+}
+
 function renderGardenTab() {
   const list = document.getElementById('garden-list');
   const emptyMsg = document.getElementById('garden-empty-msg');
@@ -1338,6 +1460,7 @@ function renderGardenTab() {
           <div class="garden-item-info">
             <span class="garden-item-name">${name}${badges}</span>
             <span class="garden-item-status">${status?.label || ''}</span>
+            ${entry.harvestLog?.length ? `<span class="garden-last-harvest">🌾 Last harvest: ${entry.harvestLog[0].date}</span>` : ''}
             ${status?.stage ? `
             <div class="growth-bar-wrap" title="${status.stage.label}">
               <div class="growth-bar-fill growth-bar--${status.stage.stage}" style="width:${Math.min(100,Math.round(status.stage.pct*100))}%"></div>
@@ -1346,6 +1469,7 @@ function renderGardenTab() {
           </div>
         </div>
         <div class="garden-item-actions">
+          ${(type === 'ready' || type === 'growing') && plantedVal ? `<button class="garden-harvest-btn" data-crop="${name}" title="Log a harvest">🌾</button>` : ''}
           ${!plantedVal ? `<button class="garden-log-btn" data-crop="${name}">Log date</button>` : ''}
           <input type="date" class="garden-date-input" data-crop="${name}" value="${plantedVal}" max="${today}" aria-label="Planting date for ${name}"${!plantedVal ? ' style="display:none"' : ''}>
           <button class="garden-remove-btn" data-crop="${name}" aria-label="Remove ${name}">×</button>
@@ -1358,6 +1482,7 @@ function renderGardenTab() {
   renderGardenStats();
   renderGardenGantt();
   renderGardenFooter();
+  renderGrowNext();
 }
 
 function renderGardenFooter() {
@@ -1469,6 +1594,13 @@ function initGarden() {
   // Garden tab delegated events
   const gardenTab = document.getElementById('tab-garden');
   gardenTab?.addEventListener('click', e => {
+    if (e.target.closest('.garden-harvest-btn')) {
+      const name = e.target.closest('.garden-harvest-btn').dataset.crop;
+      const today = new Date().toISOString().slice(0, 10);
+      gardenLogHarvest(name, today, '');
+      showToast(`🌾 Harvest logged for ${name}!`, 'success');
+      return;
+    }
     if (e.target.closest('.garden-log-btn')) {
       const name = e.target.closest('.garden-log-btn').dataset.crop;
       const item = e.target.closest('.garden-item');

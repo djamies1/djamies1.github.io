@@ -2505,3 +2505,113 @@ body.garden-mode .plant-section ul {
 }
 #cc-save-btn:hover { background: rgba(74,222,128,0.2); }
 #cc-error { color: #f87171; font-size: 12px; display: none; }
+
+/* ──────────────────────────────────────────────
+   Phase 8 — Browse sort + companions filter
+────────────────────────────────────────────── */
+#browse-sort {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 5px 8px;
+}
+#browse-companions-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+#browse-companions-label input { accent-color: var(--accent); cursor: pointer; }
+.browse-card-companion {
+  font-size: 9px;
+  color: #34d399;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ──────────────────────────────────────────────
+   Phase 8 — "Grow this next" panel
+────────────────────────────────────────────── */
+#grow-next { margin-top: 16px; }
+.grow-next-header {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.grow-next-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+.grow-next-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px 10px 8px;
+  transition: border-color 0.15s, background 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.grow-next-card:hover { border-color: var(--accent-dark); background: var(--surface); }
+.grow-next-emoji { font-size: 22px; line-height: 1; }
+.grow-next-name { font-size: 12px; font-weight: 600; }
+.grow-next-why { font-size: 10px; color: var(--text-muted); line-height: 1.3; }
+.grow-next-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px; }
+.grow-next-tag {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 1px 6px;
+  border-radius: 99px;
+}
+.grow-next-tag--companion { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
+.grow-next-tag--season    { background: rgba(74,222,128,0.1);  color: var(--accent); border: 1px solid rgba(74,222,128,0.25); }
+.grow-next-add-btn {
+  align-self: flex-end;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 10px;
+  margin-top: 4px;
+  padding: 2px 8px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.grow-next-add-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ──────────────────────────────────────────────
+   Phase 8 — Quick harvest log in garden list
+────────────────────────────────────────────── */
+.garden-harvest-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 2px 7px;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.garden-harvest-btn:hover { color: #fbbf24; border-color: #fbbf24; }
+.garden-last-harvest {
+  font-size: 10px;
+  color: #fbbf24;
+  margin-top: 2px;
+  display: block;
+}
