@@ -83,6 +83,7 @@
     </div>
   </div>
 
+  <div id="map-resize-handle" hidden></div>
   <div id="season-bg"></div>
   <main id="globe-container">
     <div id="zone-legend">
@@ -151,6 +152,7 @@
         <div id="garden-tip"></div>
       </div>
       <div id="tab-garden" hidden>
+        <div id="garden-tasks"></div>
         <div id="garden-stats"></div>
         <div id="garden-list"></div>
         <div id="garden-gantt"></div>
@@ -160,8 +162,12 @@
       <div id="tab-journal" hidden>
         <div id="journal-compose">
           <textarea id="journal-input" placeholder="Log a note — weather, observations, successes…" rows="3"></textarea>
-          <button id="journal-add-btn">Add note</button>
+          <div id="journal-compose-footer">
+            <select id="journal-crop-tag"><option value="">🌱 No crop tag</option></select>
+            <button id="journal-add-btn">Add note</button>
+          </div>
         </div>
+        <div id="journal-filter-bar"></div>
         <div id="journal-list"></div>
         <p id="journal-empty-msg" class="garden-empty" hidden>No journal entries yet.<br>Add your first garden note above.</p>
       </div>

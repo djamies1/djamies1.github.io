@@ -1102,6 +1102,7 @@ function refreshGardenUI(name) {
   updateGardenBadge();
   checkReminders();
   renderHarvestReadyBanner();
+  updateJournalCropSelect();
   if (currentPanelTab === 'garden') renderGardenTab();
   renderFrostAlertBanner();
   renderThisWeek();
@@ -1137,17 +1138,132 @@ function parseHarvestDays(daysStr) {
   return m ? parseInt(m[1], 10) : null;
 }
 
+// ── Phase 7: Growth stage ────────────────────────
+function getGrowthStage(daysPlanted, harvestMin) {
+  if (!harvestMin || daysPlanted < 0) return null;
+  const pct = daysPlanted / harvestMin;
+  if (pct >= 1.0) return { stage: 'ready',       icon: '🌾', label: 'Ready to harvest', pct: 1 };
+  if (pct >= 0.8) return { stage: 'maturing',    icon: '🌸', label: 'Nearly ready',     pct };
+  if (pct >= 0.35) return { stage: 'growing',    icon: '🌿', label: 'Growing',           pct };
+  if (pct >= 0.08) return { stage: 'seedling',   icon: '🪴', label: 'Seedling',          pct };
+  return                  { stage: 'germinating', icon: '🌱', label: 'Germinating',       pct };
+}
+
 function getGardenStatus(name) {
   const entry = myGarden[name];
   if (!entry) return null;
-  if (!entry.planted) return { type: 'saved', label: 'Saved — no planting date' };
+  if (!entry.planted) return { type: 'saved', label: 'Saved — no planting date', stage: null };
   const today = new Date(); today.setHours(0,0,0,0);
   const daysPlanted = Math.round((today - new Date(entry.planted)) / 86400000);
   const harvestMin = parseHarvestDays(cropData[name]?.days);
-  if (!harvestMin) return { type: 'growing', label: `Planted ${daysPlanted}d ago` };
+  const stage = getGrowthStage(daysPlanted, harvestMin);
+  if (!harvestMin) return { type: 'growing', label: `Planted ${daysPlanted}d ago`, stage, daysPlanted };
   const remaining = harvestMin - daysPlanted;
-  if (remaining <= 0) return { type: 'ready', label: 'Ready to harvest!' };
-  return { type: 'growing', label: `~${remaining} days to harvest (planted ${daysPlanted}d ago)` };
+  if (remaining <= 0) return { type: 'ready', label: 'Ready to harvest!', stage, daysPlanted };
+  return { type: 'growing', label: `~${remaining}d to harvest`, stage, daysPlanted };
+}
+
+// ── Phase 7: Today's garden tasks ────────────────
+function renderGardenTasks() {
+  const el = document.getElementById('garden-tasks');
+  if (!el) return;
+  const names = Object.keys(myGarden);
+  if (!names.length) { el.innerHTML = ''; return; }
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const tasks = [];
+
+  for (const name of names) {
+    const entry = myGarden[name];
+    const c = cropData[name];
+    if (!c) continue;
+
+    // Ready to harvest
+    const status = getGardenStatus(name);
+    if (status?.type === 'ready') {
+      tasks.push({ icon: '🌾', head: `Harvest your ${name}`, sub: status.label, type: 'urgent', crop: name });
+      continue;
+    }
+
+    if (!entry.planted) {
+      // Nudge to log a planting date if already in season
+      if (selectedZone) {
+        const data = getPlantingData(selectedZone, currentMonth);
+        const inSeason = ['startIndoors','directSow','transplant'].some(k => data[k]?.includes(name));
+        if (inSeason) tasks.push({ icon: '📅', head: `Log a planting date for ${name}`, sub: 'Track progress and get a harvest countdown', type: 'info', crop: name });
+      }
+      continue;
+    }
+
+    const daysPlanted = status?.daysPlanted ?? 0;
+    const harvestMin  = parseHarvestDays(c.days);
+    const stage       = status?.stage;
+
+    // Frost risk for frost-sensitive crops
+    if (FROST_SENSITIVE.has(name) && weatherData?.daily?.temperature_2m_min) {
+      const idx = weatherData.daily.temperature_2m_min.slice(0, 3).findIndex(t => t < 35);
+      if (idx >= 0) {
+        const when = ['tonight', 'tomorrow', 'in 2 days'][idx];
+        tasks.push({ icon: '❄️', head: `Cover ${name} — frost ${when}`, sub: 'Frost-sensitive crop at risk', type: 'urgent', crop: name });
+      }
+    }
+
+    // Germination: keep moist
+    if (stage?.stage === 'germinating') {
+      tasks.push({ icon: '💧', head: `Keep ${name} moist`, sub: `${daysPlanted}d since sowing — seeds need consistent moisture to germinate`, type: 'action', crop: name });
+    }
+
+    // Thinning: ~14 days for direct-sown crops
+    if (daysPlanted >= 12 && daysPlanted <= 18 && stage?.stage === 'seedling') {
+      if (selectedZone) {
+        const data = getPlantingData(selectedZone, currentMonth);
+        if (data.directSow?.includes(name))
+          tasks.push({ icon: '✂️', head: `Thin your ${name}`, sub: `${daysPlanted}d old — thin to proper spacing for best yields`, type: 'action', crop: name });
+      }
+    }
+
+    // Harden off: 2 weeks before last frost, if started indoors
+    if (selectedZone && stage?.stage === 'seedling') {
+      const frost = FROST_DATES[selectedZone.toLowerCase()];
+      if (frost?.last) {
+        const lastFrost = parseFrostDate(frost.last);
+        if (lastFrost) {
+          const daysToFrost = Math.round((lastFrost - today) / 86400000);
+          if (daysToFrost > 0 && daysToFrost <= 14) {
+            const data = getPlantingData(selectedZone, currentMonth);
+            if (data.startIndoors?.includes(name) || data.transplant?.includes(name))
+              tasks.push({ icon: '🌤', head: `Harden off ${name}`, sub: `Last frost ~${daysToFrost} days away — start bringing outside for a few hours daily`, type: 'soon', crop: name });
+          }
+        }
+      }
+    }
+
+    // Nearly ready — prepare for harvest
+    if (stage?.stage === 'maturing' && harvestMin) {
+      const remaining = harvestMin - daysPlanted;
+      tasks.push({ icon: '👀', head: `Watch ${name} closely`, sub: `~${remaining} days to harvest — check daily for ripeness`, type: 'soon', crop: name });
+    }
+  }
+
+  // Nudge to add crops if garden has nothing planted
+  if (!tasks.length && names.length) {
+    tasks.push({ icon: '📅', head: 'Log planting dates', sub: 'Add dates to your crops to unlock harvest countdowns and personalised tasks', type: 'info', crop: null });
+  }
+
+  if (!tasks.length) { el.innerHTML = ''; return; }
+
+  el.innerHTML = `<div class="garden-tasks-header">📋 Today's Tasks</div>` +
+    tasks.slice(0, 5).map(t => `
+      <div class="garden-task garden-task--${t.type}"${t.crop ? ` data-crop="${t.crop}"` : ''} style="cursor:${t.crop ? 'pointer' : 'default'}">
+        <span class="garden-task-icon">${t.icon}</span>
+        <div class="garden-task-body"><strong>${t.head}</strong><span>${t.sub}</span></div>
+      </div>`).join('');
+
+  // Click task to open crop modal
+  el.addEventListener('click', e => {
+    const task = e.target.closest('.garden-task[data-crop]');
+    if (task?.dataset.crop) openCropDetail(task.dataset.crop);
+  }, { once: true });
 }
 
 function renderGardenTab() {
@@ -1188,6 +1304,11 @@ function renderGardenTab() {
           <div class="garden-item-info">
             <span class="garden-item-name">${name}${badges}</span>
             <span class="garden-item-status">${status?.label || ''}</span>
+            ${status?.stage ? `
+            <div class="growth-bar-wrap" title="${status.stage.label}">
+              <div class="growth-bar-fill growth-bar--${status.stage.stage}" style="width:${Math.min(100,Math.round(status.stage.pct*100))}%"></div>
+            </div>
+            <div class="growth-stage-row"><span class="growth-stage-icon">${status.stage.icon}</span>${status.stage.label}</div>` : ''}
           </div>
         </div>
         <div class="garden-item-actions">
@@ -1199,6 +1320,7 @@ function renderGardenTab() {
     }
   }
   list.innerHTML = html;
+  renderGardenTasks();
   renderGardenStats();
   renderGardenGantt();
   renderGardenFooter();
@@ -2426,6 +2548,9 @@ function setLayoutMode(mode) {
     btn.title = mode === 'garden' ? 'Switch to map view' : 'Switch to garden view';
     btn.classList.toggle('garden-active', mode === 'garden');
   }
+  // Show resize handle only in garden mode (desktop)
+  const handle = document.getElementById('map-resize-handle');
+  if (handle) handle.hidden = (mode !== 'garden');
   // Leaflet needs to recalculate after container resize
   setTimeout(() => {
     if (typeof map !== 'undefined' && map) map.invalidateSize();
@@ -2441,6 +2566,59 @@ function initLayoutToggle() {
 
   document.getElementById('layout-toggle')?.addEventListener('click', () => {
     setLayoutMode(layoutMode === 'garden' ? 'map' : 'garden');
+  });
+
+  initResizeHandle();
+}
+
+// ── Phase 7: Drag-to-resize map/panel split ───────
+function initResizeHandle() {
+  const handle = document.getElementById('map-resize-handle');
+  if (!handle) return;
+
+  let dragging = false;
+  const MIN_W = 160, MAX_W = 520;
+
+  function setMapWidth(px) {
+    const clamped = Math.max(MIN_W, Math.min(MAX_W, px));
+    document.documentElement.style.setProperty('--map-mini-width', clamped + 'px');
+    handle.style.left = clamped + 'px';
+    localStorage.setItem('pzf-map-width', clamped);
+  }
+
+  // Restore persisted width
+  const saved = parseInt(localStorage.getItem('pzf-map-width'), 10);
+  if (saved && saved >= MIN_W && saved <= MAX_W) setMapWidth(saved);
+
+  handle.addEventListener('mousedown', e => {
+    dragging = true;
+    handle.classList.add('dragging');
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    setMapWidth(e.clientX);
+    if (typeof map !== 'undefined' && map) map.invalidateSize();
+  });
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    handle.classList.remove('dragging');
+  });
+
+  // Touch support
+  handle.addEventListener('touchstart', e => {
+    dragging = true;
+    handle.classList.add('dragging');
+  }, { passive: true });
+  window.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    setMapWidth(e.touches[0].clientX);
+    if (typeof map !== 'undefined' && map) map.invalidateSize();
+  }, { passive: true });
+  window.addEventListener('touchend', () => {
+    dragging = false;
+    handle.classList.remove('dragging');
   });
 }
 
@@ -2469,20 +2647,23 @@ function renderHarvestReadyBanner() {
   };
 }
 
-// ── Phase 6: Journal ──────────────────────────────
+// ── Phase 6 + 7: Journal ─────────────────────────
+let journalFilterCrop = '';  // '' = all
+
 function loadJournal() {
   try { journalEntries = JSON.parse(localStorage.getItem('pzf-journal') || '[]'); }
   catch { journalEntries = []; }
 }
 function saveJournal() { localStorage.setItem('pzf-journal', JSON.stringify(journalEntries)); }
 
-function addJournalEntry(text) {
+function addJournalEntry(text, cropTag) {
   const trimmed = text.trim();
   if (!trimmed) return;
   journalEntries.unshift({
     id: Date.now(),
     date: new Date().toISOString(),
     text: trimmed,
+    crop: cropTag || null,
   });
   saveJournal();
   renderJournalTab();
@@ -2494,21 +2675,50 @@ function deleteJournalEntry(id) {
   renderJournalTab();
 }
 
+function updateJournalCropSelect() {
+  const sel = document.getElementById('journal-crop-tag');
+  if (!sel) return;
+  const crops = Object.keys(myGarden).sort();
+  sel.innerHTML = `<option value="">🌱 No crop tag</option>` +
+    crops.map(n => `<option value="${n}">${cropData[n]?.emoji || '🌱'} ${n}</option>`).join('');
+}
+
+function renderJournalFilterBar() {
+  const bar = document.getElementById('journal-filter-bar');
+  if (!bar) return;
+  // Collect unique crop tags in entries
+  const tags = [...new Set(journalEntries.filter(e => e.crop).map(e => e.crop))].sort();
+  if (!tags.length) { bar.innerHTML = ''; return; }
+  bar.innerHTML = `<button class="journal-filter-chip${journalFilterCrop === '' ? ' active' : ''}" data-crop="">All</button>` +
+    tags.map(t => `<button class="journal-filter-chip${journalFilterCrop === t ? ' active' : ''}" data-crop="${t}">${cropData[t]?.emoji || '🌱'} ${t}</button>`).join('');
+}
+
 function renderJournalTab() {
   const list  = document.getElementById('journal-list');
   const empty = document.getElementById('journal-empty-msg');
   if (!list) return;
-  if (!journalEntries.length) {
+
+  updateJournalCropSelect();
+  renderJournalFilterBar();
+
+  const entries = journalFilterCrop
+    ? journalEntries.filter(e => e.crop === journalFilterCrop)
+    : journalEntries;
+
+  if (!entries.length) {
     list.innerHTML = '';
     if (empty) empty.hidden = false;
     return;
   }
   if (empty) empty.hidden = true;
-  list.innerHTML = journalEntries.map(e => {
+
+  list.innerHTML = entries.map(e => {
     const d = new Date(e.date);
     const dateStr = d.toLocaleDateString(undefined, { weekday:'short', year:'numeric', month:'short', day:'numeric' })
-                  + ' ' + d.toLocaleTimeString(undefined, { hour:'2-digit', minute:'2-digit' });
+                  + ' · ' + d.toLocaleTimeString(undefined, { hour:'2-digit', minute:'2-digit' });
+    const tagHtml = e.crop ? `<span class="journal-entry-crop-tag">${cropData[e.crop]?.emoji || '🌱'} ${e.crop}</span>` : '';
     return `<div class="journal-entry" data-id="${e.id}">
+      ${tagHtml}
       <div class="journal-entry-date">${dateStr}</div>
       <div class="journal-entry-text">${e.text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
       <button class="journal-entry-delete" data-id="${e.id}" aria-label="Delete entry">&times;</button>
@@ -2522,20 +2732,26 @@ function initJournal() {
   const addBtn = document.getElementById('journal-add-btn');
   const input  = document.getElementById('journal-input');
   if (addBtn && input) {
-    addBtn.addEventListener('click', () => {
-      addJournalEntry(input.value);
+    const doAdd = () => {
+      const tag = document.getElementById('journal-crop-tag')?.value || '';
+      addJournalEntry(input.value, tag);
       input.value = '';
-    });
+    };
+    addBtn.addEventListener('click', doAdd);
     input.addEventListener('keydown', e => {
-      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-        addJournalEntry(input.value);
-        input.value = '';
-      }
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) doAdd();
     });
   }
 
   document.getElementById('journal-list')?.addEventListener('click', e => {
     const btn = e.target.closest('.journal-entry-delete');
     if (btn) { deleteJournalEntry(parseInt(btn.dataset.id, 10)); return; }
+  });
+
+  document.getElementById('journal-filter-bar')?.addEventListener('click', e => {
+    const chip = e.target.closest('.journal-filter-chip');
+    if (!chip) return;
+    journalFilterCrop = chip.dataset.crop;
+    renderJournalTab();
   });
 }
