@@ -2122,51 +2122,42 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
 }
 
 /* ──────────────────────────────────────────────
-   Phase 6 — Garden mode layout
+   Phase 6 — Garden mode layout (map fully hidden)
 ────────────────────────────────────────────── */
-body.garden-mode #globe-container {
-  right: auto;
-  width: var(--map-mini-width);
-  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-}
-body.garden-mode #season-bg {
-  right: auto;
-  width: var(--map-mini-width);
-  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-}
-body.garden-mode #zone-legend {
-  display: none;
-}
+body.garden-mode #globe-container { display: none; }
+body.garden-mode #season-bg { display: none; }
+body.garden-mode #zone-legend { display: none; }
+body.garden-mode #map-resize-handle { display: none !important; }
+
 body.garden-mode #info-panel {
-  left: var(--map-mini-width);
+  left: 0;
   right: 0;
-  width: auto;
+  width: 100%;
   transform: none !important;
-  border-left: 1px solid var(--border);
+  border-left: none;
 }
 body.garden-mode #info-panel.panel-hidden {
   transform: none !important;
 }
-body.garden-mode #panel-close {
-  display: none;
+body.garden-mode #panel-close { display: none; }
+
+/* Wider layouts: cap content width and use two-column plant lists */
+body.garden-mode #panel-content {
+  max-width: 900px;
+  margin: 0 auto;
 }
-/* Two-column plant lists when panel is wide */
 body.garden-mode .plant-section ul {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 4px;
 }
 
-/* Mobile garden mode: hide map, panel takes full screen */
+/* Mobile: same behaviour, already full-width */
 @media (max-width: 640px) {
-  body.garden-mode #globe-container { display: none; }
-  body.garden-mode #season-bg { width: 100%; right: 0; }
   body.garden-mode #info-panel {
-    left: 0;
     top: calc(var(--topbar-height) + var(--slider-height));
     bottom: 0;
     height: auto;
-    width: 100%;
     transform: translateY(0) !important;
   }
 }
@@ -2417,3 +2408,100 @@ body.garden-mode .plant-section ul {
 @media (max-width: 640px) {
   #map-resize-handle { display: none !important; }
 }
+
+/* ──────────────────────────────────────────────
+   Custom crop — badge + modal
+────────────────────────────────────────────── */
+.custom-crop-badge {
+  display: inline-block;
+  background: rgba(192,132,252,0.15);
+  border: 1px solid rgba(192,132,252,0.4);
+  border-radius: 99px;
+  color: #c084fc;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-left: 5px;
+  padding: 1px 6px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.browse-card-custom { font-size: 9px; color: #c084fc; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+#add-custom-crop-btn {
+  background: var(--surface2);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px;
+  text-align: center;
+  transition: color 0.15s, border-color 0.15s;
+  width: 100%;
+  margin-top: 10px;
+}
+#add-custom-crop-btn:hover { color: #c084fc; border-color: #c084fc; }
+
+/* Custom crop dialog */
+#custom-crop-modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  max-width: 440px;
+  padding: 0;
+  width: 90vw;
+}
+#custom-crop-modal::backdrop { background: rgba(0,0,0,0.6); }
+#custom-crop-inner { display: flex; flex-direction: column; }
+#custom-crop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--border);
+}
+#custom-crop-header h3 { font-size: 15px; font-weight: 700; }
+#custom-crop-close {
+  background: none; border: none; color: var(--text-muted);
+  cursor: pointer; font-size: 20px; line-height: 1; padding: 2px 6px;
+}
+#custom-crop-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+.cc-row { display: flex; gap: 10px; }
+.cc-field { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.cc-field label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.cc-field input, .cc-field select, .cc-field textarea {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  padding: 7px 10px;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+.cc-field input:focus, .cc-field select:focus, .cc-field textarea:focus {
+  border-color: var(--accent-dark); outline: none;
+}
+.cc-field textarea { resize: vertical; min-height: 60px; }
+#cc-emoji-field { max-width: 80px; }
+#cc-save-btn {
+  background: rgba(74,222,128,0.12);
+  border: 1px solid rgba(74,222,128,0.4);
+  border-radius: 8px;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px;
+  transition: background 0.15s;
+}
+#cc-save-btn:hover { background: rgba(74,222,128,0.2); }
+#cc-error { color: #f87171; font-size: 12px; display: none; }

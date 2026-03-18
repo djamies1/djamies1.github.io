@@ -259,6 +259,7 @@ async function loadData() {
     zonesData    = await zonesRes.json();
     plantingData = await plantingRes.json();
     cropData     = cropsRes.ok ? await cropsRes.json() : {};
+    mergeCustomCrops();
 
     normalizeZoneProperties();
     initMap();
@@ -542,6 +543,7 @@ function initUI() {
   initYearCalendar();
   initGarden();
   initJournal();
+  initCustomCrops();
   initLayoutToggle();
   initOnboarding();
   initKeyboardShortcuts();
@@ -733,9 +735,10 @@ function renderCropItem(name) {
   const inG = isInGarden(name);
   return `<li class="crop-card" data-crop="${name}" role="button" tabindex="0" aria-label="${name} — tap for details">
     <div class="crop-card-body">
-      <div class="crop-title">${c.emoji || '🌱'} ${name}${inG ? '<span class="crop-garden-star">★</span>' : ''}</div>
-      <div class="crop-detail">${convertMeasurement(c.depth)} deep · ${convertMeasurement(c.spacing)} apart · ${convertMeasurement(c.water)} · ${c.days}</div>
+      <div class="crop-title">${c.emoji || '🌱'} ${name}${inG ? '<span class="crop-garden-star">★</span>' : ''}${c.custom ? '<span class="custom-crop-badge">Custom</span>' : ''}</div>
+      <div class="crop-detail">${c.custom ? (c.days ? `🗓 ${c.days} days to harvest` : 'Custom crop') : `${convertMeasurement(c.depth)} deep · ${convertMeasurement(c.spacing)} apart · ${convertMeasurement(c.water)} · ${c.days}`}</div>
       ${c.tip ? `<div class="crop-tip">${c.tip}</div>` : ''}
+      ${c.custom && c.description ? `<div class="crop-tip">${c.description}</div>` : ''}
     </div>
     <button class="crop-quick-add${inG ? ' in-garden' : ''}" data-crop="${name}" aria-label="${inG ? 'Remove from' : 'Add to'} My Garden" title="${inG ? 'Remove from My Garden' : 'Add to My Garden'}">${inG ? '★' : '☆'}</button>
     <span class="crop-card-chevron" aria-hidden="true">›</span>
@@ -758,13 +761,15 @@ function openCropDetail(name) {
   const badge = document.getElementById('modal-difficulty');
   badge.textContent = c.difficulty || '';
   badge.className   = 'difficulty-badge' + (c.difficulty ? ' difficulty-' + c.difficulty.toLowerCase() : '');
-  document.getElementById('modal-body').innerHTML    = renderCropDetail(c);
+  document.getElementById('modal-body').innerHTML    = c.custom ? renderCustomCropDetail(c, name) : renderCropDetail(c);
   document.getElementById('modal-body').scrollTop   = 0;
-  const schedPH = document.getElementById('modal-schedule-placeholder');
-  if (schedPH) schedPH.outerHTML = renderPlantingScheduleHTML(name);
+  if (!c.custom) {
+    const schedPH = document.getElementById('modal-schedule-placeholder');
+    if (schedPH) schedPH.outerHTML = renderPlantingScheduleHTML(name);
+  }
   renderModalGardenBar(name);
   renderModalGardenSections(name);
-  renderRelatedCrops(name);
+  if (!c.custom) renderRelatedCrops(name);
   if (!modal.open) modal.showModal();
 }
 
@@ -811,6 +816,34 @@ function renderCropDetail(c) {
     ${c.tip ? `<div class="modal-section modal-section--tip"><div class="modal-tip">💡 ${c.tip}</div></div>` : ''}
     <div id="modal-schedule-placeholder"></div>
   `;
+}
+
+function renderCustomCropDetail(c, name) {
+  const deleteBtn = `<button id="modal-delete-custom" style="
+    background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.3);
+    border-radius:6px;color:#f87171;cursor:pointer;font-size:12px;font-weight:600;
+    margin-top:8px;padding:6px 14px;width:100%;transition:background 0.15s;">
+    🗑 Delete this custom crop
+  </button>`;
+  const html = `
+    <div class="modal-section">
+      <div class="modal-section-title">Custom Crop <span class="custom-crop-badge">Custom</span></div>
+      ${c.category ? `<div class="detail-row"><span class="detail-label">Category</span><span>${c.category}</span></div>` : ''}
+      ${c.days     ? `<div class="detail-row"><span class="detail-label">Days to harvest</span><span>${c.days}</span></div>` : ''}
+      ${c.description ? `<div class="detail-row"><span class="detail-label">Notes</span><span>${c.description}</span></div>` : ''}
+      ${deleteBtn}
+    </div>`;
+  // Wire delete button after render
+  setTimeout(() => {
+    document.getElementById('modal-delete-custom')?.addEventListener('click', () => {
+      if (!confirm(`Delete "${name}" and remove it from your garden?`)) return;
+      deleteCustomCrop(name);
+      document.getElementById('crop-modal')?.close();
+      renderBrowseGrid();
+      showToast(`${name} deleted`, 'success');
+    });
+  }, 0);
+  return html;
 }
 
 // ── Helpers ────────────────────────────────────
@@ -1075,6 +1108,7 @@ function renderBrowseGrid() {
       </div>
       ${isActive ? '<div class="browse-card-season">In season</div>' : ''}
       ${isInGarden(name) ? '<div class="browse-card-saved">★ Saved</div>' : ''}
+      ${c.custom ? '<div class="browse-card-custom">Custom</div>' : ''}
     </div>`;
   }).join('');
 }
@@ -2569,6 +2603,92 @@ function initLayoutToggle() {
   });
 
   initResizeHandle();
+}
+
+// ── Custom crops ──────────────────────────────────
+function loadCustomCrops() {
+  try { return JSON.parse(localStorage.getItem('pzf-custom-crops') || '{}'); }
+  catch { return {}; }
+}
+function saveCustomCrops(obj) { localStorage.setItem('pzf-custom-crops', JSON.stringify(obj)); }
+
+function mergeCustomCrops() {
+  const custom = loadCustomCrops();
+  for (const [name, data] of Object.entries(custom)) {
+    if (!cropData[name]) cropData[name] = { ...data, custom: true };
+  }
+}
+
+function addCustomCrop({ name, emoji, category, days, notes }) {
+  const trimmed = name.trim();
+  if (!trimmed) return false;
+  const entry = {
+    emoji: emoji?.trim() || '🌱',
+    category: category || 'Vegetables',
+    days: days ? String(days) : '',
+    description: notes?.trim() || '',
+    custom: true,
+  };
+  const custom = loadCustomCrops();
+  custom[trimmed] = entry;
+  saveCustomCrops(custom);
+  cropData[trimmed] = { ...entry };
+  // Auto-add to garden
+  gardenAdd(trimmed);
+  return true;
+}
+
+function deleteCustomCrop(name) {
+  const custom = loadCustomCrops();
+  delete custom[name];
+  saveCustomCrops(custom);
+  delete cropData[name];
+  gardenRemove(name);
+}
+
+function openCustomCropModal() {
+  const modal = document.getElementById('custom-crop-modal');
+  if (!modal) return;
+  // Reset form
+  document.getElementById('cc-name').value  = '';
+  document.getElementById('cc-emoji').value = '';
+  document.getElementById('cc-days').value  = '';
+  document.getElementById('cc-notes').value = '';
+  document.getElementById('cc-category').value = 'Vegetables';
+  document.getElementById('cc-error').style.display = 'none';
+  modal.showModal();
+  document.getElementById('cc-name').focus();
+}
+
+function initCustomCrops() {
+  const modal    = document.getElementById('custom-crop-modal');
+  const closeBtn = document.getElementById('custom-crop-close');
+  const saveBtn  = document.getElementById('cc-save-btn');
+  const errEl    = document.getElementById('cc-error');
+
+  closeBtn?.addEventListener('click', () => modal.close());
+  modal?.addEventListener('click', e => { if (e.target === modal) modal.close(); });
+
+  saveBtn?.addEventListener('click', () => {
+    const name = document.getElementById('cc-name').value.trim();
+    if (!name) { errEl.style.display = 'block'; return; }
+    errEl.style.display = 'none';
+    const ok = addCustomCrop({
+      name,
+      emoji:    document.getElementById('cc-emoji').value,
+      category: document.getElementById('cc-category').value,
+      days:     document.getElementById('cc-days').value,
+      notes:    document.getElementById('cc-notes').value,
+    });
+    if (ok) {
+      modal.close();
+      showToast(`${name} added to My Garden ✓`, 'success');
+      renderBrowseGrid();
+      updateJournalCropSelect();
+    }
+  });
+
+  document.getElementById('add-custom-crop-btn')?.addEventListener('click', openCustomCropModal);
 }
 
 // ── Phase 7: Drag-to-resize map/panel split ───────

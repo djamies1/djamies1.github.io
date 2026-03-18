@@ -223,7 +223,57 @@
       </div>
     </div>
     <div id="browse-grid"></div>
+    <button id="add-custom-crop-btn">+ Add a crop we don't have yet</button>
   </div>
+
+  <dialog id="custom-crop-modal" aria-labelledby="cc-title" aria-modal="true">
+    <div id="custom-crop-inner">
+      <header id="custom-crop-header">
+        <h3 id="cc-title">Add Custom Crop</h3>
+        <button id="custom-crop-close" aria-label="Close">&times;</button>
+      </header>
+      <div id="custom-crop-form">
+        <div class="cc-row">
+          <div class="cc-field" id="cc-emoji-field">
+            <label>Emoji</label>
+            <input id="cc-emoji" type="text" placeholder="🌱" maxlength="4">
+          </div>
+          <div class="cc-field">
+            <label>Crop name *</label>
+            <input id="cc-name" type="text" placeholder="e.g. Purple Dragon Carrot">
+          </div>
+        </div>
+        <div class="cc-row">
+          <div class="cc-field">
+            <label>Category</label>
+            <select id="cc-category">
+              <option value="Vegetables">Vegetables</option>
+              <option value="Herbs">Herbs</option>
+              <option value="Root Veg">Root Veg</option>
+              <option value="Greens">Greens</option>
+              <option value="Brassicas">Brassicas</option>
+              <option value="Legumes">Legumes</option>
+              <option value="Cucurbits">Cucurbits</option>
+              <option value="Alliums">Alliums</option>
+              <option value="Perennials">Perennials</option>
+              <option value="Tropical">Tropical</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="cc-field">
+            <label>Days to harvest</label>
+            <input id="cc-days" type="number" placeholder="e.g. 70" min="1" max="999">
+          </div>
+        </div>
+        <div class="cc-field">
+          <label>Notes / description</label>
+          <textarea id="cc-notes" placeholder="Growing tips, variety notes…"></textarea>
+        </div>
+        <div id="cc-error">Please enter a crop name.</div>
+        <button id="cc-save-btn">Add to My Garden →</button>
+      </div>
+    </div>
+  </dialog>
 
   <!-- Onboarding overlay -->
   <div id="onboarding" hidden>
