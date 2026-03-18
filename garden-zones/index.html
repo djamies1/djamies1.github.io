@@ -161,6 +161,7 @@
         <div id="garden-dashboard"></div>
         <div id="achievement-banner"></div>
         <div id="garden-tasks"></div>
+        <div id="garden-checklist"></div>
         <div id="garden-stats"></div>
         <div id="garden-list"></div>
         <div id="grow-next"></div>
@@ -350,10 +351,23 @@
         <div class="shortcut-row"><div class="shortcut-keys"><kbd>/</kbd></div><span>Focus address search</span></div>
         <div class="shortcut-row"><div class="shortcut-keys"><kbd>Esc</kbd></div><span>Close modal / browse</span></div>
         <div class="shortcut-row"><div class="shortcut-keys"><kbd>M</kbd></div><span>Toggle map / garden view</span></div>
+        <div class="shortcut-row"><div class="shortcut-keys"><kbd>⌘K</kbd></div><span>Quick crop search</span></div>
         <div class="shortcut-row"><div class="shortcut-keys"><kbd>?</kbd></div><span>Show this help</span></div>
       </div>
     </div>
   </dialog>
+
+  <!-- Quick search overlay (⌘K / Ctrl+K) -->
+  <div id="quick-search-overlay" hidden role="dialog" aria-label="Search crops" aria-modal="true">
+    <div id="quick-search-inner">
+      <div id="quick-search-input-wrap">
+        <span id="qs-icon">🔍</span>
+        <input type="text" id="quick-search-input" placeholder="Search crops…" autocomplete="off" spellcheck="false" aria-label="Search crops">
+        <kbd id="qs-esc-hint">ESC</kbd>
+      </div>
+      <div id="quick-search-results"></div>
+    </div>
+  </div>
 
   <!-- CDN Libraries -->
   <script src="lib/leaflet.min.js"></script>

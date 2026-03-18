@@ -546,10 +546,12 @@ function initUI() {
   initYearCalendar();
   initGarden();
   initJournal();
+  initChecklist();
   initCustomCrops();
   initLayoutToggle();
   initInstallPrompt();
   initOfflineIndicator();
+  initQuickSearch();
   initOnboarding();
   initKeyboardShortcuts();
   initPanelSwipe();
@@ -1484,6 +1486,7 @@ function renderGardenTab() {
   list.innerHTML = html;
   renderGardenDashboard();
   renderGardenTasks();
+  renderGardenChecklist();
   renderGardenStats();
   renderGardenGantt();
   renderGardenFooter();
@@ -1936,10 +1939,15 @@ function gardenSetNotes(name, notes) {
   saveGarden();
 }
 
-function gardenLogHarvest(name, date, notes) {
+function gardenLogHarvest(name, date, notes, qty, unit) {
   if (!myGarden[name]) return;
   if (!myGarden[name].harvestLog) myGarden[name].harvestLog = [];
-  myGarden[name].harvestLog.unshift({ date, notes: notes.trim() });
+  myGarden[name].harvestLog.unshift({
+    date,
+    notes: (notes || '').trim(),
+    qty: qty || null,
+    unit: unit || null,
+  });
   saveGarden();
   refreshGardenUI(name);
 }
@@ -1961,12 +1969,25 @@ function renderModalGardenSections(name) {
     <div class="modal-section-title" style="margin-top:14px">
       Harvest Log${log.length ? `<span class="harvest-count">(${log.length})</span>` : ''}
     </div>
-    ${log.length ? `<div class="harvest-log-list">${log.map(h =>
-      `<div class="harvest-log-item"><span class="hl-date">${h.date}</span><span class="hl-notes">${h.notes || '—'}</span></div>`
-    ).join('')}</div>` : ''}
+    ${log.length ? `<div class="harvest-log-list">${log.map(h => {
+      const qtyStr = h.qty ? ` <span class="hl-qty">${h.qty}${h.unit ? '\u202f' + h.unit : ''}</span>` : '';
+      return `<div class="harvest-log-item"><span class="hl-date">${h.date}</span><span class="hl-notes">${h.notes || '—'}</span>${qtyStr}</div>`;
+    }).join('')}</div>` : ''}
     <div class="harvest-log-entry">
       <input type="date" id="harvest-date-in" value="${today}" max="${today}" aria-label="Harvest date">
-      <input type="text" id="harvest-notes-in" placeholder="Yield / notes (optional)">
+      <input type="text" id="harvest-notes-in" placeholder="Notes (optional)">
+      <div class="harvest-qty-wrap">
+        <input type="number" id="harvest-qty-in" placeholder="Qty" min="0" step="any" aria-label="Quantity harvested">
+        <select id="harvest-unit-in" aria-label="Unit">
+          <option value="">unit</option>
+          <option value="kg">kg</option>
+          <option value="lbs">lbs</option>
+          <option value="g">g</option>
+          <option value="oz">oz</option>
+          <option value="count">count</option>
+          <option value="bunch">bunch</option>
+        </select>
+      </div>
       <button class="harvest-log-add-btn" id="harvest-log-btn">Log</button>
     </div>`;
   body.appendChild(sec);
@@ -1976,12 +1997,15 @@ function renderModalGardenSections(name) {
     noteTimer = setTimeout(() => gardenSetNotes(name, e.target.value), 400);
   });
   sec.querySelector('#harvest-log-btn').addEventListener('click', e => {
-    const date = sec.querySelector('#harvest-date-in').value;
-    const nt = sec.querySelector('#harvest-notes-in').value;
+    const date  = sec.querySelector('#harvest-date-in').value;
+    const nt    = sec.querySelector('#harvest-notes-in').value;
+    const qty   = parseFloat(sec.querySelector('#harvest-qty-in').value) || null;
+    const unit  = sec.querySelector('#harvest-unit-in').value || null;
     if (!date) return;
     showHarvestConfetti(e.target);
-    gardenLogHarvest(name, date, nt);
+    gardenLogHarvest(name, date, nt, qty, unit);
     sec.querySelector('#harvest-notes-in').value = '';
+    sec.querySelector('#harvest-qty-in').value   = '';
   });
 
   // Succession section
@@ -2343,6 +2367,19 @@ function renderGardenStats() {
   const growing = names.filter(n => myGarden[n]?.planted);
   const totalHarvests = names.reduce((sum, n) => sum + (myGarden[n]?.harvestLog?.length || 0), 0);
 
+  // Total yield — only sum same unit if consistent; otherwise show count of qty-logged harvests
+  const qtyByUnit = {};
+  for (const n of names) {
+    for (const h of (myGarden[n]?.harvestLog || [])) {
+      if (h.qty) {
+        const u = h.unit || 'unit';
+        qtyByUnit[u] = (qtyByUnit[u] || 0) + h.qty;
+      }
+    }
+  }
+  const yieldParts = Object.entries(qtyByUnit).map(([u, q]) => `${parseFloat(q.toFixed(2))} ${u}`);
+  const yieldStr = yieldParts.join(' · ');
+
   // Find next upcoming harvest
   let nextHarvest = null, nextDays = Infinity;
   for (const name of growing) {
@@ -2367,6 +2404,7 @@ function renderGardenStats() {
     ${nextHarvest ? `<div class="garden-stats-next">
       Next harvest: <strong>${cropData?.[nextHarvest]?.emoji || '🌱'} ${nextHarvest}</strong> in ~${nextDays} day${nextDays===1?'':'s'}
     </div>` : ''}
+    ${yieldStr ? `<div class="garden-stats-yield">🌾 Total yield: <strong>${yieldStr}</strong></div>` : ''}
     ${earned.size ? `<div class="achievement-shelf" id="achievement-shelf">
       ${ACHIEVEMENTS.map(a => `<div class="ach-chip${earned.has(a.id) ? ' unlocked' : ''}" title="${a.desc}">${a.icon} ${a.name}</div>`).join('')}
     </div>` : ''}`;
@@ -3190,4 +3228,209 @@ function initOfflineIndicator() {
   update();
   window.addEventListener('online',  update);
   window.addEventListener('offline', update);
+}
+
+// ── Phase 10: Quick Search (⌘K / Ctrl+K) ─────────
+let _qsSelectedIdx = -1;
+let _qsResults = [];
+
+function openQuickSearch() {
+  const overlay = document.getElementById('quick-search-overlay');
+  if (!overlay) return;
+  overlay.hidden = false;
+  const input = document.getElementById('quick-search-input');
+  if (!input) return;
+  input.value = '';
+  _qsSelectedIdx = -1;
+  _qsResults = [];
+  document.getElementById('quick-search-results').innerHTML = '';
+  requestAnimationFrame(() => input.focus());
+}
+
+function closeQuickSearch() {
+  const overlay = document.getElementById('quick-search-overlay');
+  if (overlay) overlay.hidden = true;
+}
+
+function renderQSResults(query) {
+  const el = document.getElementById('quick-search-results');
+  if (!el) return;
+  const q = query.trim().toLowerCase();
+  if (!q) { el.innerHTML = ''; _qsResults = []; _qsSelectedIdx = -1; return; }
+  const allNames = Object.keys(cropData).sort();
+  _qsResults = allNames.filter(n => n.toLowerCase().includes(q)).slice(0, 8);
+  _qsSelectedIdx = _qsResults.length ? 0 : -1;
+  if (!_qsResults.length) {
+    el.innerHTML = `<div class="qs-empty">No crops found for "${query.replace(/&/g,'&amp;').replace(/</g,'&lt;')}"</div>`;
+    return;
+  }
+  el.innerHTML = _qsResults.map((name, i) => {
+    const c = cropData[name];
+    const inG = isInGarden(name);
+    return `<div class="qs-result${i === 0 ? ' qs-selected' : ''}" data-idx="${i}" data-name="${name}">
+      <span class="qs-emoji">${c?.emoji || '🌱'}</span>
+      <span class="qs-name">${name}</span>
+      ${inG ? '<span class="qs-in-garden">★ Saved</span>' : ''}
+      ${c?.days ? `<span class="qs-days">${c.days}</span>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function qsSetSelection(idx) {
+  _qsSelectedIdx = idx;
+  document.querySelectorAll('.qs-result').forEach((el, i) => {
+    el.classList.toggle('qs-selected', i === idx);
+    if (i === idx) el.scrollIntoView({ block: 'nearest' });
+  });
+}
+
+function initQuickSearch() {
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      openQuickSearch();
+    }
+  });
+
+  const overlay = document.getElementById('quick-search-overlay');
+  const input   = document.getElementById('quick-search-input');
+  const results = document.getElementById('quick-search-results');
+  if (!overlay || !input || !results) return;
+
+  input.addEventListener('input', () => renderQSResults(input.value));
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeQuickSearch(); return; }
+    if (e.key === 'Enter') {
+      const name = _qsResults[_qsSelectedIdx];
+      if (name) { closeQuickSearch(); openCropDetail(name); }
+      return;
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      qsSetSelection(Math.min(_qsResults.length - 1, _qsSelectedIdx + 1));
+      return;
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      qsSetSelection(Math.max(0, _qsSelectedIdx - 1));
+      return;
+    }
+  });
+
+  results.addEventListener('click', e => {
+    const item = e.target.closest('.qs-result');
+    if (item) { closeQuickSearch(); openCropDetail(item.dataset.name); }
+  });
+
+  results.addEventListener('mouseover', e => {
+    const item = e.target.closest('.qs-result');
+    if (item) qsSetSelection(parseInt(item.dataset.idx, 10));
+  });
+
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeQuickSearch();
+  });
+}
+
+// ── Phase 10: Garden Checklist ────────────────────
+let gardenChecklist = [];
+
+function loadChecklist() {
+  try { gardenChecklist = JSON.parse(localStorage.getItem('pzf-checklist') || '[]'); }
+  catch { gardenChecklist = []; }
+}
+
+function saveChecklist() { localStorage.setItem('pzf-checklist', JSON.stringify(gardenChecklist)); }
+
+function addChecklistItem(text, dueDate) {
+  const trimmed = text.trim();
+  if (!trimmed) return;
+  gardenChecklist.push({ id: Date.now(), text: trimmed, due: dueDate || null, done: false });
+  saveChecklist();
+  renderGardenChecklist();
+}
+
+function toggleChecklistItem(id) {
+  const item = gardenChecklist.find(i => i.id === id);
+  if (item) { item.done = !item.done; saveChecklist(); renderGardenChecklist(); }
+}
+
+function deleteChecklistItem(id) {
+  gardenChecklist = gardenChecklist.filter(i => i.id !== id);
+  saveChecklist();
+  renderGardenChecklist();
+}
+
+function renderGardenChecklist() {
+  const el = document.getElementById('garden-checklist');
+  if (!el) return;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const pending = gardenChecklist.filter(i => !i.done);
+  const done    = gardenChecklist.filter(i =>  i.done);
+
+  const renderItem = item => {
+    let dueHtml = '';
+    if (item.due) {
+      const d = new Date(item.due + 'T00:00:00');
+      const diff = Math.round((d - today) / 86400000);
+      const label = diff < 0 ? `${-diff}d overdue` : diff === 0 ? 'Today' : `in ${diff}d`;
+      const cls   = diff < 0 ? 'cl-due-overdue' : diff <= 2 ? 'cl-due-soon' : 'cl-due';
+      dueHtml = `<span class="${cls}">${label}</span>`;
+    }
+    return `<div class="checklist-item${item.done ? ' checklist-done' : ''}" data-id="${item.id}">
+      <label class="checklist-check">
+        <input type="checkbox" class="cl-checkbox" data-id="${item.id}"${item.done ? ' checked' : ''}>
+        <span class="checklist-text">${item.text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</span>
+      </label>
+      ${dueHtml}
+      <button class="checklist-delete" data-id="${item.id}" aria-label="Delete task">×</button>
+    </div>`;
+  };
+
+  let html = `<div class="checklist-header">
+    <span class="checklist-title">📋 My Checklist</span>
+    <span class="checklist-count">${pending.length} pending</span>
+  </div>
+  <div class="checklist-add">
+    <input type="text" id="cl-add-input" placeholder="Add a task…" autocomplete="off">
+    <input type="date" id="cl-add-due" title="Optional due date" aria-label="Due date">
+    <button id="cl-add-btn">Add</button>
+  </div>`;
+
+  if (pending.length) html += pending.map(renderItem).join('');
+  if (done.length) html += `<div class="checklist-done-label">Completed</div>` + done.map(renderItem).join('');
+  if (!pending.length && !done.length) html += `<p class="checklist-empty">No tasks yet — add a to-do above.</p>`;
+
+  el.innerHTML = html;
+
+  document.getElementById('cl-add-btn')?.addEventListener('click', () => {
+    const input = document.getElementById('cl-add-input');
+    const due   = document.getElementById('cl-add-due')?.value || '';
+    if (input?.value.trim()) {
+      addChecklistItem(input.value, due);
+      input.value = '';
+      if (document.getElementById('cl-add-due')) document.getElementById('cl-add-due').value = '';
+    }
+  });
+  document.getElementById('cl-add-input')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const due = document.getElementById('cl-add-due')?.value || '';
+      if (e.target.value.trim()) {
+        addChecklistItem(e.target.value, due);
+        e.target.value = '';
+        if (document.getElementById('cl-add-due')) document.getElementById('cl-add-due').value = '';
+      }
+    }
+  });
+  el.querySelectorAll('.cl-checkbox').forEach(cb => {
+    cb.addEventListener('change', () => toggleChecklistItem(parseInt(cb.dataset.id, 10)));
+  });
+  el.querySelectorAll('.checklist-delete').forEach(btn => {
+    btn.addEventListener('click', () => deleteChecklistItem(parseInt(btn.dataset.id, 10)));
+  });
+}
+
+function initChecklist() {
+  loadChecklist();
 }
