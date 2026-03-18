@@ -107,6 +107,34 @@ html, body {
   color: #0a0f1a;
 }
 
+#locate-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+#locate-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+#locate-btn.locating {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+#locate-btn.locating svg {
+  animation: spin 1s linear infinite;
+}
+
 /* ──────────────────────────────────────────────
    Month slider bar
 ────────────────────────────────────────────── */
@@ -343,6 +371,51 @@ html, body {
 }
 
 /* ──────────────────────────────────────────────
+   Zone legend
+────────────────────────────────────────────── */
+#zone-legend {
+  position: absolute;
+  bottom: 24px;
+  left: 12px;
+  background: rgba(17,24,39,0.88);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.legend-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+#legend-swatches {
+  display: flex;
+  gap: 2px;
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  display: block;
+}
+
+.legend-ends {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3px;
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+/* ──────────────────────────────────────────────
    Info panel
 ────────────────────────────────────────────── */
 #info-panel {
@@ -422,14 +495,45 @@ html, body {
   color: var(--text-muted);
 }
 
+/* Frost dates */
+#frost-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.frost-item {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.frost-item strong {
+  color: var(--text);
+}
+
 /* Month display */
 #month-display {
   font-size: 13px;
   font-weight: 600;
   color: var(--accent);
-  margin-bottom: 12px;
-  padding-bottom: 12px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--border);
+}
+
+/* Month context */
+#month-context {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 14px;
+  line-height: 1.5;
 }
 
 /* Plant sections */
@@ -526,6 +630,30 @@ html, body {
   text-align: center;
   padding: 20px 0;
   display: none;
+}
+
+/* Garden tip */
+#garden-tip {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: rgba(74,222,128,0.07);
+  border: 1px solid rgba(74,222,128,0.2);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.tip-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-style: normal;
+  margin-bottom: 5px;
 }
 
 /* ──────────────────────────────────────────────

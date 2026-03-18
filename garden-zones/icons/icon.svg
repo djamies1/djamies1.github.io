@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#111827"/>
+  <!-- Stem -->
+  <line x1="256" y1="430" x2="256" y2="210" stroke="#16a34a" stroke-width="22" stroke-linecap="round"/>
+  <!-- Soil -->
+  <ellipse cx="256" cy="430" rx="90" ry="22" fill="#15803d" opacity="0.6"/>
+  <!-- Main leaf (right) -->
+  <path d="M258 210 C265 190 300 150 360 110 C360 110 330 180 280 220 Z" fill="#4ade80"/>
+  <!-- Main leaf (left) -->
+  <path d="M254 270 C247 250 210 210 150 175 C150 175 185 240 240 275 Z" fill="#22c55e"/>
+  <!-- Top leaf -->
+  <path d="M256 175 C256 175 256 130 256 100 C280 115 310 145 295 185 Z" fill="#86efac"/>
+</svg>

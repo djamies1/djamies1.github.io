@@ -3,7 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plant Zone Finder</title>
+  <title>Plant Zone Finder — What to Grow in Your Garden</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Find your USDA hardiness zone and discover exactly what to plant each month. Free interactive planting calendar for home gardeners across the US.">
+  <meta property="og:title" content="Plant Zone Finder">
+  <meta property="og:description" content="Find your zone and discover what to grow this month — free interactive planting calendar.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4ade80">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PlantZone">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+
   <link rel="stylesheet" href="lib/leaflet.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -21,6 +38,12 @@
         autocomplete="off"
         spellcheck="false"
       />
+      <button id="locate-btn" aria-label="Use my location" title="Find my zone automatically">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
+          <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
+        </svg>
+      </button>
       <button id="search-btn">Go</button>
     </div>
   </header>
@@ -54,6 +77,11 @@
 
   <div id="season-bg"></div>
   <main id="globe-container">
+    <div id="zone-legend">
+      <div class="legend-title">Zones</div>
+      <div id="legend-swatches"></div>
+      <div class="legend-ends"><span>Coldest</span><span>Warmest</span></div>
+    </div>
     <div id="loading-overlay">
       <div class="spinner"></div>
       <p id="loading-text">Loading zone data…</p>
@@ -70,7 +98,9 @@
           <p id="zone-temp"></p>
         </div>
       </div>
+      <div id="frost-dates"></div>
       <div id="month-display"></div>
+      <div id="month-context"></div>
       <div class="plant-section" id="section-startIndoors">
         <h3>Start Indoors</h3>
         <ul id="list-startIndoors"></ul>
@@ -87,7 +117,8 @@
         <h3>Harvest</h3>
         <ul id="list-harvest"></ul>
       </div>
-      <p id="no-tasks">Nothing to do this month — rest up!</p>
+      <p id="no-tasks">Nothing to plant this month — a good time to plan ahead.</p>
+      <div id="garden-tip"></div>
     </div>
   </aside>
 
@@ -109,5 +140,10 @@
   <script src="lib/leaflet.min.js"></script>
   <script src="lib/turf.min.js"></script>
   <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    }
+  </script>
 </body>
 </html>
