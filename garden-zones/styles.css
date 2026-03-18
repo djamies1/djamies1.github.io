@@ -2762,11 +2762,14 @@ body.garden-mode .plant-section ul {
   inset: 0;
   background: rgba(0,0,0,0.55);
   z-index: 9000;
-  display: flex;
+  display: none;
   align-items: flex-start;
   justify-content: center;
   padding-top: clamp(60px, 12vh, 120px);
   backdrop-filter: blur(2px);
+}
+#quick-search-overlay:not([hidden]) {
+  display: flex;
 }
 #quick-search-inner {
   background: var(--surface);
