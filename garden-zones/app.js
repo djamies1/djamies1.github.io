@@ -342,6 +342,7 @@ function onZoneClick(feature, layer, lat, lng) {
     if (c) { selectedLat = c.lat; selectedLng = c.lng; }
   }
   highlightZone();
+  pulseZone();
   renderPanel();
   showPanel();
   updateURL();
@@ -501,6 +502,8 @@ function initUI() {
   initGarden();
   initOnboarding();
   initKeyboardShortcuts();
+  initPanelSwipe();
+  initSliderSwipe();
   restoreFromURL();
 }
 
@@ -696,6 +699,8 @@ function openCropDetail(name) {
   badge.className   = 'difficulty-badge' + (c.difficulty ? ' difficulty-' + c.difficulty.toLowerCase() : '');
   document.getElementById('modal-body').innerHTML    = renderCropDetail(c);
   document.getElementById('modal-body').scrollTop   = 0;
+  const schedPH = document.getElementById('modal-schedule-placeholder');
+  if (schedPH) schedPH.outerHTML = renderPlantingScheduleHTML(name);
   renderModalGardenBar(name);
   renderModalGardenSections(name);
   if (!modal.open) modal.showModal();
@@ -742,6 +747,7 @@ function renderCropDetail(c) {
       <div class="detail-tags">${tagList(c.varieties)}</div>
     </div>
     ${c.tip ? `<div class="modal-section modal-section--tip"><div class="modal-tip">💡 ${c.tip}</div></div>` : ''}
+    <div id="modal-schedule-placeholder"></div>
   `;
 }
 
@@ -976,11 +982,11 @@ function renderBrowseGrid() {
     return;
   }
 
-  grid.innerHTML = crops.map(([name, c]) => {
+  grid.innerHTML = crops.map(([name, c], i) => {
     const cat      = CROP_CATEGORY_MAP[name] || '';
     const isActive = activeSet.has(name);
     const diff     = c.difficulty ? c.difficulty.toLowerCase() : '';
-    return `<div class="browse-card${isActive ? ' browse-card--active' : ''}" data-crop="${name}" role="button" tabindex="0">
+    return `<div class="browse-card${isActive ? ' browse-card--active' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.025}s">
       <div class="browse-card-emoji">${c.emoji || '🌱'}</div>
       <div class="browse-card-name">${name}</div>
       <div class="browse-card-meta">
@@ -1106,6 +1112,48 @@ function renderGardenTab() {
     }
   }
   list.innerHTML = html;
+  renderGardenFooter();
+}
+
+function renderGardenFooter() {
+  const footer = document.getElementById('garden-footer');
+  if (!footer) return;
+  const hasCrops = Object.keys(myGarden).length > 0;
+  if (!hasCrops) { footer.innerHTML = ''; return; }
+
+  // Shopping list = crops without seeds
+  const needSeeds = Object.keys(myGarden).filter(n => !myGarden[n].hasSeeds);
+  const shoppingHTML = needSeeds.length ? `
+    <div class="shopping-list-section">
+      <div class="shopping-list-header">
+        🛒 Seeds to buy
+        <button class="shopping-copy-btn" id="shopping-copy-btn">Copy</button>
+      </div>
+      <div class="shopping-list-items">
+        ${needSeeds.map(n => `<span class="shopping-chip">${cropData[n]?.emoji || '🌱'} ${n}</span>`).join('')}
+      </div>
+    </div>` : '';
+
+  footer.innerHTML = `
+    <div class="garden-actions-row">
+      <button class="garden-action-btn" id="garden-export-btn">⬇ Export</button>
+      <button class="garden-action-btn" id="garden-import-btn">⬆ Import</button>
+      <input type="file" id="garden-import-input" accept=".json">
+    </div>
+    ${shoppingHTML}`;
+
+  footer.querySelector('#garden-export-btn')?.addEventListener('click', exportGarden);
+  footer.querySelector('#garden-import-btn')?.addEventListener('click', () => {
+    footer.querySelector('#garden-import-input')?.click();
+  });
+  footer.querySelector('#garden-import-input')?.addEventListener('change', e => {
+    importGarden(e.target.files[0]);
+    e.target.value = '';
+  });
+  footer.querySelector('#shopping-copy-btn')?.addEventListener('click', () => {
+    const text = needSeeds.join(', ');
+    navigator.clipboard?.writeText(text).then(() => showToast('Copied to clipboard ✓', 'success'));
+  });
 }
 
 function renderModalGardenBar(name) {
@@ -1436,6 +1484,8 @@ function toggleMetric() {
     const name = document.getElementById('modal-crop-name')?.textContent;
     if (name && cropData?.[name]) {
       document.getElementById('modal-body').innerHTML = renderCropDetail(cropData[name]);
+      const schedPH = document.getElementById('modal-schedule-placeholder');
+      if (schedPH) schedPH.outerHTML = renderPlantingScheduleHTML(name);
       document.getElementById('modal-body').scrollTop = 0;
       renderModalGardenSections(name);
     }
@@ -1497,10 +1547,11 @@ function renderModalGardenSections(name) {
     clearTimeout(noteTimer);
     noteTimer = setTimeout(() => gardenSetNotes(name, e.target.value), 400);
   });
-  sec.querySelector('#harvest-log-btn').addEventListener('click', () => {
+  sec.querySelector('#harvest-log-btn').addEventListener('click', e => {
     const date = sec.querySelector('#harvest-date-in').value;
     const nt = sec.querySelector('#harvest-notes-in').value;
     if (!date) return;
+    showHarvestConfetti(e.target);
     gardenLogHarvest(name, date, nt);
     sec.querySelector('#harvest-notes-in').value = '';
   });
@@ -1593,7 +1644,7 @@ function initKeyboardShortcuts() {
 }
 
 let toastTimer = null;
-function showToast(msg) {
+function showToast(msg, type) {
   let toast = document.getElementById('toast');
   if (!toast) {
     toast = document.createElement('div');
@@ -1601,7 +1652,228 @@ function showToast(msg) {
     document.body.appendChild(toast);
   }
   toast.textContent = msg;
-  toast.classList.add('show');
+  toast.className = 'show';
+  if (type) toast.classList.add(`toast--${type}`);
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+// ── Phase 2: Mobile panel swipe ─────────────────
+function initPanelSwipe() {
+  const panel = document.getElementById('info-panel');
+  const handle = document.getElementById('panel-drag-handle');
+  if (!panel || !handle) return;
+
+  let startY = 0, startH = 0, dragging = false;
+  const SNAPS = [0.25, 0.50, 0.85]; // fraction of viewport height
+
+  function snapTo(frac) {
+    const vh = window.innerHeight;
+    panel.style.height = Math.round(frac * vh) + 'px';
+  }
+
+  handle.addEventListener('touchstart', e => {
+    startY = e.touches[0].clientY;
+    startH = panel.offsetHeight;
+    dragging = true;
+    panel.style.transition = 'none';
+  }, { passive: true });
+
+  window.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    const dy = startY - e.touches[0].clientY;
+    const newH = Math.max(80, Math.min(window.innerHeight * 0.92, startH + dy));
+    panel.style.height = newH + 'px';
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => {
+    if (!dragging) return;
+    dragging = false;
+    panel.style.transition = '';
+    const vh = window.innerHeight;
+    const frac = panel.offsetHeight / vh;
+    // Find nearest snap
+    const nearest = SNAPS.reduce((a, b) => Math.abs(b - frac) < Math.abs(a - frac) ? b : a);
+    if (nearest <= 0.15) {
+      hidePanel();
+      panel.style.height = '';
+    } else {
+      snapTo(nearest);
+    }
+  });
+
+  // Mouse support for desktop testing
+  handle.addEventListener('mousedown', e => {
+    startY = e.clientY;
+    startH = panel.offsetHeight;
+    dragging = true;
+    panel.style.transition = 'none';
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const dy = startY - e.clientY;
+    const newH = Math.max(80, Math.min(window.innerHeight * 0.92, startH + dy));
+    panel.style.height = newH + 'px';
+  });
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    panel.style.transition = '';
+    const vh = window.innerHeight;
+    const frac = panel.offsetHeight / vh;
+    const nearest = SNAPS.reduce((a, b) => Math.abs(b - frac) < Math.abs(a - frac) ? b : a);
+    if (nearest <= 0.15) { hidePanel(); panel.style.height = ''; }
+    else snapTo(nearest);
+  });
+}
+
+// ── Phase 2: Slider horizontal swipe ────────────
+function initSliderSwipe() {
+  const sliderBar = document.getElementById('slider-bar');
+  if (!sliderBar) return;
+  let startX = 0, startMonth = 1;
+
+  sliderBar.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startMonth = currentMonth;
+  }, { passive: true });
+
+  sliderBar.addEventListener('touchmove', e => {
+    const dx = e.touches[0].clientX - startX;
+    const delta = Math.round(dx / (sliderBar.offsetWidth / 11));
+    const newMonth = Math.max(1, Math.min(12, startMonth - delta));
+    if (newMonth !== currentMonth) {
+      currentMonth = newMonth;
+      const slider = document.getElementById('month-slider');
+      if (slider) slider.value = currentMonth;
+      updateMonthLabels();
+      if (selectedZone) renderPanel();
+    }
+  }, { passive: true });
+}
+
+// ── Phase 2: Planting schedule ───────────────────
+function computePlantingSchedule(name, zone) {
+  if (!plantingData || !zone) return null;
+  const MONTH_ABBR = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const result = { startIndoors: [], directSow: [], transplant: [], harvest: [] };
+
+  for (let m = 1; m <= 12; m++) {
+    const d = getPlantingData(zone, m);
+    if (d.startIndoors?.includes(name))  result.startIndoors.push(m);
+    if (d.directSow?.includes(name))     result.directSow.push(m);
+    if (d.transplant?.includes(name))    result.transplant.push(m);
+    if (d.harvest?.includes(name))       result.harvest.push(m);
+  }
+
+  function formatMonths(arr) {
+    if (!arr.length) return null;
+    // Compress to ranges
+    const ranges = [];
+    let start = arr[0], end = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] === end + 1) { end = arr[i]; }
+      else { ranges.push(start === end ? MONTH_ABBR[start] : `${MONTH_ABBR[start]}–${MONTH_ABBR[end]}`); start = end = arr[i]; }
+    }
+    ranges.push(start === end ? MONTH_ABBR[start] : `${MONTH_ABBR[start]}–${MONTH_ABBR[end]}`);
+    return ranges.join(', ');
+  }
+
+  return {
+    startIndoors: formatMonths(result.startIndoors),
+    directSow:    formatMonths(result.directSow),
+    transplant:   formatMonths(result.transplant),
+    harvest:      formatMonths(result.harvest),
+  };
+}
+
+function renderPlantingScheduleHTML(name) {
+  const zone = selectedZone;
+  if (!zone || !plantingData) return '';
+  const sched = computePlantingSchedule(name, zone);
+  if (!sched) return '';
+
+  const item = (cls, label, months) => `
+    <div class="schedule-item schedule-item--${cls}${months ? '' : ' schedule-item--none'}">
+      <span class="schedule-item-label">${label}</span>
+      <span class="schedule-item-months">${months || 'n/a for this zone'}</span>
+    </div>`;
+
+  return `
+    <div class="modal-schedule-section">
+      <h4>Planting Schedule — Zone ${zone}</h4>
+      <div class="schedule-grid">
+        ${item('start', 'Start Indoors', sched.startIndoors)}
+        ${item('sow', 'Direct Sow', sched.directSow)}
+        ${item('transplant', 'Transplant', sched.transplant)}
+        ${item('harvest', 'Harvest', sched.harvest)}
+      </div>
+    </div>`;
+}
+
+// ── Phase 2: Garden export / import ─────────────
+function exportGarden() {
+  const data = JSON.stringify(myGarden, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `my-garden-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Garden exported ✓', 'success');
+}
+
+function importGarden(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      if (typeof parsed !== 'object' || Array.isArray(parsed)) throw new Error();
+      // Merge — existing entries win on conflict
+      myGarden = { ...parsed, ...myGarden };
+      saveGarden();
+      refreshGardenUI('');
+      showToast(`Imported ${Object.keys(parsed).length} crops ✓`, 'success');
+    } catch {
+      showToast('Import failed — invalid file', 'error');
+    }
+  };
+  reader.readAsText(file);
+}
+
+// ── Phase 2: Zone pulse ──────────────────────────
+function pulseZone() {
+  if (!selectedLayer) return;
+  let pulseCount = 0;
+  const originalStyle = { fillOpacity: 1.0, weight: 3, color: '#fff', opacity: 1 };
+  const pulseStyle = { fillOpacity: 0.5, weight: 4, color: '#4ade80', opacity: 1 };
+  const interval = setInterval(() => {
+    selectedLayer.setStyle(pulseCount % 2 === 0 ? pulseStyle : originalStyle);
+    if (++pulseCount >= 4) { clearInterval(interval); selectedLayer.setStyle(originalStyle); }
+  }, 180);
+}
+
+// ── Phase 2: Harvest confetti ────────────────────
+function showHarvestConfetti(el) {
+  const rect = el.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  const COLORS = ['#4ade80','#fbbf24','#f87171','#60a5fa','#c084fc','#fb923c','#34d399','#f9a8d4'];
+  for (let i = 0; i < 14; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'confetti-dot';
+    const angle = (i / 14) * Math.PI * 2;
+    const dist = 40 + Math.random() * 40;
+    dot.style.cssText = `
+      left:${cx}px; top:${cy}px;
+      background:${COLORS[i % COLORS.length]};
+      --tx:${Math.cos(angle) * dist}px;
+      --ty:${Math.sin(angle) * dist}px;
+    `;
+    document.body.appendChild(dot);
+    dot.addEventListener('animationend', () => dot.remove());
+  }
 }
