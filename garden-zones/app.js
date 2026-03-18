@@ -186,10 +186,10 @@ for (const [cat, crops] of Object.entries(CROP_CATEGORIES)) {
 
 // ── Season gradients ───────────────────────────
 const SEASON_GRADIENTS = {
-  winter: 'radial-gradient(ellipse 80% 55% at 20% 80%, rgba(59,130,246,0.2) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 80% 15%, rgba(147,197,253,0.1) 0%, transparent 55%)',
-  spring: 'radial-gradient(ellipse 80% 55% at 15% 65%, rgba(34,197,94,0.18) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 85% 25%, rgba(134,239,172,0.1) 0%, transparent 55%)',
-  summer: 'radial-gradient(ellipse 80% 55% at 50% 90%, rgba(234,179,8,0.18) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 20% 10%, rgba(253,230,138,0.1) 0%, transparent 55%)',
-  autumn: 'radial-gradient(ellipse 80% 55% at 70% 80%, rgba(249,115,22,0.18) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 15% 20%, rgba(253,186,116,0.1) 0%, transparent 55%)',
+  winter: 'radial-gradient(ellipse 80% 55% at 20% 80%, rgba(59,130,246,0.45) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 80% 15%, rgba(147,197,253,0.22) 0%, transparent 55%)',
+  spring: 'radial-gradient(ellipse 80% 55% at 15% 65%, rgba(34,197,94,0.4) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 85% 25%, rgba(134,239,172,0.2) 0%, transparent 55%)',
+  summer: 'radial-gradient(ellipse 80% 55% at 50% 90%, rgba(234,179,8,0.4) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 20% 10%, rgba(253,230,138,0.2) 0%, transparent 55%)',
+  autumn: 'radial-gradient(ellipse 80% 55% at 70% 80%, rgba(249,115,22,0.4) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 15% 20%, rgba(253,186,116,0.2) 0%, transparent 55%)',
 };
 
 // ── State ─────────────────────────────────────
@@ -1161,10 +1161,13 @@ function updateThumbLabel() {
   const slider = document.getElementById('month-slider');
   const output = document.getElementById('month-thumb-label');
   if (!slider || !output) return;
+  const rect = slider.getBoundingClientRect();
+  if (!rect.width) return;
   const pct = (currentMonth - 1) / 11;
   const thumbR = 11;
-  const left = thumbR + pct * (slider.offsetWidth - thumbR * 2);
+  const left = rect.left + thumbR + pct * (rect.width - thumbR * 2);
   output.style.left = left + 'px';
+  output.style.top = (rect.top - 26) + 'px';
   output.textContent = MONTH_NAMES[currentMonth].slice(0, 3).toUpperCase();
 }
 
