@@ -58,7 +58,10 @@
         <div class="s-band s-autumn"><span>🍂 Autumn</span></div>
         <div class="s-band s-winter s-dec"><span>❄️</span></div>
       </div>
-      <input type="range" id="month-slider" min="1" max="12" step="1">
+      <div id="slider-inner">
+        <output id="month-thumb-label" for="month-slider">JAN</output>
+        <input type="range" id="month-slider" min="1" max="12" step="1">
+      </div>
       <div id="month-labels">
         <span data-month="1">Jan</span>
         <span data-month="2">Feb</span>
@@ -100,30 +103,41 @@
         </div>
       </div>
       <div id="frost-dates"></div>
-      <div id="month-display"></div>
-      <div id="month-context"></div>
-      <div id="year-calendar" hidden>
-        <div class="ycal-title">Year at a glance</div>
-        <div id="year-cal-cells"></div>
+      <div id="panel-tabs">
+        <button class="ptab active" data-tab="calendar">📅 This Month</button>
+        <button class="ptab" data-tab="garden">🌿 My Garden <span id="garden-count-badge"></span></button>
       </div>
-      <div class="plant-section" id="section-startIndoors">
-        <h3>Start Indoors</h3>
-        <ul id="list-startIndoors"></ul>
+      <div id="tab-calendar">
+        <div id="countdown-cards"></div>
+        <div id="month-display"></div>
+        <div id="month-context"></div>
+        <div id="year-calendar" hidden>
+          <div class="ycal-title">Year at a glance</div>
+          <div id="year-cal-cells"></div>
+        </div>
+        <div class="plant-section" id="section-startIndoors">
+          <h3>Start Indoors</h3>
+          <ul id="list-startIndoors"></ul>
+        </div>
+        <div class="plant-section" id="section-directSow">
+          <h3>Direct Sow</h3>
+          <ul id="list-directSow"></ul>
+        </div>
+        <div class="plant-section" id="section-transplant">
+          <h3>Transplant Out</h3>
+          <ul id="list-transplant"></ul>
+        </div>
+        <div class="plant-section" id="section-harvest">
+          <h3>Harvest</h3>
+          <ul id="list-harvest"></ul>
+        </div>
+        <p id="no-tasks">Nothing to plant this month — a good time to plan ahead.</p>
+        <div id="garden-tip"></div>
       </div>
-      <div class="plant-section" id="section-directSow">
-        <h3>Direct Sow</h3>
-        <ul id="list-directSow"></ul>
+      <div id="tab-garden" hidden>
+        <div id="garden-list"></div>
+        <p id="garden-empty-msg" class="garden-empty">No crops saved yet.<br>Tap any crop to add it to your garden.</p>
       </div>
-      <div class="plant-section" id="section-transplant">
-        <h3>Transplant Out</h3>
-        <ul id="list-transplant"></ul>
-      </div>
-      <div class="plant-section" id="section-harvest">
-        <h3>Harvest</h3>
-        <ul id="list-harvest"></ul>
-      </div>
-      <p id="no-tasks">Nothing to plant this month — a good time to plan ahead.</p>
-      <div id="garden-tip"></div>
     </div>
   </aside>
 
@@ -137,6 +151,7 @@
         </div>
         <button id="modal-close" aria-label="Close">&times;</button>
       </header>
+      <div id="modal-garden-bar"></div>
       <div id="modal-body"></div>
     </div>
   </dialog>

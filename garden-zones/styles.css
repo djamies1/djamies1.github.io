@@ -305,7 +305,6 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--bg) center / cover no-repeat;
   z-index: 1;
   pointer-events: none;
 }
@@ -1248,3 +1247,73 @@ html, body {
     margin: auto auto 0;
   }
 }
+
+/* ──────────────────────────────────────────────
+   Panel tabs
+────────────────────────────────────────────── */
+#panel-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+.ptab { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--text-muted); cursor: pointer; font-size: 11px; font-weight: 600; padding: 7px 10px; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+.ptab:hover { color: var(--text); border-color: var(--text-muted); }
+.ptab.active { background: rgba(74,222,128,0.12); border-color: var(--accent); color: var(--accent); }
+#garden-count-badge { font-size: 10px; font-weight: 700; background: var(--accent); color: #0a0f1a; border-radius: 99px; padding: 0 5px; margin-left: 3px; }
+
+/* ──────────────────────────────────────────────
+   Countdown cards
+────────────────────────────────────────────── */
+#countdown-cards { margin-bottom: 12px; }
+.countdown-card { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; border-radius: 6px; border: 1px solid; margin-bottom: 6px; font-size: 12px; line-height: 1.4; }
+.countdown-icon { font-size: 16px; flex-shrink: 0; line-height: 1.3; }
+.countdown-body { flex: 1; }
+.countdown-body strong { display: block; font-weight: 600; margin-bottom: 2px; }
+.countdown-body span { color: var(--text-muted); }
+.countdown-card--action  { background: rgba(74,222,128,0.07);  border-color: rgba(74,222,128,0.25); }
+.countdown-card--soon    { background: rgba(251,191,36,0.07);   border-color: rgba(251,191,36,0.25); }
+.countdown-card--warning { background: rgba(248,113,113,0.07);  border-color: rgba(248,113,113,0.25); }
+.countdown-card--success { background: rgba(74,222,128,0.12);   border-color: rgba(74,222,128,0.35); }
+.countdown-card--info    { background: rgba(147,197,253,0.07);  border-color: rgba(147,197,253,0.25); }
+.countdown-card--neutral { background: var(--surface2);         border-color: var(--border); }
+
+/* ──────────────────────────────────────────────
+   Modal garden bar
+────────────────────────────────────────────── */
+#modal-garden-bar { padding: 8px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 40px; }
+.modal-garden-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--text-muted); cursor: pointer; font-size: 12px; font-weight: 600; padding: 5px 12px; transition: color 0.15s, border-color 0.15s; }
+.modal-garden-btn:hover { color: var(--accent); border-color: var(--accent); }
+.modal-garden-saved { font-size: 12px; font-weight: 700; color: var(--accent); }
+.modal-garden-date-label { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+#modal-planted-input { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; color: var(--text); font-size: 12px; padding: 3px 6px; }
+.modal-garden-remove-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; margin-left: auto; padding: 2px 4px; transition: color 0.15s; }
+.modal-garden-remove-btn:hover { color: #f87171; }
+
+/* ──────────────────────────────────────────────
+   My Garden tab
+────────────────────────────────────────────── */
+#garden-list { display: flex; flex-direction: column; gap: 4px; }
+.garden-empty { font-size: 13px; color: var(--text-muted); text-align: center; padding: 24px 0; line-height: 1.7; }
+.garden-group-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin: 10px 0 5px; }
+.garden-group-label:first-child { margin-top: 0; }
+.garden-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; transition: border-color 0.15s; }
+.garden-item:hover { border-color: var(--accent-dark); }
+.garden-item--ready  { border-left: 3px solid var(--accent); }
+.garden-item--growing { border-left: 3px solid #fbbf24; }
+.garden-item--saved  { border-left: 3px solid var(--border); }
+.garden-item-main { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1; }
+.garden-item-emoji { font-size: 18px; flex-shrink: 0; }
+.garden-item-info { min-width: 0; }
+.garden-item-name { font-size: 12px; font-weight: 600; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.garden-item-status { font-size: 11px; color: var(--text-muted); display: block; }
+.garden-item--ready .garden-item-status { color: var(--accent); font-weight: 600; }
+.garden-item-actions { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+.garden-log-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); cursor: pointer; font-size: 10px; padding: 2px 7px; white-space: nowrap; transition: color 0.15s, border-color 0.15s; }
+.garden-log-btn:hover { color: var(--accent); border-color: var(--accent); }
+.garden-date-input { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; color: var(--text); font-size: 11px; padding: 2px 5px; max-width: 120px; }
+.garden-remove-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; line-height: 1; padding: 2px; transition: color 0.15s; }
+.garden-remove-btn:hover { color: #f87171; }
+.crop-garden-star { font-size: 11px; color: var(--accent); margin-left: 4px; }
+.browse-card-saved { font-size: 9px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ──────────────────────────────────────────────
+   Slider thumb label
+────────────────────────────────────────────── */
+#slider-inner { position: relative; }
+#month-thumb-label { position: absolute; top: -22px; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--border); border-radius: 4px; color: var(--text); font-size: 10px; font-weight: 700; letter-spacing: 0.05em; padding: 1px 5px; pointer-events: none; white-space: nowrap; z-index: 1; }

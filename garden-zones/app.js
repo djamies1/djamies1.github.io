@@ -17,7 +17,13 @@ function updateSeasonBg() {
   if (season === _lastSeasonBg) return;
   _lastSeasonBg = season;
   const el = document.getElementById('season-bg');
-  if (el) el.style.backgroundImage = `url('./data/${season}-bg.svg')`;
+  if (!el) return;
+  el.style.transition = 'opacity 0.4s ease';
+  el.style.opacity = '0';
+  setTimeout(() => {
+    el.style.backgroundImage = SEASON_GRADIENTS[season];
+    el.style.opacity = '1';
+  }, 400);
 }
 
 const MONTH_NAMES = [
@@ -178,6 +184,14 @@ for (const [cat, crops] of Object.entries(CROP_CATEGORIES)) {
   for (const crop of crops) CROP_CATEGORY_MAP[crop] = cat;
 }
 
+// ── Season gradients ───────────────────────────
+const SEASON_GRADIENTS = {
+  winter: 'radial-gradient(ellipse 80% 55% at 20% 80%, rgba(59,130,246,0.2) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 80% 15%, rgba(147,197,253,0.1) 0%, transparent 55%)',
+  spring: 'radial-gradient(ellipse 80% 55% at 15% 65%, rgba(34,197,94,0.18) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 85% 25%, rgba(134,239,172,0.1) 0%, transparent 55%)',
+  summer: 'radial-gradient(ellipse 80% 55% at 50% 90%, rgba(234,179,8,0.18) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 20% 10%, rgba(253,230,138,0.1) 0%, transparent 55%)',
+  autumn: 'radial-gradient(ellipse 80% 55% at 70% 80%, rgba(249,115,22,0.18) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 15% 20%, rgba(253,186,116,0.1) 0%, transparent 55%)',
+};
+
 // ── State ─────────────────────────────────────
 let map, zonesLayer, selectedLayer;
 let zonesData = null;
@@ -187,6 +201,9 @@ let cropData = null;
 let selectedFeature = null;
 let selectedZone = null;
 let currentMonth = new Date().getMonth() + 1;
+
+let myGarden = {};
+let currentPanelTab = 'calendar';
 
 let searchDebounceTimer = null;
 let geocodeController = null;
@@ -365,6 +382,9 @@ function renderPanel() {
     frostEl.hidden = true;
   }
 
+  // Countdown cards
+  renderCountdownCards();
+
   // Month display + context
   document.getElementById('month-display').textContent = MONTH_NAMES[month];
   const ctx   = getMonthContext(zone, month);
@@ -431,6 +451,7 @@ function initUI() {
   initZoneLegend();
   initBrowse();
   initYearCalendar();
+  initGarden();
   restoreFromURL();
 }
 
@@ -438,7 +459,9 @@ function initMonthSlider() {
   const slider = document.getElementById('month-slider');
   slider.value = currentMonth;
   updateMonthLabels();
+  _lastSeasonBg = null;
   updateSeasonBg();
+  requestAnimationFrame(updateThumbLabel);
 
   slider.addEventListener('input', () => {
     currentMonth = parseInt(slider.value, 10);
@@ -464,6 +487,7 @@ function updateMonthLabels() {
   document.querySelectorAll('#month-labels span').forEach(span => {
     span.classList.toggle('active', parseInt(span.dataset.month, 10) === currentMonth);
   });
+  updateThumbLabel();
 }
 
 function initPanelListeners() {
@@ -597,7 +621,7 @@ function renderCropItem(name) {
   if (!c) return `<li class="crop-plain">${name}</li>`;
   return `<li class="crop-card" data-crop="${name}" role="button" tabindex="0" aria-label="${name} — tap for details">
     <div class="crop-card-body">
-      <div class="crop-title">${c.emoji || '🌱'} ${name}</div>
+      <div class="crop-title">${c.emoji || '🌱'} ${name}${isInGarden(name) ? '<span class="crop-garden-star">★</span>' : ''}</div>
       <div class="crop-detail">${c.depth} deep · ${c.spacing} apart · ${c.water} · ${c.days}</div>
       ${c.tip ? `<div class="crop-tip">${c.tip}</div>` : ''}
     </div>
@@ -623,6 +647,7 @@ function openCropDetail(name) {
   badge.className   = 'difficulty-badge' + (c.difficulty ? ' difficulty-' + c.difficulty.toLowerCase() : '');
   document.getElementById('modal-body').innerHTML    = renderCropDetail(c);
   document.getElementById('modal-body').scrollTop   = 0;
+  renderModalGardenBar(name);
   if (!modal.open) modal.showModal();
 }
 
@@ -911,8 +936,236 @@ function renderBrowseGrid() {
         ${diff ? `<span class="diff-dot diff-dot--${diff}" title="${c.difficulty}"></span>` : ''}
       </div>
       ${isActive ? '<div class="browse-card-season">In season</div>' : ''}
+      ${isInGarden(name) ? '<div class="browse-card-saved">★ Saved</div>' : ''}
     </div>`;
   }).join('');
+}
+
+// ── Garden storage helpers ──────────────────────
+function loadGarden() {
+  try { myGarden = JSON.parse(localStorage.getItem('pzf-garden') || '{}'); }
+  catch { myGarden = {}; }
+}
+function saveGarden() { localStorage.setItem('pzf-garden', JSON.stringify(myGarden)); }
+function isInGarden(name) { return !!myGarden[name]; }
+
+function gardenAdd(name) {
+  if (myGarden[name]) return;
+  myGarden[name] = { added: new Date().toISOString().slice(0,10), planted: null };
+  saveGarden(); refreshGardenUI(name);
+}
+function gardenRemove(name) { delete myGarden[name]; saveGarden(); refreshGardenUI(name); }
+function gardenSetPlanted(name, dateStr) {
+  if (myGarden[name]) { myGarden[name].planted = dateStr || null; saveGarden(); refreshGardenUI(name); }
+}
+
+function refreshGardenUI(name) {
+  updateGardenBadge();
+  if (currentPanelTab === 'garden') renderGardenTab();
+  // Re-render open modal bar
+  const modal = document.getElementById('crop-modal');
+  if (modal?.open && document.getElementById('modal-crop-name')?.textContent === name)
+    renderModalGardenBar(name);
+  // Re-render panel crop lists to update star badges
+  if (selectedZone) {
+    const data = getPlantingData(selectedZone, currentMonth);
+    for (const key of ['startIndoors','directSow','transplant','harvest']) {
+      const sec = document.getElementById(`section-${key}`);
+      if (sec && !sec.classList.contains('hidden'))
+        document.getElementById(`list-${key}`).innerHTML = (data[key]||[]).map(renderCropItem).join('');
+    }
+  }
+  // Re-render browse grid if open
+  const browseView = document.getElementById('browse-view');
+  if (browseView && !browseView.classList.contains('browse-hidden')) renderBrowseGrid();
+}
+
+function updateGardenBadge() {
+  const count = Object.keys(myGarden).length;
+  const badge = document.getElementById('garden-count-badge');
+  if (badge) badge.textContent = count > 0 ? count : '';
+}
+
+function parseHarvestDays(daysStr) {
+  if (!daysStr) return null;
+  const m = daysStr.match(/(\d+)/);
+  return m ? parseInt(m[1], 10) : null;
+}
+
+function getGardenStatus(name) {
+  const entry = myGarden[name];
+  if (!entry) return null;
+  if (!entry.planted) return { type: 'saved', label: 'Saved — no planting date' };
+  const today = new Date(); today.setHours(0,0,0,0);
+  const daysPlanted = Math.round((today - new Date(entry.planted)) / 86400000);
+  const harvestMin = parseHarvestDays(cropData[name]?.days);
+  if (!harvestMin) return { type: 'growing', label: `Planted ${daysPlanted}d ago` };
+  const remaining = harvestMin - daysPlanted;
+  if (remaining <= 0) return { type: 'ready', label: 'Ready to harvest!' };
+  return { type: 'growing', label: `~${remaining} days to harvest (planted ${daysPlanted}d ago)` };
+}
+
+function renderGardenTab() {
+  const list = document.getElementById('garden-list');
+  const emptyMsg = document.getElementById('garden-empty-msg');
+  if (!list) return;
+  const names = Object.keys(myGarden);
+  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; return; }
+  if (emptyMsg) emptyMsg.hidden = true;
+
+  const groups = { ready: [], growing: [], saved: [] };
+  for (const name of names) {
+    const s = getGardenStatus(name);
+    groups[s?.type || 'saved'].push({ name, status: s });
+  }
+  const GROUP_LABELS = { ready: '🌾 Ready to harvest', growing: '🌿 Growing', saved: '☆ Saved — no date' };
+  const today = new Date().toISOString().slice(0,10);
+  let html = '';
+  for (const [type, items] of Object.entries(groups)) {
+    if (!items.length) continue;
+    html += `<div class="garden-group-label">${GROUP_LABELS[type]}</div>`;
+    for (const { name, status } of items) {
+      const c = cropData[name];
+      const plantedVal = myGarden[name]?.planted || '';
+      html += `<div class="garden-item garden-item--${type}" data-crop="${name}">
+        <div class="garden-item-main">
+          <span class="garden-item-emoji">${c?.emoji || '🌱'}</span>
+          <div class="garden-item-info">
+            <span class="garden-item-name">${name}</span>
+            <span class="garden-item-status">${status?.label || ''}</span>
+          </div>
+        </div>
+        <div class="garden-item-actions">
+          ${!plantedVal ? `<button class="garden-log-btn" data-crop="${name}">Log date</button>` : ''}
+          <input type="date" class="garden-date-input" data-crop="${name}" value="${plantedVal}" max="${today}" aria-label="Planting date for ${name}"${!plantedVal ? ' style="display:none"' : ''}>
+          <button class="garden-remove-btn" data-crop="${name}" aria-label="Remove ${name}">×</button>
+        </div>
+      </div>`;
+    }
+  }
+  list.innerHTML = html;
+}
+
+function renderModalGardenBar(name) {
+  const bar = document.getElementById('modal-garden-bar');
+  if (!bar) return;
+  const inG = isInGarden(name);
+  const plantedVal = myGarden[name]?.planted || '';
+  const today = new Date().toISOString().slice(0,10);
+  if (!inG) {
+    bar.innerHTML = `<button class="modal-garden-btn" id="modal-garden-add">☆ Add to My Garden</button>`;
+    bar.querySelector('#modal-garden-add').addEventListener('click', () => gardenAdd(name));
+  } else {
+    bar.innerHTML = `
+      <span class="modal-garden-saved">★ In My Garden</span>
+      <label class="modal-garden-date-label">Planted:
+        <input type="date" id="modal-planted-input" value="${plantedVal}" max="${today}" aria-label="Planting date">
+      </label>
+      <button class="modal-garden-remove-btn" id="modal-garden-remove">Remove</button>`;
+    bar.querySelector('#modal-planted-input').addEventListener('change', e => gardenSetPlanted(name, e.target.value));
+    bar.querySelector('#modal-garden-remove').addEventListener('click', () => gardenRemove(name));
+  }
+}
+
+function initGarden() {
+  loadGarden();
+  updateGardenBadge();
+
+  document.getElementById('panel-tabs')?.addEventListener('click', e => {
+    const tab = e.target.closest('.ptab');
+    if (!tab) return;
+    currentPanelTab = tab.dataset.tab;
+    document.querySelectorAll('.ptab').forEach(t => t.classList.toggle('active', t === tab));
+    document.getElementById('tab-calendar').hidden = (currentPanelTab !== 'calendar');
+    document.getElementById('tab-garden').hidden   = (currentPanelTab !== 'garden');
+    if (currentPanelTab === 'garden') renderGardenTab();
+  });
+
+  // Garden tab delegated events
+  const gardenTab = document.getElementById('tab-garden');
+  gardenTab?.addEventListener('click', e => {
+    if (e.target.closest('.garden-log-btn')) {
+      const name = e.target.closest('.garden-log-btn').dataset.crop;
+      const item = e.target.closest('.garden-item');
+      item.querySelector('.garden-log-btn').style.display = 'none';
+      const inp = item.querySelector('.garden-date-input');
+      inp.style.display = ''; inp.focus();
+      return;
+    }
+    if (e.target.closest('.garden-remove-btn')) {
+      gardenRemove(e.target.closest('.garden-remove-btn').dataset.crop); return;
+    }
+    const item = e.target.closest('.garden-item');
+    if (item?.dataset.crop) openCropDetail(item.dataset.crop);
+  });
+  gardenTab?.addEventListener('change', e => {
+    const inp = e.target.closest('.garden-date-input');
+    if (inp) gardenSetPlanted(inp.dataset.crop, inp.value);
+  });
+}
+
+// ── Countdown cards ─────────────────────────────
+function parseFrostDate(str) {
+  if (!str) return null;
+  const today = new Date(); today.setHours(0,0,0,0);
+  let d = new Date(`${str} ${today.getFullYear()}`);
+  if (isNaN(d)) return null;
+  if ((today - d) / 86400000 > 150) d.setFullYear(d.getFullYear() + 1);
+  return d;
+}
+
+function renderCountdownCards() {
+  const el = document.getElementById('countdown-cards');
+  if (!el) return;
+  if (!selectedZone) { el.innerHTML = ''; return; }
+  const frost = FROST_DATES[selectedZone.toLowerCase()];
+  if (!frost) { el.innerHTML = ''; return; }
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const diff = d => Math.round((d - today) / 86400000);
+  const cards = [];
+
+  if (!frost.last && !frost.first) {
+    cards.push({ icon:'🌴', text:'Frost-free zone', sub:'Warm-season crops can grow year-round.', type:'neutral' });
+  } else {
+    if (frost.last) {
+      const d = parseFrostDate(frost.last);
+      if (d) {
+        const n = diff(d);
+        if      (n > 42)       cards.push({ icon:'🌱', text:'Start warm-season seeds indoors', sub:`Last frost ~${frost.last} — ${n} days away`, type:'action' });
+        else if (n > 14)       cards.push({ icon:'🌿', text:`Transplant window opens in ${n} days`, sub:`Last frost ~${frost.last} — harden off seedlings now`, type:'soon' });
+        else if (n > 0)        cards.push({ icon:'⚠️', text:`Last frost in ${n} day${n===1?'':'s'}`, sub:'Hold off on transplanting frost-sensitive crops.', type:'warning' });
+        else if (n >= -30)     cards.push({ icon:'✅', text:`Last frost was ${-n} day${-n===1?'':'s'} ago`, sub:'Safe to transplant warm-season crops outdoors.', type:'success' });
+      }
+    }
+    if (frost.first) {
+      const d = parseFrostDate(frost.first);
+      if (d) {
+        const n = diff(d);
+        if      (n > 30 && n <= 60) cards.push({ icon:'🍂', text:`First frost in ~${n} days`, sub:'Start fall brassicas and root veg indoors now.', type:'soon' });
+        else if (n > 0)             cards.push({ icon:'🍂', text:`First frost in ${n} day${n===1?'':'s'}`, sub:'Harvest frost-sensitive crops soon.', type:'warning' });
+        else if (n >= -14)          cards.push({ icon:'❄️', text:`First frost was ${-n} day${-n===1?'':'s'} ago`, sub:'Protect tender crops or bring them indoors.', type:'info' });
+      }
+    }
+  }
+
+  el.innerHTML = cards.map(c => `
+    <div class="countdown-card countdown-card--${c.type}">
+      <span class="countdown-icon">${c.icon}</span>
+      <div class="countdown-body"><strong>${c.text}</strong><span>${c.sub}</span></div>
+    </div>`).join('');
+}
+
+// ── Slider thumb label ──────────────────────────
+function updateThumbLabel() {
+  const slider = document.getElementById('month-slider');
+  const output = document.getElementById('month-thumb-label');
+  if (!slider || !output) return;
+  const pct = (currentMonth - 1) / 11;
+  const thumbR = 11;
+  const left = thumbR + pct * (slider.offsetWidth - thumbR * 2);
+  output.style.left = left + 'px';
+  output.textContent = MONTH_NAMES[currentMonth].slice(0, 3).toUpperCase();
 }
 
 let toastTimer = null;
