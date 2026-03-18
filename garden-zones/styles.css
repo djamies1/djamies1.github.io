@@ -1317,3 +1317,204 @@ html, body {
 ────────────────────────────────────────────── */
 #slider-inner { position: relative; }
 #month-thumb-label { position: fixed; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--accent); border-radius: 4px; color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: 0.05em; padding: 1px 6px; pointer-events: none; white-space: nowrap; z-index: 200; box-shadow: 0 2px 6px rgba(0,0,0,0.5); }
+
+/* ──────────────────────────────────────────────
+   Metric toggle + Help button
+────────────────────────────────────────────── */
+#metric-toggle, #help-btn {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+  color: var(--text-muted); cursor: pointer; font-size: 12px; font-weight: 700;
+  padding: 5px 9px; white-space: nowrap; flex-shrink: 0;
+  transition: color 0.15s, border-color 0.15s;
+}
+#metric-toggle:hover, #help-btn:hover { color: var(--accent); border-color: var(--accent); }
+#metric-toggle.active { color: var(--accent); border-color: var(--accent); background: rgba(74,222,128,0.1); }
+
+/* ──────────────────────────────────────────────
+   Print header (hidden normally, shown @print)
+────────────────────────────────────────────── */
+#print-header { display: none; }
+
+/* ──────────────────────────────────────────────
+   Frost alert banner
+────────────────────────────────────────────── */
+#frost-alert-banner {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 12px; background: rgba(147,197,253,0.1);
+  border: 1px solid rgba(147,197,253,0.4); border-radius: 6px;
+  margin-bottom: 10px; font-size: 12px; line-height: 1.4;
+}
+#frost-alert-banner[hidden] { display: none; }
+#frost-alert-banner .fa-icon { font-size: 18px; flex-shrink: 0; line-height: 1.3; }
+#frost-alert-banner > div { flex: 1; }
+#frost-alert-banner strong { display: block; font-weight: 600; color: #93c5fd; margin-bottom: 2px; }
+#frost-alert-banner span { color: var(--text-muted); }
+.fa-dismiss { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px; line-height: 1; padding: 0 2px; flex-shrink: 0; transition: color 0.15s; }
+.fa-dismiss:hover { color: var(--text); }
+
+/* ──────────────────────────────────────────────
+   Weather strip
+────────────────────────────────────────────── */
+#weather-strip {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 10px; margin-bottom: 10px; font-size: 12px;
+}
+#weather-strip[hidden] { display: none; }
+.wx-current { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+.wx-icon { font-size: 20px; line-height: 1; }
+.wx-temp { font-size: 16px; font-weight: 700; }
+.wx-condition { font-size: 12px; color: var(--text-muted); flex: 1; }
+.wx-frost-tag { font-size: 11px; background: rgba(147,197,253,0.15); border: 1px solid rgba(147,197,253,0.3); color: #93c5fd; border-radius: 99px; padding: 1px 8px; white-space: nowrap; }
+.wx-forecast { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.wx-day { display: flex; flex-direction: column; align-items: center; background: var(--surface); border-radius: 4px; padding: 5px 3px; gap: 2px; }
+.wx-day-name { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.wx-day-icon { font-size: 14px; line-height: 1; }
+.wx-day-temp { font-size: 10px; font-weight: 600; white-space: nowrap; }
+.wx-attribution { font-size: 9px; color: var(--text-muted); text-align: right; margin-top: 5px; opacity: 0.7; }
+
+/* ──────────────────────────────────────────────
+   This Week digest
+────────────────────────────────────────────── */
+#this-week {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 6px; margin-bottom: 12px; overflow: hidden;
+}
+#this-week[hidden] { display: none; }
+.tw-header {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-muted);
+  padding: 7px 10px 6px; border-bottom: 1px solid var(--border);
+}
+.tw-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 7px 10px; border-bottom: 1px solid rgba(55,65,81,0.5);
+  font-size: 12px; line-height: 1.4;
+}
+.tw-item:last-child { border-bottom: none; }
+.tw-icon { flex-shrink: 0; font-size: 14px; line-height: 1.4; }
+.tw-text { flex: 1; }
+.tw-item--urgent .tw-text { font-weight: 600; }
+.tw-item--urgent { background: rgba(74,222,128,0.04); }
+.tw-item--action .tw-text { color: var(--accent); }
+.tw-item--soon .tw-text { color: #fbbf24; }
+.tw-item--info .tw-text { color: var(--text-muted); }
+
+/* ──────────────────────────────────────────────
+   Modal garden bar — redesigned
+────────────────────────────────────────────── */
+#modal-garden-bar.bar-saved { display: flex; flex-direction: column; gap: 5px; }
+#modal-garden-bar.bar-add { display: flex; align-items: center; }
+.modal-garden-info { display: flex; align-items: center; justify-content: space-between; }
+.modal-garden-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.modal-seeds-label { font-size: 12px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 5px; user-select: none; }
+.modal-seeds-label input { accent-color: var(--accent); cursor: pointer; }
+
+/* ──────────────────────────────────────────────
+   Crop notes + harvest log in modal
+────────────────────────────────────────────── */
+.modal-garden-section { border-top: 1px solid var(--border); padding: 14px 0 4px; }
+.garden-notes-ta {
+  width: 100%; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text); font-size: 12px; line-height: 1.5;
+  padding: 7px 10px; resize: vertical; font-family: inherit;
+  transition: border-color 0.15s; margin-top: 6px; min-height: 60px;
+}
+.garden-notes-ta:focus { outline: none; border-color: var(--accent); }
+.harvest-log-list { margin: 6px 0 2px; }
+.harvest-log-item { display: flex; gap: 10px; font-size: 12px; padding: 5px 0; border-bottom: 1px solid rgba(55,65,81,0.4); align-items: baseline; }
+.harvest-log-item:last-child { border-bottom: none; }
+.hl-date { color: var(--text-muted); white-space: nowrap; min-width: 80px; font-size: 11px; }
+.hl-notes { color: var(--text); flex: 1; }
+.harvest-log-entry { display: flex; gap: 5px; margin-top: 8px; flex-wrap: wrap; }
+.harvest-log-entry input[type="date"], .harvest-log-entry input[type="text"] {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 4px;
+  color: var(--text); font-size: 12px; padding: 4px 7px;
+}
+.harvest-log-entry input[type="date"] { width: 130px; flex-shrink: 0; }
+.harvest-log-entry input[type="text"] { flex: 1; min-width: 100px; }
+.harvest-log-add-btn {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 4px;
+  color: var(--text-muted); cursor: pointer; font-size: 12px; font-weight: 600;
+  padding: 4px 10px; white-space: nowrap; transition: color 0.15s, border-color 0.15s;
+}
+.harvest-log-add-btn:hover { color: var(--accent); border-color: var(--accent); }
+.harvest-count { font-size: 10px; color: var(--accent); font-weight: 600; margin-left: 4px; }
+
+/* Garden item icons for notes/seeds/harvests */
+.gi-badge { font-size: 10px; color: var(--text-muted); margin-left: 3px; }
+.gi-badge--seeds { color: var(--accent); }
+.gi-badge--harvests { color: #fbbf24; }
+
+/* ──────────────────────────────────────────────
+   Onboarding overlay
+────────────────────────────────────────────── */
+#onboarding {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.78);
+  backdrop-filter: blur(5px); z-index: 600;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+}
+#onboarding[hidden] { display: none; }
+#onboarding-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px 28px 24px;
+  max-width: 380px; width: 100%;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.7);
+  animation: ob-in 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes ob-in { from { opacity: 0; transform: scale(0.9) translateY(12px); } to { opacity: 1; transform: none; } }
+.ob-steps { min-height: 200px; }
+.ob-step { display: none; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+.ob-step.active { display: flex; }
+.ob-step-icon { font-size: 52px; line-height: 1; }
+.ob-step h2 { font-size: 20px; font-weight: 700; margin: 0; }
+.ob-step p { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin: 0; }
+.ob-actions { display: flex; gap: 10px; justify-content: center; margin-top: 8px; width: 100%; }
+.ob-skip { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 13px; padding: 8px 14px; border-radius: 6px; transition: color 0.15s; }
+.ob-skip:hover { color: var(--text); }
+.ob-primary { background: var(--accent); border: none; border-radius: 6px; color: #0a0f1a; cursor: pointer; font-size: 13px; font-weight: 700; padding: 8px 20px; transition: background 0.15s; }
+.ob-primary:hover { background: #86efac; }
+.ob-dots { display: flex; justify-content: center; gap: 8px; margin-top: 22px; }
+.ob-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: background 0.2s; cursor: pointer; }
+.ob-dot.active { background: var(--accent); }
+
+/* ──────────────────────────────────────────────
+   Keyboard shortcuts modal
+────────────────────────────────────────────── */
+#shortcuts-modal {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 0; width: min(380px, 92vw);
+  color: var(--text); box-shadow: 0 16px 48px rgba(0,0,0,0.65);
+}
+#shortcuts-modal::backdrop { background: rgba(0,0,0,0.55); backdrop-filter: blur(3px); }
+.shortcuts-header { display: flex; justify-content: space-between; align-items: center; padding: 13px 16px; border-bottom: 1px solid var(--border); }
+.shortcuts-header h3 { font-size: 14px; font-weight: 700; margin: 0; }
+#shortcuts-close { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); cursor: pointer; font-size: 18px; line-height: 1; padding: 2px 7px; transition: color 0.15s; }
+#shortcuts-close:hover { color: var(--text); }
+.shortcuts-list { padding: 8px 16px 14px; }
+.shortcut-row { display: flex; align-items: center; gap: 12px; padding: 7px 0; border-bottom: 1px solid rgba(55,65,81,0.4); font-size: 13px; color: var(--text-muted); }
+.shortcut-row:last-child { border-bottom: none; }
+.shortcut-keys { display: flex; gap: 4px; min-width: 72px; }
+kbd { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; color: var(--text); font-family: monospace; font-size: 11px; font-weight: 700; padding: 2px 6px; }
+
+/* ──────────────────────────────────────────────
+   Print stylesheet
+────────────────────────────────────────────── */
+@media print {
+  #top-bar, #slider-bar, #globe-container, #season-bg,
+  #browse-view, #crop-modal, #onboarding, #shortcuts-modal,
+  #panel-close, #panel-tabs, #tab-garden, #garden-tip,
+  #weather-strip, #this-week, #frost-alert-banner,
+  #countdown-cards, .crop-card-chevron, .crop-garden-star,
+  #year-calendar { display: none !important; }
+  body, html { overflow: visible !important; background: white !important; color: #000 !important; font-size: 12pt; }
+  :root { --text: #000; --text-muted: #555; --surface: #fff; --surface2: #f5f5f5; --border: #ccc; --accent: #16a34a; --bg: #fff; }
+  #info-panel { position: static !important; transform: none !important; width: 100% !important; height: auto !important; border: none !important; overflow: visible !important; padding: 8px 0 !important; }
+  #panel-content { padding: 0; }
+  .plant-section { break-inside: avoid; page-break-inside: avoid; margin-bottom: 12pt; }
+  .plant-section h3 { color: #16a34a; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 8px; }
+  .crop-card { border-left-color: #16a34a !important; box-shadow: none !important; cursor: default; }
+  #print-header { display: block !important; font-size: 10pt; color: #888; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #ccc; }
+  #zone-header { margin-bottom: 8pt; }
+  #frost-dates .frost-item { color: #333; background: #f5f5f5; border-color: #ccc; }
+  #month-display { color: #16a34a !important; }
+}
