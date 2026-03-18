@@ -1967,3 +1967,132 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
   color: var(--text-muted);
 }
 .garden-stat-stars { color: #fbbf24; font-size: 13px; letter-spacing: 1px; }
+
+/* ──────────────────────────────────────────────
+   Phase 5 — Quick-add button on crop cards
+────────────────────────────────────────────── */
+.crop-card { display: flex; align-items: center; }
+.crop-quick-add {
+  background: none;
+  border: none;
+  color: var(--border);
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 16px;
+  line-height: 1;
+  margin-left: 4px;
+  padding: 6px 5px;
+  transition: color 0.15s, transform 0.1s;
+}
+.crop-quick-add:hover { color: var(--accent); transform: scale(1.2); }
+.crop-quick-add.in-garden { color: var(--accent); }
+
+/* ──────────────────────────────────────────────
+   Phase 5 — Year calendar activity colours + frost markers
+────────────────────────────────────────────── */
+.ycal-cell { position: relative; }
+.ycal-bar-harvest    .ycal-bar-fill { background: #f87171 !important; }
+.ycal-bar-transplant .ycal-bar-fill { background: #fbbf24 !important; }
+.ycal-bar-sow        .ycal-bar-fill { background: var(--accent) !important; }
+.ycal-bar-start      .ycal-bar-fill { background: #60a5fa !important; }
+.ycal-frost-mark {
+  display: block;
+  font-size: 7px;
+  line-height: 1;
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ──────────────────────────────────────────────
+   Phase 5 — Zone climate card
+────────────────────────────────────────────── */
+.zone-climate-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+.climate-frosts {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 7px;
+}
+.climate-frost-item { color: var(--text-muted); }
+.climate-frost-item strong { color: var(--text); font-weight: 600; }
+.climate-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.climate-season-days { color: var(--text-muted); }
+.climate-season-days strong { color: var(--text); }
+.climate-type-badge {
+  background: rgba(74,222,128,0.12);
+  border: 1px solid rgba(74,222,128,0.3);
+  border-radius: 99px;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+/* Growing season bar */
+.climate-season-bar-wrap {
+  position: relative;
+  height: 8px;
+  background: var(--surface);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.climate-season-bar-fill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: rgba(74,222,128,0.35);
+  border-radius: 4px;
+}
+.climate-bar-months {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  font-size: 8px;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0;
+}
+.climate-bar-month.has-last  { color: #60a5fa; font-weight: 700; }
+.climate-bar-month.has-first { color: #fbbf24; font-weight: 700; }
+
+/* ──────────────────────────────────────────────
+   Phase 5 — Related crops in modal
+────────────────────────────────────────────── */
+.modal-related-section { padding: 10px 16px 14px; }
+.modal-related-section h4 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.related-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.related-chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px 10px;
+  transition: border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.related-chip:hover { background: var(--surface); border-color: var(--accent-dark); }
+.related-chip.in-season { border-color: rgba(74,222,128,0.4); color: var(--accent); }

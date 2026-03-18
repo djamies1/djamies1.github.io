@@ -401,17 +401,43 @@ function renderPanel() {
   const trange = selectedFeature?.properties?.trange || '';
   document.getElementById('zone-temp').textContent = trange ? `Avg min: ${trange}` : '';
 
-  // Frost dates
-  const frost    = FROST_DATES[zone.toLowerCase()];
-  const frostEl  = document.getElementById('frost-dates');
-  if (frost) {
-    if (!frost.last && !frost.first) {
-      frostEl.innerHTML = '<span class="frost-item">🌴 Frost-free zone</span>';
+  // Zone climate card
+  const frostEl = document.getElementById('frost-dates');
+  const climate = getZoneClimateInfo(zone);
+  if (climate) {
+    if (climate.frostFree) {
+      frostEl.innerHTML = `<div class="zone-climate-card">
+        <div class="climate-frosts"><span class="climate-frost-item">🌴 Frost-free zone</span></div>
+        <div class="climate-meta"><span class="climate-type-badge">Tropical</span><span class="climate-season-days">Year-round growing</span></div>
+      </div>`;
     } else {
-      const parts = [];
-      if (frost.last)  parts.push(`<span class="frost-item">❄️ Last frost <strong>${frost.last}</strong></span>`);
-      if (frost.first) parts.push(`<span class="frost-item">🍂 First frost <strong>${frost.first}</strong></span>`);
-      frostEl.innerHTML = parts.join('');
+      const { frost, lastM, firstM, seasonDays, climateType } = climate;
+      const ABBR = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+      // Season bar: left = start of growing window, width = length
+      let barLeft = 0, barWidth = 100;
+      if (lastM && firstM && firstM > lastM) {
+        barLeft  = ((lastM - 1) / 12 * 100).toFixed(1);
+        barWidth = ((firstM - lastM) / 12 * 100).toFixed(1);
+      }
+      const monthLabels = ABBR.map((a, i) => {
+        const cls = (i + 1) === lastM ? ' has-last' : (i + 1) === firstM ? ' has-first' : '';
+        return `<span class="climate-bar-month${cls}">${a}</span>`;
+      }).join('');
+
+      frostEl.innerHTML = `<div class="zone-climate-card">
+        <div class="climate-frosts">
+          ${frost.last  ? `<span class="climate-frost-item">❄️ Last frost <strong>${frost.last}</strong></span>` : ''}
+          ${frost.first ? `<span class="climate-frost-item">🍂 First frost <strong>${frost.first}</strong></span>` : ''}
+        </div>
+        <div class="climate-meta">
+          <span class="climate-type-badge">${climateType}</span>
+          ${seasonDays ? `<span class="climate-season-days">~<strong>${seasonDays}</strong> day growing season</span>` : ''}
+        </div>
+        <div class="climate-season-bar-wrap">
+          <div class="climate-season-bar-fill" style="left:${barLeft}%;width:${barWidth}%"></div>
+        </div>
+        <div class="climate-bar-months">${monthLabels}</div>
+      </div>`;
     }
     frostEl.hidden = false;
   } else {
@@ -564,6 +590,13 @@ function initPanelListeners() {
 
   const content = document.getElementById('panel-content');
   content.addEventListener('click', e => {
+    const qaBtn = e.target.closest('.crop-quick-add');
+    if (qaBtn) {
+      e.stopPropagation();
+      const name = qaBtn.dataset.crop;
+      if (name) isInGarden(name) ? gardenRemove(name) : gardenAdd(name);
+      return;
+    }
     const card = e.target.closest('.crop-card');
     if (card?.dataset.crop) openCropDetail(card.dataset.crop);
   });
@@ -688,12 +721,14 @@ function zoomToPoint(lat, lng) {
 function renderCropItem(name) {
   const c = cropData && cropData[name];
   if (!c) return `<li class="crop-plain">${name}</li>`;
+  const inG = isInGarden(name);
   return `<li class="crop-card" data-crop="${name}" role="button" tabindex="0" aria-label="${name} — tap for details">
     <div class="crop-card-body">
-      <div class="crop-title">${c.emoji || '🌱'} ${name}${isInGarden(name) ? '<span class="crop-garden-star">★</span>' : ''}</div>
+      <div class="crop-title">${c.emoji || '🌱'} ${name}${inG ? '<span class="crop-garden-star">★</span>' : ''}</div>
       <div class="crop-detail">${convertMeasurement(c.depth)} deep · ${convertMeasurement(c.spacing)} apart · ${convertMeasurement(c.water)} · ${c.days}</div>
       ${c.tip ? `<div class="crop-tip">${c.tip}</div>` : ''}
     </div>
+    <button class="crop-quick-add${inG ? ' in-garden' : ''}" data-crop="${name}" aria-label="${inG ? 'Remove from' : 'Add to'} My Garden" title="${inG ? 'Remove from My Garden' : 'Add to My Garden'}">${inG ? '★' : '☆'}</button>
     <span class="crop-card-chevron" aria-hidden="true">›</span>
   </li>`;
 }
@@ -720,6 +755,7 @@ function openCropDetail(name) {
   if (schedPH) schedPH.outerHTML = renderPlantingScheduleHTML(name);
   renderModalGardenBar(name);
   renderModalGardenSections(name);
+  renderRelatedCrops(name);
   if (!modal.open) modal.showModal();
 }
 
@@ -846,14 +882,30 @@ function renderYearCalendar() {
   wrapper.hidden = false;
   container.innerHTML = '';
 
+  const climate = getZoneClimateInfo(selectedZone);
+  const lastFrostM  = climate?.lastM  || null;
+  const firstFrostM = climate?.firstM || null;
+
   for (let m = 1; m <= 12; m++) {
     const data  = getPlantingData(selectedZone, m);
-    const count = ['startIndoors','directSow','transplant','harvest']
-      .filter(k => data[k]?.length > 0).length;
+    const actKeys = ['startIndoors','directSow','transplant','harvest'];
+    const present = actKeys.filter(k => data[k]?.length > 0);
+    const count = present.length;
     const pct   = (count / 4 * 100).toFixed(0);
 
+    // Dominant bar colour class
+    const barClass = present.includes('harvest')    ? 'ycal-bar-harvest'    :
+                     present.includes('transplant') ? 'ycal-bar-transplant' :
+                     present.includes('directSow')  ? 'ycal-bar-sow'        :
+                     present.length > 0             ? 'ycal-bar-start'      : '';
+
+    const isLastFrost  = m === lastFrostM;
+    const isFirstFrost = m === firstFrostM;
+    const frostMark = isLastFrost  ? '<span class="ycal-frost-mark" title="Last frost">❄</span>'  :
+                      isFirstFrost ? '<span class="ycal-frost-mark" title="First frost">🍂</span>' : '';
+
     const cell = document.createElement('div');
-    cell.className = 'ycal-cell' + (m === currentMonth ? ' ycal-active' : '');
+    cell.className = `ycal-cell${barClass ? ' ' + barClass : ''}${m === currentMonth ? ' ycal-active' : ''}`;
     cell.dataset.month = m;
     cell.title = MONTH_NAMES[m];
     cell.setAttribute('role', 'button');
@@ -861,7 +913,8 @@ function renderYearCalendar() {
     cell.setAttribute('aria-label', `${MONTH_NAMES[m]}: ${count} activities`);
     cell.innerHTML = `
       <div class="ycal-bar-wrap"><div class="ycal-bar-fill" style="height:${pct}%"></div></div>
-      <span class="ycal-label">${MONTH_NAMES[m][0]}</span>`;
+      <span class="ycal-label">${MONTH_NAMES[m][0]}</span>
+      ${frostMark}`;
     container.appendChild(cell);
   }
 }
@@ -1730,6 +1783,90 @@ function showToast(msg, type) {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
 }
 
+// ── Phase 5: Helper — frost date to month number ─
+const MONTH_NAME_TO_NUM = {
+  january:1,february:2,march:3,april:4,may:5,june:6,
+  july:7,august:8,september:9,october:10,november:11,december:12,
+  jan:1,feb:2,mar:3,apr:4,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12,
+};
+function frostDateToMonth(str) {
+  if (!str) return null;
+  const m = str.match(/^([A-Za-z]+)/);
+  return m ? (MONTH_NAME_TO_NUM[m[1].toLowerCase()] || null) : null;
+}
+
+// ── Phase 5: Zone climate info ───────────────────
+function getZoneClimateInfo(zone) {
+  const frost = FROST_DATES[zone?.toLowerCase()];
+  if (!frost) return null;
+  const lastM  = frostDateToMonth(frost.last);
+  const firstM = frostDateToMonth(frost.first);
+
+  // Estimate growing season days from date strings
+  let seasonDays = null;
+  if (frost.last && frost.first) {
+    const yr = new Date().getFullYear();
+    const lastD  = new Date(`${frost.last} ${yr}`);
+    const firstD = new Date(`${frost.first} ${yr}`);
+    if (!isNaN(lastD) && !isNaN(firstD) && firstD > lastD) {
+      seasonDays = Math.round((firstD - lastD) / 86400000);
+    }
+  }
+
+  const zoneNum = parseFloat(zone);
+  const climateType =
+    zoneNum <= 4  ? 'Cold'          :
+    zoneNum <= 7  ? 'Temperate'     :
+    zoneNum <= 10 ? 'Warm'          : 'Subtropical';
+
+  const frostFree = !frost.last && !frost.first;
+  return { lastM, firstM, seasonDays, climateType, frostFree, frost };
+}
+
+// ── Phase 5: Related crops ───────────────────────
+function getRelatedCrops(name, limit = 5) {
+  if (!cropData) return [];
+  const c = cropData[name];
+  const cat = CROP_CATEGORY_MAP[name];
+  const related = new Set();
+  // Companions first (most relevant)
+  (c?.companions || []).forEach(r => { if (cropData[r] && r !== name) related.add(r); });
+  // Same category
+  if (cat) (CROP_CATEGORIES[cat] || []).forEach(r => { if (r !== name) related.add(r); });
+  return [...related].slice(0, limit);
+}
+
+function renderRelatedCrops(name) {
+  const body = document.getElementById('modal-body');
+  if (!body) return;
+  body.querySelector('.modal-related-section')?.remove();
+
+  const related = getRelatedCrops(name);
+  if (!related.length) return;
+
+  // Build active set for in-season highlighting
+  const activeSet = new Set();
+  if (selectedZone) {
+    const d = getPlantingData(selectedZone, currentMonth);
+    ['startIndoors','directSow','transplant','harvest'].forEach(k => (d[k]||[]).forEach(c => activeSet.add(c)));
+  }
+
+  const sec = document.createElement('div');
+  sec.className = 'modal-related-section';
+  sec.innerHTML = `<h4>You might also like</h4>
+    <div class="related-chips">
+      ${related.map(r => {
+        const rc = cropData[r];
+        const inSeason = activeSet.has(r);
+        return `<button class="related-chip${inSeason ? ' in-season' : ''}" data-crop="${r}">${rc?.emoji || '🌱'} ${r}${inSeason ? ' ✦' : ''}</button>`;
+      }).join('')}
+    </div>`;
+  sec.querySelectorAll('.related-chip').forEach(btn => {
+    btn.addEventListener('click', () => openCropDetail(btn.dataset.crop));
+  });
+  body.appendChild(sec);
+}
+
 // ── Phase 4: Watering alert ─────────────────────
 function renderWateringAlert() {
   const el = document.getElementById('watering-alert');
@@ -1969,7 +2106,7 @@ function renderGardenGantt() {
       const type = dominant(acts);
       const isCur = (mi + 1) === currentMonth;
       const tip = acts.length ? acts.map(a => titleMap[a]).join(', ') : '—';
-      return `<div class="gantt-cell gantt-cell--${type}${isCur ? ' gantt-cell--cur' : ''}" title="${name}: ${tip}"></div>`;
+      return `<div class="gantt-cell gantt-cell--${type}${isCur ? ' gantt-cell--cur' : ''}" data-month="${mi + 1}" title="${name}: ${tip || '—'} — click to jump to month" role="button"></div>`;
     }).join('');
     return label + cells;
   }).join('');
@@ -1983,8 +2120,28 @@ function renderGardenGantt() {
         <span class="gl-item gl-transplant">Transplant</span>
         <span class="gl-item gl-harvest">Harvest</span>
       </div>
-      <div class="gantt-grid">${headerRow}${dataRows}</div>
+      <div class="gantt-grid" id="gantt-grid-inner">${headerRow}${dataRows}</div>
     </div>`;
+
+  // Click-to-jump: clicking a gantt cell switches to calendar tab at that month
+  el.querySelector('#gantt-grid-inner')?.addEventListener('click', e => {
+    const cell = e.target.closest('.gantt-cell[data-month]');
+    if (!cell) return;
+    const m = parseInt(cell.dataset.month, 10);
+    if (!m) return;
+    currentMonth = m;
+    const slider = document.getElementById('month-slider');
+    if (slider) slider.value = m;
+    updateMonthLabels();
+    updateSeasonBg();
+    // Switch to calendar tab
+    currentPanelTab = 'calendar';
+    document.querySelectorAll('.ptab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'calendar'));
+    document.getElementById('tab-calendar').hidden = false;
+    document.getElementById('tab-garden').hidden   = true;
+    renderPanel();
+    updateURL();
+  });
 }
 
 // ── Phase 3: Calendar crop search ───────────────
