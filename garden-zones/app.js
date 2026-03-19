@@ -1289,6 +1289,8 @@ function openCropDetail(name) {
   renderModalGardenSections(name);
   if (!c.custom) renderRelatedCrops(name);
   if (!c.custom) renderVarietyHistory(name);
+  if (!c.custom) renderSeedStartSection(name);
+  if (!c.custom) renderFertilizerSection(name);
   if (!modal.open) modal.showModal();
 }
 
@@ -2217,7 +2219,7 @@ function renderGardenTab() {
   const emptyMsg = document.getElementById('garden-empty-msg');
   if (!list) return;
   const names = Object.keys(myGarden);
-  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; renderGardenBeds(); renderCompanionMatrix(); renderGardenHistory(); renderPlanSection(); return; }
+  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; renderGardenBeds(); renderCompanionMatrix(); renderGardenHistory(); renderPlanSection(); renderGardenHealthScore(); return; }
   if (emptyMsg) emptyMsg.hidden = true;
 
   const groups = { ready: [], growing: [], saved: [] };
@@ -2287,6 +2289,8 @@ function renderGardenTab() {
   renderPlanSection();
   renderHarvestAnalytics();
   renderWateringIntelligence();
+  renderHarvestToTable();
+  renderGardenHealthScore();
   checkAchievements();
 }
 
@@ -2507,6 +2511,14 @@ function renderModalGardenBar(name) {
       btn.addEventListener('click', () => gardenSetRating(name, parseInt(btn.dataset.star, 10)));
     });
   }
+
+  // Phase 71: Compare button (always shown)
+  const compareBtn = document.createElement('button');
+  compareBtn.className = 'modal-compare-btn' + (_compareA && _compareA !== name ? ' modal-compare-btn--ready' : '');
+  compareBtn.textContent = _compareA === name ? '⚖ Clear' : (_compareA ? `⚖ vs ${_compareA}` : '⚖ Compare');
+  compareBtn.title = _compareA ? `Compare ${name} with ${_compareA}` : 'Select this crop for side-by-side comparison';
+  compareBtn.addEventListener('click', () => { toggleCropCompare(name); renderModalGardenBar(name); });
+  bar.appendChild(compareBtn);
 }
 
 function initGarden() {
@@ -4740,6 +4752,18 @@ function initJournal() {
   document.getElementById('photo-lightbox')?.addEventListener('click', () => {
     const lb = document.getElementById('photo-lightbox');
     if (lb) lb.hidden = true;
+  });
+
+  // Phase 72: Gallery open/close
+  document.getElementById('gallery-open-btn')?.addEventListener('click', openPhotoGallery);
+  document.getElementById('gallery-close-btn')?.addEventListener('click', () => {
+    const ov = document.getElementById('photo-gallery-overlay');
+    if (ov) ov.hidden = true;
+  });
+  document.getElementById('photo-gallery-overlay')?.addEventListener('click', e => {
+    if (e.target === document.getElementById('photo-gallery-overlay')) {
+      e.target.hidden = true;
+    }
   });
 
   document.getElementById('journal-filter-bar')?.addEventListener('click', e => {
@@ -7034,4 +7058,490 @@ function renderWateringIntelligence() {
       renderWateringIntelligence();
     });
   });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PHASE 68 — Seed Starting Calculator
+// ═══════════════════════════════════════════════════════════════════
+
+const SEED_START_WEEKS = {
+  'Tomatoes': 6, 'Cherry Tomatoes': 6, 'Peppers': 8, 'Jalapeño': 8, 'Eggplant': 8,
+  'Broccoli': 5, 'Cabbage': 5, 'Cauliflower': 5, 'Brussels Sprouts': 5,
+  'Kale': 4, 'Celery': 10, 'Celeriac': 10, 'Leeks': 10, 'Onions': 8,
+  'Shallots': 8, 'Fennel': 4, 'Lettuce': 4, 'Chard': 4, 'Spinach': 3,
+  'Basil': 4, 'Parsley': 8, 'Sweet Corn': 3, 'Squash': 3, 'Zucchini': 3,
+  'Butternut Squash': 3, 'Pumpkins': 3, 'Cucumbers': 3, 'Melons': 4,
+  'Watermelon': 4, 'Artichokes': 8, 'Lemongrass': 8,
+};
+
+function renderSeedStartSection(name) {
+  const body = document.getElementById('modal-body');
+  if (!body) return;
+  body.querySelector('.modal-seed-start-section')?.remove();
+
+  const weeksBeforeFrost = SEED_START_WEEKS[name];
+  if (!weeksBeforeFrost || !selectedZone) return;
+  const frost = FROST_DATES[selectedZone.toLowerCase()];
+  if (!frost?.last) return;
+  const lastFrostDate = parseFrostDate(frost.last);
+  if (!lastFrostDate) return;
+
+  const startDate = new Date(lastFrostDate);
+  startDate.setDate(startDate.getDate() - weeksBeforeFrost * 7);
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const daysUntilStart = Math.round((startDate - today) / 86400000);
+
+  const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  let statusHtml, statusClass;
+  if (daysUntilStart > 21) {
+    statusHtml = `Start seeds around <strong>${fmt(startDate)}</strong> — ${daysUntilStart} days away`;
+    statusClass = 'ssc--upcoming';
+  } else if (daysUntilStart >= -7) {
+    statusClass = daysUntilStart >= 0 ? 'ssc--now' : 'ssc--late';
+    statusHtml = daysUntilStart >= 0
+      ? `⏰ <strong>Start seeds now!</strong> Ideal date: ${fmt(startDate)}`
+      : `⚠️ ${Math.abs(daysUntilStart)} days past ideal — still worth starting if transplants are unavailable`;
+  } else if (daysUntilStart > -42) {
+    statusHtml = `Seedling window has passed this season — transplants may still be at nurseries`;
+    statusClass = 'ssc--passed';
+  } else {
+    return;
+  }
+
+  const sec = document.createElement('div');
+  sec.className = 'modal-section modal-seed-start-section';
+  sec.innerHTML = `
+    <div class="modal-section-title">🌱 Seed Starting</div>
+    <div class="ssc-card ${statusClass}">
+      <div class="ssc-main">${statusHtml}</div>
+      <div class="ssc-detail">Zone ${getZoneDisplayLabel(selectedZone)} · Last frost ~${frost.last} · Start ${weeksBeforeFrost} weeks before</div>
+    </div>`;
+  body.appendChild(sec);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PHASE 69 — Fertilizer Schedule
+// ═══════════════════════════════════════════════════════════════════
+
+const FERTILIZER_SCHEDULES = {
+  fruiting: [
+    { stage: 'Pre-plant',  when: 'Before planting',            icon: '🌍', tip: 'Work compost or balanced 10-10-10 into soil. Good prep = better yields.' },
+    { stage: 'Seedling',   when: '2 wks after transplant',     icon: '🌱', tip: 'Light nitrogen — diluted fish emulsion or liquid seaweed.' },
+    { stage: 'Vegetative', when: '4–5 wks after transplant',   icon: '🌿', tip: 'Balanced NPK supports rapid leafy growth before flowering.' },
+    { stage: 'Flowering',  when: 'At first flower',            icon: '🌸', tip: 'Switch to higher phosphorus. Excess nitrogen reduces fruit set.' },
+    { stage: 'Fruiting',   when: 'Every 2 wks while fruiting', icon: '🍅', tip: 'Potassium-rich feed improves fruit quality and shelf life.' },
+  ],
+  leafy: [
+    { stage: 'Pre-plant', when: 'Before planting',    icon: '🌍', tip: 'Rich compost or nitrogen-forward fertilizer (5-3-3 or similar).' },
+    { stage: 'Seedling',  when: '2–3 wks after sow',  icon: '🌱', tip: 'Diluted liquid fertilizer or compost tea.' },
+    { stage: 'Growing',   when: 'Every 3 weeks',       icon: '🌿', tip: 'Nitrogen feed supports continuous leafy growth — reduce if bolting.' },
+  ],
+  root: [
+    { stage: 'Pre-plant', when: 'Before planting',        icon: '🌍', tip: 'Low nitrogen; avoid fresh manure (causes forking). Bone meal for phosphorus.' },
+    { stage: 'Seedling',  when: '3 wks after germination', icon: '🌱', tip: 'Light feed only — too much N = lush leaves, tiny roots.' },
+    { stage: 'Swelling',  when: '6 wks after germination', icon: '🥕', tip: 'Potassium-rich feed supports root swelling and sweetness.' },
+  ],
+  legume: [
+    { stage: 'Pre-plant', when: 'Before planting',  icon: '🌍', tip: 'Light compost only — legumes fix their own nitrogen from the air.' },
+    { stage: 'Flowering', when: 'At first flower',  icon: '🌸', tip: 'Optional potassium boost improves pod fill and flavour.' },
+  ],
+  allium: [
+    { stage: 'Pre-plant', when: 'Before planting',     icon: '🌍', tip: 'Well-rotted compost or balanced fertilizer.' },
+    { stage: 'Seedling',  when: '3 wks after planting', icon: '🌱', tip: 'Nitrogen-forward feed for early bulb development.' },
+    { stage: 'Bulbing',   when: '8 wks after planting', icon: '🧅', tip: 'Switch to lower N, higher potassium for bulb swelling.' },
+    { stage: 'Stop',      when: '4 wks before harvest', icon: '🛑', tip: 'Stop feeding — leaves must yellow naturally for proper curing.' },
+  ],
+};
+
+const CROP_FERT_CATEGORY = {
+  'Tomatoes':'fruiting','Cherry Tomatoes':'fruiting','Peppers':'fruiting',
+  'Jalapeño':'fruiting','Eggplant':'fruiting','Cucumbers':'fruiting',
+  'Squash':'fruiting','Zucchini':'fruiting','Pumpkins':'fruiting',
+  'Butternut Squash':'fruiting','Melons':'fruiting','Watermelon':'fruiting',
+  'Corn':'fruiting','Sweet Corn':'fruiting',
+  'Lettuce':'leafy','Spinach':'leafy','Kale':'leafy','Chard':'leafy',
+  'Arugula':'leafy','Cabbage':'leafy','Broccoli':'leafy','Cauliflower':'leafy',
+  'Brussels Sprouts':'leafy','Basil':'leafy','Microgreens':'leafy',
+  'Parsley':'leafy','Celery':'leafy','Fennel':'leafy',
+  'Carrots':'root','Beets':'root','Parsnips':'root','Radishes':'root',
+  'Turnips':'root','Celeriac':'root','Potatoes':'root',
+  'Beans':'legume','Peas':'legume',
+  'Garlic':'allium','Onions':'allium','Leeks':'allium','Shallots':'allium',
+};
+
+const FERT_DAY_OFFSETS = {
+  fruiting: [0, 14, 35, 56, 70],
+  leafy:    [0, 14, 35],
+  root:     [0, 21, 42],
+  legume:   [0, 56],
+  allium:   [0, 21, 56, 84],
+};
+
+function renderFertilizerSection(name) {
+  const body = document.getElementById('modal-body');
+  if (!body) return;
+  body.querySelector('.modal-fert-section')?.remove();
+
+  const category = CROP_FERT_CATEGORY[name];
+  if (!category) return;
+  const stages = FERTILIZER_SCHEDULES[category];
+
+  const sec = document.createElement('div');
+  sec.className = 'modal-section modal-fert-section';
+  const hasPlantingDate = !!myGarden[name]?.planted;
+
+  sec.innerHTML = `
+    <div class="modal-section-title">🧪 Fertilizer Schedule</div>
+    <div class="fert-stages">
+      ${stages.map((s, i) => `
+        <div class="fert-stage">
+          <div class="fert-stage-num">${i + 1}</div>
+          <div class="fert-stage-icon">${s.icon}</div>
+          <div class="fert-stage-body">
+            <span class="fert-stage-name">${s.stage}</span>
+            <span class="fert-stage-when">${s.when}</span>
+            <span class="fert-stage-tip">${s.tip}</span>
+          </div>
+        </div>`).join('')}
+    </div>
+    ${hasPlantingDate ? `<button class="fert-add-tasks-btn" data-crop="${name}">+ Add as reminders</button>` : ''}`;
+
+  body.appendChild(sec);
+
+  sec.querySelector('.fert-add-tasks-btn')?.addEventListener('click', () => {
+    const planted = new Date(myGarden[name].planted + 'T00:00:00');
+    const offsets = FERT_DAY_OFFSETS[category] || stages.map((_, i) => i * 14);
+    stages.forEach((s, i) => {
+      const due = new Date(planted);
+      due.setDate(due.getDate() + (offsets[i] || i * 14));
+      addChecklistItem(`🧪 ${name}: ${s.stage} — ${s.tip.split('.')[0]}`, due.toISOString().slice(0, 10));
+    });
+    showToast(`${stages.length} fertilizer reminders added!`, 'success');
+    sec.querySelector('.fert-add-tasks-btn').remove();
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PHASE 70 — Harvest-to-Table Ideas
+// ═══════════════════════════════════════════════════════════════════
+
+const HARVEST_TO_TABLE = {
+  'Tomatoes':        ['Caprese with mozzarella & basil', 'Homemade pasta sauce (simmer 30 min)', 'Oven-roasted with garlic & olive oil', 'Bruschetta'],
+  'Cherry Tomatoes': ['Blistered in a hot pan with garlic', 'Halved in pasta salads', 'Caprese skewers', 'Toss into frittatas'],
+  'Basil':           ['Classic pesto (basil, pine nuts, parmesan, olive oil)', 'Scatter over pizza & pasta', 'Muddle into cocktails', 'Infuse into oil'],
+  'Lettuce':         ['Mixed garden salad', 'Lettuce cups with Asian-style fillings', 'Blend into green smoothies'],
+  'Cucumbers':       ['Tzatziki', 'Quick pickles with dill & vinegar', 'Greek salad', 'Chilled cucumber soup'],
+  'Zucchini':        ['Fritters with herb yoghurt', 'Spiralized zoodles', 'Stuffed & baked with cheese', 'Grilled with lemon & herbs'],
+  'Squash':          ['Roasted wedges with sage butter', 'Squash soup with coconut milk', 'Stuffed squash boats', 'Risotto'],
+  'Butternut Squash':['Roasted soup with ginger & cream', 'Stuffed & baked with quinoa', 'Squash risotto', 'Curry'],
+  'Peppers':         ['Stuffed peppers with rice & mince', 'Roasted pepper sauce', 'Fajita filling', 'Pickled peppers'],
+  'Jalapeño':        ['Jalapeño poppers with cream cheese', 'Homemade hot sauce', 'Pickled slices', 'Fresh salsa'],
+  'Beans':           ['Simple buttered beans', 'Bean salad with lemon', 'Add to minestrone', 'Stir-fry with garlic & soy'],
+  'Peas':            ['Pea & mint soup', 'Pea risotto', 'Mushy peas', 'Pasta primavera'],
+  'Carrots':         ['Honey-glazed roasted carrots', 'Carrot & ginger soup', 'Raw sticks with hummus', 'Carrot cake'],
+  'Kale':            ['Kale chips (baked with olive oil)', 'Massaged kale salad', 'Stir-fry with garlic', 'Add to soups & stews'],
+  'Spinach':         ['Sautéed with garlic & butter', 'Spinach & feta tart', 'Add raw to smoothies', 'Saag curry'],
+  'Garlic':          ['Roasted garlic spread', 'Garlic butter', 'Pickled cloves', 'Aioli'],
+  'Onions':          ['French onion soup', 'Caramelised onion tart', 'Pickled red onion', 'Onion jam'],
+  'Potatoes':        ['Crispy roast potatoes', 'Potato & bacon soup', 'Gratin dauphinois', 'Homemade gnocchi'],
+  'Broccoli':        ['Roasted with parmesan', 'Broccoli cheese soup', 'Stir-fry with oyster sauce', 'Pasta with anchovies'],
+  'Cauliflower':     ['Cauliflower steaks with tahini', 'Buffalo cauliflower bites', 'Cauliflower rice', 'Aloo gobi'],
+  'Chard':           ['Sautéed with raisins & pine nuts', 'Chard & chickpea stew', 'Wilted in soups', 'Add to frittatas'],
+  'Beets':           ['Borscht (beetroot soup)', 'Roasted with goat cheese & walnuts', 'Pickled beets', 'Beet & orange salad'],
+  'Radishes':        ['Quick-pickled with lime & chilli', 'Sliced over tacos', 'Butter & salt on crusty bread'],
+  'Corn':            ['Grilled corn with herb butter', 'Corn chowder', 'Sweet corn fritters', 'Elote (Mexican street corn)'],
+  'Sweet Corn':      ['Grilled corn with herb butter', 'Corn chowder', 'Sweet corn fritters', 'Elote (Mexican street corn)'],
+  'Pumpkins':        ['Pumpkin soup', 'Pumpkin pie', 'Roasted with cinnamon & honey', 'Pumpkin risotto'],
+  'Leeks':           ['Leek & potato soup', 'Creamed leeks', 'Leek & cheese quiche', 'Braised leeks with wine'],
+  'Parsnips':        ['Honey-roasted parsnips', 'Parsnip & apple soup', 'Curried parsnip soup', 'Root veg mash'],
+  'Herbs':           ['Herb-infused oils', 'Chimichurri sauce', 'Fresh herb butter', 'Bouquet garni for stocks'],
+  'Artichokes':      ['Steamed with garlic butter', 'Grilled artichoke hearts', 'Stuffed artichokes', 'Artichoke dip'],
+};
+
+function renderHarvestToTable() {
+  const el = document.getElementById('harvest-to-table');
+  if (!el) return;
+  const readyCrops = Object.keys(myGarden).filter(n => getGardenStatus(n)?.type === 'ready');
+  if (!readyCrops.length) { el.innerHTML = ''; return; }
+
+  const cards = readyCrops
+    .filter(n => HARVEST_TO_TABLE[n]?.length)
+    .map(name => {
+      const ideas = HARVEST_TO_TABLE[name];
+      const c = cropData[name];
+      return `<div class="htt-card">
+        <div class="htt-card-header">
+          <span class="htt-emoji">${c?.emoji || '🌱'}</span>
+          <span class="htt-name">${name}</span>
+          <span class="htt-ready-badge">Ready!</span>
+        </div>
+        <ul class="htt-ideas">
+          ${ideas.slice(0, 3).map(idea => `<li>${idea}</li>`).join('')}
+        </ul>
+      </div>`;
+    });
+
+  if (!cards.length) { el.innerHTML = ''; return; }
+
+  el.innerHTML = `
+    <div class="htt-section">
+      <div class="htt-title">🍽 Harvest-to-Table Ideas</div>
+      <div class="htt-cards">${cards.join('')}</div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PHASE 71 — Crop Comparison
+// ═══════════════════════════════════════════════════════════════════
+
+let _compareA = null;
+
+function toggleCropCompare(name) {
+  if (!_compareA) {
+    _compareA = name;
+    showToast(`${cropData[name]?.emoji || ''} ${name} selected — open another crop to compare`, 'info');
+    return;
+  }
+  if (_compareA === name) {
+    _compareA = null;
+    showToast('Comparison cleared', 'info');
+    return;
+  }
+  openCropComparison(_compareA, name);
+  _compareA = null;
+}
+
+function openCropComparison(nameA, nameB) {
+  const cA = cropData[nameA], cB = cropData[nameB];
+  if (!cA || !cB) return;
+
+  const overlay = document.getElementById('crop-compare-overlay');
+  if (!overlay) return;
+
+  const FIELDS = [
+    { label: 'Days to harvest', key: 'days' },
+    { label: 'Sun',             key: 'sun' },
+    { label: 'Water',           key: 'water' },
+    { label: 'Difficulty',      key: 'difficulty' },
+    { label: 'Soil pH',         key: 'soil_ph' },
+    { label: 'Spacing',         key: 'spacing' },
+    { label: 'Depth',           key: 'depth' },
+    { label: 'Germ temp',       key: 'germ_temp' },
+  ];
+
+  const compat = (a, b) => {
+    const c = cropData[a];
+    if (c?.companions?.includes(b)) return '<span class="cc-good">✅ Good companions</span>';
+    if (c?.avoid?.includes(b))      return '<span class="cc-bad">⚠️ Avoid together</span>';
+    return '—';
+  };
+
+  overlay.innerHTML = `
+    <div class="compare-inner">
+      <button class="compare-close" id="compare-close-btn">&times;</button>
+      <h3 class="compare-title">Crop Comparison</h3>
+      <div class="compare-heads">
+        <div class="compare-head" role="button" data-name="${nameA}">
+          <span class="compare-emoji">${cA.emoji || '🌱'}</span>
+          <span class="compare-name">${nameA}</span>
+        </div>
+        <div class="compare-vs">vs</div>
+        <div class="compare-head" role="button" data-name="${nameB}">
+          <span class="compare-emoji">${cB.emoji || '🌱'}</span>
+          <span class="compare-name">${nameB}</span>
+        </div>
+      </div>
+      <div class="compare-grid">
+        ${FIELDS.map(f => {
+          const vA = cA[f.key] || '—';
+          const vB = cB[f.key] || '—';
+          return `<div class="compare-row">
+            <div class="compare-cell compare-cell--a">${convertMeasurement(vA)}</div>
+            <div class="compare-label">${f.label}</div>
+            <div class="compare-cell compare-cell--b">${convertMeasurement(vB)}</div>
+          </div>`;
+        }).join('')}
+        <div class="compare-row">
+          <div class="compare-cell compare-cell--a">${compat(nameA, nameB)}</div>
+          <div class="compare-label">Compatibility</div>
+          <div class="compare-cell compare-cell--b">${compat(nameB, nameA)}</div>
+        </div>
+      </div>
+      <div class="compare-actions">
+        <button class="compare-open-btn" data-name="${nameA}">${cA.emoji || '🌱'} ${nameA}</button>
+        <button class="compare-open-btn" data-name="${nameB}">${cB.emoji || '🌱'} ${nameB}</button>
+      </div>
+    </div>`;
+
+  overlay.hidden = false;
+  overlay.querySelector('#compare-close-btn').addEventListener('click', () => { overlay.hidden = true; });
+  overlay.querySelectorAll('.compare-open-btn').forEach(btn => {
+    btn.addEventListener('click', () => { overlay.hidden = true; openCropDetail(btn.dataset.name); });
+  });
+  overlay.querySelectorAll('.compare-head[role="button"]').forEach(head => {
+    head.addEventListener('click', () => { overlay.hidden = true; openCropDetail(head.dataset.name); });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PHASE 72 — Photo Gallery
+// ═══════════════════════════════════════════════════════════════════
+
+let _galleryFilter = '';
+
+function openPhotoGallery() {
+  const overlay = document.getElementById('photo-gallery-overlay');
+  if (!overlay) return;
+  _galleryFilter = '';
+  overlay.hidden = false;
+  renderPhotoGallery();
+}
+
+function renderPhotoGallery() {
+  const overlay = document.getElementById('photo-gallery-overlay');
+  if (!overlay || overlay.hidden) return;
+  const content = document.getElementById('photo-gallery-content');
+  if (!content) return;
+
+  const allPhotos = [];
+  for (const [name, entry] of Object.entries(myGarden)) {
+    for (const p of (entry.photos || [])) {
+      allPhotos.push({ crop: name, ...p });
+    }
+  }
+
+  if (!allPhotos.length) {
+    content.innerHTML = '<p class="gallery-empty">No photos yet. Add photos from individual crop cards in My Garden.</p>';
+    return;
+  }
+
+  const cropsWithPhotos = [...new Set(allPhotos.map(p => p.crop))];
+  const filtered = _galleryFilter ? allPhotos.filter(p => p.crop === _galleryFilter) : allPhotos;
+
+  content.innerHTML = `
+    <div class="gallery-filters">
+      <button class="gallery-chip${!_galleryFilter ? ' active' : ''}" data-crop="">All (${allPhotos.length})</button>
+      ${cropsWithPhotos.map(n => `<button class="gallery-chip${_galleryFilter === n ? ' active' : ''}" data-crop="${n}">${cropData[n]?.emoji || '🌱'} ${n}</button>`).join('')}
+    </div>
+    <div class="gallery-grid">
+      ${filtered.map(p => `
+        <div class="gallery-thumb">
+          <img src="${p.thumb}" alt="${p.crop} — ${p.date}" loading="lazy">
+          <div class="gallery-thumb-meta">
+            <span>${cropData[p.crop]?.emoji || '🌱'} ${p.crop}</span>
+            <span>${p.date}</span>
+          </div>
+        </div>`).join('')}
+    </div>`;
+
+  content.querySelectorAll('.gallery-chip').forEach(btn => {
+    btn.addEventListener('click', () => { _galleryFilter = btn.dataset.crop; renderPhotoGallery(); });
+  });
+  content.querySelectorAll('.gallery-thumb img').forEach(img => {
+    img.addEventListener('click', () => {
+      const lb = document.getElementById('photo-lightbox');
+      const lbImg = document.getElementById('photo-lightbox-img');
+      if (lb && lbImg) { lbImg.src = img.src; lb.hidden = false; }
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PHASE 73 — Garden Health Score
+// ═══════════════════════════════════════════════════════════════════
+
+function computeGardenHealthScore() {
+  const names = Object.keys(myGarden);
+  if (!names.length) return null;
+
+  let score = 0;
+  const breakdown = [];
+
+  // 1. Watering on schedule (30 pts)
+  const plantedNames = names.filter(n => myGarden[n]?.planted);
+  if (plantedNames.length) {
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const onSchedule = plantedNames.filter(n => {
+      const interval = getCropWaterInterval(n);
+      const lastWatered = myGarden[n].waterLog?.[0]?.date;
+      if (!lastWatered) return false;
+      const daysSince = Math.round((today - new Date(lastWatered + 'T00:00:00')) / 86400000);
+      return daysSince <= interval + 1;
+    }).length;
+    const pts = Math.round((onSchedule / plantedNames.length) * 30);
+    score += pts;
+    breakdown.push({ label: 'Watering', pts, max: 30, tip: pts < 15 ? 'Log watering for your planted crops regularly' : null });
+  } else {
+    breakdown.push({ label: 'Watering', pts: 0, max: 30, tip: 'Set planting dates to unlock watering tracking' });
+  }
+
+  // 2. Harvest logging (20 pts)
+  const harvestable = names.filter(n => getGardenStatus(n)?.type === 'ready' || myGarden[n]?.harvestLog?.length);
+  const withLogs = names.filter(n => myGarden[n]?.harvestLog?.length);
+  const hPts = harvestable.length ? Math.min(20, Math.round((withLogs.length / Math.max(harvestable.length, 1)) * 20)) : 10;
+  score += hPts;
+  breakdown.push({ label: 'Harvest logging', pts: hPts, max: 20, tip: hPts < 10 ? 'Log your harvests to track yields over time' : null });
+
+  // 3. Journal activity (20 pts — 4 per entry in last 30 days, max 20)
+  let journal = [];
+  try { journal = JSON.parse(localStorage.getItem('pzf-journal') || '[]'); } catch {}
+  const since30 = new Date(); since30.setDate(since30.getDate() - 30);
+  const recentEntries = journal.filter(e => new Date(e.date) >= since30).length;
+  const jPts = Math.min(20, recentEntries * 4);
+  score += jPts;
+  breakdown.push({ label: 'Journal activity', pts: jPts, max: 20, tip: jPts < 8 ? 'Keep a journal — even brief notes improve outcomes' : null });
+
+  // 4. Companion planting (15 pts)
+  const gardenSet = new Set(names);
+  const withCompanions = names.filter(n => cropData[n]?.companions?.some(c => gardenSet.has(c))).length;
+  const cPts = names.length > 1 ? Math.min(15, Math.round((withCompanions / names.length) * 15)) : 0;
+  score += cPts;
+  breakdown.push({ label: 'Companion planting', pts: cPts, max: 15, tip: cPts < 8 ? 'Add companion plants to improve your ecosystem' : null });
+
+  // 5. Crop diversity (15 pts — 1 per crop)
+  const dPts = Math.min(15, names.length);
+  score += dPts;
+  breakdown.push({ label: 'Crop diversity', pts: dPts, max: 15, tip: dPts < 8 ? 'Grow more variety for a healthier, resilient garden' : null });
+
+  const worstTip = breakdown.find(b => b.tip)?.tip;
+  return { score: Math.min(100, score), breakdown, tip: worstTip };
+}
+
+function renderGardenHealthScore() {
+  const el = document.getElementById('garden-health-score');
+  if (!el) return;
+  const result = computeGardenHealthScore();
+  if (!result) { el.innerHTML = ''; return; }
+
+  const { score, breakdown, tip } = result;
+  const grade = score >= 80 ? { label: 'Excellent', cls: 'ghs--excellent' }
+              : score >= 60 ? { label: 'Good',      cls: 'ghs--good' }
+              : score >= 40 ? { label: 'Fair',       cls: 'ghs--fair' }
+              :               { label: 'Getting started', cls: 'ghs--poor' };
+
+  el.innerHTML = `
+    <div class="ghs-card ${grade.cls}">
+      <div class="ghs-score-row">
+        <div class="ghs-ring" aria-hidden="true">
+          <svg viewBox="0 0 36 36" class="ghs-circle">
+            <path class="ghs-track" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3.5"/>
+            <path class="ghs-arc"   stroke-dasharray="${score}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3.5"/>
+          </svg>
+          <span class="ghs-score-num">${score}</span>
+        </div>
+        <div class="ghs-score-info">
+          <span class="ghs-grade">${grade.label}</span>
+          <span class="ghs-sublabel">Garden Health Score</span>
+        </div>
+      </div>
+      <div class="ghs-bars">
+        ${breakdown.map(b => `
+          <div class="ghs-bar-row">
+            <span class="ghs-bar-label">${b.label}</span>
+            <div class="ghs-bar-track"><div class="ghs-bar-fill" style="width:${Math.round(b.pts / b.max * 100)}%"></div></div>
+            <span class="ghs-bar-pts">${b.pts}/${b.max}</span>
+          </div>`).join('')}
+      </div>
+      ${tip ? `<div class="ghs-tip">💡 ${tip}</div>` : ''}
+    </div>`;
 }
