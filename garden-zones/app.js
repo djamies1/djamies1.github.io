@@ -41,6 +41,155 @@ const FROST_SENSITIVE = new Set([
   'Sweet Potatoes','Ginger','Lemongrass','Okra','Peanuts',
 ]);
 
+// ── Phase 67: Companion reasons ────────────────
+const COMPANION_REASONS = {
+  'Tomatoes|Basil':'Basil repels aphids and thrips; traditionally said to improve tomato flavour.',
+  'Tomatoes|Marigolds':'Marigold root secretions deter nematodes, aphids, and whitefly.',
+  'Tomatoes|Carrots':'Carrots loosen soil around tomato roots; efficient use of vertical space.',
+  'Tomatoes|Garlic':'Garlic deters aphids, spider mites, and other fungal pathogens.',
+  'Basil|Tomatoes':'Tomatoes provide dappled shade; basil deters pests mutually.',
+  'Basil|Peppers':'Repels aphids and spider mites; both thrive in heat.',
+  'Carrots|Onions':'Onion scent deters carrot fly; carrot scent confuses onion fly.',
+  'Carrots|Chives':'Chives repel carrot rust fly and aphids with their scent.',
+  'Corn|Beans':'Three Sisters: beans fix nitrogen that feeds heavy-feeding corn.',
+  'Corn|Squash':'Three Sisters: squash leaves shade weeds and retain soil moisture.',
+  'Beans|Corn':'Beans fix atmospheric nitrogen; corn benefits as a heavy feeder.',
+  'Beans|Squash':'Ground-covering squash shades weeds; all three benefit in Three Sisters.',
+  'Squash|Corn':'Squash leaves mulch the soil; Three Sisters combination.',
+  'Squash|Nasturtiums':'Nasturtiums are a trap crop that lures aphids away from squash.',
+  'Cucumbers|Nasturtiums':'Nasturtiums repel aphids, cucumber beetles, and squash bugs.',
+  'Cucumbers|Beans':'Beans fix nitrogen; cucumbers benefit from improved soil fertility.',
+  'Peppers|Basil':'Basil repels aphids and spider mites; both love warm conditions.',
+  'Peppers|Tomatoes':'Similar nutrient needs; companion planting maximises space use.',
+  'Lettuce|Radishes':'Radishes deter leaf miners; lettuce provides shade that slows radish bolting.',
+  'Onions|Carrots':'Mutual pest deterrence — each confuses the other\'s main fly pest.',
+  'Garlic|Tomatoes':'Garlic sulphur compounds repel aphids, spider mites, and blight.',
+  'Marigolds|Tomatoes':'Root secretions deter soil nematodes; above-ground deters whitefly.',
+  'Nasturtiums|Cucumbers':'Trap crop for aphids and cucumber beetles; edible flowers.',
+  'Spinach|Strawberries':'Spinach shades strawberry roots; ground cover suppresses weeds.',
+  'Radishes|Lettuce':'Acts as a trap crop for flea beetles, protecting lettuce.',
+  'Chives|Carrots':'Chive scent deters carrot rust fly and root aphids.',
+  'Chives|Tomatoes':'Repels aphids; companion studies suggest improved growth rate.',
+};
+const AVOID_REASONS = {
+  'Tomatoes|Fennel':'Fennel releases allelopathic chemicals that stunt tomato growth.',
+  'Tomatoes|Brassicas':'Heavy nutrient competitors; may encourage shared fungal pathogens.',
+  'Tomatoes|Corn':'Both attract the same hornworm and earworm pests.',
+  'Peppers|Fennel':'Fennel inhibits growth of most vegetables including peppers.',
+  'Peppers|Brassicas':'Compete for nutrients; brassica roots may inhibit pepper growth.',
+  'Basil|Sage':'Sage produces allelopathic compounds that inhibit basil germination.',
+  'Fennel|Tomatoes':'Fennel is allelopathic — best grown away from all vegetables.',
+  'Onions|Beans':'Allium chemicals suppress legume nitrogen fixation and growth.',
+  'Onions|Peas':'Same as beans — alliums inhibit legume growth and yields.',
+  'Beans|Onions':'Onions inhibit bean growth; keep apart throughout season.',
+  'Peas|Onions':'Allium chemicals stunt pea development; always separate these.',
+  'Carrots|Dill':'Mature dill cross-pollinates with carrots, affecting root flavour.',
+  'Brassicas|Tomatoes':'Tomatoes may inhibit brassica growth; both are heavy feeders.',
+  'Potatoes|Tomatoes':'Same Solanaceae family — share blight and other diseases easily.',
+  'Potatoes|Cucumbers':'Cucumbers can encourage potato blight; keep well apart.',
+  'Corn|Tomatoes':'Both attract hornworms and earworms; double the pest pressure.',
+  'Squash|Potatoes':'Potatoes harbour diseases that can spread to squash.',
+};
+
+// ── Phase 64: Problem diagnosis data ───────────
+const PROBLEM_SYMPTOMS = [
+  { id:'yellow', label:'Yellowing leaves', emoji:'💛' },
+  { id:'wilt',   label:'Wilting / drooping', emoji:'😔' },
+  { id:'holes',  label:'Holes in leaves', emoji:'🕳️' },
+  { id:'spots',  label:'Spots or patches', emoji:'🟤' },
+  { id:'slow',   label:'Slow / stunted growth', emoji:'📉' },
+  { id:'pest',   label:'Pest visible', emoji:'🐛' },
+];
+const PROBLEM_LOCATIONS = [
+  { id:'new',   label:'New / top leaves' },
+  { id:'old',   label:'Old / lower leaves' },
+  { id:'whole', label:'Whole plant' },
+  { id:'stems', label:'Stems / base' },
+];
+const PROBLEM_DIAGNOSES = {
+  'yellow|new':[
+    { cause:'Iron or manganese deficiency', desc:'High pH locks out micronutrients — leaves yellow but veins stay green.', organic:'Acidify soil with sulphur; foliar spray with chelated iron or seaweed extract.', conventional:'Apply iron chelate; test and adjust soil pH below 7.0.' },
+    { cause:'Overwatering / root rot', desc:'Waterlogged roots can\'t absorb nutrients, causing yellowing from new growth first.', organic:'Reduce watering; add perlite or grit for drainage; let soil dry out.', conventional:'Allow soil to dry; treat with fungicide drench if roots are brown and mushy.' },
+  ],
+  'yellow|old':[
+    { cause:'Nitrogen deficiency', desc:'N is mobile — plant strips older leaves first. Pale yellow spreading upward from base.', organic:'Apply fish emulsion, blood meal, or compost tea immediately.', conventional:'Side-dress with ammonium nitrate or balanced NPK fertiliser.' },
+    { cause:'Magnesium deficiency', desc:'Interveinal yellowing on old leaves; veins stay green. Common in sandy or acidic soils.', organic:'Drench with Epsom salts (1 tbsp per gallon water); apply weekly.', conventional:'Apply magnesium sulphate; ensure soil pH is 6.0–7.0.' },
+  ],
+  'yellow|whole':[
+    { cause:'Overwatering / waterlogged soil', desc:'Roots suffocate in saturated soil, causing rapid whole-plant yellowing and wilting.', organic:'Stop watering; lift and inspect roots; repot with fresh grit-mixed compost.', conventional:'Improve drainage urgently; apply systemic fungicide if root rot present.' },
+    { cause:'Severe nitrogen deficiency', desc:'Uniform pale yellowing across entire plant — soil is exhausted of nitrogen.', organic:'Urgent: water with fish emulsion or diluted chicken manure liquid.', conventional:'Apply liquid high-nitrogen fertiliser immediately.' },
+  ],
+  'yellow|stems':[
+    { cause:'Fusarium wilt or stem rot', desc:'Yellowing from the base upward with stem discolouration — soil-borne fungal disease.', organic:'Remove affected plants; solarise soil; don\'t replant same family for 3 years.', conventional:'Apply copper fungicide; practice strict 3–4 year crop rotation.' },
+  ],
+  'wilt|new':[
+    { cause:'Heat or drought stress', desc:'Afternoon wilt on young leaves is usually heat stress — check soil moisture first.', organic:'Water deeply at the base; apply 2–3 inches of mulch to retain moisture.', conventional:'Deep, consistent watering; use shade cloth in extreme heat (>35°C/95°F).' },
+  ],
+  'wilt|old':[
+    { cause:'Root rot (overwatering)', desc:'Established plants wilting despite moist soil points to root damage from excess water.', organic:'Reduce watering; check roots (brown/mushy = rot); add grit for drainage.', conventional:'Apply fungicide root drench; add drainage holes to containers.' },
+  ],
+  'wilt|whole':[
+    { cause:'Drought stress', desc:'Soil dry 2+ inches down — most common cause. Plant prioritises roots over leaves.', organic:'Water deeply and slowly at base; apply thick mulch layer 3–4 inches.', conventional:'Deep watering; consider drip irrigation for consistency.' },
+    { cause:'Fusarium or verticillium wilt', desc:'Wilts despite moist soil; brown streaking visible inside stem when cut. Soil-borne.', organic:'Remove and destroy plant; solarise soil; rotate crops 4+ years.', conventional:'No chemical cure — remove plants; use resistant varieties next season.' },
+    { cause:'Root rot (Pythium/Phytophthora)', desc:'Soil stays wet; roots are brown and smell musty. Plant can\'t take up water or nutrients.', organic:'Stop watering; allow soil to dry; repot in fresh grit-mixed compost.', conventional:'Apply systemic fungicide drench; improve bed drainage urgently.' },
+  ],
+  'wilt|stems':[
+    { cause:'Stem borer larvae', desc:'Larvae tunnel inside stems causing sudden collapse — especially squash and corn.', organic:'Slice stem, remove larva; bury exposed stem section to encourage re-rooting.', conventional:'Preventative: pyrethrin on stems early season; use row cover for young plants.' },
+    { cause:'Sclerotinia stem rot', desc:'Fluffy white mould at stem base with wilting above — favours cool, wet, humid conditions.', organic:'Remove affected plants; improve air circulation; avoid overhead watering.', conventional:'Apply iprodione or procymidone fungicide; rotate crops away from this bed.' },
+  ],
+  'holes|new':[
+    { cause:'Flea beetles', desc:'Tiny shot-hole damage on young leaves — small shiny beetles that jump when disturbed.', organic:'Row covers; sticky traps; diatomaceous earth around stem base.', conventional:'Pyrethrin spray; spinosad applied at dusk when bees are inactive.' },
+    { cause:'Caterpillars (young stage)', desc:'Irregular holes from small caterpillars hiding on leaf undersides.', organic:'Hand-pick at night; Bt (Bacillus thuringiensis) spray in morning.', conventional:'Spinosad or pyrethrin spray in evening; check undersides daily.' },
+  ],
+  'holes|old':[
+    { cause:'Slugs or snails', desc:'Irregular holes with slime trails — most active at night or after rain.', organic:'Beer traps; copper tape; crushed eggshells; torch hunt after dark.', conventional:'Iron phosphate bait (Sluggo) — safe around pets and wildlife; reapply after rain.' },
+    { cause:'Caterpillars', desc:'Cabbage worms, hornworms, or armyworms eat large ragged holes in older leaves.', organic:'Hand-pick; Bt spray (Bacillus thuringiensis) in morning.', conventional:'Spinosad or bifenthrin; inspect daily during active feeding months.' },
+  ],
+  'holes|whole':[
+    { cause:'Grasshoppers', desc:'Widespread damage across whole plant — more common during hot, dry summers.', organic:'Row covers; Nosema locustae biological bait applied early in the season.', conventional:'Carbaryl or permethrin spray; best applied in morning when insects are feeding.' },
+    { cause:'Multiple pests', desc:'Different pests feeding at different levels simultaneously — check undersides at night.', organic:'Bt for caterpillars + beer traps for slugs + neem oil for aphids.', conventional:'Broad-spectrum insecticide; hand-pick at night with a torch.' },
+  ],
+  'spots|new':[
+    { cause:'Powdery mildew', desc:'White powdery coating on new leaves — favoured by warm days, cool nights, low humidity.', organic:'Diluted baking soda spray (1 tsp/quart); improve air circulation; prune crowded growth.', conventional:'Myclobutanil or trifloxystrobin fungicide; apply at very first sign.' },
+    { cause:'Downy mildew', desc:'Yellow patches on top surface, grey-purple fuzz underneath — cool wet conditions.', organic:'Copper fungicide; improve air circulation; avoid all overhead watering.', conventional:'Chlorothalonil or mancozeb fungicide; remove severely affected leaves.' },
+  ],
+  'spots|old':[
+    { cause:'Early blight (Alternaria)', desc:'Brown spots with yellow halo and concentric rings — starts on oldest leaves and moves upward.', organic:'Remove affected leaves; copper fungicide; mulch to prevent soil splash onto leaves.', conventional:'Chlorothalonil fungicide every 7–10 days; stake plants to improve airflow.' },
+    { cause:'Septoria leaf spot', desc:'Small circular spots with dark border and tan centre — common on tomatoes mid-season.', organic:'Copper spray; remove affected leaves; mulch around base to stop soil splash.', conventional:'Chlorothalonil or mancozeb; remove lower leaves to improve airflow significantly.' },
+  ],
+  'spots|whole':[
+    { cause:'Bacterial speck or spot', desc:'Water-soaked dark spots, often with yellow halo — spreads rapidly in warm, wet weather.', organic:'Copper-based bactericide; avoid all overhead watering; sanitise tools between plants.', conventional:'Fixed copper spray; remove all affected leaves; improve air circulation.' },
+    { cause:'Anthracnose', desc:'Sunken dark spots on fruit and leaves — most common in warm, wet humid conditions.', organic:'Copper fungicide; improve drainage; avoid wetting foliage when watering.', conventional:'Mancozeb or chlorothalonil fungicide from early in the season.' },
+  ],
+  'spots|stems':[
+    { cause:'Botrytis grey mould', desc:'Grey fuzzy mould on stems — thrives in cool, humid, crowded or damaged plant conditions.', organic:'Remove all affected parts; improve air circulation urgently; reduce overhead watering.', conventional:'Iprodione or fludioxonil fungicide; avoid plant damage that creates entry points.' },
+  ],
+  'slow|whole':[
+    { cause:'Nutrient deficiency', desc:'Poor, compacted, or exhausted soil lacking N, P, or K slows growth at all stages.', organic:'Compost top-dress; fish emulsion; worm castings application this week.', conventional:'Balanced granular fertiliser (10-10-10); soil test to identify specific deficit.' },
+    { cause:'Temperature stress', desc:'Most crops slow dramatically outside their optimal temperature range — be patient.', organic:'Row covers for cold; shade cloth for heat; mulch to moderate soil temperature.', conventional:'Frost blankets; no chemical fix — adjust the growing environment.' },
+    { cause:'Root restriction or compaction', desc:'Roots can\'t expand, so the plant stalls despite adequate water and nutrients.', organic:'Loosen soil around base; repot if container-grown; thin crowded plantings.', conventional:'Aerate soil; consider raised bed with fresh loose compost-rich mix.' },
+  ],
+  'slow|stems':[
+    { cause:'Root-bound container plant', desc:'Circling roots in a too-small container can\'t take up nutrients or water efficiently.', organic:'Transplant to a container 1–2 sizes larger; tease out circling roots gently.', conventional:'Same approach — this is a physical constraint, not a nutritional problem.' },
+  ],
+  'pest|new':[
+    { cause:'Aphids', desc:'Soft-bodied insects in clusters on new growth and buds — green, black, white, or woolly.', organic:'Strong water blast; neem oil spray; insecticidal soap; encourage ladybirds.', conventional:'Imidacloprid systemic drench; pyrethrin spray on colonies.' },
+    { cause:'Thrips', desc:'Tiny slender insects causing silvery streaks and distorted, curled new growth.', organic:'Blue sticky traps; neem oil; spinosad spray applied in early morning.', conventional:'Spinosad or imidacloprid; repeat every 5–7 days until clear.' },
+  ],
+  'pest|old':[
+    { cause:'Whitefly', desc:'Tiny white flies on leaf undersides — a white cloud erupts when plant is shaken.', organic:'Yellow sticky traps; insecticidal soap; neem oil spray on undersides.', conventional:'Imidacloprid systemic drench; bifenthrin spray targeting undersides.' },
+    { cause:'Spider mites', desc:'Fine webbing on leaf undersides; tiny red/yellow dots — worse in hot, dry conditions.', organic:'Predatory mites; strong daily water spray; neem oil; increase humidity around plant.', conventional:'Abamectin or spiromesifen miticide; repeat weekly for 3 weeks.' },
+  ],
+  'pest|whole':[
+    { cause:'Aphids', desc:'Sticky honeydew residue, distorted growth, and trails of ants are tell-tale signs.', organic:'Neem oil; insecticidal soap; attract ladybirds with companion flowers.', conventional:'Pyrethrin or imidacloprid; check undersides thoroughly for active colonies.' },
+    { cause:'Scale insects', desc:'Hard or soft bumps on stems — often overlooked as part of the plant structure.', organic:'Rubbing alcohol on cotton bud; neem oil; horticultural oil spray.', conventional:'Systemic imidacloprid; horticultural oil at the crawler (juvenile) stage.' },
+  ],
+  'pest|stems':[
+    { cause:'Stem borer larvae', desc:'Entry holes at stem base with powdery frass (sawdust-like droppings) — squash and corn most affected.', organic:'Insert wire to kill larva; wrap stems in foil to deter egg-laying.', conventional:'Preventative: bifenthrin spray on stems before main egg-laying period.' },
+    { cause:'Cutworms', desc:'Seedlings cut off at soil level overnight — fat C-shaped larvae hide in soil by day.', organic:'Cardboard collar around stem base; diatomaceous earth; Bt kurstaki in soil.', conventional:'Bifenthrin granules in soil; spinosad drench around base.' },
+  ],
+};
+
 // ── Season helpers ─────────────────────────────
 let _lastSeasonBg = null;
 
@@ -348,6 +497,9 @@ let browseDifficulty = '';
 let browseInSeason = false;
 let browseSort = '';
 let browseCompanions = false;
+let browseSun = '';
+let browseShortSeason = false;
+let browseInGarden = false;
 
 // ── Zone display helpers ───────────────────────
 function isUSDASys() {
@@ -551,6 +703,7 @@ function renderPanel() {
 
   renderLocationName();
   renderSavedLocationsBar();
+  renderDailyBrief();
   // Phase 47: check seasonal nudges once per zone load
   requestIdleCallback ? requestIdleCallback(checkSeasonalNudges) : setTimeout(checkSeasonalNudges, 500);
 
@@ -1121,8 +1274,13 @@ function openCropDetail(name) {
   const badge = document.getElementById('modal-difficulty');
   badge.textContent = c.difficulty || '';
   badge.className   = 'difficulty-badge' + (c.difficulty ? ' difficulty-' + c.difficulty.toLowerCase() : '');
+  c._name = name; // allow renderCropDetail to access the name for companion lookups
   document.getElementById('modal-body').innerHTML    = c.custom ? renderCustomCropDetail(c, name) : renderCropDetail(c);
   document.getElementById('modal-body').scrollTop   = 0;
+  // Phase 67: wire companion/avoid tag clicks
+  document.getElementById('modal-body').querySelectorAll('[data-open-crop]').forEach(el => {
+    el.addEventListener('click', () => openCropDetail(el.dataset.openCrop));
+  });
   if (!c.custom) {
     const schedPH = document.getElementById('modal-schedule-placeholder');
     if (schedPH) schedPH.outerHTML = renderPlantingScheduleHTML(name);
@@ -1158,8 +1316,29 @@ function renderCropDetail(c) {
     </div>
     <div class="modal-section">
       <div class="modal-section-title">Companions &amp; Enemies</div>
-      <div class="detail-row"><span class="detail-label">Plant with</span><span class="detail-tags">${tagList(c.companions, 'detail-tag--companions')}</span></div>
-      <div class="detail-row"><span class="detail-label">Avoid near</span><span class="detail-tags">${tagList(c.avoid, 'detail-tag--avoid')}</span></div>
+      <div class="companion-guide">
+        ${(c.companions||[]).length ? `<div class="cg-group">
+          <div class="cg-group-label cg-group-label--with">✅ Plant with</div>
+          ${(c.companions||[]).map(t => {
+            const reason = COMPANION_REASONS[`${c._name}|${t}`] || '';
+            return `<div class="cg-item" data-open-crop="${t}">
+              <span class="detail-tag detail-tag--companions cg-tag">${t}</span>
+              ${reason ? `<span class="cg-reason">${reason}</span>` : ''}
+            </div>`;
+          }).join('')}
+        </div>` : ''}
+        ${(c.avoid||[]).length ? `<div class="cg-group">
+          <div class="cg-group-label cg-group-label--avoid">⚠️ Avoid near</div>
+          ${(c.avoid||[]).map(t => {
+            const reason = AVOID_REASONS[`${c._name}|${t}`] || '';
+            return `<div class="cg-item" data-open-crop="${t}">
+              <span class="detail-tag detail-tag--avoid cg-tag">${t}</span>
+              ${reason ? `<span class="cg-reason cg-reason--avoid">${reason}</span>` : ''}
+            </div>`;
+          }).join('')}
+        </div>` : ''}
+        ${!(c.companions||[]).length && !(c.avoid||[]).length ? '<span class="detail-empty">None listed</span>' : ''}
+      </div>
     </div>
     <div class="modal-section">
       <div class="modal-section-title">Pests &amp; Problems</div>
@@ -1402,6 +1581,25 @@ function initBrowse() {
     });
   }
 
+  // Phase 65: advanced filter chips
+  document.getElementById('browse-extra')?.addEventListener('click', e => {
+    const chip = e.target.closest('.browse-adv-chip');
+    if (!chip) return;
+    const filter = chip.dataset.filter;
+    const val = chip.dataset.val;
+    if (filter === 'sun') {
+      browseSun = browseSun === val ? '' : val;
+      document.querySelectorAll('.browse-adv-chip[data-filter="sun"]').forEach(c => c.classList.toggle('active', c.dataset.val === browseSun));
+    } else if (filter === 'short') {
+      browseShortSeason = !browseShortSeason;
+      chip.classList.toggle('active', browseShortSeason);
+    } else if (filter === 'ingarden') {
+      browseInGarden = !browseInGarden;
+      chip.classList.toggle('active', browseInGarden);
+    }
+    renderBrowseGrid();
+  });
+
   const grid = document.getElementById('browse-grid');
   if (grid) {
     grid.addEventListener('click', e => {
@@ -1463,6 +1661,17 @@ function renderBrowseGrid() {
 
   if (browseInSeason && selectedZone) {
     crops = crops.filter(([name]) => activeSet.has(name));
+  }
+
+  // Phase 65: advanced filters
+  if (browseSun) {
+    crops = crops.filter(([, c]) => c.sun?.toLowerCase().includes(browseSun.toLowerCase()));
+  }
+  if (browseShortSeason) {
+    crops = crops.filter(([, c]) => { const d = parseHarvestDays(c.days); return d && d < 60; });
+  }
+  if (browseInGarden) {
+    crops = crops.filter(([name]) => isInGarden(name));
   }
 
   // Companion filter: crops that are companions to anything in my garden
@@ -2076,6 +2285,8 @@ function renderGardenTab() {
   renderGardenHistory();
   renderGrowNext();
   renderPlanSection();
+  renderHarvestAnalytics();
+  renderWateringIntelligence();
   checkAchievements();
 }
 
@@ -2488,6 +2699,8 @@ async function fetchWeatherAndUpdate() {
   renderFrostAlertBanner();
   renderWateringAlert();
   renderThisWeek();
+  renderDailyBrief();
+  renderWateringIntelligence();
   checkFrostNotification();
 }
 
@@ -6194,7 +6407,8 @@ function renderFABSheet() {
     <button class="fab-action-btn" id="fab-harvest">🌾 Log harvest</button>
     <button class="fab-action-btn" id="fab-water">💧 Log watering</button>
     <button class="fab-action-btn" id="fab-note">📝 Quick note</button>
-    <button class="fab-action-btn" id="fab-task">☑️ Add task</button>`;
+    <button class="fab-action-btn" id="fab-task">☑️ Add task</button>
+    <button class="fab-action-btn" id="fab-diagnose">🔍 Diagnose a problem</button>`;
 
   document.getElementById('fab-harvest')?.addEventListener('click', () => {
     if (!recentCrops.length) { showToast('Add crops with planting dates first', 'info'); closeFAB(); return; }
@@ -6255,6 +6469,11 @@ function renderFABSheet() {
       showToast('☑️ Task added', 'success');
       closeFAB();
     });
+  });
+
+  document.getElementById('fab-diagnose')?.addEventListener('click', () => {
+    closeFAB();
+    openDiagnosisWizard('');
   });
 }
 
@@ -6545,4 +6764,274 @@ function renderVarietyHistory(name) {
       </div>`).join('')}
     </div>`;
   body.appendChild(sec);
+}
+
+// ════════════════════════════════════════════════
+// Phase 62 — Daily Garden Brief
+// ════════════════════════════════════════════════
+function renderDailyBrief() {
+  const el = document.getElementById('daily-brief');
+  if (!el || !selectedZone) { if (el) el.innerHTML = ''; return; }
+
+  const lines = [];
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+
+  // Weather summary line
+  if (weatherData?.current) {
+    const temp = useMetric
+      ? Math.round(weatherData.current.temperature_2m) + '°C'
+      : Math.round(weatherData.current.temperature_2m * 9 / 5 + 32) + '°F';
+    const icon = getWmoIcon(weatherData.current.weather_code);
+    // Tomorrow + day after (indices 6,7 in daily array with past_days=5)
+    const rainSoon = weatherData.daily?.precipitation_sum
+      ? (weatherData.daily.precipitation_sum[6] || 0) + (weatherData.daily.precipitation_sum[7] || 0)
+      : 0;
+    const rainNote = rainSoon > 0.15 ? ' · 🌧 Rain forecast' : '';
+    lines.push({ type: 'weather', text: `${icon} ${temp}${rainNote}` });
+  }
+
+  const gardenNames = Object.keys(myGarden);
+
+  // Ready to harvest
+  const readyCrops = gardenNames.filter(n => getGardenStatus(n)?.type === 'ready');
+  if (readyCrops.length) {
+    const list = readyCrops.slice(0, 3).join(', ') + (readyCrops.length > 3 ? ` +${readyCrops.length - 3} more` : '');
+    lines.push({ type: 'harvest', text: `🌾 Ready to harvest: ${list}` });
+  }
+
+  // Frost warning (next 7 days)
+  if (!readyCrops.length) {
+    const frost = FROST_DATES[selectedZone.toLowerCase()];
+    if (frost?.last) {
+      const d = parseFrostDate(frost.last);
+      if (d) {
+        const diff = Math.round((d - today) / 86400000);
+        if (diff > 0 && diff <= 7) lines.push({ type: 'warning', text: `❄️ Last frost in ${diff} day${diff === 1 ? '' : 's'} — hold off on transplanting` });
+      }
+    }
+    if (frost?.first) {
+      const d = parseFrostDate(frost.first);
+      if (d) {
+        const diff = Math.round((d - today) / 86400000);
+        if (diff > 0 && diff <= 7) lines.push({ type: 'warning', text: `🍂 First frost in ${diff} day${diff === 1 ? '' : 's'} — harvest tender crops` });
+      }
+    }
+  }
+
+  // Overdue watering
+  const needWater = gardenNames.filter(n => getWaterStatus(n)?.type === 'dry');
+  if (needWater.length) {
+    lines.push({ type: 'water', text: `💧 ${needWater.length} crop${needWater.length > 1 ? 's' : ''} overdue for watering` });
+  }
+
+  // Seasonal sowing nudge if nothing else urgent
+  if (lines.length <= 1) {
+    const data = getPlantingData(selectedZone, currentMonth);
+    const sowable = [...(data.startIndoors || []), ...(data.directSow || [])];
+    const unplanted = sowable.filter(n => !isInGarden(n));
+    if (unplanted.length) {
+      const pick = unplanted[Math.floor(Math.random() * Math.min(4, unplanted.length))];
+      lines.push({ type: 'tip', text: `🌱 Now's a good time to start ${pick} for your zone` });
+    }
+  }
+
+  if (!lines.length) { el.innerHTML = ''; return; }
+  el.innerHTML = `<div class="daily-brief">${lines.map(l =>
+    `<div class="db-row db-row--${l.type}">${l.text}</div>`
+  ).join('')}</div>`;
+}
+
+// ════════════════════════════════════════════════
+// Phase 63 — Harvest Analytics Dashboard
+// ════════════════════════════════════════════════
+function renderHarvestAnalytics() {
+  const el = document.getElementById('harvest-analytics');
+  if (!el) return;
+
+  const byMonth = Array(12).fill(0);
+  const byCrop = {};
+  let total = 0;
+
+  for (const [name, entry] of Object.entries(myGarden)) {
+    for (const h of (entry.harvestLog || [])) {
+      const m = new Date(h.date + 'T00:00:00').getMonth();
+      byMonth[m]++;
+      byCrop[name] = (byCrop[name] || 0) + 1;
+      total++;
+    }
+  }
+
+  if (!total) { el.innerHTML = ''; return; }
+
+  const sorted = Object.entries(byCrop).sort(([, a], [, b]) => b - a);
+  const [topCrop, topCount] = sorted[0];
+  const maxBar = Math.max(...byMonth, 1);
+  const ABBR = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+
+  el.innerHTML = `<div class="harvest-analytics">
+    <div class="ha-title">🌾 Harvest Summary</div>
+    <div class="ha-stats">
+      <div class="ha-stat">
+        <span class="ha-stat-val">${total}</span>
+        <span class="ha-stat-label">Total logged</span>
+      </div>
+      <div class="ha-stat">
+        <span class="ha-stat-val">${cropData[topCrop]?.emoji || '🌱'} ${topCrop}</span>
+        <span class="ha-stat-label">Top crop (${topCount}×)</span>
+      </div>
+    </div>
+    <div class="ha-bars">
+      ${byMonth.map((count, i) => `
+        <div class="ha-bar-col">
+          <div class="ha-bar-wrap">
+            <div class="ha-bar${i === currentMonth - 1 ? ' ha-bar--current' : ''}" style="height:${Math.max(2, Math.round((count / maxBar) * 44))}px"></div>
+          </div>
+          <span class="ha-bar-label">${ABBR[i]}</span>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+// ════════════════════════════════════════════════
+// Phase 64 — Problem Diagnosis Wizard
+// ════════════════════════════════════════════════
+function openDiagnosisWizard(cropName) {
+  const overlay = document.createElement('div');
+  overlay.className = 'diagnosis-overlay';
+
+  let symptom = '';
+  let location = '';
+
+  function renderStep1() {
+    overlay.innerHTML = `<div class="diagnosis-sheet">
+      <div class="diagnosis-handle"></div>
+      <div class="diagnosis-title">🔍 Diagnose a Problem</div>
+      ${cropName ? `<div class="diagnosis-crop-ctx">Crop: ${cropData[cropName]?.emoji || '🌱'} ${cropName}</div>` : ''}
+      <p class="diagnosis-sub">What do you see?</p>
+      <div class="diagnosis-symptoms">
+        ${PROBLEM_SYMPTOMS.map(s => `
+          <button class="diagnosis-symptom-btn" data-id="${s.id}">
+            <span class="diag-symptom-emoji">${s.emoji}</span>
+            <span>${s.label}</span>
+          </button>`).join('')}
+      </div>
+      <button class="diagnosis-cancel-btn" id="diag-cancel">Cancel</button>
+    </div>`;
+    overlay.querySelector('#diag-cancel').addEventListener('click', () => document.body.removeChild(overlay));
+    overlay.querySelectorAll('.diagnosis-symptom-btn').forEach(btn => {
+      btn.addEventListener('click', () => { symptom = btn.dataset.id; renderStep2(); });
+    });
+  }
+
+  function renderStep2() {
+    overlay.innerHTML = `<div class="diagnosis-sheet">
+      <div class="diagnosis-handle"></div>
+      <div class="diagnosis-title">🔍 Where on the plant?</div>
+      <p class="diagnosis-sub">Select the most affected area.</p>
+      <div class="diagnosis-locations">
+        ${PROBLEM_LOCATIONS.map(l => `
+          <button class="diagnosis-loc-btn" data-id="${l.id}">${l.label}</button>`).join('')}
+      </div>
+      <button class="diagnosis-back-btn" id="diag-back">← Back</button>
+    </div>`;
+    overlay.querySelector('#diag-back').addEventListener('click', renderStep1);
+    overlay.querySelectorAll('.diagnosis-loc-btn').forEach(btn => {
+      btn.addEventListener('click', () => { location = btn.dataset.id; renderStep3(); });
+    });
+  }
+
+  function renderStep3() {
+    const key = `${symptom}|${location}`;
+    const results = PROBLEM_DIAGNOSES[key] || [];
+    overlay.innerHTML = `<div class="diagnosis-sheet diagnosis-sheet--results">
+      <div class="diagnosis-handle"></div>
+      <div class="diagnosis-title">🔍 Possible Causes</div>
+      ${!results.length
+        ? `<p class="diagnosis-sub">No specific matches — check our general troubleshooting guide or try a different symptom combination.</p>`
+        : results.map(r => `<div class="diagnosis-result">
+            <div class="dr-cause">${r.cause}</div>
+            <p class="dr-desc">${r.desc}</p>
+            <div class="dr-treatments">
+              <div class="dr-treatment dr-treatment--organic"><span class="dr-label">🌿 Organic</span>${r.organic}</div>
+              <div class="dr-treatment dr-treatment--conventional"><span class="dr-label">🧪 Conventional</span>${r.conventional}</div>
+            </div>
+          </div>`).join('')}
+      <div class="diagnosis-footer-btns">
+        <button class="diagnosis-back-btn" id="diag-back2">← Try again</button>
+        <button class="diagnosis-cancel-btn" id="diag-done">Done</button>
+      </div>
+    </div>`;
+    overlay.querySelector('#diag-back2').addEventListener('click', renderStep1);
+    overlay.querySelector('#diag-done').addEventListener('click', () => document.body.removeChild(overlay));
+  }
+
+  document.body.appendChild(overlay);
+  renderStep1();
+}
+
+// ════════════════════════════════════════════════
+// Phase 66 — Watering Intelligence
+// ════════════════════════════════════════════════
+function getCropWaterInterval(name) {
+  const water = (cropData[name]?.water || '').toLowerCase();
+  if (water.includes('daily') || water.includes('mist')) return 1;
+  if (water.includes('2x') || water.includes('twice')) return 3;
+  if (water.includes('2-3') || water.includes('consistently')) return 2;
+  if (water.includes('1-2')) return 5;
+  return 6;
+}
+
+function renderWateringIntelligence() {
+  const el = document.getElementById('watering-intelligence');
+  if (!el) return;
+
+  const names = Object.keys(myGarden).filter(n => myGarden[n]?.planted);
+  if (!names.length) { el.innerHTML = ''; return; }
+
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+
+  // Rain in next 2 days (indices 6,7 with past_days=5)
+  const rainNext2 = weatherData?.daily?.precipitation_sum
+    ? (weatherData.daily.precipitation_sum[6] || 0) + (weatherData.daily.precipitation_sum[7] || 0)
+    : 0;
+  const rainComing = rainNext2 > 0.15;
+
+  const items = names.map(name => {
+    const lastWatered = myGarden[name].waterLog?.[0]?.date;
+    const interval = getCropWaterInterval(name);
+    const daysSince = lastWatered ? Math.round((today - new Date(lastWatered + 'T00:00:00')) / 86400000) : 99;
+    const daysUntilDue = interval - daysSince;
+    return { name, daysSince, interval, daysUntilDue, lastWatered };
+  }).filter(i => i.daysUntilDue <= 0 + (rainComing ? -1 : 0))
+    .sort((a, b) => a.daysUntilDue - b.daysUntilDue)
+    .slice(0, 5);
+
+  if (!items.length) { el.innerHTML = ''; return; }
+
+  el.innerHTML = `<div class="watering-intelligence">
+    <div class="wi-title">💧 Watering Needed
+      ${rainComing ? '<span class="wi-rain-badge">🌧 Rain forecast — urgency reduced</span>' : ''}
+    </div>
+    <div class="wi-list">
+      ${items.map(({ name, daysSince, daysUntilDue, lastWatered }) => {
+        const overdue = Math.abs(daysUntilDue);
+        const cls = daysUntilDue < -3 ? 'wi-item--critical' : daysUntilDue < 0 ? 'wi-item--overdue' : 'wi-item--due';
+        const label = !lastWatered ? 'Never watered' : daysUntilDue < 0 ? `${overdue}d overdue` : 'Due now';
+        return `<div class="wi-item ${cls}">
+          <span class="wi-emoji">${cropData[name]?.emoji || '🌱'}</span>
+          <span class="wi-name">${name}</span>
+          <span class="wi-status">${label}</span>
+          <button class="wi-log-btn" data-crop="${name}">Log 💧</button>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+
+  el.querySelectorAll('.wi-log-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      logWatering(btn.dataset.crop);
+      renderWateringIntelligence();
+    });
+  });
 }

@@ -211,6 +211,7 @@
         <div id="weather-strip" hidden></div>
         <div id="planting-forecast" hidden></div>
         <div id="this-week" hidden></div>
+        <div id="daily-brief"></div>
         <div id="countdown-cards"></div>
         <div id="month-display"></div>
         <div id="month-context"></div>
@@ -260,6 +261,8 @@
           <div id="garden-gantt"></div>
           <div id="garden-footer"></div>
           <div id="garden-history"></div>
+          <div id="watering-intelligence"></div>
+          <div id="harvest-analytics"></div>
           <div id="plan-section"></div>
           <p id="garden-empty-msg" class="garden-empty">No crops saved yet.<br>Tap any crop to add it to your garden.</p>
         </div>
@@ -355,6 +358,13 @@
           <input type="checkbox" id="browse-companions" />
           <span>Grows with my garden</span>
         </label>
+        <div id="browse-adv-chips">
+          <button class="browse-adv-chip" data-filter="sun" data-val="full">☀️ Full sun</button>
+          <button class="browse-adv-chip" data-filter="sun" data-val="partial">🌤 Partial</button>
+          <button class="browse-adv-chip" data-filter="sun" data-val="shade">🌑 Shade</button>
+          <button class="browse-adv-chip" data-filter="short" data-val="1">⚡ &lt;60 days</button>
+          <button class="browse-adv-chip" data-filter="ingarden" data-val="1">🌿 In my garden</button>
+        </div>
       </div>
     </div>
     <div id="browse-grid"></div>
