@@ -265,6 +265,7 @@
           <div id="harvest-analytics"></div>
           <div id="harvest-to-table"></div>
           <div id="garden-health-score"></div>
+          <div id="smart-shopping"></div>
           <div id="plan-section"></div>
           <p id="garden-empty-msg" class="garden-empty">No crops saved yet.<br>Tap any crop to add it to your garden.</p>
         </div>
@@ -325,8 +326,9 @@
       <h2 id="browse-title">Browse Crops <span id="browse-count"></span></h2>
       <button id="browse-close" aria-label="Close">&times;</button>
     </div>
+    <div id="browse-recent" hidden></div>
     <div id="browse-filters">
-      <input id="browse-search" type="text" placeholder="Search 69 crops…" autocomplete="off" spellcheck="false" />
+      <input id="browse-search" type="text" placeholder="Search crops…" autocomplete="off" spellcheck="false" />
       <div id="browse-cats">
         <button class="cat-chip active" data-cat="">All</button>
         <button class="cat-chip" data-cat="Vegetables">Vegetables</button>
@@ -338,6 +340,8 @@
         <button class="cat-chip" data-cat="Cucurbits">Cucurbits</button>
         <button class="cat-chip" data-cat="Herbs">Herbs</button>
         <button class="cat-chip" data-cat="Perennials">Perennials</button>
+        <button class="cat-chip" data-cat="Fruits">🍒 Fruits</button>
+        <button class="cat-chip" data-cat="Flowers">🌸 Flowers</button>
         <button class="cat-chip" data-cat="Tropical">Tropical</button>
       </div>
       <div id="browse-extra">
@@ -429,36 +433,74 @@
   <div id="onboarding" hidden>
     <div id="onboarding-card">
       <div class="ob-steps">
+        <!-- Step 0: Welcome + zone -->
         <div class="ob-step active" data-step="0">
           <div class="ob-step-icon">🗺️</div>
           <h2>Find your growing zone</h2>
-          <p>Search your address or tap <strong>Locate me</strong> to find your USDA hardiness zone and get a personalised planting calendar.</p>
+          <p>Search your address or tap <strong>Locate me</strong> to find your hardiness zone and get a personalised planting calendar for every month of the year.</p>
+          <div class="ob-zone-tip">💡 Tip: tap the <strong>📍 Locate me</strong> button in the top bar for instant zone detection.</div>
           <div class="ob-actions">
-            <button class="ob-skip">Skip</button>
+            <button class="ob-skip">Skip intro</button>
             <button class="ob-next ob-primary">Next →</button>
           </div>
         </div>
+        <!-- Step 1: Experience level -->
         <div class="ob-step" data-step="1">
-          <div class="ob-step-icon">📅</div>
-          <h2>Browse any month</h2>
-          <p>Drag the <strong>month slider</strong> at the top to see what to start, direct sow, transplant, or harvest throughout the year.</p>
+          <div class="ob-step-icon">🌱</div>
+          <h2>What's your experience level?</h2>
+          <p>We'll tailor starter crop suggestions to match your confidence in the garden.</p>
+          <div class="ob-level-picker">
+            <button class="ob-level-btn" data-level="beginner">
+              <span class="ob-level-icon">🌱</span>
+              <strong>Beginner</strong>
+              <span>First time growing</span>
+            </button>
+            <button class="ob-level-btn" data-level="intermediate">
+              <span class="ob-level-icon">🌿</span>
+              <strong>Intermediate</strong>
+              <span>A few seasons in</span>
+            </button>
+            <button class="ob-level-btn" data-level="experienced">
+              <span class="ob-level-icon">🌳</span>
+              <strong>Experienced</strong>
+              <span>Confident grower</span>
+            </button>
+          </div>
           <div class="ob-actions">
             <button class="ob-skip">Skip</button>
-            <button class="ob-next ob-primary">Next →</button>
+            <button class="ob-next ob-primary" id="ob-level-next" disabled>Next →</button>
           </div>
         </div>
+        <!-- Step 2: Starter crop picker -->
         <div class="ob-step" data-step="2">
-          <div class="ob-step-icon">🌿</div>
-          <h2>Track your garden</h2>
-          <p>Tap any crop for full growing details. Add it to <strong>My Garden</strong> to log planting dates, get harvest countdowns, and receive smart weekly tips.</p>
+          <div class="ob-step-icon">🥬</div>
+          <h2>Pick your starter crops</h2>
+          <p>Choose 3 or more crops to add to <strong>My Garden</strong> and kick off your growing season.</p>
+          <div id="ob-crop-grid" class="ob-crop-grid"></div>
+          <div class="ob-selected-count" id="ob-selected-count">0 selected</div>
           <div class="ob-actions">
             <button class="ob-skip">Skip</button>
-            <button class="ob-next ob-primary">Next →</button>
+            <button class="ob-next ob-primary" id="ob-crops-next">Add &amp; continue →</button>
           </div>
         </div>
+        <!-- Step 3: Key features -->
         <div class="ob-step" data-step="3">
+          <div class="ob-step-icon">✨</div>
+          <h2>Everything you need to grow</h2>
+          <div class="ob-feature-list">
+            <div class="ob-feature"><span>📅</span><span>Drag the <strong>month slider</strong> to see what to sow, transplant, or harvest each month</span></div>
+            <div class="ob-feature"><span>🌿</span><span>Visit <strong>My Garden</strong> to track planting dates, watering, harvests &amp; health score</span></div>
+            <div class="ob-feature"><span>📔</span><span>Keep a <strong>Journal</strong> — log notes, photos, and observations throughout the season</span></div>
+            <div class="ob-feature"><span>🔍</span><span>Press <kbd>/</kbd> or <kbd>⌘K</kbd> to search all 87 crops instantly</span></div>
+          </div>
+          <div class="ob-actions">
+            <button class="ob-finish ob-primary">Let's grow! 🚀</button>
+          </div>
+        </div>
+        <!-- Step 4: Notifications -->
+        <div class="ob-step" data-step="4">
           <div class="ob-step-icon">🔔</div>
-          <h2>Get frost & harvest alerts</h2>
+          <h2>Get frost &amp; harvest alerts</h2>
           <p>Enable notifications to be alerted when crops are ready to harvest and when frost is forecast for your tender plants.</p>
           <div class="ob-actions">
             <button class="ob-finish">Maybe later</button>
@@ -468,6 +510,7 @@
       </div>
       <div class="ob-dots">
         <span class="ob-dot active"></span>
+        <span class="ob-dot"></span>
         <span class="ob-dot"></span>
         <span class="ob-dot"></span>
         <span class="ob-dot"></span>
@@ -600,6 +643,28 @@
       </div>
     </div>
   </div>
+
+  <!-- Season Wrap-Up overlay (Phase 77) -->
+  <div id="season-wrap-overlay" class="full-overlay" hidden role="dialog" aria-modal="true" aria-label="Season summary">
+    <div id="season-wrap-card">
+      <button class="full-overlay-close" id="season-wrap-close" aria-label="Close">&times;</button>
+      <div id="season-wrap-content"></div>
+    </div>
+  </div>
+
+  <!-- Grow What You Eat overlay (Phase 78) -->
+  <div id="recipe-browse-overlay" class="full-overlay" hidden role="dialog" aria-modal="true" aria-label="Grow what you eat">
+    <div id="recipe-browse-card">
+      <div id="recipe-browse-header">
+        <h3>🍽 Grow What You Eat</h3>
+        <button class="full-overlay-close" id="recipe-browse-close" aria-label="Close">&times;</button>
+      </div>
+      <div id="recipe-browse-content"></div>
+    </div>
+  </div>
+
+  <!-- Long-press quick actions (Phase 79) -->
+  <div id="longpress-overlay" class="lp-overlay" hidden></div>
 
   <!-- CDN Libraries -->
   <script src="lib/leaflet.min.js"></script>

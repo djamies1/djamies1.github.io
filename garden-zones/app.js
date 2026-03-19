@@ -32,6 +32,10 @@ const CROP_FAMILIES = {
   'Lettuce':'Asteraceae','Endive':'Asteraceae','Artichokes':'Asteraceae',
   'Corn':'Grass',
   'Beets':'Chenopodiaceae','Spinach':'Chenopodiaceae','Swiss Chard':'Chenopodiaceae',
+  'Raspberries':'Rosaceae','Blackberries':'Rosaceae','Gooseberries':'Grossulariaceae',
+  'Redcurrants':'Grossulariaceae','Blueberries':'Ericaceae',
+  'Nasturtium':'Tropaeolaceae','Borage':'Boraginaceae','Calendula':'Asteraceae',
+  'Lemon Balm':'Lamiaceae','Tarragon':'Asteraceae','Sorrel':'Polygonaceae','Chervil':'Apiaceae',
 };
 
 // ── Frost-sensitive crops ──────────────────────
@@ -394,7 +398,9 @@ const CROP_CATEGORIES = {
   'Alliums':     ['Chives','Garlic','Green Onions','Leeks','Onions','Shallots'],
   'Legumes':     ['Beans','Edamame','Fava Beans','Peanuts','Peas'],
   'Cucurbits':   ['Cucumbers','Melons','Pumpkins','Squash'],
-  'Herbs':       ['Basil','Cilantro','Dill','Fennel','Mint','Oregano','Parsley','Rosemary','Sage','Thyme'],
+  'Herbs':       ['Basil','Chervil','Cilantro','Dill','Fennel','Lemon Balm','Mint','Oregano','Parsley','Rosemary','Sage','Sorrel','Tarragon','Thyme'],
+  'Flowers':     ['Borage','Calendula','Nasturtium'],
+  'Fruits':      ['Blackberries','Blueberries','Gooseberries','Raspberries','Redcurrants'],
   'Perennials':  ['Asparagus','Globe Artichoke','Rhubarb','Strawberries'],
   'Tropical':    ['Avocados','Ginger','Lemongrass','Mangoes','Turmeric'],
 };
@@ -1038,6 +1044,8 @@ function initUI() {
   initKeyboardShortcuts();
   initPanelSwipe();
   initSliderSwipe();
+  initLongPress();
+  loadRecentlyViewed();
   initSettings();
   // Share button
   document.getElementById('share-btn')?.addEventListener('click', shareZone);
@@ -1291,6 +1299,7 @@ function openCropDetail(name) {
   if (!c.custom) renderVarietyHistory(name);
   if (!c.custom) renderSeedStartSection(name);
   if (!c.custom) renderFertilizerSection(name);
+  trackRecentlyViewed(name);
   if (!modal.open) modal.showModal();
 }
 
@@ -1519,6 +1528,10 @@ function renderYearCalendar() {
 
 // ── Browse view ────────────────────────────────
 function initBrowse() {
+  // Update crop count in search placeholder dynamically
+  const searchEl = document.getElementById('browse-search');
+  if (searchEl && cropData) searchEl.placeholder = `Search ${Object.keys(cropData).length} crops…`;
+
   const btn = document.getElementById('browse-btn');
   if (btn) btn.addEventListener('click', () => toggleBrowse(true));
 
@@ -2291,6 +2304,7 @@ function renderGardenTab() {
   renderWateringIntelligence();
   renderHarvestToTable();
   renderGardenHealthScore();
+  renderSmartShoppingList();
   checkAchievements();
 }
 
@@ -3211,21 +3225,86 @@ function initOnboarding() {
   if (!overlay) return;
   overlay.hidden = false;
   let step = 0;
+  let selectedLevel = '';
+  let selectedStarterCrops = new Set();
+
   function finish() {
+    // Add any selected starter crops to garden
+    if (selectedStarterCrops.size) {
+      selectedStarterCrops.forEach(name => { if (!myGarden[name]) gardenAdd(name); });
+      if (currentPanelTab === 'garden') renderGardenTab();
+    }
     overlay.hidden = true;
     localStorage.setItem('pzf-onboarded', '1');
+    if (selectedStarterCrops.size) {
+      showToast(`${selectedStarterCrops.size} crops added to My Garden 🌿`, 'success');
+    }
   }
+
   function goTo(n) {
     const steps = overlay.querySelectorAll('.ob-step');
     if (n >= steps.length) { finish(); return; }
     step = n;
     steps.forEach((s, i) => s.classList.toggle('active', i === n));
     overlay.querySelectorAll('.ob-dot').forEach((d, i) => d.classList.toggle('active', i === n));
+    // Populate crop grid when entering step 2
+    if (n === 2) populateObCropGrid();
   }
+
+  function populateObCropGrid() {
+    const grid = document.getElementById('ob-crop-grid');
+    if (!grid || !cropData) return;
+    // Pick crops by difficulty level
+    const diffMap = { beginner: 'Easy', intermediate: 'Moderate', experienced: null };
+    const diff = diffMap[selectedLevel];
+    const season = getSeasonForMonth(currentMonth);
+    const seasonCrops = { spring: ['Tomatoes','Basil','Lettuce','Radishes','Peas','Kale','Spinach','Carrots','Beans','Cucumbers','Herbs'],
+      summer: ['Tomatoes','Cucumbers','Basil','Beans','Zucchini','Peppers','Corn','Squash','Melons'],
+      autumn: ['Kale','Broccoli','Cabbage','Lettuce','Carrots','Beets','Garlic','Spinach','Onions'],
+      winter: ['Kale','Garlic','Onions','Spinach','Broad Beans','Peas'] }[season] || [];
+
+    const pool = Object.keys(cropData).filter(name => {
+      const c = cropData[name];
+      if (diff && c.difficulty !== diff) return false;
+      return true;
+    });
+    // Prioritise season-relevant crops, then fill to 12
+    const prioritised = [...new Set([...seasonCrops.filter(n => pool.includes(n)), ...pool])].slice(0, 12);
+
+    grid.innerHTML = prioritised.map(name => {
+      const c = cropData[name];
+      return `<button class="ob-crop-btn" data-name="${name}">
+        <span class="ob-crop-emoji">${c.emoji || '🌱'}</span>
+        <span class="ob-crop-name">${name}</span>
+        ${c.difficulty ? `<span class="ob-crop-diff ob-diff--${(c.difficulty||'').toLowerCase()}">${c.difficulty}</span>` : ''}
+      </button>`;
+    }).join('');
+
+    grid.querySelectorAll('.ob-crop-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.dataset.name;
+        if (selectedStarterCrops.has(name)) { selectedStarterCrops.delete(name); btn.classList.remove('selected'); }
+        else { selectedStarterCrops.add(name); btn.classList.add('selected'); }
+        const count = selectedStarterCrops.size;
+        const countEl = document.getElementById('ob-selected-count');
+        if (countEl) countEl.textContent = count === 0 ? '0 selected' : `${count} selected`;
+      });
+    });
+  }
+
+  // Level picker
+  overlay.querySelectorAll('.ob-level-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedLevel = btn.dataset.level;
+      overlay.querySelectorAll('.ob-level-btn').forEach(b => b.classList.toggle('active', b === btn));
+      const nextBtn = document.getElementById('ob-level-next');
+      if (nextBtn) nextBtn.disabled = false;
+    });
+  });
+
   overlay.querySelectorAll('.ob-next').forEach(btn => btn.addEventListener('click', () => goTo(step + 1)));
   overlay.querySelectorAll('.ob-dot').forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
   overlay.querySelectorAll('.ob-skip, .ob-finish').forEach(btn => btn.addEventListener('click', finish));
-  // Phase 43: notification opt-in button in onboarding
   overlay.querySelector('.ob-notif-btn')?.addEventListener('click', async () => {
     await requestNotifPermission();
     finish();
@@ -4761,10 +4840,25 @@ function initJournal() {
     if (ov) ov.hidden = true;
   });
   document.getElementById('photo-gallery-overlay')?.addEventListener('click', e => {
-    if (e.target === document.getElementById('photo-gallery-overlay')) {
-      e.target.hidden = true;
-    }
+    if (e.target === document.getElementById('photo-gallery-overlay')) e.target.hidden = true;
   });
+
+  // Phase 77-78: overlay close buttons
+  document.getElementById('season-wrap-close')?.addEventListener('click', () => {
+    document.getElementById('season-wrap-overlay').hidden = true;
+  });
+  document.getElementById('season-wrap-overlay')?.addEventListener('click', e => {
+    if (e.target === document.getElementById('season-wrap-overlay')) e.target.hidden = true;
+  });
+  document.getElementById('recipe-browse-close')?.addEventListener('click', () => {
+    document.getElementById('recipe-browse-overlay').hidden = true;
+  });
+  document.getElementById('recipe-browse-overlay')?.addEventListener('click', e => {
+    if (e.target === document.getElementById('recipe-browse-overlay')) e.target.hidden = true;
+  });
+
+  // Phase 79: browse recently viewed
+  renderRecentlyViewed();
 
   document.getElementById('journal-filter-bar')?.addEventListener('click', e => {
     const chip = e.target.closest('.journal-filter-chip');
@@ -6432,7 +6526,9 @@ function renderFABSheet() {
     <button class="fab-action-btn" id="fab-water">💧 Log watering</button>
     <button class="fab-action-btn" id="fab-note">📝 Quick note</button>
     <button class="fab-action-btn" id="fab-task">☑️ Add task</button>
-    <button class="fab-action-btn" id="fab-diagnose">🔍 Diagnose a problem</button>`;
+    <button class="fab-action-btn" id="fab-diagnose">🔍 Diagnose a problem</button>
+    <button class="fab-action-btn" id="fab-season">📋 Season summary</button>
+    <button class="fab-action-btn" id="fab-recipe">🍽 Grow what you eat</button>`;
 
   document.getElementById('fab-harvest')?.addEventListener('click', () => {
     if (!recentCrops.length) { showToast('Add crops with planting dates first', 'info'); closeFAB(); return; }
@@ -6498,6 +6594,16 @@ function renderFABSheet() {
   document.getElementById('fab-diagnose')?.addEventListener('click', () => {
     closeFAB();
     openDiagnosisWizard('');
+  });
+
+  document.getElementById('fab-season')?.addEventListener('click', () => {
+    closeFAB();
+    openSeasonWrapUp();
+  });
+
+  document.getElementById('fab-recipe')?.addEventListener('click', () => {
+    closeFAB();
+    openGrowByRecipe();
   });
 }
 
@@ -7544,4 +7650,371 @@ function renderGardenHealthScore() {
       </div>
       ${tip ? `<div class="ghs-tip">💡 ${tip}</div>` : ''}
     </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PHASE 76 — Smart Shopping List
+// ═══════════════════════════════════════════════════════════════════
+
+const SUPPLY_SUGGESTIONS = {
+  'Tomatoes':    ['Tomato cages or tall stakes (5ft+)', 'Calcium spray (blossom end rot)'],
+  'Cherry Tomatoes': ['Tomato cages or stakes (3ft)'],
+  'Peppers':     ['Short stakes (2ft)', 'Horticultural fleece for early season'],
+  'Cucumbers':   ['Trellis or vertical frame (5ft+)'],
+  'Beans':       ['Tall cane supports (6ft)', 'Twine or netting'],
+  'Peas':        ['Pea sticks or mesh netting (4ft)'],
+  'Squash':      ['Large bed space or grow bags'],
+  'Zucchini':    ['Wide bed or 30L+ container'],
+  'Raspberries': ['Training wires + posts', 'Bird netting'],
+  'Blueberries': ['Ericaceous compost', 'Bird netting', 'Sulphur soil acidifier'],
+  'Blackberries':['Training wires + posts', 'Thornless gloves'],
+  'Gooseberries':['Netting frame', 'Pruning gloves'],
+  'Redcurrants': ['Bird netting frame'],
+  'Strawberries':['Straw mulch', 'Bird netting'],
+  'Potatoes':    ['Potato grow bags or earthing-up hoe', 'Potato fertilizer'],
+  'Corn':        ['Large block spacing min 4×4 for pollination'],
+};
+
+const FERT_SUGGESTIONS = [
+  { name: 'General purpose fertilizer (NPK 7-7-7)', for: ['Tomatoes','Peppers','Beans','Kale','Broccoli','Cauliflower'] },
+  { name: 'High-potash tomato feed', for: ['Tomatoes','Cherry Tomatoes','Cucumbers','Peppers','Squash','Zucchini'] },
+  { name: 'Ericaceous (acidic) fertilizer', for: ['Blueberries'] },
+  { name: 'Bone meal (phosphorus boost)', for: ['Carrots','Parsnips','Beets','Garlic','Onions'] },
+  { name: 'Seaweed or liquid fish emulsion', for: ['Lettuce','Spinach','Kale','Chard','Basil'] },
+];
+
+function renderSmartShoppingList() {
+  const el = document.getElementById('smart-shopping');
+  if (!el) return;
+  const names = Object.keys(myGarden);
+  if (!names.length) { el.innerHTML = ''; return; }
+
+  const bought = (() => { try { return new Set(JSON.parse(localStorage.getItem('pzf-shopping-bought') || '[]')); } catch { return new Set(); } })();
+  const saveBought = () => localStorage.setItem('pzf-shopping-bought', JSON.stringify([...bought]));
+  const thisYear = new Date().getFullYear();
+
+  const needSeeds   = names.filter(n => !myGarden[n].hasSeeds);
+  const expiredSeeds = names.filter(n => { const yr = myGarden[n]?.seedInfo?.expiryYear; return myGarden[n].hasSeeds && yr && yr <= thisYear; });
+  const supplies = [...new Set(names.flatMap(n => SUPPLY_SUGGESTIONS[n] || []))];
+  const ferts = FERT_SUGGESTIONS.filter(f => f.for.some(n => names.includes(n))).map(f => f.name);
+
+  const allItems = [
+    ...needSeeds.map(n => ({ id: `seed-${n}`, label: `${cropData[n]?.emoji || '🌱'} ${n} seeds`, type: 'seed' })),
+    ...expiredSeeds.map(n => ({ id: `renew-${n}`, label: `⚠️ ${n} seeds (check freshness)`, type: 'renew' })),
+    ...supplies.map((s, i) => ({ id: `supply-${i}`, label: `🔧 ${s}`, type: 'supply' })),
+    ...ferts.map((f, i) => ({ id: `fert-${i}`, label: `🧪 ${f}`, type: 'fert' })),
+  ];
+
+  if (!allItems.length) { el.innerHTML = ''; return; }
+
+  const remaining = allItems.filter(item => !bought.has(item.id));
+  const done      = allItems.filter(item =>  bought.has(item.id));
+  const typeLabels = { seed: '🌰 Seeds', renew: '⚠️ Refresh', supply: '🔧 Supplies', fert: '🧪 Fertilizers' };
+  const grouped = {};
+  remaining.forEach(item => { (grouped[item.type] = grouped[item.type] || []).push(item); });
+
+  const renderItems = items => items.map(item => `
+    <label class="sl-item${bought.has(item.id) ? ' sl-item--done' : ''}" data-id="${item.id}">
+      <input type="checkbox" class="sl-check" data-id="${item.id}"${bought.has(item.id) ? ' checked' : ''}>
+      <span class="sl-label">${item.label}</span>
+    </label>`).join('');
+
+  el.innerHTML = `
+    <div class="sl-header">
+      <span class="sl-title">🛒 Shopping List</span>
+      <button class="sl-copy-btn" id="sl-copy-btn">Copy</button>
+      ${done.length ? `<button class="sl-clear-btn" id="sl-clear-btn">Clear bought</button>` : ''}
+    </div>
+    <div class="sl-body">
+      ${Object.entries(grouped).map(([type, items]) => `
+        <div class="sl-group">
+          <div class="sl-group-label">${typeLabels[type] || type}</div>
+          ${renderItems(items)}
+        </div>`).join('')}
+      ${done.length ? `<div class="sl-done-section">
+        <div class="sl-group-label sl-done-label">✓ Already bought (${done.length})</div>
+        ${renderItems(done)}
+      </div>` : ''}
+    </div>`;
+
+  el.querySelectorAll('.sl-check').forEach(chk => {
+    chk.addEventListener('change', () => {
+      if (chk.checked) bought.add(chk.dataset.id); else bought.delete(chk.dataset.id);
+      saveBought(); renderSmartShoppingList();
+    });
+  });
+  document.getElementById('sl-copy-btn')?.addEventListener('click', () => {
+    const lines = remaining.map(i => i.label.replace(/^[^\w⚠️🔧🧪🌱]+/, ''));
+    navigator.clipboard?.writeText(lines.join('\n')).then(() => showToast('Shopping list copied ✓', 'success'));
+  });
+  document.getElementById('sl-clear-btn')?.addEventListener('click', () => {
+    done.forEach(i => bought.delete(i.id)); saveBought(); renderSmartShoppingList();
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PHASE 77 — Season Wrap-Up
+// ═══════════════════════════════════════════════════════════════════
+
+function openSeasonWrapUp() {
+  const overlay = document.getElementById('season-wrap-overlay');
+  if (!overlay) return;
+  renderSeasonWrapUp();
+  overlay.hidden = false;
+}
+
+function renderSeasonWrapUp() {
+  const content = document.getElementById('season-wrap-content');
+  if (!content) return;
+  const names = Object.keys(myGarden);
+  const year  = new Date().getFullYear();
+
+  const totalCrops    = names.length;
+  const withDates     = names.filter(n => myGarden[n]?.planted).length;
+  const totalHarvests = names.reduce((s, n) => s + (myGarden[n]?.harvestLog?.length || 0), 0);
+  let journal = [];
+  try { journal = JSON.parse(localStorage.getItem('pzf-journal') || '[]'); } catch {}
+
+  const bestCrop  = [...names].sort((a, b) => (myGarden[b]?.harvestLog?.length || 0) - (myGarden[a]?.harvestLog?.length || 0))[0];
+  const topRated  = names.filter(n => myGarden[n]?.rating).sort((a, b) => (myGarden[b].rating || 0) - (myGarden[a].rating || 0))[0];
+  const health    = computeGardenHealthScore();
+
+  const lessons = [];
+  if (!withDates) lessons.push('Set planting dates to unlock harvest tracking and countdowns.');
+  const noWater = names.filter(n => myGarden[n]?.planted && !myGarden[n]?.waterLog?.length);
+  if (noWater.length) lessons.push(`Log watering for ${noWater.length} planted crop${noWater.length > 1 ? 's' : ''} to track moisture needs.`);
+  if (journal.length < 4) lessons.push('Keep a more regular journal — even one entry per week reveals useful patterns.');
+  const gardenSet = new Set(names);
+  const noCompanions = names.filter(n => cropData[n]?.companions?.length && !cropData[n].companions.some(c => gardenSet.has(c)));
+  if (noCompanions.length) lessons.push(`Add companion plants for ${noCompanions.slice(0, 2).join(' and ')} to naturally deter pests.`);
+  if (!lessons.length) lessons.push('Great season! Keep up the consistent planting and logging habits.');
+
+  const snap = { year, totalCrops, withDates, totalHarvests, journalEntries: journal.length, healthScore: health?.score || 0 };
+  localStorage.setItem(`pzf-season-${year}`, JSON.stringify(snap));
+
+  let prevSnap = null;
+  try { prevSnap = JSON.parse(localStorage.getItem(`pzf-season-${year - 1}`)); } catch {}
+
+  const diff = (curr, prev) => {
+    if (prev == null) return '';
+    const d = curr - prev;
+    if (!d) return '';
+    return d > 0 ? ` <span class="sw-up">+${d}</span>` : `<span class="sw-down">${d}</span>`;
+  };
+
+  content.innerHTML = `
+    <div class="sw-year">📋 ${year} Season Summary</div>
+    <div class="sw-stats">
+      <div class="sw-stat"><span class="sw-stat-val">${totalCrops}${diff(totalCrops, prevSnap?.totalCrops)}</span><span class="sw-stat-label">Crops grown</span></div>
+      <div class="sw-stat"><span class="sw-stat-val">${totalHarvests}${diff(totalHarvests, prevSnap?.totalHarvests)}</span><span class="sw-stat-label">Harvests</span></div>
+      <div class="sw-stat"><span class="sw-stat-val">${journal.length}${diff(journal.length, prevSnap?.journalEntries)}</span><span class="sw-stat-label">Journal entries</span></div>
+      ${health ? `<div class="sw-stat"><span class="sw-stat-val">${health.score}${diff(health.score, prevSnap?.healthScore)}</span><span class="sw-stat-label">Health score</span></div>` : ''}
+    </div>
+    ${bestCrop && (myGarden[bestCrop]?.harvestLog?.length || 0) > 0 ? `
+      <div class="sw-highlight"><span class="sw-hl-label">⭐ Best performer</span>
+      <span class="sw-hl-value">${cropData[bestCrop]?.emoji || '🌱'} ${bestCrop} — ${myGarden[bestCrop].harvestLog.length} harvest${myGarden[bestCrop].harvestLog.length > 1 ? 's' : ''}</span></div>` : ''}
+    ${topRated ? `
+      <div class="sw-highlight"><span class="sw-hl-label">🏆 Top rated</span>
+      <span class="sw-hl-value">${cropData[topRated]?.emoji || '🌱'} ${topRated} — ${'★'.repeat(myGarden[topRated].rating)}${'☆'.repeat(5 - myGarden[topRated].rating)}</span></div>` : ''}
+    <div class="sw-lessons">
+      <div class="sw-lessons-title">💡 Tips for next season</div>
+      ${lessons.map(l => `<div class="sw-lesson">• ${l}</div>`).join('')}
+    </div>
+    ${prevSnap ? `<div class="sw-prev">vs ${year - 1}: ${prevSnap.totalCrops} crops · ${prevSnap.totalHarvests} harvests · score ${prevSnap.healthScore}</div>` : ''}
+    <button class="sw-close-btn" id="sw-close">Close</button>`;
+
+  document.getElementById('sw-close')?.addEventListener('click', () => {
+    document.getElementById('season-wrap-overlay').hidden = true;
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PHASE 78 — Grow What You Eat (Recipe-to-Garden Discovery)
+// ═══════════════════════════════════════════════════════════════════
+
+const GROW_BY_RECIPE = [
+  { name: 'Pizza',            icon: '🍕', crops: ['Tomatoes','Basil','Oregano','Garlic','Peppers','Onions'] },
+  { name: 'Pasta sauce',      icon: '🍝', crops: ['Tomatoes','Basil','Garlic','Onions','Peppers','Fennel'] },
+  { name: 'Fresh salad',      icon: '🥗', crops: ['Lettuce','Cucumbers','Tomatoes','Radishes','Chervil','Nasturtium','Sorrel'] },
+  { name: 'Stir-fry',         icon: '🥢', crops: ['Garlic','Ginger','Bok Choy','Peas','Beans','Peppers','Corn'] },
+  { name: 'Soup',             icon: '🍲', crops: ['Carrots','Celery','Leeks','Onions','Parsnips','Parsley','Kale'] },
+  { name: 'Green smoothie',   icon: '🥤', crops: ['Kale','Spinach','Mint','Lemon Balm','Cucumbers','Ginger'] },
+  { name: 'Curry',            icon: '🍛', crops: ['Tomatoes','Garlic','Ginger','Cilantro','Peppers','Turmeric','Spinach','Potatoes'] },
+  { name: 'Pickles',          icon: '🫙', crops: ['Cucumbers','Beets','Carrots','Garlic','Dill','Tarragon','Nasturtium'] },
+  { name: 'Herb garden',      icon: '🌿', crops: ['Basil','Parsley','Chives','Rosemary','Thyme','Sage','Oregano','Mint','Chervil','Tarragon','Lemon Balm'] },
+  { name: 'Summer BBQ',       icon: '🔥', crops: ['Corn','Zucchini','Tomatoes','Peppers','Garlic','Beans','Potatoes'] },
+  { name: 'Cocktail garden',  icon: '🍸', crops: ['Mint','Lemon Balm','Borage','Nasturtium','Cucumbers','Basil'] },
+  { name: 'Jam & soft fruit', icon: '🍓', crops: ['Strawberries','Raspberries','Blackberries','Redcurrants','Gooseberries','Blueberries'] },
+];
+
+function openGrowByRecipe() {
+  const overlay = document.getElementById('recipe-browse-overlay');
+  if (!overlay) return;
+  renderGrowByRecipe(null);
+  overlay.hidden = false;
+}
+
+function renderGrowByRecipe(selectedRecipe) {
+  const content = document.getElementById('recipe-browse-content');
+  if (!content) return;
+
+  if (!selectedRecipe) {
+    content.innerHTML = `
+      <p class="rbr-intro">Pick a dish — we'll show you which crops to grow for it.</p>
+      <div class="rbr-grid">
+        ${GROW_BY_RECIPE.map(r => `
+          <button class="rbr-recipe-btn" data-recipe="${r.name}">
+            <span class="rbr-icon">${r.icon}</span>
+            <span class="rbr-name">${r.name}</span>
+            <span class="rbr-count">${r.crops.length} crops</span>
+          </button>`).join('')}
+      </div>`;
+    content.querySelectorAll('.rbr-recipe-btn').forEach(btn =>
+      btn.addEventListener('click', () => renderGrowByRecipe(btn.dataset.recipe)));
+    return;
+  }
+
+  const recipe = GROW_BY_RECIPE.find(r => r.name === selectedRecipe);
+  if (!recipe) return;
+
+  const inGardenCount = recipe.crops.filter(n => isInGarden(n)).length;
+
+  const items = recipe.crops.map(name => {
+    const c = cropData[name];
+    const inG = isInGarden(name);
+    const status = getGardenStatus(name);
+    let tag = '';
+    if (inG && status?.type === 'ready') tag = '<span class="rbr-tag rbr-tag--ready">Ready!</span>';
+    else if (inG) tag = '<span class="rbr-tag rbr-tag--growing">In garden</span>';
+    return `<div class="rbr-crop-row${inG ? ' rbr-crop-row--ingarden' : ''}" data-name="${name}">
+      <span class="rbr-crop-emoji">${c?.emoji || '🌱'}</span>
+      <div class="rbr-crop-info">
+        <span class="rbr-crop-name">${name}</span>
+        ${c?.difficulty ? `<span class="rbr-diff rbr-diff--${(c.difficulty||'').toLowerCase()}">${c.difficulty}</span>` : ''}
+      </div>
+      ${tag}
+      ${!inG ? `<button class="rbr-add-btn" data-name="${name}">+ Add</button>` : ''}
+      <button class="rbr-detail-btn" data-name="${name}">↗</button>
+    </div>`;
+  }).join('');
+
+  const missing = recipe.crops.filter(n => !isInGarden(n));
+
+  content.innerHTML = `
+    <button class="rbr-back-btn" id="rbr-back">← All dishes</button>
+    <div class="rbr-recipe-header">
+      <span class="rbr-icon rbr-icon--lg">${recipe.icon}</span>
+      <div>
+        <h3 class="rbr-recipe-title">${recipe.name}</h3>
+        <span class="rbr-recipe-sub">${inGardenCount}/${recipe.crops.length} crops in your garden</span>
+      </div>
+    </div>
+    <div class="rbr-crop-list">${items}</div>
+    ${missing.length ? `<button class="rbr-add-all-btn" id="rbr-add-all">+ Add all ${missing.length} missing crops</button>` : ''}`;
+
+  content.querySelector('#rbr-back')?.addEventListener('click', () => renderGrowByRecipe(null));
+  content.querySelectorAll('.rbr-add-btn').forEach(btn =>
+    btn.addEventListener('click', e => { e.stopPropagation(); gardenAdd(btn.dataset.name); renderGrowByRecipe(selectedRecipe); }));
+  content.querySelectorAll('.rbr-detail-btn').forEach(btn =>
+    btn.addEventListener('click', () => { document.getElementById('recipe-browse-overlay').hidden = true; openCropDetail(btn.dataset.name); }));
+  content.querySelector('#rbr-add-all')?.addEventListener('click', () => {
+    missing.forEach(n => gardenAdd(n));
+    showToast(`${missing.length} crops added to My Garden!`, 'success');
+    renderGrowByRecipe(selectedRecipe);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PHASE 79 — Long-press Quick Actions + Recently Viewed
+// ═══════════════════════════════════════════════════════════════════
+
+let _recentlyViewed = [];
+
+function trackRecentlyViewed(name) {
+  _recentlyViewed = [name, ..._recentlyViewed.filter(n => n !== name)].slice(0, 6);
+  try { localStorage.setItem('pzf-recently-viewed', JSON.stringify(_recentlyViewed)); } catch {}
+  renderRecentlyViewed();
+}
+
+function loadRecentlyViewed() {
+  try { _recentlyViewed = JSON.parse(localStorage.getItem('pzf-recently-viewed') || '[]'); } catch { _recentlyViewed = []; }
+}
+
+function renderRecentlyViewed() {
+  const el = document.getElementById('browse-recent');
+  if (!el || !_recentlyViewed.length) { if (el) el.hidden = true; return; }
+  el.hidden = false;
+  el.innerHTML = `<div class="rv-label">Recently viewed</div>
+    <div class="rv-chips">${_recentlyViewed.map(name =>
+      `<button class="rv-chip" data-name="${name}">${cropData[name]?.emoji || '🌱'} ${name}</button>`).join('')}
+    </div>`;
+  el.querySelectorAll('.rv-chip').forEach(btn =>
+    btn.addEventListener('click', () => openCropDetail(btn.dataset.name)));
+}
+
+function initLongPress() {
+  document.getElementById('tab-garden')?.addEventListener('pointerdown', e => {
+    const item = e.target.closest('.garden-item[data-crop]');
+    if (!item) return;
+    const name = item.dataset.crop;
+    let timer = setTimeout(() => { haptic(2); showLongPressActions(name); }, 550);
+    const cancel = () => clearTimeout(timer);
+    item.addEventListener('pointerup', cancel, { once: true });
+    item.addEventListener('pointermove', cancel, { once: true });
+    item.addEventListener('pointercancel', cancel, { once: true });
+  });
+
+  document.getElementById('browse-grid')?.addEventListener('pointerdown', e => {
+    const card = e.target.closest('.browse-card[data-name]');
+    if (!card) return;
+    const name = card.dataset.name;
+    let timer = setTimeout(() => {
+      haptic(2);
+      if (isInGarden(name)) { showToast(`${cropData[name]?.emoji || ''} ${name} is already in your garden`, 'info'); }
+      else { gardenAdd(name); showToast(`${cropData[name]?.emoji || '🌱'} ${name} added to My Garden!`, 'success'); }
+    }, 600);
+    const cancel = () => clearTimeout(timer);
+    card.addEventListener('pointerup', cancel, { once: true });
+    card.addEventListener('pointermove', cancel, { once: true });
+    card.addEventListener('pointercancel', cancel, { once: true });
+  });
+}
+
+function showLongPressActions(name) {
+  const c = cropData[name];
+  const overlay = document.getElementById('longpress-overlay');
+  if (!overlay) return;
+  const inGarden = isInGarden(name);
+  const planted  = myGarden[name]?.planted;
+
+  overlay.innerHTML = `
+    <div class="lp-sheet">
+      <div class="lp-handle"></div>
+      <div class="lp-crop-header">
+        <span class="lp-emoji">${c?.emoji || '🌱'}</span>
+        <span class="lp-name">${name}</span>
+      </div>
+      <div class="lp-actions">
+        <button class="lp-btn" id="lp-open">📋 Open details</button>
+        ${planted ? `<button class="lp-btn" id="lp-water">💧 Log watering</button>` : ''}
+        ${planted ? `<button class="lp-btn" id="lp-harvest">🌾 Log harvest</button>` : ''}
+        ${inGarden
+          ? `<button class="lp-btn lp-btn--danger" id="lp-remove">✕ Remove from garden</button>`
+          : `<button class="lp-btn lp-btn--add" id="lp-add">☆ Add to My Garden</button>`}
+        <button class="lp-btn lp-btn--cancel" id="lp-cancel">Cancel</button>
+      </div>
+    </div>`;
+
+  overlay.hidden = false;
+  overlay.querySelector('#lp-open')?.addEventListener('click', () => { overlay.hidden = true; openCropDetail(name); });
+  overlay.querySelector('#lp-water')?.addEventListener('click', () => { overlay.hidden = true; logWatering(name); });
+  overlay.querySelector('#lp-harvest')?.addEventListener('click', () => {
+    overlay.hidden = true;
+    gardenLogHarvest(name, new Date().toISOString().slice(0, 10), '');
+    showToast(`🌾 Harvest logged for ${name}!`, 'success');
+  });
+  overlay.querySelector('#lp-remove')?.addEventListener('click', () => { overlay.hidden = true; gardenRemove(name); });
+  overlay.querySelector('#lp-add')?.addEventListener('click', () => { overlay.hidden = true; gardenAdd(name); });
+  overlay.querySelector('#lp-cancel')?.addEventListener('click', () => { overlay.hidden = true; });
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.hidden = true; }, { once: true });
 }

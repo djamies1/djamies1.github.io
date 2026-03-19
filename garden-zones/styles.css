@@ -4309,3 +4309,124 @@ body.garden-mode .plant-section ul {
 .ghs-bar-fill { background: var(--accent); border-radius: 99px; height: 100%; transition: width 0.4s ease; }
 .ghs-bar-pts { color: var(--text-muted); font-size: 10px; text-align: right; }
 .ghs-tip { background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; color: var(--text-muted); font-size: var(--text-2xs); line-height: 1.5; margin-top: 10px; padding: 7px 10px; }
+
+/* ── Phase 74: Enhanced Onboarding ─────────────── */
+.ob-zone-tip { background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; color: var(--text-muted); font-size: var(--text-2xs); line-height: 1.5; margin: 10px 0; padding: 7px 10px; }
+.ob-level-picker { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+.ob-level-btn { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; display: grid; gap: 2px 10px; grid-template-columns: 28px 1fr; grid-template-rows: auto auto; padding: 10px 14px; text-align: left; transition: border-color 0.15s, background 0.15s; }
+.ob-level-btn.active { background: rgba(74,222,128,0.1); border-color: var(--accent); }
+.ob-level-icon { font-size: 22px; grid-row: 1 / 3; }
+.ob-level-btn strong { color: var(--text); font-size: var(--text-sm); }
+.ob-level-btn span { color: var(--text-muted); font-size: var(--text-2xs); }
+.ob-crop-grid { display: grid; gap: 6px; grid-template-columns: repeat(3, 1fr); margin: 12px 0; }
+.ob-crop-btn { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 9px 6px; transition: border-color 0.12s, background 0.12s; }
+.ob-crop-btn.selected { background: rgba(74,222,128,0.12); border-color: var(--accent); }
+.ob-crop-emoji { font-size: 20px; }
+.ob-crop-name { color: var(--text); font-size: 10px; font-weight: var(--weight-semibold); text-align: center; line-height: 1.3; }
+.ob-crop-diff { border-radius: 99px; font-size: 9px; font-weight: 700; padding: 1px 5px; }
+.ob-diff--easy { background: rgba(74,222,128,0.15); color: var(--accent); }
+.ob-diff--moderate { background: rgba(251,191,36,0.15); color: #fbbf24; }
+.ob-diff--hard { background: rgba(248,113,113,0.15); color: #f87171; }
+.ob-selected-count { color: var(--accent); font-size: var(--text-2xs); font-weight: var(--weight-semibold); text-align: center; }
+.ob-feature-list { display: flex; flex-direction: column; gap: 10px; margin: 14px 0; text-align: left; }
+.ob-feature { align-items: flex-start; display: flex; gap: 10px; }
+.ob-feature span:first-child { font-size: 18px; flex-shrink: 0; }
+.ob-feature span:last-child { color: var(--text-muted); font-size: var(--text-xs); line-height: 1.5; }
+.ob-feature span:last-child strong { color: var(--text); }
+.ob-feature kbd { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; font-size: 10px; padding: 1px 4px; }
+
+/* ── Phase 76: Smart Shopping List ─────────────── */
+.sl-header { align-items: center; display: flex; gap: 8px; margin-bottom: 8px; }
+.sl-title { flex: 1; font-size: var(--text-2xs); font-weight: var(--weight-bold); letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); }
+.sl-copy-btn, .sl-clear-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; color: var(--text-muted); cursor: pointer; font-size: 10px; font-weight: var(--weight-semibold); padding: 3px 8px; transition: color 0.12s; }
+.sl-copy-btn:hover, .sl-clear-btn:hover { color: var(--text); }
+.sl-body { display: flex; flex-direction: column; gap: 10px; }
+.sl-group { display: flex; flex-direction: column; gap: 2px; }
+.sl-group-label { color: var(--text-muted); font-size: 10px; font-weight: var(--weight-semibold); letter-spacing: 0.07em; margin-bottom: 4px; text-transform: uppercase; }
+.sl-done-label { opacity: 0.6; }
+.sl-item { align-items: center; cursor: pointer; display: flex; gap: 8px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.sl-item:last-child { border-bottom: none; }
+.sl-item--done .sl-label { color: var(--text-muted); opacity: 0.55; text-decoration: line-through; }
+.sl-check { accent-color: var(--accent); cursor: pointer; flex-shrink: 0; height: 14px; width: 14px; }
+.sl-label { font-size: var(--text-xs); line-height: 1.4; }
+
+/* ── Phase 77: Season Wrap-Up ──────────────────── */
+.full-overlay { align-items: flex-start; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); bottom: 0; display: flex; justify-content: center; left: 0; overflow-y: auto; padding: 24px 12px; position: fixed; right: 0; top: 0; z-index: 1300; }
+.full-overlay[hidden] { display: none; }
+.full-overlay-close { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 22px; line-height: 1; padding: 4px; position: absolute; right: 12px; top: 10px; }
+#season-wrap-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; max-width: 380px; padding: 20px 18px; position: relative; width: 100%; }
+.sw-year { color: var(--text-muted); font-size: var(--text-2xs); font-weight: var(--weight-bold); letter-spacing: 0.07em; margin-bottom: 14px; text-transform: uppercase; }
+.sw-stats { display: grid; gap: 8px; grid-template-columns: 1fr 1fr; margin-bottom: 14px; }
+.sw-stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center; }
+.sw-stat-val { color: var(--text); display: block; font-size: 22px; font-weight: var(--weight-bold); line-height: 1.2; }
+.sw-stat-label { color: var(--text-muted); font-size: var(--text-2xs); }
+.sw-up { color: var(--accent); font-size: 12px; }
+.sw-down { color: #f87171; font-size: 12px; }
+.sw-highlight { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; display: flex; gap: 8px; justify-content: space-between; margin-bottom: 8px; padding: 8px 12px; }
+.sw-hl-label { color: var(--text-muted); font-size: var(--text-2xs); }
+.sw-hl-value { color: var(--text); font-size: var(--text-xs); font-weight: var(--weight-semibold); }
+.sw-lessons { background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.2); border-radius: 8px; margin: 12px 0; padding: 10px 12px; }
+.sw-lessons-title { color: var(--accent); font-size: var(--text-2xs); font-weight: var(--weight-bold); margin-bottom: 6px; }
+.sw-lesson { color: var(--text-muted); font-size: var(--text-2xs); line-height: 1.6; }
+.sw-prev { color: var(--text-muted); font-size: var(--text-2xs); margin-bottom: 10px; opacity: 0.7; }
+.sw-close-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; font-size: var(--text-sm); font-weight: var(--weight-semibold); padding: 9px; transition: border-color 0.12s; width: 100%; }
+.sw-close-btn:hover { border-color: var(--accent-dark); }
+
+/* ── Phase 78: Grow What You Eat ────────────────── */
+#recipe-browse-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; display: flex; flex-direction: column; max-height: 88vh; max-width: 400px; position: relative; width: 100%; }
+#recipe-browse-header { align-items: center; border-bottom: 1px solid var(--border); display: flex; gap: 10px; justify-content: space-between; padding: 14px 16px; }
+#recipe-browse-header h3 { font-size: var(--text-sm); font-weight: var(--weight-bold); margin: 0; }
+#recipe-browse-content { flex: 1; overflow-y: auto; padding: 14px; }
+.rbr-intro { color: var(--text-muted); font-size: var(--text-xs); margin-bottom: 12px; }
+.rbr-grid { display: grid; gap: 8px; grid-template-columns: repeat(2, 1fr); }
+.rbr-recipe-btn { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 3px; padding: 12px 8px; text-align: center; transition: border-color 0.12s, background 0.12s; }
+.rbr-recipe-btn:hover { border-color: var(--accent-dark); background: rgba(255,255,255,0.04); }
+.rbr-icon { font-size: 24px; }
+.rbr-icon--lg { font-size: 32px; }
+.rbr-name { color: var(--text); font-size: var(--text-xs); font-weight: var(--weight-semibold); }
+.rbr-count { color: var(--text-muted); font-size: 10px; }
+.rbr-back-btn { background: none; border: none; color: var(--accent); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); margin-bottom: 12px; padding: 0; }
+.rbr-recipe-header { align-items: center; display: flex; gap: 12px; margin-bottom: 14px; }
+.rbr-recipe-title { font-size: var(--text-sm); font-weight: var(--weight-bold); margin: 0 0 3px; }
+.rbr-recipe-sub { color: var(--text-muted); font-size: var(--text-2xs); }
+.rbr-crop-list { display: flex; flex-direction: column; gap: 1px; }
+.rbr-crop-row { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; cursor: default; display: flex; gap: 8px; margin-bottom: 4px; padding: 8px 10px; }
+.rbr-crop-row--ingarden { border-color: rgba(74,222,128,0.25); }
+.rbr-crop-emoji { font-size: 18px; flex-shrink: 0; }
+.rbr-crop-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.rbr-crop-name { font-size: var(--text-xs); font-weight: var(--weight-semibold); }
+.rbr-diff { border-radius: 99px; font-size: 9px; font-weight: 700; padding: 1px 5px; }
+.rbr-diff--easy { background: rgba(74,222,128,0.12); color: var(--accent); }
+.rbr-diff--moderate { background: rgba(251,191,36,0.12); color: #fbbf24; }
+.rbr-diff--hard { background: rgba(248,113,113,0.12); color: #f87171; }
+.rbr-tag { border-radius: 99px; flex-shrink: 0; font-size: 10px; font-weight: 700; padding: 2px 7px; }
+.rbr-tag--growing { background: rgba(251,191,36,0.12); color: #fbbf24; }
+.rbr-tag--ready   { background: rgba(74,222,128,0.12); color: var(--accent); }
+.rbr-add-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 5px; color: var(--text-muted); cursor: pointer; flex-shrink: 0; font-size: 10px; font-weight: var(--weight-semibold); padding: 3px 8px; transition: color 0.12s, border-color 0.12s; white-space: nowrap; }
+.rbr-add-btn:hover { border-color: var(--accent); color: var(--accent); }
+.rbr-detail-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; flex-shrink: 0; font-size: 14px; padding: 2px 4px; }
+.rbr-add-all-btn { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); border-radius: 8px; color: var(--accent); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); margin-top: 12px; padding: 8px; transition: background 0.12s; width: 100%; }
+.rbr-add-all-btn:hover { background: rgba(74,222,128,0.18); }
+
+/* ── Phase 79: Long-press + Recently Viewed ────── */
+.lp-overlay { align-items: flex-end; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); bottom: 0; display: flex; justify-content: center; left: 0; position: fixed; right: 0; top: 0; z-index: 1400; }
+.lp-overlay[hidden] { display: none; }
+.lp-sheet { background: var(--surface); border-radius: 14px 14px 0 0; padding: 12px 16px 24px; width: 100%; max-width: 480px; }
+.lp-handle { background: var(--border); border-radius: 99px; height: 4px; margin: 0 auto 12px; width: 36px; }
+.lp-crop-header { align-items: center; display: flex; gap: 10px; margin-bottom: 14px; }
+.lp-emoji { font-size: 24px; }
+.lp-name { font-size: var(--text-base); font-weight: var(--weight-bold); }
+.lp-actions { display: flex; flex-direction: column; gap: 6px; }
+.lp-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; font-size: var(--text-sm); font-weight: var(--weight-semibold); padding: 12px; text-align: left; transition: border-color 0.12s, background 0.12s; width: 100%; }
+.lp-btn:hover { border-color: var(--accent-dark); }
+.lp-btn--add { border-color: rgba(74,222,128,0.35); color: var(--accent); }
+.lp-btn--danger { border-color: rgba(248,113,113,0.3); color: #f87171; }
+.lp-btn--cancel { background: none; border: none; color: var(--text-muted); font-weight: normal; }
+#browse-recent { margin-bottom: 10px; padding: 0 0 8px; border-bottom: 1px solid var(--border); }
+.rv-label { color: var(--text-muted); font-size: 10px; font-weight: var(--weight-semibold); letter-spacing: 0.07em; margin-bottom: 6px; text-transform: uppercase; }
+.rv-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.rv-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; color: var(--text-muted); cursor: pointer; font-size: var(--text-2xs); font-weight: var(--weight-semibold); padding: 3px 10px; transition: color 0.12s, border-color 0.12s; }
+.rv-chip:hover { border-color: var(--accent-dark); color: var(--text); }
+/* Browse card hover lift */
+.browse-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+.browse-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.25); transform: translateY(-2px); }
