@@ -2776,6 +2776,7 @@ function initShareModal() {
   document.getElementById('sopt-url')?.addEventListener('click', copyZoneURL);
   document.getElementById('sopt-schedule')?.addEventListener('click', copyScheduleText);
   document.getElementById('sopt-garden')?.addEventListener('click', copyGardenText);
+  document.getElementById('sopt-calendar')?.addEventListener('click', generateICS);
   document.getElementById('sopt-print')?.addEventListener('click', printZone);
 }
 
@@ -4321,3 +4322,128 @@ function initSavedLocations() {
   });
 }
 
+
+// ── Phase 19: Calendar Export (.ics) ─────────────
+function buildICS(events, calName) {
+  const pad2 = n => String(n).padStart(2, '0');
+  const icsDate = d => `${d.getFullYear()}${pad2(d.getMonth() + 1)}${pad2(d.getDate())}`;
+  const icsNow  = () => { const n = new Date(); return `${n.getFullYear()}${pad2(n.getMonth()+1)}${pad2(n.getDate())}T${pad2(n.getHours())}${pad2(n.getMinutes())}${pad2(n.getSeconds())}Z`; };
+  const uid     = () => `${Date.now()}-${Math.random().toString(36).slice(2)}@plantzonefinder`;
+  const esc     = s => String(s || '').replace(/\/g,'\\').replace(/;/g,'\;').replace(/,/g,'\,').replace(/\n/g,'\n');
+  // Fold long lines per RFC 5545 (max 75 octets)
+  const fold    = s => s.match(/.{1,75}/g)?.join('\r\n ') || s;
+
+  const vevents = events.map(e => [
+    'BEGIN:VEVENT',
+    `UID:${uid()}`,
+    `DTSTAMP:${icsNow()}`,
+    `DTSTART;VALUE=DATE:${icsDate(e.date)}`,
+    `DTEND;VALUE=DATE:${icsDate(new Date(e.date.getTime() + 86400000))}`,
+    fold(`SUMMARY:${esc(e.summary)}`),
+    e.description ? fold(`DESCRIPTION:${esc(e.description)}`) : null,
+    'END:VEVENT',
+  ].filter(Boolean).join('\r\n'));
+
+  return [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Plant Zone Finder//Garden Calendar//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    `X-WR-CALNAME:${esc(calName || 'Garden Planting Calendar')}`,
+    'X-WR-CALDESC:Your personalised garden planting schedule from Plant Zone Finder',
+    ...vevents,
+    'END:VCALENDAR',
+  ].join('\r\n');
+}
+
+function downloadAsFile(filename, content, mimeType) {
+  const blob = new Blob([content], { type: mimeType });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement('a'), { href: url, download: filename });
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function generateICS() {
+  if (!selectedZone && !Object.keys(myGarden).length) {
+    showToast('Select a zone or add crops to your garden first', 'info'); return;
+  }
+
+  const year   = new Date().getFullYear();
+  const events = [];
+  const zoneLbl = selectedZone ? getZoneDisplayLabel(selectedZone) : null;
+
+  // ── 1. Frost date events ──────────────────────
+  if (selectedZone) {
+    const frost = FROST_DATES[selectedZone.toLowerCase()];
+    if (frost?.last) {
+      const d = parseFrostDate(frost.last);
+      if (d) events.push({ summary: `❄️ Last frost — Zone ${zoneLbl}`, date: d,
+        description: `Last average frost date for Zone ${zoneLbl}. Safe to transplant warm-season crops after this date.` });
+    }
+    if (frost?.first) {
+      const d = parseFrostDate(frost.first);
+      if (d) events.push({ summary: `🍂 First frost — Zone ${zoneLbl}`, date: d,
+        description: `First expected frost for Zone ${zoneLbl}. Harvest frost-sensitive crops before this date.` });
+    }
+  }
+
+  // ── 2. Garden crop events ─────────────────────
+  for (const [name, entry] of Object.entries(myGarden)) {
+    // User-set reminder
+    if (entry.reminder) {
+      const d = new Date(entry.reminder + 'T00:00:00');
+      if (!isNaN(d)) events.push({ summary: `🔔 ${name} — reminder`, date: d,
+        description: `Garden reminder you set for ${name} in Plant Zone Finder` });
+    }
+
+    // Planted date + expected harvest
+    if (entry.planted) {
+      const planted = new Date(entry.planted + 'T00:00:00');
+      if (!isNaN(planted)) {
+        events.push({ summary: `🌱 Planted: ${name}`, date: planted,
+          description: `You planted ${name} in your garden` });
+        const days = parseHarvestDays(cropData[name]?.days);
+        if (days) {
+          const harvestDate = new Date(planted.getTime() + days * 86400000);
+          events.push({ summary: `🌾 Harvest ready: ${name}`, date: harvestDate,
+            description: `${name} sown on ${entry.planted}. Days to maturity: ~${days}. Check daily for ripeness signs.` });
+        }
+      }
+    }
+  }
+
+  // ── 3. Zone-based sowing windows (unplanted crops) ──
+  if (selectedZone) {
+    const upcoming3 = [1, 2, 3].map(offset => ((new Date().getMonth() + offset) % 12) + 1);
+    for (const [name, entry] of Object.entries(myGarden)) {
+      if (entry.planted) continue;
+      // Find first upcoming activity month
+      for (let m = 1; m <= 12; m++) {
+        const d = getPlantingData(selectedZone, m);
+        const isUpcoming = upcoming3.includes(m) || m > new Date().getMonth() + 1;
+        if (!isUpcoming) continue;
+        if (d.startIndoors?.includes(name)) {
+          events.push({ summary: `🪴 Start ${name} indoors`, date: new Date(year, m - 1, 1),
+            description: `Zone ${zoneLbl} planting schedule — start ${name} indoors this month for best results` }); break;
+        }
+        if (d.directSow?.includes(name)) {
+          events.push({ summary: `🌱 Sow ${name} outdoors`, date: new Date(year, m - 1, 1),
+            description: `Zone ${zoneLbl} planting schedule — direct sow ${name} outdoors this month` }); break;
+        }
+      }
+    }
+  }
+
+  if (!events.length) { showToast('No events to export — try adding crops or planting dates first', 'info'); return; }
+
+  const locPrefix  = selectedLocationName ? `${selectedLocationName} ` : '';
+  const calName    = `${locPrefix}${zoneLbl ? `Zone ${zoneLbl} ` : ''}Planting Calendar`;
+  const ics        = buildICS(events, calName);
+  downloadAsFile(`garden-calendar-${year}.ics`, ics, 'text/calendar;charset=utf-8');
+  document.getElementById('share-modal')?.close();
+  showToast(`${events.length} events exported ✓ — open the .ics file to import`, 'success');
+}
