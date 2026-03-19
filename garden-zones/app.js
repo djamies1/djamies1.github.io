@@ -1500,7 +1500,7 @@ function renderGardenTab() {
   const emptyMsg = document.getElementById('garden-empty-msg');
   if (!list) return;
   const names = Object.keys(myGarden);
-  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; renderGardenBeds(); return; }
+  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; renderGardenBeds(); renderCompanionMatrix(); return; }
   if (emptyMsg) emptyMsg.hidden = true;
 
   const groups = { ready: [], growing: [], saved: [] };
@@ -1556,6 +1556,7 @@ function renderGardenTab() {
   renderGardenTasks();
   renderGardenChecklist();
   renderGardenBeds();
+  renderCompanionMatrix();
   renderGardenStats();
   renderGardenGantt();
   renderGardenFooter();
@@ -3509,6 +3510,84 @@ function renderGardenChecklist() {
 
 function initChecklist() {
   loadChecklist();
+}
+
+// ── Phase 13: Companion Planting Matrix ──────────
+function renderCompanionMatrix() {
+  const el = document.getElementById('garden-companion-matrix');
+  if (!el) return;
+
+  const names = Object.keys(myGarden);
+  if (names.length < 2) { el.innerHTML = ''; return; }
+
+  // Relationship between two crops
+  function getRelType(a, b) {
+    if (a === b) return 'self';
+    const aData = cropData[a];
+    const bData = cropData[b];
+    if (aData?.avoid?.includes(b) || bData?.avoid?.includes(a)) return 'bad';
+    if (aData?.companions?.includes(b) || bData?.companions?.includes(a)) return 'good';
+    return 'neutral';
+  }
+
+  // Summarise conflicts and good pairs
+  const conflicts = [], goodPairs = [];
+  for (let i = 0; i < names.length; i++) {
+    for (let j = i + 1; j < names.length; j++) {
+      const rel = getRelType(names[i], names[j]);
+      if (rel === 'bad')  conflicts.push([names[i], names[j]]);
+      if (rel === 'good') goodPairs.push([names[i], names[j]]);
+    }
+  }
+
+  let summaryHtml = '';
+  if (conflicts.length) {
+    summaryHtml = `<div class="matrix-alert matrix-alert--bad">
+      ⚠️ Keep apart: ${conflicts.map(([a, b]) =>
+        `<strong>${cropData[a]?.emoji || ''}${a}</strong> + <strong>${cropData[b]?.emoji || ''}${b}</strong>`
+      ).join(' · ')}
+    </div>`;
+  } else if (goodPairs.length) {
+    summaryHtml = `<div class="matrix-alert matrix-alert--good">
+      🤝 ${goodPairs.length} good companion pair${goodPairs.length !== 1 ? 's' : ''} in your garden
+    </div>`;
+  }
+
+  const ICONS  = { self: '', good: '✅', bad: '❌', neutral: '·' };
+  const TITLES = { good: 'Good companions', bad: 'Keep apart — may harm each other', neutral: 'No known relationship' };
+
+  const colHeaders = names.map(n =>
+    `<th class="mx-col-hdr" title="${n}">${cropData[n]?.emoji || '🌱'}</th>`
+  ).join('');
+
+  const rows = names.map(a => {
+    const cells = names.map(b => {
+      const rel = getRelType(a, b);
+      return `<td class="mx-cell mx-cell--${rel}" title="${rel !== 'self' ? TITLES[rel] : ''}">${ICONS[rel]}</td>`;
+    }).join('');
+    const shortName = a.length > 14 ? a.slice(0, 13) + '…' : a;
+    return `<tr>
+      <th class="mx-row-hdr" title="${a}">${cropData[a]?.emoji || '🌱'} <span>${shortName}</span></th>
+      ${cells}
+    </tr>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="matrix-header">
+      <span class="matrix-title">🤝 Companion Planting</span>
+    </div>
+    ${summaryHtml}
+    <div class="matrix-scroll">
+      <table class="companion-matrix">
+        <thead><tr><th></th>${colHeaders}</tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <div class="matrix-legend">
+      <span>✅ Good companion</span>
+      <span>❌ Keep apart</span>
+      <span>· No data</span>
+    </div>`;
 }
 
 // ── Phase 12: Garden Beds ─────────────────────────

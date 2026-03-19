@@ -3134,3 +3134,55 @@ body.garden-mode .plant-section ul {
   font-size: 11px;
   padding: 3px 6px;
 }
+
+/* ── Phase 13: Companion Planting Matrix ─────────── */
+#garden-companion-matrix { margin-bottom: 16px; }
+.matrix-header { margin-bottom: 8px; }
+.matrix-title { font-size: 12px; font-weight: 700; color: var(--text); }
+.matrix-alert {
+  border-radius: 6px;
+  border: 1px solid;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  padding: 7px 10px;
+}
+.matrix-alert--bad  { background: rgba(248,113,113,0.07); border-color: rgba(248,113,113,0.3); color: var(--text); }
+.matrix-alert--good { background: rgba(74,222,128,0.07);  border-color: rgba(74,222,128,0.25); color: var(--text); }
+.matrix-alert strong { font-weight: 600; }
+.matrix-scroll { overflow-x: auto; margin-bottom: 6px; }
+.companion-matrix {
+  border-collapse: collapse;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.mx-row-hdr {
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 3px 8px 3px 0;
+  text-align: left;
+  white-space: nowrap;
+}
+.mx-row-hdr span { font-size: 11px; }
+.mx-col-hdr {
+  font-size: 15px;
+  padding: 2px 4px;
+  text-align: center;
+}
+.mx-cell {
+  border: 1px solid var(--surface2);
+  font-size: 13px;
+  height: 28px;
+  text-align: center;
+  width: 28px;
+}
+.mx-cell--good    { background: rgba(74,222,128,0.15); }
+.mx-cell--bad     { background: rgba(248,113,113,0.15); }
+.mx-cell--neutral { color: var(--border); }
+.mx-cell--self    { background: var(--surface2); }
+.matrix-legend {
+  display: flex;
+  gap: 12px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
