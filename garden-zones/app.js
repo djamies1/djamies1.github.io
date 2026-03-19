@@ -1032,6 +1032,19 @@ function restoreFromURL() {
     updateSeasonBg();
   }
 
+  // Handle manifest shortcuts (?tab=garden, ?browse=1)
+  const tabParam = params.get('tab');
+  if (tabParam === 'garden') {
+    currentPanelTab = 'garden';
+    document.querySelectorAll('.ptab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'garden'));
+    document.getElementById('tab-calendar').hidden = true;
+    document.getElementById('tab-garden').hidden   = false;
+    document.getElementById('tab-journal').hidden  = true;
+  }
+  if (params.get('browse') === '1') {
+    requestAnimationFrame(() => document.getElementById('browse-btn')?.click());
+  }
+
   selectedLocationName = localStorage.getItem('pzf-last-location') || null;
   const zoneToRestore = z || localStorage.getItem('pzf-last-zone');
   if (zoneToRestore && zonesLayer) {

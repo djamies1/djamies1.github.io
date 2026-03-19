@@ -1,4 +1,4 @@
-const CACHE = 'plant-zone-v17';
+const CACHE = 'plant-zone-v18';
 const CORE = [
   '/garden-zones/',
   '/garden-zones/index.html',
@@ -15,6 +15,10 @@ const CORE = [
   '/garden-zones/data/spring-bg.svg',
   '/garden-zones/data/summer-bg.svg',
   '/garden-zones/data/autumn-bg.svg',
+  '/garden-zones/icons/icon-192.png',
+  '/garden-zones/icons/icon-512.png',
+  '/garden-zones/icons/icon-192-maskable.png',
+  '/garden-zones/icons/favicon.ico',
 ];
 
 self.addEventListener('install', e => {
