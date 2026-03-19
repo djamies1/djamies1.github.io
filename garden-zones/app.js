@@ -59,6 +59,38 @@ const ZONE_COLORS = {
   10: '#f07020', 11: '#e04010', 12: '#cc2000', 13: '#aa0000'
 };
 
+// ── Location name helpers ──────────────────────
+const US_STATE_ABBR = {
+  'Alabama':'AL','Alaska':'AK','Arizona':'AZ','Arkansas':'AR','California':'CA',
+  'Colorado':'CO','Connecticut':'CT','Delaware':'DE','Florida':'FL','Georgia':'GA',
+  'Hawaii':'HI','Idaho':'ID','Illinois':'IL','Indiana':'IN','Iowa':'IA',
+  'Kansas':'KS','Kentucky':'KY','Louisiana':'LA','Maine':'ME','Maryland':'MD',
+  'Massachusetts':'MA','Michigan':'MI','Minnesota':'MN','Mississippi':'MS',
+  'Missouri':'MO','Montana':'MT','Nebraska':'NE','Nevada':'NV','New Hampshire':'NH',
+  'New Jersey':'NJ','New Mexico':'NM','New York':'NY','North Carolina':'NC',
+  'North Dakota':'ND','Ohio':'OH','Oklahoma':'OK','Oregon':'OR','Pennsylvania':'PA',
+  'Rhode Island':'RI','South Carolina':'SC','South Dakota':'SD','Tennessee':'TN',
+  'Texas':'TX','Utah':'UT','Vermont':'VT','Virginia':'VA','Washington':'WA',
+  'West Virginia':'WV','Wisconsin':'WI','Wyoming':'WY','District of Columbia':'DC',
+};
+const CA_PROV_ABBR = {
+  'Alberta':'AB','British Columbia':'BC','Manitoba':'MB','New Brunswick':'NB',
+  'Newfoundland and Labrador':'NL','Nova Scotia':'NS','Ontario':'ON',
+  'Prince Edward Island':'PE','Quebec':'QC','Saskatchewan':'SK',
+  'Northwest Territories':'NT','Nunavut':'NU','Yukon':'YT',
+};
+
+function formatLocationName(addr) {
+  if (!addr) return null;
+  const city = addr.city || addr.town || addr.village || addr.hamlet || addr.suburb;
+  if (!city) return null;
+  const cc = (addr.country_code || '').toUpperCase();
+  const state = addr.state;
+  if (cc === 'US' && state) return `${city}, ${US_STATE_ABBR[state] || state}`;
+  if (cc === 'CA' && state) return `${city}, ${CA_PROV_ABBR[state] || state}`;
+  return state ? `${city}, ${state}` : city;
+}
+
 // ── Frost dates by zone ────────────────────────
 // Approximate average last/first frost dates (null = frost-free)
 const FROST_DATES = {
@@ -273,6 +305,8 @@ let currentPanelTab = 'calendar';
 let layoutMode = localStorage.getItem('pzf-layout') || 'map';
 let journalEntries = [];
 let _photoDB = null;
+let selectedLocationName = null;
+let savedLocations = [];
 let _pendingPhoto = null; // dataURL staged for next journal entry
 
 let selectedLat = null;
@@ -416,6 +450,7 @@ function onZoneClick(feature, layer, lat, lng) {
   highlightZone();
   pulseZone();
   localStorage.setItem('pzf-last-zone', selectedZone);
+  localStorage.setItem('pzf-last-location', selectedLocationName || '');
   renderPanel();
   showPanel();
   updateURL();
@@ -458,11 +493,36 @@ function hidePanel() {
   document.getElementById('info-panel').classList.add('panel-hidden');
 }
 
+function renderLocationName() {
+  const el = document.getElementById('location-name');
+  if (el) {
+    if (selectedLocationName) {
+      el.textContent = '📍 ' + selectedLocationName;
+      el.hidden = false;
+    } else {
+      el.hidden = true;
+    }
+  }
+  const saveBtn = document.getElementById('save-location-btn');
+  if (saveBtn) saveBtn.hidden = !selectedZone;
+  // Update print header
+  if (selectedZone) {
+    const ph = document.getElementById('print-header');
+    if (ph) {
+      const loc = selectedLocationName ? ` — ${selectedLocationName}` : '';
+      ph.textContent = `Plant Zone Finder${loc} — Zone ${getZoneDisplayLabel(selectedZone)} — ${MONTH_NAMES[currentMonth]}`;
+    }
+  }
+}
+
 function renderPanel() {
   if (!selectedZone) return;
 
   const zone  = selectedZone;
   const month = currentMonth;
+
+  renderLocationName();
+  renderSavedLocationsBar();
 
   // Zone badge
   const color = getZoneColor(zone);
@@ -519,9 +579,7 @@ function renderPanel() {
     frostEl.hidden = true;
   }
 
-  // Print header
-  const ph = document.getElementById('print-header');
-  if (ph) ph.textContent = `Plant Zone Finder — ${getZoneDisplayLabel(zone)} — ${MONTH_NAMES[month]} planting calendar`;
+  // Print header handled by renderLocationName() above
 
   // Harvest banner + Countdown cards + smart digest (use cached weather data)
   renderHarvestReadyBanner();
@@ -618,6 +676,7 @@ function initUI() {
   initCustomCrops();
   initCountrySelector();
   initShareModal();
+  initSavedLocations();
   initNotifBtn();
   checkAndFireNotifications();
   initLayoutToggle();
@@ -712,14 +771,21 @@ function initLocate() {
     btn.disabled = true;
 
     navigator.geolocation.getCurrentPosition(
-      pos => {
+      async pos => {
         const { latitude: lat, longitude: lng } = pos.coords;
+        selectedLocationName = null;
         const found = selectZoneByPoint(lat, lng);
         if (!found) showToast('No planting zone found at your location');
         zoomToPoint(lat, lng);
         map.once('moveend', highlightZone);
         btn.classList.remove('locating');
         btn.disabled = false;
+        // Reverse geocode async — updates panel once name resolves
+        const name = await nominatimReverseGeocode(lat, lng);
+        if (name && selectedLat === lat && selectedLng === lng) {
+          selectedLocationName = name;
+          renderLocationName();
+        }
       },
       () => {
         showToast('Location access denied — try searching your address instead');
@@ -777,7 +843,8 @@ async function onAddressSearch(address) {
   try {
     const result = await nominatimGeocode(address, geocodeController.signal);
     if (!result) { showToast('Address not found'); return; }
-    const { lat, lon } = result;
+    const { lat, lon, locationName } = result;
+    selectedLocationName = locationName || null;
     const found = selectZoneByPoint(lat, lon);
     if (!found) showToast('No planting zone found at that location');
     zoomToPoint(lat, lon);
@@ -795,12 +862,24 @@ async function onAddressSearch(address) {
 
 async function nominatimGeocode(address, signal) {
   const url = `https://nominatim.openstreetmap.org/search?` +
-    new URLSearchParams({ q: address, format: 'json', limit: 1, countrycodes: COUNTRY_CONFIG[selectedCountry]?.geocodeCodes || 'us' });
+    new URLSearchParams({ q: address, format: 'json', limit: 1, addressdetails: 1, countrycodes: COUNTRY_CONFIG[selectedCountry]?.geocodeCodes || 'us' });
   const res = await fetch(url, { signal, headers: { 'Accept-Language': 'en' } });
   if (!res.ok) throw new Error(`Nominatim ${res.status}`);
   const data = await res.json();
   if (!data.length) return null;
-  return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+  const item = data[0];
+  return { lat: parseFloat(item.lat), lon: parseFloat(item.lon), locationName: formatLocationName(item.address) };
+}
+
+async function nominatimReverseGeocode(lat, lng) {
+  try {
+    const url = `https://nominatim.openstreetmap.org/reverse?` +
+      new URLSearchParams({ lat, lon: lng, format: 'json', addressdetails: 1 });
+    const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return formatLocationName(data.address);
+  } catch { return null; }
 }
 
 function zoomToPoint(lat, lng) {
@@ -952,6 +1031,7 @@ function restoreFromURL() {
     updateSeasonBg();
   }
 
+  selectedLocationName = localStorage.getItem('pzf-last-location') || null;
   const zoneToRestore = z || localStorage.getItem('pzf-last-zone');
   if (zoneToRestore && zonesLayer) {
     let found = false;
@@ -1857,7 +1937,7 @@ function renderWeatherStrip() {
       ${hasFrost ? '<span class="wx-frost-tag">❄️ Frost risk</span>' : ''}
     </div>
     <div class="wx-forecast">${forecast}</div>
-    <div class="wx-attribution">Weather: Open-Meteo.com</div>`;
+    <div class="wx-attribution">${selectedLocationName ? `📍 ${selectedLocationName} · ` : ''}Weather: Open-Meteo.com</div>`;
   el.hidden = false;
 }
 
@@ -4105,5 +4185,74 @@ function initNotifBtn() {
       return;
     }
     await requestNotifPermission();
+  });
+}
+
+// ── Phase 17: Saved Locations ────────────────────
+function loadSavedLocations() {
+  try { savedLocations = JSON.parse(localStorage.getItem('pzf-saved-locs') || '[]'); }
+  catch { savedLocations = []; }
+}
+function saveSavedLocationsStore() { localStorage.setItem('pzf-saved-locs', JSON.stringify(savedLocations)); }
+
+function saveCurrentLocation() {
+  if (!selectedZone) return;
+  const name = selectedLocationName || `Zone ${getZoneDisplayLabel(selectedZone)}`;
+  if (savedLocations.some(l => l.zone === selectedZone && Math.abs(l.lat - selectedLat) < 0.05 && Math.abs(l.lng - selectedLng) < 0.05)) {
+    showToast('Location already saved', 'info'); return;
+  }
+  if (savedLocations.length >= 6) { showToast('Max 6 saved locations — remove one first', 'info'); return; }
+  savedLocations.push({ id: Date.now(), name, lat: selectedLat, lng: selectedLng, zone: selectedZone, country: selectedCountry });
+  saveSavedLocationsStore();
+  renderSavedLocationsBar();
+  showToast('Location saved 📌', 'success');
+}
+
+function removeSavedLocation(id) {
+  savedLocations = savedLocations.filter(l => l.id !== id);
+  saveSavedLocationsStore();
+  renderSavedLocationsBar();
+}
+
+function restoreLocation(loc) {
+  const doRestore = () => {
+    selectedLocationName = loc.name;
+    selectZoneByPoint(loc.lat, loc.lng);
+    zoomToPoint(loc.lat, loc.lng);
+    map.once('moveend', highlightZone);
+  };
+  if (loc.country && loc.country !== selectedCountry) {
+    reloadCountry(loc.country).then(doRestore);
+  } else {
+    doRestore();
+  }
+}
+
+function renderSavedLocationsBar() {
+  const el = document.getElementById('saved-locations-bar');
+  if (!el) return;
+  if (!savedLocations.length) { el.hidden = true; return; }
+  el.hidden = false;
+  el.innerHTML = savedLocations.map(loc => `
+    <div class="saved-loc-chip${loc.zone === selectedZone && Math.abs(loc.lat - selectedLat) < 0.05 ? ' active' : ''}" data-id="${loc.id}" role="button" tabindex="0" title="${loc.name}">
+      <span class="saved-loc-name">${loc.name}</span>
+      <button class="saved-loc-remove" data-id="${loc.id}" aria-label="Remove ${loc.name}">×</button>
+    </div>`).join('');
+}
+
+function initSavedLocations() {
+  loadSavedLocations();
+  renderSavedLocationsBar();
+
+  document.getElementById('save-location-btn')?.addEventListener('click', saveCurrentLocation);
+
+  document.getElementById('saved-locations-bar')?.addEventListener('click', e => {
+    const removeBtn = e.target.closest('.saved-loc-remove');
+    if (removeBtn) { removeSavedLocation(parseInt(removeBtn.dataset.id, 10)); return; }
+    const chip = e.target.closest('.saved-loc-chip');
+    if (chip) {
+      const loc = savedLocations.find(l => l.id === parseInt(chip.dataset.id, 10));
+      if (loc) restoreLocation(loc);
+    }
   });
 }
