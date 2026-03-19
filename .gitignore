@@ -19,6 +19,12 @@ goodnews_stories.json
 # Windows artifacts
 nul
 
+# Capacitor (regenerated locally — not committed)
+mobile/node_modules/
+mobile/android/
+mobile/ios/
+mobile/dist/
+
 # Python
 __pycache__/
 *.pyc

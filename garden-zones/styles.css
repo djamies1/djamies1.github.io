@@ -3796,3 +3796,101 @@ body.garden-mode .plant-section ul {
   padding: 0 2px;
 }
 #update-dismiss-btn:hover { color: var(--text); }
+
+/* ── Phase 41: Seed inventory details ───────────── */
+.modal-seed-details {
+  display: flex;
+  gap: 5px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+.modal-seed-input {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: var(--text-xs);
+  padding: 3px 6px;
+  min-width: 0;
+}
+.modal-seed-input:first-child { flex: 1 1 80px; }
+.modal-seed-qty   { width: 44px; flex-shrink: 0; }
+.modal-seed-expiry { width: 50px; flex-shrink: 0; }
+.modal-seed-input.seed-expired  { border-color: var(--color-danger);  color: var(--color-danger); }
+.modal-seed-input.seed-expiring { border-color: var(--color-warning); color: var(--color-warning); }
+.shopping-chip--warn { border-color: rgba(251,191,36,0.4); background: rgba(251,191,36,0.08); color: var(--color-warning); }
+
+/* ── Phase 43: Onboarding notification step ─────── */
+.ob-notif-btn { /* inherits .ob-primary styles already defined */ }
+
+/* ── Phase 44: Per-crop photo log ───────────────── */
+.modal-photo-section .modal-section-title { display: flex; align-items: center; gap: 6px; }
+.photo-add-label {
+  margin-left: auto;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 1;
+  padding: 1px 7px 3px;
+  transition: background var(--transition-fast);
+}
+.photo-add-label:hover { background: rgba(74,222,128,0.1); }
+.crop-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+.crop-photo-thumb {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+.crop-photo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s ease;
+}
+.crop-photo-thumb:hover img { transform: scale(1.04); }
+.crop-photo-date {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 9px;
+  padding: 2px 4px;
+  text-align: center;
+}
+.crop-photo-del {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: rgba(0,0,0,0.6);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 11px;
+  height: 18px;
+  line-height: 1;
+  opacity: 0;
+  padding: 0;
+  transition: opacity 0.15s;
+  width: 18px;
+}
+.crop-photo-thumb:hover .crop-photo-del { opacity: 1; }
+.photo-empty-msg {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  margin: 6px 0 0;
+}

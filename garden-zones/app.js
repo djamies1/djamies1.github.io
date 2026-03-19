@@ -695,6 +695,32 @@ async function initCapacitor() {
   try {
     if (plugins.SplashScreen) await plugins.SplashScreen.hide({ fadeOutDuration: 300 });
   } catch {}
+
+  // Local notifications permission check
+  initLocalNotifications();
+
+  // Hardware back button — close dialogs → browse → panel → exit
+  try {
+    if (plugins.App) {
+      plugins.App.addListener('backButton', () => {
+        // 1. Close any open <dialog>
+        const openDialog = document.querySelector('dialog[open]');
+        if (openDialog) { openDialog.close(); return; }
+        // 2. Close browse view
+        const browseView = document.getElementById('browse-view');
+        if (browseView && !browseView.classList.contains('browse-hidden')) {
+          toggleBrowse(); return;
+        }
+        // 3. Collapse panel
+        const panel = document.getElementById('panel');
+        if (panel && !panel.classList.contains('panel-hidden')) {
+          hidePanel(); return;
+        }
+        // 4. Nothing left to close — exit
+        plugins.App.exitApp();
+      });
+    }
+  } catch {}
 }
 
 // ── Phase 26: Panel skeleton ────────────────────
@@ -1494,6 +1520,7 @@ function gardenAdd(name) {
   saveGarden(); refreshGardenUI(name);
   checkCompanionConflicts(name);
   haptic([10, 40, 5]);
+  maybeRequestReview();
 }
 function gardenRemove(name) { archiveGardenEntry(name); delete myGarden[name]; saveGarden(); refreshGardenUI(name); haptic(5); }
 
@@ -1999,15 +2026,26 @@ function renderGardenFooter() {
   if (!hasCrops) { footer.innerHTML = ''; return; }
 
   // Shopping list = crops without seeds
+  const thisYear = new Date().getFullYear();
   const needSeeds = Object.keys(myGarden).filter(n => !myGarden[n].hasSeeds);
-  const shoppingHTML = needSeeds.length ? `
+  // Seeds with expiry warnings (have seeds but expired/expiring this year)
+  const expiredSeeds = Object.keys(myGarden).filter(n => {
+    const yr = myGarden[n]?.seedInfo?.expiryYear;
+    return myGarden[n].hasSeeds && yr && yr <= thisYear;
+  });
+  const shoppingHTML = (needSeeds.length || expiredSeeds.length) ? `
     <div class="shopping-list-section">
       <div class="shopping-list-header">
-        🛒 Seeds to buy
+        🛒 Seeds to buy / check
         <button class="shopping-copy-btn" id="shopping-copy-btn">Copy</button>
       </div>
       <div class="shopping-list-items">
         ${needSeeds.map(n => `<span class="shopping-chip">${cropData[n]?.emoji || '🌱'} ${n}</span>`).join('')}
+        ${expiredSeeds.map(n => {
+          const yr = myGarden[n].seedInfo.expiryYear;
+          const label = yr < thisYear ? `${n} (expired ${yr})` : `${n} (expiring ${yr})`;
+          return `<span class="shopping-chip shopping-chip--warn">⚠️ ${label}</span>`;
+        }).join('')}
       </div>
     </div>` : '';
 
@@ -2059,6 +2097,17 @@ function renderModalGardenBar(name) {
         <label class="modal-seeds-label">
           <input type="checkbox" id="modal-seeds-check"${hasSeeds ? ' checked' : ''}> Have seeds
         </label>
+        ${hasSeeds ? (() => {
+          const si = myGarden[name]?.seedInfo || {};
+          const thisYear = new Date().getFullYear();
+          const expired = si.expiryYear && si.expiryYear < thisYear;
+          const expiringSoon = si.expiryYear && si.expiryYear === thisYear;
+          return `<div class="modal-seed-details">
+            <input type="text" id="modal-seed-variety" class="modal-seed-input" placeholder="Variety" value="${si.variety || ''}" maxlength="40">
+            <input type="number" id="modal-seed-qty" class="modal-seed-input modal-seed-qty" placeholder="Pkts" min="0" step="1" value="${si.qty || ''}">
+            <input type="number" id="modal-seed-expiry" class="modal-seed-input modal-seed-expiry${expired ? ' seed-expired' : expiringSoon ? ' seed-expiring' : ''}" placeholder="Yr" min="2020" max="2040" value="${si.expiryYear || ''}" title="Sow-by year">
+          </div>`;
+        })() : ''}
         <label class="modal-garden-reminder-label">🔔
           <input type="date" id="modal-reminder-input" value="${reminderVal}" min="${today}" aria-label="Reminder date">
         </label>
@@ -2072,8 +2121,16 @@ function renderModalGardenBar(name) {
     bar.querySelector('#modal-planted-input').addEventListener('change', e => gardenSetPlanted(name, e.target.value));
     bar.querySelector('#modal-garden-remove').addEventListener('click', () => gardenRemove(name));
     bar.querySelector('#modal-seeds-check').addEventListener('change', e => {
-      if (myGarden[name]) { myGarden[name].hasSeeds = e.target.checked; saveGarden(); if (currentPanelTab === 'garden') renderGardenTab(); }
+      if (myGarden[name]) {
+        myGarden[name].hasSeeds = e.target.checked;
+        saveGarden();
+        renderModalGardenBar(name); // re-render to show/hide seed detail fields
+        if (currentPanelTab === 'garden') renderGardenTab();
+      }
     });
+    bar.querySelector('#modal-seed-variety')?.addEventListener('change', e => gardenUpdateSeedInfo(name, 'variety', e.target.value.trim()));
+    bar.querySelector('#modal-seed-qty')?.addEventListener('change', e => gardenUpdateSeedInfo(name, 'qty', parseInt(e.target.value, 10) || ''));
+    bar.querySelector('#modal-seed-expiry')?.addEventListener('change', e => { gardenUpdateSeedInfo(name, 'expiryYear', parseInt(e.target.value, 10) || ''); renderModalGardenBar(name); });
     bar.querySelector('#modal-reminder-input').addEventListener('change', e => gardenSetReminder(name, e.target.value));
     bar.querySelector('#modal-bed-select')?.addEventListener('change', e => assignCropToBed(name, e.target.value));
 
@@ -2611,12 +2668,108 @@ function renderModalGardenSections(name) {
     gardenLogHarvest(name, date, nt, qty, unit);
     sec.querySelector('#harvest-notes-in').value = '';
     sec.querySelector('#harvest-qty-in').value   = '';
+    maybeRequestReview();
   });
 
   // Succession section
   renderSuccessionSection(name);
   // Phase 22: Problems
   renderModalProblems(name);
+  // Phase 44: Photos
+  renderCropPhotoSection(name);
+}
+
+// ── Phase 44: Per-crop photo log ─────────────────
+
+function resizeImageToThumb(file, maxPx = 400) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const img = new Image();
+      img.onload = () => {
+        const scale = Math.min(1, maxPx / Math.max(img.width, img.height));
+        const w = Math.round(img.width  * scale);
+        const h = Math.round(img.height * scale);
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', 0.72));
+      };
+      img.onerror = reject;
+      img.src = ev.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function addCropPhoto(name, file) {
+  if (!myGarden[name] || !file) return;
+  try {
+    const thumb = await resizeImageToThumb(file);
+    if (!myGarden[name].photos) myGarden[name].photos = [];
+    myGarden[name].photos.unshift({
+      id: Date.now(),
+      date: new Date().toISOString().slice(0, 10),
+      thumb,
+    });
+    // Keep max 12 photos per crop
+    myGarden[name].photos = myGarden[name].photos.slice(0, 12);
+    saveGarden();
+    renderCropPhotoSection(name);
+    haptic(5);
+  } catch { showToast('Could not add photo', 'error'); }
+}
+
+function deleteCropPhoto(name, id) {
+  if (!myGarden[name]?.photos) return;
+  myGarden[name].photos = myGarden[name].photos.filter(p => p.id !== id);
+  saveGarden();
+  renderCropPhotoSection(name);
+}
+
+function renderCropPhotoSection(name) {
+  const body = document.getElementById('modal-body');
+  if (!body || !isInGarden(name)) return;
+  body.querySelector('.modal-photo-section')?.remove();
+
+  const photos = myGarden[name]?.photos || [];
+  const sec = document.createElement('div');
+  sec.className = 'modal-section modal-photo-section';
+  sec.innerHTML = `
+    <div class="modal-section-title">
+      📷 Garden Photos
+      <label class="photo-add-label" title="Add photo">
+        +
+        <input type="file" class="crop-photo-input" accept="image/*" capture="environment" style="display:none">
+      </label>
+    </div>
+    ${photos.length ? `<div class="crop-photo-grid">
+      ${photos.map(p => `
+        <div class="crop-photo-thumb" data-id="${p.id}">
+          <img src="${p.thumb}" alt="${p.date}" loading="lazy">
+          <span class="crop-photo-date">${p.date}</span>
+          <button class="crop-photo-del" data-id="${p.id}" aria-label="Delete photo">×</button>
+        </div>`).join('')}
+    </div>` : `<p class="photo-empty-msg">No photos yet — tap + to add your first.</p>`}`;
+
+  body.appendChild(sec);
+
+  sec.querySelector('.crop-photo-input').addEventListener('change', async e => {
+    const file = e.target.files[0];
+    if (file) { e.target.value = ''; await addCropPhoto(name, file); }
+  });
+  sec.querySelectorAll('.crop-photo-del').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); deleteCropPhoto(name, parseInt(btn.dataset.id, 10)); });
+  });
+  // Tap thumbnail → open lightbox
+  sec.querySelectorAll('.crop-photo-thumb img').forEach(img => {
+    img.addEventListener('click', () => {
+      const lb = document.getElementById('photo-lightbox');
+      const lbImg = document.getElementById('photo-lightbox-img');
+      if (lb && lbImg) { lbImg.src = img.src; lb.hidden = false; }
+    });
+  });
 }
 
 function checkCompanionConflicts(name) {
@@ -2649,17 +2802,25 @@ function initOnboarding() {
   if (!overlay) return;
   overlay.hidden = false;
   let step = 0;
+  function finish() {
+    overlay.hidden = true;
+    localStorage.setItem('pzf-onboarded', '1');
+  }
   function goTo(n) {
+    const steps = overlay.querySelectorAll('.ob-step');
+    if (n >= steps.length) { finish(); return; }
     step = n;
-    overlay.querySelectorAll('.ob-step').forEach((s, i) => s.classList.toggle('active', i === n));
+    steps.forEach((s, i) => s.classList.toggle('active', i === n));
     overlay.querySelectorAll('.ob-dot').forEach((d, i) => d.classList.toggle('active', i === n));
   }
   overlay.querySelectorAll('.ob-next').forEach(btn => btn.addEventListener('click', () => goTo(step + 1)));
   overlay.querySelectorAll('.ob-dot').forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-  overlay.querySelectorAll('.ob-skip, .ob-finish').forEach(btn => btn.addEventListener('click', () => {
-    overlay.hidden = true;
-    localStorage.setItem('pzf-onboarded', '1');
-  }));
+  overlay.querySelectorAll('.ob-skip, .ob-finish').forEach(btn => btn.addEventListener('click', finish));
+  // Phase 43: notification opt-in button in onboarding
+  overlay.querySelector('.ob-notif-btn')?.addEventListener('click', async () => {
+    await requestNotifPermission();
+    finish();
+  });
 }
 
 // ── Keyboard shortcuts ──────────────────────────
@@ -2918,6 +3079,16 @@ function gardenSetReminder(name, dateStr) {
   saveGarden();
   checkReminders();
   refreshGardenUI(name);
+}
+
+// ── Phase 41: Seed inventory ──────────────────────
+function gardenUpdateSeedInfo(name, field, value) {
+  if (!myGarden[name]) return;
+  if (!myGarden[name].seedInfo) myGarden[name].seedInfo = {};
+  if (value === '' || value === null) delete myGarden[name].seedInfo[field];
+  else myGarden[name].seedInfo[field] = value;
+  saveGarden();
+  if (currentPanelTab === 'garden') renderGardenTab();
 }
 
 function checkReminders() {
@@ -3244,13 +3415,26 @@ function filterCalendarSearch(query) {
 
 // ── Phase 3 / 14: Share zone ─────────────────────
 function shareZone() {
+  // On native (Capacitor), trigger OS share sheet directly
+  if (window.Capacitor?.isNativePlatform?.() && navigator.share) {
+    const zoneLabel = selectedZone ? `Zone ${getZoneDisplayLabel(selectedZone)}` : '';
+    const text = zoneLabel
+      ? `I'm growing in ${zoneLabel} — check out Plant Zone Finder for personalised planting guides!`
+      : 'Check out Plant Zone Finder — free planting calendar for your growing zone!';
+    navigator.share({
+      title: 'Plant Zone Finder',
+      text,
+      url: 'https://djamies1.github.io/garden-zones/'
+    }).catch(() => {});
+    return;
+  }
   document.getElementById('share-modal')?.showModal();
 }
 
 // ── Phase 14: Share & Print ──────────────────────
 function copyZoneURL() {
   const url = window.location.href;
-  if (navigator.share && /mobile|android|iphone|ipad/i.test(navigator.userAgent)) {
+  if (navigator.share && (window.Capacitor?.isNativePlatform?.() || /mobile|android|iphone|ipad/i.test(navigator.userAgent))) {
     navigator.share({ title: 'Plant Zone Finder', url }).catch(() => {});
     document.getElementById('share-modal')?.close();
     return;
@@ -3560,16 +3744,46 @@ function renderPlantingScheduleHTML(name) {
 }
 
 // ── Phase 2: Garden export / import ─────────────
-function exportGarden() {
-  const data = JSON.stringify(myGarden, null, 2);
-  const blob = new Blob([data], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `my-garden-${new Date().toISOString().slice(0,10)}.json`;
+// ── Phase 33: Full garden backup export ──────────
+const BACKUP_KEYS = ['pzf-garden','pzf-journal','pzf-beds','pzf-custom-crops','pzf-history','pzf-achievements'];
+
+async function exportGarden() {
+  const backup = {
+    app: 'Plant Zone Finder',
+    version: '1.0',
+    exported: new Date().toISOString(),
+    data: {}
+  };
+  for (const key of BACKUP_KEYS) {
+    const raw = localStorage.getItem(key);
+    if (raw) {
+      try { backup.data[key] = JSON.parse(raw); } catch { backup.data[key] = raw; }
+    }
+  }
+
+  const json     = JSON.stringify(backup, null, 2);
+  const filename = `plant-zone-backup-${new Date().toISOString().slice(0,10)}.json`;
+
+  // Native: share as a file (works on Android/iOS)
+  if (window.Capacitor?.isNativePlatform?.() && navigator.share) {
+    try {
+      const file = new File([json], filename, { type: 'application/json' });
+      await navigator.share({ title: 'Plant Zone Finder Backup', files: [file] });
+      return;
+    } catch (err) {
+      if (err.name !== 'AbortError') showToast('Share failed — trying download', 'info');
+    }
+  }
+
+  // Web: download file
+  const blob = new Blob([json], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
-  showToast('Garden exported ✓', 'success');
+  showToast('Backup exported ✓', 'success');
 }
 
 function importGarden(file) {
@@ -3578,12 +3792,37 @@ function importGarden(file) {
   reader.onload = e => {
     try {
       const parsed = JSON.parse(e.target.result);
-      if (typeof parsed !== 'object' || Array.isArray(parsed)) throw new Error();
-      // Merge — existing entries win on conflict
-      myGarden = { ...parsed, ...myGarden };
-      saveGarden();
-      refreshGardenUI('');
-      showToast(`Imported ${Object.keys(parsed).length} crops ✓`, 'success');
+
+      // Full backup format
+      if (parsed?.app === 'Plant Zone Finder' && parsed?.data) {
+        const counts = {};
+        for (const [key, val] of Object.entries(parsed.data)) {
+          if (BACKUP_KEYS.includes(key)) {
+            localStorage.setItem(key, JSON.stringify(val));
+            counts[key] = Array.isArray(val) ? val.length : Object.keys(val).length;
+          }
+        }
+        // Reload all in-memory state
+        loadGarden();
+        loadHistory();
+        loadBeds();
+        journalEntries = JSON.parse(localStorage.getItem('pzf-journal') || '[]');
+        refreshGardenUI('');
+        const total = Object.values(counts).reduce((s, n) => s + n, 0);
+        showToast(`Backup restored — ${total} items ✓`, 'success');
+        return;
+      }
+
+      // Legacy format: plain garden object
+      if (typeof parsed === 'object' && !Array.isArray(parsed)) {
+        myGarden = { ...parsed, ...myGarden };
+        saveGarden();
+        refreshGardenUI('');
+        showToast(`Imported ${Object.keys(parsed).length} crops ✓`, 'success');
+        return;
+      }
+
+      throw new Error('Unrecognised format');
     } catch {
       showToast('Import failed — invalid file', 'error');
     }
@@ -4750,14 +4989,31 @@ function resizeImage(file) {
   });
 }
 
-// ── Phase 16: Native Notifications ───────────────
-function notifGranted()   { return 'Notification' in window && Notification.permission === 'granted'; }
-function notifAvailable() { return 'Notification' in window && Notification.permission !== 'denied'; }
+// ── Phase 16 / 38: Notifications (web + Capacitor) ──
+function _capNotifs() { return window.Capacitor?.isNativePlatform?.() ? window.Capacitor?.Plugins?.LocalNotifications : null; }
+
+function notifGranted() {
+  if (_capNotifs()) return _capNotifs()._granted === true;
+  return 'Notification' in window && Notification.permission === 'granted';
+}
+function notifAvailable() {
+  if (_capNotifs()) return _capNotifs()._granted !== false;
+  return 'Notification' in window && Notification.permission !== 'denied';
+}
+
+// Stable numeric ID from a tag string (for Capacitor LocalNotifications)
+function _tagToId(tag) {
+  let h = 0;
+  for (let i = 0; i < tag.length; i++) h = (Math.imul(31, h) + tag.charCodeAt(i)) | 0;
+  return (Math.abs(h) % 99000) + 1;
+}
 
 function updateNotifBtn() {
   const btn = document.getElementById('notif-btn');
   if (!btn) return;
-  if (!('Notification' in window) || Notification.permission === 'denied') { btn.hidden = true; return; }
+  if (!_capNotifs() && (!('Notification' in window) || Notification.permission === 'denied')) {
+    btn.hidden = true; return;
+  }
   btn.hidden = false;
   const on = notifGranted();
   btn.textContent = on ? '🔔' : '🔕';
@@ -4766,25 +5022,93 @@ function updateNotifBtn() {
 }
 
 async function requestNotifPermission() {
+  const ln = _capNotifs();
+  if (ln) {
+    try {
+      const result = await ln.requestPermissions();
+      ln._granted = result.display === 'granted';
+      updateNotifBtn();
+      if (ln._granted) { showToast('Garden notifications enabled ✓', 'success'); checkAndFireNotifications(); }
+      else showToast('Notifications blocked in device settings', 'info');
+    } catch { showToast('Notifications not available', 'info'); }
+    return;
+  }
   if (!('Notification' in window)) { showToast('Notifications not supported in this browser', 'info'); return; }
   if (Notification.permission === 'denied') { showToast('Notifications blocked — check browser Site settings', 'info'); return; }
   const result = await Notification.requestPermission();
   updateNotifBtn();
-  if (result === 'granted') {
-    showToast('Garden notifications enabled ✓', 'success');
-    checkAndFireNotifications();
-  }
+  if (result === 'granted') { showToast('Garden notifications enabled ✓', 'success'); checkAndFireNotifications(); }
 }
 
-function fireNotif(title, body, tag) {
+async function fireNotif(title, body, tag) {
   if (!notifGranted()) return;
+  const ln = _capNotifs();
+  if (ln) {
+    try {
+      await ln.schedule({ notifications: [{
+        id: _tagToId(tag), title, body,
+        schedule: { at: new Date(Date.now() + 500) },
+        smallIcon: 'ic_stat_icon_config_sample',
+        iconColor: '#4ade80',
+        extra: { tag },
+      }]});
+    } catch {}
+    return;
+  }
   const n = new Notification(title, {
-    body,
-    icon: '/garden-zones/icons/icon.svg',
-    badge: '/garden-zones/icons/icon.svg',
-    tag,
+    body, icon: '/garden-zones/icons/icon.svg',
+    badge: '/garden-zones/icons/icon.svg', tag,
   });
   n.onclick = () => { window.focus(); n.close(); };
+}
+
+// Schedule a future notification (native only — no-op on web)
+async function scheduleNotif(title, body, tag, atDate) {
+  const ln = _capNotifs();
+  if (!ln || !notifGranted()) return;
+  try {
+    await ln.cancel({ notifications: [{ id: _tagToId(tag) }] }).catch(() => {});
+    await ln.schedule({ notifications: [{
+      id: _tagToId(tag), title, body,
+      schedule: { at: atDate },
+      smallIcon: 'ic_stat_icon_config_sample',
+      iconColor: '#4ade80',
+      extra: { tag },
+    }]});
+  } catch {}
+}
+
+// ── Phase 37: In-app review prompt ───────────────
+async function maybeRequestReview() {
+  if (!window.Capacitor?.isNativePlatform?.()) return;
+  if (localStorage.getItem('pzf-review-requested')) return;
+  const count    = Object.keys(myGarden).length;
+  const harvests = Object.values(myGarden).some(e => e.harvestLog?.length > 0);
+  const journal5 = journalEntries.length >= 5;
+  if (count < 3 && !harvests && !journal5) return;
+  try {
+    const InAppReview = window.Capacitor?.Plugins?.InAppReview;
+    if (InAppReview) {
+      await InAppReview.requestReview();
+      localStorage.setItem('pzf-review-requested', '1');
+    }
+  } catch {}
+}
+
+// Phase 38: init LocalNotifications on native — check existing permission
+async function initLocalNotifications() {
+  const ln = _capNotifs();
+  if (!ln) return;
+  try {
+    const status = await ln.checkPermissions();
+    ln._granted = status.display === 'granted';
+    updateNotifBtn();
+    if (ln._granted) checkAndFireNotifications();
+  } catch {}
+  // Tap handler — bring app to focus
+  try {
+    ln.addListener('localNotificationActionPerformed', () => { window.focus(); });
+  } catch {}
 }
 
 function checkAndFireNotifications() {
@@ -4826,7 +5150,18 @@ function checkFrostNotification() {
   if (!atrisk.length) return;
   const lbl = frostIdx === 0 ? 'tonight' : 'tomorrow';
   const ns  = atrisk.slice(0, 3).join(', ') + (atrisk.length > 3 ? ` +${atrisk.length - 3} more` : '');
-  fireNotif(`❄️ Frost ${lbl} — act now`, `Cover or bring in: ${ns}`, 'frost-risk');
+  if (frostIdx === 0) {
+    // Tonight — fire immediately
+    fireNotif(`❄️ Frost tonight — act now`, `Cover or bring in: ${ns}`, 'frost-risk');
+  } else {
+    // Tomorrow — schedule for 7am tomorrow (gives time to act in the morning)
+    const tomorrow7am = new Date();
+    tomorrow7am.setDate(tomorrow7am.getDate() + 1);
+    tomorrow7am.setHours(7, 0, 0, 0);
+    scheduleNotif(`❄️ Frost tomorrow — protect your plants`, `Cover or bring in: ${ns}`, 'frost-risk-tomorrow', tomorrow7am);
+    // Also fire immediately as a heads-up
+    fireNotif(`❄️ Frost tomorrow`, `Reminder set for 7am. Cover or bring in: ${ns}`, 'frost-risk');
+  }
   localStorage.setItem('pzf-notif-frost', today);
 }
 
@@ -4834,7 +5169,9 @@ function initNotifBtn() {
   updateNotifBtn();
   document.getElementById('notif-btn')?.addEventListener('click', async () => {
     if (notifGranted()) {
-      showToast('To disable, go to browser Settings → Site permissions', 'info');
+      showToast(_capNotifs()
+        ? 'To disable, go to device Settings → Apps → Plant Zone Finder → Notifications'
+        : 'To disable, go to browser Settings → Site permissions', 'info');
       return;
     }
     await requestNotifPermission();
