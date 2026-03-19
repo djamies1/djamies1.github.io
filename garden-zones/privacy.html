@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Plant Zone Finder</title>
+  <link rel="canonical" href="https://djamies1.github.io/garden-zones/privacy.html">
+  <style>
+    :root { --accent: #16a34a; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.7; color: #1f2937; background: #f9fafb; padding: 0 1rem 4rem; }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    header { background: #111827; color: #f9fafb; padding: 1rem 0; margin-bottom: 3rem; }
+    header .wrap { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.1rem; }
+    header a { color: #4ade80; text-decoration: none; }
+    h1 { font-size: clamp(1.5rem, 4vw, 2rem); color: #111827; margin-bottom: 0.5rem; }
+    .meta { font-size: 0.85rem; color: #6b7280; margin-bottom: 2.5rem; }
+    h2 { font-size: 1.15rem; color: #111827; margin: 2rem 0 0.5rem; }
+    p, li { font-size: 0.95rem; color: #374151; margin-bottom: 0.75rem; }
+    ul { padding-left: 1.4rem; margin-bottom: 0.75rem; }
+    a { color: var(--accent); }
+    footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb; font-size: 0.85rem; color: #9ca3af; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <span>🌱</span>
+      <a href="/garden-zones/">Plant Zone Finder</a>
+      <span style="margin-left:auto;font-weight:400;font-size:0.85rem;color:#9ca3af">Privacy Policy</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <h1>Privacy Policy</h1>
+    <p class="meta">Last updated: March 2026</p>
+
+    <p>Plant Zone Finder ("the app") is a free, client-side web application. Your privacy is important to us. This policy explains what data the app handles and how.</p>
+
+    <h2>Data stored on your device</h2>
+    <p>All personal garden data — saved crops, planting dates, journal entries, pest logs, garden bed layouts, and settings — is stored exclusively in your browser's <strong>localStorage</strong>. This data never leaves your device unless you explicitly share it.</p>
+    <ul>
+      <li>Garden data: crop list, planted dates, harvest notes, problem logs</li>
+      <li>App settings: preferred units, theme, country selection, notification preferences</li>
+      <li>Last-fetched weather data (cached for offline use, auto-expires after 2 hours)</li>
+      <li>Saved locations (address + zone, stored locally only)</li>
+    </ul>
+    <p>You can clear all stored data at any time via your browser's settings or by clearing localStorage for this site.</p>
+
+    <h2>Third-party APIs</h2>
+    <p>The app makes requests to the following external services:</p>
+    <ul>
+      <li><strong>Nominatim (OpenStreetMap)</strong> — geocoding your address to coordinates. Your search query is sent to <code>nominatim.openstreetmap.org</code>. See <a href="https://osmfoundation.org/wiki/Privacy_Policy" rel="noopener">their privacy policy</a>.</li>
+      <li><strong>Open-Meteo</strong> — fetching local weather forecasts using your coordinates. No personal data is sent beyond latitude/longitude. See <a href="https://open-meteo.com/en/terms" rel="noopener">their terms</a>.</li>
+    </ul>
+    <p>No other external services are contacted. No analytics, tracking pixels, or advertising networks are used.</p>
+
+    <h2>Location data</h2>
+    <p>If you tap "Use my location", the browser will request your GPS position. This is used only to look up your zone and fetch local weather. Your coordinates are not stored persistently beyond the current session's weather cache.</p>
+
+    <h2>Notifications</h2>
+    <p>If you enable push notifications, the app uses the browser's built-in Notification API. No notification service or server is involved — reminders are scheduled and fired entirely on-device.</p>
+
+    <h2>Children's privacy</h2>
+    <p>The app does not knowingly collect data from children under 13. No personal information is collected by us at all.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy from time to time. The "last updated" date at the top will reflect any changes.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? Open an issue at <a href="https://github.com/djamies1/djamies1.github.io" rel="noopener">github.com/djamies1/djamies1.github.io</a>.</p>
+
+    <footer>© 2026 Plant Zone Finder · <a href="/garden-zones/">Back to App</a> · <a href="/">Home</a></footer>
+  </div>
+</body>
+</html>
