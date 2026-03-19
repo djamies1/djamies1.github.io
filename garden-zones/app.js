@@ -1459,6 +1459,96 @@ function updateGardenBadge() {
   if (badge) badge.textContent = count > 0 ? count : '';
 }
 
+// ── Phase 23: Garden Archive / History ───────────
+let gardenHistory = [];
+
+function loadHistory() {
+  try { gardenHistory = JSON.parse(localStorage.getItem('pzf-history') || '[]'); }
+  catch { gardenHistory = []; }
+}
+function saveHistory() { localStorage.setItem('pzf-history', JSON.stringify(gardenHistory)); }
+
+function archiveGardenEntry(name) {
+  const entry = myGarden[name];
+  // Only archive entries with meaningful data
+  if (!entry?.planted && !entry?.harvestLog?.length) return;
+  loadHistory();
+  gardenHistory.unshift({
+    name,
+    emoji: cropData?.[name]?.emoji || '\uD83C\uDF31',
+    zone: selectedZone || null,
+    year: new Date().getFullYear(),
+    archivedDate: new Date().toISOString().slice(0, 10),
+    planted: entry.planted || null,
+    removed: new Date().toISOString().slice(0, 10),
+    harvestLog: entry.harvestLog || [],
+    notes: entry.notes || '',
+    rating: entry.rating || null,
+  });
+  // Keep last 200 archived entries
+  if (gardenHistory.length > 200) gardenHistory.length = 200;
+  saveHistory();
+}
+
+function clearArchivedEntry(idx) {
+  loadHistory();
+  gardenHistory.splice(idx, 1);
+  saveHistory();
+  renderGardenHistory();
+}
+
+function renderGardenHistory() {
+  const el = document.getElementById('garden-history');
+  if (!el) return;
+  loadHistory();
+  if (!gardenHistory.length) { el.innerHTML = ''; return; }
+
+  // Group by year
+  const byYear = {};
+  for (const entry of gardenHistory) {
+    const y = entry.year || new Date(entry.archivedDate).getFullYear();
+    if (!byYear[y]) byYear[y] = [];
+    byYear[y].push(entry);
+  }
+
+  const renderStarStr = r => r ? '\u2605'.repeat(r) + '\u2606'.repeat(5 - r) : '';
+
+  let html = '<div class="hist-title">\uD83D\uDCDC Past Seasons</div>';
+  for (const [year, entries] of Object.entries(byYear).sort((a, b) => b[0] - a[0])) {
+    html += `<div class="hist-year-label">${year}</div>`;
+    for (const [i, e] of entries.entries()) {
+      const totalIdx = gardenHistory.indexOf(e);
+      const harvests = e.harvestLog?.length || 0;
+      const daysGrown = (e.planted && e.removed)
+        ? Math.round((new Date(e.removed) - new Date(e.planted + 'T00:00:00')) / 86400000)
+        : null;
+      const starStr = renderStarStr(e.rating);
+      html += `
+        <div class="hist-item" data-idx="${totalIdx}">
+          <span class="hist-emoji">${e.emoji}</span>
+          <div class="hist-info">
+            <span class="hist-name">${e.name}</span>
+            <span class="hist-meta">
+              ${e.planted ? `Planted ${e.planted}` : 'No date'}
+              ${daysGrown != null ? ` \u00b7 ${daysGrown}d grown` : ''}
+              ${harvests ? ` \u00b7 \uD83C\uDF3E\u00d7${harvests}` : ''}
+              ${starStr ? ` \u00b7 ${starStr}` : ''}
+              ${e.zone ? ` \u00b7 Zone ${e.zone}` : ''}
+            </span>
+            ${e.notes ? `<span class="hist-notes">${e.notes.replace(/</g,'&lt;').slice(0, 80)}${e.notes.length > 80 ? '\u2026' : ''}</span>` : ''}
+          </div>
+          <button class="hist-delete-btn" data-idx="${totalIdx}" aria-label="Remove from history">\u00d7</button>
+        </div>`;
+    }
+  }
+  el.innerHTML = html;
+
+  el.addEventListener('click', e => {
+    const btn = e.target.closest('.hist-delete-btn');
+    if (btn) clearArchivedEntry(parseInt(btn.dataset.idx));
+  });
+}
+
 function parseHarvestDays(daysStr) {
   if (!daysStr) return null;
   const m = daysStr.match(/(\d+)/);
@@ -1672,7 +1762,7 @@ function renderGardenTab() {
   const emptyMsg = document.getElementById('garden-empty-msg');
   if (!list) return;
   const names = Object.keys(myGarden);
-  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; renderGardenBeds(); renderCompanionMatrix(); return; }
+  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; renderGardenBeds(); renderCompanionMatrix(); renderGardenHistory(); return; }
   if (emptyMsg) emptyMsg.hidden = true;
 
   const groups = { ready: [], growing: [], saved: [] };
@@ -1734,6 +1824,7 @@ function renderGardenTab() {
   renderGrowingTimeline();
   renderGardenGantt();
   renderGardenFooter();
+  renderGardenHistory();
   renderGrowNext();
   checkAchievements();
 }
@@ -1836,6 +1927,7 @@ function renderModalGardenBar(name) {
 
 function initGarden() {
   loadGarden();
+  loadHistory();
   updateGardenBadge();
   checkReminders();
 

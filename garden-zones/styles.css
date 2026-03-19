@@ -3525,3 +3525,16 @@ body.garden-mode .plant-section ul {
 .prob-add-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; color: var(--text-muted); cursor: pointer; font-size: 12px; font-weight: 600; padding: 5px 12px; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
 .prob-add-btn:hover { color: #fb923c; border-color: #fb923c; }
 .gi-badge--problem { color: #fb923c; }
+
+/* ── Phase 23: Garden History / Archive ──────────── */
+#garden-history { margin-top: 14px; }
+.hist-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+.hist-year-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin: 10px 0 5px; border-top: 1px solid var(--border); padding-top: 8px; }
+.hist-item { display: flex; align-items: flex-start; gap: 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 8px; margin-bottom: 4px; opacity: 0.8; }
+.hist-emoji { font-size: 18px; flex-shrink: 0; line-height: 1.2; }
+.hist-info { flex: 1; min-width: 0; }
+.hist-name { font-size: 12px; font-weight: 600; display: block; }
+.hist-meta { font-size: 10px; color: var(--text-muted); display: block; margin-top: 1px; }
+.hist-notes { font-size: 10px; color: var(--text-muted); display: block; margin-top: 2px; font-style: italic; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hist-delete-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; line-height: 1; padding: 2px; flex-shrink: 0; transition: color 0.15s; }
+.hist-delete-btn:hover { color: #f87171; }
