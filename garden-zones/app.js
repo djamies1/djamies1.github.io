@@ -527,6 +527,8 @@ function renderPanel() {
 
   renderLocationName();
   renderSavedLocationsBar();
+  // Phase 47: check seasonal nudges once per zone load
+  requestIdleCallback ? requestIdleCallback(checkSeasonalNudges) : setTimeout(checkSeasonalNudges, 500);
 
   // Zone badge
   const color = getZoneColor(zone);
@@ -904,6 +906,9 @@ function updateMonthLabels() {
     span.classList.toggle('active', parseInt(span.dataset.month, 10) === currentMonth);
   });
   updateThumbLabel();
+  // Phase 49: keep slider accessible
+  const slider = document.getElementById('month-slider');
+  if (slider) slider.setAttribute('aria-valuetext', MONTH_NAMES[currentMonth]);
 }
 
 function initPanelListeners() {
@@ -1988,6 +1993,7 @@ function renderGardenTab() {
             <span class="garden-item-status">${status?.label || ''}</span>
             ${entry.bedId && gardenBeds[entry.bedId] ? `<span class="garden-item-bed-tag">${gardenBeds[entry.bedId].emoji} ${gardenBeds[entry.bedId].name}</span>` : ''}
             ${entry.harvestLog?.length ? `<span class="garden-last-harvest">🌾 Last harvest: ${entry.harvestLog[0].date}</span>` : ''}
+            ${(() => { const nd = getNextSuccessionDate(name); if (!nd) return ''; const diff = Math.round((nd - new Date().setHours(0,0,0,0) + 0) / 86400000); if (diff > 14) return ''; return diff <= 0 ? '<span class="garden-sow-badge garden-sow-badge--due">🔄 Sow now</span>' : `<span class="garden-sow-badge">🔄 Sow in ${diff}d</span>`; })()}
             ${status?.stage ? `
             <div class="growth-bar-wrap" title="${status.stage.label}">
               <div class="growth-bar-fill growth-bar--${status.stage.stage}" style="width:${Math.min(100,Math.round(status.stage.pct*100))}%"></div>
@@ -2017,6 +2023,91 @@ function renderGardenTab() {
   renderGardenHistory();
   renderGrowNext();
   checkAchievements();
+}
+
+// ── Phase 46: Garden share card ──────────────────
+async function generateGardenShareCard() {
+  const canvas = document.createElement('canvas');
+  canvas.width  = 800;
+  canvas.height = 440;
+  const ctx = canvas.getContext('2d');
+
+  // Background
+  ctx.fillStyle = '#0a0f1a';
+  ctx.fillRect(0, 0, 800, 440);
+  const glow = ctx.createRadialGradient(160, 440, 0, 160, 440, 520);
+  glow.addColorStop(0, 'rgba(34,197,94,0.12)'); glow.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = glow; ctx.fillRect(0, 0, 800, 440);
+
+  const font = 'system-ui,-apple-system,sans-serif';
+
+  // Zone badge
+  const zoneLabel = selectedZone ? `Zone ${getZoneDisplayLabel(selectedZone)}` : '';
+  if (zoneLabel) {
+    ctx.fillStyle = 'rgba(74,222,128,0.15)';
+    const bw = zoneLabel.length * 9 + 24;
+    ctx.beginPath(); ctx.roundRect(40, 30, bw, 30, 15); ctx.fill();
+    ctx.fillStyle = '#4ade80'; ctx.font = `bold 14px ${font}`;
+    ctx.fillText(zoneLabel, 52, 50);
+  }
+  if (selectedLocationName) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = `14px ${font}`;
+    ctx.fillText(selectedLocationName, 40, 88);
+  }
+  const titleY = selectedLocationName ? 130 : 108;
+  ctx.fillStyle = '#f9fafb'; ctx.font = `bold 36px ${font}`;
+  ctx.fillText('My Garden', 40, titleY);
+  const season = getSeasonForMonth(currentMonth);
+  const SLABELS = { spring:'🌸 Spring', summer:'☀️ Summer', autumn:'🍂 Autumn', winter:'❄️ Winter' };
+  ctx.fillStyle = '#6b7280'; ctx.font = `14px ${font}`;
+  ctx.fillText(`${MONTH_NAMES[currentMonth]} · ${SLABELS[season] || ''}`, 40, titleY + 26);
+
+  // Crop emojis
+  const names = Object.keys(myGarden);
+  ctx.font = `28px serif`;
+  const cols = Math.min(14, names.length);
+  for (let i = 0; i < Math.min(names.length, 28); i++) {
+    const emoji = cropData?.[names[i]]?.emoji || '🌱';
+    ctx.fillText(emoji, 40 + (i % cols) * 50, titleY + 68 + Math.floor(i / cols) * 44);
+  }
+
+  // Stats
+  const growing = names.filter(n => myGarden[n]?.planted && getGardenStatus(n)?.type !== 'ready').length;
+  const ready   = names.filter(n => getGardenStatus(n)?.type === 'ready').length;
+  const parts   = [`${names.length} crops`, growing > 0 ? `${growing} growing` : '', ready > 0 ? `${ready} ready` : ''].filter(Boolean).join('  ·  ');
+  ctx.fillStyle = '#6b7280'; ctx.font = `13px ${font}`;
+  ctx.fillText(parts, 40, 372);
+
+  // Footer rule + branding
+  ctx.strokeStyle = 'rgba(55,65,81,0.7)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(40, 386); ctx.lineTo(760, 386); ctx.stroke();
+  ctx.fillStyle = '#4ade80'; ctx.font = `bold 12px ${font}`;
+  ctx.fillText('Plant Zone Finder', 40, 412);
+  ctx.fillStyle = '#374151'; ctx.font = `12px ${font}`;
+  ctx.fillText('djamies1.github.io/garden-zones', 195, 412);
+
+  return canvas;
+}
+
+async function shareGardenCard() {
+  if (!Object.keys(myGarden).length) { showToast('Add crops to your garden first', 'info'); return; }
+  showToast('Generating card…', 'info');
+  try {
+    const canvas = await generateGardenShareCard();
+    canvas.toBlob(async blob => {
+      if (!blob) { showToast('Could not generate card', 'error'); return; }
+      const file = new File([blob], 'my-garden.png', { type: 'image/png' });
+      const canShareFile = navigator.canShare?.({ files: [file] });
+      if (navigator.share && (window.Capacitor?.isNativePlatform?.() || canShareFile)) {
+        try { await navigator.share({ title: 'My Garden — Plant Zone Finder', files: [file] }); return; }
+        catch (e) { if (e.name === 'AbortError') return; }
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'my-garden.png'; a.click();
+      URL.revokeObjectURL(url);
+      showToast('Garden card saved ✓', 'success');
+    }, 'image/png');
+  } catch { showToast('Could not generate card', 'error'); }
 }
 
 function renderGardenFooter() {
@@ -2051,12 +2142,14 @@ function renderGardenFooter() {
 
   footer.innerHTML = `
     <div class="garden-actions-row">
-      <button class="garden-action-btn" id="garden-export-btn">⬇ Export</button>
-      <button class="garden-action-btn" id="garden-import-btn">⬆ Import</button>
+      <button class="garden-action-btn" id="garden-share-card-btn" title="Share a garden summary image">📤 Share</button>
+      <button class="garden-action-btn" id="garden-export-btn">⬇ Backup</button>
+      <button class="garden-action-btn" id="garden-import-btn">⬆ Restore</button>
       <input type="file" id="garden-import-input" accept=".json">
     </div>
     ${shoppingHTML}`;
 
+  footer.querySelector('#garden-share-card-btn')?.addEventListener('click', shareGardenCard);
   footer.querySelector('#garden-export-btn')?.addEventListener('click', exportGarden);
   footer.querySelector('#garden-import-btn')?.addEventListener('click', () => {
     footer.querySelector('#garden-import-input')?.click();
@@ -2875,6 +2968,9 @@ function showToast(msg, type) {
   if (!toast) {
     toast = document.createElement('div');
     toast.id = 'toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.setAttribute('aria-atomic', 'true');
     document.body.appendChild(toast);
   }
   toast.textContent = msg;
@@ -3000,6 +3096,36 @@ function renderWateringAlert() {
 }
 
 // ── Phase 4: Succession planting ────────────────
+// ── Phase 48: Succession sowing tracker ──────────
+function getSuccessionInterval(name) {
+  const harvestDays = parseHarvestDays(cropData?.[name]?.days);
+  if (!harvestDays) return null;
+  return Math.min(28, Math.max(10, Math.round(harvestDays / 3)));
+}
+
+function getNextSuccessionDate(name) {
+  const intervalDays = getSuccessionInterval(name);
+  if (!intervalDays) return null;
+  const batches  = myGarden[name]?.sowBatches || [];
+  const lastSow  = batches.length ? batches[batches.length - 1] : myGarden[name]?.planted;
+  if (!lastSow) return null;
+  const d = new Date(lastSow + 'T00:00:00');
+  d.setDate(d.getDate() + intervalDays);
+  return d;
+}
+
+function logSuccessionBatch(name) {
+  if (!myGarden[name]) return;
+  const today = new Date().toISOString().slice(0, 10);
+  if (!myGarden[name].sowBatches) myGarden[name].sowBatches = [];
+  myGarden[name].sowBatches.push(today);
+  if (!myGarden[name].planted) myGarden[name].planted = today;
+  saveGarden();
+  refreshGardenUI(name);
+  haptic([5, 20, 5]);
+  showToast('Sow batch logged ✓', 'success');
+}
+
 function computeSuccessionDates(name) {
   const c = cropData?.[name];
   if (!c) return null;
@@ -3033,24 +3159,45 @@ function renderSuccessionSection(name) {
   if (!isInGarden(name)) return;
 
   const result = computeSuccessionDates(name);
-  if (!result) return;
+  const intervalDays = getSuccessionInterval(name);
+  if (!result || !intervalDays) return;
 
-  const { intervalDays, dates } = result;
   const ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const fmtDate = iso => {
-    const d2 = new Date(iso + 'T00:00:00');
-    return `${ABBR[d2.getMonth()]} ${d2.getDate()}`;
-  };
+  const fmtDate = iso => { const d = new Date(iso + 'T00:00:00'); return `${ABBR[d.getMonth()]} ${d.getDate()}`; };
+
+  // Logged batches
+  const batches = myGarden[name]?.sowBatches || [];
+  const batchesHTML = batches.length
+    ? `<div class="succession-batches">
+        ${batches.map((d, i) => `<span class="succession-batch-chip" title="Batch ${i+1}">🌱 Batch ${i+1} — ${fmtDate(d)}</span>`).join('')}
+       </div>`
+    : '';
+
+  // Next sow countdown
+  const nextDate = getNextSuccessionDate(name);
+  const today    = new Date(); today.setHours(0,0,0,0);
+  let nextLabel  = '';
+  if (nextDate) {
+    const diff = Math.round((nextDate - today) / 86400000);
+    if (diff <= 0) nextLabel = `<div class="succession-next succession-next--due">🔄 Sow next batch now!</div>`;
+    else nextLabel = `<div class="succession-next">🔄 Next sow in <strong>${diff} day${diff===1?'':'s'}</strong> (${fmtDate(nextDate.toISOString().slice(0,10))})</div>`;
+  }
 
   const sec = document.createElement('div');
   sec.className = 'modal-section modal-succession-section';
   sec.innerHTML = `
-    <div class="modal-section-title">🔄 Succession Planting</div>
+    <div class="modal-section-title">
+      🔄 Succession Planting
+      <button class="succession-log-btn" id="succession-log-btn">+ Log sow</button>
+    </div>
     <p class="succession-tip">Sow every ~${intervalDays} days for continuous harvest.</p>
+    ${batchesHTML}
+    ${nextLabel}
     <div class="succession-dates">
-      ${dates.map(iso => `<span class="succession-chip">${fmtDate(iso)}</span>`).join('')}
+      ${result.dates.map(iso => `<span class="succession-chip">${fmtDate(iso)}</span>`).join('')}
     </div>`;
   body.appendChild(sec);
+  sec.querySelector('#succession-log-btn').addEventListener('click', () => logSuccessionBatch(name));
 }
 
 // ── Phase 4: Crop rating ─────────────────────────
@@ -3186,6 +3333,48 @@ function renderGardenStats() {
     ${earned.size ? `<div class="achievement-shelf" id="achievement-shelf">
       ${ACHIEVEMENTS.map(a => `<div class="ach-chip${earned.has(a.id) ? ' unlocked' : ''}" title="${a.desc}">${a.icon} ${a.name}</div>`).join('')}
     </div>` : ''}`;
+  const chart = renderHarvestChart();
+  if (chart) el.insertAdjacentHTML('beforeend', chart);
+}
+
+// ── Phase 45: Harvest bar chart ──────────────────
+function renderHarvestChart() {
+  const names = Object.keys(myGarden);
+  const data = [];
+  for (const name of names) {
+    const log = myGarden[name]?.harvestLog || [];
+    if (!log.length) continue;
+    let total = 0, unit = null;
+    for (const h of log) {
+      if (h.qty && (!unit || unit === h.unit)) { total += h.qty; unit = h.unit || null; }
+    }
+    data.push({ name, count: log.length, total, unit });
+  }
+  if (!data.length) return '';
+
+  const hasQty = data.some(d => d.total > 0);
+  data.sort((a, b) => hasQty ? b.total - a.total : b.count - a.count);
+  const top    = data.slice(0, 6);
+  const maxVal = hasQty ? Math.max(...top.map(d => d.total)) : Math.max(...top.map(d => d.count));
+
+  const rows = top.map(d => {
+    const val   = hasQty && d.total > 0 ? d.total : d.count;
+    const pct   = Math.max(4, Math.round((val / maxVal) * 100));
+    const label = hasQty && d.total > 0
+      ? `${parseFloat(val.toFixed(1))}${d.unit ? '\u202f' + d.unit : ''}`
+      : `${val}×`;
+    const emoji = cropData?.[d.name]?.emoji || '🌱';
+    return `<div class="hc-row">
+      <span class="hc-label">${emoji} ${d.name}</span>
+      <div class="hc-bar-wrap"><div class="hc-bar" style="width:${pct}%"></div></div>
+      <span class="hc-val">${label}</span>
+    </div>`;
+  }).join('');
+
+  return `<div class="harvest-chart-section">
+    <div class="hc-title">${hasQty ? '🌾 Yield by crop' : '🌾 Harvests by crop'}</div>
+    ${rows}
+  </div>`;
 }
 
 // ── Phase 3: Garden Gantt ────────────────────────
@@ -5176,6 +5365,58 @@ function initNotifBtn() {
     }
     await requestNotifPermission();
   });
+}
+
+// ── Phase 47: Seasonal planting nudges ───────────
+const NUDGE_TRIGGERS = [
+  { key: 'spring-start-warm',  daysBefore: 42, frost: 'last',
+    title: '🌱 Start warm-season seeds indoors',
+    body: 'Last frost is ~6 weeks away — prime time to start tomatoes, peppers, and eggplant.' },
+  { key: 'spring-start-slow',  daysBefore: 56, frost: 'last',
+    title: '🌱 Start slow-growing seedlings',
+    body: 'Celery, leeks, and celeriac need 8+ weeks indoors before transplanting.' },
+  { key: 'spring-sow-cold',    daysBefore: 21, frost: 'last',
+    title: '🥬 Direct sow cold-tolerant crops',
+    body: 'Peas, spinach, lettuce, and radishes can handle light frost — sow outdoors now.' },
+  { key: 'spring-transplant',  daysAfter:   7, frost: 'last',
+    title: '✅ Last frost has passed',
+    body: 'Harden off seedlings and get warm-season crops in the ground.' },
+  { key: 'autumn-start',       daysBefore: 56, frost: 'first',
+    title: '🍂 Start fall crops indoors',
+    body: 'First frost is ~8 weeks away. Start brassicas and root veg for a fall harvest.' },
+  { key: 'autumn-harvest',     daysBefore: 14, frost: 'first',
+    title: '⚠️ First frost in ~2 weeks',
+    body: 'Harvest tomatoes, cucumbers, and peppers soon before frost hits.' },
+];
+
+function checkSeasonalNudges() {
+  if (!notifGranted() || !selectedZone) return;
+  const frost = FROST_DATES[selectedZone.toLowerCase()];
+  if (!frost) return;
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const year  = today.getFullYear();
+  for (const t of NUDGE_TRIGGERS) {
+    const key = `pzf-nudge-${t.key}-${year}`;
+    if (localStorage.getItem(key)) continue;
+    const frostStr = t.frost === 'last' ? frost.last : frost.first;
+    if (!frostStr) { localStorage.setItem(key, 'no-date'); continue; }
+    const frostDate = parseFrostDate(frostStr);
+    if (!frostDate) { localStorage.setItem(key, 'invalid'); continue; }
+    const nudgeDate = new Date(frostDate);
+    if (t.daysBefore) nudgeDate.setDate(nudgeDate.getDate() - t.daysBefore);
+    else if (t.daysAfter) nudgeDate.setDate(nudgeDate.getDate() + t.daysAfter);
+    nudgeDate.setHours(8, 0, 0, 0);
+    const daysUntil = Math.round((nudgeDate - today) / 86400000);
+    if (daysUntil < -7) {
+      localStorage.setItem(key, 'past');
+    } else if (daysUntil <= 0) {
+      fireNotif(t.title, t.body, t.key);
+      localStorage.setItem(key, 'fired');
+    } else {
+      scheduleNotif(t.title, t.body, t.key, nudgeDate);
+      localStorage.setItem(key, 'scheduled');
+    }
+  }
 }
 
 // ── Phase 17: Saved Locations ────────────────────
