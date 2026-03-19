@@ -3751,3 +3751,48 @@ body.garden-mode .plant-section ul {
   text-align: center;
   padding: 8px 0 4px;
 }
+
+/* ── Phase 27: Update bar ────────────────────────── */
+#update-bar {
+  position: fixed;
+  bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px) + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--text-sm);
+  padding: 8px 14px;
+  white-space: nowrap;
+  z-index: 9800;
+  animation: slide-up 0.3s ease;
+}
+@keyframes slide-up {
+  from { transform: translateX(-50%) translateY(16px); opacity: 0; }
+  to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
+}
+#update-reload-btn {
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #0a0f1a;
+  cursor: pointer;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  padding: 3px 10px;
+}
+#update-dismiss-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+}
+#update-dismiss-btn:hover { color: var(--text); }

@@ -764,6 +764,7 @@ function updateThemeBtn() {
 function initUI() {
   initTheme();
   initBottomNav();
+  loadPersistedWeather();
   // Load persisted preferences
   useMetric = localStorage.getItem('pzf-metric') === '1';
   const mtBtn = document.getElementById('metric-toggle');
@@ -2182,7 +2183,26 @@ async function fetchWeather(lat, lng) {
     if (!res.ok) return;
     weatherData = await res.json();
     weatherCache[key] = { data: weatherData, ts: Date.now() };
-  } catch (e) { weatherData = null; }
+    persistWeatherCache(key);
+  } catch {
+    // Offline — show toast only if we had no cached data to fall back on
+    if (!weatherData && !navigator.onLine) showToast('📡 No weather data — you\'re offline', 'info');
+  }
+}
+
+// ── Weather persistence (survives page reload) ────
+function persistWeatherCache(key) {
+  if (!key || !weatherData) return;
+  try { localStorage.setItem('pzf-weather', JSON.stringify({ key, data: weatherData, ts: Date.now() })); } catch {}
+}
+
+function loadPersistedWeather() {
+  try {
+    const s = JSON.parse(localStorage.getItem('pzf-weather') || 'null');
+    if (s?.key && s?.data && Date.now() - s.ts < 7200000) { // 2h max age
+      weatherCache[s.key] = { data: s.data, ts: s.ts };
+    }
+  } catch {}
 }
 
 async function fetchWeatherAndUpdate() {
@@ -4102,11 +4122,38 @@ function maybeShowInstallBanner() {
 // ── Phase 9: Offline indicator ────────────────────
 function initOfflineIndicator() {
   const banner = document.getElementById('offline-banner');
-  if (!banner) return;
-  const update = () => { banner.hidden = navigator.onLine; };
+  const update = () => { if (banner) banner.hidden = navigator.onLine; };
   update();
-  window.addEventListener('online',  update);
+  window.addEventListener('online', () => {
+    update();
+    // Re-fetch fresh weather/data when connection is restored
+    if (selectedLat && selectedLng) fetchWeatherAndUpdate();
+  });
   window.addEventListener('offline', update);
+
+  // ── SW update notification ────────────────────────
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.addEventListener('message', e => {
+      if (e.data?.type !== 'SW_UPDATED') return;
+      const newCache = e.data.cache || '';
+      const prevCache = localStorage.getItem('pzf-sw-cache');
+      localStorage.setItem('pzf-sw-cache', newCache);
+      // Only show toast when upgrading from a known previous version (not first install)
+      if (prevCache && prevCache !== newCache) showUpdateBar();
+    });
+  }
+}
+
+function showUpdateBar() {
+  if (document.getElementById('update-bar')) return;
+  const bar = document.createElement('div');
+  bar.id = 'update-bar';
+  bar.innerHTML = `<span>🆕 New version available</span>
+    <button id="update-reload-btn">Reload</button>
+    <button id="update-dismiss-btn" aria-label="Dismiss">✕</button>`;
+  document.body.appendChild(bar);
+  document.getElementById('update-reload-btn')?.addEventListener('click', () => window.location.reload());
+  document.getElementById('update-dismiss-btn')?.addEventListener('click', () => bar.remove());
 }
 
 // ── Phase 10: Quick Search (⌘K / Ctrl+K) ─────────
