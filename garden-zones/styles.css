@@ -3267,3 +3267,80 @@ body.garden-mode .plant-section ul {
   body.print-garden .garden-item--ready  { border-left: 3px solid #16a34a; }
   body.print-garden .garden-item--growing { border-left: 3px solid #d97706; }
 }
+
+/* ──────────────────────────────────────────────
+   Phase 15 — Photo Diary
+────────────────────────────────────────────── */
+#journal-photo-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 8px;
+  transition: color 0.15s, border-color 0.15s;
+}
+#journal-photo-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+#journal-photo-preview-wrap {
+  align-items: flex-start;
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 0 2px;
+}
+#journal-photo-preview-wrap:not([hidden]) { display: flex; }
+
+.journal-photo-preview {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  height: 72px;
+  object-fit: cover;
+  width: auto;
+}
+
+.journal-photo-clear {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 2px 4px;
+  transition: color 0.15s;
+}
+.journal-photo-clear:hover { color: #f87171; }
+
+.journal-entry-photo {
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin-top: 8px;
+  max-height: 220px;
+  max-width: 100%;
+  object-fit: cover;
+  transition: opacity 0.15s;
+}
+.journal-entry-photo:hover { opacity: 0.88; }
+
+/* Photo lightbox */
+#photo-lightbox {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.92);
+  bottom: 0;
+  cursor: zoom-out;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9500;
+}
+#photo-lightbox:not([hidden]) { display: flex; }
+#photo-lightbox-img {
+  border-radius: 6px;
+  max-height: 90vh;
+  max-width: 95vw;
+  object-fit: contain;
+}

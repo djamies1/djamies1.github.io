@@ -272,6 +272,8 @@ let gardenBeds = {};
 let currentPanelTab = 'calendar';
 let layoutMode = localStorage.getItem('pzf-layout') || 'map';
 let journalEntries = [];
+let _photoDB = null;
+let _pendingPhoto = null; // dataURL staged for next journal entry
 
 let selectedLat = null;
 let selectedLng = null;
@@ -3119,14 +3121,22 @@ function loadJournal() {
 }
 function saveJournal() { localStorage.setItem('pzf-journal', JSON.stringify(journalEntries)); }
 
-function addJournalEntry(text, cropTag) {
+async function addJournalEntry(text, cropTag) {
   const trimmed = text.trim();
-  if (!trimmed) return;
+  if (!trimmed && !_pendingPhoto) return;
+  let photoId = null;
+  if (_pendingPhoto) {
+    try { photoId = await savePhoto(_pendingPhoto); } catch(e) { console.warn('Photo save failed', e); }
+    _pendingPhoto = null;
+    const wrap = document.getElementById('journal-photo-preview-wrap');
+    if (wrap) wrap.hidden = true;
+  }
   journalEntries.unshift({
     id: Date.now(),
     date: new Date().toISOString(),
     text: trimmed,
     crop: cropTag || null,
+    ...(photoId != null && { photoId }),
   });
   saveJournal();
   checkAchievements();
@@ -3134,6 +3144,8 @@ function addJournalEntry(text, cropTag) {
 }
 
 function deleteJournalEntry(id) {
+  const entry = journalEntries.find(e => e.id === id);
+  if (entry?.photoId != null) deletePhoto(entry.photoId).catch(() => {});
   journalEntries = journalEntries.filter(e => e.id !== id);
   saveJournal();
   renderJournalTab();
@@ -3181,13 +3193,27 @@ function renderJournalTab() {
     const dateStr = d.toLocaleDateString(undefined, { weekday:'short', year:'numeric', month:'short', day:'numeric' })
                   + ' · ' + d.toLocaleTimeString(undefined, { hour:'2-digit', minute:'2-digit' });
     const tagHtml = e.crop ? `<span class="journal-entry-crop-tag">${cropData[e.crop]?.emoji || '🌱'} ${e.crop}</span>` : '';
+    const photoHtml = e.photoId != null
+      ? `<img class="journal-entry-photo" data-photo-id="${e.photoId}" alt="Garden photo" loading="lazy">`
+      : '';
+    const textHtml = e.text
+      ? `<div class="journal-entry-text">${e.text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>`
+      : '';
     return `<div class="journal-entry" data-id="${e.id}">
       ${tagHtml}
       <div class="journal-entry-date">${dateStr}</div>
-      <div class="journal-entry-text">${e.text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+      ${textHtml}
+      ${photoHtml}
       <button class="journal-entry-delete" data-id="${e.id}" aria-label="Delete entry">&times;</button>
     </div>`;
   }).join('');
+
+  // Load photos from IndexedDB asynchronously
+  list.querySelectorAll('img[data-photo-id]').forEach(async img => {
+    const pid = parseInt(img.dataset.photoId, 10);
+    const dataURL = await loadPhoto(pid).catch(() => null);
+    if (dataURL) img.src = dataURL; else img.remove();
+  });
 }
 
 function initJournal() {
@@ -3196,9 +3222,9 @@ function initJournal() {
   const addBtn = document.getElementById('journal-add-btn');
   const input  = document.getElementById('journal-input');
   if (addBtn && input) {
-    const doAdd = () => {
+    const doAdd = async () => {
       const tag = document.getElementById('journal-crop-tag')?.value || '';
-      addJournalEntry(input.value, tag);
+      await addJournalEntry(input.value, tag);
       input.value = '';
     };
     addBtn.addEventListener('click', doAdd);
@@ -3207,9 +3233,46 @@ function initJournal() {
     });
   }
 
+  // Photo capture
+  const photoBtn   = document.getElementById('journal-photo-btn');
+  const fileInput  = document.getElementById('journal-photo-input');
+  const previewWrap = document.getElementById('journal-photo-preview-wrap');
+  const preview    = document.getElementById('journal-photo-preview');
+  const clearBtn   = document.getElementById('journal-photo-clear');
+
+  photoBtn?.addEventListener('click', () => fileInput?.click());
+
+  fileInput?.addEventListener('change', async e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    _pendingPhoto = await resizeImage(file);
+    if (preview) { preview.src = _pendingPhoto; }
+    if (previewWrap) previewWrap.hidden = false;
+    fileInput.value = '';
+  });
+
+  clearBtn?.addEventListener('click', () => {
+    _pendingPhoto = null;
+    if (preview) preview.src = '';
+    if (previewWrap) previewWrap.hidden = true;
+  });
+
+  // Journal list events — delete + photo lightbox
   document.getElementById('journal-list')?.addEventListener('click', e => {
     const btn = e.target.closest('.journal-entry-delete');
     if (btn) { deleteJournalEntry(parseInt(btn.dataset.id, 10)); return; }
+    const photo = e.target.closest('.journal-entry-photo');
+    if (photo?.src) {
+      const lb = document.getElementById('photo-lightbox');
+      const lbImg = document.getElementById('photo-lightbox-img');
+      if (lb && lbImg) { lbImg.src = photo.src; lb.hidden = false; }
+    }
+  });
+
+  // Lightbox close
+  document.getElementById('photo-lightbox')?.addEventListener('click', () => {
+    const lb = document.getElementById('photo-lightbox');
+    if (lb) lb.hidden = true;
   });
 
   document.getElementById('journal-filter-bar')?.addEventListener('click', e => {
@@ -3889,5 +3952,64 @@ function initCountrySelector() {
   document.getElementById('country-selector')?.addEventListener('click', e => {
     const btn = e.target.closest('.country-btn');
     if (btn?.dataset.country) reloadCountry(btn.dataset.country);
+  });
+}
+
+// ── Phase 15: Photo Diary (IndexedDB) ────────────
+function openPhotoDB() {
+  if (_photoDB) return Promise.resolve(_photoDB);
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open('pzf-photos', 1);
+    req.onupgradeneeded = e => {
+      e.target.result.createObjectStore('photos', { autoIncrement: true });
+    };
+    req.onsuccess = e => { _photoDB = e.target.result; resolve(_photoDB); };
+    req.onerror   = e => reject(e.target.error);
+  });
+}
+
+function savePhoto(dataURL) {
+  return openPhotoDB().then(db => new Promise((resolve, reject) => {
+    const tx  = db.transaction('photos', 'readwrite');
+    const req = tx.objectStore('photos').add({ data: dataURL, ts: Date.now() });
+    req.onsuccess = () => resolve(req.result);
+    req.onerror   = e => reject(e.target.error);
+  }));
+}
+
+function loadPhoto(photoId) {
+  return openPhotoDB().then(db => new Promise((resolve, reject) => {
+    const tx  = db.transaction('photos', 'readonly');
+    const req = tx.objectStore('photos').get(photoId);
+    req.onsuccess = () => resolve(req.result?.data || null);
+    req.onerror   = e => reject(e.target.error);
+  }));
+}
+
+function deletePhoto(photoId) {
+  return openPhotoDB().then(db => new Promise((resolve, reject) => {
+    const tx = db.transaction('photos', 'readwrite');
+    tx.objectStore('photos').delete(photoId);
+    tx.oncomplete = resolve;
+    tx.onerror    = e => reject(e.target.error);
+  }));
+}
+
+function resizeImage(file) {
+  return new Promise(resolve => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const MAX = 1200;
+      let w = img.width, h = img.height;
+      if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+      if (h > MAX) { w = Math.round(w * MAX / h); h = MAX; }
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      resolve(canvas.toDataURL('image/jpeg', 0.82));
+    };
+    img.src = url;
   });
 }

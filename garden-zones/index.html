@@ -183,7 +183,13 @@
           <textarea id="journal-input" placeholder="Log a note — weather, observations, successes…" rows="3"></textarea>
           <div id="journal-compose-footer">
             <select id="journal-crop-tag"><option value="">🌱 No crop tag</option></select>
+            <button id="journal-photo-btn" type="button" title="Attach photo">📷</button>
+            <input type="file" id="journal-photo-input" accept="image/*" style="display:none">
             <button id="journal-add-btn">Add note</button>
+          </div>
+          <div id="journal-photo-preview-wrap" hidden>
+            <img id="journal-photo-preview" class="journal-photo-preview" alt="">
+            <button id="journal-photo-clear" class="journal-photo-clear" title="Remove photo">✕</button>
           </div>
         </div>
         <div id="journal-filter-bar"></div>
@@ -365,6 +371,11 @@
       </div>
     </div>
   </dialog>
+
+  <!-- Photo lightbox (Phase 15) -->
+  <div id="photo-lightbox" hidden>
+    <img id="photo-lightbox-img" alt="Garden photo">
+  </div>
 
   <!-- Share & Print modal (Phase 14) -->
   <dialog id="share-modal" aria-labelledby="share-modal-title" aria-modal="true">
