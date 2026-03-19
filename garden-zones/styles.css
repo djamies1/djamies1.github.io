@@ -3500,3 +3500,28 @@ body.garden-mode .plant-section ul {
 .pf--fair  { background: rgba(251,191,36,0.15);  color: #fbbf24; }
 .pf--poor  { background: rgba(249,115,22,0.15);  color: #fb923c; }
 .pf--bad   { background: rgba(248,113,113,0.15); color: #f87171; }
+
+/* ── Phase 22: Pest & Problem Log ────────────────── */
+.modal-problems-section .prob-none { font-size: 12px; color: var(--text-muted); margin: 4px 0 8px; }
+.prob-open-count { font-size: 10px; font-weight: 600; color: #fb923c; margin-left: 5px; }
+.prob-item { display: flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 5px 8px; margin-bottom: 4px; font-size: 11px; }
+.prob-item--resolved { opacity: 0.5; }
+.prob-date { color: var(--text-muted); flex-shrink: 0; }
+.prob-type { font-weight: 600; }
+.prob-notes { color: var(--text-muted); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.prob-resolved-tag { margin-left: auto; font-size: 9px; color: #4ade80; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.prob-resolve-btn, .prob-delete-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 14px; padding: 0 2px; line-height: 1; flex-shrink: 0; transition: color 0.15s; }
+.prob-resolve-btn:hover { color: #4ade80; }
+.prob-delete-btn { margin-left: auto; }
+.prob-delete-btn:hover { color: #f87171; }
+.prob-resolved-group { margin-bottom: 6px; }
+.prob-add-form { margin-top: 8px; }
+.prob-type-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 7px; }
+.prob-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; color: var(--text-muted); cursor: pointer; font-size: 11px; padding: 3px 8px; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+.prob-chip:hover { color: var(--text); border-color: var(--text-muted); }
+.prob-chip--active { background: rgba(251,146,60,0.12); border-color: #fb923c; color: #fb923c; }
+.prob-add-row { display: flex; gap: 6px; }
+.prob-notes-input { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; color: var(--text); font-size: 12px; padding: 5px 8px; }
+.prob-add-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; color: var(--text-muted); cursor: pointer; font-size: 12px; font-weight: 600; padding: 5px 12px; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
+.prob-add-btn:hover { color: #fb923c; border-color: #fb923c; }
+.gi-badge--problem { color: #fb923c; }

@@ -1333,7 +1333,93 @@ function gardenAdd(name) {
   saveGarden(); refreshGardenUI(name);
   checkCompanionConflicts(name);
 }
-function gardenRemove(name) { delete myGarden[name]; saveGarden(); refreshGardenUI(name); }
+function gardenRemove(name) { archiveGardenEntry(name); delete myGarden[name]; saveGarden(); refreshGardenUI(name); }
+
+// ── Phase 22: Pest & Problem log ─────────────────
+function gardenLogProblem(name, type, notes) {
+  if (!myGarden[name]) return;
+  if (!myGarden[name].problems) myGarden[name].problems = [];
+  myGarden[name].problems.unshift({
+    id: Date.now(),
+    date: new Date().toISOString().slice(0, 10),
+    type: type.trim(),
+    notes: (notes || '').trim(),
+    resolved: false,
+  });
+  saveGarden(); refreshGardenUI(name);
+}
+function gardenResolveProblem(name, id) {
+  const p = myGarden[name]?.problems?.find(p => p.id === id);
+  if (p) { p.resolved = true; p.resolvedDate = new Date().toISOString().slice(0, 10); }
+  saveGarden(); refreshGardenUI(name);
+}
+function gardenDeleteProblem(name, id) {
+  if (!myGarden[name]?.problems) return;
+  myGarden[name].problems = myGarden[name].problems.filter(p => p.id !== id);
+  saveGarden(); refreshGardenUI(name);
+}
+
+function renderModalProblems(name) {
+  const body = document.getElementById('modal-body');
+  if (!body || !isInGarden(name)) return;
+  body.querySelector('.modal-problems-section')?.remove();
+
+  const problems  = myGarden[name]?.problems || [];
+  const open      = problems.filter(p => !p.resolved);
+  const resolved  = problems.filter(p => p.resolved).slice(0, 3);
+  const TYPES     = ['\uD83D\uDC1B Aphids', '\uD83D\uDC0C Slugs', '\uD83C\uDF44 Fungal', '\uD83D\uDE35 Wilting', '\u2753 Other'];
+
+  const openRows = open.map(p => `
+    <div class="prob-item" data-id="${p.id}">
+      <span class="prob-date">${p.date}</span>
+      <span class="prob-type">${p.type}</span>
+      ${p.notes ? `<span class="prob-notes">${p.notes.replace(/</g,'&lt;')}</span>` : ''}
+      <button class="prob-resolve-btn" data-id="${p.id}" title="Mark resolved">\u2713</button>
+      <button class="prob-delete-btn" data-id="${p.id}" title="Delete">\u00d7</button>
+    </div>`).join('');
+
+  const resolvedRows = resolved.map(p => `
+    <div class="prob-item prob-item--resolved">
+      <span class="prob-date">${p.date}</span>
+      <span class="prob-type">${p.type}</span>
+      <span class="prob-resolved-tag">resolved</span>
+    </div>`).join('');
+
+  const sec = document.createElement('div');
+  sec.className = 'modal-section modal-problems-section';
+  sec.innerHTML = `
+    <div class="modal-section-title">\uD83D\uDC1B Problems ${open.length ? `<span class="prob-open-count">${open.length} open</span>` : ''}</div>
+    ${openRows || '<p class="prob-none">No active problems logged.</p>'}
+    ${resolvedRows ? `<div class="prob-resolved-group">${resolvedRows}</div>` : ''}
+    <div class="prob-add-form">
+      <div class="prob-type-chips">${TYPES.map(t => `<button class="prob-chip" data-type="${t}">${t}</button>`).join('')}</div>
+      <div class="prob-add-row">
+        <input type="text" class="prob-notes-input" id="prob-notes-in" placeholder="Notes (optional)">
+        <button class="prob-add-btn" id="prob-add-btn">Log</button>
+      </div>
+    </div>`;
+  body.appendChild(sec);
+
+  let selectedType = null;
+  sec.querySelectorAll('.prob-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      selectedType = chip.dataset.type;
+      sec.querySelectorAll('.prob-chip').forEach(c => c.classList.toggle('prob-chip--active', c === chip));
+    });
+  });
+  sec.querySelector('#prob-add-btn').addEventListener('click', () => {
+    if (!selectedType) { showToast('Select a problem type first', 'info'); return; }
+    gardenLogProblem(name, selectedType, sec.querySelector('#prob-notes-in').value);
+    sec.querySelector('#prob-notes-in').value = '';
+    selectedType = null;
+  });
+  sec.querySelectorAll('.prob-resolve-btn').forEach(btn =>
+    btn.addEventListener('click', () => gardenResolveProblem(name, parseInt(btn.dataset.id)))
+  );
+  sec.querySelectorAll('.prob-delete-btn').forEach(btn =>
+    btn.addEventListener('click', () => gardenDeleteProblem(name, parseInt(btn.dataset.id)))
+  );
+}
 function gardenSetPlanted(name, dateStr) {
   if (myGarden[name]) { myGarden[name].planted = dateStr || null; saveGarden(); refreshGardenUI(name); }
 }
@@ -1612,6 +1698,7 @@ function renderGardenTab() {
         entry.notes ? '<span class="gi-badge" title="Has notes">📝</span>' : '',
         entry.reminder ? `<span class="gi-badge gi-badge--reminder" title="Reminder: ${entry.reminder}">${reminderDue ? '🔔' : '⏰'}</span>` : '',
         entry.rating ? renderStars(entry.rating, name, true) : '',
+        (entry.problems?.some(p => !p.resolved)) ? '<span class="gi-badge gi-badge--problem" title="Active problem logged">\uD83D\uDC1B</span>' : '',
       ].join('');
       html += `<div class="garden-item garden-item--${type}" data-crop="${name}">
         <div class="garden-item-main">
@@ -2051,7 +2138,16 @@ function buildThisWeekItems() {
     items.push({ icon: '🌾', text: `Harvest your ${ns} — ready now!`, type: 'urgent' });
   }
 
-  // 3. Watering nudge for seedlings in dry spell
+  // 3. Open pest/problem alerts
+  const openProblems = Object.entries(myGarden)
+    .filter(([, e]) => e.problems?.some(p => !p.resolved))
+    .map(([n]) => n);
+  if (openProblems.length) {
+    const ns = openProblems.slice(0, 2).join(', ') + (openProblems.length > 2 ? ` +${openProblems.length - 2}` : '');
+    items.push({ icon: '\uD83D\uDC1B', text: `Active problem logged on ${ns} — check crop details`, type: 'action' });
+  }
+
+  // 4. Watering nudge for seedlings in dry spell
   const seedlings = Object.keys(myGarden).filter(n => {
     const p = myGarden[n]?.planted;
     return p && (today - new Date(p)) / 86400000 <= 21;
@@ -2065,7 +2161,7 @@ function buildThisWeekItems() {
     }
   }
 
-  // 4. Planting window from frost calendar
+  // 5. Planting window from frost calendar
   if (selectedZone && items.length < 4) {
     const frost = FROST_DATES[selectedZone.toLowerCase()];
     const data = getPlantingData(selectedZone, currentMonth);
@@ -2085,7 +2181,7 @@ function buildThisWeekItems() {
     }
   }
 
-  // 5. Prompt to add crops if garden empty
+  // 6. Prompt to add crops if garden empty
   if (!items.length && selectedZone) {
     const data = getPlantingData(selectedZone, currentMonth);
     const total = ['startIndoors','directSow','transplant'].reduce((s, k) => s + (data[k]?.length || 0), 0);
@@ -2243,6 +2339,8 @@ function renderModalGardenSections(name) {
 
   // Succession section
   renderSuccessionSection(name);
+  // Phase 22: Problems
+  renderModalProblems(name);
 }
 
 function checkCompanionConflicts(name) {
