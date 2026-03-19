@@ -654,8 +654,37 @@ function findNearestZone(zoneStr) {
   return best;
 }
 
+// ── Theme ───────────────────────────────────────
+function initTheme() {
+  const saved = localStorage.getItem('pzf-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  updateThemeBtn();
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+}
+
+function toggleTheme() {
+  const el = document.documentElement;
+  const current = el.getAttribute('data-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark = current === 'dark' || (current !== 'light' && prefersDark) || (current !== 'light' && !window.matchMedia('(prefers-color-scheme: light)').matches);
+  const next = isDark ? 'light' : 'dark';
+  el.setAttribute('data-theme', next);
+  localStorage.setItem('pzf-theme', next);
+  updateThemeBtn();
+}
+
+function updateThemeBtn() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  const theme = document.documentElement.getAttribute('data-theme');
+  const isLight = theme === 'light' || (!theme && window.matchMedia('(prefers-color-scheme: light)').matches);
+  btn.textContent = isLight ? '🌙' : '☀️';
+  btn.title = isLight ? 'Switch to dark mode' : 'Switch to light mode';
+}
+
 // ── UI initialization ──────────────────────────
 function initUI() {
+  initTheme();
   // Load persisted preferences
   useMetric = localStorage.getItem('pzf-metric') === '1';
   const mtBtn = document.getElementById('metric-toggle');
