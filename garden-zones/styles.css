@@ -67,6 +67,8 @@
   --transition-fast: 0.1s ease;
   --transition-base: 0.15s ease;
   --transition-slow: 0.3s ease;
+  /* Bottom nav */
+  --bottom-nav-height: 0px;
 }
 
 /* ── Light mode ──────────────────────────────────────── */
@@ -131,6 +133,15 @@ html, body {
   font-size: 14px;
   overflow: hidden;
 }
+
+/* Touch polish — remove tap flash, improve tap latency */
+* { -webkit-tap-highlight-color: transparent; }
+button, [role="button"], input[type="range"], select, a {
+  touch-action: manipulation;
+}
+
+/* ── Bottom nav ──────────────────────────────────── */
+#bottom-nav { display: none; }
 
 /* ──────────────────────────────────────────────
    Top bar
@@ -800,6 +811,8 @@ html, body {
     gap: 8px;
   }
 
+  --bottom-nav-height: 56px;
+
   #title {
     font-size: 14px;
   }
@@ -812,19 +825,18 @@ html, body {
 
   #title { order: 1; }
 
-  #browse-btn {
-    order: 2;
-    margin-left: auto;
-    font-size: 11px;
-    padding: 5px 9px;
-  }
+  /* Moved to bottom nav — hide from top bar on mobile */
+  #layout-toggle, #browse-btn, #country-selector { display: none; }
 
-  /* Panel slides from bottom on mobile */
+  /* Remaining buttons tuck right */
+  #metric-toggle { order: 2; margin-left: auto; }
+
+  /* Panel slides from bottom on mobile, sits above bottom nav */
   #info-panel {
     top: auto;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px));
     width: 100%;
     height: 50vh;
     border-left: none;
@@ -834,7 +846,58 @@ html, body {
   }
 
   #info-panel.panel-hidden {
-    transform: translateY(100%);
+    transform: translateY(calc(100% + var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px)));
+  }
+
+  /* Bottom nav */
+  #bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    z-index: 98;
+  }
+
+  .bnav-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 6px 0;
+    position: relative;
+    transition: color var(--transition-base);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .bnav-btn.bnav-active { color: var(--accent); }
+
+  .bnav-icon { font-size: 18px; line-height: 1; }
+  .bnav-label { font-size: 10px; font-weight: 600; letter-spacing: 0.02em; }
+
+  #bnav-garden-badge {
+    position: absolute;
+    top: 4px;
+    right: calc(50% - 14px);
+    background: var(--accent);
+    color: #0a0f1a;
+    border-radius: var(--radius-full);
+    font-size: 8px;
+    font-weight: 800;
+    padding: 1px 4px;
+    min-width: 14px;
+    text-align: center;
+    line-height: 1.4;
   }
 }
 
@@ -3658,3 +3721,33 @@ body.garden-mode .plant-section ul {
   flex-shrink: 0;
 }
 #theme-toggle:hover { color: var(--text); border-color: var(--text-muted); }
+
+/* ── Phase 26: Skeleton loading ─────────────────── */
+@keyframes skeleton-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.skeleton-line {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  border-radius: var(--radius-sm);
+  height: 12px;
+  margin-bottom: 6px;
+}
+.skeleton-line--title { height: 16px; width: 60%; }
+.skeleton-line--short { width: 40%; }
+.skeleton-line--full  { width: 100%; }
+.skeleton-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+.skeleton-hint {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 8px 0 4px;
+}

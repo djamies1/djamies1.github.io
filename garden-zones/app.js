@@ -487,10 +487,13 @@ function selectZoneByPoint(lat, lng) {
 // ── Info panel ─────────────────────────────────
 function showPanel() {
   document.getElementById('info-panel').classList.remove('panel-hidden');
+  if (!selectedZone) showPanelSkeleton();
+  syncBottomNavToPanel();
 }
 
 function hidePanel() {
   document.getElementById('info-panel').classList.add('panel-hidden');
+  setBottomNavActive('map');
 }
 
 function renderLocationName() {
@@ -516,6 +519,7 @@ function renderLocationName() {
 }
 
 function renderPanel() {
+  hidePanelSkeleton();
   if (!selectedZone) return;
 
   const zone  = selectedZone;
@@ -654,6 +658,80 @@ function findNearestZone(zoneStr) {
   return best;
 }
 
+// ── Phase 26: Haptics ───────────────────────────
+function haptic(ms) {
+  if (navigator.vibrate) navigator.vibrate(ms || 5);
+}
+
+// ── Phase 26: Panel skeleton ────────────────────
+function showPanelSkeleton() {
+  document.getElementById('panel-skeleton')?.removeAttribute('hidden');
+}
+function hidePanelSkeleton() {
+  document.getElementById('panel-skeleton')?.setAttribute('hidden', '');
+}
+
+// ── Phase 26: Bottom nav ────────────────────────
+function initBottomNav() {
+  const nav = document.getElementById('bottom-nav');
+  if (!nav) return;
+  updateBnavGardenBadge();
+  nav.addEventListener('click', e => {
+    const btn = e.target.closest('.bnav-btn');
+    if (!btn) return;
+    haptic(4);
+    setBottomNavActive(btn.dataset.bnav);
+    const tab = btn.dataset.bnav;
+    if (tab === 'map') {
+      hidePanel();
+    } else if (tab === 'planner') {
+      if (!selectedZone) { showPanel(); showPanelSkeleton(); return; }
+      showPanel();
+      // Switch to calendar tab
+      currentPanelTab = 'calendar';
+      document.querySelectorAll('.ptab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'calendar'));
+      document.getElementById('tab-calendar').hidden = false;
+      document.getElementById('tab-garden').hidden   = true;
+      const jEl = document.getElementById('tab-journal');
+      if (jEl) jEl.hidden = true;
+    } else if (tab === 'garden') {
+      if (!selectedZone) { showPanel(); showPanelSkeleton(); return; }
+      showPanel();
+      currentPanelTab = 'garden';
+      document.querySelectorAll('.ptab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'garden'));
+      document.getElementById('tab-calendar').hidden = true;
+      document.getElementById('tab-garden').hidden   = false;
+      const jEl = document.getElementById('tab-journal');
+      if (jEl) jEl.hidden = true;
+      renderGardenTab();
+    } else if (tab === 'browse') {
+      toggleBrowse(true);
+    }
+  });
+}
+
+function setBottomNavActive(tab) {
+  document.querySelectorAll('.bnav-btn').forEach(b =>
+    b.classList.toggle('bnav-active', b.dataset.bnav === tab));
+}
+
+function syncBottomNavToPanel() {
+  const panel = document.getElementById('info-panel');
+  if (!panel || panel.classList.contains('panel-hidden')) {
+    setBottomNavActive('map');
+  } else {
+    setBottomNavActive(currentPanelTab === 'garden' ? 'garden' : 'planner');
+  }
+}
+
+function updateBnavGardenBadge() {
+  const badge = document.getElementById('bnav-garden-badge');
+  if (!badge) return;
+  const count = Object.keys(myGarden || {}).length;
+  badge.textContent = count > 0 ? count : '';
+  badge.hidden = count === 0;
+}
+
 // ── Theme ───────────────────────────────────────
 function initTheme() {
   const saved = localStorage.getItem('pzf-theme');
@@ -685,6 +763,7 @@ function updateThemeBtn() {
 // ── UI initialization ──────────────────────────
 function initUI() {
   initTheme();
+  initBottomNav();
   // Load persisted preferences
   useMetric = localStorage.getItem('pzf-metric') === '1';
   const mtBtn = document.getElementById('metric-toggle');
@@ -1255,6 +1334,9 @@ function toggleBrowse(show) {
     renderBrowseGrid();
     const search = document.getElementById('browse-search');
     if (search) search.focus();
+    setBottomNavActive('browse');
+  } else {
+    syncBottomNavToPanel();
   }
 }
 
@@ -1374,8 +1456,9 @@ function gardenAdd(name) {
   myGarden[name] = { added: new Date().toISOString().slice(0,10), planted: null };
   saveGarden(); refreshGardenUI(name);
   checkCompanionConflicts(name);
+  haptic([10, 40, 5]);
 }
-function gardenRemove(name) { archiveGardenEntry(name); delete myGarden[name]; saveGarden(); refreshGardenUI(name); }
+function gardenRemove(name) { archiveGardenEntry(name); delete myGarden[name]; saveGarden(); refreshGardenUI(name); haptic(5); }
 
 // ── Phase 22: Pest & Problem log ─────────────────
 function gardenLogProblem(name, type, notes) {
@@ -1468,6 +1551,7 @@ function gardenSetPlanted(name, dateStr) {
 
 function refreshGardenUI(name) {
   updateGardenBadge();
+  updateBnavGardenBadge();
   checkReminders();
   renderHarvestReadyBanner();
   updateJournalCropSelect();
@@ -1983,6 +2067,8 @@ function initGarden() {
     document.getElementById('tab-journal').hidden  = (currentPanelTab !== 'journal');
     if (currentPanelTab === 'garden') renderGardenTab();
     if (currentPanelTab === 'journal') renderJournalTab();
+    haptic(3);
+    syncBottomNavToPanel();
   });
 
   // Garden tab delegated events
@@ -3234,6 +3320,7 @@ function initPanelSwipe() {
     const frac = panel.offsetHeight / vh;
     // Find nearest snap
     const nearest = SNAPS.reduce((a, b) => Math.abs(b - frac) < Math.abs(a - frac) ? b : a);
+    haptic(5);
     if (nearest <= 0.15) {
       hidePanel();
       panel.style.height = '';

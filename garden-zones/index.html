@@ -142,6 +142,22 @@
     <div id="panel-drag-handle"></div>
     <button id="panel-close">&times;</button>
     <div id="panel-content">
+      <div id="panel-skeleton" hidden>
+        <div class="skeleton-card">
+          <div class="skeleton-line skeleton-line--title"></div>
+          <div class="skeleton-line skeleton-line--short"></div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-line skeleton-line--full"></div>
+          <div class="skeleton-line skeleton-line--full"></div>
+          <div class="skeleton-line skeleton-line--short"></div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-line skeleton-line--full"></div>
+          <div class="skeleton-line skeleton-line--short"></div>
+        </div>
+        <p class="skeleton-hint">Enter an address above to find your planting zone</p>
+      </div>
       <div id="print-header"></div>
       <div id="harvest-ready-banner" hidden></div>
       <div id="zone-header">
@@ -454,6 +470,26 @@
       <div id="quick-search-results"></div>
     </div>
   </div>
+
+  <nav id="bottom-nav" aria-label="Main navigation">
+    <button class="bnav-btn bnav-active" data-bnav="map" aria-label="Map">
+      <span class="bnav-icon">🗺️</span>
+      <span class="bnav-label">Map</span>
+    </button>
+    <button class="bnav-btn" data-bnav="planner" aria-label="Planner">
+      <span class="bnav-icon">📅</span>
+      <span class="bnav-label">Planner</span>
+    </button>
+    <button class="bnav-btn" data-bnav="garden" aria-label="My Garden">
+      <span class="bnav-icon">🌿</span>
+      <span class="bnav-label">Garden</span>
+      <span id="bnav-garden-badge" hidden></span>
+    </button>
+    <button class="bnav-btn" data-bnav="browse" aria-label="Browse Crops">
+      <span class="bnav-icon">🌾</span>
+      <span class="bnav-label">Browse</span>
+    </button>
+  </nav>
 
   <!-- CDN Libraries -->
   <script src="lib/leaflet.min.js"></script>
