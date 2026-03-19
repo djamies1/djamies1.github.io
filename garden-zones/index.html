@@ -366,6 +366,34 @@
     </div>
   </dialog>
 
+  <!-- Share & Print modal (Phase 14) -->
+  <dialog id="share-modal" aria-labelledby="share-modal-title" aria-modal="true">
+    <div id="share-modal-inner">
+      <header class="share-modal-header">
+        <h3 id="share-modal-title">Share & Print</h3>
+        <button id="share-modal-close" aria-label="Close">&times;</button>
+      </header>
+      <div id="share-options">
+        <button class="share-option" id="sopt-url">
+          <span class="share-option-icon">🔗</span>
+          <div class="share-option-text"><strong>Copy zone link</strong><span>Shareable URL for this zone & month</span></div>
+        </button>
+        <button class="share-option" id="sopt-schedule">
+          <span class="share-option-icon">📋</span>
+          <div class="share-option-text"><strong>Copy planting schedule</strong><span>This month's tasks as plain text</span></div>
+        </button>
+        <button class="share-option" id="sopt-garden">
+          <span class="share-option-icon">🌿</span>
+          <div class="share-option-text"><strong>Copy my garden</strong><span>Crop list with status</span></div>
+        </button>
+        <button class="share-option" id="sopt-print">
+          <span class="share-option-icon">🖨️</span>
+          <div class="share-option-text"><strong>Print planting calendar</strong><span>Clean printer-friendly layout</span></div>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
   <!-- Quick search overlay (⌘K / Ctrl+K) -->
   <div id="quick-search-overlay" hidden role="dialog" aria-label="Search crops" aria-modal="true">
     <div id="quick-search-inner">

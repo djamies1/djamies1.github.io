@@ -615,6 +615,7 @@ function initUI() {
   initChecklist();
   initCustomCrops();
   initCountrySelector();
+  initShareModal();
   initLayoutToggle();
   initInstallPrompt();
   initOfflineIndicator();
@@ -2596,16 +2597,101 @@ function filterCalendarSearch(query) {
   if (noTasks) noTasks.style.display = (!anyVisible && q) ? 'block' : '';
 }
 
-// ── Phase 3: Share zone ──────────────────────────
+// ── Phase 3 / 14: Share zone ─────────────────────
 function shareZone() {
+  document.getElementById('share-modal')?.showModal();
+}
+
+// ── Phase 14: Share & Print ──────────────────────
+function copyZoneURL() {
   const url = window.location.href;
+  if (navigator.share && /mobile|android|iphone|ipad/i.test(navigator.userAgent)) {
+    navigator.share({ title: 'Plant Zone Finder', url }).catch(() => {});
+    document.getElementById('share-modal')?.close();
+    return;
+  }
   navigator.clipboard?.writeText(url).then(() => {
-    const btn = document.getElementById('share-btn');
-    if (btn) { btn.classList.add('shared'); setTimeout(() => btn.classList.remove('shared'), 2000); }
     showToast('Zone URL copied ✓', 'success');
-  }).catch(() => {
-    showToast('Copy not supported — copy from address bar', 'info');
-  });
+    document.getElementById('share-modal')?.close();
+  }).catch(() => showToast('Copy not supported — copy from address bar', 'info'));
+}
+
+function copyScheduleText() {
+  if (!selectedZone) { showToast('Select a zone first', 'info'); return; }
+  const data = getPlantingData(selectedZone, currentMonth);
+  const countryLabel = COUNTRY_CONFIG[selectedCountry]?.label || '';
+  const lines = [
+    `🌱 Plant Zone Finder — Zone ${getZoneDisplayLabel(selectedZone)}, ${countryLabel}`,
+    `📅 ${MONTH_NAMES[currentMonth]}`, ''
+  ];
+  const sections = {
+    startIndoors: 'Start Indoors',
+    directSow:    'Direct Sow',
+    transplant:   'Transplant Out',
+    harvest:      'Harvest'
+  };
+  let hasData = false;
+  for (const [key, label] of Object.entries(sections)) {
+    if (data[key]?.length) {
+      hasData = true;
+      lines.push(`${label}:`);
+      data[key].forEach(name => lines.push(`  • ${name}`));
+      lines.push('');
+    }
+  }
+  if (!hasData) lines.push('Nothing to plant this month.\n');
+  lines.push('djamies1.github.io/garden-zones/');
+  navigator.clipboard?.writeText(lines.join('\n')).then(() => {
+    showToast('Schedule copied ✓', 'success');
+    document.getElementById('share-modal')?.close();
+  }).catch(() => showToast('Copy not supported', 'info'));
+}
+
+function copyGardenText() {
+  const names = Object.keys(myGarden);
+  if (!names.length) { showToast('Your garden is empty', 'info'); return; }
+  const today = new Date().toISOString().slice(0, 10);
+  const lines = [`🌿 My Garden — ${today}`, ''];
+  const groups = { ready: [], growing: [], saved: [] };
+  for (const name of names) {
+    const s = getGardenStatus(name);
+    groups[s?.type || 'saved'].push({ name, status: s });
+  }
+  const GROUP_LABELS = { ready: 'Ready to harvest', growing: 'Growing', saved: 'Saved' };
+  for (const [type, items] of Object.entries(groups)) {
+    if (!items.length) continue;
+    lines.push(`── ${GROUP_LABELS[type]} ──`);
+    for (const { name, status } of items) {
+      lines.push(`${cropData[name]?.emoji || '🌱'} ${name}: ${status?.label || ''}`);
+    }
+    lines.push('');
+  }
+  lines.push('djamies1.github.io/garden-zones/');
+  navigator.clipboard?.writeText(lines.join('\n')).then(() => {
+    showToast('Garden list copied ✓', 'success');
+    document.getElementById('share-modal')?.close();
+  }).catch(() => showToast('Copy not supported', 'info'));
+}
+
+function printZone() {
+  document.getElementById('share-modal')?.close();
+  const inGardenTab = currentPanelTab === 'garden';
+  document.body.classList.toggle('print-garden', inGardenTab);
+  setTimeout(() => {
+    window.print();
+    document.body.classList.remove('print-garden');
+  }, 120);
+}
+
+function initShareModal() {
+  const modal = document.getElementById('share-modal');
+  if (!modal) return;
+  modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
+  document.getElementById('share-modal-close')?.addEventListener('click', () => modal.close());
+  document.getElementById('sopt-url')?.addEventListener('click', copyZoneURL);
+  document.getElementById('sopt-schedule')?.addEventListener('click', copyScheduleText);
+  document.getElementById('sopt-garden')?.addEventListener('click', copyGardenText);
+  document.getElementById('sopt-print')?.addEventListener('click', printZone);
 }
 
 // ── Phase 2: Mobile panel swipe ─────────────────
