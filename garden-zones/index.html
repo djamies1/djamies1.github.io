@@ -89,6 +89,7 @@
     <button id="notif-btn" title="Enable garden notifications" aria-label="Enable garden notifications">🔕</button>
     <button id="theme-toggle" title="Switch to light mode" aria-label="Toggle colour theme">☀️</button>
     <button id="help-btn" title="Keyboard shortcuts" aria-label="Keyboard shortcuts">?</button>
+    <button id="settings-btn" title="Settings" aria-label="Settings">⚙</button>
     <button id="browse-btn" title="Browse all crops">Browse</button>
     <div id="country-selector" title="Select your country">
       <button class="country-btn active" data-country="us">🇺🇸</button>
@@ -240,20 +241,30 @@
         <div id="garden-tip"></div>
       </div>
       <div id="tab-garden" hidden>
-        <div id="garden-dashboard"></div>
-        <div id="achievement-banner"></div>
-        <div id="garden-tasks"></div>
-        <div id="garden-checklist"></div>
-        <div id="garden-stats"></div>
-        <div id="garden-list"></div>
-        <div id="garden-beds"></div>
-        <div id="garden-companion-matrix"></div>
-        <div id="grow-next"></div>
-        <div id="growing-timeline"></div>
-        <div id="garden-gantt"></div>
-        <div id="garden-footer"></div>
-        <div id="garden-history"></div>
-        <p id="garden-empty-msg" class="garden-empty">No crops saved yet.<br>Tap any crop to add it to your garden.</p>
+        <!-- Phase 51: seeds sub-tab bar -->
+        <div id="garden-subtabs">
+          <button class="garden-subtab active" data-subtab="main">🌿 My Garden</button>
+          <button class="garden-subtab" data-subtab="seeds">🌰 Seeds</button>
+        </div>
+        <div id="subtab-main">
+          <div id="garden-dashboard"></div>
+          <div id="achievement-banner"></div>
+          <div id="garden-tasks"></div>
+          <div id="garden-checklist"></div>
+          <div id="garden-stats"></div>
+          <div id="garden-list"></div>
+          <div id="garden-beds"></div>
+          <div id="garden-companion-matrix"></div>
+          <div id="grow-next"></div>
+          <div id="growing-timeline"></div>
+          <div id="garden-gantt"></div>
+          <div id="garden-footer"></div>
+          <div id="garden-history"></div>
+          <p id="garden-empty-msg" class="garden-empty">No crops saved yet.<br>Tap any crop to add it to your garden.</p>
+        </div>
+        <div id="subtab-seeds" hidden></div>
+        <!-- Phase 55: FAB -->
+        <button id="garden-fab" class="garden-fab" aria-label="Quick actions" hidden>＋</button>
       </div>
       <div id="tab-journal" hidden>
         <div id="journal-compose">
@@ -527,6 +538,31 @@
       <span class="bnav-label">Browse</span>
     </button>
   </nav>
+
+  <!-- Phase 53: Settings overlay -->
+  <div id="settings-overlay" class="settings-overlay" hidden>
+    <div id="settings-sheet" class="settings-sheet" role="dialog" aria-label="Settings" aria-modal="true">
+      <div class="settings-drag-handle"></div>
+      <div class="settings-sheet-header">
+        <h3>Settings</h3>
+        <button id="settings-close-btn" aria-label="Close settings">×</button>
+      </div>
+      <div id="settings-body" class="settings-body"></div>
+    </div>
+  </div>
+
+  <!-- Phase 55: FAB quick-action sheet -->
+  <div id="fab-sheet-overlay" class="fab-sheet-overlay" hidden>
+    <div id="fab-sheet" class="fab-sheet" role="dialog" aria-label="Quick actions" aria-modal="true">
+      <div class="fab-sheet-handle"></div>
+      <div class="fab-sheet-title">Quick Actions</div>
+      <div id="fab-actions"></div>
+      <div id="fab-crop-picker" hidden>
+        <div class="fab-crop-picker-title"></div>
+        <div id="fab-crop-list" class="fab-crop-list"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- CDN Libraries -->
   <script src="lib/leaflet.min.js"></script>
