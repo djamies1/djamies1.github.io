@@ -1643,6 +1643,7 @@ function renderGardenTab() {
   renderGardenBeds();
   renderCompanionMatrix();
   renderGardenStats();
+  renderGrowingTimeline();
   renderGardenGantt();
   renderGardenFooter();
   renderGrowNext();
@@ -2656,6 +2657,122 @@ function renderGardenGantt() {
     document.getElementById('tab-journal').hidden  = true;
     renderPanel();
     updateURL();
+  });
+}
+
+// ── Phase 20: Personal Growing Timeline ──────────
+function renderGrowingTimeline() {
+  const el = document.getElementById('growing-timeline');
+  if (!el) return;
+
+  const names = Object.keys(myGarden);
+  const planted = names.filter(n => myGarden[n]?.planted);
+  if (!planted.length) { el.innerHTML = ''; return; }
+
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+
+  // Determine date range: from earliest sow date to latest projected harvest (or today+45)
+  const startDates = planted.map(n => new Date(myGarden[n].planted + 'T00:00:00'));
+  const earliest = new Date(Math.min(...startDates));
+  const projectedEnds = planted.map(n => {
+    const s = new Date(myGarden[n].planted + 'T00:00:00');
+    const dh = parseHarvestDays(cropData[n]?.days) || 90;
+    return new Date(s.getTime() + dh * 86400000);
+  });
+  const latest = new Date(Math.max(
+    ...projectedEnds.map(d => d.getTime()),
+    today.getTime() + 45 * 86400000
+  ));
+
+  // Snap to month boundaries
+  const rangeStart = new Date(earliest.getFullYear(), earliest.getMonth(), 1);
+  const rangeEnd   = new Date(latest.getFullYear(), latest.getMonth() + 2, 1);
+  const totalDays  = Math.round((rangeEnd - rangeStart) / 86400000);
+  const pct = d => ((d - rangeStart) / 86400000 / totalDays * 100).toFixed(3);
+  const canvasW = Math.max(420, totalDays * 3);
+
+  // Month tick marks
+  const months = [];
+  const mc = new Date(rangeStart);
+  while (mc < rangeEnd) {
+    months.push({
+      label: mc.toLocaleDateString(undefined, { month: 'short' }),
+      p: pct(mc),
+      isCur: mc.getMonth() === today.getMonth() && mc.getFullYear() === today.getFullYear()
+    });
+    mc.setMonth(mc.getMonth() + 1);
+  }
+  const todayP = pct(today);
+
+  // Build row data
+  const rows = planted.map(name => {
+    const entry = myGarden[name];
+    const s  = new Date(entry.planted + 'T00:00:00');
+    const dh = parseHarvestDays(cropData[name]?.days);
+    const end = dh ? new Date(s.getTime() + dh * 86400000) : null;
+    const sp = parseFloat(pct(s));
+    const ep = end ? parseFloat(pct(end)) : null;
+    const w  = ep !== null ? Math.max(ep - sp, 0.5) : null;
+    const status = getGardenStatus(name);
+    const type = status?.type || 'saved';
+    const done = !!(entry.harvestLog?.length);
+    return { name, sp, w, type, done, emoji: cropData[name]?.emoji || '🌱', dh };
+  });
+
+  const monthTicks = months.map(m =>
+    `<div class="tl-tick${m.isCur ? ' tl-tick--cur' : ''}" style="left:${m.p}%"><span>${m.label}</span></div>`
+  ).join('');
+
+  const gridLines = months.map(m =>
+    `<div class="tl-gl" style="left:${m.p}%"></div>`
+  ).join('');
+
+  const labelCells = rows.map(r => {
+    const n = r.name.length > 13 ? r.name.slice(0, 12) + '\u2026' : r.name;
+    return `<div class="tl-lc">${r.emoji} ${n}</div>`;
+  }).join('');
+
+  const barRows = rows.map(r => {
+    const cropTitle = `${r.name}${r.dh ? ` \u2014 harvest ~${r.dh}d from sow` : ''}`;
+    const bar = r.w !== null
+      ? `<div class="tl-bar tl-bar--${r.type}${r.done ? ' tl-bar--done' : ''}"
+             style="left:${r.sp}%;width:${r.w}%" data-crop="${r.name}"
+             title="${cropTitle}">${r.done ? '<span>\u2713</span>' : ''}</div>`
+      : `<div class="tl-bar tl-bar--pin" style="left:${r.sp}%"
+             data-crop="${r.name}" title="${r.name} \u2014 no harvest data">${r.emoji}</div>`;
+    return `<div class="tl-row">${bar}</div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="tl-wrap">
+      <div class="tl-title">\uD83D\uDCC5 Growing Timeline</div>
+      <div class="tl-body">
+        <div class="tl-labels">${labelCells}</div>
+        <div class="tl-scroll" id="tl-scroll-area">
+          <div class="tl-canvas" style="width:${canvasW}px">
+            <div class="tl-month-row">${monthTicks}</div>
+            <div class="tl-grid-layer">${gridLines}</div>
+            <div class="tl-today-line" style="left:${todayP}%">
+              <span class="tl-now-tip">now</span>
+            </div>
+            <div class="tl-bars-layer">${barRows}</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  el.addEventListener('click', e => {
+    const b = e.target.closest('[data-crop]');
+    if (b) openCropDetail(b.dataset.crop);
+  });
+
+  // Scroll so today is ~30% from the left edge
+  requestAnimationFrame(() => {
+    const scroll = el.querySelector('#tl-scroll-area');
+    if (scroll) {
+      const todayX = parseFloat(todayP) / 100 * canvasW;
+      scroll.scrollLeft = Math.max(0, todayX - scroll.offsetWidth * 0.3);
+    }
   });
 }
 

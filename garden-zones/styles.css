@@ -3453,3 +3453,32 @@ body.garden-mode .plant-section ul {
 }
 .sched-soil--ok   { background: rgba(74,222,128,0.07);  border: 1px solid rgba(74,222,128,0.2); }
 .sched-soil--cold { background: rgba(147,197,253,0.09); border: 1px solid rgba(147,197,253,0.3); }
+
+/* ── Phase 20: Growing Timeline ─────────────────── */
+#growing-timeline { margin: 10px 0; }
+.tl-wrap { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.tl-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; padding: 7px 10px; border-bottom: 1px solid var(--border); }
+.tl-body { display: flex; }
+.tl-labels { width: 88px; flex-shrink: 0; padding-top: 20px; }
+.tl-lc { height: 24px; display: flex; align-items: center; font-size: 10px; color: var(--text-muted); padding: 0 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tl-scroll { flex: 1; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tl-canvas { position: relative; min-width: 100%; }
+.tl-month-row { height: 20px; position: relative; }
+.tl-tick { position: absolute; transform: translateX(-50%); pointer-events: none; }
+.tl-tick span { font-size: 9px; color: var(--text-muted); display: block; white-space: nowrap; }
+.tl-tick--cur span { color: var(--accent); font-weight: 700; }
+.tl-grid-layer { position: absolute; top: 20px; left: 0; right: 0; bottom: 0; pointer-events: none; }
+.tl-gl { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--border); }
+.tl-today-line { position: absolute; top: 0; bottom: 0; width: 2px; background: rgba(248,113,113,0.65); pointer-events: none; }
+.tl-now-tip { position: absolute; top: 2px; left: 4px; font-size: 8px; color: #f87171; font-weight: 700; white-space: nowrap; }
+.tl-bars-layer { position: relative; }
+.tl-row { position: relative; height: 24px; }
+.tl-bar { position: absolute; top: 4px; height: 16px; border-radius: 3px; cursor: pointer; transition: filter 0.15s; display: flex; align-items: center; justify-content: flex-end; padding: 0 4px; font-size: 10px; min-width: 6px; box-sizing: border-box; }
+.tl-bar:hover { filter: brightness(1.2); }
+.tl-bar--growing { background: rgba(251,191,36,0.7); border: 1px solid rgba(251,191,36,0.4); }
+.tl-bar--ready { background: rgba(74,222,128,0.8); border: 1px solid var(--accent); animation: tl-pulse 2s ease-in-out infinite; }
+.tl-bar--saved { background: rgba(255,255,255,0.07); border: 1px solid var(--border); }
+.tl-bar--done { opacity: 0.45; }
+.tl-bar--pin { background: none; border: none; width: 20px; height: 20px; top: 2px; transform: translateX(-50%); font-size: 14px; padding: 0; justify-content: center; }
+.tl-bar span { color: var(--accent); font-weight: 700; }
+@keyframes tl-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.35); } 50% { box-shadow: 0 0 0 4px rgba(74,222,128,0); } }
