@@ -658,9 +658,43 @@ function findNearestZone(zoneStr) {
   return best;
 }
 
-// ── Phase 26: Haptics ───────────────────────────
-function haptic(ms) {
-  if (navigator.vibrate) navigator.vibrate(ms || 5);
+// ── Phase 26 / 28: Haptics ──────────────────────
+function haptic(pattern) {
+  // Use Capacitor Haptics when running natively (iOS / Android)
+  if (window.Capacitor?.isNativePlatform?.()) {
+    try {
+      const Haptics = window.Capacitor.Plugins.Haptics;
+      if (Haptics) {
+        // Double-tap array pattern → Medium impact, single ms → Light
+        Haptics.impact({ style: Array.isArray(pattern) ? 'MEDIUM' : 'LIGHT' });
+        return;
+      }
+    } catch {}
+  }
+  // Browser fallback
+  if (navigator.vibrate) navigator.vibrate(pattern || 5);
+}
+
+// ── Phase 28: Capacitor native init ─────────────
+async function initCapacitor() {
+  if (!window.Capacitor?.isNativePlatform?.()) return;
+  const plugins = window.Capacitor.Plugins;
+
+  // Status bar colour matches current app theme
+  try {
+    if (plugins.StatusBar) {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light'
+        || (!document.documentElement.getAttribute('data-theme')
+            && window.matchMedia('(prefers-color-scheme: light)').matches);
+      await plugins.StatusBar.setStyle({ style: isLight ? 'LIGHT' : 'DARK' });
+      await plugins.StatusBar.setBackgroundColor({ color: isLight ? '#ffffff' : '#111827' });
+    }
+  } catch {}
+
+  // Dismiss splash screen after UI has painted
+  try {
+    if (plugins.SplashScreen) await plugins.SplashScreen.hide({ fadeOutDuration: 300 });
+  } catch {}
 }
 
 // ── Phase 26: Panel skeleton ────────────────────
@@ -749,6 +783,7 @@ function toggleTheme() {
   el.setAttribute('data-theme', next);
   localStorage.setItem('pzf-theme', next);
   updateThemeBtn();
+  initCapacitor(); // re-sync native status bar colour
 }
 
 function updateThemeBtn() {
@@ -764,6 +799,7 @@ function updateThemeBtn() {
 function initUI() {
   initTheme();
   initBottomNav();
+  initCapacitor();
   loadPersistedWeather();
   // Load persisted preferences
   useMetric = localStorage.getItem('pzf-metric') === '1';

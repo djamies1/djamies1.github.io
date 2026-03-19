@@ -1,0 +1,42 @@
+{
+  "appId": "io.github.djamies1.plantzonefinder",
+  "appName": "Plant Zone Finder",
+  "webDir": "../garden-zones",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#111827",
+      "overlaysWebView": false
+    },
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "backgroundColor": "#0a0f1a",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true,
+      "androidScaleType": "CENTER_CROP",
+      "fadeOutDuration": 300
+    },
+    "Keyboard": {
+      "resize": "body",
+      "resizeOnFullScreen": true
+    }
+  },
+  "android": {
+    "minSdkVersion": 26,
+    "targetSdkVersion": 34,
+    "buildOptions": {
+      "releaseType": "AAB"
+    }
+  },
+  "ios": {
+    "contentInset": "automatic",
+    "limitsNavigationsToAppBoundDomains": true,
+    "allowsLinkPreview": false,
+    "scrollEnabled": false,
+    "preferredContentMode": "mobile"
+  }
+}

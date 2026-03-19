@@ -496,7 +496,8 @@
   <script src="lib/turf.min.js"></script>
   <script src="app.js"></script>
   <script>
-    if ('serviceWorker' in navigator) {
+    // Skip SW in Capacitor native builds (WKWebView doesn't support it reliably)
+    if ('serviceWorker' in navigator && !window.Capacitor?.isNativePlatform?.()) {
       navigator.serviceWorker.register('./sw.js').catch(() => {});
     }
   </script>
