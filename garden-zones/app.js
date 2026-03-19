@@ -4329,7 +4329,7 @@ function buildICS(events, calName) {
   const icsDate = d => `${d.getFullYear()}${pad2(d.getMonth() + 1)}${pad2(d.getDate())}`;
   const icsNow  = () => { const n = new Date(); return `${n.getFullYear()}${pad2(n.getMonth()+1)}${pad2(n.getDate())}T${pad2(n.getHours())}${pad2(n.getMinutes())}${pad2(n.getSeconds())}Z`; };
   const uid     = () => `${Date.now()}-${Math.random().toString(36).slice(2)}@plantzonefinder`;
-  const esc     = s => String(s || '').replace(/\/g,'\\').replace(/;/g,'\;').replace(/,/g,'\,').replace(/\n/g,'\n');
+  const esc     = s => String(s || '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
   // Fold long lines per RFC 5545 (max 75 octets)
   const fold    = s => s.match(/.{1,75}/g)?.join('\r\n ') || s;
 
