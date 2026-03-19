@@ -260,6 +260,7 @@
           <div id="garden-gantt"></div>
           <div id="garden-footer"></div>
           <div id="garden-history"></div>
+          <div id="plan-section"></div>
           <p id="garden-empty-msg" class="garden-empty">No crops saved yet.<br>Tap any crop to add it to your garden.</p>
         </div>
         <div id="subtab-seeds" hidden></div>
@@ -279,6 +280,15 @@
             <img id="journal-photo-preview" class="journal-photo-preview" alt="">
             <button id="journal-photo-clear" class="journal-photo-clear" title="Remove photo">✕</button>
           </div>
+        </div>
+        <div id="journal-search-bar">
+          <input type="search" id="journal-search-input" placeholder="Search journal…" autocomplete="off">
+          <select id="journal-date-filter" aria-label="Filter by date">
+            <option value="all">All time</option>
+            <option value="week">Past week</option>
+            <option value="month">Past month</option>
+          </select>
+          <span id="journal-match-count"></span>
         </div>
         <div id="journal-filter-bar"></div>
         <div id="journal-list"></div>

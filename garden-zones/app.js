@@ -323,6 +323,9 @@ let gardenBeds = {};
 let currentPanelTab = 'calendar';
 let mySeeds = {};
 let cropRotation = [];
+let myPlan = {};
+let myVarieties = {};
+let journalSearchQuery = '';
 let layoutMode = localStorage.getItem('pzf-layout') || 'map';
 let journalEntries = [];
 let _photoDB = null;
@@ -1127,6 +1130,7 @@ function openCropDetail(name) {
   renderModalGardenBar(name);
   renderModalGardenSections(name);
   if (!c.custom) renderRelatedCrops(name);
+  if (!c.custom) renderVarietyHistory(name);
   if (!modal.open) modal.showModal();
 }
 
@@ -1450,7 +1454,7 @@ function renderBrowseGrid() {
   }
 
   if (browseSearch) {
-    crops = crops.filter(([name]) => name.toLowerCase().includes(browseSearch));
+    crops = crops.filter(([name]) => cropMatchesQuery(name, browseSearch));
   }
 
   if (browseDifficulty) {
@@ -1549,7 +1553,11 @@ function gardenAdd(name) {
   haptic([10, 40, 5]);
   maybeRequestReview();
 }
-function gardenRemove(name) { archiveGardenEntry(name); delete myGarden[name]; saveGarden(); refreshGardenUI(name); haptic(5); }
+function gardenRemove(name) {
+  const hadPlanted = !!myGarden[name]?.planted;
+  archiveGardenEntry(name); delete myGarden[name]; saveGarden(); refreshGardenUI(name); haptic(5);
+  if (hadPlanted) promptVarietyLog(name);
+}
 
 // ── Phase 22: Pest & Problem log ─────────────────
 function gardenLogProblem(name, type, notes) {
@@ -2000,7 +2008,7 @@ function renderGardenTab() {
   const emptyMsg = document.getElementById('garden-empty-msg');
   if (!list) return;
   const names = Object.keys(myGarden);
-  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; renderGardenBeds(); renderCompanionMatrix(); renderGardenHistory(); return; }
+  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; renderGardenBeds(); renderCompanionMatrix(); renderGardenHistory(); renderPlanSection(); return; }
   if (emptyMsg) emptyMsg.hidden = true;
 
   const groups = { ready: [], growing: [], saved: [] };
@@ -2067,6 +2075,7 @@ function renderGardenTab() {
   renderGardenFooter();
   renderGardenHistory();
   renderGrowNext();
+  renderPlanSection();
   checkAchievements();
 }
 
@@ -2217,9 +2226,15 @@ function renderModalGardenBar(name) {
   const hasSeeds = myGarden[name]?.hasSeeds || false;
   const today = new Date().toISOString().slice(0,10);
   if (!inG) {
+    const inPlan = Object.values(myPlan).some(yr => yr[name]);
     bar.className = 'bar-add';
-    bar.innerHTML = `<button class="modal-garden-btn" id="modal-garden-add">☆ Add to My Garden</button>`;
+    bar.innerHTML = `<button class="modal-garden-btn" id="modal-garden-add">☆ Add to My Garden</button>
+      <button class="modal-plan-btn${inPlan ? ' modal-plan-btn--active' : ''}" id="modal-plan-btn">${inPlan ? '📋 Planned' : '📋 Plan'}</button>`;
     bar.querySelector('#modal-garden-add').addEventListener('click', () => gardenAdd(name));
+    bar.querySelector('#modal-plan-btn').addEventListener('click', () => {
+      if (inPlan) { removeFromPlan(name, new Date().getFullYear()+1); renderModalGardenBar(name); }
+      else { addToPlan(name, new Date().getFullYear()+1, [], ''); renderModalGardenBar(name); }
+    });
   } else {
     const reminderVal = myGarden[name]?.reminder || '';
     bar.className = 'bar-saved';
@@ -2291,6 +2306,8 @@ function initGarden() {
 
   loadSeeds();
   loadRotation();
+  loadPlan();
+  loadVarieties();
 
   document.getElementById('panel-tabs')?.addEventListener('click', e => {
     const tab = e.target.closest('.ptab');
@@ -2838,6 +2855,8 @@ function renderModalGardenSections(name) {
 
   // Succession section
   renderSuccessionSection(name);
+  // Phase 58: Hardening off
+  renderHardeningSection(name);
   // Phase 22: Problems
   renderModalProblems(name);
   // Phase 44: Photos
@@ -4006,7 +4025,7 @@ function renderPlantingScheduleHTML(name) {
 
 // ── Phase 2: Garden export / import ─────────────
 // ── Phase 33: Full garden backup export ──────────
-const BACKUP_KEYS = ['pzf-garden','pzf-journal','pzf-beds','pzf-custom-crops','pzf-history','pzf-achievements','pzf-seeds','pzf-rotation'];
+const BACKUP_KEYS = ['pzf-garden','pzf-journal','pzf-beds','pzf-custom-crops','pzf-history','pzf-achievements','pzf-seeds','pzf-rotation','pzf-plan','pzf-varieties'];
 
 async function exportGarden() {
   const backup = {
@@ -4340,12 +4359,18 @@ async function addJournalEntry(text, cropTag) {
     const wrap = document.getElementById('journal-photo-preview-wrap');
     if (wrap) wrap.hidden = true;
   }
+  // Phase 57: weather snapshot auto-tag
+  const weatherSnap = (() => {
+    if (!weatherData?.current) return null;
+    return { tempF: Math.round(weatherData.current.temperature_2m), emoji: getWmoIcon(weatherData.current.weather_code) };
+  })();
   journalEntries.unshift({
     id: Date.now(),
     date: new Date().toISOString(),
     text: trimmed,
     crop: cropTag || null,
     ...(photoId != null && { photoId }),
+    ...(weatherSnap && { weather: weatherSnap }),
   });
   saveJournal();
   checkAchievements();
@@ -4386,9 +4411,28 @@ function renderJournalTab() {
   updateJournalCropSelect();
   renderJournalFilterBar();
 
-  const entries = journalFilterCrop
+  // Phase 57: apply search + date filters
+  const now = new Date(); now.setHours(23,59,59,999);
+  const weekAgo  = new Date(now); weekAgo.setDate(now.getDate() - 7);
+  const monthAgo = new Date(now); monthAgo.setMonth(now.getMonth() - 1);
+  const dateFilter = document.getElementById('journal-date-filter')?.value || 'all';
+
+  let entries = journalFilterCrop
     ? journalEntries.filter(e => e.crop === journalFilterCrop)
     : journalEntries;
+
+  if (journalSearchQuery) {
+    const q = journalSearchQuery.toLowerCase();
+    entries = entries.filter(e => (e.text || '').toLowerCase().includes(q) || (e.crop || '').toLowerCase().includes(q));
+  }
+  if (dateFilter === 'week')  entries = entries.filter(e => new Date(e.date) >= weekAgo);
+  if (dateFilter === 'month') entries = entries.filter(e => new Date(e.date) >= monthAgo);
+
+  const matchCount = document.getElementById('journal-match-count');
+  if (matchCount) {
+    const filtered = journalSearchQuery || dateFilter !== 'all' || journalFilterCrop;
+    matchCount.textContent = filtered ? `${entries.length} result${entries.length !== 1 ? 's' : ''}` : '';
+  }
 
   if (!entries.length) {
     list.innerHTML = '';
@@ -4402,6 +4446,7 @@ function renderJournalTab() {
     const dateStr = d.toLocaleDateString(undefined, { weekday:'short', year:'numeric', month:'short', day:'numeric' })
                   + ' · ' + d.toLocaleTimeString(undefined, { hour:'2-digit', minute:'2-digit' });
     const tagHtml = e.crop ? `<span class="journal-entry-crop-tag">${cropData[e.crop]?.emoji || '🌱'} ${e.crop}</span>` : '';
+    const weatherHtml = e.weather ? `<span class="journal-entry-weather">${e.weather.emoji} ${e.weather.tempF}°F</span>` : '';
     const photoHtml = e.photoId != null
       ? `<img class="journal-entry-photo" data-photo-id="${e.photoId}" alt="Garden photo" loading="lazy">`
       : '';
@@ -4409,7 +4454,7 @@ function renderJournalTab() {
       ? `<div class="journal-entry-text">${e.text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>`
       : '';
     return `<div class="journal-entry" data-id="${e.id}">
-      ${tagHtml}
+      <div class="journal-entry-meta">${tagHtml}${weatherHtml}</div>
       <div class="journal-entry-date">${dateStr}</div>
       ${textHtml}
       ${photoHtml}
@@ -4490,6 +4535,13 @@ function initJournal() {
     journalFilterCrop = chip.dataset.crop;
     renderJournalTab();
   });
+
+  // Phase 57: search input + date filter
+  document.getElementById('journal-search-input')?.addEventListener('input', e => {
+    journalSearchQuery = e.target.value;
+    renderJournalTab();
+  });
+  document.getElementById('journal-date-filter')?.addEventListener('change', () => renderJournalTab());
 }
 
 // ── Phase 9: Achievements ─────────────────────────
@@ -4720,7 +4772,7 @@ function renderQSResults(query) {
   const q = query.trim().toLowerCase();
   if (!q) { el.innerHTML = ''; _qsResults = []; _qsSelectedIdx = -1; return; }
   const allNames = Object.keys(cropData).sort();
-  _qsResults = allNames.filter(n => n.toLowerCase().includes(q)).slice(0, 8);
+  _qsResults = allNames.filter(n => cropMatchesQuery(n, q)).slice(0, 8);
   _qsSelectedIdx = _qsResults.length ? 0 : -1;
   if (!_qsResults.length) {
     el.innerHTML = `<div class="qs-empty">No crops found for "${query.replace(/&/g,'&amp;').replace(/</g,'&lt;')}"</div>`;
@@ -4729,9 +4781,13 @@ function renderQSResults(query) {
   el.innerHTML = _qsResults.map((name, i) => {
     const c = cropData[name];
     const inG = isInGarden(name);
+    const aliasMatch = c?.aliases?.find(a => a.toLowerCase().includes(q));
     return `<div class="qs-result${i === 0 ? ' qs-selected' : ''}" data-idx="${i}" data-name="${name}">
       <span class="qs-emoji">${c?.emoji || '🌱'}</span>
-      <span class="qs-name">${name}</span>
+      <div class="qs-name-wrap">
+        <span class="qs-name">${name}</span>
+        ${aliasMatch ? `<span class="qs-alias">aka ${aliasMatch}</span>` : ''}
+      </div>
       ${inG ? '<span class="qs-in-garden">★ Saved</span>' : ''}
       ${c?.days ? `<span class="qs-days">${c.days}</span>` : ''}
     </div>`;
@@ -5083,6 +5139,29 @@ function renderGardenBeds() {
           ${assignOpts}
         </select>` : ''}
         ${rotHistory}
+        <div class="bed-micro-row">
+          <button class="bed-micro-toggle" data-bed="${id}">🌡 Soil &amp; climate</button>
+          <div class="bed-micro-fields" id="bed-micro-${id}" hidden>
+            <label class="bed-micro-label">pH
+              <input type="number" class="bed-micro-input" data-bed="${id}" data-field="soilPh" value="${bed.soilPh||''}" min="4" max="9" step="0.1" placeholder="6.5">
+            </label>
+            <label class="bed-micro-label">Sun hrs
+              <input type="number" class="bed-micro-input" data-bed="${id}" data-field="sunHours" value="${bed.sunHours||''}" min="0" max="14" step="0.5" placeholder="6">
+            </label>
+            <label class="bed-micro-label">Drainage
+              <select class="bed-micro-select" data-bed="${id}" data-field="drainage">
+                <option value="">—</option>
+                <option value="poor"      ${bed.drainage==='poor'?'selected':''}>Poor</option>
+                <option value="moderate"  ${bed.drainage==='moderate'?'selected':''}>Moderate</option>
+                <option value="good"      ${bed.drainage==='good'?'selected':''}>Good</option>
+                <option value="excellent" ${bed.drainage==='excellent'?'selected':''}>Excellent</option>
+              </select>
+            </label>
+            <label class="bed-micro-label" style="grid-column:1/-1">Notes
+              <input type="text" class="bed-micro-input" data-bed="${id}" data-field="microNotes" value="${(bed.microNotes||'').replace(/"/g,'&quot;')}" placeholder="e.g. raised bed, clay soil…">
+            </label>
+          </div>
+        </div>
       </div>`;
     }
     html += `</div>`;
@@ -5146,6 +5225,22 @@ function renderGardenBeds() {
     sel.addEventListener('change', e => {
       if (e.target.value) { assignCropToBed(e.target.value, e.target.dataset.bed); e.target.value = ''; }
     });
+  });
+
+  // Micro-climate toggle
+  el.querySelectorAll('.bed-micro-toggle').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const fields = document.getElementById(`bed-micro-${btn.dataset.bed}`);
+      if (fields) { fields.hidden = !fields.hidden; btn.classList.toggle('active', !fields.hidden); }
+    });
+  });
+  // Micro-climate inputs
+  el.querySelectorAll('.bed-micro-input').forEach(inp => {
+    inp.addEventListener('change', () => saveBedNotes(inp.dataset.bed, inp.dataset.field, inp.value));
+  });
+  el.querySelectorAll('.bed-micro-select').forEach(sel => {
+    sel.addEventListener('change', () => saveBedNotes(sel.dataset.bed, sel.dataset.field, sel.value));
   });
 }
 
@@ -6161,4 +6256,293 @@ function renderFABSheet() {
       closeFAB();
     });
   });
+}
+
+// ════════════════════════════════════════════════
+// Phase 56 — Crop data expansion + alias search
+// ════════════════════════════════════════════════
+function cropMatchesQuery(name, q) {
+  if (!q) return true;
+  const lq = q.toLowerCase();
+  if (name.toLowerCase().includes(lq)) return true;
+  const c = cropData[name];
+  if (c?.aliases?.some(a => a.toLowerCase().includes(lq))) return true;
+  return false;
+}
+
+// ════════════════════════════════════════════════
+// Phase 58 — Hardening-off scheduler
+// ════════════════════════════════════════════════
+const HARDENING_STEPS = [
+  { day: 1,  desc: '1h outside in sheltered, shady spot' },
+  { day: 2,  desc: '2h outside, partial shade' },
+  { day: 3,  desc: '3h outside, morning sun OK' },
+  { day: 4,  desc: '4h outside, some direct sun' },
+  { day: 5,  desc: '5h outside, dappled sun' },
+  { day: 6,  desc: '6h outside, more sun exposure' },
+  { day: 7,  desc: 'Rest day indoors if cool weather expected' },
+  { day: 8,  desc: '6h, full morning sun' },
+  { day: 9,  desc: '7h, light breeze OK' },
+  { day: 10, desc: '8h outside, check soil moisture carefully' },
+  { day: 11, desc: '9h, overnight in cold frame if available' },
+  { day: 12, desc: 'Overnight outside if no frost forecast' },
+  { day: 13, desc: 'Full day and night outside' },
+  { day: 14, desc: 'Ready to transplant! 🌱' },
+];
+
+function startHardeningSchedule(name) {
+  if (!myGarden[name]) return;
+  myGarden[name].hardeningLog = {
+    started: new Date().toISOString().slice(0, 10),
+    steps: HARDENING_STEPS.map(s => ({ ...s, done: false, doneDate: null })),
+  };
+  saveGarden();
+  renderHardeningSection(name);
+  showToast('🌿 Hardening schedule started!', 'success');
+}
+
+function renderHardeningSection(name) {
+  const body = document.getElementById('modal-body');
+  if (!body) return;
+  body.querySelector('.modal-hardening-section')?.remove();
+  if (!isInGarden(name)) return;
+
+  const sec = document.createElement('div');
+  sec.className = 'modal-section modal-hardening-section';
+  const hardenLog = myGarden[name]?.hardeningLog;
+
+  if (!hardenLog) {
+    sec.innerHTML = `<div class="hardening-start">
+      <button class="hardening-start-btn" id="hardening-start-btn">🌿 Start hardening-off schedule</button>
+      <p class="hardening-hint">14-step guide to gradually acclimatise seedlings to outdoor conditions.</p>
+    </div>`;
+    body.appendChild(sec);
+    sec.querySelector('#hardening-start-btn')?.addEventListener('click', () => startHardeningSchedule(name));
+    return;
+  }
+
+  const steps = hardenLog.steps;
+  const done = steps.filter(s => s.done).length;
+  const pct = Math.round((done / steps.length) * 100);
+  sec.innerHTML = `<div class="modal-section-title">🌿 Hardening off
+    <span class="hardening-progress-text">${done}/${steps.length}</span>
+  </div>
+  <div class="hardening-progress-bar"><div class="hardening-progress-fill" style="width:${pct}%"></div></div>
+  <div class="hardening-steps">
+    ${steps.map((s, i) => `<label class="hardening-step${s.done ? ' hardening-step--done' : ''}">
+      <input type="checkbox" class="hardening-check" data-index="${i}" ${s.done ? 'checked' : ''}>
+      <span class="hardening-day">Day ${s.day}</span>
+      <span class="hardening-desc">${s.desc}</span>
+      ${s.doneDate ? `<span class="hardening-date">${s.doneDate}</span>` : ''}
+    </label>`).join('')}
+  </div>
+  <button class="hardening-reset-btn" id="hardening-reset-btn">Reset schedule</button>`;
+  body.appendChild(sec);
+
+  sec.querySelector('#hardening-reset-btn')?.addEventListener('click', () => {
+    delete myGarden[name].hardeningLog;
+    saveGarden();
+    renderHardeningSection(name);
+  });
+  sec.querySelectorAll('.hardening-check').forEach(chk => {
+    chk.addEventListener('change', () => {
+      const idx = parseInt(chk.dataset.index);
+      myGarden[name].hardeningLog.steps[idx].done = chk.checked;
+      myGarden[name].hardeningLog.steps[idx].doneDate = chk.checked ? new Date().toISOString().slice(0, 10) : null;
+      saveGarden();
+      const fill = sec.querySelector('.hardening-progress-fill');
+      const txt  = sec.querySelector('.hardening-progress-text');
+      const newDone = myGarden[name].hardeningLog.steps.filter(s => s.done).length;
+      if (fill) fill.style.width = Math.round((newDone / steps.length) * 100) + '%';
+      if (txt)  txt.textContent = `${newDone}/${steps.length}`;
+      chk.closest('.hardening-step')?.classList.toggle('hardening-step--done', chk.checked);
+    });
+  });
+}
+
+// ════════════════════════════════════════════════
+// Phase 59 — Year planner
+// ════════════════════════════════════════════════
+function loadPlan() {
+  try { myPlan = JSON.parse(localStorage.getItem('pzf-plan') || '{}'); }
+  catch { myPlan = {}; }
+}
+function savePlan() { localStorage.setItem('pzf-plan', JSON.stringify(myPlan)); }
+
+function addToPlan(name, year, targetMonths, notes) {
+  if (!myPlan[year]) myPlan[year] = {};
+  myPlan[year][name] = { targetMonths: targetMonths || [], notes: notes || '', added: new Date().toISOString().slice(0, 10) };
+  savePlan();
+  showToast(`📋 ${name} added to ${year} plan`, 'success');
+}
+
+function removeFromPlan(name, year) {
+  const y = year || Object.keys(myPlan).find(yr => myPlan[yr][name]);
+  if (y && myPlan[y]) {
+    delete myPlan[y][name];
+    if (!Object.keys(myPlan[y]).length) delete myPlan[y];
+    savePlan();
+  }
+}
+
+function activatePlanCrop(name) {
+  gardenAdd(name);
+  removeFromPlan(name);
+  showToast(`🌱 ${name} moved to active garden!`, 'success');
+  renderModalGardenBar(name);
+}
+
+function renderPlanSection() {
+  const el = document.getElementById('plan-section');
+  if (!el) return;
+  const years = Object.keys(myPlan).sort();
+  if (!years.length) { el.innerHTML = ''; return; }
+  let html = `<div class="plan-section-title">📋 Planned Crops</div>`;
+  for (const yr of years) {
+    const crops = Object.entries(myPlan[yr]);
+    if (!crops.length) continue;
+    html += `<div class="plan-year-label">${yr}</div><div class="plan-crops-list">`;
+    for (const [name, info] of crops) {
+      const c = cropData[name];
+      html += `<div class="plan-crop-item" data-crop="${name}">
+        <span class="plan-crop-emoji">${c?.emoji || '🌱'}</span>
+        <span class="plan-crop-name">${name}</span>
+        ${info.notes ? `<span class="plan-crop-notes">${info.notes}</span>` : ''}
+        <button class="plan-activate-btn" data-crop="${name}" title="Move to active garden">▶ Grow now</button>
+        <button class="plan-remove-btn" data-crop="${name}" data-year="${yr}" title="Remove">×</button>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+  el.innerHTML = html;
+  el.querySelectorAll('.plan-activate-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); activatePlanCrop(btn.dataset.crop); renderPlanSection(); });
+  });
+  el.querySelectorAll('.plan-remove-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); removeFromPlan(btn.dataset.crop, btn.dataset.year); renderPlanSection(); });
+  });
+  el.querySelectorAll('.plan-crop-item').forEach(item => {
+    item.addEventListener('click', () => openCropDetail(item.dataset.crop));
+  });
+}
+
+// ════════════════════════════════════════════════
+// Phase 60 — Bed micro-climate & soil notes
+// ════════════════════════════════════════════════
+function saveBedNotes(bedId, field, value) {
+  if (!gardenBeds[bedId]) return;
+  gardenBeds[bedId][field] = value;
+  saveBeds();
+}
+
+function getBedCompatibility(bedId, name) {
+  const bed = gardenBeds[bedId];
+  const c = cropData[name];
+  if (!bed || !c) return [];
+  const issues = [];
+  if (bed.sunHours !== undefined && bed.sunHours !== '' && c.sun) {
+    const sun = c.sun.toLowerCase();
+    const hrs = parseFloat(bed.sunHours);
+    if (!isNaN(hrs)) {
+      if (sun.includes('full') && !sun.includes('partial') && hrs < 6) issues.push(`⚠️ Needs 6+ hrs sun (bed ~${hrs}h)`);
+      if (sun.includes('shade') && hrs > 4) issues.push(`⚠️ Prefers shade (bed ~${hrs}h)`);
+    }
+  }
+  if (bed.soilPh && c.soil_ph) {
+    const bedPh = parseFloat(bed.soilPh);
+    const phMatch = c.soil_ph.match(/([\d.]+)\s*[-–]\s*([\d.]+)/);
+    if (!isNaN(bedPh) && phMatch) {
+      const lo = parseFloat(phMatch[1]);
+      const hi = parseFloat(phMatch[2]);
+      if (bedPh < lo - 0.3) issues.push(`⚠️ pH ${bedPh} low (wants ${lo}–${hi})`);
+      if (bedPh > hi + 0.3) issues.push(`⚠️ pH ${bedPh} high (wants ${lo}–${hi})`);
+    }
+  }
+  return issues;
+}
+
+// ════════════════════════════════════════════════
+// Phase 61 — Variety performance tracker
+// ════════════════════════════════════════════════
+function loadVarieties() {
+  try { myVarieties = JSON.parse(localStorage.getItem('pzf-varieties') || '{}'); }
+  catch { myVarieties = {}; }
+}
+function saveVarieties() { localStorage.setItem('pzf-varieties', JSON.stringify(myVarieties)); }
+
+function logVariety(name, variety, rating, notes) {
+  if (!myVarieties[name]) myVarieties[name] = [];
+  myVarieties[name].unshift({
+    variety: variety || 'Unknown variety',
+    year: new Date().getFullYear(),
+    rating: rating || 0,
+    notes: notes || '',
+    logged: new Date().toISOString().slice(0, 10),
+  });
+  saveVarieties();
+}
+
+function promptVarietyLog(name) {
+  const c = cropData[name];
+  const overlay = document.createElement('div');
+  overlay.className = 'variety-log-overlay';
+  const presets = c?.varieties?.length
+    ? c.varieties.map(v => `<button class="variety-preset-btn" data-v="${v}">${v}</button>`).join('')
+    : '';
+  overlay.innerHTML = `<div class="variety-log-sheet">
+    <div class="variety-log-title">📝 How did ${name} grow?</div>
+    <p class="variety-log-sub">Log your variety to track performance year-over-year.</p>
+    ${presets ? `<div class="variety-presets">${presets}</div>` : ''}
+    <input type="text" id="vl-variety" placeholder="Variety name (e.g. Sungold, Brandywine…)" class="variety-log-input">
+    <div class="variety-rating" id="vl-rating">
+      ${[1,2,3,4,5].map(n => `<button class="variety-star" data-r="${n}">★</button>`).join('')}
+    </div>
+    <textarea id="vl-notes" placeholder="Notes — yield, issues, would grow again?" rows="2" class="variety-log-textarea"></textarea>
+    <div class="variety-log-btns">
+      <button class="variety-log-save-btn" id="vl-save">Save</button>
+      <button class="variety-log-skip-btn" id="vl-skip">Skip</button>
+    </div>
+  </div>`;
+  document.body.appendChild(overlay);
+
+  let selectedRating = 0;
+  overlay.querySelectorAll('.variety-star').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedRating = parseInt(btn.dataset.r);
+      overlay.querySelectorAll('.variety-star').forEach((b, i) => b.classList.toggle('active', i < selectedRating));
+    });
+  });
+  overlay.querySelectorAll('.variety-preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => { document.getElementById('vl-variety').value = btn.dataset.v; });
+  });
+  overlay.querySelector('#vl-save')?.addEventListener('click', () => {
+    const variety = document.getElementById('vl-variety')?.value.trim();
+    const notes   = document.getElementById('vl-notes')?.value.trim();
+    logVariety(name, variety, selectedRating, notes);
+    showToast(`📝 Variety logged for ${name}!`, 'success');
+    document.body.removeChild(overlay);
+  });
+  overlay.querySelector('#vl-skip')?.addEventListener('click', () => document.body.removeChild(overlay));
+}
+
+function renderVarietyHistory(name) {
+  const body = document.getElementById('modal-body');
+  if (!body) return;
+  body.querySelector('.modal-variety-section')?.remove();
+  const records = myVarieties[name];
+  if (!records?.length) return;
+
+  const stars = n => '★'.repeat(n) + '☆'.repeat(5 - n);
+  const sec = document.createElement('div');
+  sec.className = 'modal-section modal-variety-section';
+  sec.innerHTML = `<div class="modal-section-title">📊 Variety history</div>
+    <div class="variety-history-list">
+      ${records.map(r => `<div class="variety-record">
+        <span class="variety-record-name">${r.variety}</span>
+        <span class="variety-record-year">${r.year}</span>
+        <span class="variety-record-stars">${stars(r.rating)}</span>
+        ${r.notes ? `<span class="variety-record-notes">${r.notes}</span>` : ''}
+      </div>`).join('')}
+    </div>`;
+  body.appendChild(sec);
 }
