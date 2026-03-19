@@ -586,6 +586,7 @@ function renderPanel() {
   renderGardenDashboard();
   renderCountdownCards();
   renderWeatherStrip();
+  renderPlantingForecast();
   renderWateringAlert();
   renderThisWeek();
   renderFrostAlertBanner();
@@ -1881,6 +1882,7 @@ async function fetchWeatherAndUpdate() {
   if (!selectedLat || !selectedLng) return;
   await fetchWeather(selectedLat, selectedLng);
   renderWeatherStrip();
+  renderPlantingForecast();
   renderFrostAlertBanner();
   renderWateringAlert();
   renderThisWeek();
@@ -1939,6 +1941,73 @@ function renderWeatherStrip() {
     </div>
     <div class="wx-forecast">${forecast}</div>
     <div class="wx-attribution">${selectedLocationName ? `📍 ${selectedLocationName} · ` : ''}Weather: Open-Meteo.com</div>`;
+  el.hidden = false;
+}
+
+// ── Phase 21: Planting Day Forecast ──────────────
+function scorePlantingDay(hi, lo, prec, wmo) {
+  let score = 100;
+  // Frost / cold nights
+  if      (lo < 32) score -= 70;
+  else if (lo < 38) score -= 45;
+  else if (lo < 45) score -= 15;
+  // Cold days
+  if      (hi < 45) score -= 30;
+  else if (hi < 55) score -= 10;
+  // Heat
+  if      (hi > 95) score -= 25;
+  else if (hi > 88) score -= 10;
+  // Rain / precip
+  if      (prec > 0.5)  score -= 40;
+  else if (prec > 0.2)  score -= 18;
+  else if (prec > 0.05) score -= 5;
+  // Severe weather via WMO code
+  if      (wmo >= 95)                  score -= 45; // thunderstorm
+  else if (wmo >= 71 && wmo <= 77)    score -= 55; // snow
+  else if (wmo >= 65 && wmo <= 67)    score -= 25; // heavy rain
+  return Math.max(0, Math.round(score));
+}
+
+function renderPlantingForecast() {
+  const el = document.getElementById('planting-forecast');
+  if (!el) return;
+  if (!weatherData?.daily?.temperature_2m_max || !selectedZone) { el.hidden = true; return; }
+
+  const d = weatherData.daily;
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const todayIdx = Math.max(0, d.time.findIndex(t => t === todayStr));
+  const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const fmt = f => useMetric ? `${Math.round((f - 32) * 5 / 9)}°` : `${Math.round(f)}°`;
+
+  const days = d.time.slice(todayIdx, todayIdx + 7).map((date, i) => {
+    const idx   = todayIdx + i;
+    const hi    = d.temperature_2m_max[idx];
+    const lo    = d.temperature_2m_min[idx];
+    const prec  = d.precipitation_sum[idx] || 0;
+    const wmo   = d.weather_code[idx];
+    const score = scorePlantingDay(hi, lo, prec, wmo);
+    const lbl   = i === 0 ? 'Today' : i === 1 ? 'Tmrw' : DAYS[new Date(date + 'T12:00:00').getDay()];
+    return { lbl, hi, lo, wmo, score };
+  });
+
+  const bestScore = Math.max(...days.map(d => d.score));
+  const bestIdx   = days.findIndex(d => d.score === bestScore);
+
+  const ratingLabel = s => s >= 80 ? 'Great' : s >= 60 ? 'Good' : s >= 40 ? 'Fair' : s >= 20 ? 'Poor' : 'Bad';
+  const ratingClass = s => s >= 80 ? 'pf--great' : s >= 60 ? 'pf--good' : s >= 40 ? 'pf--fair' : s >= 20 ? 'pf--poor' : 'pf--bad';
+
+  const cards = days.map((day, i) => `
+    <div class="pf-day${i === bestIdx && bestScore >= 40 ? ' pf-day--best' : ''}">
+      ${i === bestIdx && bestScore >= 40 ? '<span class="pf-best-tag">\u2605 Best</span>' : ''}
+      <span class="pf-day-name">${day.lbl}</span>
+      <span class="pf-icon">${getWmoIcon(day.wmo)}</span>
+      <span class="pf-temp">${fmt(day.hi)}/${fmt(day.lo)}</span>
+      <span class="pf-badge ${ratingClass(day.score)}">${ratingLabel(day.score)}</span>
+    </div>`).join('');
+
+  el.innerHTML = `
+    <div class="pf-header"><span class="pf-title">\uD83C\uDF31 Best days to plant this week</span></div>
+    <div class="pf-strip">${cards}</div>`;
   el.hidden = false;
 }
 

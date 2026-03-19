@@ -3482,3 +3482,21 @@ body.garden-mode .plant-section ul {
 .tl-bar--pin { background: none; border: none; width: 20px; height: 20px; top: 2px; transform: translateX(-50%); font-size: 14px; padding: 0; justify-content: center; }
 .tl-bar span { color: var(--accent); font-weight: 700; }
 @keyframes tl-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.35); } 50% { box-shadow: 0 0 0 4px rgba(74,222,128,0); } }
+
+/* ── Phase 21: Planting Day Forecast ─────────────── */
+#planting-forecast { margin-bottom: 10px; }
+.pf-header { margin-bottom: 7px; }
+.pf-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.pf-strip { display: flex; gap: 5px; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+.pf-day { flex-shrink: 0; width: 62px; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 7px 4px 6px; text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.pf-day--best { border-color: var(--accent); background: rgba(74,222,128,0.06); }
+.pf-best-tag { position: absolute; top: -9px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #0a0f1a; font-size: 8px; font-weight: 800; padding: 1px 6px; border-radius: 99px; white-space: nowrap; }
+.pf-day-name { font-size: 10px; font-weight: 600; color: var(--text); }
+.pf-icon { font-size: 15px; line-height: 1.2; }
+.pf-temp { font-size: 9px; color: var(--text-muted); }
+.pf-badge { font-size: 9px; font-weight: 700; border-radius: 4px; padding: 1px 5px; }
+.pf--great { background: rgba(74,222,128,0.2);  color: #4ade80; }
+.pf--good  { background: rgba(134,239,172,0.15); color: #86efac; }
+.pf--fair  { background: rgba(251,191,36,0.15);  color: #fbbf24; }
+.pf--poor  { background: rgba(249,115,22,0.15);  color: #fb923c; }
+.pf--bad   { background: rgba(248,113,113,0.15); color: #f87171; }
