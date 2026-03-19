@@ -3413,3 +3413,43 @@ body.garden-mode .plant-section ul {
 .saved-loc-name { flex: 1; font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .saved-loc-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; flex-shrink: 0; font-size: 14px; line-height: 1; padding: 0 2px; transition: color 0.15s; }
 .saved-loc-remove:hover { color: #f87171; }
+
+/* ──────────────────────────────────────────────
+   Phase 18 — Enhanced planting schedule in modal
+────────────────────────────────────────────── */
+.sched-zone-badge {
+  background: rgba(74,222,128,0.12);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-left: 6px;
+  padding: 1px 6px;
+  text-transform: none;
+}
+.sched-next {
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+.sched-next--now  { background: rgba(74,222,128,0.12); border-color: rgba(74,222,128,0.35); }
+.sched-next--soon { background: rgba(251,191,36,0.09);  border-color: rgba(251,191,36,0.3); }
+
+.schedule-item--now { background: rgba(74,222,128,0.08); }
+.schedule-item-now-dot { color: var(--accent); font-size: 8px; margin-left: auto; }
+
+.sched-soil {
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 1.5;
+  margin-top: 8px;
+  padding: 7px 10px;
+}
+.sched-soil--ok   { background: rgba(74,222,128,0.07);  border: 1px solid rgba(74,222,128,0.2); }
+.sched-soil--cold { background: rgba(147,197,253,0.09); border: 1px solid rgba(147,197,253,0.3); }

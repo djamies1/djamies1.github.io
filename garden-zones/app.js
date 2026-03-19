@@ -2878,19 +2878,18 @@ function initSliderSwipe() {
 function computePlantingSchedule(name, zone) {
   if (!plantingData || !zone) return null;
   const MONTH_ABBR = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const result = { startIndoors: [], directSow: [], transplant: [], harvest: [] };
+  const raw = { startIndoors: [], directSow: [], transplant: [], harvest: [] };
 
   for (let m = 1; m <= 12; m++) {
     const d = getPlantingData(zone, m);
-    if (d.startIndoors?.includes(name))  result.startIndoors.push(m);
-    if (d.directSow?.includes(name))     result.directSow.push(m);
-    if (d.transplant?.includes(name))    result.transplant.push(m);
-    if (d.harvest?.includes(name))       result.harvest.push(m);
+    if (d.startIndoors?.includes(name)) raw.startIndoors.push(m);
+    if (d.directSow?.includes(name))    raw.directSow.push(m);
+    if (d.transplant?.includes(name))   raw.transplant.push(m);
+    if (d.harvest?.includes(name))      raw.harvest.push(m);
   }
 
   function formatMonths(arr) {
     if (!arr.length) return null;
-    // Compress to ranges
     const ranges = [];
     let start = arr[0], end = arr[0];
     for (let i = 1; i < arr.length; i++) {
@@ -2902,10 +2901,11 @@ function computePlantingSchedule(name, zone) {
   }
 
   return {
-    startIndoors: formatMonths(result.startIndoors),
-    directSow:    formatMonths(result.directSow),
-    transplant:   formatMonths(result.transplant),
-    harvest:      formatMonths(result.harvest),
+    startIndoors: formatMonths(raw.startIndoors),
+    directSow:    formatMonths(raw.directSow),
+    transplant:   formatMonths(raw.transplant),
+    harvest:      formatMonths(raw.harvest),
+    raw,
   };
 }
 
@@ -2915,21 +2915,85 @@ function renderPlantingScheduleHTML(name) {
   const sched = computePlantingSchedule(name, zone);
   if (!sched) return '';
 
-  const item = (cls, label, months) => `
-    <div class="schedule-item schedule-item--${cls}${months ? '' : ' schedule-item--none'}">
-      <span class="schedule-item-label">${label}</span>
-      <span class="schedule-item-months">${months || 'n/a for this zone'}</span>
+  const curMonth = new Date().getMonth() + 1;
+  const today    = new Date(); today.setHours(0, 0, 0, 0);
+
+  const ACTS = [
+    { key: 'startIndoors', cls: 'start',      icon: '🪴', label: 'Start Indoors' },
+    { key: 'directSow',    cls: 'sow',        icon: '🌱', label: 'Direct Sow'    },
+    { key: 'transplant',   cls: 'transplant', icon: '🌿', label: 'Transplant'    },
+    { key: 'harvest',      cls: 'harvest',    icon: '🌾', label: 'Harvest'       },
+  ];
+
+  // Find the next current or upcoming activity
+  let nextUp = null;
+  for (const act of ACTS) {
+    const months = sched.raw[act.key];
+    if (!months.length) continue;
+    if (months.includes(curMonth)) { nextUp = { ...act, status: 'now' }; break; }
+    const upcoming = months.filter(m => m > curMonth);
+    if (upcoming.length) {
+      const nextMonth = upcoming[0];
+      const daysUntil = Math.round((new Date(today.getFullYear(), nextMonth - 1, 1) - today) / 86400000);
+      nextUp = { ...act, status: 'upcoming', daysUntil, nextMonth }; break;
+    }
+  }
+  if (!nextUp) {
+    for (const act of ACTS) {
+      if (sched.raw[act.key].length) { nextUp = { ...act, status: 'next-year' }; break; }
+    }
+  }
+
+  const MO3 = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let nextUpHtml = '';
+  if (nextUp) {
+    if (nextUp.status === 'now')
+      nextUpHtml = `<div class="sched-next sched-next--now">${nextUp.icon} <strong>${nextUp.label} now</strong> — right time for your zone</div>`;
+    else if (nextUp.status === 'upcoming')
+      nextUpHtml = `<div class="sched-next sched-next--soon">${nextUp.icon} <strong>${nextUp.label}</strong> opens in ~${nextUp.daysUntil} days (${MO3[nextUp.nextMonth]})</div>`;
+    else
+      nextUpHtml = `<div class="sched-next">${nextUp.icon} Next season: <strong>${nextUp.label}</strong></div>`;
+  }
+
+  const item = act => {
+    const isNow = sched.raw[act.key].includes(curMonth);
+    const label = sched[act.key];
+    return `<div class="schedule-item schedule-item--${act.cls}${!label ? ' schedule-item--none' : ''}${isNow ? ' schedule-item--now' : ''}">
+      <span class="schedule-item-label">${act.label}</span>
+      <span class="schedule-item-months">${label || 'n/a for this zone'}</span>
+      ${isNow ? '<span class="schedule-item-now-dot" title="Active this month">●</span>' : ''}
     </div>`;
+  };
+
+  // Soil temp vs germination check (requires live weather data)
+  let soilHtml = '';
+  const c = cropData[name];
+  if (c?.germ_temp && weatherData?.daily) {
+    const germMatch = c.germ_temp.match(/(\d+)/);
+    if (germMatch) {
+      const minGerm = parseInt(germMatch[1], 10);
+      const d = weatherData.daily;
+      const todayStr = today.toISOString().slice(0, 10);
+      const todayIdx = Math.max(0, d.time.findIndex(t => t === todayStr));
+      const meanAir  = (d.temperature_2m_max[todayIdx] + d.temperature_2m_min[todayIdx]) / 2;
+      const soilF    = Math.round(0.85 * meanAir);
+      const soilC    = Math.round((soilF - 32) * 5 / 9);
+      const minGermC = Math.round((minGerm - 32) * 5 / 9);
+      const soilStr  = useMetric ? `${soilC}°C` : `${soilF}°F`;
+      const minStr   = useMetric ? `${minGermC}°C` : `${minGerm}°F`;
+      const ok       = soilF >= minGerm;
+      soilHtml = `<div class="sched-soil sched-soil--${ok ? 'ok' : 'cold'}">
+        🌡 Soil ~<strong>${soilStr}</strong> · Germ. min: ${minStr} · ${ok ? '✅ Good to sow outdoors' : '⚠️ Too cold to direct sow yet'}
+      </div>`;
+    }
+  }
 
   return `
     <div class="modal-schedule-section">
-      <h4>Planting Schedule — Zone ${zone}</h4>
-      <div class="schedule-grid">
-        ${item('start', 'Start Indoors', sched.startIndoors)}
-        ${item('sow', 'Direct Sow', sched.directSow)}
-        ${item('transplant', 'Transplant', sched.transplant)}
-        ${item('harvest', 'Harvest', sched.harvest)}
-      </div>
+      <h4>Your Schedule <span class="sched-zone-badge">Zone ${getZoneDisplayLabel(zone)}</span></h4>
+      ${nextUpHtml}
+      <div class="schedule-grid">${ACTS.map(item).join('')}</div>
+      ${soilHtml}
     </div>`;
 }
 
@@ -4256,3 +4320,4 @@ function initSavedLocations() {
     }
   });
 }
+
