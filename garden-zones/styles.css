@@ -3344,3 +3344,20 @@ body.garden-mode .plant-section ul {
   max-width: 95vw;
   object-fit: contain;
 }
+
+/* ──────────────────────────────────────────────
+   Phase 16 — Notification button
+────────────────────────────────────────────── */
+#notif-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 4px 7px;
+  transition: color 0.15s, border-color 0.15s;
+}
+#notif-btn:hover { color: var(--text); border-color: var(--text-muted); }
+#notif-btn.notif-on { border-color: var(--accent); color: var(--accent); }

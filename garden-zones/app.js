@@ -618,6 +618,8 @@ function initUI() {
   initCustomCrops();
   initCountrySelector();
   initShareModal();
+  initNotifBtn();
+  checkAndFireNotifications();
   initLayoutToggle();
   initInstallPrompt();
   initOfflineIndicator();
@@ -1801,6 +1803,7 @@ async function fetchWeatherAndUpdate() {
   renderFrostAlertBanner();
   renderWateringAlert();
   renderThisWeek();
+  checkFrostNotification();
 }
 
 function renderWeatherStrip() {
@@ -4011,5 +4014,96 @@ function resizeImage(file) {
       resolve(canvas.toDataURL('image/jpeg', 0.82));
     };
     img.src = url;
+  });
+}
+
+// ── Phase 16: Native Notifications ───────────────
+function notifGranted()   { return 'Notification' in window && Notification.permission === 'granted'; }
+function notifAvailable() { return 'Notification' in window && Notification.permission !== 'denied'; }
+
+function updateNotifBtn() {
+  const btn = document.getElementById('notif-btn');
+  if (!btn) return;
+  if (!('Notification' in window) || Notification.permission === 'denied') { btn.hidden = true; return; }
+  btn.hidden = false;
+  const on = notifGranted();
+  btn.textContent = on ? '🔔' : '🔕';
+  btn.title = on ? 'Notifications on' : 'Enable garden notifications';
+  btn.classList.toggle('notif-on', on);
+}
+
+async function requestNotifPermission() {
+  if (!('Notification' in window)) { showToast('Notifications not supported in this browser', 'info'); return; }
+  if (Notification.permission === 'denied') { showToast('Notifications blocked — check browser Site settings', 'info'); return; }
+  const result = await Notification.requestPermission();
+  updateNotifBtn();
+  if (result === 'granted') {
+    showToast('Garden notifications enabled ✓', 'success');
+    checkAndFireNotifications();
+  }
+}
+
+function fireNotif(title, body, tag) {
+  if (!notifGranted()) return;
+  const n = new Notification(title, {
+    body,
+    icon: '/garden-zones/icons/icon.svg',
+    badge: '/garden-zones/icons/icon.svg',
+    tag,
+  });
+  n.onclick = () => { window.focus(); n.close(); };
+}
+
+function checkAndFireNotifications() {
+  if (!notifGranted()) return;
+  const today = new Date().toISOString().slice(0, 10);
+
+  // Due reminders (once per day)
+  if (localStorage.getItem('pzf-notif-reminder') !== today) {
+    let fired = false;
+    for (const [name, entry] of Object.entries(myGarden)) {
+      if (!entry.reminder || entry.reminder > today) continue;
+      fireNotif(`🔔 ${name} reminder`, `Your garden reminder for ${name} is due`, `reminder-${name}`);
+      fired = true;
+    }
+    if (fired) localStorage.setItem('pzf-notif-reminder', today);
+  }
+
+  // Harvest ready (once per day)
+  if (localStorage.getItem('pzf-notif-harvest') !== today) {
+    const ready = Object.keys(myGarden).filter(n => getGardenStatus(n)?.type === 'ready');
+    if (ready.length === 1) {
+      fireNotif(`🌾 ${ready[0]} ready to harvest!`, 'Harvest countdown complete — time to pick!', 'harvest-ready');
+      localStorage.setItem('pzf-notif-harvest', today);
+    } else if (ready.length > 1) {
+      fireNotif(`🌾 ${ready.length} crops ready to harvest`, ready.slice(0, 3).join(', '), 'harvest-ready');
+      localStorage.setItem('pzf-notif-harvest', today);
+    }
+  }
+}
+
+function checkFrostNotification() {
+  if (!notifGranted()) return;
+  if (!weatherData?.daily?.temperature_2m_min) return;
+  const today = new Date().toISOString().slice(0, 10);
+  if (localStorage.getItem('pzf-notif-frost') === today) return;
+  const frostIdx = weatherData.daily.temperature_2m_min.slice(0, 2).findIndex(t => t < 35);
+  if (frostIdx === -1) return;
+  const atrisk = Object.keys(myGarden).filter(n => FROST_SENSITIVE.has(n) && myGarden[n]?.planted);
+  if (!atrisk.length) return;
+  const lbl = frostIdx === 0 ? 'tonight' : 'tomorrow';
+  const ns  = atrisk.slice(0, 3).join(', ') + (atrisk.length > 3 ? ` +${atrisk.length - 3} more` : '');
+  fireNotif(`❄️ Frost ${lbl} — act now`, `Cover or bring in: ${ns}`, 'frost-risk');
+  localStorage.setItem('pzf-notif-frost', today);
+}
+
+function initNotifBtn() {
+  updateNotifBtn();
+  document.getElementById('notif-btn')?.addEventListener('click', async () => {
+    if (notifGranted()) {
+      showToast('To disable, go to browser Settings → Site permissions', 'info');
+      return;
+    }
+    await requestNotifPermission();
   });
 }
