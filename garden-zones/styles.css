@@ -2981,3 +2981,156 @@ body.garden-mode .plant-section ul {
   background: rgba(74,222,128,0.15);
   opacity: 1;
 }
+
+/* ── Phase 12: Garden Beds ───────────────────────── */
+#garden-beds { margin-bottom: 16px; }
+.beds-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.beds-title { font-size: 12px; font-weight: 700; color: var(--text); }
+.beds-add-btn {
+  background: rgba(74,222,128,0.12);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  transition: background 0.15s;
+}
+.beds-add-btn:hover { background: rgba(74,222,128,0.22); }
+.beds-new-form {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+#bed-name-input {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 12px;
+  min-width: 0;
+  padding: 5px 9px;
+}
+#bed-name-input:focus { border-color: var(--accent-dark); outline: none; }
+#bed-emoji-input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 14px;
+  padding: 5px 7px;
+  text-align: center;
+  width: 48px;
+}
+#bed-save-btn {
+  background: rgba(74,222,128,0.12);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+}
+.bed-cancel {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 15px;
+  padding: 2px 4px;
+}
+.beds-empty { color: var(--text-muted); font-size: 12px; padding: 6px 0 10px; }
+.beds-grid { display: flex; flex-direction: column; gap: 8px; }
+.bed-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: border-color 0.15s;
+}
+.bed-card:hover { border-color: var(--accent-dark); }
+.bed-card-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+}
+.bed-card-emoji { font-size: 18px; flex-shrink: 0; }
+.bed-card-name { font-size: 13px; font-weight: 600; flex: 1; }
+.bed-card-count { font-size: 11px; color: var(--text-muted); }
+.bed-remove-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+  transition: color 0.15s;
+}
+.bed-remove-btn:hover { color: #f87171; }
+.bed-card-crops { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.bed-crop-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 3px 7px 3px 6px;
+  transition: border-color 0.15s;
+}
+.bed-crop-pill:hover { border-color: var(--accent-dark); }
+.bed-pill--growing { border-color: rgba(251,191,36,0.4); }
+.bed-pill--ready   { border-color: rgba(74,222,128,0.5); color: var(--accent); }
+.bed-pill-remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  margin-left: 1px;
+  padding: 0;
+  transition: color 0.15s;
+}
+.bed-pill-remove:hover { color: #f87171; }
+.bed-no-crops { color: var(--text-muted); font-size: 11px; font-style: italic; }
+.bed-assign-select {
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 4px 8px;
+  width: 100%;
+}
+.bed-assign-select:focus { border-color: var(--accent-dark); color: var(--text); outline: none; }
+/* Bed tag on garden list items */
+.garden-item-bed-tag {
+  display: inline-block;
+  font-size: 10px;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0 5px;
+  margin-top: 2px;
+}
+/* Bed select in modal */
+.modal-bed-select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 11px;
+  padding: 3px 6px;
+}

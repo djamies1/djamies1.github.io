@@ -268,6 +268,7 @@ let selectedCountry = localStorage.getItem('pzf-country') || 'us';
 let currentMonth = new Date().getMonth() + 1;
 
 let myGarden = {};
+let gardenBeds = {};
 let currentPanelTab = 'calendar';
 let layoutMode = localStorage.getItem('pzf-layout') || 'map';
 let journalEntries = [];
@@ -609,6 +610,7 @@ function initUI() {
   initBrowse();
   initYearCalendar();
   initGarden();
+  initBeds();
   initJournal();
   initChecklist();
   initCustomCrops();
@@ -1498,7 +1500,7 @@ function renderGardenTab() {
   const emptyMsg = document.getElementById('garden-empty-msg');
   if (!list) return;
   const names = Object.keys(myGarden);
-  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; return; }
+  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; renderGardenBeds(); return; }
   if (emptyMsg) emptyMsg.hidden = true;
 
   const groups = { ready: [], growing: [], saved: [] };
@@ -1531,6 +1533,7 @@ function renderGardenTab() {
           <div class="garden-item-info">
             <span class="garden-item-name">${name}${badges}</span>
             <span class="garden-item-status">${status?.label || ''}</span>
+            ${entry.bedId && gardenBeds[entry.bedId] ? `<span class="garden-item-bed-tag">${gardenBeds[entry.bedId].emoji} ${gardenBeds[entry.bedId].name}</span>` : ''}
             ${entry.harvestLog?.length ? `<span class="garden-last-harvest">🌾 Last harvest: ${entry.harvestLog[0].date}</span>` : ''}
             ${status?.stage ? `
             <div class="growth-bar-wrap" title="${status.stage.label}">
@@ -1552,6 +1555,7 @@ function renderGardenTab() {
   renderGardenDashboard();
   renderGardenTasks();
   renderGardenChecklist();
+  renderGardenBeds();
   renderGardenStats();
   renderGardenGantt();
   renderGardenFooter();
@@ -1629,6 +1633,12 @@ function renderModalGardenBar(name) {
         <label class="modal-garden-reminder-label">🔔
           <input type="date" id="modal-reminder-input" value="${reminderVal}" min="${today}" aria-label="Reminder date">
         </label>
+        ${Object.keys(gardenBeds).length ? `<select class="modal-bed-select" id="modal-bed-select" aria-label="Assign to bed">
+          <option value="">📍 No bed</option>
+          ${Object.entries(gardenBeds).map(([id, b]) =>
+            `<option value="${id}"${myGarden[name]?.bedId === id ? ' selected' : ''}>${b.emoji} ${b.name}</option>`
+          ).join('')}
+        </select>` : ''}
       </div>`;
     bar.querySelector('#modal-planted-input').addEventListener('change', e => gardenSetPlanted(name, e.target.value));
     bar.querySelector('#modal-garden-remove').addEventListener('click', () => gardenRemove(name));
@@ -1636,6 +1646,7 @@ function renderModalGardenBar(name) {
       if (myGarden[name]) { myGarden[name].hasSeeds = e.target.checked; saveGarden(); if (currentPanelTab === 'garden') renderGardenTab(); }
     });
     bar.querySelector('#modal-reminder-input').addEventListener('change', e => gardenSetReminder(name, e.target.value));
+    bar.querySelector('#modal-bed-select')?.addEventListener('change', e => assignCropToBed(name, e.target.value));
 
     // Inline star rating row
     const ratingDiv = document.createElement('div');
@@ -3498,6 +3509,163 @@ function renderGardenChecklist() {
 
 function initChecklist() {
   loadChecklist();
+}
+
+// ── Phase 12: Garden Beds ─────────────────────────
+function loadBeds() {
+  try { gardenBeds = JSON.parse(localStorage.getItem('pzf-beds') || '{}'); }
+  catch { gardenBeds = {}; }
+}
+function saveBeds() { localStorage.setItem('pzf-beds', JSON.stringify(gardenBeds)); }
+
+function addBed(name, emoji) {
+  const id = String(Date.now());
+  gardenBeds[id] = { name: name.trim(), emoji: emoji || '🌱' };
+  saveBeds();
+  renderGardenBeds();
+}
+
+function removeBed(id) {
+  for (const name of Object.keys(myGarden)) {
+    if (myGarden[name].bedId === id) { myGarden[name].bedId = null; }
+  }
+  saveGarden();
+  delete gardenBeds[id];
+  saveBeds();
+  renderGardenBeds();
+  if (currentPanelTab === 'garden') renderGardenTab();
+}
+
+function assignCropToBed(cropName, bedId) {
+  if (!myGarden[cropName]) return;
+  myGarden[cropName].bedId = bedId || null;
+  saveGarden();
+  renderGardenBeds();
+  if (currentPanelTab === 'garden') renderGardenTab();
+}
+
+function renderGardenBeds() {
+  const el = document.getElementById('garden-beds');
+  if (!el) return;
+
+  const bedIds = Object.keys(gardenBeds);
+  const gardenNames = Object.keys(myGarden);
+
+  // Map each bed → crops assigned to it
+  const bedCrops = {};
+  for (const id of bedIds) bedCrops[id] = [];
+  const unassigned = [];
+  for (const name of gardenNames) {
+    const bid = myGarden[name]?.bedId;
+    if (bid && gardenBeds[bid]) bedCrops[bid].push(name);
+    else unassigned.push(name);
+  }
+
+  let html = `<div class="beds-header">
+    <span class="beds-title">🛏 My Beds</span>
+    <button class="beds-add-btn" id="beds-add-btn">+ New bed</button>
+  </div>
+  <div class="beds-new-form" id="beds-new-form" hidden>
+    <input type="text" id="bed-name-input" placeholder="Bed name…" maxlength="30" autocomplete="off">
+    <input type="text" id="bed-emoji-input" placeholder="🪴" maxlength="4">
+    <button id="bed-save-btn">Add</button>
+    <button id="bed-cancel-btn" class="bed-cancel">✕</button>
+  </div>`;
+
+  if (!bedIds.length) {
+    html += `<p class="beds-empty">No beds yet — add one to organise crops by location.</p>`;
+  } else {
+    html += `<div class="beds-grid">`;
+    for (const id of bedIds) {
+      const bed = gardenBeds[id];
+      const crops = bedCrops[id];
+      const availableToAssign = gardenNames.filter(n => !myGarden[n]?.bedId || myGarden[n]?.bedId === id);
+
+      const cropPills = crops.map(name => {
+        const s = getGardenStatus(name);
+        const cls = s?.type === 'ready' ? 'bed-pill--ready' : s?.type === 'growing' ? 'bed-pill--growing' : '';
+        return `<span class="bed-crop-pill ${cls}" data-crop="${name}" title="Click to view">
+          ${cropData[name]?.emoji || '🌱'} ${name}
+          <button class="bed-pill-remove" data-crop="${name}" data-bed="${id}" aria-label="Remove from bed">×</button>
+        </span>`;
+      }).join('');
+
+      const assignOpts = availableToAssign
+        .filter(n => !crops.includes(n))
+        .map(n => `<option value="${n}">${cropData[n]?.emoji || '🌱'} ${n}</option>`)
+        .join('');
+
+      html += `<div class="bed-card">
+        <div class="bed-card-header">
+          <span class="bed-card-emoji">${bed.emoji}</span>
+          <span class="bed-card-name">${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
+          <span class="bed-card-count">${crops.length} crop${crops.length !== 1 ? 's' : ''}</span>
+          <button class="bed-remove-btn" data-bed="${id}" aria-label="Delete bed">×</button>
+        </div>
+        <div class="bed-card-crops">${cropPills || '<span class="bed-no-crops">No crops assigned</span>'}</div>
+        ${assignOpts ? `<select class="bed-assign-select" data-bed="${id}" aria-label="Assign crop to bed">
+          <option value="">+ Assign crop…</option>
+          ${assignOpts}
+        </select>` : ''}
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  el.innerHTML = html;
+
+  // New bed form
+  document.getElementById('beds-add-btn')?.addEventListener('click', () => {
+    const form = document.getElementById('beds-new-form');
+    if (form) { form.hidden = false; document.getElementById('bed-name-input')?.focus(); }
+  });
+  document.getElementById('bed-cancel-btn')?.addEventListener('click', () => {
+    const form = document.getElementById('beds-new-form');
+    if (form) form.hidden = true;
+  });
+  const doAddBed = () => {
+    const name  = document.getElementById('bed-name-input')?.value || '';
+    const emoji = document.getElementById('bed-emoji-input')?.value.trim() || '🪴';
+    if (name.trim()) {
+      addBed(name, emoji);
+      const form = document.getElementById('beds-new-form');
+      if (form) { form.hidden = true; document.getElementById('bed-name-input').value = ''; document.getElementById('bed-emoji-input').value = ''; }
+    }
+  };
+  document.getElementById('bed-save-btn')?.addEventListener('click', doAddBed);
+  document.getElementById('bed-name-input')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') doAddBed();
+    if (e.key === 'Escape') document.getElementById('bed-cancel-btn')?.click();
+  });
+
+  // Remove bed
+  el.querySelectorAll('.bed-remove-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); removeBed(btn.dataset.bed); });
+  });
+
+  // Remove crop from bed
+  el.querySelectorAll('.bed-pill-remove').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); assignCropToBed(btn.dataset.crop, null); });
+  });
+
+  // Click pill to open crop detail
+  el.querySelectorAll('.bed-crop-pill').forEach(pill => {
+    pill.addEventListener('click', e => {
+      if (e.target.closest('.bed-pill-remove')) return;
+      openCropDetail(pill.dataset.crop);
+    });
+  });
+
+  // Assign crop dropdown
+  el.querySelectorAll('.bed-assign-select').forEach(sel => {
+    sel.addEventListener('change', e => {
+      if (e.target.value) { assignCropToBed(e.target.value, e.target.dataset.bed); e.target.value = ''; }
+    });
+  });
+}
+
+function initBeds() {
+  loadBeds();
 }
 
 // ── Phase 11: Country selector ────────────────────

@@ -1,4 +1,4 @@
-const CACHE = 'plant-zone-v5';
+const CACHE = 'plant-zone-v6';
 const CORE = [
   '/garden-zones/',
   '/garden-zones/index.html',
