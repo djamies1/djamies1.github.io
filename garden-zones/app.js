@@ -490,7 +490,23 @@ const TILE_SIZE = 44;
 let gardenCanvas = { cols: 20, rows: 15 };
 let _mapSelectedBed = null;
 let _drag = null;
+let gardenStructures   = {};
+let _structureDrag     = null;
+let _mapSelectedStruct = null;
+let _resizeDrag        = null;
 const BED_COLORS = ['#2d5a27','#1a4a6b','#5a2d2d','#5a4a1a','#2d3d5a','#4a2d5a','#1a5a4a','#5a3d1a'];
+const BED_TYPES = {
+  'raised':      { label: 'Raised Bed',  emoji: '🪵' },
+  'in-ground':   { label: 'In-Ground',   emoji: '🌱' },
+  'container':   { label: 'Container',   emoji: '🪣' },
+  'herb-spiral': { label: 'Herb Spiral', emoji: '🌀' },
+};
+const STRUCTURE_TYPES = {
+  'house': { label: 'House', emoji: '🏠', color: '#5a5a5a', cssClass: 'gm-struct-house' },
+  'shed':  { label: 'Shed',  emoji: '🛖', color: '#8b6348', cssClass: 'gm-struct-shed'  },
+  'path':  { label: 'Path',  emoji: '🛤️', color: '#a08c64', cssClass: 'gm-struct-path'  },
+  'fence': { label: 'Fence', emoji: '🚧', color: '#b0845a', cssClass: 'gm-struct-fence' },
+};
 let currentPanelTab = 'calendar';
 let mySeeds = {};
 let cropRotation = [];
@@ -4370,7 +4386,7 @@ function renderPlantingScheduleHTML(name) {
 
 // ── Phase 2: Garden export / import ─────────────
 // ── Phase 33: Full garden backup export ──────────
-const BACKUP_KEYS = ['pzf-garden','pzf-journal','pzf-beds','pzf-custom-crops','pzf-history','pzf-achievements','pzf-seeds','pzf-rotation','pzf-plan','pzf-varieties'];
+const BACKUP_KEYS = ['pzf-garden','pzf-journal','pzf-beds','pzf-custom-crops','pzf-history','pzf-achievements','pzf-seeds','pzf-rotation','pzf-plan','pzf-varieties','pzf-structures'];
 
 async function exportGarden() {
   const backup = {
@@ -5415,6 +5431,7 @@ function loadBeds() {
     gardenBeds[ids[i]].cells ??= {};
     gardenBeds[ids[i]].cols ??= 4;
     gardenBeds[ids[i]].rows ??= 2;
+    gardenBeds[ids[i]].type ??= 'raised';
     // Phase 87: x/y undefined triggers auto-placement (not 0,0 which would stack)
     if (!Object.prototype.hasOwnProperty.call(gardenBeds[ids[i]], 'x')) gardenBeds[ids[i]].x = undefined;
     if (!Object.prototype.hasOwnProperty.call(gardenBeds[ids[i]], 'y')) gardenBeds[ids[i]].y = undefined;
@@ -5422,27 +5439,59 @@ function loadBeds() {
   autoPlaceBeds();
 }
 function saveBeds() { localStorage.setItem('pzf-beds', JSON.stringify(gardenBeds)); }
+function loadStructures() {
+  try { gardenStructures = JSON.parse(localStorage.getItem('pzf-structures') || '{}'); }
+  catch { gardenStructures = {}; }
+  for (const s of Object.values(gardenStructures)) {
+    s.cols  ??= 2;
+    s.rows  ??= 2;
+    s.color ??= STRUCTURE_TYPES[s.type]?.color || '#5a5a5a';
+  }
+}
+function saveStructures() {
+  localStorage.setItem('pzf-structures', JSON.stringify(gardenStructures));
+}
 
-function addBed(name, emoji) {
+function addBed(name, type) {
+  const t = BED_TYPES[type] || BED_TYPES['raised'];
   const id = String(Date.now());
   const idx = Object.keys(gardenBeds).length;
   gardenBeds[id] = {
-    name: name.trim(), emoji: emoji || '🌱',
-    cols: 4, rows: 2,
-    color: BED_COLORS[idx % BED_COLORS.length],
-    cells: {},
-    x: undefined, y: undefined
+    name: name.trim() || t.label, emoji: t.emoji, type,
+    cols: 4, rows: 2, color: BED_COLORS[idx % BED_COLORS.length],
+    cells: {}, x: undefined, y: undefined
   };
-  autoPlaceBeds();
-  saveBeds();
-  activeBedId = id;
+  autoPlaceBeds(); saveBeds(); activeBedId = id;
+  closeGardenMapModal();
   if (document.getElementById('garden-map-overlay')?.hidden === false) {
-    renderGardenMapCanvas();
-    selectMapBed(id);
-  } else {
-    openGardenMap();
-    selectMapBed(id);
-  }
+    renderGardenMapCanvas(); selectMapBed(id);
+  } else { openGardenMap(); selectMapBed(id); }
+}
+
+function addStructure(name, type) {
+  const t = STRUCTURE_TYPES[type] || STRUCTURE_TYPES['shed'];
+  const id = 's' + String(Date.now());
+  gardenStructures[id] = {
+    name: name.trim() || t.label, type,
+    cols: (type === 'path' || type === 'fence') ? 1 : 3,
+    rows: (type === 'path' || type === 'fence') ? 4 : 3,
+    color: t.color, x: 0, y: 0
+  };
+  saveStructures(); closeGardenMapModal();
+  renderGardenMapCanvas(); selectMapStruct(id);
+}
+function removeStructure(id) {
+  delete gardenStructures[id]; saveStructures();
+  if (_mapSelectedStruct === id) _mapSelectedStruct = null;
+  renderGardenMapCanvas();
+}
+function resizeStructure(id, dcols, drows) {
+  const s = gardenStructures[id]; if (!s) return;
+  s.cols = Math.max(1, Math.min(20, s.cols + dcols));
+  s.rows = Math.max(1, Math.min(20, s.rows + drows));
+  s.x = Math.max(0, Math.min(gardenCanvas.cols - s.cols, s.x || 0));
+  s.y = Math.max(0, Math.min(gardenCanvas.rows - s.rows, s.y || 0));
+  saveStructures(); renderGardenMapCanvas();
 }
 
 function removeBed(id) {
@@ -5623,10 +5672,7 @@ function resizeBed(bedId, dcols, drows) {
   }
 }
 
-function initBeds() {
-  loadCanvas();
-  loadBeds();
-}
+function initBeds() { loadCanvas(); loadBeds(); loadStructures(); }
 
 // ── Phase 87: Garden Map ───────────────────────────
 function loadCanvas() {
@@ -5654,26 +5700,23 @@ function openGardenMap() {
 
 function closeGardenMap() {
   document.getElementById('garden-map-overlay').hidden = true;
-  _mapSelectedBed = null;
+  _mapSelectedBed = null; _mapSelectedStruct = null;
+  _drag = null; _structureDrag = null; _resizeDrag = null;
+  document.removeEventListener('pointermove', onBedDragMove);
+  document.removeEventListener('pointermove', onStructDragMove);
+  document.removeEventListener('pointermove', onResizeDragMove);
 }
 
 function renderGardenMapCanvas() {
-  const canvas = document.getElementById('gm-canvas');
-  if (!canvas) return;
-  const w = gardenCanvas.cols * TILE_SIZE;
-  const h = gardenCanvas.rows * TILE_SIZE;
-  canvas.style.width = w + 'px';
-  canvas.style.height = h + 'px';
-
-  let bedsHTML = '';
-  for (const id of Object.keys(gardenBeds)) {
-    bedsHTML += renderMapBedHTML(id);
-  }
-  canvas.innerHTML = bedsHTML;
-
+  const canvas = document.getElementById('gm-canvas'); if (!canvas) return;
+  canvas.style.width  = gardenCanvas.cols * TILE_SIZE + 'px';
+  canvas.style.height = gardenCanvas.rows * TILE_SIZE + 'px';
+  let html = '';
+  for (const id of Object.keys(gardenStructures)) html += renderMapStructHTML(id);
+  for (const id of Object.keys(gardenBeds))       html += renderMapBedHTML(id);
+  canvas.innerHTML = html;
   const sizeEl = document.getElementById('gm-canvas-size');
   if (sizeEl) sizeEl.textContent = `${gardenCanvas.cols}×${gardenCanvas.rows}`;
-
   renderGardenMapDetail();
   wireGardenMap();
 }
@@ -5698,16 +5741,29 @@ function renderMapBedHTML(id) {
     }
   }
 
-  return `<div class="gm-bed${selected ? ' gm-bed--selected' : ''}" data-bed="${id}"
+  return `<div class="gm-bed gm-bed--${bed.type || 'raised'}${selected ? ' gm-bed--selected' : ''}" data-bed="${id}"
     style="left:${x * TILE_SIZE}px;top:${y * TILE_SIZE}px;width:${cols * TILE_SIZE}px;height:${rows * TILE_SIZE}px;background:${color}33;border-color:${color}">
     <div class="gm-bed-label">${bed.emoji} ${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
     <div class="gm-bed-cells" style="grid-template-columns:repeat(${cols},1fr)">${cellsHTML}</div>
+    <div class="gm-resize-handle" data-bed="${id}"></div>
+  </div>`;
+}
+
+function renderMapStructHTML(id) {
+  const s = gardenStructures[id]; if (!s) return '';
+  const t = STRUCTURE_TYPES[s.type] || STRUCTURE_TYPES['shed'];
+  const selected = _mapSelectedStruct === id;
+  return `<div class="gm-struct ${t.cssClass}${selected ? ' gm-struct--selected' : ''}" data-struct="${id}"
+    style="left:${s.x*TILE_SIZE}px;top:${s.y*TILE_SIZE}px;width:${s.cols*TILE_SIZE}px;height:${s.rows*TILE_SIZE}px;border-color:${s.color}">
+    <div class="gm-bed-label">${t.emoji} ${s.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
+    <div class="gm-resize-handle" data-struct="${id}"></div>
   </div>`;
 }
 
 function renderGardenMapDetail() {
   const detail = document.getElementById('gm-bed-detail');
   if (!detail) return;
+  if (_mapSelectedStruct) { renderGardenMapStructDetail(); return; }
   if (!_mapSelectedBed || !gardenBeds[_mapSelectedBed]) {
     detail.hidden = true;
     return;
@@ -5786,33 +5842,146 @@ function renderGardenMapDetail() {
   });
 }
 
+function renderGardenMapStructDetail() {
+  const detail = document.getElementById('gm-bed-detail');
+  if (!detail) return;
+  if (!_mapSelectedStruct || !gardenStructures[_mapSelectedStruct]) {
+    detail.hidden = true; return;
+  }
+  const id = _mapSelectedStruct;
+  const s = gardenStructures[id];
+  const t = STRUCTURE_TYPES[s.type] || STRUCTURE_TYPES['shed'];
+  detail.hidden = false;
+  detail.innerHTML = `<div class="gm-detail-header">
+    <input class="bed-name-input" id="gm-struct-name-edit" type="text" value="${s.name.replace(/"/g,'&quot;')}" maxlength="30">
+    <span class="gm-struct-type-label">${t.emoji} ${t.label}</span>
+    <div class="bed-resize-group">
+      <button class="bed-resize-btn" data-dir="cols" data-delta="-1">−</button>
+      <span class="bed-resize-label" id="gm-struct-size-label">${s.cols}×${s.rows}</span>
+      <button class="bed-resize-btn" data-dir="cols" data-delta="1">＋</button>
+      <span class="bed-resize-label">cols</span>
+      <button class="bed-resize-btn" data-dir="rows" data-delta="-1">−</button>
+      <button class="bed-resize-btn" data-dir="rows" data-delta="1">＋</button>
+      <span class="bed-resize-label">rows</span>
+    </div>
+    <button class="bed-delete-btn" id="gm-struct-delete-btn" title="Delete structure">🗑</button>
+  </div>`;
+  document.getElementById('gm-struct-name-edit')?.addEventListener('blur', e => {
+    const v = e.target.value.trim();
+    if (v) { s.name = v; saveStructures(); renderGardenMapCanvas(); }
+  });
+  detail.querySelectorAll('.bed-resize-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dir = btn.dataset.dir;
+      const delta = Number(btn.dataset.delta);
+      resizeStructure(id, dir === 'cols' ? delta : 0, dir === 'rows' ? delta : 0);
+    });
+  });
+  document.getElementById('gm-struct-delete-btn')?.addEventListener('click', () => {
+    if (confirm(`Delete "${s.name}"?`)) removeStructure(id);
+  });
+}
+
+function closeGardenMapModal() { document.getElementById('gm-modal-overlay')?.remove(); }
+
+function openGardenMapModal(mode) {
+  closeGardenMapModal();
+  const types = mode === 'bed' ? BED_TYPES : STRUCTURE_TYPES;
+  const typeKeys = Object.keys(types);
+  let selectedType = typeKeys[0];
+  const title = mode === 'bed' ? 'Add Bed' : 'Add Structure';
+  const typeBtns = typeKeys.map((k, i) => {
+    const t = types[k];
+    return `<button class="gm-modal-type-btn${i === 0 ? ' gm-modal-type-btn--active' : ''}" data-type="${k}">
+      <span class="gm-modal-type-emoji">${t.emoji}</span>
+      <span class="gm-modal-type-label">${t.label}</span>
+    </button>`;
+  }).join('');
+  const overlay = document.createElement('div');
+  overlay.id = 'gm-modal-overlay';
+  overlay.className = 'gm-modal-overlay';
+  overlay.innerHTML = `<div class="gm-modal">
+    <div class="gm-modal-header">
+      <span class="gm-modal-title">${title}</span>
+      <button class="gm-modal-close-btn" id="gm-modal-x">✕</button>
+    </div>
+    <div class="gm-modal-type-grid">${typeBtns}</div>
+    <input class="gm-modal-name-input" id="gm-modal-name" type="text" placeholder="${types[selectedType].label} name (optional)" maxlength="30">
+    <div class="gm-modal-footer">
+      <button class="gm-modal-cancel-btn" id="gm-modal-cancel">Cancel</button>
+      <button class="gm-modal-add-btn" id="gm-modal-add">Add →</button>
+    </div>
+  </div>`;
+  document.getElementById('garden-map-overlay').appendChild(overlay);
+
+  const nameInput = overlay.querySelector('#gm-modal-name');
+  overlay.querySelectorAll('.gm-modal-type-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      overlay.querySelectorAll('.gm-modal-type-btn').forEach(b => b.classList.remove('gm-modal-type-btn--active'));
+      btn.classList.add('gm-modal-type-btn--active');
+      selectedType = btn.dataset.type;
+      nameInput.placeholder = types[selectedType].label + ' name (optional)';
+    });
+  });
+
+  const doAdd = () => {
+    const name = nameInput.value.trim();
+    if (mode === 'bed') addBed(name, selectedType);
+    else addStructure(name, selectedType);
+  };
+  overlay.querySelector('#gm-modal-add').addEventListener('click', doAdd);
+  nameInput.addEventListener('keydown', e => { if (e.key === 'Enter') doAdd(); });
+  overlay.querySelector('#gm-modal-cancel').addEventListener('click', closeGardenMapModal);
+  overlay.querySelector('#gm-modal-x').addEventListener('click', closeGardenMapModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeGardenMapModal(); });
+  document.addEventListener('keydown', function escHandler(e) {
+    if (e.key === 'Escape') { closeGardenMapModal(); document.removeEventListener('keydown', escHandler); }
+  });
+  nameInput.focus();
+}
+
 function wireGardenMap() {
   document.getElementById('gm-close-btn')?.addEventListener('click', closeGardenMap);
 
-  document.getElementById('gm-add-bed-btn')?.addEventListener('click', () => {
-    const name = prompt('Bed name:');
-    if (name?.trim()) addBed(name.trim(), '🪴');
-  });
+  document.getElementById('gm-add-bed-btn')?.addEventListener('click', () => openGardenMapModal('bed'));
+  document.getElementById('gm-add-struct-btn')?.addEventListener('click', () => openGardenMapModal('struct'));
 
   document.querySelectorAll('.gm-canvas-resize-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const dim = btn.dataset.dim;
       const delta = Number(btn.dataset.delta);
       gardenCanvas[dim] = Math.max(5, Math.min(40, gardenCanvas[dim] + delta));
-      // Clamp beds to new size
       for (const bed of Object.values(gardenBeds)) {
         bed.x = Math.max(0, Math.min(gardenCanvas.cols - (bed.cols || 4), bed.x || 0));
         bed.y = Math.max(0, Math.min(gardenCanvas.rows - (bed.rows || 2), bed.y || 0));
       }
-      saveCanvas();
-      saveBeds();
+      for (const s of Object.values(gardenStructures)) {
+        s.x = Math.max(0, Math.min(gardenCanvas.cols - (s.cols || 2), s.x || 0));
+        s.y = Math.max(0, Math.min(gardenCanvas.rows - (s.rows || 2), s.y || 0));
+      }
+      saveCanvas(); saveBeds(); saveStructures();
       renderGardenMapCanvas();
+    });
+  });
+
+  document.querySelectorAll('.gm-resize-handle').forEach(el => {
+    el.addEventListener('pointerdown', e => {
+      if (el.dataset.bed) startResizeDrag('bed', el.dataset.bed, e);
+      else if (el.dataset.struct) startResizeDrag('struct', el.dataset.struct, e);
     });
   });
 
   document.querySelectorAll('.gm-bed').forEach(el => {
     el.addEventListener('pointerdown', e => {
+      if (e.target.classList.contains('gm-resize-handle')) return;
       startBedDrag(el.dataset.bed, e);
+    });
+  });
+
+  document.querySelectorAll('.gm-struct').forEach(el => {
+    el.addEventListener('pointerdown', e => {
+      if (e.target.classList.contains('gm-resize-handle')) return;
+      startStructDrag(el.dataset.struct, e);
     });
   });
 }
@@ -5853,13 +6022,94 @@ function onBedDragEnd() {
   _drag = null;
 }
 
+function startStructDrag(structId, e) {
+  e.preventDefault(); e.stopPropagation();
+  const s = gardenStructures[structId]; if (!s) return;
+  _structureDrag = { structId, startX: e.clientX, startY: e.clientY,
+    startSX: s.x || 0, startSY: s.y || 0, moved: false };
+  document.addEventListener('pointermove', onStructDragMove);
+  document.addEventListener('pointerup', onStructDragEnd, { once: true });
+  document.addEventListener('pointercancel', onStructDragEnd, { once: true });
+}
+function onStructDragMove(e) {
+  if (!_structureDrag) return;
+  const s = gardenStructures[_structureDrag.structId]; if (!s) return;
+  const dx = e.clientX - _structureDrag.startX, dy = e.clientY - _structureDrag.startY;
+  if (Math.abs(dx) > 6 || Math.abs(dy) > 6) _structureDrag.moved = true;
+  if (!_structureDrag.moved) return;
+  s.x = Math.max(0, Math.min(gardenCanvas.cols - s.cols, Math.round(_structureDrag.startSX + dx / TILE_SIZE)));
+  s.y = Math.max(0, Math.min(gardenCanvas.rows - s.rows, Math.round(_structureDrag.startSY + dy / TILE_SIZE)));
+  const el = document.querySelector(`.gm-struct[data-struct="${_structureDrag.structId}"]`);
+  if (el) { el.style.left = s.x * TILE_SIZE + 'px'; el.style.top = s.y * TILE_SIZE + 'px'; }
+}
+function onStructDragEnd() {
+  document.removeEventListener('pointermove', onStructDragMove);
+  if (_structureDrag?.moved) saveStructures();
+  else if (_structureDrag) selectMapStruct(_structureDrag.structId);
+  _structureDrag = null;
+}
+
+function startResizeDrag(entityType, entityId, e) {
+  e.preventDefault(); e.stopPropagation();
+  const entity = entityType === 'bed' ? gardenBeds[entityId] : gardenStructures[entityId];
+  if (!entity) return;
+  _resizeDrag = { entityType, entityId,
+    startX: e.clientX, startY: e.clientY,
+    startCols: entity.cols, startRows: entity.rows };
+  document.addEventListener('pointermove', onResizeDragMove);
+  document.addEventListener('pointerup', onResizeDragEnd, { once: true });
+  document.addEventListener('pointercancel', onResizeDragEnd, { once: true });
+}
+function onResizeDragMove(e) {
+  if (!_resizeDrag) return;
+  const { entityType, entityId, startX, startY, startCols, startRows } = _resizeDrag;
+  const entity = entityType === 'bed' ? gardenBeds[entityId] : gardenStructures[entityId];
+  if (!entity) return;
+  const maxDim = entityType === 'bed' ? 12 : 20;
+  const newCols = Math.max(1, Math.min(maxDim, startCols + Math.round((e.clientX - startX) / TILE_SIZE)));
+  const newRows = Math.max(1, Math.min(maxDim, startRows + Math.round((e.clientY - startY) / TILE_SIZE)));
+  if (newCols === entity.cols && newRows === entity.rows) return;
+  entity.cols = newCols; entity.rows = newRows;
+  entity.x = Math.max(0, Math.min(gardenCanvas.cols - entity.cols, entity.x || 0));
+  entity.y = Math.max(0, Math.min(gardenCanvas.rows - entity.rows, entity.y || 0));
+  if (entityType === 'bed') {
+    for (const key of Object.keys(entity.cells || {})) {
+      const [c, r] = key.split('-').map(Number);
+      if (c >= entity.cols || r >= entity.rows) delete entity.cells[key];
+    }
+  }
+  const sel = entityType === 'bed'
+    ? `.gm-bed[data-bed="${entityId}"]`
+    : `.gm-struct[data-struct="${entityId}"]`;
+  const el = document.querySelector(sel);
+  if (el) { el.style.width = entity.cols * TILE_SIZE + 'px'; el.style.height = entity.rows * TILE_SIZE + 'px'; }
+}
+function onResizeDragEnd() {
+  document.removeEventListener('pointermove', onResizeDragMove);
+  if (_resizeDrag) {
+    if (_resizeDrag.entityType === 'bed') { saveBeds(); renderGardenMapCanvas(); }
+    else { saveStructures(); renderGardenMapCanvas(); }
+  }
+  _resizeDrag = null;
+}
+
 function selectMapBed(bedId) {
+  _mapSelectedStruct = null;
+  document.querySelectorAll('.gm-struct').forEach(el => el.classList.remove('gm-struct--selected'));
   _mapSelectedBed = bedId;
-  // Toggle selected class without full re-render
   document.querySelectorAll('.gm-bed').forEach(el => {
     el.classList.toggle('gm-bed--selected', el.dataset.bed === bedId);
   });
   renderGardenMapDetail();
+}
+
+function selectMapStruct(structId) {
+  _mapSelectedBed = null; _mapSelectedStruct = structId;
+  document.querySelectorAll('.gm-bed').forEach(el => el.classList.remove('gm-bed--selected'));
+  document.querySelectorAll('.gm-struct').forEach(el => {
+    el.classList.toggle('gm-struct--selected', el.dataset.struct === structId);
+  });
+  renderGardenMapStructDetail();
 }
 
 // ── Phase 11: Country selector ────────────────────
