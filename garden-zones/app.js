@@ -44,6 +44,17 @@ const CROP_FAMILIES = {
   'Daikon':'Brassicaceae',
   'Watermelon':'Cucurbit','Cherry Tomatoes':'Solanaceae','Jalapeño':'Solanaceae',
   'Sweet Corn':'Grass',
+  // Phase 91: herbs & others
+  'Basil':'Lamiaceae','Mint':'Lamiaceae','Thyme':'Lamiaceae','Rosemary':'Lamiaceae',
+  'Oregano':'Lamiaceae','Sage':'Lamiaceae','Parsley':'Apiaceae','Marjoram':'Lamiaceae',
+  'Sweet Potatoes':'Convolvulaceae','Asparagus':'Asparagaceae','Rhubarb':'Polygonaceae',
+  'Okra':'Malvaceae','Ginger':'Zingiberaceae','Lemongrass':'Poaceae',
+  'Chard':'Chenopodiaceae','Pak Choi':'Brassicaceae','Mizuna':'Brassicaceae',
+  'Mustard Greens':'Brassicaceae','Collard Greens':'Brassicaceae',
+  'Tatsoi':'Brassicaceae','Bok Choy':'Brassicaceae',
+  'Salsify':'Asteraceae','Jerusalem Artichoke':'Asteraceae',
+  'Watercress':'Brassicaceae','Cress':'Brassicaceae',
+  'Savory':'Lamiaceae','Hyssop':'Lamiaceae',
 };
 
 // ── Frost-sensitive crops ──────────────────────
@@ -83,6 +94,25 @@ const COMPANION_REASONS = {
   'Radishes|Lettuce':'Acts as a trap crop for flea beetles, protecting lettuce.',
   'Chives|Carrots':'Chive scent deters carrot rust fly and root aphids.',
   'Chives|Tomatoes':'Repels aphids; companion studies suggest improved growth rate.',
+  'Marigolds|Beans':'Root secretions deter bean weevils and nematodes in soil.',
+  'Borage|Tomatoes':'Borage deters tomato hornworm and improves overall plant vigour.',
+  'Borage|Strawberries':'Borage repels aphids and attracts pollinators; improves fruit set.',
+  'Nasturtiums|Beans':'Trap crop for aphids and blackfly; also attracts predatory insects.',
+  'Mint|Brassicas':'Mint scent confuses cabbage white butterfly and deters aphids.',
+  'Rosemary|Beans':'Strong scent deters bean beetles and Mexican bean beetle.',
+  'Rosemary|Brassicas':'Deters cabbage moth, carrot fly, and bean beetles.',
+  'Sage|Brassicas':'Deters cabbage moth, cabbage looper, and carrot fly.',
+  'Thyme|Brassicas':'Repels cabbage worm and whitefly; attracts beneficial insects.',
+  'Lavender|Brassicas':'Lavender scent repels cabbage moth; attracts bees for pollination.',
+  'Garlic|Roses':'Sulphur compounds in garlic deter aphids, black spot, and rust.',
+  'Dill|Brassicas':'Attracts parasitic wasps and hoverflies that prey on caterpillars.',
+  'Fennel|Dill':'Fennel cross-pollinates with dill readily — both flavours are altered.',
+  'Calendula|Tomatoes':'Trap crop for aphids; attracts pollinators and predatory hoverflies.',
+  'Sunflowers|Cucumbers':'Cucumbers can climb sunflowers; sunflowers attract pollinators.',
+  'Asparagus|Tomatoes':'Classic companion: tomatoes deter asparagus beetle; asparagus repels nematodes.',
+  'Strawberries|Borage':'Borage repels pests and attracts pollinators; improves berry flavour.',
+  'Peas|Carrots':'Peas fix nitrogen that benefits carrots; both prefer cool weather.',
+  'Lettuce|Tall Crops':'Shade from taller neighbours slows lettuce bolting in summer.',
 };
 const AVOID_REASONS = {
   'Tomatoes|Fennel':'Fennel releases allelopathic chemicals that stunt tomato growth.',
@@ -494,6 +524,7 @@ let gardenStructures   = {};
 let _structureDrag     = null;
 let _mapSelectedStruct = null;
 let _resizeDrag        = null;
+let gardenViewMode     = localStorage.getItem('pzf-garden-view') || 'crop';
 const BED_COLORS = ['#2d5a27','#1a4a6b','#5a2d2d','#5a4a1a','#2d3d5a','#4a2d5a','#1a5a4a','#5a3d1a'];
 const BED_TYPES = {
   'raised':      { label: 'Raised Bed',  emoji: '🪵' },
@@ -2298,12 +2329,79 @@ function renderGrowNext() {
   }, { once: true });
 }
 
+function renderGardenByBed() {
+  const bedIds = Object.keys(gardenBeds);
+  if (!bedIds.length) {
+    return `<div class="gvb-empty">No garden beds yet.<br><button class="gvb-open-map-btn" id="gvb-open-map">＋ Map my garden →</button></div>`;
+  }
+  return bedIds.map(bedId => {
+    const bed = gardenBeds[bedId];
+    const crops = getCropsInBed(bedId);
+    const cap = (bed.cols || 4) * (bed.rows || 2);
+    const fillPct = Math.round(Math.min(100, (crops.length / cap) * 100));
+    const t = BED_TYPES[bed.type || 'raised'];
+    const chips = crops.map(name => {
+      const c = cropData[name];
+      const s = getGardenStatus(name);
+      return `<span class="gvb-chip gvb-chip--${s?.type || 'saved'}">${c?.emoji || '🌱'} ${name.replace(/&/g,'&amp;')}</span>`;
+    }).join('');
+    return `<div class="gvb-card" style="border-color:${bed.color}88">
+      <div class="gvb-card-header" style="background:${bed.color}22">
+        <span class="gvb-bed-icon">${bed.emoji}</span>
+        <div class="gvb-bed-info">
+          <span class="gvb-bed-name">${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
+          <span class="gvb-bed-meta">${t?.label || 'Bed'} · ${crops.length}/${cap} crops</span>
+        </div>
+        <button class="gvb-map-btn" data-bed="${bedId}">📐</button>
+      </div>
+      <div class="gvb-fill-bar"><div class="gvb-fill-fill" style="width:${fillPct}%;background:${bed.color}"></div></div>
+      <div class="gvb-chips">${chips || '<span class="gvb-empty-chips">Empty — add crops in map</span>'}</div>
+    </div>`;
+  }).join('');
+}
+
+function wireGardenViewToggle() {
+  document.getElementById('gvt-crop')?.addEventListener('click', () => {
+    gardenViewMode = 'crop'; localStorage.setItem('pzf-garden-view', 'crop'); renderGardenTab();
+  });
+  document.getElementById('gvt-bed')?.addEventListener('click', () => {
+    gardenViewMode = 'bed'; localStorage.setItem('pzf-garden-view', 'bed'); renderGardenTab();
+  });
+  document.getElementById('gvb-open-map')?.addEventListener('click', openGardenMap);
+  document.querySelectorAll('.gvb-map-btn[data-bed]').forEach(btn => {
+    btn.addEventListener('click', () => { openGardenMap(); setTimeout(() => selectMapBed(btn.dataset.bed), 100); });
+  });
+}
+
 function renderGardenTab() {
   const list = document.getElementById('garden-list');
   const emptyMsg = document.getElementById('garden-empty-msg');
   if (!list) return;
   const names = Object.keys(myGarden);
-  if (!names.length) { list.innerHTML = ''; if (emptyMsg) emptyMsg.hidden = false; renderGardenBeds(); renderCompanionMatrix(); renderGardenHistory(); renderPlanSection(); renderGardenHealthScore(); return; }
+
+  const toggle = `<div class="garden-view-toggle">
+    <button class="gvt-btn${gardenViewMode === 'crop' ? ' gvt-btn--active' : ''}" id="gvt-crop">🌿 By Crop</button>
+    <button class="gvt-btn${gardenViewMode === 'bed' ? ' gvt-btn--active' : ''}" id="gvt-bed">🛏 By Bed</button>
+  </div>`;
+
+  if (gardenViewMode === 'bed') {
+    list.innerHTML = toggle + renderGardenByBed();
+    if (emptyMsg) emptyMsg.hidden = true;
+    const bedsEl = document.getElementById('garden-beds');
+    if (bedsEl) bedsEl.hidden = true;
+    wireGardenViewToggle();
+    renderGardenDashboard(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
+    renderCompanionMatrix(); renderGrowingTimeline(); renderGardenGantt(); renderGardenFooter();
+    renderGardenHistory(); renderGrowNext(); renderPlanSection(); renderHarvestAnalytics();
+    renderWateringIntelligence(); renderHarvestToTable(); renderGardenHealthScore();
+    renderSmartShoppingList(); checkAchievements();
+    return;
+  }
+
+  const bedsEl = document.getElementById('garden-beds');
+  if (bedsEl) bedsEl.hidden = false;
+
+  if (!names.length) { list.innerHTML = toggle; if (emptyMsg) emptyMsg.hidden = false; wireGardenViewToggle(); renderGardenBeds(); renderCompanionMatrix(); renderGardenHistory(); renderPlanSection(); renderGardenHealthScore(); return; }
   if (emptyMsg) emptyMsg.hidden = true;
 
   const groups = { ready: [], growing: [], saved: [] };
@@ -2358,7 +2456,8 @@ function renderGardenTab() {
       </div>`;
     }
   }
-  list.innerHTML = html;
+  list.innerHTML = toggle + html;
+  wireGardenViewToggle();
   renderGardenDashboard();
   renderGardenTasks();
   renderGardenChecklist();
@@ -3582,7 +3681,10 @@ function renderWateringAlert() {
 // ── Phase 4: Succession planting ────────────────
 // ── Phase 48: Succession sowing tracker ──────────
 function getSuccessionInterval(name) {
-  const harvestDays = parseHarvestDays(cropData?.[name]?.days);
+  const c = cropData?.[name];
+  if (!c) return null;
+  if (c.succession_weeks) return c.succession_weeks * 7;
+  const harvestDays = parseHarvestDays(c.days);
   if (!harvestDays) return null;
   return Math.min(28, Math.max(10, Math.round(harvestDays / 3)));
 }
@@ -5575,10 +5677,13 @@ function renderBedSummaryHTML() {
       <button class="beds-open-map-btn" id="beds-open-map-btn">＋ Map my garden beds</button>
     </div>`;
   }
-  const totalCrops = ids.reduce((n, id) => n + Object.keys(gardenBeds[id].cells || {}).length, 0);
+  const totalCrops = ids.reduce((n, id) => n + getCropsInBed(id).length, 0);
   const tags = ids.map(id => {
     const b = gardenBeds[id];
-    return `<span class="beds-summary-tag" style="border-color:${b.color}55;background:${b.color}1a">${b.emoji} ${b.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>`;
+    const n = getCropsInBed(id).length;
+    const cap = (b.cols || 4) * (b.rows || 2);
+    const badge = n ? ` <span class="beds-tag-count">${n}/${cap}</span>` : '';
+    return `<span class="beds-summary-tag" style="border-color:${b.color}55;background:${b.color}1a">${b.emoji} ${b.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}${badge}</span>`;
   }).join('');
   return `<div class="beds-summary">
     <div class="beds-summary-header">
@@ -5765,15 +5870,18 @@ function renderMapBedHTML(id) {
   const color = bed.color || '#2d5a27';
   const selected = _mapSelectedBed === id;
 
-  const cropEmoji = getCropsInBed(id)
-    .slice(0, cols * rows)
+  const cap = cols * rows;
+  const allCrops = getCropsInBed(id);
+  const overflow = Math.max(0, allCrops.length - cap);
+  const cropEmoji = allCrops
+    .slice(0, cap)
     .map(name => `<span class="gm-bed-crop-em" title="${name}">${cropData[name]?.emoji || '🌱'}</span>`)
     .join('');
 
   return `<div class="gm-bed gm-bed--${bed.type || 'raised'}${selected ? ' gm-bed--selected' : ''}" data-bed="${id}"
     style="left:${x * TILE_SIZE}px;top:${y * TILE_SIZE}px;width:${cols * TILE_SIZE}px;height:${rows * TILE_SIZE}px;background:${color}22;border-color:${color}">
     <div class="gm-bed-label">${bed.emoji} ${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
-    ${cropEmoji ? `<div class="gm-bed-crop-row">${cropEmoji}</div>` : ''}
+    ${cropEmoji || overflow ? `<div class="gm-bed-crop-row">${cropEmoji}${overflow ? `<span class="gm-bed-overflow">+${overflow}</span>` : ''}</div>` : ''}
     <div class="gm-resize-handle" data-bed="${id}"></div>
   </div>`;
 }
@@ -5806,7 +5914,9 @@ function renderGardenMapDetail() {
     const assigned = getCropsInBed(id);
     const chips = assigned.map(name => {
       const em = cropData[name]?.emoji || '🌱';
-      return `<span class="gm-crop-chip">${em} ${name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}<button class="gm-crop-chip-x" data-crop="${name}" aria-label="Remove">×</button></span>`;
+      const issues = getBedCompatibility(id, name);
+      const warn = issues.length ? ` <span class="gm-compat-warn" title="${issues.join('\n')}">⚠️</span>` : '';
+      return `<span class="gm-crop-chip">${em} ${name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}${warn}<button class="gm-crop-chip-x" data-crop="${name}" aria-label="Remove">×</button></span>`;
     }).join('');
     document.getElementById('gm-crop-chips-list').innerHTML =
       chips || '<span class="gm-crops-empty">No crops yet</span>';
@@ -5870,7 +5980,21 @@ function renderGardenMapDetail() {
   <div class="gm-crop-add">
     <input class="gm-crop-search" id="gm-crop-search" type="text" placeholder="＋ Add crop…" autocomplete="off">
     <div class="gm-crop-suggestions" id="gm-crop-suggestions" hidden></div>
-  </div>`;
+  </div>
+  <details class="gm-micro" id="gm-micro-details">
+    <summary class="gm-micro-summary">☀️ Microclimate</summary>
+    <div class="gm-micro-body">
+      <div class="gm-micro-row">
+        <span class="gm-micro-label">Sun</span>
+        <input type="range" min="0" max="12" step="0.5" value="${bed.sunHours ?? 6}" id="gm-sun-hrs" class="gm-micro-range">
+        <span class="gm-micro-val" id="gm-sun-val">${bed.sunHours ?? 6}h</span>
+      </div>
+      <div class="gm-micro-row">
+        <span class="gm-micro-label">Soil pH</span>
+        <input type="number" min="4" max="9" step="0.1" value="${bed.soilPh || ''}" placeholder="6.5" id="gm-soil-ph" class="gm-micro-ph">
+      </div>
+    </div>
+  </details>`;
 
   document.getElementById('gm-bed-name-edit')?.addEventListener('blur', e => {
     const v = e.target.value.trim();
@@ -5913,6 +6037,18 @@ function renderGardenMapDetail() {
       if (el) el.hidden = true;
       document.removeEventListener('pointerdown', hideSugg);
     }
+  });
+
+  const sunEl = document.getElementById('gm-sun-hrs');
+  const sunVal = document.getElementById('gm-sun-val');
+  sunEl?.addEventListener('input', () => {
+    sunVal.textContent = sunEl.value + 'h';
+    saveBedNotes(id, 'sunHours', parseFloat(sunEl.value));
+    renderBedDetailCrops();
+  });
+  document.getElementById('gm-soil-ph')?.addEventListener('change', e => {
+    saveBedNotes(id, 'soilPh', e.target.value);
+    renderBedDetailCrops();
   });
 }
 

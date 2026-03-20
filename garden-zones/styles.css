@@ -4656,3 +4656,76 @@ body.garden-mode .plant-section ul {
 .gm-modal-cancel-btn { background: none; border: 1px solid var(--border); border-radius: 6px; color: var(--text-muted); cursor: pointer; font-size: 13px; padding: 7px 14px; }
 .gm-modal-add-btn { background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.4); border-radius: 6px; color: var(--accent); cursor: pointer; font-size: 13px; font-weight: 600; padding: 7px 18px; }
 .gm-modal-add-btn:hover { background: rgba(74,222,128,0.25); }
+
+/* ── Phase 90: Canvas overflow badge ── */
+.gm-bed-overflow {
+  align-items: center; background: rgba(0,0,0,0.55); border-radius: 8px; color: #fbbf24;
+  display: inline-flex; font-size: 9px; font-weight: 700; padding: 1px 4px;
+}
+
+/* ── Phase 90A: Microclimate panel ── */
+.gm-micro { border-top: 1px solid var(--border); margin-top: 6px; padding-top: 6px; }
+.gm-micro-summary {
+  color: var(--text-muted); cursor: pointer; font-size: 11px; font-weight: 600;
+  list-style: none; padding: 4px 0; user-select: none;
+}
+.gm-micro-summary::-webkit-details-marker { display: none; }
+.gm-micro-body { display: flex; flex-direction: column; gap: 6px; padding: 6px 0 2px; }
+.gm-micro-row { align-items: center; display: flex; gap: 8px; }
+.gm-micro-label { color: var(--text-muted); font-size: 11px; min-width: 42px; }
+.gm-micro-range { accent-color: var(--accent); flex: 1; }
+.gm-micro-val { color: var(--text); font-size: 11px; min-width: 24px; text-align: right; }
+.gm-micro-ph {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 4px;
+  color: var(--text); font-size: 12px; padding: 4px 6px; width: 60px;
+}
+.gm-compat-warn { cursor: help; font-size: 12px; }
+
+/* ── Phase 90B: Garden view toggle ── */
+.garden-view-toggle {
+  display: flex; gap: 6px; margin-bottom: 10px;
+}
+.gvt-btn {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 16px;
+  color: var(--text-muted); cursor: pointer; font-size: 12px; font-weight: 600;
+  padding: 5px 14px; transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.gvt-btn--active { background: rgba(74,222,128,0.12); border-color: var(--accent); color: var(--accent); }
+
+/* ── Phase 90B: By-bed view cards ── */
+.gvb-card {
+  background: var(--surface); border: 1px solid; border-radius: 10px;
+  margin-bottom: 10px; overflow: hidden;
+}
+.gvb-card-header {
+  align-items: center; display: flex; gap: 8px; padding: 8px 10px;
+}
+.gvb-bed-icon { font-size: 18px; }
+.gvb-bed-info { display: flex; flex: 1; flex-direction: column; }
+.gvb-bed-name { color: var(--text); font-size: 13px; font-weight: 700; }
+.gvb-bed-meta { color: var(--text-muted); font-size: 11px; }
+.gvb-map-btn {
+  background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.25); border-radius: 6px;
+  color: var(--accent); cursor: pointer; font-size: 13px; padding: 4px 8px;
+}
+.gvb-fill-bar { background: var(--border); height: 3px; }
+.gvb-fill-fill { border-radius: 2px; height: 3px; opacity: 0.7; transition: width 0.3s; }
+.gvb-chips { display: flex; flex-wrap: wrap; gap: 5px; padding: 8px 10px 10px; }
+.gvb-chip {
+  background: var(--surface2); border-radius: 10px; color: var(--text);
+  font-size: 11px; padding: 3px 8px;
+}
+.gvb-chip--ready { background: rgba(74,222,128,0.12); color: var(--accent); }
+.gvb-chip--growing { background: rgba(59,130,246,0.12); color: #60a5fa; }
+.gvb-empty-chips { color: var(--text-muted); font-size: 11px; font-style: italic; }
+.gvb-empty { color: var(--text-muted); font-size: 13px; padding: 20px 0; text-align: center; }
+.gvb-open-map-btn {
+  background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.25); border-radius: 6px;
+  color: var(--accent); cursor: pointer; font-size: 13px; margin-top: 8px; padding: 6px 14px;
+}
+
+/* ── Phase 90D: Beds summary tag count ── */
+.beds-tag-count {
+  background: rgba(255,255,255,0.1); border-radius: 6px; color: var(--text-muted);
+  font-size: 9px; font-weight: 700; margin-left: 3px; padding: 1px 4px;
+}
