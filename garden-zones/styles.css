@@ -3985,6 +3985,7 @@ body.garden-mode .plant-section ul {
 
 /* ── Phase 53: Settings overlay ─────────────── */
 .settings-overlay { align-items: flex-end; background: rgba(0,0,0,0.55); bottom: 0; display: flex; left: 0; position: fixed; right: 0; top: 0; z-index: 2000; }
+.settings-overlay[hidden] { display: none; }
 .settings-overlay:not(.open) .settings-sheet { transform: translateY(100%); }
 .settings-sheet { background: var(--surface); border-radius: 16px 16px 0 0; box-shadow: 0 -4px 24px rgba(0,0,0,0.4); max-height: 85vh; overflow-y: auto; padding: 0 0 env(safe-area-inset-bottom); transition: transform 0.28s cubic-bezier(0.32,0.72,0,1); width: 100%; }
 .settings-drag-handle { background: var(--border); border-radius: 3px; height: 4px; margin: 10px auto 4px; width: 40px; }
@@ -4017,6 +4018,7 @@ body.garden-mode .plant-section ul {
 .garden-fab { align-items: center; background: var(--accent); border: none; border-radius: 50%; bottom: 72px; box-shadow: 0 4px 16px rgba(74,222,128,0.35); color: #0a0f1a; cursor: pointer; display: flex; font-size: 24px; font-weight: var(--weight-bold); height: 52px; justify-content: center; position: sticky; right: 16px; float: right; transition: transform 0.15s, box-shadow 0.15s; width: 52px; z-index: 10; }
 .garden-fab:hover { box-shadow: 0 6px 20px rgba(74,222,128,0.5); transform: scale(1.07); }
 .fab-sheet-overlay { align-items: flex-end; background: rgba(0,0,0,0.5); bottom: 0; display: flex; left: 0; position: fixed; right: 0; top: 0; z-index: 2100; }
+.fab-sheet-overlay[hidden] { display: none; }
 .fab-sheet-overlay:not(.open) .fab-sheet { transform: translateY(100%); }
 .fab-sheet { background: var(--surface); border-radius: 16px 16px 0 0; box-shadow: 0 -4px 24px rgba(0,0,0,0.45); max-height: 75vh; overflow-y: auto; padding-bottom: env(safe-area-inset-bottom); transition: transform 0.28s cubic-bezier(0.32,0.72,0,1); width: 100%; }
 .fab-sheet-handle { background: var(--border); border-radius: 3px; height: 4px; margin: 10px auto 6px; width: 40px; }
