@@ -1812,9 +1812,32 @@ function renderBrowseGrid() {
 function loadGarden() {
   try { myGarden = JSON.parse(localStorage.getItem('pzf-garden') || '{}'); }
   catch { myGarden = {}; }
+  // Migrate legacy single bedId → bedIds array
+  for (const entry of Object.values(myGarden)) {
+    if (!entry.bedIds) entry.bedIds = entry.bedId ? [entry.bedId] : [];
+  }
 }
 function saveGarden() { localStorage.setItem('pzf-garden', JSON.stringify(myGarden)); }
 function isInGarden(name) { return !!myGarden[name]; }
+
+function getCropsInBed(bedId) {
+  return Object.keys(myGarden).filter(n => myGarden[n]?.bedIds?.includes(bedId));
+}
+function addCropToBed(cropName, bedId) {
+  if (!myGarden[cropName]) return;
+  const ids = myGarden[cropName].bedIds || [];
+  if (ids.includes(bedId)) return;
+  ids.push(bedId);
+  myGarden[cropName].bedIds = ids;
+  saveGarden(); renderGardenBeds();
+  if (currentPanelTab === 'garden') renderGardenTab();
+}
+function removeCropFromBed(cropName, bedId) {
+  if (!myGarden[cropName]) return;
+  myGarden[cropName].bedIds = (myGarden[cropName].bedIds || []).filter(id => id !== bedId);
+  saveGarden(); renderGardenBeds();
+  if (currentPanelTab === 'garden') renderGardenTab();
+}
 
 function gardenAdd(name) {
   if (myGarden[name]) return;
@@ -1986,13 +2009,14 @@ function archiveGardenEntry(name) {
   saveHistory();
 
   // Phase 54: record bed rotation
-  if (entry?.bedId && gardenBeds[entry.bedId]) {
+  const primaryBedId = entry?.bedIds?.[0];
+  if (primaryBedId && gardenBeds[primaryBedId]) {
     loadRotation();
     cropRotation.push({
       name,
       family: CROP_FAMILIES[name] || null,
-      bedId: entry.bedId,
-      bedName: gardenBeds[entry.bedId]?.name || '',
+      bedId: primaryBedId,
+      bedName: gardenBeds[primaryBedId]?.name || '',
       year: new Date().getFullYear(),
       emoji: cropData?.[name]?.emoji || '🌱',
     });
@@ -2313,7 +2337,7 @@ function renderGardenTab() {
           <div class="garden-item-info">
             <span class="garden-item-name">${name}${badges}</span>
             <span class="garden-item-status">${status?.label || ''}</span>
-            ${entry.bedId && gardenBeds[entry.bedId] ? `<span class="garden-item-bed-tag">${gardenBeds[entry.bedId].emoji} ${gardenBeds[entry.bedId].name}</span>` : ''}
+            ${(entry.bedIds || []).filter(bid => gardenBeds[bid]).map(bid => `<span class="garden-item-bed-tag">${gardenBeds[bid].emoji} ${gardenBeds[bid].name}</span>`).join('')}
             ${entry.harvestLog?.length ? `<span class="garden-last-harvest">🌾 Last harvest: ${entry.harvestLog[0].date}</span>` : ''}
             ${(() => { const ws = getWaterStatus(name); if (!ws || ws.type === 'unknown') return ''; const cls = ws.type === 'dry' ? 'water-badge--dry' : ws.type === 'rain' ? 'water-badge--rain' : ws.type === 'fresh' ? 'water-badge--fresh' : ''; return `<span class="water-badge ${cls}">${ws.label}</span>`; })()}
             ${(() => { const nd = getNextSuccessionDate(name); if (!nd) return ''; const diff = Math.round((nd - new Date().setHours(0,0,0,0) + 0) / 86400000); if (diff > 14) return ''; return diff <= 0 ? '<span class="garden-sow-badge garden-sow-badge--due">🔄 Sow now</span>' : `<span class="garden-sow-badge">🔄 Sow in ${diff}d</span>`; })()}
@@ -2543,7 +2567,7 @@ function renderModalGardenBar(name) {
         ${Object.keys(gardenBeds).length ? `<select class="modal-bed-select" id="modal-bed-select" aria-label="Assign to bed">
           <option value="">📍 No bed</option>
           ${Object.entries(gardenBeds).map(([id, b]) =>
-            `<option value="${id}"${myGarden[name]?.bedId === id ? ' selected' : ''}>${b.emoji} ${b.name}</option>`
+            `<option value="${id}"${myGarden[name]?.bedIds?.[0] === id ? ' selected' : ''}>${b.emoji} ${b.name}</option>`
           ).join('')}
         </select>` : ''}
       </div>`;
@@ -5504,7 +5528,9 @@ function resizeStructure(id, dcols, drows) {
 
 function removeBed(id) {
   for (const name of Object.keys(myGarden)) {
-    if (myGarden[name].bedId === id) { myGarden[name].bedId = null; }
+    if (myGarden[name].bedIds?.includes(id)) {
+      myGarden[name].bedIds = myGarden[name].bedIds.filter(bid => bid !== id);
+    }
   }
   saveGarden();
   delete gardenBeds[id];
@@ -5516,7 +5542,7 @@ function removeBed(id) {
 
 function assignCropToBed(cropName, bedId) {
   if (!myGarden[cropName]) return;
-  myGarden[cropName].bedId = bedId || null;
+  myGarden[cropName].bedIds = bedId ? [bedId] : [];
   saveGarden();
   // Phase 54: rotation conflict warning
   if (bedId) {
@@ -5739,10 +5765,9 @@ function renderMapBedHTML(id) {
   const color = bed.color || '#2d5a27';
   const selected = _mapSelectedBed === id;
 
-  const cropEmoji = Object.entries(myGarden)
-    .filter(([, e]) => e.bedId === id)
+  const cropEmoji = getCropsInBed(id)
     .slice(0, cols * rows)
-    .map(([name]) => `<span class="gm-bed-crop-em" title="${name}">${cropData[name]?.emoji || '🌱'}</span>`)
+    .map(name => `<span class="gm-bed-crop-em" title="${name}">${cropData[name]?.emoji || '🌱'}</span>`)
     .join('');
 
   return `<div class="gm-bed gm-bed--${bed.type || 'raised'}${selected ? ' gm-bed--selected' : ''}" data-bed="${id}"
@@ -5777,12 +5802,53 @@ function renderGardenMapDetail() {
   const cols = bed.cols || 4;
   const rows = bed.rows || 2;
 
-  const cropChips = Object.entries(myGarden)
-    .filter(([, e]) => e.bedId === id)
-    .map(([name]) => {
+  function renderBedDetailCrops() {
+    const assigned = getCropsInBed(id);
+    const chips = assigned.map(name => {
       const em = cropData[name]?.emoji || '🌱';
-      return `<span class="gm-crop-chip">${em} ${name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>`;
+      return `<span class="gm-crop-chip">${em} ${name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}<button class="gm-crop-chip-x" data-crop="${name}" aria-label="Remove">×</button></span>`;
     }).join('');
+    document.getElementById('gm-crop-chips-list').innerHTML =
+      chips || '<span class="gm-crops-empty">No crops yet</span>';
+    document.querySelectorAll('.gm-crop-chip-x').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        removeCropFromBed(btn.dataset.crop, id);
+        renderBedDetailCrops();
+        renderGardenMapCanvas();
+      });
+    });
+  }
+
+  function renderBedCropSuggestions(query) {
+    const inBed = new Set(getCropsInBed(id));
+    const q = query.toLowerCase();
+    const matches = Object.keys(myGarden)
+      .filter(n => !inBed.has(n) && n.toLowerCase().includes(q))
+      .slice(0, 8);
+    const el = document.getElementById('gm-crop-suggestions');
+    if (!el) return;
+    const showCreate = query.trim() && !myGarden[query.trim()];
+    const items = matches.map(n =>
+      `<button class="gm-crop-sugg" data-crop="${n}">${cropData[n]?.emoji || '🌱'} ${n}</button>`
+    ).join('');
+    const createBtn = showCreate
+      ? `<button class="gm-crop-sugg gm-crop-sugg--new" data-crop="${query.trim()}">＋ Add "${query.trim()}" to my garden</button>`
+      : '';
+    el.innerHTML = items + createBtn;
+    el.hidden = !(items || createBtn);
+    el.querySelectorAll('.gm-crop-sugg').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const crop = btn.dataset.crop;
+        if (!myGarden[crop]) gardenAdd(crop);
+        addCropToBed(crop, id);
+        renderBedDetailCrops();
+        renderGardenMapCanvas();
+        document.getElementById('gm-crop-search').value = '';
+        el.hidden = true;
+      });
+    });
+  }
 
   detail.hidden = false;
   detail.innerHTML = `<div class="gm-detail-header">
@@ -5800,7 +5866,11 @@ function renderGardenMapDetail() {
     </div>
     <button class="bed-delete-btn" id="gm-bed-delete-btn" title="Delete bed">🗑</button>
   </div>
-  <div class="gm-crop-chips">${cropChips || '<span class="gm-crops-empty">No crops assigned — use the bed selector on each crop</span>'}</div>`;
+  <div class="gm-crop-chips" id="gm-crop-chips-list"></div>
+  <div class="gm-crop-add">
+    <input class="gm-crop-search" id="gm-crop-search" type="text" placeholder="＋ Add crop…" autocomplete="off">
+    <div class="gm-crop-suggestions" id="gm-crop-suggestions" hidden></div>
+  </div>`;
 
   document.getElementById('gm-bed-name-edit')?.addEventListener('blur', e => {
     const v = e.target.value.trim();
@@ -5829,6 +5899,19 @@ function renderGardenMapDetail() {
       _mapSelectedBed = null;
       removeBed(id);
       renderGardenMapCanvas();
+    }
+  });
+
+  renderBedDetailCrops();
+
+  const searchEl = document.getElementById('gm-crop-search');
+  searchEl?.addEventListener('input', e => renderBedCropSuggestions(e.target.value));
+  searchEl?.addEventListener('focus', e => renderBedCropSuggestions(e.target.value));
+  document.addEventListener('pointerdown', function hideSugg(e) {
+    if (!e.target.closest('.gm-crop-add')) {
+      const el = document.getElementById('gm-crop-suggestions');
+      if (el) el.hidden = true;
+      document.removeEventListener('pointerdown', hideSugg);
     }
   });
 }
@@ -8765,7 +8848,7 @@ const ROTATION_EXAMPLES = {
 };
 
 function getCurrentBedFamily(bedId) {
-  const crops = Object.keys(myGarden).filter(n => myGarden[n]?.bedId === bedId);
+  const crops = getCropsInBed(bedId);
   const families = crops.map(n => CROP_FAMILIES[n]).filter(Boolean);
   if (!families.length) return null;
   // Return most common family
