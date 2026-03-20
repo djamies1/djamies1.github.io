@@ -31,7 +31,16 @@
       "Roquette",
       "Sylvetta (wild)"
     ],
-    "aliases": ["Rocket", "Roquette"]
+    "aliases": [
+      "Rocket",
+      "Roquette"
+    ],
+    "days_min": 35,
+    "days_max": 45,
+    "succession_weeks": 2,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Asparagus": {
     "emoji": "🌿",
@@ -66,7 +75,13 @@
       "Jersey Knight",
       "Mary Washington",
       "Purple Passion"
-    ]
+    ],
+    "days_min": 730,
+    "days_max": 1095,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Avocados": {
     "emoji": "🥑",
@@ -96,7 +111,13 @@
       "Hass",
       "Fuerte",
       "Reed"
-    ]
+    ],
+    "days_min": 1095,
+    "days_max": 1460,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Basil": {
     "emoji": "🌿",
@@ -130,7 +151,13 @@
       "Genovese",
       "Thai",
       "Purple Ruffles"
-    ]
+    ],
+    "days_min": 25,
+    "days_max": 35,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Beans": {
     "emoji": "🫘",
@@ -164,7 +191,13 @@
       "Blue Lake",
       "Kentucky Wonder",
       "Dragon Tongue"
-    ]
+    ],
+    "days_min": 50,
+    "days_max": 60,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Beets": {
     "emoji": "🫀",
@@ -199,7 +232,16 @@
       "Chioggia",
       "Golden"
     ],
-    "aliases": ["Beetroot", "Red Beet"]
+    "aliases": [
+      "Beetroot",
+      "Red Beet"
+    ],
+    "days_min": 55,
+    "days_max": 70,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Bok Choy": {
     "emoji": "🥬",
@@ -233,7 +275,13 @@
       "Shanghai",
       "Joi Choi",
       "Baby Bok Choy"
-    ]
+    ],
+    "days_min": 45,
+    "days_max": 60,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Broccoli": {
     "emoji": "🥦",
@@ -268,7 +316,13 @@
       "Calabrese",
       "Di Cicco",
       "Belstar"
-    ]
+    ],
+    "days_min": 70,
+    "days_max": 100,
+    "succession_weeks": null,
+    "transplant_weeks": 6,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Brussels Sprouts": {
     "emoji": "🥦",
@@ -303,7 +357,13 @@
       "Long Island Improved",
       "Jade Cross",
       "Diablo"
-    ]
+    ],
+    "days_min": 80,
+    "days_max": 100,
+    "succession_weeks": null,
+    "transplant_weeks": 8,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Cabbage": {
     "emoji": "🥬",
@@ -337,7 +397,13 @@
       "Golden Acre",
       "Savoy",
       "Red Drumhead"
-    ]
+    ],
+    "days_min": 70,
+    "days_max": 120,
+    "succession_weeks": null,
+    "transplant_weeks": 6,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Carrots": {
     "emoji": "🥕",
@@ -371,7 +437,13 @@
       "Nantes",
       "Danvers",
       "Imperator"
-    ]
+    ],
+    "days_min": 70,
+    "days_max": 80,
+    "succession_weeks": 4,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Cauliflower": {
     "emoji": "⚪",
@@ -405,7 +477,13 @@
       "Snowball",
       "Cheddar",
       "Romanesco"
-    ]
+    ],
+    "days_min": 75,
+    "days_max": 85,
+    "succession_weeks": null,
+    "transplant_weeks": 6,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Celeriac": {
     "emoji": "🌿",
@@ -439,7 +517,13 @@
       "Prague Giant",
       "Brilliant",
       "Monarch"
-    ]
+    ],
+    "days_min": 110,
+    "days_max": 120,
+    "succession_weeks": null,
+    "transplant_weeks": 10,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Celery": {
     "emoji": "🌿",
@@ -473,7 +557,13 @@
       "Utah",
       "Tango",
       "Golden Pascal"
-    ]
+    ],
+    "days_min": 130,
+    "days_max": 140,
+    "succession_weeks": null,
+    "transplant_weeks": 10,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Chard": {
     "emoji": "🌈",
@@ -507,7 +597,17 @@
       "Fordhook Giant",
       "Bright Lights"
     ],
-    "aliases": ["Swiss Chard", "Silverbeet", "Beet Greens"]
+    "aliases": [
+      "Swiss Chard",
+      "Silverbeet",
+      "Beet Greens"
+    ],
+    "days_min": 50,
+    "days_max": 60,
+    "succession_weeks": 4,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Chives": {
     "emoji": "🌿",
@@ -538,7 +638,13 @@
     "varieties": [
       "Common",
       "Garlic Chives"
-    ]
+    ],
+    "days_min": 60,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": true
   },
   "Cilantro": {
     "emoji": "🌿",
@@ -571,7 +677,16 @@
       "Calypso",
       "Santo"
     ],
-    "aliases": ["Coriander", "Dhania"]
+    "aliases": [
+      "Coriander",
+      "Dhania"
+    ],
+    "days_min": 45,
+    "days_max": 70,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Collard Greens": {
     "emoji": "🥬",
@@ -605,7 +720,13 @@
       "Georgia",
       "Vates",
       "Morris Heading"
-    ]
+    ],
+    "days_min": 60,
+    "days_max": 80,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Corn": {
     "emoji": "🌽",
@@ -639,7 +760,17 @@
       "Peaches and Cream",
       "Ambrosia"
     ],
-    "aliases": ["Maize", "Sweetcorn", "Sweet Corn"]
+    "aliases": [
+      "Maize",
+      "Sweetcorn",
+      "Sweet Corn"
+    ],
+    "days_min": 60,
+    "days_max": 100,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 2,
+    "container_ok": false
   },
   "Cucumbers": {
     "emoji": "🥒",
@@ -673,7 +804,13 @@
       "Straight Eight",
       "Marketmore",
       "Lemon"
-    ]
+    ],
+    "days_min": 50,
+    "days_max": 70,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Dill": {
     "emoji": "🌿",
@@ -707,7 +844,13 @@
       "Fernleaf",
       "Bouquet",
       "Mammoth"
-    ]
+    ],
+    "days_min": 40,
+    "days_max": 60,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Edamame": {
     "emoji": "🫛",
@@ -741,7 +884,13 @@
       "Midori Giant",
       "Envy",
       "Sayamusume"
-    ]
+    ],
+    "days_min": 70,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Eggplant": {
     "emoji": "🍆",
@@ -775,7 +924,16 @@
       "Ichiban",
       "Rosa Bianca"
     ],
-    "aliases": ["Aubergine", "Brinjal"]
+    "aliases": [
+      "Aubergine",
+      "Brinjal"
+    ],
+    "days_min": 65,
+    "days_max": 80,
+    "succession_weeks": null,
+    "transplant_weeks": 8,
+    "seed_life_years": 4,
+    "container_ok": false
   },
   "Endive": {
     "emoji": "🥬",
@@ -808,7 +966,13 @@
       "Broad-leaved Batavian",
       "Frisée",
       "Nuvena"
-    ]
+    ],
+    "days_min": 65,
+    "days_max": 90,
+    "succession_weeks": 4,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Fava Beans": {
     "emoji": "🫘",
@@ -842,7 +1006,13 @@
       "Aquadulce",
       "Windsor",
       "Sweet Lorane"
-    ]
+    ],
+    "days_min": 75,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Fennel": {
     "emoji": "🌿",
@@ -878,7 +1048,13 @@
       "Florence Fennel",
       "Perfection",
       "Zefa Fino"
-    ]
+    ],
+    "days_min": 65,
+    "days_max": 80,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Garlic": {
     "emoji": "🧄",
@@ -912,7 +1088,13 @@
       "Rocambole",
       "Porcelain",
       "Silverskin"
-    ]
+    ],
+    "days_min": 240,
+    "days_max": 270,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Ginger": {
     "emoji": "🫚",
@@ -945,7 +1127,13 @@
       "Common (Zingiber officinale)",
       "Hawaiian Baby",
       "Culinary White"
-    ]
+    ],
+    "days_min": 8,
+    "days_max": 10,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Globe Artichoke": {
     "emoji": "🌿",
@@ -979,7 +1167,13 @@
       "Green Globe",
       "Purple of Romagna",
       "Imperial Star"
-    ]
+    ],
+    "days_min": 85,
+    "days_max": 100,
+    "succession_weeks": null,
+    "transplant_weeks": 8,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Green Onions": {
     "emoji": "🌿",
@@ -1013,7 +1207,13 @@
       "Evergreen Hardy White",
       "Ishikura",
       "Tokyo Long White"
-    ]
+    ],
+    "days_min": 50,
+    "days_max": 60,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Ground Cherries": {
     "emoji": "🫑",
@@ -1047,7 +1247,13 @@
       "Aunt Molly's",
       "Cossack Pineapple",
       "Goldie"
-    ]
+    ],
+    "days_min": 70,
+    "days_max": 80,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 4,
+    "container_ok": false
   },
   "Horseradish": {
     "emoji": "🌿",
@@ -1077,7 +1283,13 @@
     "varieties": [
       "Common (Armoracia rusticana)",
       "Bohemian"
-    ]
+    ],
+    "days_min": 60,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Jerusalem Artichoke": {
     "emoji": "🌻",
@@ -1109,7 +1321,13 @@
       "Stampede",
       "Clearwater",
       "Fuseau"
-    ]
+    ],
+    "days_min": 100,
+    "days_max": 150,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Kale": {
     "emoji": "🥦",
@@ -1143,7 +1361,13 @@
       "Lacinato",
       "Curly",
       "Red Russian"
-    ]
+    ],
+    "days_min": 55,
+    "days_max": 75,
+    "succession_weeks": 4,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Kohlrabi": {
     "emoji": "🌿",
@@ -1178,7 +1402,13 @@
       "Early White Vienna",
       "Purple Vienna",
       "Kossak"
-    ]
+    ],
+    "days_min": 45,
+    "days_max": 60,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Leeks": {
     "emoji": "🌿",
@@ -1212,7 +1442,13 @@
       "King Richard",
       "Giant Musselburgh",
       "Autumn Giant"
-    ]
+    ],
+    "days_min": 100,
+    "days_max": 120,
+    "succession_weeks": null,
+    "transplant_weeks": 10,
+    "seed_life_years": 1,
+    "container_ok": false
   },
   "Lemongrass": {
     "emoji": "🌾",
@@ -1242,7 +1478,13 @@
     "varieties": [
       "East Indian (C. flexuosus)",
       "West Indian (C. citratus)"
-    ]
+    ],
+    "days_min": 90,
+    "days_max": 120,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Lettuce": {
     "emoji": "🥬",
@@ -1276,7 +1518,13 @@
       "Buttercrunch",
       "Romaine",
       "Red Leaf"
-    ]
+    ],
+    "days_min": 45,
+    "days_max": 60,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Mangoes": {
     "emoji": "🥭",
@@ -1306,7 +1554,13 @@
       "Tommy Atkins",
       "Keitt",
       "Alphonso"
-    ]
+    ],
+    "days_min": 1095,
+    "days_max": 1825,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Melons": {
     "emoji": "🍈",
@@ -1339,7 +1593,13 @@
       "Honeydew",
       "Cantaloupe",
       "Sugar Baby Watermelon"
-    ]
+    ],
+    "days_min": 70,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Mint": {
     "emoji": "🌿",
@@ -1373,7 +1633,13 @@
       "Spearmint",
       "Peppermint",
       "Chocolate Mint"
-    ]
+    ],
+    "days_min": 60,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Mustard Greens": {
     "emoji": "🌿",
@@ -1405,7 +1671,13 @@
       "Southern Giant Curled",
       "Red Giant",
       "Tendergreen"
-    ]
+    ],
+    "days_min": 30,
+    "days_max": 50,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Mâche": {
     "emoji": "🌿",
@@ -1437,7 +1709,13 @@
       "Vit",
       "Cavallo",
       "D'Etampes"
-    ]
+    ],
+    "days_min": 45,
+    "days_max": 60,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Okra": {
     "emoji": "🫛",
@@ -1471,7 +1749,13 @@
       "Clemson Spineless",
       "Burgundy",
       "Emerald"
-    ]
+    ],
+    "days_min": 50,
+    "days_max": 65,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Onions": {
     "emoji": "🧅",
@@ -1505,7 +1789,13 @@
       "Yellow Sweet Spanish",
       "Red Zeppelin",
       "Walla Walla"
-    ]
+    ],
+    "days_min": 100,
+    "days_max": 120,
+    "succession_weeks": null,
+    "transplant_weeks": 10,
+    "seed_life_years": 1,
+    "container_ok": false
   },
   "Oregano": {
     "emoji": "🌿",
@@ -1535,7 +1825,13 @@
       "Greek",
       "Italian",
       "Marjoram (sweet oregano)"
-    ]
+    ],
+    "days_min": 60,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Parsley": {
     "emoji": "🌿",
@@ -1569,7 +1865,13 @@
       "Italian Flat-Leaf",
       "Curled",
       "Hamburg (root parsley)"
-    ]
+    ],
+    "days_min": 70,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": true
   },
   "Parsnips": {
     "emoji": "🌿",
@@ -1603,7 +1905,13 @@
       "Hollow Crown",
       "Harris Model",
       "Javelin"
-    ]
+    ],
+    "days_min": 100,
+    "days_max": 130,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": false
   },
   "Peanuts": {
     "emoji": "🥜",
@@ -1637,7 +1945,13 @@
       "Valencia",
       "Virginia",
       "Spanish"
-    ]
+    ],
+    "days_min": 120,
+    "days_max": 150,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Peas": {
     "emoji": "🫛",
@@ -1671,7 +1985,13 @@
       "Sugar Snap",
       "Lincoln",
       "Oregon Sugar Pod"
-    ]
+    ],
+    "days_min": 60,
+    "days_max": 70,
+    "succession_weeks": 4,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Peppers": {
     "emoji": "🌶️",
@@ -1706,7 +2026,18 @@
       "Jalapeño",
       "Banana Pepper"
     ],
-    "aliases": ["Bell Pepper", "Capsicum", "Chilli", "Chile"]
+    "aliases": [
+      "Bell Pepper",
+      "Capsicum",
+      "Chilli",
+      "Chile"
+    ],
+    "days_min": 70,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 8,
+    "seed_life_years": 2,
+    "container_ok": true
   },
   "Potatoes": {
     "emoji": "🥔",
@@ -1741,7 +2072,13 @@
       "Yukon Gold",
       "Red Pontiac",
       "Russet Burbank"
-    ]
+    ],
+    "days_min": 70,
+    "days_max": 120,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Pumpkins": {
     "emoji": "🎃",
@@ -1774,7 +2111,13 @@
       "Jack O'Lantern",
       "Baby Pam",
       "Cinderella"
-    ]
+    ],
+    "days_min": 90,
+    "days_max": 120,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Radishes": {
     "emoji": "🔴",
@@ -1807,7 +2150,13 @@
       "Cherry Belle",
       "French Breakfast",
       "Daikon"
-    ]
+    ],
+    "days_min": 22,
+    "days_max": 30,
+    "succession_weeks": 2,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Rhubarb": {
     "emoji": "🌿",
@@ -1840,7 +2189,13 @@
       "Victoria",
       "Chipman Canada Red",
       "Crimson Red"
-    ]
+    ],
+    "days_min": 730,
+    "days_max": 730,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Rosemary": {
     "emoji": "🌿",
@@ -1871,7 +2226,13 @@
       "Arp",
       "Tuscan Blue",
       "Prostrate"
-    ]
+    ],
+    "days_min": 3,
+    "days_max": 6,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Rutabaga": {
     "emoji": "🌿",
@@ -1904,7 +2265,13 @@
       "American Purple Top",
       "Laurentian",
       "Marian"
-    ]
+    ],
+    "days_min": 90,
+    "days_max": 100,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Sage": {
     "emoji": "🌿",
@@ -1938,7 +2305,13 @@
       "Common",
       "Purple",
       "Tri-color"
-    ]
+    ],
+    "days_min": 75,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Shallots": {
     "emoji": "🧅",
@@ -1972,7 +2345,13 @@
       "French Gray",
       "Prisma",
       "Ambition"
-    ]
+    ],
+    "days_min": 60,
+    "days_max": 120,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Spinach": {
     "emoji": "🌿",
@@ -2005,7 +2384,13 @@
       "Bloomsdale",
       "Tyee",
       "Baby Leaf"
-    ]
+    ],
+    "days_min": 40,
+    "days_max": 50,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Squash": {
     "emoji": "🎃",
@@ -2039,7 +2424,17 @@
       "Butternut",
       "Acorn"
     ],
-    "aliases": ["Courgette", "Marrow", "Vegetable Marrow"]
+    "aliases": [
+      "Courgette",
+      "Marrow",
+      "Vegetable Marrow"
+    ],
+    "days_min": 50,
+    "days_max": 65,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Strawberries": {
     "emoji": "🍓",
@@ -2074,7 +2469,13 @@
       "Albion",
       "Seascape",
       "Jewel"
-    ]
+    ],
+    "days_min": 1,
+    "days_max": 1,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Sweet Potatoes": {
     "emoji": "🍠",
@@ -2107,7 +2508,13 @@
       "Beauregard",
       "Jewel",
       "Purple"
-    ]
+    ],
+    "days_min": 90,
+    "days_max": 120,
+    "succession_weeks": null,
+    "transplant_weeks": 4,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Thyme": {
     "emoji": "🌿",
@@ -2136,7 +2543,13 @@
       "English",
       "French",
       "Lemon Thyme"
-    ]
+    ],
+    "days_min": 60,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Tomatillos": {
     "emoji": "🫑",
@@ -2170,7 +2583,13 @@
       "Toma Verde",
       "Purple Tomatillo",
       "Pineapple"
-    ]
+    ],
+    "days_min": 75,
+    "days_max": 100,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 4,
+    "container_ok": false
   },
   "Tomatoes": {
     "emoji": "🍅",
@@ -2205,7 +2624,16 @@
       "Roma",
       "Cherokee Purple"
     ],
-    "aliases": ["Tomato", "Tomatoe"]
+    "aliases": [
+      "Tomato",
+      "Tomatoe"
+    ],
+    "days_min": 60,
+    "days_max": 85,
+    "succession_weeks": null,
+    "transplant_weeks": 6,
+    "seed_life_years": 4,
+    "container_ok": false
   },
   "Turmeric": {
     "emoji": "🟡",
@@ -2234,7 +2662,13 @@
     "varieties": [
       "Common (Curcuma longa)",
       "Mango Ginger"
-    ]
+    ],
+    "days_min": 8,
+    "days_max": 10,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Turnips": {
     "emoji": "🌿",
@@ -2267,7 +2701,13 @@
       "Purple Top White Globe",
       "Hakurei",
       "Golden Globe"
-    ]
+    ],
+    "days_min": 40,
+    "days_max": 60,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Watercress": {
     "emoji": "🌿",
@@ -2295,7 +2735,13 @@
     "varieties": [
       "Common Watercress",
       "Upland Cress"
-    ]
+    ],
+    "days_min": 40,
+    "days_max": 50,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
   },
   "Zucchini": {
     "emoji": "🥒",
@@ -2309,13 +2755,37 @@
     "germ_temp": "70-95°F",
     "soil_ph": "6.0-7.0",
     "fertilizer": "Balanced at planting; side-dress with nitrogen mid-season.",
-    "companions": ["Beans", "Nasturtiums", "Corn"],
-    "avoid": ["Potatoes"],
-    "pests": ["Squash Bug", "Vine Borer", "Cucumber Beetle"],
+    "companions": [
+      "Beans",
+      "Nasturtiums",
+      "Corn"
+    ],
+    "avoid": [
+      "Potatoes"
+    ],
+    "pests": [
+      "Squash Bug",
+      "Vine Borer",
+      "Cucumber Beetle"
+    ],
     "harvest_cues": "6-8 inches long; skin tender and easily pierced.",
     "storage": "Fridge up to 5 days; best eaten fresh.",
-    "varieties": ["Black Beauty", "Costata Romanesco", "Patio Star"],
-    "aliases": ["Courgette", "Marrow", "Summer Squash"]
+    "varieties": [
+      "Black Beauty",
+      "Costata Romanesco",
+      "Patio Star"
+    ],
+    "aliases": [
+      "Courgette",
+      "Marrow",
+      "Summer Squash"
+    ],
+    "days_min": 45,
+    "days_max": 65,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Microgreens": {
     "emoji": "🌱",
@@ -2331,11 +2801,30 @@
     "fertilizer": "None needed — use quality potting mix.",
     "companions": [],
     "avoid": [],
-    "pests": ["Fungus Gnats", "Damping Off"],
+    "pests": [
+      "Fungus Gnats",
+      "Damping Off"
+    ],
     "harvest_cues": "First true leaves emerging; typically 1-3 inches tall.",
     "storage": "Fridge up to 7 days; keep dry.",
-    "varieties": ["Sunflower", "Pea Shoots", "Radish", "Broccoli", "Amaranth"],
-    "aliases": ["Micro Greens", "Baby Greens", "Sprouts"]
+    "varieties": [
+      "Sunflower",
+      "Pea Shoots",
+      "Radish",
+      "Broccoli",
+      "Amaranth"
+    ],
+    "aliases": [
+      "Micro Greens",
+      "Baby Greens",
+      "Sprouts"
+    ],
+    "days_min": 7,
+    "days_max": 21,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Jalapeño": {
     "emoji": "🌶️",
@@ -2349,13 +2838,38 @@
     "germ_temp": "75-85°F",
     "soil_ph": "6.0-6.8",
     "fertilizer": "Balanced at planting; reduce nitrogen once flowering.",
-    "companions": ["Basil", "Carrots", "Tomatoes"],
-    "avoid": ["Fennel", "Brassicas"],
-    "pests": ["Aphids", "Spider Mites", "Pepper Weevil"],
+    "companions": [
+      "Basil",
+      "Carrots",
+      "Tomatoes"
+    ],
+    "avoid": [
+      "Fennel",
+      "Brassicas"
+    ],
+    "pests": [
+      "Aphids",
+      "Spider Mites",
+      "Pepper Weevil"
+    ],
     "harvest_cues": "Deep green; about 3 inches long. Red when fully ripe and hotter.",
     "storage": "Fridge up to 2 weeks; freeze or pickle for long term.",
-    "varieties": ["Early Jalapeño", "Mucho Nacho", "Jalafuego"],
-    "aliases": ["Jalapeno", "Hot Pepper", "Chilli Pepper"]
+    "varieties": [
+      "Early Jalapeño",
+      "Mucho Nacho",
+      "Jalafuego"
+    ],
+    "aliases": [
+      "Jalapeno",
+      "Hot Pepper",
+      "Chilli Pepper"
+    ],
+    "days_min": 65,
+    "days_max": 80,
+    "succession_weeks": null,
+    "transplant_weeks": 8,
+    "seed_life_years": 4,
+    "container_ok": true
   },
   "Cherry Tomatoes": {
     "emoji": "🍅",
@@ -2369,13 +2883,39 @@
     "germ_temp": "70-80°F",
     "soil_ph": "6.0-6.8",
     "fertilizer": "Balanced at planting; low-nitrogen once flowering.",
-    "companions": ["Basil", "Carrots", "Marigolds"],
-    "avoid": ["Fennel", "Brassicas"],
-    "pests": ["Aphids", "Hornworm", "Whitefly"],
+    "companions": [
+      "Basil",
+      "Carrots",
+      "Marigolds"
+    ],
+    "avoid": [
+      "Fennel",
+      "Brassicas"
+    ],
+    "pests": [
+      "Aphids",
+      "Hornworm",
+      "Whitefly"
+    ],
     "harvest_cues": "Fully coloured; squeeze gently — should give slightly.",
     "storage": "Counter at room temp; use within 5 days.",
-    "varieties": ["Sun Gold", "Sweet Million", "Black Cherry", "Juliet"],
-    "aliases": ["Cherry Tomato", "Cocktail Tomato", "Grape Tomato"]
+    "varieties": [
+      "Sun Gold",
+      "Sweet Million",
+      "Black Cherry",
+      "Juliet"
+    ],
+    "aliases": [
+      "Cherry Tomato",
+      "Cocktail Tomato",
+      "Grape Tomato"
+    ],
+    "days_min": 55,
+    "days_max": 70,
+    "succession_weeks": null,
+    "transplant_weeks": 6,
+    "seed_life_years": 4,
+    "container_ok": true
   },
   "Sweet Corn": {
     "emoji": "🌽",
@@ -2389,13 +2929,37 @@
     "germ_temp": "60-95°F",
     "soil_ph": "5.8-6.8",
     "fertilizer": "Heavy nitrogen feeder; side-dress at knee height.",
-    "companions": ["Beans", "Squash", "Sunflowers"],
-    "avoid": ["Tomatoes"],
-    "pests": ["Corn Earworm", "Corn Borer", "Rootworm"],
+    "companions": [
+      "Beans",
+      "Squash",
+      "Sunflowers"
+    ],
+    "avoid": [
+      "Tomatoes"
+    ],
+    "pests": [
+      "Corn Earworm",
+      "Corn Borer",
+      "Rootworm"
+    ],
     "harvest_cues": "Silks brown; kernels plump and milky when pierced.",
     "storage": "Fridge up to 3 days; eat immediately for best sweetness.",
-    "varieties": ["Ambrosia", "Peaches and Cream", "Honey Select"],
-    "aliases": ["Sweetcorn", "Maize", "Corn on the Cob"]
+    "varieties": [
+      "Ambrosia",
+      "Peaches and Cream",
+      "Honey Select"
+    ],
+    "aliases": [
+      "Sweetcorn",
+      "Maize",
+      "Corn on the Cob"
+    ],
+    "days_min": 60,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 2,
+    "container_ok": false
   },
   "Butternut Squash": {
     "emoji": "🎃",
@@ -2409,13 +2973,36 @@
     "germ_temp": "70-95°F",
     "soil_ph": "6.0-6.8",
     "fertilizer": "Heavy feeder; compost at planting and side-dress monthly.",
-    "companions": ["Corn", "Beans", "Nasturtiums"],
-    "avoid": ["Potatoes"],
-    "pests": ["Squash Bug", "Vine Borer", "Cucumber Beetle"],
+    "companions": [
+      "Corn",
+      "Beans",
+      "Nasturtiums"
+    ],
+    "avoid": [
+      "Potatoes"
+    ],
+    "pests": [
+      "Squash Bug",
+      "Vine Borer",
+      "Cucumber Beetle"
+    ],
     "harvest_cues": "Skin tan and hard; stem dry and corky.",
     "storage": "Cool, dry place up to 3-6 months.",
-    "varieties": ["Waltham Butternut", "Honeynut", "Hunter"],
-    "aliases": ["Butternut Pumpkin", "Gramma"]
+    "varieties": [
+      "Waltham Butternut",
+      "Honeynut",
+      "Hunter"
+    ],
+    "aliases": [
+      "Butternut Pumpkin",
+      "Gramma"
+    ],
+    "days_min": 80,
+    "days_max": 100,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Raspberries": {
     "emoji": "🫐",
@@ -2429,13 +3016,40 @@
     "germ_temp": "N/A (plant canes or plugs)",
     "soil_ph": "5.5-6.5",
     "fertilizer": "Balanced feed in early spring; avoid high nitrogen after midsummer.",
-    "companions": ["Garlic", "Marigolds", "Yarrow"],
-    "avoid": ["Potatoes", "Tomatoes"],
-    "pests": ["Aphids", "Raspberry Beetle", "Botrytis (grey mould)", "Cane Blight"],
+    "companions": [
+      "Garlic",
+      "Marigolds",
+      "Yarrow"
+    ],
+    "avoid": [
+      "Potatoes",
+      "Tomatoes"
+    ],
+    "pests": [
+      "Aphids",
+      "Raspberry Beetle",
+      "Botrytis (grey mould)",
+      "Cane Blight"
+    ],
     "harvest_cues": "Berries come away easily from the plug; deep colour throughout; sweet aroma.",
     "storage": "Fridge 2-3 days; freeze on trays then bag for up to 12 months.",
-    "varieties": ["Glen Ample", "Autumn Bliss", "Heritage", "Tulameen", "Caroline"],
-    "aliases": ["Rasps", "Brambles"]
+    "varieties": [
+      "Glen Ample",
+      "Autumn Bliss",
+      "Heritage",
+      "Tulameen",
+      "Caroline"
+    ],
+    "aliases": [
+      "Rasps",
+      "Brambles"
+    ],
+    "days_min": 730,
+    "days_max": 730,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Blueberries": {
     "emoji": "🫐",
@@ -2449,13 +3063,38 @@
     "germ_temp": "N/A (plant established bushes)",
     "soil_ph": "4.5-5.5",
     "fertilizer": "Ericaceous (acidic) fertilizer each spring; no lime ever.",
-    "companions": ["Strawberries", "Thyme", "Basil"],
-    "avoid": ["Nightshades"],
-    "pests": ["Birds", "Blueberry Maggot", "Mummified Berry (mummy berry fungus)"],
+    "companions": [
+      "Strawberries",
+      "Thyme",
+      "Basil"
+    ],
+    "avoid": [
+      "Nightshades"
+    ],
+    "pests": [
+      "Birds",
+      "Blueberry Maggot",
+      "Mummified Berry (mummy berry fungus)"
+    ],
     "harvest_cues": "Fully blue with slight grey bloom; taste test — ripe berries are sweet, not tart.",
     "storage": "Fridge up to 2 weeks; freeze for long-term storage.",
-    "varieties": ["Bluecrop", "Duke", "Chandler", "Pink Lemonade", "Sunshine Blue (compact)"],
-    "aliases": ["Highbush Blueberry", "Lowbush Blueberry"]
+    "varieties": [
+      "Bluecrop",
+      "Duke",
+      "Chandler",
+      "Pink Lemonade",
+      "Sunshine Blue (compact)"
+    ],
+    "aliases": [
+      "Highbush Blueberry",
+      "Lowbush Blueberry"
+    ],
+    "days_min": 1095,
+    "days_max": 1460,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Blackberries": {
     "emoji": "🫐",
@@ -2469,13 +3108,37 @@
     "germ_temp": "N/A (plant canes)",
     "soil_ph": "5.5-7.0",
     "fertilizer": "Balanced spring feed; mulch thickly to retain moisture and suppress weeds.",
-    "companions": ["Garlic", "Tansy"],
-    "avoid": ["Raspberries (cross-pollination issues if too close)"],
-    "pests": ["Raspberry Beetle", "Aphids", "Botrytis"],
+    "companions": [
+      "Garlic",
+      "Tansy"
+    ],
+    "avoid": [
+      "Raspberries (cross-pollination issues if too close)"
+    ],
+    "pests": [
+      "Raspberry Beetle",
+      "Aphids",
+      "Botrytis"
+    ],
     "harvest_cues": "Fully black and comes away from the plug easily; flesh soft and deeply sweet.",
     "storage": "Fridge 3-4 days; freeze immediately if not eating fresh.",
-    "varieties": ["Loch Ness", "Chester (thornless)", "Triple Crown", "Apache", "Navaho"],
-    "aliases": ["Brambles", "Wild Blackberry"]
+    "varieties": [
+      "Loch Ness",
+      "Chester (thornless)",
+      "Triple Crown",
+      "Apache",
+      "Navaho"
+    ],
+    "aliases": [
+      "Brambles",
+      "Wild Blackberry"
+    ],
+    "days_min": 730,
+    "days_max": 730,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Gooseberries": {
     "emoji": "🍈",
@@ -2489,13 +3152,38 @@
     "germ_temp": "N/A",
     "soil_ph": "6.0-6.5",
     "fertilizer": "Balanced NPK in early spring; sulphate of potash in midsummer.",
-    "companions": ["Tomatoes", "Beans", "Currants"],
-    "avoid": ["Fennel"],
-    "pests": ["Gooseberry Sawfly", "Powdery Mildew", "American Gooseberry Mildew", "Birds"],
+    "companions": [
+      "Tomatoes",
+      "Beans",
+      "Currants"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Gooseberry Sawfly",
+      "Powdery Mildew",
+      "American Gooseberry Mildew",
+      "Birds"
+    ],
     "harvest_cues": "For cooking: firm and green. For dessert: fully ripe (yellow, red or white), slightly soft with bloom.",
     "storage": "Fridge 1 week; freeze or jam for long-term.",
-    "varieties": ["Invicta (heavy crop)", "Hinnonmäki Red", "Careless", "Pax (thornless)", "Captivator"],
-    "aliases": ["Goosegog"]
+    "varieties": [
+      "Invicta (heavy crop)",
+      "Hinnonmäki Red",
+      "Careless",
+      "Pax (thornless)",
+      "Captivator"
+    ],
+    "aliases": [
+      "Goosegog"
+    ],
+    "days_min": 730,
+    "days_max": 1095,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Redcurrants": {
     "emoji": "🍒",
@@ -2509,13 +3197,36 @@
     "germ_temp": "N/A",
     "soil_ph": "6.0-6.5",
     "fertilizer": "Balanced spring feed + high-potash summer feed for best colour and flavour.",
-    "companions": ["Gooseberries", "Blackcurrants"],
-    "avoid": ["Fennel"],
-    "pests": ["Currant Blister Aphid", "Sawfly", "Birds"],
+    "companions": [
+      "Gooseberries",
+      "Blackcurrants"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Currant Blister Aphid",
+      "Sawfly",
+      "Birds"
+    ],
     "harvest_cues": "Whole trusses turn deep red simultaneously; taste test a few berries for balanced sweet-tart flavour.",
     "storage": "Fridge up to 1 week on the truss; freeze whole truss for later.",
-    "varieties": ["Stanza", "Jonkheer van Tets", "Red Lake", "Rovada"],
-    "aliases": ["Red Currant", "Whitecurrant (white-berried variant)"]
+    "varieties": [
+      "Stanza",
+      "Jonkheer van Tets",
+      "Red Lake",
+      "Rovada"
+    ],
+    "aliases": [
+      "Red Currant",
+      "Whitecurrant (white-berried variant)"
+    ],
+    "days_min": 730,
+    "days_max": 1095,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Nasturtium": {
     "emoji": "🌸",
@@ -2529,13 +3240,36 @@
     "germ_temp": "55-65°F",
     "soil_ph": "5.5-7.5",
     "fertilizer": "Minimal — avoid nitrogen-rich feeds or you get leaves but few flowers.",
-    "companions": ["Tomatoes", "Cucumbers", "Squash", "Beans", "Kale"],
+    "companions": [
+      "Tomatoes",
+      "Cucumbers",
+      "Squash",
+      "Beans",
+      "Kale"
+    ],
     "avoid": [],
-    "pests": ["Aphids (act as trap crop — draw aphids away from vegetables)", "Cabbage White Butterfly"],
+    "pests": [
+      "Aphids (act as trap crop — draw aphids away from vegetables)",
+      "Cabbage White Butterfly"
+    ],
     "harvest_cues": "Flowers open fully; pick in the morning for best flavour. Leaves anytime. Seeds when fat and green for capers.",
     "storage": "Use flowers same day. Seeds pickle as 'poor man's capers' in brine.",
-    "varieties": ["Jewel Mix", "Alaska (variegated leaves)", "Empress of India (dark)", "Trailing Mix"],
-    "aliases": ["Indian Cress", "Tropaeolum"]
+    "varieties": [
+      "Jewel Mix",
+      "Alaska (variegated leaves)",
+      "Empress of India (dark)",
+      "Trailing Mix"
+    ],
+    "aliases": [
+      "Indian Cress",
+      "Tropaeolum"
+    ],
+    "days_min": 35,
+    "days_max": 52,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Borage": {
     "emoji": "💙",
@@ -2549,13 +3283,32 @@
     "germ_temp": "60-70°F",
     "soil_ph": "6.0-7.0",
     "fertilizer": "Unfussy — thrives with minimal feeding. Rich soil reduces flowering.",
-    "companions": ["Tomatoes", "Squash", "Strawberries", "Beans"],
+    "companions": [
+      "Tomatoes",
+      "Squash",
+      "Strawberries",
+      "Beans"
+    ],
     "avoid": [],
-    "pests": ["Aphids"],
+    "pests": [
+      "Aphids"
+    ],
     "harvest_cues": "Harvest individual star-shaped flowers when fully open; young leaves are edible before stems become hairy.",
     "storage": "Use flowers immediately; freeze in ice cubes to preserve. Leaves wilt quickly — use same day.",
-    "varieties": ["Common Blue", "Alba (white flowers)"],
-    "aliases": ["Starflower", "Bee Bread"]
+    "varieties": [
+      "Common Blue",
+      "Alba (white flowers)"
+    ],
+    "aliases": [
+      "Starflower",
+      "Bee Bread"
+    ],
+    "days_min": 55,
+    "days_max": 70,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Calendula": {
     "emoji": "🌼",
@@ -2569,13 +3322,35 @@
     "germ_temp": "60-70°F",
     "soil_ph": "5.5-7.0",
     "fertilizer": "Light; too much nitrogen reduces flowers.",
-    "companions": ["Tomatoes", "Asparagus", "Carrots", "Beans"],
+    "companions": [
+      "Tomatoes",
+      "Asparagus",
+      "Carrots",
+      "Beans"
+    ],
     "avoid": [],
-    "pests": ["Aphids (excellent trap crop)", "Slugs on seedlings"],
+    "pests": [
+      "Aphids (excellent trap crop)",
+      "Slugs on seedlings"
+    ],
     "harvest_cues": "Petals fully open in morning sun; bright orange or yellow. Pick regularly to encourage more blooms.",
     "storage": "Dry petals on a screen in a cool airy place; store in an airtight jar for months.",
-    "varieties": ["Indian Prince", "Art Shades", "Pacific Beauty", "Snow Princess (white)"],
-    "aliases": ["Pot Marigold", "English Marigold"]
+    "varieties": [
+      "Indian Prince",
+      "Art Shades",
+      "Pacific Beauty",
+      "Snow Princess (white)"
+    ],
+    "aliases": [
+      "Pot Marigold",
+      "English Marigold"
+    ],
+    "days_min": 45,
+    "days_max": 60,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Lemon Balm": {
     "emoji": "🍋",
@@ -2589,13 +3364,34 @@
     "germ_temp": "60-70°F",
     "soil_ph": "6.0-7.5",
     "fertilizer": "Minimal — thrives in average soil; over-feeding reduces essential oil potency.",
-    "companions": ["Tomatoes", "Squash", "Beans", "Peas"],
+    "companions": [
+      "Tomatoes",
+      "Squash",
+      "Beans",
+      "Peas"
+    ],
     "avoid": [],
-    "pests": ["Aphids", "Powdery Mildew in dry conditions"],
+    "pests": [
+      "Aphids",
+      "Powdery Mildew in dry conditions"
+    ],
     "harvest_cues": "Harvest young leaves before flowering for best lemon scent; cut stems in the morning.",
     "storage": "Dry leaves in a dark airy place 1-2 weeks; store in airtight jars. Or freeze in ice cubes.",
-    "varieties": ["Aurea (golden leaves)", "Quedlinburger Niederliegende"],
-    "aliases": ["Melissa", "Sweet Balm", "Bee Balm"]
+    "varieties": [
+      "Aurea (golden leaves)",
+      "Quedlinburger Niederliegende"
+    ],
+    "aliases": [
+      "Melissa",
+      "Sweet Balm",
+      "Bee Balm"
+    ],
+    "days_min": 75,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Tarragon": {
     "emoji": "🌿",
@@ -2609,13 +3405,32 @@
     "germ_temp": "N/A (vegetative propagation for French tarragon)",
     "soil_ph": "6.0-7.5",
     "fertilizer": "Light; excellent in poor, well-drained soil.",
-    "companions": ["Tomatoes", "Peppers", "Eggplant"],
+    "companions": [
+      "Tomatoes",
+      "Peppers",
+      "Eggplant"
+    ],
     "avoid": [],
-    "pests": ["Aphids", "Spider Mite in dry conditions"],
+    "pests": [
+      "Aphids",
+      "Spider Mite in dry conditions"
+    ],
     "harvest_cues": "Harvest young shoot tips 3-4 inches long before plant flowers; leaves most flavourful in late spring.",
     "storage": "Dry or freeze in ice cubes; makes excellent tarragon vinegar.",
-    "varieties": ["French Tarragon (Artemisia dracunculus)", "Russian Tarragon (less flavourful)"],
-    "aliases": ["Estragon", "Dragon Herb"]
+    "varieties": [
+      "French Tarragon (Artemisia dracunculus)",
+      "Russian Tarragon (less flavourful)"
+    ],
+    "aliases": [
+      "Estragon",
+      "Dragon Herb"
+    ],
+    "days_min": 60,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Sorrel": {
     "emoji": "🌱",
@@ -2629,13 +3444,33 @@
     "germ_temp": "50-65°F",
     "soil_ph": "5.5-6.8",
     "fertilizer": "Light nitrogen once in spring; low-maintenance perennial.",
-    "companions": ["Strawberries", "Chives", "Lettuce"],
+    "companions": [
+      "Strawberries",
+      "Chives",
+      "Lettuce"
+    ],
     "avoid": [],
-    "pests": ["Aphids", "Slugs"],
+    "pests": [
+      "Aphids",
+      "Slugs"
+    ],
     "harvest_cues": "Pick outer leaves when 4-6 inches long. Leaves are ready all season if flower stalks are removed.",
     "storage": "Fridge 3-5 days; blanch and freeze for long-term use in soups.",
-    "varieties": ["Common Sorrel", "French Sorrel (less acidic)", "Red-veined Sorrel (decorative)"],
-    "aliases": ["Garden Sorrel", "Sour Grass"]
+    "varieties": [
+      "Common Sorrel",
+      "French Sorrel (less acidic)",
+      "Red-veined Sorrel (decorative)"
+    ],
+    "aliases": [
+      "Garden Sorrel",
+      "Sour Grass"
+    ],
+    "days_min": 50,
+    "days_max": 60,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Watermelon": {
     "emoji": "🍉",
@@ -2649,13 +3484,37 @@
     "germ_temp": "70-85°F",
     "soil_ph": "6.0-6.8",
     "fertilizer": "High nitrogen at planting, switch to phosphorus/potassium once vines run.",
-    "companions": ["Nasturtium", "Radishes", "Sunflowers"],
-    "avoid": ["Potatoes", "Fennel"],
-    "pests": ["Cucumber Beetle", "Aphids", "Vine Borer"],
+    "companions": [
+      "Nasturtium",
+      "Radishes",
+      "Sunflowers"
+    ],
+    "avoid": [
+      "Potatoes",
+      "Fennel"
+    ],
+    "pests": [
+      "Cucumber Beetle",
+      "Aphids",
+      "Vine Borer"
+    ],
     "harvest_cues": "Yellowed ground spot, dried tendril nearest fruit, hollow thump.",
     "storage": "Whole: room temp 2 weeks. Cut: fridge 3-5 days.",
-    "varieties": ["Sugar Baby", "Crimson Sweet", "Charleston Grey", "Seedless Tri-X"],
-    "aliases": ["Citrullus"]
+    "varieties": [
+      "Sugar Baby",
+      "Crimson Sweet",
+      "Charleston Grey",
+      "Seedless Tri-X"
+    ],
+    "aliases": [
+      "Citrullus"
+    ],
+    "days_min": 70,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Runner Beans": {
     "emoji": "🫘",
@@ -2669,13 +3528,40 @@
     "germ_temp": "60-70°F",
     "soil_ph": "6.0-7.0",
     "fertilizer": "Low nitrogen (fixes own); compost at planting + potassium during flowering.",
-    "companions": ["Sweetcorn", "Summer Savory", "Carrots"],
-    "avoid": ["Fennel", "Beets", "Kohlrabi"],
-    "pests": ["Blackfly", "Slugs", "Spider Mites"],
+    "companions": [
+      "Sweetcorn",
+      "Summer Savory",
+      "Carrots"
+    ],
+    "avoid": [
+      "Fennel",
+      "Beets",
+      "Kohlrabi"
+    ],
+    "pests": [
+      "Blackfly",
+      "Slugs",
+      "Spider Mites"
+    ],
     "harvest_cues": "Pods 6-8 in long, before seeds visibly bulge. Check every 2 days in peak season.",
     "storage": "Fridge 4-5 days; blanch and freeze up to 12 months.",
-    "varieties": ["Scarlet Emperor", "Painted Lady", "White Lady", "Enorma"],
-    "aliases": ["Scarlet Runner", "Climbing Bean", "Pole Bean"]
+    "varieties": [
+      "Scarlet Emperor",
+      "Painted Lady",
+      "White Lady",
+      "Enorma"
+    ],
+    "aliases": [
+      "Scarlet Runner",
+      "Climbing Bean",
+      "Pole Bean"
+    ],
+    "days_min": 60,
+    "days_max": 70,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Sugar Snap Peas": {
     "emoji": "🫛",
@@ -2689,13 +3575,39 @@
     "germ_temp": "45-70°F",
     "soil_ph": "6.0-7.5",
     "fertilizer": "Minimal — fix own nitrogen. Top-dress compost at sowing.",
-    "companions": ["Carrots", "Mint", "Radishes", "Lettuce"],
-    "avoid": ["Garlic", "Onions", "Leeks"],
-    "pests": ["Pea Moth", "Aphids", "Slugs"],
+    "companions": [
+      "Carrots",
+      "Mint",
+      "Radishes",
+      "Lettuce"
+    ],
+    "avoid": [
+      "Garlic",
+      "Onions",
+      "Leeks"
+    ],
+    "pests": [
+      "Pea Moth",
+      "Aphids",
+      "Slugs"
+    ],
     "harvest_cues": "Pod plump and rounded but still bright green. Crisp snap when bent.",
     "storage": "Fridge 5-7 days; best eaten same day. Blanch and freeze well.",
-    "varieties": ["Sugar Snap", "Super Sugar Snap", "Oregon Sugar Pod II"],
-    "aliases": ["Snap Peas", "Sugar Peas"]
+    "varieties": [
+      "Sugar Snap",
+      "Super Sugar Snap",
+      "Oregon Sugar Pod II"
+    ],
+    "aliases": [
+      "Snap Peas",
+      "Sugar Peas"
+    ],
+    "days_min": 60,
+    "days_max": 70,
+    "succession_weeks": 4,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Snow Peas": {
     "emoji": "🫛",
@@ -2709,13 +3621,39 @@
     "germ_temp": "45-70°F",
     "soil_ph": "6.0-7.5",
     "fertilizer": "Minimal; compost at planting, no extra nitrogen needed.",
-    "companions": ["Carrots", "Radishes", "Lettuce", "Mint"],
-    "avoid": ["Garlic", "Onions"],
-    "pests": ["Pea Moth", "Aphids", "Powdery Mildew"],
+    "companions": [
+      "Carrots",
+      "Radishes",
+      "Lettuce",
+      "Mint"
+    ],
+    "avoid": [
+      "Garlic",
+      "Onions"
+    ],
+    "pests": [
+      "Pea Moth",
+      "Aphids",
+      "Powdery Mildew"
+    ],
     "harvest_cues": "Flat pod, seeds barely visible through skin. Pick before pods swell.",
     "storage": "Fridge 3-5 days. Stir-fry or blanch and freeze.",
-    "varieties": ["Oregon Sugar Pod", "Mammoth Melting Sugar", "Dwarf Gray Sugar"],
-    "aliases": ["Mangetout", "Chinese Pea", "Mange Tout"]
+    "varieties": [
+      "Oregon Sugar Pod",
+      "Mammoth Melting Sugar",
+      "Dwarf Gray Sugar"
+    ],
+    "aliases": [
+      "Mangetout",
+      "Chinese Pea",
+      "Mange Tout"
+    ],
+    "days_min": 55,
+    "days_max": 70,
+    "succession_weeks": 4,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Bay Leaf": {
     "emoji": "🌿",
@@ -2729,13 +3667,34 @@
     "germ_temp": "70°F (slow from seed — propagate from cuttings instead)",
     "soil_ph": "6.0-7.5",
     "fertilizer": "Light balanced feed in spring; very low maintenance.",
-    "companions": ["Beans", "Carrots", "Tomatoes"],
+    "companions": [
+      "Beans",
+      "Carrots",
+      "Tomatoes"
+    ],
     "avoid": [],
-    "pests": ["Bay Sucker", "Scale Insects", "Aphids"],
+    "pests": [
+      "Bay Sucker",
+      "Scale Insects",
+      "Aphids"
+    ],
     "harvest_cues": "Pick mature dark-green leaves. Dry for 2 weeks for stronger flavour.",
     "storage": "Fresh: fridge 1-2 weeks. Dried: airtight jar 1 year+.",
-    "varieties": ["Sweet Bay (Laurus nobilis)", "Willow Leaf Bay"],
-    "aliases": ["Bay Laurel", "Sweet Bay", "Laurel"]
+    "varieties": [
+      "Sweet Bay (Laurus nobilis)",
+      "Willow Leaf Bay"
+    ],
+    "aliases": [
+      "Bay Laurel",
+      "Sweet Bay",
+      "Laurel"
+    ],
+    "days_min": 60,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Lavender": {
     "emoji": "💜",
@@ -2749,13 +3708,39 @@
     "germ_temp": "65-70°F",
     "soil_ph": "6.5-7.5",
     "fertilizer": "Very low; excess nitrogen reduces fragrance. Sandy, well-drained soil preferred.",
-    "companions": ["Roses", "Brassicas", "Carrots", "Herbs"],
-    "avoid": ["Mint", "Shade plants"],
-    "pests": ["Aphids", "Whitefly"],
+    "companions": [
+      "Roses",
+      "Brassicas",
+      "Carrots",
+      "Herbs"
+    ],
+    "avoid": [
+      "Mint",
+      "Shade plants"
+    ],
+    "pests": [
+      "Aphids",
+      "Whitefly"
+    ],
     "harvest_cues": "Cut flower spikes when about 1/3 of buds are open for best fragrance.",
     "storage": "Dry bunches upside-down for 2-4 weeks. Store dried in airtight container.",
-    "varieties": ["Hidcote", "Munstead", "Grosso", "Vera"],
-    "aliases": ["Lavandula", "True Lavender", "English Lavender"]
+    "varieties": [
+      "Hidcote",
+      "Munstead",
+      "Grosso",
+      "Vera"
+    ],
+    "aliases": [
+      "Lavandula",
+      "True Lavender",
+      "English Lavender"
+    ],
+    "days_min": 2,
+    "days_max": 2,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
   },
   "Sunflowers": {
     "emoji": "🌻",
@@ -2769,13 +3754,38 @@
     "germ_temp": "70-85°F",
     "soil_ph": "6.0-7.5",
     "fertilizer": "Low to moderate; high nitrogen causes leafy growth with fewer seeds.",
-    "companions": ["Cucumbers", "Corn", "Tomatoes", "Squash"],
-    "avoid": ["Potatoes"],
-    "pests": ["Birds", "Squirrels", "Aphids"],
+    "companions": [
+      "Cucumbers",
+      "Corn",
+      "Tomatoes",
+      "Squash"
+    ],
+    "avoid": [
+      "Potatoes"
+    ],
+    "pests": [
+      "Birds",
+      "Squirrels",
+      "Aphids"
+    ],
     "harvest_cues": "Back of head turns yellow-brown, seeds firm and striped. Cover with netting to deter birds.",
     "storage": "Dry seeds on head for 2-3 weeks. Shell and store in airtight container 1 year.",
-    "varieties": ["Mammoth Russian", "Teddy Bear (dwarf)", "Autumn Beauty", "Lemon Queen"],
-    "aliases": ["Helianthus", "Common Sunflower"]
+    "varieties": [
+      "Mammoth Russian",
+      "Teddy Bear (dwarf)",
+      "Autumn Beauty",
+      "Lemon Queen"
+    ],
+    "aliases": [
+      "Helianthus",
+      "Common Sunflower"
+    ],
+    "days_min": 70,
+    "days_max": 100,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Blackcurrants": {
     "emoji": "🫐",
@@ -2789,13 +3799,35 @@
     "germ_temp": "N/A (plant young bushes)",
     "soil_ph": "6.0-6.5",
     "fertilizer": "High nitrogen in spring; top-dress with compost every autumn.",
-    "companions": ["Lavender", "Rosemary", "Hyssop"],
+    "companions": [
+      "Lavender",
+      "Rosemary",
+      "Hyssop"
+    ],
     "avoid": [],
-    "pests": ["Big Bud Mite", "Aphids", "Gooseberry Sawfly"],
+    "pests": [
+      "Big Bud Mite",
+      "Aphids",
+      "Gooseberry Sawfly"
+    ],
     "harvest_cues": "Whole strig (cluster) dark black and slightly soft. Taste-test before harvest.",
     "storage": "Fridge 3-4 days. Freeze whole on trays then bag — lasts 12 months.",
-    "varieties": ["Ben Connan", "Ben Lomond", "Ebony", "Big Ben"],
-    "aliases": ["Black Currants", "Ribes nigrum"]
+    "varieties": [
+      "Ben Connan",
+      "Ben Lomond",
+      "Ebony",
+      "Big Ben"
+    ],
+    "aliases": [
+      "Black Currants",
+      "Ribes nigrum"
+    ],
+    "days_min": 1095,
+    "days_max": 1095,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Lima Beans": {
     "emoji": "🫘",
@@ -2809,13 +3841,40 @@
     "germ_temp": "65-80°F",
     "soil_ph": "6.0-6.8",
     "fertilizer": "Low nitrogen; compost at planting. Avoid high nitrogen which favours leaves over pods.",
-    "companions": ["Squash", "Cucumbers", "Carrots", "Marigolds"],
-    "avoid": ["Fennel", "Onions"],
-    "pests": ["Bean Beetle", "Aphids", "Spider Mites"],
+    "companions": [
+      "Squash",
+      "Cucumbers",
+      "Carrots",
+      "Marigolds"
+    ],
+    "avoid": [
+      "Fennel",
+      "Onions"
+    ],
+    "pests": [
+      "Bean Beetle",
+      "Aphids",
+      "Spider Mites"
+    ],
     "harvest_cues": "Green stage: pods plump and green. Dry stage: pods papery and rattling.",
     "storage": "Fresh: fridge 3-5 days. Dried: airtight jar 2+ years.",
-    "varieties": ["Fordhook 242", "Henderson Bush", "Christmas (speckled)", "King of the Garden"],
-    "aliases": ["Butter Beans", "Sieva Bean", "Madagascar Bean"]
+    "varieties": [
+      "Fordhook 242",
+      "Henderson Bush",
+      "Christmas (speckled)",
+      "King of the Garden"
+    ],
+    "aliases": [
+      "Butter Beans",
+      "Sieva Bean",
+      "Madagascar Bean"
+    ],
+    "days_min": 65,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   },
   "Broccoli Rabe": {
     "emoji": "🥦",
@@ -2829,13 +3888,40 @@
     "germ_temp": "50-85°F",
     "soil_ph": "6.0-7.0",
     "fertilizer": "Moderate nitrogen; balanced fertilizer at planting.",
-    "companions": ["Beets", "Celery", "Onions", "Potatoes"],
-    "avoid": ["Strawberries", "Tomatoes"],
-    "pests": ["Flea Beetles", "Cabbage Worm", "Aphids"],
+    "companions": [
+      "Beets",
+      "Celery",
+      "Onions",
+      "Potatoes"
+    ],
+    "avoid": [
+      "Strawberries",
+      "Tomatoes"
+    ],
+    "pests": [
+      "Flea Beetles",
+      "Cabbage Worm",
+      "Aphids"
+    ],
     "harvest_cues": "Cut central shoot with flower buds still tight. Side shoots follow for weeks.",
     "storage": "Fridge 3-5 days. Blanch and freeze well.",
-    "varieties": ["Quarantina", "Sessantina Giorni", "Spring Raab"],
-    "aliases": ["Rapini", "Italian Broccoli", "Broccoletti", "Cima di Rapa"]
+    "varieties": [
+      "Quarantina",
+      "Sessantina Giorni",
+      "Spring Raab"
+    ],
+    "aliases": [
+      "Rapini",
+      "Italian Broccoli",
+      "Broccoletti",
+      "Cima di Rapa"
+    ],
+    "days_min": 40,
+    "days_max": 60,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Daikon": {
     "emoji": "🌿",
@@ -2849,13 +3935,42 @@
     "germ_temp": "50-65°F",
     "soil_ph": "5.8-7.0",
     "fertilizer": "Low nitrogen; high phosphorus/potassium for root development.",
-    "companions": ["Carrots", "Beets", "Peas", "Lettuce"],
-    "avoid": ["Hyssop", "Brassicas"],
-    "pests": ["Root Maggot", "Flea Beetles", "Aphids"],
+    "companions": [
+      "Carrots",
+      "Beets",
+      "Peas",
+      "Lettuce"
+    ],
+    "avoid": [
+      "Hyssop",
+      "Brassicas"
+    ],
+    "pests": [
+      "Root Maggot",
+      "Flea Beetles",
+      "Aphids"
+    ],
     "harvest_cues": "Shoulder visible at soil surface, 2-3 in diameter. Pull before extreme cold splits roots.",
     "storage": "Fridge 2-3 weeks. Pickles excellently (Japanese tsukemono style).",
-    "varieties": ["Japanese White", "Miyashige", "Watermelon Radish", "Minowase"],
-    "aliases": ["Japanese Radish", "White Radish", "Mooli", "Chinese Radish", "Winter Radish"]
+    "varieties": [
+      "Japanese White",
+      "Miyashige",
+      "Watermelon Radish",
+      "Minowase"
+    ],
+    "aliases": [
+      "Japanese Radish",
+      "White Radish",
+      "Mooli",
+      "Chinese Radish",
+      "Winter Radish"
+    ],
+    "days_min": 50,
+    "days_max": 70,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Napa Cabbage": {
     "emoji": "🥬",
@@ -2869,13 +3984,43 @@
     "germ_temp": "45-75°F",
     "soil_ph": "6.0-7.5",
     "fertilizer": "Moderate nitrogen throughout; balanced fertilizer every 3 weeks.",
-    "companions": ["Onions", "Garlic", "Beets", "Celery"],
-    "avoid": ["Strawberries", "Tomatoes"],
-    "pests": ["Cabbage Worm", "Aphids", "Clubroot", "Flea Beetles"],
+    "companions": [
+      "Onions",
+      "Garlic",
+      "Beets",
+      "Celery"
+    ],
+    "avoid": [
+      "Strawberries",
+      "Tomatoes"
+    ],
+    "pests": [
+      "Cabbage Worm",
+      "Aphids",
+      "Clubroot",
+      "Flea Beetles"
+    ],
     "harvest_cues": "Head firm and full, outer leaves wrap tightly. Squeeze — it should feel dense.",
     "storage": "Fridge 1-2 months. Core removed, wrapped in damp paper.",
-    "varieties": ["Blues F1", "Minuet", "Wong Bok", "Rubicon F1"],
-    "aliases": ["Chinese Cabbage", "Wombok", "Celery Cabbage", "Pe-tsai", "Baechu"]
+    "varieties": [
+      "Blues F1",
+      "Minuet",
+      "Wong Bok",
+      "Rubicon F1"
+    ],
+    "aliases": [
+      "Chinese Cabbage",
+      "Wombok",
+      "Celery Cabbage",
+      "Pe-tsai",
+      "Baechu"
+    ],
+    "days_min": 70,
+    "days_max": 85,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": false
   },
   "Chervil": {
     "emoji": "🌿",
@@ -2889,12 +4034,843 @@
     "germ_temp": "50-65°F",
     "soil_ph": "6.0-7.0",
     "fertilizer": "Minimal — light soil with some compost is ideal.",
-    "companions": ["Lettuce", "Radishes", "Carrots", "Coriander"],
-    "avoid": ["Fennel"],
-    "pests": ["Aphids", "Carrot Fly"],
+    "companions": [
+      "Lettuce",
+      "Radishes",
+      "Carrots",
+      "Coriander"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Aphids",
+      "Carrot Fly"
+    ],
     "harvest_cues": "Cut outer leaves before flowering; leaves have a delicate anise flavour and wilt quickly after cutting.",
     "storage": "Use fresh immediately; fridge 2 days max. Freezes acceptably in ice cubes.",
-    "varieties": ["Crispum (curled leaf)", "Plain Leaf"],
-    "aliases": ["Garden Chervil", "French Parsley", "Beaked Parsley"]
+    "varieties": [
+      "Crispum (curled leaf)",
+      "Plain Leaf"
+    ],
+    "aliases": [
+      "Garden Chervil",
+      "French Parsley",
+      "Beaked Parsley"
+    ],
+    "days_min": 30,
+    "days_max": 45,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
+  },
+  "Marjoram": {
+    "emoji": "🌿",
+    "depth": "1/8 in",
+    "spacing": "8-10 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "80 days",
+    "tip": "Harvest before flowering for best flavour; treat as annual in cold climates.",
+    "difficulty": "Easy",
+    "germ_temp": "65-70°F",
+    "soil_ph": "6.0-8.0",
+    "fertilizer": "Minimal; lean soil intensifies aroma.",
+    "companions": [
+      "Tomatoes",
+      "Peppers",
+      "Basil"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Aphids",
+      "Spider Mites"
+    ],
+    "harvest_cues": "Snip stems once plant is 6 in tall; just before bud break for strongest flavour.",
+    "storage": "Dry in bunches or freeze. Dried keeps 1-2 years.",
+    "varieties": [
+      "Sweet Marjoram",
+      "Pot Marjoram",
+      "Italian"
+    ],
+    "days_min": 80,
+    "days_max": 80,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
+  },
+  "Savory": {
+    "emoji": "🌿",
+    "depth": "1/8 in",
+    "spacing": "12 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "60-70 days",
+    "tip": "Summer savory is annual; winter savory is perennial and hardier.",
+    "difficulty": "Easy",
+    "germ_temp": "60-70°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Light balanced; over-feeding reduces flavour.",
+    "companions": [
+      "Beans",
+      "Onions",
+      "Roses"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Aphids",
+      "Spider Mites"
+    ],
+    "harvest_cues": "Snip young stems before flowering; harvest lightly the first year for perennial types.",
+    "storage": "Dry or freeze; dried keeps 1-2 years.",
+    "varieties": [
+      "Summer Savory",
+      "Winter Savory"
+    ],
+    "days_min": 60,
+    "days_max": 70,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Mizuna": {
+    "emoji": "🥬",
+    "depth": "1/4 in",
+    "spacing": "6-9 in",
+    "water": "1 in/week",
+    "sun": "Full sun/partial",
+    "days": "40 days",
+    "tip": "Bolt-resistant for a brassica; ideal for cut-and-come-again harvesting.",
+    "difficulty": "Easy",
+    "germ_temp": "45-75°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Light nitrogen; avoid heavy feeding.",
+    "companions": [
+      "Carrots",
+      "Lettuce",
+      "Radishes"
+    ],
+    "avoid": [
+      "Tomatoes",
+      "Peppers"
+    ],
+    "pests": [
+      "Flea Beetles",
+      "Cabbage Worm",
+      "Aphids"
+    ],
+    "harvest_cues": "Leaves 4-6 in; cut outer leaves or whole plant at base.",
+    "storage": "Fridge up to 5 days; keep unwashed.",
+    "varieties": [
+      "Early Mizuna",
+      "Kyona",
+      "Red Mizuna"
+    ],
+    "days_min": 40,
+    "days_max": 40,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
+  },
+  "Tatsoi": {
+    "emoji": "🥬",
+    "depth": "1/4 in",
+    "spacing": "6-12 in",
+    "water": "1 in/week",
+    "sun": "Full sun/partial",
+    "days": "45 days",
+    "tip": "Very cold-hardy; can survive light frosts. Rosette form makes it decorative.",
+    "difficulty": "Easy",
+    "germ_temp": "45-75°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Moderate nitrogen.",
+    "companions": [
+      "Carrots",
+      "Garlic",
+      "Lettuce"
+    ],
+    "avoid": [
+      "Tomatoes",
+      "Peppers"
+    ],
+    "pests": [
+      "Flea Beetles",
+      "Aphids",
+      "Cabbage Worm"
+    ],
+    "harvest_cues": "Rosette full and compact; harvest outer leaves or whole at base.",
+    "storage": "Fridge up to 5 days.",
+    "varieties": [
+      "Rosette Tatsoi",
+      "Savoy Tatsoi"
+    ],
+    "days_min": 45,
+    "days_max": 45,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
+  },
+  "Pak Choi": {
+    "emoji": "🥬",
+    "depth": "1/4 in",
+    "spacing": "6-12 in",
+    "water": "1 in/week",
+    "sun": "Full sun/partial",
+    "days": "30-45 days",
+    "tip": "Similar to Bok Choy; harvest baby size at 30 days or full heads at 45.",
+    "difficulty": "Easy",
+    "germ_temp": "45-85°F",
+    "soil_ph": "6.0-7.5",
+    "fertilizer": "Moderate nitrogen.",
+    "companions": [
+      "Carrots",
+      "Kale",
+      "Beets"
+    ],
+    "avoid": [
+      "Tomatoes",
+      "Peppers"
+    ],
+    "pests": [
+      "Cabbage Worm",
+      "Flea Beetles",
+      "Aphids"
+    ],
+    "harvest_cues": "Leaves full and crisp; cut at base before bolting.",
+    "storage": "Fridge up to 5 days.",
+    "varieties": [
+      "White Pak Choi",
+      "Green Pak Choi",
+      "Baby Pak Choi"
+    ],
+    "aliases": [
+      "Bok Choy (small leaf type)"
+    ],
+    "days_min": 30,
+    "days_max": 45,
+    "succession_weeks": 3,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
+  },
+  "Salsify": {
+    "emoji": "🌱",
+    "depth": "1/2 in",
+    "spacing": "4-6 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "120 days",
+    "tip": "Deep, loose soil essential for straight roots. Frost improves flavour.",
+    "difficulty": "Moderate",
+    "germ_temp": "55-75°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Moderate balanced; avoid high nitrogen.",
+    "companions": [
+      "Carrots",
+      "Parsnips",
+      "Onions"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Carrot Fly",
+      "Slugs"
+    ],
+    "harvest_cues": "Roots 8-10 in long, pencil-thick; dig after first frost for sweetness.",
+    "storage": "Store in sand in cool dark place up to 4 months.",
+    "varieties": [
+      "Mammoth Sandwich Island",
+      "Black Salsify (Scorzonera)"
+    ],
+    "aliases": [
+      "Oyster Plant",
+      "Vegetable Oyster"
+    ],
+    "days_min": 120,
+    "days_max": 120,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Hamburg Parsley": {
+    "emoji": "🌿",
+    "depth": "1/4 in",
+    "spacing": "6-8 in",
+    "water": "1 in/week",
+    "sun": "Full sun/partial",
+    "days": "85 days",
+    "tip": "Grown for its parsnip-like root and parsley-flavoured leaves — dual-purpose.",
+    "difficulty": "Moderate",
+    "germ_temp": "50-70°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Light balanced; heavy nitrogen favours leaves over roots.",
+    "companions": [
+      "Carrots",
+      "Tomatoes",
+      "Asparagus"
+    ],
+    "avoid": [
+      "Fennel",
+      "Lettuce"
+    ],
+    "pests": [
+      "Carrot Fly",
+      "Aphids"
+    ],
+    "harvest_cues": "Roots 4-6 in long; harvest after light frost for sweetness.",
+    "storage": "Fridge up to 2 weeks; root stores in sand up to 3 months.",
+    "varieties": [
+      "Halblange",
+      "Eagle"
+    ],
+    "aliases": [
+      "Root Parsley",
+      "Turnip-Rooted Parsley"
+    ],
+    "days_min": 85,
+    "days_max": 85,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": false
+  },
+  "Purslane": {
+    "emoji": "🌿",
+    "depth": "Surface sow",
+    "spacing": "6 in",
+    "water": "0.5-1 in/week",
+    "sun": "Full sun",
+    "days": "40-50 days",
+    "tip": "High in omega-3s; thrives in heat and poor soil where others struggle.",
+    "difficulty": "Easy",
+    "germ_temp": "70-90°F",
+    "soil_ph": "5.5-7.5",
+    "fertilizer": "None needed; thrives in poor soil.",
+    "companions": [
+      "Corn",
+      "Squash",
+      "Tomatoes"
+    ],
+    "avoid": [],
+    "pests": [
+      "Aphids"
+    ],
+    "harvest_cues": "Snip succulent stems and leaves once 4-6 in tall.",
+    "storage": "Fridge up to 3 days; best eaten fresh.",
+    "varieties": [
+      "Golden Purslane",
+      "Green Purslane"
+    ],
+    "days_min": 40,
+    "days_max": 50,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
+  },
+  "Good King Henry": {
+    "emoji": "🌿",
+    "depth": "1/4 in",
+    "spacing": "12-18 in",
+    "water": "1 in/week",
+    "sun": "Full sun/partial",
+    "days": "60 days",
+    "tip": "Perennial; don't harvest heavily in first year. Leaves used like spinach, shoots like asparagus.",
+    "difficulty": "Easy",
+    "germ_temp": "55-70°F",
+    "soil_ph": "6.0-7.5",
+    "fertilizer": "Moderate balanced annually.",
+    "companions": [
+      "Beans",
+      "Kale",
+      "Spinach"
+    ],
+    "avoid": [],
+    "pests": [
+      "Leaf Miners",
+      "Aphids"
+    ],
+    "harvest_cues": "Young leaves and shoots in spring; cut shoots when 4-6 in, leaves anytime.",
+    "storage": "Fridge up to 3 days.",
+    "varieties": [
+      "Lincoln Spinach",
+      "Mercury (heritage)"
+    ],
+    "aliases": [
+      "Lincolnshire Spinach",
+      "Fat Hen relative"
+    ],
+    "days_min": 60,
+    "days_max": 60,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Shiso": {
+    "emoji": "🌿",
+    "depth": "1/8 in",
+    "spacing": "12 in",
+    "water": "1 in/week",
+    "sun": "Full sun/partial",
+    "days": "70-80 days",
+    "tip": "Self-seeds readily; both green and red varieties are edible. Popular in Japanese cuisine.",
+    "difficulty": "Easy",
+    "germ_temp": "65-75°F",
+    "soil_ph": "5.5-7.0",
+    "fertilizer": "Light nitrogen; minimal feeding.",
+    "companions": [
+      "Basil",
+      "Tomatoes",
+      "Eggplant"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Aphids",
+      "Slugs"
+    ],
+    "harvest_cues": "Leaves 4-6 in; harvest before flowering for best flavour.",
+    "storage": "Wrap in damp paper towel, fridge up to 5 days.",
+    "varieties": [
+      "Green Shiso (Aojiso)",
+      "Red Shiso (Akajiso)",
+      "Bicolour"
+    ],
+    "aliases": [
+      "Perilla",
+      "Japanese Basil"
+    ],
+    "days_min": 70,
+    "days_max": 80,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
+  },
+  "Amaranth": {
+    "emoji": "🌾",
+    "depth": "1/8 in",
+    "spacing": "12-18 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "60-75 days",
+    "tip": "Dual-purpose: harvest young leaves as greens, or let mature for grain seed heads.",
+    "difficulty": "Easy",
+    "germ_temp": "65-75°F",
+    "soil_ph": "6.0-7.5",
+    "fertilizer": "Moderate balanced; drought-tolerant once established.",
+    "companions": [
+      "Corn",
+      "Peppers",
+      "Onions"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Aphids",
+      "Caterpillars",
+      "Tarnished Plant Bug"
+    ],
+    "harvest_cues": "Young leaves any time; grain when seed heads dry and seeds fall easily.",
+    "storage": "Fresh leaves: fridge 3 days. Grain: sealed container, cool and dry, up to 1 year.",
+    "varieties": [
+      "Red Garnet",
+      "Golden Giant",
+      "Hopi Red Dye"
+    ],
+    "days_min": 60,
+    "days_max": 75,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Quinoa": {
+    "emoji": "🌾",
+    "depth": "1/4 in",
+    "spacing": "12-18 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "90-120 days",
+    "tip": "Needs cool growing seasons; bolts in high heat. Rinse seed heads well — removes saponins.",
+    "difficulty": "Moderate",
+    "germ_temp": "50-65°F",
+    "soil_ph": "6.0-7.5",
+    "fertilizer": "Moderate nitrogen at planting; light once established.",
+    "companions": [
+      "Potatoes",
+      "Corn",
+      "Beans"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Leaf Miners",
+      "Aphids",
+      "Birds (seed heads)"
+    ],
+    "harvest_cues": "Seed heads dry and papery; seeds release easily when rubbed.",
+    "storage": "Dried grain in airtight container up to 2 years.",
+    "varieties": [
+      "Brightest Brilliant",
+      "Cherry Vanilla",
+      "Rainbow Mix"
+    ],
+    "days_min": 90,
+    "days_max": 120,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Broad Beans": {
+    "emoji": "🫘",
+    "depth": "2 in",
+    "spacing": "8-12 in",
+    "water": "1-1.5 in/week",
+    "sun": "Full sun",
+    "days": "75-100 days",
+    "tip": "Cool-season crop; sow in autumn or very early spring. Pinch out growing tips to deter blackfly.",
+    "difficulty": "Easy",
+    "germ_temp": "45-75°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Minimal; fixes own nitrogen. Light phosphorus at planting.",
+    "companions": [
+      "Potatoes",
+      "Carrots",
+      "Brassicas",
+      "Summer Savory"
+    ],
+    "avoid": [
+      "Onions",
+      "Garlic",
+      "Fennel"
+    ],
+    "pests": [
+      "Blackfly (Black Bean Aphid)",
+      "Chocolate Spot",
+      "Bean Weevil"
+    ],
+    "harvest_cues": "Pods plump and firm, 3-5 in; beans inside soft and green.",
+    "storage": "Shell and refrigerate up to 3 days; blanch and freeze for long term.",
+    "varieties": [
+      "Aquadulce Claudia",
+      "Bunyard's Exhibition",
+      "The Sutton (dwarf)"
+    ],
+    "aliases": [
+      "Fava Beans (US)",
+      "Windsor Beans"
+    ],
+    "days_min": 75,
+    "days_max": 100,
+    "succession_weeks": 4,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Yardlong Beans": {
+    "emoji": "🫘",
+    "depth": "1 in",
+    "spacing": "6-12 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "60-80 days",
+    "tip": "Needs trellis or tall support (6-8 ft). Thrives in heat — ideal summer crop.",
+    "difficulty": "Easy",
+    "germ_temp": "65-90°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Low nitrogen (fixes own); light phosphorus.",
+    "companions": [
+      "Corn",
+      "Radishes",
+      "Cucumbers"
+    ],
+    "avoid": [
+      "Onions",
+      "Fennel"
+    ],
+    "pests": [
+      "Bean Beetle",
+      "Aphids",
+      "Spider Mites"
+    ],
+    "harvest_cues": "Pods 12-18 in, still tender; harvest every 2-3 days to encourage production.",
+    "storage": "Fridge up to 5 days.",
+    "varieties": [
+      "Red Noodle",
+      "Orient Wonder",
+      "White Seeded"
+    ],
+    "aliases": [
+      "Asparagus Bean",
+      "Chinese Long Bean",
+      "Snake Bean"
+    ],
+    "days_min": 60,
+    "days_max": 80,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Sweet Peas": {
+    "emoji": "🌸",
+    "depth": "1 in",
+    "spacing": "6-9 in",
+    "water": "1-1.5 in/week",
+    "sun": "Full sun",
+    "days": "65-75 days",
+    "tip": "Primarily ornamental; some varieties have edible young pods. Deadhead frequently to prolong bloom.",
+    "difficulty": "Easy",
+    "germ_temp": "50-65°F",
+    "soil_ph": "6.0-7.5",
+    "fertilizer": "High potassium for flowering; low nitrogen.",
+    "companions": [
+      "Carrots",
+      "Radishes",
+      "Lettuce"
+    ],
+    "avoid": [
+      "Onions",
+      "Garlic"
+    ],
+    "pests": [
+      "Aphids",
+      "Slugs",
+      "Thrips"
+    ],
+    "harvest_cues": "Pick flowers as they open; do not allow seed pods to develop if you want continuous bloom.",
+    "storage": "Flowers last 5 days in water; seeds dried and stored cool.",
+    "varieties": [
+      "Spencer Mix",
+      "Cupani",
+      "Matucana",
+      "High Scent"
+    ],
+    "days_min": 65,
+    "days_max": 75,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Borlotti Beans": {
+    "emoji": "🫘",
+    "depth": "1-2 in",
+    "spacing": "6-8 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "85-90 days",
+    "tip": "Italian shelling bean; harvest fresh (flageolet stage) or dry for storing.",
+    "difficulty": "Easy",
+    "germ_temp": "60-85°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Minimal; self-fixes nitrogen.",
+    "companions": [
+      "Squash",
+      "Corn",
+      "Cucumbers"
+    ],
+    "avoid": [
+      "Onions",
+      "Fennel"
+    ],
+    "pests": [
+      "Bean Beetle",
+      "Blackfly",
+      "Spider Mites"
+    ],
+    "harvest_cues": "Fresh: pods mottled pink/cream, swollen but not dried. Dry: pods papery brown.",
+    "storage": "Fresh: fridge 3 days. Dried: airtight container up to 1 year.",
+    "varieties": [
+      "Lingua di Fuoco",
+      "Lamon",
+      "Borlotto"
+    ],
+    "aliases": [
+      "Cranberry Bean (US)"
+    ],
+    "days_min": 85,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Mangetout": {
+    "emoji": "🫛",
+    "depth": "1 in",
+    "spacing": "2-3 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "60-70 days",
+    "tip": "Flat edible-pod pea; harvest before peas swell. Needs support or trellis.",
+    "difficulty": "Easy",
+    "germ_temp": "45-75°F",
+    "soil_ph": "6.0-7.5",
+    "fertilizer": "Low nitrogen; light balanced at planting.",
+    "companions": [
+      "Carrots",
+      "Radishes",
+      "Spinach"
+    ],
+    "avoid": [
+      "Onions",
+      "Garlic",
+      "Fennel"
+    ],
+    "pests": [
+      "Pea Moth",
+      "Aphids",
+      "Powdery Mildew"
+    ],
+    "harvest_cues": "Pods flat, 3-4 in, before peas bulge. Pick every 2-3 days.",
+    "storage": "Fridge up to 5 days; blanch and freeze.",
+    "varieties": [
+      "Oregon Sugar Pod",
+      "Norli",
+      "Mammoth Melting Sugar"
+    ],
+    "aliases": [
+      "Flat Pea",
+      "Sugar Pea",
+      "Chinese Pea Pod"
+    ],
+    "days_min": 60,
+    "days_max": 70,
+    "succession_weeks": 4,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Lemon Verbena": {
+    "emoji": "🌿",
+    "depth": "(transplant only)",
+    "spacing": "24-36 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "90 days (to usable size from transplant)",
+    "tip": "Tender perennial; overwinter indoors in cold climates. Intensely lemony scent.",
+    "difficulty": "Moderate",
+    "germ_temp": "65-75°F",
+    "soil_ph": "6.0-8.0",
+    "fertilizer": "Light balanced; avoid over-feeding.",
+    "companions": [
+      "Basil",
+      "Mint",
+      "Lavender"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Whitefly",
+      "Spider Mites",
+      "Aphids"
+    ],
+    "harvest_cues": "Snip leafy stems anytime; most aromatic before flowering.",
+    "storage": "Dry in bundles or freeze in water. Dried keeps 1 year.",
+    "varieties": [
+      "Standard Lemon Verbena"
+    ],
+    "days_min": 90,
+    "days_max": 90,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
+  },
+  "Stevia": {
+    "emoji": "🌿",
+    "depth": "Surface sow / transplant",
+    "spacing": "18 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "70-80 days",
+    "tip": "Start indoors 6-8 weeks before last frost. Leaves are 30-40x sweeter than sugar.",
+    "difficulty": "Moderate",
+    "germ_temp": "68-75°F",
+    "soil_ph": "6.5-7.5",
+    "fertilizer": "Light balanced; minimal feeding.",
+    "companions": [
+      "Basil",
+      "Mint",
+      "Tomatoes"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Aphids",
+      "Spider Mites"
+    ],
+    "harvest_cues": "Harvest leaves before flowering for maximum sweetness; cut stems 1/3.",
+    "storage": "Fresh leaves fridge 5 days; dry and store in airtight container up to 1 year.",
+    "varieties": [
+      "Candy Stevia",
+      "Rebaudiana"
+    ],
+    "days_min": 70,
+    "days_max": 80,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": true
+  },
+  "Lovage": {
+    "emoji": "🌿",
+    "depth": "1/4 in",
+    "spacing": "24-36 in",
+    "water": "1 in/week",
+    "sun": "Full sun/partial",
+    "days": "75-100 days (to usable size)",
+    "tip": "Vigorous perennial reaching 6 ft; use sparingly — very strong celery flavour.",
+    "difficulty": "Easy",
+    "germ_temp": "60-70°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Moderate balanced once per season.",
+    "companions": [
+      "Beans",
+      "Brassicas",
+      "Carrots"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "pests": [
+      "Leaf Miners",
+      "Aphids"
+    ],
+    "harvest_cues": "Young leaves in spring; stems and seeds in summer. Cut back hard to encourage regrowth.",
+    "storage": "Fresh fridge 3 days; dry or freeze for long term.",
+    "varieties": [
+      "Common Lovage"
+    ],
+    "aliases": [
+      "Love Parsley",
+      "Sea Parsley"
+    ],
+    "days_min": 75,
+    "days_max": 100,
+    "succession_weeks": null,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
   }
 }
