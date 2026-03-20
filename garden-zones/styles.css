@@ -4432,3 +4432,67 @@ body.garden-mode .plant-section ul {
 /* Browse card hover lift */
 .browse-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
 .browse-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.25); transform: translateY(-2px); }
+
+/* ── Phase 81: Season Suitability Bar ─────────── */
+.modal-season-bar { padding-bottom: 10px; }
+.ssb-strip { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; margin: 8px 0 6px; }
+.ssb-cell { border-radius: 3px; color: var(--text-muted); font-size: 9px; font-weight: 700; padding: 4px 2px; text-align: center; background: var(--surface2); transition: background 0.1s; }
+.ssb-cell.ssb-cur { outline: 2px solid var(--accent); outline-offset: 1px; color: var(--text); }
+.ssb-indoor   { background: rgba(147,197,253,0.25); color: #93c5fd; }
+.ssb-sow      { background: rgba(74,222,128,0.2);  color: var(--accent); }
+.ssb-transplant{ background: rgba(251,191,36,0.2);  color: #fbbf24; }
+.ssb-harvest  { background: rgba(249,115,22,0.2);  color: #fb923c; }
+.ssb-legend { display: flex; flex-wrap: wrap; gap: 8px; font-size: 10px; color: var(--text-muted); margin-bottom: 4px; }
+.ssb-key { border-radius: 2px; display: inline-block; height: 10px; margin-right: 2px; width: 10px; }
+.ssb-key.ssb-indoor    { background: rgba(147,197,253,0.4); }
+.ssb-key.ssb-sow       { background: rgba(74,222,128,0.4); }
+.ssb-key.ssb-transplant{ background: rgba(251,191,36,0.4); }
+.ssb-key.ssb-harvest   { background: rgba(249,115,22,0.4); }
+.ssb-tip { background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; font-size: 12px; margin-top: 6px; padding: 6px 10px; }
+.ssb-no-zone { color: var(--text-muted); font-size: 12px; margin: 4px 0; }
+
+/* ── Phase 81: Pest Guide ─────────────────────── */
+.pg-pest { border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 10px; padding-bottom: 10px; }
+.pg-pest:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.pg-name { color: var(--text); font-size: 12px; font-weight: var(--weight-semibold); margin-bottom: 5px; }
+.pg-sol { color: var(--text-muted); font-size: 11px; line-height: 1.5; margin-bottom: 3px; }
+.pg-label { border-radius: 3px; font-size: 9px; font-weight: 700; letter-spacing: 0.05em; margin-right: 4px; padding: 1px 5px; text-transform: uppercase; }
+.pg-label.organic { background: rgba(74,222,128,0.15); color: var(--accent); }
+.pg-label.conv { background: rgba(147,197,253,0.15); color: #93c5fd; }
+
+/* ── Phase 82: Spacing Calculator ────────────── */
+.sc-hint { color: var(--text-muted); font-size: 12px; margin-bottom: 10px; }
+.sc-inputs { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.sc-label { color: var(--text-muted); font-size: 12px; display: flex; align-items: center; gap: 6px; }
+.sc-in { background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; color: var(--text); font-size: 13px; padding: 4px 8px; width: 64px; }
+.sc-result { background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.2); border-radius: 8px; font-size: 13px; padding: 10px 12px; }
+.sc-count { color: var(--accent); font-size: 22px; font-weight: var(--weight-bold); margin-right: 6px; }
+
+/* ── Phase 83: Safe-to-Sow Badge ─────────────── */
+.modal-safe-sow { align-items: flex-start; border-radius: 6px; display: flex; flex-direction: column; gap: 2px; margin: 0 0 0; padding: 8px 14px; }
+.modal-safe-sow--safe   { background: rgba(74,222,128,0.1);  border-left: 3px solid var(--accent); }
+.modal-safe-sow--wait   { background: rgba(248,113,113,0.07); border-left: 3px solid #f87171; }
+.modal-safe-sow--soon   { background: rgba(251,191,36,0.08);  border-left: 3px solid #fbbf24; }
+.modal-safe-sow--late   { background: rgba(249,115,22,0.08);  border-left: 3px solid #fb923c; }
+.safe-sow-label { font-size: 12px; font-weight: var(--weight-semibold); color: var(--text); }
+.safe-sow-sub   { font-size: 11px; color: var(--text-muted); }
+
+/* ── Phase 83: Modal header share button ─────── */
+#modal-header-actions { display: flex; align-items: center; gap: 4px; }
+#modal-share-crop-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; padding: 4px 6px; transition: color 0.15s; border-radius: 5px; }
+#modal-share-crop-btn:hover { color: var(--accent); background: rgba(74,222,128,0.08); }
+
+/* ── Phase 84: 3-Year Rotation Planner ────────── */
+#rotation-plan-view { margin-top: 8px; }
+.rp-header { display: grid; grid-template-columns: 100px 1fr 1fr 1fr; gap: 4px; margin-bottom: 4px; padding: 0 2px; }
+.rp-yr { color: var(--text-muted); font-size: 10px; font-weight: var(--weight-bold); letter-spacing: 0.07em; text-align: center; text-transform: uppercase; }
+.rp-yr--cur { color: var(--accent); }
+.rp-bed { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 6px; overflow: hidden; }
+.rp-bed-name { background: var(--surface2); border-bottom: 1px solid var(--border); font-size: 11px; font-weight: var(--weight-semibold); padding: 6px 10px; }
+.rp-years { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.rp-cell { border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: 8px 10px; }
+.rp-cell:last-child { border-right: none; }
+.rp-cell--cur { background: rgba(74,222,128,0.06); }
+.rp-fam { color: var(--text); font-size: 11px; font-weight: var(--weight-semibold); }
+.rp-ex { color: var(--text-muted); font-size: 10px; line-height: 1.4; }
+.rp-empty { color: var(--text-muted); font-size: 12px; padding: 8px 0; }

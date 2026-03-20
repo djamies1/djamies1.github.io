@@ -24,8 +24,9 @@ const CROP_FAMILIES = {
   'Turnips':'Brassicaceae','Radishes':'Brassicaceae','Arugula':'Brassicaceae',
   'Asian Greens':'Brassicaceae',
   'Beans':'Legume','Peas':'Legume','Edamame':'Legume','Peanuts':'Legume',
+  'Runner Beans':'Legume','Sugar Snap Peas':'Legume','Snow Peas':'Legume','Lima Beans':'Legume','Fava Beans':'Legume',
   'Cucumbers':'Cucurbit','Squash':'Cucurbit','Pumpkins':'Cucurbit',
-  'Melons':'Cucurbit','Zucchini':'Cucurbit',
+  'Melons':'Cucurbit','Zucchini':'Cucurbit','Watermelon':'Cucurbit','Butternut Squash':'Cucurbit',
   'Onions':'Allium','Garlic':'Allium','Leeks':'Allium','Shallots':'Allium','Chives':'Allium',
   'Carrots':'Apiaceae','Parsnips':'Apiaceae','Celery':'Apiaceae',
   'Dill':'Apiaceae','Fennel':'Apiaceae','Coriander':'Apiaceae',
@@ -33,15 +34,23 @@ const CROP_FAMILIES = {
   'Corn':'Grass',
   'Beets':'Chenopodiaceae','Spinach':'Chenopodiaceae','Swiss Chard':'Chenopodiaceae',
   'Raspberries':'Rosaceae','Blackberries':'Rosaceae','Gooseberries':'Grossulariaceae',
-  'Redcurrants':'Grossulariaceae','Blueberries':'Ericaceae',
+  'Redcurrants':'Grossulariaceae','Blackcurrants':'Grossulariaceae','Blueberries':'Ericaceae',
+  'Strawberries':'Rosaceae',
   'Nasturtium':'Tropaeolaceae','Borage':'Boraginaceae','Calendula':'Asteraceae',
+  'Lavender':'Lamiaceae','Sunflowers':'Asteraceae',
   'Lemon Balm':'Lamiaceae','Tarragon':'Asteraceae','Sorrel':'Polygonaceae','Chervil':'Apiaceae',
+  'Bay Leaf':'Lauraceae',
+  'Broccoli Rabe':'Brassicaceae','Napa Cabbage':'Brassicaceae',
+  'Daikon':'Brassicaceae',
+  'Watermelon':'Cucurbit','Cherry Tomatoes':'Solanaceae','Jalapeño':'Solanaceae',
+  'Sweet Corn':'Grass',
 };
 
 // ── Frost-sensitive crops ──────────────────────
 const FROST_SENSITIVE = new Set([
-  'Tomatoes','Peppers','Eggplant','Basil','Cucumbers','Beans','Squash',
-  'Corn','Melons','Pumpkins','Tomatillos','Ground Cherries','Edamame',
+  'Tomatoes','Cherry Tomatoes','Peppers','Jalapeño','Eggplant','Basil','Cucumbers',
+  'Beans','Runner Beans','Lima Beans','Squash','Zucchini','Butternut Squash',
+  'Corn','Sweet Corn','Melons','Watermelon','Pumpkins','Tomatillos','Ground Cherries','Edamame',
   'Sweet Potatoes','Ginger','Lemongrass','Okra','Peanuts',
 ]);
 
@@ -391,16 +400,16 @@ let currentTip = '';
 
 // ── Crop categories ────────────────────────────
 const CROP_CATEGORIES = {
-  'Vegetables':  ['Celery','Corn','Eggplant','Ground Cherries','Okra','Peppers','Tomatillos','Tomatoes'],
-  'Brassicas':   ['Bok Choy','Broccoli','Brussels Sprouts','Cabbage','Cauliflower','Collard Greens','Kale','Kohlrabi'],
-  'Root Veg':    ['Beets','Carrots','Celeriac','Horseradish','Jerusalem Artichoke','Parsnips','Potatoes','Radishes','Rutabaga','Sweet Potatoes','Turnips'],
-  'Greens':      ['Arugula','Chard','Endive','Lettuce','Mâche','Mustard Greens','Spinach','Watercress'],
+  'Vegetables':  ['Celery','Cherry Tomatoes','Corn','Eggplant','Ground Cherries','Jalapeño','Microgreens','Okra','Peppers','Sweet Corn','Tomatillos','Tomatoes'],
+  'Brassicas':   ['Bok Choy','Broccoli','Broccoli Rabe','Brussels Sprouts','Cabbage','Cauliflower','Collard Greens','Kale','Kohlrabi','Napa Cabbage'],
+  'Root Veg':    ['Beets','Butternut Squash','Carrots','Celeriac','Daikon','Horseradish','Jerusalem Artichoke','Parsnips','Potatoes','Radishes','Rutabaga','Sweet Potatoes','Turnips'],
+  'Greens':      ['Arugula','Chard','Endive','Lettuce','Mâche','Microgreens','Mustard Greens','Spinach','Watercress'],
   'Alliums':     ['Chives','Garlic','Green Onions','Leeks','Onions','Shallots'],
-  'Legumes':     ['Beans','Edamame','Fava Beans','Peanuts','Peas'],
-  'Cucurbits':   ['Cucumbers','Melons','Pumpkins','Squash'],
-  'Herbs':       ['Basil','Chervil','Cilantro','Dill','Fennel','Lemon Balm','Mint','Oregano','Parsley','Rosemary','Sage','Sorrel','Tarragon','Thyme'],
-  'Flowers':     ['Borage','Calendula','Nasturtium'],
-  'Fruits':      ['Blackberries','Blueberries','Gooseberries','Raspberries','Redcurrants'],
+  'Legumes':     ['Beans','Edamame','Fava Beans','Lima Beans','Peanuts','Peas','Runner Beans','Snow Peas','Sugar Snap Peas'],
+  'Cucurbits':   ['Butternut Squash','Cucumbers','Melons','Pumpkins','Squash','Watermelon','Zucchini'],
+  'Herbs':       ['Basil','Bay Leaf','Chervil','Cilantro','Dill','Fennel','Lemon Balm','Mint','Oregano','Parsley','Rosemary','Sage','Sorrel','Tarragon','Thyme'],
+  'Flowers':     ['Borage','Calendula','Lavender','Nasturtium','Sunflowers'],
+  'Fruits':      ['Blackberries','Blackcurrants','Blueberries','Gooseberries','Raspberries','Redcurrants'],
   'Perennials':  ['Asparagus','Globe Artichoke','Rhubarb','Strawberries'],
   'Tropical':    ['Avocados','Ginger','Lemongrass','Mangoes','Turmeric'],
 };
@@ -1294,11 +1303,18 @@ function openCropDetail(name) {
     if (schedPH) schedPH.outerHTML = renderPlantingScheduleHTML(name);
   }
   renderModalGardenBar(name);
+  renderSafeToSowBadge(name);
   renderModalGardenSections(name);
   if (!c.custom) renderRelatedCrops(name);
   if (!c.custom) renderVarietyHistory(name);
   if (!c.custom) renderSeedStartSection(name);
   if (!c.custom) renderFertilizerSection(name);
+  if (!c.custom) renderSeasonSuitabilityBar(name);
+  if (!c.custom) renderCropPestGuide(name);
+  if (!c.custom) renderSpacingCalculator(name);
+  // Phase 85: share button in modal header
+  const shareBtn = document.getElementById('modal-share-crop-btn');
+  if (shareBtn) { shareBtn.onclick = () => shareCropCard(name); }
   trackRecentlyViewed(name);
   if (!modal.open) modal.showModal();
 }
@@ -2932,6 +2948,24 @@ function buildThisWeekItems() {
       }
     } else if (frost && !frost.last && !frost.first && data.directSow?.length && items.length < 2) {
       items.push({ icon: '🌱', text: `Frost-free zone — good time to sow ${data.directSow[0]}`, type: 'info' });
+    }
+  }
+
+  // 5b. Overdue watering (Phase 82 enhancement)
+  if (items.length < 4) {
+    const WATER_INTERVALS = { Easy: 5, Moderate: 4, Hard: 3 };
+    const overdue = Object.keys(myGarden).filter(n => {
+      const entry = myGarden[n];
+      if (!entry?.planted) return false;
+      const lastW = entry.waterLog?.[0]?.date;
+      if (!lastW) return false;
+      const daysSince = Math.round((today - new Date(lastW + 'T00:00:00')) / 86400000);
+      const interval = WATER_INTERVALS[cropData[n]?.difficulty] || 4;
+      return daysSince >= interval;
+    });
+    if (overdue.length) {
+      const ns = overdue.slice(0,2).join(' & ') + (overdue.length > 2 ? ` +${overdue.length-2}` : '');
+      items.push({ icon: '💧', text: `Watering overdue: ${ns}`, type: 'action' });
     }
   }
 
@@ -5573,6 +5607,8 @@ function renderGardenBeds() {
   el.querySelectorAll('.bed-micro-select').forEach(sel => {
     sel.addEventListener('change', () => saveBedNotes(sel.dataset.bed, sel.dataset.field, sel.value));
   });
+  // Phase 84: Rotation planner
+  renderRotationPlanView();
 }
 
 function initBeds() {
@@ -8017,4 +8053,372 @@ function showLongPressActions(name) {
   overlay.querySelector('#lp-add')?.addEventListener('click', () => { overlay.hidden = true; gardenAdd(name); });
   overlay.querySelector('#lp-cancel')?.addEventListener('click', () => { overlay.hidden = true; });
   overlay.addEventListener('click', e => { if (e.target === overlay) overlay.hidden = true; }, { once: true });
+}
+
+// ════════════════════════════════════════════════
+// Phase 81 — Season Suitability Bar + Pest Guide
+// ════════════════════════════════════════════════
+
+const NAMED_PEST_GUIDE = {
+  'Aphids':            { organic:'Blast with water; neem oil; insecticidal soap. Attract ladybirds with nearby flowers.', conventional:'Pyrethrin spray; imidacloprid systemic drench for severe infestations.' },
+  'Slugs':             { organic:'Beer traps; copper tape; crushed eggshells; evening torch patrol.', conventional:'Iron phosphate bait (Sluggo) — safe around pets; reapply after rain.' },
+  'Snails':            { organic:'Hand-pick at night; copper tape barrier; crushed eggshells.', conventional:'Iron phosphate bait; reapply after heavy rain.' },
+  'Flea Beetles':      { organic:'Row covers; diatomaceous earth around base; sticky traps.', conventional:'Pyrethrin at dusk; spinosad spray; use transplants instead of direct sow.' },
+  'Cabbage Worm':      { organic:'Hand-pick eggs + caterpillars; Bt (Bacillus thuringiensis) spray.', conventional:'Spinosad; check undersides daily and spray pyrethrin at first sign.' },
+  'Cabbage White':     { organic:'Row cover; hand-pick eggs; Bt spray when caterpillars appear.', conventional:'Spinosad spray; remove egg masses from leaf undersides promptly.' },
+  'Whitefly':          { organic:'Yellow sticky traps; insecticidal soap on undersides; neem oil.', conventional:'Imidacloprid systemic drench; bifenthrin spray on undersides.' },
+  'Spider Mites':      { organic:'Daily water spray on undersides; neem oil; predatory mites; increase humidity.', conventional:'Abamectin or spiromesifen miticide; repeat weekly 3 times.' },
+  'Thrips':            { organic:'Blue sticky traps; neem oil; spinosad at dawn.', conventional:'Spinosad or imidacloprid; repeat every 5-7 days until gone.' },
+  'Caterpillars':      { organic:'Hand-pick at night; Bt (Bacillus thuringiensis) spray in morning.', conventional:'Spinosad or pyrethrin spray in evening.' },
+  'Blackfly':          { organic:'Pinch out shoot tips (most infested area); strong water blast; neem oil.', conventional:'Pyrethrin spray on colonies; imidacloprid systemic for persistent cases.' },
+  'Powdery Mildew':    { organic:'Baking soda spray (1 tsp/qt); improve airflow; avoid overhead watering.', conventional:'Myclobutanil or trifloxystrobin fungicide at first sign.' },
+  'Downy Mildew':      { organic:'Copper fungicide; remove affected leaves; improve air circulation.', conventional:'Chlorothalonil or mancozeb; remove severely affected material.' },
+  'Botrytis':          { organic:'Remove affected parts; improve airflow urgently; reduce humidity.', conventional:'Iprodione or fludioxonil fungicide; avoid plant damage.' },
+  'Rust':              { organic:'Remove infected leaves; copper fungicide; avoid wetting foliage.', conventional:'Trifloxystrobin or mancozeb fungicide; repeat every 10-14 days.' },
+  'Clubroot':          { organic:'Lime soil to pH 7.5+; long rotation (7+ yrs); improve drainage.', conventional:'No effective chemical cure — prevention via liming and rotation only.' },
+  'Root Maggot':       { organic:'Row cover at sowing; sand collar around base; neem soil drench.', conventional:'Chlorpyrifos granules worked into soil at planting.' },
+  'Carrot Fly':        { organic:'70cm barrier around crop; row cover; delay sowing to June.', conventional:'Seed-treatment or soil insecticide at sowing.' },
+  'Vine Borer':        { organic:'Aluminium foil mulch at base; row cover in spring; hand-remove larvae.', conventional:'Pyrethrin on vine bases before egg-laying (June-July).' },
+  'Cucumber Beetle':   { organic:'Row cover; kaolin clay; beneficial nematodes in soil.', conventional:'Pyrethrin or carbaryl; treat soil around roots.' },
+  'Asparagus Beetle':  { organic:'Hand-pick adults and larvae; neem oil spray; keep bed weeded.', conventional:'Pyrethrin; spinosad spray on foliage.' },
+  'Tarnished Bug':     { organic:'Remove weeds (alternative hosts); row cover; sticky traps.', conventional:'Pyrethrin or spinosad early morning when bugs are sluggish.' },
+  'Leek Rust':         { organic:'Remove affected leaves; improve airflow; avoid overcrowding.', conventional:'Propiconazole fungicide; remove worst affected plants.' },
+  'Onion Fly':         { organic:'Row cover; avoid disturbing soil near plants; grow from sets not seed.', conventional:'Chlorpyrifos at planting; remove infested plants promptly.' },
+  'Potato Blight':     { organic:'Copper fungicide on a 7-10 day schedule; remove and burn tops at first sign.', conventional:'Chlorothalonil or mancozeb; spray preventatively in warm, wet weather.' },
+  'Colorado Beetle':   { organic:'Hand-pick adults, eggs, and larvae daily; Bt tenebrionis spray.', conventional:'Spinosad; imidacloprid at planting as soil drench.' },
+  'Scale Insects':     { organic:'Rub off with damp cloth; isopropyl alcohol wipes; neem oil.', conventional:'Imidacloprid systemic drench; horticultural oil spray.' },
+  'Bay Sucker':        { organic:'Prune affected shoot tips in spring; remove curled leaves by hand.', conventional:'Systemic insecticide spray early in season before curling begins.' },
+  'Gooseberry Sawfly': { organic:'Hand-pick caterpillars; spray with insecticidal soap.', conventional:'Pyrethrin spray; spinosad on foliage as soon as damage appears.' },
+  'Big Bud Mite':      { organic:'Remove and burn affected buds; plant resistant varieties.', conventional:'No effective chemical — remove affected plants; replant with clean stock.' },
+  'Birds':             { organic:'Netting over crop; reflective tape; fake predators (owl/hawk shapes).', conventional:'Same — physical exclusion is most effective.' },
+  'Squirrels':         { organic:'Wire cloche or mesh; cayenne pepper sprinkle; hardware cloth cage.', conventional:'Same — physical exclusion only.' },
+};
+
+function renderSeasonSuitabilityBar(name) {
+  const body = document.getElementById('modal-body');
+  if (!body) return;
+  body.querySelector('.modal-season-bar')?.remove();
+
+  const MONTH_SHORT = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+  const monthTypes = {};
+  for (let m = 1; m <= 12; m++) {
+    const pd = selectedZone ? getPlantingData(selectedZone, m) : { startIndoors:[], directSow:[], transplant:[], harvest:[] };
+    const t = new Set();
+    if (pd.startIndoors?.includes(name)) t.add('indoor');
+    if (pd.directSow?.includes(name))   t.add('sow');
+    if (pd.transplant?.includes(name))  t.add('transplant');
+    if (pd.harvest?.includes(name))     t.add('harvest');
+    if (t.size) monthTypes[m] = t;
+  }
+
+  const cells = MONTH_SHORT.map((lbl, i) => {
+    const m = i + 1;
+    const t = monthTypes[m];
+    const cls = !t ? '' : t.has('harvest') ? 'ssb-harvest' : t.has('transplant') ? 'ssb-transplant' : t.has('sow') ? 'ssb-sow' : 'ssb-indoor';
+    const title = t ? [...t].join(', ') : 'Not active';
+    return `<div class="ssb-cell ${cls}${m === currentMonth ? ' ssb-cur' : ''}" title="${title}">${lbl}</div>`;
+  }).join('');
+
+  const thisMonth = monthTypes[currentMonth];
+  const ACTION_LABELS = { indoor:'Start indoors', sow:'Direct sow', transplant:'Transplant out', harvest:'Harvest' };
+  const tip = thisMonth ? [...thisMonth].map(a => ACTION_LABELS[a]).join(' · ') : null;
+
+  const sec = document.createElement('div');
+  sec.className = 'modal-section modal-season-bar';
+  sec.innerHTML = `
+    <div class="modal-section-title">Season Overview</div>
+    ${!selectedZone
+      ? `<p class="ssb-no-zone">Select a zone on the map for personalised timing.</p>`
+      : `<div class="ssb-strip">${cells}</div>
+         <div class="ssb-legend">
+           <span class="ssb-key ssb-indoor"></span>Indoors
+           <span class="ssb-key ssb-sow"></span>Direct sow
+           <span class="ssb-key ssb-transplant"></span>Transplant
+           <span class="ssb-key ssb-harvest"></span>Harvest
+         </div>
+         ${tip ? `<div class="ssb-tip">📅 <strong>${MONTH_NAMES[currentMonth]}:</strong> ${tip}</div>` : ''}`}`;
+
+  const firstSec = body.querySelector('.modal-section');
+  if (firstSec) body.insertBefore(sec, firstSec);
+  else body.prepend(sec);
+}
+
+function renderCropPestGuide(name) {
+  const body = document.getElementById('modal-body');
+  if (!body) return;
+  body.querySelector('.modal-pest-guide')?.remove();
+
+  const c = cropData[name];
+  const pests = c?.pests || [];
+  const known = pests.filter(p => NAMED_PEST_GUIDE[p]);
+  if (!known.length) return;
+
+  const rows = known.map(p => {
+    const g = NAMED_PEST_GUIDE[p];
+    return `<div class="pg-pest">
+      <div class="pg-name">🐛 ${p}</div>
+      <div class="pg-sol"><span class="pg-label organic">Organic:</span> ${g.organic}</div>
+      <div class="pg-sol"><span class="pg-label conv">Conventional:</span> ${g.conventional}</div>
+    </div>`;
+  }).join('');
+
+  const sec = document.createElement('div');
+  sec.className = 'modal-section modal-pest-guide';
+  sec.innerHTML = `<div class="modal-section-title">🐛 Pest & Disease Guide</div>${rows}`;
+
+  // Insert after the pests section (which is in the static renderCropDetail HTML)
+  const pestsSection = [...body.querySelectorAll('.modal-section')].find(s => s.querySelector('.detail-tags--pests'));
+  if (pestsSection) pestsSection.insertAdjacentElement('afterend', sec);
+  else body.appendChild(sec);
+}
+
+// ════════════════════════════════════════════════
+// Phase 82 — Spacing Calculator + This Week++
+// ════════════════════════════════════════════════
+
+function renderSpacingCalculator(name) {
+  const body = document.getElementById('modal-body');
+  if (!body) return;
+  body.querySelector('.modal-spacing-calc')?.remove();
+
+  const c = cropData[name];
+  const m = c?.spacing?.match(/(\d+)/);
+  if (!m) return;
+  const spaceIn = parseInt(m[1], 10);
+
+  const sec = document.createElement('div');
+  sec.className = 'modal-section modal-spacing-calc';
+  sec.innerHTML = `
+    <div class="modal-section-title">📐 Spacing Calculator</div>
+    <p class="sc-hint">Recommended spacing: <strong>${c.spacing}</strong></p>
+    <div class="sc-inputs">
+      <label class="sc-label">Length <input type="number" class="sc-in" id="sc-len" min="1" max="200" value="4" step="0.5"> ft</label>
+      <label class="sc-label">Width <input type="number" class="sc-in" id="sc-wid" min="1" max="200" value="4" step="0.5"> ft</label>
+    </div>
+    <div class="sc-result" id="sc-result"></div>`;
+
+  body.appendChild(sec);
+  const spaceFt = spaceIn / 12;
+  const calc = () => {
+    const len = parseFloat(sec.querySelector('#sc-len').value) || 4;
+    const wid = parseFloat(sec.querySelector('#sc-wid').value) || 4;
+    const count = Math.floor((len / spaceFt) * (wid / spaceFt));
+    const res = sec.querySelector('#sc-result');
+    if (res) res.innerHTML = `<span class="sc-count">${count}</span> plant${count === 1 ? '' : 's'} in a ${len}×${wid} ft bed`;
+  };
+  sec.querySelectorAll('.sc-in').forEach(inp => inp.addEventListener('input', calc));
+  calc();
+}
+
+// ════════════════════════════════════════════════
+// Phase 83 — Safe-to-Sow Badge + Germ Temp Check
+// ════════════════════════════════════════════════
+
+function renderSafeToSowBadge(name) {
+  document.querySelector('.modal-safe-sow')?.remove();
+  if (!selectedZone) return;
+
+  const c = cropData[name];
+  if (!c) return;
+  const frost = FROST_DATES[selectedZone.toLowerCase()];
+  if (!frost) return;
+
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const isSensitive = FROST_SENSITIVE.has(name);
+  let status = '', label = '', sub = '';
+
+  if (!frost.last && !frost.first) {
+    status = 'safe'; label = '✅ Safe to plant outdoors'; sub = 'Frost-free zone — no cold risk.';
+  } else if (isSensitive && frost.last) {
+    const lf = parseFrostDate(frost.last);
+    if (lf) {
+      const n = Math.round((lf - today) / 86400000);
+      if      (n > 14) { status = 'wait'; label = `⏳ Wait ${n} more days`; sub = `Last frost ~${frost.last} — ${name} is frost-sensitive.`; }
+      else if (n > 0)  { status = 'soon'; label = `🟡 Nearly safe — ${n} day${n===1?'':'s'} to last frost`; sub = 'Harden off seedlings now; no outdoor transplanting yet.'; }
+      else             { status = 'safe'; label = '✅ Safe to transplant outdoors'; sub = `Last frost was ${-n} day${-n===1?'':'s'} ago.`; }
+    }
+  } else if (!isSensitive) {
+    if (frost.first) {
+      const ff = parseFrostDate(frost.first);
+      if (ff) {
+        const n = Math.round((ff - today) / 86400000);
+        if (n <= 0 && n >= -21) { status = 'late'; label = '⚠️ Getting late in the season'; sub = `First frost was ~${-n} days ago.`; }
+        else { status = 'safe'; label = '✅ Good time to plant'; sub = 'Hardy crop — tolerates light frost.'; }
+      }
+    } else { status = 'safe'; label = '✅ Good time to plant'; sub = 'Hardy crop tolerating cool conditions.'; }
+  }
+
+  if (!status) return;
+  const el = document.createElement('div');
+  el.className = `modal-safe-sow modal-safe-sow--${status}`;
+  el.innerHTML = `<span class="safe-sow-label">${label}</span><span class="safe-sow-sub">${sub}</span>`;
+  const bar = document.getElementById('modal-garden-bar');
+  if (bar) bar.insertAdjacentElement('afterend', el);
+}
+
+// ════════════════════════════════════════════════
+// Phase 84 — 3-Year Rotation Planner
+// ════════════════════════════════════════════════
+
+const ROTATION_SEQUENCE = {
+  Solanaceae:  ['Legume','Brassicaceae','Root/Other','Solanaceae'],
+  Brassicaceae:['Root/Other','Solanaceae','Legume','Brassicaceae'],
+  Legume:      ['Brassicaceae','Root/Other','Solanaceae','Legume'],
+  Cucurbit:    ['Legume','Root/Other','Brassicaceae','Cucurbit'],
+  Allium:      ['Solanaceae','Brassicaceae','Legume','Allium'],
+  Apiaceae:    ['Solanaceae','Legume','Brassicaceae','Apiaceae'],
+  'Root/Other':['Solanaceae','Legume','Brassicaceae','Root/Other'],
+};
+const ROTATION_EXAMPLES = {
+  Solanaceae: 'Tomatoes, Peppers, Eggplant', Brassicaceae: 'Brassicas (Broccoli, Kale, Cabbage)',
+  Legume: 'Beans, Peas, Edamame', Cucurbit: 'Cucumbers, Squash, Zucchini',
+  Allium: 'Onions, Garlic, Leeks', Apiaceae: 'Carrots, Parsnips, Celery',
+  'Root/Other': 'Beets, Potatoes, Sweet Potatoes',
+};
+
+function getCurrentBedFamily(bedId) {
+  const crops = Object.keys(myGarden).filter(n => myGarden[n]?.bedId === bedId);
+  const families = crops.map(n => CROP_FAMILIES[n]).filter(Boolean);
+  if (!families.length) return null;
+  // Return most common family
+  const counts = {};
+  families.forEach(f => counts[f] = (counts[f] || 0) + 1);
+  return Object.entries(counts).sort((a,b) => b[1]-a[1])[0][0];
+}
+
+function renderRotationPlanView() {
+  const el = document.getElementById('rotation-plan-view');
+  if (!el) return;
+  const bedIds = Object.keys(gardenBeds);
+  if (!bedIds.length) { el.innerHTML = '<p class="rp-empty">Add beds to see rotation advice.</p>'; return; }
+
+  const yr = new Date().getFullYear();
+  let html = `<div class="rp-header">
+    <span class="rp-yr rp-yr--cur">${yr}</span>
+    <span class="rp-yr">${yr+1}</span>
+    <span class="rp-yr">${yr+2}</span>
+  </div>`;
+
+  for (const id of bedIds) {
+    const bed = gardenBeds[id];
+    const fam = getCurrentBedFamily(id) || 'Unknown';
+    const seq = ROTATION_SEQUENCE[fam] || ROTATION_SEQUENCE['Root/Other'];
+    const [y0, y1, y2] = seq;
+    const ex = f => ROTATION_EXAMPLES[f] || f;
+    html += `<div class="rp-bed">
+      <div class="rp-bed-name">${bed.emoji} ${bed.name}</div>
+      <div class="rp-years">
+        <div class="rp-cell rp-cell--cur" title="${ex(y0)}"><span class="rp-fam">${y0}</span><span class="rp-ex">${ex(y0)}</span></div>
+        <div class="rp-cell" title="${ex(y1)}"><span class="rp-fam">${y1}</span><span class="rp-ex">${ex(y1)}</span></div>
+        <div class="rp-cell" title="${ex(y2)}"><span class="rp-fam">${y2}</span><span class="rp-ex">${ex(y2)}</span></div>
+      </div>
+    </div>`;
+  }
+  el.innerHTML = html;
+}
+
+// ════════════════════════════════════════════════
+// Phase 85 — Crop Share Card (Canvas image)
+// ════════════════════════════════════════════════
+
+function shareCropCard(name) {
+  const c = cropData[name];
+  if (!c) return;
+
+  const W = 600, H = 340;
+  const canvas = document.createElement('canvas');
+  canvas.width = W * 2; canvas.height = H * 2; // retina
+  const ctx = canvas.getContext('2d');
+  ctx.scale(2, 2);
+
+  // Background
+  ctx.fillStyle = '#0d1526';
+  ctx.fillRect(0, 0, W, H);
+
+  // Accent bar
+  ctx.fillStyle = '#4ade80';
+  ctx.fillRect(0, 0, 4, H);
+
+  // Emoji
+  ctx.font = '52px serif';
+  ctx.fillText(c.emoji || '🌱', 22, 62);
+
+  // Name
+  ctx.font = 'bold 28px system-ui, sans-serif';
+  ctx.fillStyle = '#f0fdf4';
+  ctx.fillText(name, 90, 50);
+
+  // Difficulty badge
+  if (c.difficulty) {
+    const diffColors = { Easy: '#4ade80', Moderate: '#fbbf24', Hard: '#f87171' };
+    ctx.font = '11px system-ui, sans-serif';
+    ctx.fillStyle = diffColors[c.difficulty] || '#4ade80';
+    ctx.fillText(c.difficulty.toUpperCase(), 91, 72);
+  }
+
+  // Divider
+  ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(20, 88); ctx.lineTo(W - 20, 88); ctx.stroke();
+
+  // Key facts grid
+  const facts = [
+    ['📅', 'Days', c.days], ['☀️', 'Sun', c.sun],
+    ['💧', 'Water', c.water], ['📏', 'Spacing', c.spacing],
+    ['🌡', 'Germ temp', c.germ_temp], ['🧪', 'Soil pH', c.soil_ph],
+  ].filter(f => f[2]);
+
+  ctx.font = '11px system-ui, sans-serif';
+  ctx.fillStyle = '#86efac';
+  facts.slice(0, 6).forEach(([icon, lbl, val], i) => {
+    const col = i % 3, row = Math.floor(i / 3);
+    const x = 22 + col * 190, y = 112 + row * 44;
+    ctx.fillStyle = '#86efac';
+    ctx.font = 'bold 10px system-ui';
+    ctx.fillText(lbl.toUpperCase(), x, y);
+    ctx.fillStyle = '#e2e8f0';
+    ctx.font = '12px system-ui';
+    ctx.fillText(val.slice(0, 28), x, y + 16);
+  });
+
+  // Tip
+  if (c.tip) {
+    ctx.fillStyle = 'rgba(74,222,128,0.12)';
+    ctx.beginPath();
+    ctx.roundRect?.(20, 210, W - 40, 72, 8) || ctx.rect(20, 210, W - 40, 72);
+    ctx.fill();
+    ctx.fillStyle = '#86efac';
+    ctx.font = 'bold 10px system-ui';
+    ctx.fillText('💡 TIP', 32, 228);
+    ctx.fillStyle = '#cbd5e1';
+    ctx.font = '11px system-ui';
+    const tipWords = c.tip.split(' ');
+    let line = '', y2 = 244;
+    for (const w of tipWords) {
+      const test = line + w + ' ';
+      if (ctx.measureText(test).width > W - 80 && line) { ctx.fillText(line.trim(), 32, y2); line = w + ' '; y2 += 16; if (y2 > 275) break; }
+      else line = test;
+    }
+    if (line && y2 <= 275) ctx.fillText(line.trim(), 32, y2);
+  }
+
+  // Footer
+  ctx.fillStyle = 'rgba(255,255,255,0.25)';
+  ctx.font = '10px system-ui';
+  ctx.fillText('Plant Zone Finder · djamies1.github.io/garden-zones', 22, H - 14);
+
+  // Share / download
+  canvas.toBlob(blob => {
+    if (!blob) return;
+    const file = new File([blob], `${name.toLowerCase().replace(/\s+/g,'-')}-crop-card.png`, { type: 'image/png' });
+    if (navigator.canShare?.({ files: [file] })) {
+      navigator.share({ files: [file], title: `${name} — Growing Guide` }).catch(() => {});
+    } else {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = file.name;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+    }
+  }, 'image/png');
 }
