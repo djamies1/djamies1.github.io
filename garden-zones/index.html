@@ -680,5 +680,9 @@
       navigator.serviceWorker.register('./sw.js').catch(() => {});
     }
   </script>
+  <div id="bed-crop-picker" hidden>
+    <input id="bed-crop-search" type="text" placeholder="Search crops…" autocomplete="off">
+    <div id="bed-crop-list"></div>
+  </div>
 </body>
 </html>

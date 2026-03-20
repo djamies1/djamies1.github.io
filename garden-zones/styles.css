@@ -3962,7 +3962,7 @@ body.garden-mode .plant-section ul {
 .seeds-shop-list { display: flex; flex-wrap: wrap; gap: 5px; }
 .seeds-shop-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; font-size: var(--text-2xs); padding: 2px 8px; }
 
-/* ── Phase 52: Bed grid ──────────────────────── */
+/* ── Phase 52: Bed grid (legacy, kept for reference) ── */
 .bed-grid-wrap { margin: 8px 0 6px; }
 .bed-grid-visual { display: grid; gap: 4px; grid-template-columns: repeat(var(--bed-cols, 4), 1fr); position: relative; }
 .bed-cell { align-items: center; border: 1px solid var(--border); border-radius: 5px; cursor: default; display: flex; font-size: 18px; height: 42px; justify-content: center; transition: border-color 0.15s; }
@@ -3975,6 +3975,49 @@ body.garden-mode .plant-section ul {
 .bed-grid-size-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 11px; grid-column: 1 / -1; padding: 2px; text-align: right; }
 .bed-grid-toggle-btn { background: none; border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); cursor: pointer; font-size: 12px; line-height: 1; padding: 2px 5px; transition: color 0.15s, border-color 0.15s; }
 .bed-grid-toggle-btn:hover, .bed-grid-toggle-btn.active { border-color: var(--accent); color: var(--accent); }
+
+/* ── Phase 86: Bed overview ──────────────────── */
+#bed-overview { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin-bottom: 12px; }
+.bed-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; overflow: hidden; padding: 10px; transition: border-color 0.15s, transform 0.1s; text-align: left; width: 100%; }
+.bed-card:hover { border-color: var(--accent-dark); transform: translateY(-1px); }
+.bed-card-header { align-items: center; display: flex; gap: 6px; margin-bottom: 8px; }
+.bed-card-emoji { font-size: 18px; }
+.bed-card-name { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bed-mini-grid { aspect-ratio: 1; border-radius: 4px; display: grid; gap: 2px; width: 100%; }
+.bed-mini-cell { border-radius: 2px; font-size: 9px; line-height: 1; overflow: hidden; }
+.bed-mini-cell--occupied { opacity: 0.9; }
+.bed-mini-cell--empty { background: var(--surface); opacity: 0.4; }
+.bed-card-meta { color: var(--text-muted); font-size: 10px; margin-top: 5px; }
+.bed-add-card { align-items: center; background: none; border: 1px dashed var(--border); border-radius: 8px; color: var(--text-muted); cursor: pointer; display: flex; flex-direction: column; font-size: 11px; gap: 4px; justify-content: center; min-height: 100px; padding: 10px; transition: border-color 0.15s, color 0.15s; width: 100%; }
+.bed-add-card:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Phase 86: Bed editor ────────────────────── */
+.bed-editor-header { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.bed-back-btn { background: none; border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); cursor: pointer; font-size: 11px; padding: 4px 8px; transition: color 0.15s, border-color 0.15s; }
+.bed-back-btn:hover { border-color: var(--accent); color: var(--accent); }
+.bed-name-input { background: none; border: none; border-bottom: 1px solid var(--border); color: var(--text); font-size: 14px; font-weight: 700; min-width: 0; outline: none; padding: 2px 4px; }
+.bed-resize-group { align-items: center; display: flex; gap: 4px; margin-left: auto; }
+.bed-resize-label { color: var(--text-muted); font-size: 10px; }
+.bed-resize-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; color: var(--text); cursor: pointer; font-size: 13px; line-height: 1; padding: 1px 5px; }
+.bed-delete-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px; margin-left: 4px; transition: color 0.15s; }
+.bed-delete-btn:hover { color: #f87171; }
+.bed-full-grid { display: grid; gap: 3px; margin-bottom: 12px; width: 100%; }
+.bed-cell-btn { align-items: center; aspect-ratio: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; display: flex; flex-direction: column; font-size: 14px; justify-content: center; line-height: 1.1; overflow: hidden; padding: 2px; transition: border-color 0.15s, background 0.15s; width: 100%; }
+.bed-cell-btn:hover { border-color: var(--accent-dark); }
+.bed-cell-btn--occupied { background: rgba(74,222,128,0.06); border-color: rgba(74,222,128,0.2); }
+.bed-cell-label { font-size: 8px; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; text-align: center; }
+
+/* ── Phase 86: Crop picker popover ──────────── */
+#bed-crop-picker { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; bottom: 0; box-shadow: 0 4px 24px rgba(0,0,0,0.4); display: flex; flex-direction: column; gap: 0; left: 0; max-height: 260px; overflow: hidden; padding: 8px; position: fixed; right: 0; z-index: 120; }
+#bed-crop-picker[hidden] { display: none; }
+#bed-crop-search { background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; color: var(--text); font-size: 13px; padding: 6px 10px; width: 100%; }
+#bed-crop-list { display: flex; flex-direction: column; gap: 1px; margin-top: 6px; overflow-y: auto; }
+.bed-crop-option { align-items: center; background: none; border: none; border-radius: 4px; color: var(--text); cursor: pointer; display: flex; gap: 8px; padding: 6px 8px; text-align: left; transition: background 0.1s; width: 100%; }
+.bed-crop-option:hover { background: var(--surface2); }
+.bed-crop-option-emoji { font-size: 16px; flex-shrink: 0; }
+.bed-crop-option-name { font-size: 12px; }
+.bed-crop-option--in-garden { color: var(--accent); }
+.bed-picker-remove { background: none; border: 1px solid var(--border); border-radius: 4px; color: #f87171; cursor: pointer; font-size: 11px; margin-top: 4px; padding: 4px 8px; width: 100%; }
 
 /* ── Phase 54: Rotation history ─────────────── */
 .rotation-history { border-top: 1px solid var(--border); margin-top: 8px; padding-top: 8px; }

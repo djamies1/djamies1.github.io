@@ -484,6 +484,8 @@ let currentMonth = new Date().getMonth() + 1;
 
 let myGarden = {};
 let gardenBeds = {};
+let activeBedId = null;
+const BED_COLORS = ['#2d5a27','#1a4a6b','#5a2d2d','#5a4a1a','#2d3d5a','#4a2d5a','#1a5a4a','#5a3d1a'];
 let currentPanelTab = 'calendar';
 let mySeeds = {};
 let cropRotation = [];
@@ -5400,13 +5402,28 @@ function renderCompanionMatrix() {
 function loadBeds() {
   try { gardenBeds = JSON.parse(localStorage.getItem('pzf-beds') || '{}'); }
   catch { gardenBeds = {}; }
+  // Phase 86: migrate — ensure every bed has color + cells
+  const ids = Object.keys(gardenBeds);
+  for (let i = 0; i < ids.length; i++) {
+    gardenBeds[ids[i]].color ??= BED_COLORS[i % BED_COLORS.length];
+    gardenBeds[ids[i]].cells ??= {};
+    gardenBeds[ids[i]].cols ??= 4;
+    gardenBeds[ids[i]].rows ??= 2;
+  }
 }
 function saveBeds() { localStorage.setItem('pzf-beds', JSON.stringify(gardenBeds)); }
 
 function addBed(name, emoji) {
   const id = String(Date.now());
-  gardenBeds[id] = { name: name.trim(), emoji: emoji || '🌱' };
+  const idx = Object.keys(gardenBeds).length;
+  gardenBeds[id] = {
+    name: name.trim(), emoji: emoji || '🌱',
+    cols: 4, rows: 2,
+    color: BED_COLORS[idx % BED_COLORS.length],
+    cells: {}
+  };
   saveBeds();
+  activeBedId = id;
   renderGardenBeds();
 }
 
@@ -5417,6 +5434,7 @@ function removeBed(id) {
   saveGarden();
   delete gardenBeds[id];
   saveBeds();
+  if (activeBedId === id) activeBedId = null;
   renderGardenBeds();
   if (currentPanelTab === 'garden') renderGardenTab();
 }
@@ -5437,178 +5455,273 @@ function assignCropToBed(cropName, bedId) {
   if (currentPanelTab === 'garden') renderGardenTab();
 }
 
+// ── Phase 86: Visual Bed Planner ──────────────────
 function renderGardenBeds() {
   const el = document.getElementById('garden-beds');
   if (!el) return;
-
-  const bedIds = Object.keys(gardenBeds);
-  const gardenNames = Object.keys(myGarden);
-
-  // Map each bed → crops assigned to it
-  const bedCrops = {};
-  for (const id of bedIds) bedCrops[id] = [];
-  const unassigned = [];
-  for (const name of gardenNames) {
-    const bid = myGarden[name]?.bedId;
-    if (bid && gardenBeds[bid]) bedCrops[bid].push(name);
-    else unassigned.push(name);
-  }
-
-  let html = `<div class="beds-header">
-    <span class="beds-title">🛏 My Beds</span>
-    <button class="beds-add-btn" id="beds-add-btn">+ New bed</button>
-  </div>
-  <div class="beds-new-form" id="beds-new-form" hidden>
-    <input type="text" id="bed-name-input" placeholder="Bed name…" maxlength="30" autocomplete="off">
-    <input type="text" id="bed-emoji-input" placeholder="🪴" maxlength="4">
-    <button id="bed-save-btn">Add</button>
-    <button id="bed-cancel-btn" class="bed-cancel">✕</button>
-  </div>`;
-
-  if (!bedIds.length) {
-    html += `<p class="beds-empty">No beds yet — add one to organise crops by location.</p>`;
+  if (activeBedId !== null) {
+    el.innerHTML = renderBedEditorHTML(activeBedId);
+    wireBedEditor(activeBedId);
   } else {
-    html += `<div class="beds-grid">`;
-    for (const id of bedIds) {
-      const bed = gardenBeds[id];
-      const crops = bedCrops[id];
-      const availableToAssign = gardenNames.filter(n => !myGarden[n]?.bedId || myGarden[n]?.bedId === id);
+    el.innerHTML = renderBedOverviewHTML();
+    wireBedOverview();
+  }
+  renderRotationPlanView();
+}
 
-      const cropPills = crops.map(name => {
-        const s = getGardenStatus(name);
-        const cls = s?.type === 'ready' ? 'bed-pill--ready' : s?.type === 'growing' ? 'bed-pill--growing' : '';
-        return `<span class="bed-crop-pill ${cls}" data-crop="${name}" title="Click to view">
-          ${cropData[name]?.emoji || '🌱'} ${name}
-          <button class="bed-pill-remove" data-crop="${name}" data-bed="${id}" aria-label="Remove from bed">×</button>
-        </span>`;
-      }).join('');
+function renderBedOverviewHTML() {
+  const bedIds = Object.keys(gardenBeds);
+  let cards = '';
+  for (const id of bedIds) {
+    const bed = gardenBeds[id];
+    const cols = bed.cols || 4;
+    const rows = bed.rows || 2;
+    const cells = bed.cells || {};
+    const cropCount = Object.keys(cells).length;
 
-      const assignOpts = availableToAssign
-        .filter(n => !crops.includes(n))
-        .map(n => `<option value="${n}">${cropData[n]?.emoji || '🌱'} ${n}</option>`)
-        .join('');
-
-      const rotHistory = renderRotationHistory(id);
-      html += `<div class="bed-card">
-        <div class="bed-card-header">
-          <span class="bed-card-emoji">${bed.emoji}</span>
-          <span class="bed-card-name">${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
-          <span class="bed-card-count">${crops.length} crop${crops.length !== 1 ? 's' : ''}</span>
-          <button class="bed-grid-toggle-btn" data-bed="${id}" title="Toggle grid view">⊞</button>
-          <button class="bed-remove-btn" data-bed="${id}" aria-label="Delete bed">×</button>
-        </div>
-        <div class="bed-card-crops">${cropPills || '<span class="bed-no-crops">No crops assigned</span>'}</div>
-        <div class="bed-grid-wrap" id="bed-grid-${id}" hidden>${renderBedGrid(id, crops)}</div>
-        ${assignOpts ? `<select class="bed-assign-select" data-bed="${id}" aria-label="Assign crop to bed">
-          <option value="">+ Assign crop…</option>
-          ${assignOpts}
-        </select>` : ''}
-        ${rotHistory}
-        <div class="bed-micro-row">
-          <button class="bed-micro-toggle" data-bed="${id}">🌡 Soil &amp; climate</button>
-          <div class="bed-micro-fields" id="bed-micro-${id}" hidden>
-            <label class="bed-micro-label">pH
-              <input type="number" class="bed-micro-input" data-bed="${id}" data-field="soilPh" value="${bed.soilPh||''}" min="4" max="9" step="0.1" placeholder="6.5">
-            </label>
-            <label class="bed-micro-label">Sun hrs
-              <input type="number" class="bed-micro-input" data-bed="${id}" data-field="sunHours" value="${bed.sunHours||''}" min="0" max="14" step="0.5" placeholder="6">
-            </label>
-            <label class="bed-micro-label">Drainage
-              <select class="bed-micro-select" data-bed="${id}" data-field="drainage">
-                <option value="">—</option>
-                <option value="poor"      ${bed.drainage==='poor'?'selected':''}>Poor</option>
-                <option value="moderate"  ${bed.drainage==='moderate'?'selected':''}>Moderate</option>
-                <option value="good"      ${bed.drainage==='good'?'selected':''}>Good</option>
-                <option value="excellent" ${bed.drainage==='excellent'?'selected':''}>Excellent</option>
-              </select>
-            </label>
-            <label class="bed-micro-label" style="grid-column:1/-1">Notes
-              <input type="text" class="bed-micro-input" data-bed="${id}" data-field="microNotes" value="${(bed.microNotes||'').replace(/"/g,'&quot;')}" placeholder="e.g. raised bed, clay soil…">
-            </label>
-          </div>
-        </div>
-      </div>`;
+    // Mini grid preview — cap at 6×6
+    const previewCols = Math.min(cols, 6);
+    const previewRows = Math.min(rows, 6);
+    let miniCells = '';
+    for (let r = 0; r < previewRows; r++) {
+      for (let c = 0; c < previewCols; c++) {
+        const crop = cells[`${c}-${r}`];
+        if (crop) {
+          const em = cropData[crop]?.emoji || '🌱';
+          miniCells += `<div class="bed-mini-cell bed-mini-cell--occupied" style="background:${bed.color}22" title="${crop}">${em}</div>`;
+        } else {
+          miniCells += `<div class="bed-mini-cell bed-mini-cell--empty"></div>`;
+        }
+      }
     }
-    html += `</div>`;
+
+    cards += `<button class="bed-card" data-bed="${id}" style="border-color:${bed.color}44">
+      <div class="bed-card-header">
+        <span class="bed-card-emoji">${bed.emoji}</span>
+        <span class="bed-card-name">${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
+      </div>
+      <div class="bed-mini-grid" style="grid-template-columns:repeat(${previewCols},1fr)">${miniCells}</div>
+      <div class="bed-card-meta">${cropCount} crop${cropCount !== 1 ? 's' : ''} · ${cols}×${rows}</div>
+    </button>`;
   }
 
-  el.innerHTML = html;
+  cards += `<button class="bed-add-card" id="bed-add-card-btn">
+    <span style="font-size:22px">＋</span>
+    <span>Add bed</span>
+  </button>`;
 
-  // New bed form
-  document.getElementById('beds-add-btn')?.addEventListener('click', () => {
-    const form = document.getElementById('beds-new-form');
-    if (form) { form.hidden = false; document.getElementById('bed-name-input')?.focus(); }
-  });
-  document.getElementById('bed-cancel-btn')?.addEventListener('click', () => {
-    const form = document.getElementById('beds-new-form');
-    if (form) form.hidden = true;
-  });
-  const doAddBed = () => {
-    const name  = document.getElementById('bed-name-input')?.value || '';
-    const emoji = document.getElementById('bed-emoji-input')?.value.trim() || '🪴';
-    if (name.trim()) {
-      addBed(name, emoji);
-      const form = document.getElementById('beds-new-form');
-      if (form) { form.hidden = true; document.getElementById('bed-name-input').value = ''; document.getElementById('bed-emoji-input').value = ''; }
+  return `<div class="beds-header"><span class="beds-title">🛏 My Beds</span></div>
+  <div id="bed-overview">${cards}</div>`;
+}
+
+function renderBedEditorHTML(bedId) {
+  const bed = gardenBeds[bedId];
+  if (!bed) return '';
+  const cols = bed.cols || 4;
+  const rows = bed.rows || 2;
+  const cells = bed.cells || {};
+
+  let gridCells = '';
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const crop = cells[`${c}-${r}`];
+      const occupied = !!crop;
+      const em = crop ? (cropData[crop]?.emoji || '🌱') : '+';
+      const label = crop ? `<span class="bed-cell-label">${crop}</span>` : '';
+      gridCells += `<button class="bed-cell-btn${occupied ? ' bed-cell-btn--occupied' : ''}" data-col="${c}" data-row="${r}" data-bed="${bedId}" title="${crop || 'Empty'}">${em}${label}</button>`;
     }
-  };
-  document.getElementById('bed-save-btn')?.addEventListener('click', doAddBed);
-  document.getElementById('bed-name-input')?.addEventListener('keydown', e => {
-    if (e.key === 'Enter') doAddBed();
-    if (e.key === 'Escape') document.getElementById('bed-cancel-btn')?.click();
+  }
+
+  return `<div class="bed-editor-header">
+    <button class="bed-back-btn" id="bed-back-btn">← Back</button>
+    <input class="bed-name-input" id="bed-name-edit" type="text" value="${bed.name.replace(/"/g,'&quot;')}" maxlength="30">
+    <input type="text" id="bed-emoji-edit" value="${bed.emoji}" maxlength="4" style="background:none;border:none;border-bottom:1px solid var(--border);color:var(--text);font-size:18px;width:32px;padding:2px;outline:none">
+    <input type="color" id="bed-color-input" value="${bed.color || '#2d5a27'}" title="Bed colour" style="appearance:none;-webkit-appearance:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--border);padding:0;cursor:pointer;background:${bed.color || '#2d5a27'}">
+    <div class="bed-resize-group">
+      <button class="bed-resize-btn" data-dir="cols" data-delta="-1">−</button>
+      <span class="bed-resize-label" id="bed-size-label">${cols}×${rows}</span>
+      <button class="bed-resize-btn" data-dir="cols" data-delta="1">＋</button>
+      <span class="bed-resize-label">cols</span>
+      <button class="bed-resize-btn" data-dir="rows" data-delta="-1">−</button>
+      <button class="bed-resize-btn" data-dir="rows" data-delta="1">＋</button>
+      <span class="bed-resize-label">rows</span>
+    </div>
+    <button class="bed-delete-btn" id="bed-delete-btn" title="Delete bed">🗑</button>
+  </div>
+  <div class="bed-full-grid" id="bed-full-grid" style="grid-template-columns:repeat(${cols},1fr)">${gridCells}</div>`;
+}
+
+function wireBedOverview() {
+  const el = document.getElementById('garden-beds');
+  el.querySelectorAll('.bed-card').forEach(card => {
+    card.addEventListener('click', () => {
+      activeBedId = card.dataset.bed;
+      renderGardenBeds();
+    });
+  });
+  document.getElementById('bed-add-card-btn')?.addEventListener('click', () => {
+    const name = prompt('Bed name:');
+    if (name?.trim()) addBed(name.trim(), '🪴');
+  });
+}
+
+function wireBedEditor(bedId) {
+  const bed = gardenBeds[bedId];
+  if (!bed) return;
+
+  // Back
+  document.getElementById('bed-back-btn')?.addEventListener('click', () => {
+    activeBedId = null;
+    renderGardenBeds();
   });
 
-  // Toggle grid view
-  el.querySelectorAll('.bed-grid-toggle-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      const wrap = document.getElementById(`bed-grid-${btn.dataset.bed}`);
-      if (wrap) { wrap.hidden = !wrap.hidden; btn.classList.toggle('active', !wrap.hidden); }
+  // Name
+  document.getElementById('bed-name-edit')?.addEventListener('blur', e => {
+    const v = e.target.value.trim();
+    if (v) { bed.name = v; saveBeds(); }
+  });
+
+  // Emoji
+  document.getElementById('bed-emoji-edit')?.addEventListener('blur', e => {
+    const v = e.target.value.trim();
+    if (v) { bed.emoji = v; saveBeds(); }
+  });
+
+  // Colour
+  document.getElementById('bed-color-input')?.addEventListener('input', e => {
+    bed.color = e.target.value;
+    e.target.style.background = e.target.value;
+    saveBeds();
+  });
+
+  // Resize
+  document.getElementById('garden-beds')?.querySelectorAll('.bed-resize-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dir = btn.dataset.dir;
+      const delta = Number(btn.dataset.delta);
+      resizeBed(bedId, dir === 'cols' ? delta : 0, dir === 'rows' ? delta : 0);
     });
   });
 
-  // Remove bed
-  el.querySelectorAll('.bed-remove-btn').forEach(btn => {
-    btn.addEventListener('click', e => { e.stopPropagation(); removeBed(btn.dataset.bed); });
+  // Delete
+  document.getElementById('bed-delete-btn')?.addEventListener('click', () => {
+    if (confirm(`Delete "${bed.name}"?`)) removeBed(bedId);
   });
 
-  // Remove crop from bed
-  el.querySelectorAll('.bed-pill-remove').forEach(btn => {
-    btn.addEventListener('click', e => { e.stopPropagation(); assignCropToBed(btn.dataset.crop, null); });
+  // Cell clicks
+  document.getElementById('garden-beds')?.querySelectorAll('.bed-cell-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const col = Number(btn.dataset.col);
+      const row = Number(btn.dataset.row);
+      const existing = bed.cells?.[`${col}-${row}`];
+      openBedCropPicker(bedId, col, row, existing);
+    });
   });
+}
 
-  // Click pill to open crop detail
-  el.querySelectorAll('.bed-crop-pill').forEach(pill => {
-    pill.addEventListener('click', e => {
-      if (e.target.closest('.bed-pill-remove')) return;
-      openCropDetail(pill.dataset.crop);
+// Pending cell assignment state
+let _pickerTarget = null; // { bedId, col, row }
+
+function openBedCropPicker(bedId, col, row, existing) {
+  _pickerTarget = { bedId, col, row };
+  const picker = document.getElementById('bed-crop-picker');
+  const search = document.getElementById('bed-crop-search');
+  if (!picker || !search) return;
+
+  search.value = '';
+  renderCropPickerList('', existing);
+  picker.hidden = false;
+  search.focus();
+
+  // Wire search
+  search.oninput = () => renderCropPickerList(search.value, existing);
+
+  // Close on outside tap
+  setTimeout(() => {
+    const close = (e) => {
+      if (!picker.contains(e.target)) { closeBedCropPicker(); document.removeEventListener('pointerdown', close); }
+    };
+    document.addEventListener('pointerdown', close);
+  }, 0);
+}
+
+function renderCropPickerList(query, existing) {
+  const list = document.getElementById('bed-crop-list');
+  if (!list) return;
+
+  const q = query.toLowerCase();
+  const inGarden = Object.keys(myGarden);
+  const allCrops = cropData ? Object.keys(cropData) : [];
+
+  // Garden crops first, then rest
+  const candidates = [
+    ...inGarden,
+    ...allCrops.filter(n => !inGarden.includes(n))
+  ].filter((n, i, arr) => arr.indexOf(n) === i); // dedupe
+
+  const filtered = q ? candidates.filter(n => n.toLowerCase().includes(q)) : candidates;
+
+  let html = '';
+  if (existing) {
+    html += `<button class="bed-picker-remove" id="bed-picker-remove-btn">Remove "${existing}"</button>`;
+  }
+  for (const name of filtered.slice(0, 60)) {
+    const em = cropData[name]?.emoji || '🌱';
+    const inG = inGarden.includes(name);
+    html += `<button class="bed-crop-option${inG ? ' bed-crop-option--in-garden' : ''}" data-crop="${name}">
+      <span class="bed-crop-option-emoji">${em}</span>
+      <span class="bed-crop-option-name">${name}</span>
+    </button>`;
+  }
+  list.innerHTML = html;
+
+  list.querySelectorAll('.bed-crop-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!_pickerTarget) return;
+      setBedCell(_pickerTarget.bedId, _pickerTarget.col, _pickerTarget.row, btn.dataset.crop);
+      closeBedCropPicker();
     });
   });
 
-  // Assign crop dropdown
-  el.querySelectorAll('.bed-assign-select').forEach(sel => {
-    sel.addEventListener('change', e => {
-      if (e.target.value) { assignCropToBed(e.target.value, e.target.dataset.bed); e.target.value = ''; }
-    });
+  document.getElementById('bed-picker-remove-btn')?.addEventListener('click', () => {
+    if (!_pickerTarget) return;
+    setBedCell(_pickerTarget.bedId, _pickerTarget.col, _pickerTarget.row, null);
+    closeBedCropPicker();
   });
+}
 
-  // Micro-climate toggle
-  el.querySelectorAll('.bed-micro-toggle').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      const fields = document.getElementById(`bed-micro-${btn.dataset.bed}`);
-      if (fields) { fields.hidden = !fields.hidden; btn.classList.toggle('active', !fields.hidden); }
-    });
-  });
-  // Micro-climate inputs
-  el.querySelectorAll('.bed-micro-input').forEach(inp => {
-    inp.addEventListener('change', () => saveBedNotes(inp.dataset.bed, inp.dataset.field, inp.value));
-  });
-  el.querySelectorAll('.bed-micro-select').forEach(sel => {
-    sel.addEventListener('change', () => saveBedNotes(sel.dataset.bed, sel.dataset.field, sel.value));
-  });
-  // Phase 84: Rotation planner
-  renderRotationPlanView();
+function closeBedCropPicker() {
+  const picker = document.getElementById('bed-crop-picker');
+  if (picker) picker.hidden = true;
+  _pickerTarget = null;
+}
+
+function setBedCell(bedId, col, row, cropName) {
+  const bed = gardenBeds[bedId];
+  if (!bed) return;
+  const key = `${col}-${row}`;
+  if (cropName) {
+    bed.cells[key] = cropName;
+    if (myGarden[cropName]) { myGarden[cropName].bedId = bedId; saveGarden(); }
+  } else {
+    delete bed.cells[key];
+  }
+  saveBeds();
+  renderGardenBeds();
+}
+
+function resizeBed(bedId, dcols, drows) {
+  const bed = gardenBeds[bedId];
+  if (!bed) return;
+  bed.cols = Math.max(1, Math.min(12, (bed.cols || 4) + dcols));
+  bed.rows = Math.max(1, Math.min(12, (bed.rows || 2) + drows));
+  // Drop out-of-bounds cells
+  for (const key of Object.keys(bed.cells || {})) {
+    const [c, r] = key.split('-').map(Number);
+    if (c >= bed.cols || r >= bed.rows) delete bed.cells[key];
+  }
+  saveBeds();
+  renderGardenBeds();
 }
 
 function initBeds() {
