@@ -5018,8 +5018,8 @@ function renderGardenDashboard() {
   // Compact weather
   let weatherHtml = '';
   if (weatherData?.current) {
-    const t = useMetric ? Math.round(weatherData.current.temperature_2m) + '°C'
-                        : Math.round(weatherData.current.temperature_2m * 9/5 + 32) + '°F';
+    const t = useMetric ? Math.round((weatherData.current.temperature_2m - 32) * 5/9) + '°C'
+                        : Math.round(weatherData.current.temperature_2m) + '°F';
     weatherHtml = `<span class="gd-sep">·</span>
       <span class="gd-weather">${getWmoIcon(weatherData.current.weathercode)} ${t}</span>`;
   }
@@ -6945,8 +6945,8 @@ function renderDailyBrief() {
   // Weather summary line
   if (weatherData?.current) {
     const temp = useMetric
-      ? Math.round(weatherData.current.temperature_2m) + '°C'
-      : Math.round(weatherData.current.temperature_2m * 9 / 5 + 32) + '°F';
+      ? Math.round((weatherData.current.temperature_2m - 32) * 5 / 9) + '°C'
+      : Math.round(weatherData.current.temperature_2m) + '°F';
     const icon = getWmoIcon(weatherData.current.weather_code);
     // Tomorrow + day after (indices 6,7 in daily array with past_days=5)
     const rainSoon = weatherData.daily?.precipitation_sum
