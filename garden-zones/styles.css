@@ -4539,3 +4539,29 @@ body.garden-mode .plant-section ul {
 .rp-fam { color: var(--text); font-size: 11px; font-weight: var(--weight-semibold); }
 .rp-ex { color: var(--text-muted); font-size: 10px; line-height: 1.4; }
 .rp-empty { color: var(--text-muted); font-size: 12px; padding: 8px 0; }
+
+/* ── Phase 87: Garden Map overlay ───────────── */
+#garden-map-overlay { display: flex; flex-direction: column; inset: 0; position: fixed; z-index: 300; background: var(--surface); }
+#garden-map-overlay[hidden] { display: none; }
+.gm-header { align-items: center; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; flex-shrink: 0; gap: 8px; justify-content: space-between; padding: 10px 14px; }
+.gm-title { font-size: 14px; font-weight: 700; }
+.gm-close-btn { background: none; border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); cursor: pointer; font-size: 12px; padding: 4px 8px; }
+.gm-close-btn:hover { border-color: var(--accent); color: var(--accent); }
+.gm-add-btn { background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.3); border-radius: 4px; color: var(--accent); cursor: pointer; font-size: 12px; padding: 4px 8px; }
+#gm-canvas-scroll { flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; background-color: #1a1f14; background-image: radial-gradient(circle, #ffffff18 1px, transparent 1px); background-size: 44px 44px; }
+#gm-canvas { position: relative; }
+.gm-bed { border: 2px solid; border-radius: 5px; box-sizing: border-box; cursor: grab; overflow: hidden; position: absolute; touch-action: none; transition: box-shadow 0.12s; user-select: none; }
+.gm-bed:active { cursor: grabbing; }
+.gm-bed--selected { box-shadow: 0 0 0 3px var(--accent), 0 4px 20px rgba(0,0,0,0.5); z-index: 10; }
+.gm-bed-label { background: rgba(0,0,0,0.55); color: #fff; font-size: 10px; font-weight: 600; left: 0; overflow: hidden; padding: 2px 5px; position: absolute; right: 0; text-overflow: ellipsis; top: 0; white-space: nowrap; z-index: 1; }
+.gm-bed-cells { bottom: 0; display: grid; gap: 1px; left: 0; padding: 2px; position: absolute; right: 0; top: 20px; pointer-events: none; }
+.gm-bed-cell { align-items: center; border-radius: 2px; display: flex; font-size: 11px; justify-content: center; overflow: hidden; }
+.gm-bed-cell--empty { background: rgba(255,255,255,0.04); }
+.gm-bed-cell--occupied { background: rgba(255,255,255,0.14); }
+.gm-canvas-controls { align-items: center; background: var(--surface2); border-top: 1px solid var(--border); color: var(--text-muted); display: flex; flex-shrink: 0; font-size: 11px; gap: 6px; padding: 5px 14px; }
+.gm-canvas-resize-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; color: var(--text); cursor: pointer; font-size: 12px; padding: 1px 6px; }
+#gm-bed-detail { background: var(--surface); border-top: 2px solid var(--accent); flex-shrink: 0; max-height: 45vh; overflow-y: auto; padding: 10px 14px 20px; }
+#gm-bed-detail[hidden] { display: none; }
+.gm-detail-header { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.gm-detail-grid { display: grid; gap: 3px; margin-bottom: 8px; }
+.beds-map-btn { background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.25); border-radius: 4px; color: var(--accent); cursor: pointer; font-size: 11px; padding: 3px 8px; }

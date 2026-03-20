@@ -680,6 +680,27 @@
       navigator.serviceWorker.register('./sw.js').catch(() => {});
     }
   </script>
+  <div id="garden-map-overlay" hidden>
+    <div class="gm-header">
+      <button class="gm-close-btn" id="gm-close-btn">✕ Close</button>
+      <span class="gm-title">🗺 Garden Map</span>
+      <button class="gm-add-btn" id="gm-add-bed-btn">＋ Add Bed</button>
+    </div>
+    <div id="gm-canvas-scroll">
+      <div id="gm-canvas"></div>
+    </div>
+    <div class="gm-canvas-controls">
+      <span>Canvas:</span>
+      <button class="gm-canvas-resize-btn" data-dim="cols" data-delta="-1">−</button>
+      <span id="gm-canvas-size">20×15</span>
+      <button class="gm-canvas-resize-btn" data-dim="cols" data-delta="1">＋</button>
+      <span>cols</span>
+      <button class="gm-canvas-resize-btn" data-dim="rows" data-delta="-1">−</button>
+      <button class="gm-canvas-resize-btn" data-dim="rows" data-delta="1">＋</button>
+      <span>rows</span>
+    </div>
+    <div id="gm-bed-detail" hidden></div>
+  </div>
   <div id="bed-crop-picker" hidden>
     <input id="bed-crop-search" type="text" placeholder="Search crops…" autocomplete="off">
     <div id="bed-crop-list"></div>

@@ -485,6 +485,11 @@ let currentMonth = new Date().getMonth() + 1;
 let myGarden = {};
 let gardenBeds = {};
 let activeBedId = null;
+// Phase 87: Garden Map
+const TILE_SIZE = 44;
+let gardenCanvas = { cols: 20, rows: 15 };
+let _mapSelectedBed = null;
+let _drag = null;
 const BED_COLORS = ['#2d5a27','#1a4a6b','#5a2d2d','#5a4a1a','#2d3d5a','#4a2d5a','#1a5a4a','#5a3d1a'];
 let currentPanelTab = 'calendar';
 let mySeeds = {};
@@ -4425,6 +4430,7 @@ function importGarden(file) {
         // Reload all in-memory state
         loadGarden();
         loadHistory();
+        loadCanvas();
         loadBeds();
         journalEntries = JSON.parse(localStorage.getItem('pzf-journal') || '[]');
         refreshGardenUI('');
@@ -5409,7 +5415,11 @@ function loadBeds() {
     gardenBeds[ids[i]].cells ??= {};
     gardenBeds[ids[i]].cols ??= 4;
     gardenBeds[ids[i]].rows ??= 2;
+    // Phase 87: x/y undefined triggers auto-placement (not 0,0 which would stack)
+    if (!Object.prototype.hasOwnProperty.call(gardenBeds[ids[i]], 'x')) gardenBeds[ids[i]].x = undefined;
+    if (!Object.prototype.hasOwnProperty.call(gardenBeds[ids[i]], 'y')) gardenBeds[ids[i]].y = undefined;
   }
+  autoPlaceBeds();
 }
 function saveBeds() { localStorage.setItem('pzf-beds', JSON.stringify(gardenBeds)); }
 
@@ -5420,11 +5430,18 @@ function addBed(name, emoji) {
     name: name.trim(), emoji: emoji || '🌱',
     cols: 4, rows: 2,
     color: BED_COLORS[idx % BED_COLORS.length],
-    cells: {}
+    cells: {},
+    x: undefined, y: undefined
   };
+  autoPlaceBeds();
   saveBeds();
   activeBedId = id;
-  renderGardenBeds();
+  if (document.getElementById('garden-map-overlay')?.hidden === false) {
+    renderGardenMapCanvas();
+    selectMapBed(id);
+  } else {
+    renderGardenBeds();
+  }
 }
 
 function removeBed(id) {
@@ -5510,7 +5527,7 @@ function renderBedOverviewHTML() {
     <span>Add bed</span>
   </button>`;
 
-  return `<div class="beds-header"><span class="beds-title">🛏 My Beds</span></div>
+  return `<div class="beds-header"><span class="beds-title">🛏 My Beds</span><button class="beds-map-btn" id="beds-map-btn">🗺 Map</button></div>
   <div id="bed-overview">${cards}</div>`;
 }
 
@@ -5563,6 +5580,7 @@ function wireBedOverview() {
     const name = prompt('Bed name:');
     if (name?.trim()) addBed(name.trim(), '🪴');
   });
+  document.getElementById('beds-map-btn')?.addEventListener('click', openGardenMap);
 }
 
 function wireBedEditor(bedId) {
@@ -5707,7 +5725,11 @@ function setBedCell(bedId, col, row, cropName) {
     delete bed.cells[key];
   }
   saveBeds();
-  renderGardenBeds();
+  if (document.getElementById('garden-map-overlay')?.hidden === false) {
+    renderGardenMapCanvas();
+  } else {
+    renderGardenBeds();
+  }
 }
 
 function resizeBed(bedId, dcols, drows) {
@@ -5715,17 +5737,259 @@ function resizeBed(bedId, dcols, drows) {
   if (!bed) return;
   bed.cols = Math.max(1, Math.min(12, (bed.cols || 4) + dcols));
   bed.rows = Math.max(1, Math.min(12, (bed.rows || 2) + drows));
+  // Clamp bed position to stay within canvas
+  bed.x = Math.max(0, Math.min(gardenCanvas.cols - bed.cols, bed.x || 0));
+  bed.y = Math.max(0, Math.min(gardenCanvas.rows - bed.rows, bed.y || 0));
   // Drop out-of-bounds cells
   for (const key of Object.keys(bed.cells || {})) {
     const [c, r] = key.split('-').map(Number);
     if (c >= bed.cols || r >= bed.rows) delete bed.cells[key];
   }
   saveBeds();
-  renderGardenBeds();
+  if (document.getElementById('garden-map-overlay')?.hidden === false) {
+    renderGardenMapCanvas();
+  } else {
+    renderGardenBeds();
+  }
 }
 
 function initBeds() {
+  loadCanvas();
   loadBeds();
+}
+
+// ── Phase 87: Garden Map ───────────────────────────
+function loadCanvas() {
+  try { gardenCanvas = { cols: 20, rows: 15, ...JSON.parse(localStorage.getItem('pzf-canvas') || '{}') }; }
+  catch { gardenCanvas = { cols: 20, rows: 15 }; }
+}
+function saveCanvas() { localStorage.setItem('pzf-canvas', JSON.stringify(gardenCanvas)); }
+
+function autoPlaceBeds() {
+  let cx = 0, cy = 0, rowH = 0;
+  for (const id of Object.keys(gardenBeds)) {
+    const bed = gardenBeds[id];
+    if (bed.x !== undefined && bed.y !== undefined) continue;
+    const cols = bed.cols || 4, rows = bed.rows || 2;
+    if (cx + cols > gardenCanvas.cols) { cx = 0; cy += rowH + 1; rowH = 0; }
+    bed.x = cx; bed.y = cy;
+    cx += cols + 1; rowH = Math.max(rowH, rows);
+  }
+}
+
+function openGardenMap() {
+  renderGardenMapCanvas();
+  document.getElementById('garden-map-overlay').hidden = false;
+}
+
+function closeGardenMap() {
+  document.getElementById('garden-map-overlay').hidden = true;
+  _mapSelectedBed = null;
+}
+
+function renderGardenMapCanvas() {
+  const canvas = document.getElementById('gm-canvas');
+  if (!canvas) return;
+  const w = gardenCanvas.cols * TILE_SIZE;
+  const h = gardenCanvas.rows * TILE_SIZE;
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+
+  let bedsHTML = '';
+  for (const id of Object.keys(gardenBeds)) {
+    bedsHTML += renderMapBedHTML(id);
+  }
+  canvas.innerHTML = bedsHTML;
+
+  const sizeEl = document.getElementById('gm-canvas-size');
+  if (sizeEl) sizeEl.textContent = `${gardenCanvas.cols}×${gardenCanvas.rows}`;
+
+  renderGardenMapDetail();
+  wireGardenMap();
+}
+
+function renderMapBedHTML(id) {
+  const bed = gardenBeds[id];
+  if (!bed) return '';
+  const cols = bed.cols || 4;
+  const rows = bed.rows || 2;
+  const x = bed.x || 0;
+  const y = bed.y || 0;
+  const color = bed.color || '#2d5a27';
+  const selected = _mapSelectedBed === id;
+
+  let cellsHTML = '';
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const crop = bed.cells?.[`${c}-${r}`];
+      const em = crop ? (cropData[crop]?.emoji || '🌱') : '';
+      const cls = crop ? 'gm-bed-cell gm-bed-cell--occupied' : 'gm-bed-cell gm-bed-cell--empty';
+      cellsHTML += `<div class="${cls}">${em}</div>`;
+    }
+  }
+
+  return `<div class="gm-bed${selected ? ' gm-bed--selected' : ''}" data-bed="${id}"
+    style="left:${x * TILE_SIZE}px;top:${y * TILE_SIZE}px;width:${cols * TILE_SIZE}px;height:${rows * TILE_SIZE}px;background:${color}33;border-color:${color}">
+    <div class="gm-bed-label">${bed.emoji} ${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
+    <div class="gm-bed-cells" style="grid-template-columns:repeat(${cols},1fr)">${cellsHTML}</div>
+  </div>`;
+}
+
+function renderGardenMapDetail() {
+  const detail = document.getElementById('gm-bed-detail');
+  if (!detail) return;
+  if (!_mapSelectedBed || !gardenBeds[_mapSelectedBed]) {
+    detail.hidden = true;
+    return;
+  }
+  const id = _mapSelectedBed;
+  const bed = gardenBeds[id];
+  const cols = bed.cols || 4;
+  const rows = bed.rows || 2;
+
+  let gridCells = '';
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const crop = bed.cells?.[`${c}-${r}`];
+      const occupied = !!crop;
+      const em = crop ? (cropData[crop]?.emoji || '🌱') : '+';
+      const label = crop ? `<span class="bed-cell-label">${crop}</span>` : '';
+      gridCells += `<button class="bed-cell-btn${occupied ? ' bed-cell-btn--occupied' : ''}" data-col="${c}" data-row="${r}" data-bed="${id}" title="${crop || 'Empty'}">${em}${label}</button>`;
+    }
+  }
+
+  detail.hidden = false;
+  detail.innerHTML = `<div class="gm-detail-header">
+    <input class="bed-name-input" id="gm-bed-name-edit" type="text" value="${bed.name.replace(/"/g,'&quot;')}" maxlength="30">
+    <input type="text" id="gm-bed-emoji-edit" value="${bed.emoji}" maxlength="4" style="background:none;border:none;border-bottom:1px solid var(--border);color:var(--text);font-size:18px;width:32px;padding:2px;outline:none">
+    <input type="color" id="gm-bed-color-input" value="${bed.color || '#2d5a27'}" title="Bed colour" style="appearance:none;-webkit-appearance:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--border);padding:0;cursor:pointer;background:${bed.color || '#2d5a27'}">
+    <div class="bed-resize-group">
+      <button class="bed-resize-btn" data-dir="cols" data-delta="-1">−</button>
+      <span class="bed-resize-label" id="gm-size-label">${cols}×${rows}</span>
+      <button class="bed-resize-btn" data-dir="cols" data-delta="1">＋</button>
+      <span class="bed-resize-label">cols</span>
+      <button class="bed-resize-btn" data-dir="rows" data-delta="-1">−</button>
+      <button class="bed-resize-btn" data-dir="rows" data-delta="1">＋</button>
+      <span class="bed-resize-label">rows</span>
+    </div>
+    <button class="bed-delete-btn" id="gm-bed-delete-btn" title="Delete bed">🗑</button>
+  </div>
+  <div class="gm-detail-grid bed-full-grid" id="gm-detail-cells" style="grid-template-columns:repeat(${cols},1fr)">${gridCells}</div>`;
+
+  // Wire detail controls
+  document.getElementById('gm-bed-name-edit')?.addEventListener('blur', e => {
+    const v = e.target.value.trim();
+    if (v) { bed.name = v; saveBeds(); renderGardenMapCanvas(); }
+  });
+  document.getElementById('gm-bed-emoji-edit')?.addEventListener('blur', e => {
+    const v = e.target.value.trim();
+    if (v) { bed.emoji = v; saveBeds(); renderGardenMapCanvas(); }
+  });
+  document.getElementById('gm-bed-color-input')?.addEventListener('input', e => {
+    bed.color = e.target.value;
+    e.target.style.background = e.target.value;
+    saveBeds();
+    const bedEl = document.querySelector(`.gm-bed[data-bed="${id}"]`);
+    if (bedEl) { bedEl.style.background = bed.color + '33'; bedEl.style.borderColor = bed.color; }
+  });
+  detail.querySelectorAll('.bed-resize-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dir = btn.dataset.dir;
+      const delta = Number(btn.dataset.delta);
+      resizeBed(id, dir === 'cols' ? delta : 0, dir === 'rows' ? delta : 0);
+    });
+  });
+  document.getElementById('gm-bed-delete-btn')?.addEventListener('click', () => {
+    if (confirm(`Delete "${bed.name}"?`)) {
+      _mapSelectedBed = null;
+      removeBed(id);
+      renderGardenMapCanvas();
+    }
+  });
+  detail.querySelectorAll('.bed-cell-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const col = Number(btn.dataset.col);
+      const row = Number(btn.dataset.row);
+      const existing = bed.cells?.[`${col}-${row}`];
+      openBedCropPicker(id, col, row, existing);
+    });
+  });
+}
+
+function wireGardenMap() {
+  document.getElementById('gm-close-btn')?.addEventListener('click', closeGardenMap);
+
+  document.getElementById('gm-add-bed-btn')?.addEventListener('click', () => {
+    const name = prompt('Bed name:');
+    if (name?.trim()) addBed(name.trim(), '🪴');
+  });
+
+  document.querySelectorAll('.gm-canvas-resize-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dim = btn.dataset.dim;
+      const delta = Number(btn.dataset.delta);
+      gardenCanvas[dim] = Math.max(5, Math.min(40, gardenCanvas[dim] + delta));
+      // Clamp beds to new size
+      for (const bed of Object.values(gardenBeds)) {
+        bed.x = Math.max(0, Math.min(gardenCanvas.cols - (bed.cols || 4), bed.x || 0));
+        bed.y = Math.max(0, Math.min(gardenCanvas.rows - (bed.rows || 2), bed.y || 0));
+      }
+      saveCanvas();
+      saveBeds();
+      renderGardenMapCanvas();
+    });
+  });
+
+  document.querySelectorAll('.gm-bed').forEach(el => {
+    el.addEventListener('pointerdown', e => {
+      startBedDrag(el.dataset.bed, e);
+    });
+  });
+}
+
+function startBedDrag(bedId, e) {
+  e.preventDefault(); e.stopPropagation();
+  const bed = gardenBeds[bedId];
+  if (!bed) return;
+  _drag = {
+    bedId,
+    startX: e.clientX, startY: e.clientY,
+    startBedX: bed.x || 0, startBedY: bed.y || 0,
+    moved: false
+  };
+  document.addEventListener('pointermove', onBedDragMove);
+  document.addEventListener('pointerup', onBedDragEnd, { once: true });
+  document.addEventListener('pointercancel', onBedDragEnd, { once: true });
+}
+
+function onBedDragMove(e) {
+  if (!_drag) return;
+  const bed = gardenBeds[_drag.bedId];
+  if (!bed) return;
+  const dx = e.clientX - _drag.startX;
+  const dy = e.clientY - _drag.startY;
+  if (Math.abs(dx) > 6 || Math.abs(dy) > 6) _drag.moved = true;
+  if (!_drag.moved) return;
+  bed.x = Math.max(0, Math.min(gardenCanvas.cols - (bed.cols || 4), Math.round(_drag.startBedX + dx / TILE_SIZE)));
+  bed.y = Math.max(0, Math.min(gardenCanvas.rows - (bed.rows || 2), Math.round(_drag.startBedY + dy / TILE_SIZE)));
+  const el = document.querySelector(`.gm-bed[data-bed="${_drag.bedId}"]`);
+  if (el) { el.style.left = bed.x * TILE_SIZE + 'px'; el.style.top = bed.y * TILE_SIZE + 'px'; }
+}
+
+function onBedDragEnd() {
+  document.removeEventListener('pointermove', onBedDragMove);
+  if (_drag?.moved) saveBeds();
+  else if (_drag) selectMapBed(_drag.bedId);
+  _drag = null;
+}
+
+function selectMapBed(bedId) {
+  _mapSelectedBed = bedId;
+  // Toggle selected class without full re-render
+  document.querySelectorAll('.gm-bed').forEach(el => {
+    el.classList.toggle('gm-bed--selected', el.dataset.bed === bedId);
+  });
+  renderGardenMapDetail();
 }
 
 // ── Phase 11: Country selector ────────────────────
