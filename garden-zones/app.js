@@ -665,6 +665,8 @@ function onZoneClick(feature, layer, lat, lng) {
   pulseZone();
   localStorage.setItem('pzf-last-zone', selectedZone);
   localStorage.setItem('pzf-last-location', selectedLocationName || '');
+  localStorage.setItem('pzf-last-lat', selectedLat != null ? String(selectedLat) : '');
+  localStorage.setItem('pzf-last-lng', selectedLng != null ? String(selectedLng) : '');
   renderPanel();
   showPanel();
   updateURL();
@@ -1478,7 +1480,13 @@ function restoreFromURL() {
 
   selectedLocationName = localStorage.getItem('pzf-last-location') || null;
   const zoneToRestore = z || localStorage.getItem('pzf-last-zone');
-  if (zoneToRestore && zonesLayer) {
+  const lastLat = parseFloat(localStorage.getItem('pzf-last-lat'));
+  const lastLng = parseFloat(localStorage.getItem('pzf-last-lng'));
+  if (!isNaN(lastLat) && !isNaN(lastLng) && zonesLayer) {
+    // Restore with actual coordinates — correct zone sub-type + correct weather location
+    selectZoneByPoint(lastLat, lastLng);
+  } else if (zoneToRestore && zonesLayer) {
+    // Legacy fallback for sessions before this fix: match zone by name (uses centroid)
     let found = false;
     zonesLayer.eachLayer(layer => {
       if (found) return;
