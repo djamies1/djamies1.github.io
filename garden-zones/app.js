@@ -1385,7 +1385,16 @@ function renderCropDetail(c) {
     return arr.map(t => `<span class="detail-tag${extraClass ? ' ' + extraClass : ''}">${t}</span>`).join('');
   }
 
+  const quickFacts = [
+    c.days_min ? `<span class="cd-fact">⏱ ${c.days_min}–${c.days_max || c.days_min}d</span>` : '',
+    c.transplant_weeks ? `<span class="cd-fact">🪴 Start ${c.transplant_weeks}w indoors</span>` : '',
+    c.succession_weeks ? `<span class="cd-fact">🔄 Sow every ${c.succession_weeks}w</span>` : '',
+    c.seed_life_years ? `<span class="cd-fact">🌰 Seeds viable ${c.seed_life_years}yr</span>` : '',
+    c.container_ok ? `<span class="cd-fact cd-fact--ok">🪣 Container OK</span>` : '',
+  ].filter(Boolean).join('');
+
   return `
+    ${quickFacts ? `<div class="cd-facts-row">${quickFacts}</div>` : ''}
     <div class="modal-section">
       <div class="modal-section-title">Growing Basics</div>
       ${row('Depth', c.depth)}
@@ -4509,9 +4518,35 @@ function renderPlantingScheduleHTML(name) {
     }
   }
 
+  // Compute start-indoors target date from transplant_weeks + last frost
+  let startIndoorsHtml = '';
+  if (c?.transplant_weeks && sched.raw.startIndoors?.length) {
+    const climate = getZoneClimateInfo(zone);
+    const frostStr = climate?.frost?.last;
+    if (frostStr) {
+      const yr = new Date().getFullYear();
+      const lastFrost = new Date(`${frostStr} ${yr}`);
+      if (!isNaN(lastFrost)) {
+        const si = new Date(lastFrost);
+        si.setDate(si.getDate() - c.transplant_weeks * 7);
+        const todayMs = new Date(); todayMs.setHours(0,0,0,0);
+        const daysAway = Math.round((si - todayMs) / 86400000);
+        if (daysAway > -28 && daysAway < 120) {
+          const dateStr = si.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          const cls = daysAway <= 0 ? 'sched-si--now' : daysAway <= 14 ? 'sched-si--soon' : '';
+          const when = daysAway <= 0 ? `${Math.abs(daysAway)}d ago` : `in ${daysAway}d`;
+          startIndoorsHtml = `<div class="sched-si ${cls}">
+            🪴 Start indoors <strong>${dateStr}</strong> (${when}) — ${c.transplant_weeks}w before last frost
+          </div>`;
+        }
+      }
+    }
+  }
+
   return `
     <div class="modal-schedule-section">
       <h4>Your Schedule <span class="sched-zone-badge">Zone ${getZoneDisplayLabel(zone)}</span></h4>
+      ${startIndoorsHtml}
       ${nextUpHtml}
       <div class="schedule-grid">${ACTS.map(item).join('')}</div>
       ${soilHtml}
@@ -5933,9 +5968,12 @@ function renderGardenMapDetail() {
   function renderBedCropSuggestions(query) {
     const inBed = new Set(getCropsInBed(id));
     const q = query.toLowerCase();
-    const matches = Object.keys(myGarden)
-      .filter(n => !inBed.has(n) && n.toLowerCase().includes(q))
-      .slice(0, 8);
+    let matches = Object.keys(myGarden)
+      .filter(n => !inBed.has(n) && n.toLowerCase().includes(q));
+    if (bed.type === 'container') {
+      matches.sort((a, b) => (cropData[b]?.container_ok ? 1 : 0) - (cropData[a]?.container_ok ? 1 : 0));
+    }
+    matches = matches.slice(0, 8);
     const el = document.getElementById('gm-crop-suggestions');
     if (!el) return;
     const showCreate = query.trim() && !myGarden[query.trim()];
@@ -5976,6 +6014,7 @@ function renderGardenMapDetail() {
     </div>
     <button class="bed-delete-btn" id="gm-bed-delete-btn" title="Delete bed">🗑</button>
   </div>
+  ${bed.type === 'container' ? '<div class="gm-container-hint">🪣 Container-friendly crops sorted first</div>' : ''}
   <div class="gm-crop-chips" id="gm-crop-chips-list"></div>
   <div class="gm-crop-add">
     <input class="gm-crop-search" id="gm-crop-search" type="text" placeholder="＋ Add crop…" autocomplete="off">
@@ -7008,13 +7047,26 @@ function renderSeedInventory() {
     const form = el.querySelector('#seeds-add-form');
     if (form) form.hidden = true;
   });
+  el.querySelector('#seeds-crop-input')?.addEventListener('input', e => {
+    const nm = e.target.value.trim();
+    const lifeYrs = cropData[nm]?.seed_life_years;
+    const expiryEl = el.querySelector('#seeds-expiry-input');
+    if (expiryEl && !expiryEl.value && lifeYrs) {
+      expiryEl.placeholder = `~${new Date().getFullYear() + lifeYrs} (auto)`;
+    } else if (expiryEl && !lifeYrs) {
+      expiryEl.placeholder = 'Expiry year';
+    }
+  });
   el.querySelector('#seeds-save-btn')?.addEventListener('click', () => {
     const name = el.querySelector('#seeds-crop-input')?.value.trim();
     if (!name) { showToast('Enter a crop name', 'error'); return; }
+    const expiryRaw = parseInt(el.querySelector('#seeds-expiry-input')?.value) || null;
+    const autoExpiry = cropData[name]?.seed_life_years
+      ? new Date().getFullYear() + cropData[name].seed_life_years : null;
     mySeeds[name] = {
       variety: el.querySelector('#seeds-variety-input')?.value.trim() || '',
       qty: parseInt(el.querySelector('#seeds-qty-input')?.value) || 0,
-      expiryYear: parseInt(el.querySelector('#seeds-expiry-input')?.value) || null,
+      expiryYear: expiryRaw || autoExpiry,
       added: new Date().toISOString().slice(0,10),
     };
     saveSeeds();
