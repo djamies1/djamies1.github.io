@@ -4565,3 +4565,15 @@ body.garden-mode .plant-section ul {
 .gm-detail-header { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
 .gm-detail-grid { display: grid; gap: 3px; margin-bottom: 8px; }
 .beds-map-btn { background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.25); border-radius: 4px; color: var(--accent); cursor: pointer; font-size: 11px; padding: 3px 8px; }
+
+/* ── Phase 88: Beds summary (replaces card overview) ─── */
+.beds-summary { margin-bottom: 12px; }
+.beds-summary--empty { text-align: center; padding: 16px 0; }
+.beds-summary-header { align-items: baseline; display: flex; gap: 8px; margin-bottom: 6px; }
+.beds-summary-title { color: var(--text); font-size: 12px; font-weight: 700; }
+.beds-summary-meta { color: var(--text-muted); font-size: 11px; }
+.beds-summary-empty-msg { color: var(--text-muted); font-size: 12px; margin: 6px 0 10px; }
+.beds-summary-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.beds-summary-tag { border: 1px solid; border-radius: 10px; color: var(--text); font-size: 11px; padding: 2px 8px; }
+.beds-open-map-btn { background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.30); border-radius: 6px; color: var(--accent); cursor: pointer; font-size: 12px; font-weight: 600; padding: 7px 14px; width: 100%; }
+.beds-open-map-btn:hover { background: rgba(74,222,128,0.18); }
