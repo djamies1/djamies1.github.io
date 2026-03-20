@@ -5739,20 +5739,16 @@ function renderMapBedHTML(id) {
   const color = bed.color || '#2d5a27';
   const selected = _mapSelectedBed === id;
 
-  let cellsHTML = '';
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const crop = bed.cells?.[`${c}-${r}`];
-      const em = crop ? (cropData[crop]?.emoji || '🌱') : '';
-      const cls = crop ? 'gm-bed-cell gm-bed-cell--occupied' : 'gm-bed-cell gm-bed-cell--empty';
-      cellsHTML += `<div class="${cls}">${em}</div>`;
-    }
-  }
+  const cropEmoji = Object.entries(myGarden)
+    .filter(([, e]) => e.bedId === id)
+    .slice(0, cols * rows)
+    .map(([name]) => `<span class="gm-bed-crop-em" title="${name}">${cropData[name]?.emoji || '🌱'}</span>`)
+    .join('');
 
   return `<div class="gm-bed gm-bed--${bed.type || 'raised'}${selected ? ' gm-bed--selected' : ''}" data-bed="${id}"
-    style="left:${x * TILE_SIZE}px;top:${y * TILE_SIZE}px;width:${cols * TILE_SIZE}px;height:${rows * TILE_SIZE}px;background:${color}33;border-color:${color}">
+    style="left:${x * TILE_SIZE}px;top:${y * TILE_SIZE}px;width:${cols * TILE_SIZE}px;height:${rows * TILE_SIZE}px;background:${color}22;border-color:${color}">
     <div class="gm-bed-label">${bed.emoji} ${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
-    <div class="gm-bed-cells" style="grid-template-columns:repeat(${cols},1fr)">${cellsHTML}</div>
+    ${cropEmoji ? `<div class="gm-bed-crop-row">${cropEmoji}</div>` : ''}
     <div class="gm-resize-handle" data-bed="${id}"></div>
   </div>`;
 }
@@ -5781,16 +5777,12 @@ function renderGardenMapDetail() {
   const cols = bed.cols || 4;
   const rows = bed.rows || 2;
 
-  let gridCells = '';
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const crop = bed.cells?.[`${c}-${r}`];
-      const occupied = !!crop;
-      const em = crop ? (cropData[crop]?.emoji || '🌱') : '+';
-      const label = crop ? `<span class="bed-cell-label">${crop}</span>` : '';
-      gridCells += `<button class="bed-cell-btn${occupied ? ' bed-cell-btn--occupied' : ''}" data-col="${c}" data-row="${r}" data-bed="${id}" title="${crop || 'Empty'}">${em}${label}</button>`;
-    }
-  }
+  const cropChips = Object.entries(myGarden)
+    .filter(([, e]) => e.bedId === id)
+    .map(([name]) => {
+      const em = cropData[name]?.emoji || '🌱';
+      return `<span class="gm-crop-chip">${em} ${name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>`;
+    }).join('');
 
   detail.hidden = false;
   detail.innerHTML = `<div class="gm-detail-header">
@@ -5808,9 +5800,8 @@ function renderGardenMapDetail() {
     </div>
     <button class="bed-delete-btn" id="gm-bed-delete-btn" title="Delete bed">🗑</button>
   </div>
-  <div class="gm-detail-grid bed-full-grid" id="gm-detail-cells" style="grid-template-columns:repeat(${cols},1fr)">${gridCells}</div>`;
+  <div class="gm-crop-chips">${cropChips || '<span class="gm-crops-empty">No crops assigned — use the bed selector on each crop</span>'}</div>`;
 
-  // Wire detail controls
   document.getElementById('gm-bed-name-edit')?.addEventListener('blur', e => {
     const v = e.target.value.trim();
     if (v) { bed.name = v; saveBeds(); renderGardenMapCanvas(); }
@@ -5824,7 +5815,7 @@ function renderGardenMapDetail() {
     e.target.style.background = e.target.value;
     saveBeds();
     const bedEl = document.querySelector(`.gm-bed[data-bed="${id}"]`);
-    if (bedEl) { bedEl.style.background = bed.color + '33'; bedEl.style.borderColor = bed.color; }
+    if (bedEl) { bedEl.style.background = bed.color + '22'; bedEl.style.borderColor = bed.color; }
   });
   detail.querySelectorAll('.bed-resize-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -5839,14 +5830,6 @@ function renderGardenMapDetail() {
       removeBed(id);
       renderGardenMapCanvas();
     }
-  });
-  detail.querySelectorAll('.bed-cell-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const col = Number(btn.dataset.col);
-      const row = Number(btn.dataset.row);
-      const existing = bed.cells?.[`${col}-${row}`];
-      openBedCropPicker(id, col, row, existing);
-    });
   });
 }
 
