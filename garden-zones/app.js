@@ -520,6 +520,11 @@ const TILE_SIZE = 44;
 let gardenCanvas = { cols: 20, rows: 15 };
 let _mapSelectedBed = null;
 let _mapPendingBed  = null;   // bed to auto-assign when crop is added via the modal
+let _mapZoom       = 1;
+let _mapSeasonMode = false;
+let _undoStack     = [];
+let _redoStack     = [];
+const ZOOM_STEPS   = [0.4, 0.5, 0.6, 0.75, 1, 1.25, 1.5, 2, 2.5, 3];
 let _drag = null;
 let gardenStructures   = {};
 let _structureDrag     = null;
@@ -5894,9 +5899,112 @@ function closeGardenMap() {
   document.getElementById('garden-map-overlay').hidden = true;
   _mapSelectedBed = null; _mapSelectedStruct = null;
   _drag = null; _structureDrag = null; _resizeDrag = null;
+  _undoStack = []; _redoStack = [];
   document.removeEventListener('pointermove', onBedDragMove);
   document.removeEventListener('pointermove', onStructDragMove);
   document.removeEventListener('pointermove', onResizeDragMove);
+}
+
+function pushUndoSnapshot() {
+  _undoStack.push({ beds: JSON.parse(JSON.stringify(gardenBeds)), structures: JSON.parse(JSON.stringify(gardenStructures)) });
+  if (_undoStack.length > 25) _undoStack.shift();
+  _redoStack = [];
+  _updateUndoBtns();
+}
+function _popUndoSnap(isRedo) {
+  const src = isRedo ? _redoStack : _undoStack;
+  const dst = isRedo ? _undoStack : _redoStack;
+  if (!src.length) return;
+  dst.push({ beds: JSON.parse(JSON.stringify(gardenBeds)), structures: JSON.parse(JSON.stringify(gardenStructures)) });
+  const s = src.pop();
+  gardenBeds = s.beds; gardenStructures = s.structures;
+  saveBeds(); saveStructures();
+  renderGardenMapCanvas();
+  _updateUndoBtns();
+}
+function _updateUndoBtns() {
+  const u = document.getElementById('gm-undo-btn'), r = document.getElementById('gm-redo-btn');
+  if (u) u.disabled = !_undoStack.length;
+  if (r) r.disabled = !_redoStack.length;
+}
+
+function applyMapZoom() {
+  const w = document.getElementById('gm-canvas-zoom');
+  if (!w) return;
+  const pw = gardenCanvas.cols * TILE_SIZE, ph = gardenCanvas.rows * TILE_SIZE;
+  w.style.width  = (pw * _mapZoom) + 'px';
+  w.style.height = (ph * _mapZoom) + 'px';
+  w.style.transform = `scale(${_mapZoom})`;
+  w.style.transformOrigin = '0 0';
+  const d = document.getElementById('gm-zoom-display');
+  if (d) d.textContent = Math.round(_mapZoom * 100) + '%';
+  const lbl = document.getElementById('gm-scale-label');
+  const line = document.querySelector('.gm-scale-line');
+  if (lbl && line) {
+    const tiles = 5, metres = tiles * 0.5;
+    const px = tiles * TILE_SIZE * _mapZoom;
+    line.style.width = px + 'px';
+    lbl.textContent = metres >= 1 ? metres + 'm' : (metres * 100) + 'cm';
+  }
+}
+
+function renderCompanionLines(bedId) {
+  const svg = document.getElementById('gm-svg-overlay');
+  if (!svg) return;
+  svg.innerHTML = '';
+  if (!bedId || !gardenBeds[bedId]) return;
+  const selCrops = new Set(getCropsInBed(bedId));
+  if (!selCrops.size) return;
+  const sb = gardenBeds[bedId];
+  const sx = ((sb.x||0) + (sb.cols||4)/2) * TILE_SIZE;
+  const sy = ((sb.y||0) + (sb.rows||2)/2) * TILE_SIZE;
+  for (const [oid, ob] of Object.entries(gardenBeds)) {
+    if (oid === bedId) continue;
+    const oc = getCropsInBed(oid);
+    if (!oc.length) continue;
+    let rel = 'neutral';
+    loop: for (const a of selCrops) for (const b of oc) {
+      const ad = cropData[a], bd = cropData[b];
+      if (ad?.avoid?.includes(b) || bd?.avoid?.includes(a)) { rel = 'bad'; break loop; }
+      if ((ad?.companions?.includes(b) || bd?.companions?.includes(a)) && rel !== 'bad') rel = 'good';
+    }
+    if (rel === 'neutral') continue;
+    const cx = ((ob.x||0)+(ob.cols||4)/2)*TILE_SIZE, cy = ((ob.y||0)+(ob.rows||2)/2)*TILE_SIZE;
+    const el = document.createElementNS('http://www.w3.org/2000/svg','line');
+    el.setAttribute('x1',sx); el.setAttribute('y1',sy);
+    el.setAttribute('x2',cx); el.setAttribute('y2',cy);
+    el.setAttribute('class', rel==='good' ? 'gm-companion-line--good' : 'gm-companion-line--bad');
+    svg.appendChild(el);
+  }
+}
+
+function renderMinimap() {
+  const mc = document.getElementById('gm-minimap');
+  if (!mc) return;
+  const ctx = mc.getContext('2d');
+  const W = mc.width, H = mc.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = '#111a0a'; ctx.fillRect(0,0,W,H);
+  const sx = W / (gardenCanvas.cols * TILE_SIZE), sy = H / (gardenCanvas.rows * TILE_SIZE);
+  for (const [id, bed] of Object.entries(gardenBeds)) {
+    const x=(bed.x||0)*TILE_SIZE*sx, y=(bed.y||0)*TILE_SIZE*sy;
+    const w=(bed.cols||4)*TILE_SIZE*sx, h=(bed.rows||2)*TILE_SIZE*sy;
+    ctx.fillStyle = (bed.color||'#2d5a27')+'99';
+    ctx.strokeStyle = bed.color||'#2d5a27'; ctx.lineWidth = 0.5;
+    ctx.fillRect(x,y,w,h); ctx.strokeRect(x,y,w,h);
+    if (id === _mapSelectedBed) {
+      ctx.strokeStyle='#4ade80'; ctx.lineWidth=1.5;
+      ctx.strokeRect(x-1,y-1,w+2,h+2);
+    }
+  }
+  const sc = document.getElementById('gm-canvas-scroll');
+  if (sc) {
+    ctx.strokeStyle='rgba(255,255,255,0.45)'; ctx.lineWidth=1;
+    ctx.strokeRect(
+      sc.scrollLeft/_mapZoom*sx, sc.scrollTop/_mapZoom*sy,
+      sc.clientWidth/_mapZoom*sx, sc.clientHeight/_mapZoom*sy
+    );
+  }
 }
 
 function renderGardenMapCanvas() {
@@ -5909,6 +6017,17 @@ function renderGardenMapCanvas() {
   canvas.innerHTML = html;
   const sizeEl = document.getElementById('gm-canvas-size');
   if (sizeEl) sizeEl.textContent = `${gardenCanvas.cols}×${gardenCanvas.rows}`;
+  // Ensure SVG overlay exists in canvas
+  if (!document.getElementById('gm-svg-overlay')) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.id = 'gm-svg-overlay'; svg.className = 'gm-svg-overlay';
+    canvas.appendChild(svg);
+  }
+  applyMapZoom();
+  renderCompanionLines(_mapSelectedBed);
+  renderMinimap();
+  _updateUndoBtns();
+  if (_mapSeasonMode) canvas.classList.add('gm-season-active');
   renderGardenMapDetail();
   wireGardenMap();
 }
@@ -5961,6 +6080,8 @@ function renderGardenMapDetail() {
   if (_mapSelectedStruct) { renderGardenMapStructDetail(); return; }
   if (!_mapSelectedBed || !gardenBeds[_mapSelectedBed]) {
     detail.hidden = true;
+    const ph = document.getElementById('gm-panel-placeholder');
+    if (ph) ph.hidden = false;
     return;
   }
   const id = _mapSelectedBed;
@@ -6060,10 +6181,16 @@ function renderGardenMapDetail() {
   }
 
   detail.hidden = false;
+  const _ph = document.getElementById('gm-panel-placeholder');
+  if (_ph) _ph.hidden = true;
+  const BED_SWATCHES = ['#3d6b35','#5c8a4a','#8b5e3c','#c17f3e','#4a6741','#2d5a6b','#6b4a6b','#5a3a2d','#7a6b3d','#2d6b5a','#6b2d2d','#4a4a6b'];
+  const bedColor = bed.color || '#3d6b35';
+  const swatchHtml = BED_SWATCHES.map(c =>
+    `<button class="gm-color-swatch${c===bedColor?' gm-color-swatch--sel':''}" data-color="${c}" style="--sw:${c}" aria-label="${c}"></button>`
+  ).join('');
   detail.innerHTML = `<div class="gm-detail-header">
     <input class="bed-name-input" id="gm-bed-name-edit" type="text" value="${bed.name.replace(/"/g,'&quot;')}" maxlength="30">
     <input type="text" id="gm-bed-emoji-edit" value="${bed.emoji}" maxlength="4" style="background:none;border:none;border-bottom:1px solid var(--border);color:var(--text);font-size:18px;width:32px;padding:2px;outline:none">
-    <input type="color" id="gm-bed-color-input" value="${bed.color || '#2d5a27'}" title="Bed colour" style="appearance:none;-webkit-appearance:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--border);padding:0;cursor:pointer;background:${bed.color || '#2d5a27'}">
     <div class="bed-resize-group">
       <button class="bed-resize-btn" data-dir="cols" data-delta="-1">−</button>
       <span class="bed-resize-label" id="gm-size-label">${cols}×${rows}</span>
@@ -6075,6 +6202,7 @@ function renderGardenMapDetail() {
     </div>
     <button class="bed-delete-btn" id="gm-bed-delete-btn" title="Delete bed">🗑</button>
   </div>
+  <div class="gm-color-swatches" id="gm-color-swatches">${swatchHtml}</div>
   ${bed.type === 'container' ? '<div class="gm-container-hint">🪣 Container-friendly crops sorted first</div>' : ''}
   <div class="gm-crop-chips" id="gm-crop-chips-list"></div>
   <div class="gm-crop-add">
@@ -6104,12 +6232,14 @@ function renderGardenMapDetail() {
     const v = e.target.value.trim();
     if (v) { bed.emoji = v; saveBeds(); renderGardenMapCanvas(); }
   });
-  document.getElementById('gm-bed-color-input')?.addEventListener('input', e => {
-    bed.color = e.target.value;
-    e.target.style.background = e.target.value;
-    saveBeds();
-    const bedEl = document.querySelector(`.gm-bed[data-bed="${id}"]`);
-    if (bedEl) { bedEl.style.setProperty('--bed-color', bed.color); }
+  detail.querySelectorAll('.gm-color-swatch').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const c = btn.dataset.color;
+      bed.color = c; saveBeds();
+      document.querySelector(`.gm-bed[data-bed="${id}"]`)?.style.setProperty('--bed-color', c);
+      detail.querySelectorAll('.gm-color-swatch').forEach(s =>
+        s.classList.toggle('gm-color-swatch--sel', s.dataset.color === c));
+    });
   });
   detail.querySelectorAll('.bed-resize-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -6156,12 +6286,17 @@ function renderGardenMapStructDetail() {
   const detail = document.getElementById('gm-bed-detail');
   if (!detail) return;
   if (!_mapSelectedStruct || !gardenStructures[_mapSelectedStruct]) {
-    detail.hidden = true; return;
+    detail.hidden = true;
+    const ph = document.getElementById('gm-panel-placeholder');
+    if (ph) ph.hidden = false;
+    return;
   }
   const id = _mapSelectedStruct;
   const s = gardenStructures[id];
   const t = STRUCTURE_TYPES[s.type] || STRUCTURE_TYPES['shed'];
   detail.hidden = false;
+  const phS = document.getElementById('gm-panel-placeholder');
+  if (phS) phS.hidden = true;
   detail.innerHTML = `<div class="gm-detail-header">
     <input class="bed-name-input" id="gm-struct-name-edit" type="text" value="${s.name.replace(/"/g,'&quot;')}" maxlength="30">
     <span class="gm-struct-type-label">${t.emoji} ${t.label}</span>
@@ -6294,6 +6429,55 @@ function wireGardenMap() {
       startStructDrag(el.dataset.struct, e);
     });
   });
+
+  // Zoom buttons
+  document.getElementById('gm-zoom-in')?.addEventListener('click', () => {
+    const i = ZOOM_STEPS.findIndex(z => z >= _mapZoom);
+    _mapZoom = ZOOM_STEPS[Math.min(ZOOM_STEPS.length-1, i+1)];
+    applyMapZoom(); renderMinimap();
+  });
+  document.getElementById('gm-zoom-out')?.addEventListener('click', () => {
+    const i = ZOOM_STEPS.findIndex(z => z >= _mapZoom);
+    _mapZoom = ZOOM_STEPS[Math.max(0, i-1)];
+    applyMapZoom(); renderMinimap();
+  });
+  document.getElementById('gm-zoom-fit')?.addEventListener('click', () => {
+    const sc = document.getElementById('gm-canvas-scroll');
+    if (!sc) return;
+    const ideal = Math.min(sc.clientWidth/(gardenCanvas.cols*TILE_SIZE), sc.clientHeight/(gardenCanvas.rows*TILE_SIZE), 2);
+    _mapZoom = ZOOM_STEPS.reduce((b,z) => Math.abs(z-ideal)<Math.abs(b-ideal)?z:b);
+    applyMapZoom(); renderMinimap();
+  });
+  // Season toggle
+  document.getElementById('gm-season-btn')?.addEventListener('click', () => {
+    _mapSeasonMode = !_mapSeasonMode;
+    document.getElementById('gm-canvas')?.classList.toggle('gm-season-active', _mapSeasonMode);
+    document.getElementById('gm-season-btn')?.classList.toggle('gm-tool-btn--active', _mapSeasonMode);
+  });
+  // Undo / redo buttons
+  document.getElementById('gm-undo-btn')?.addEventListener('click', () => _popUndoSnap(false));
+  document.getElementById('gm-redo-btn')?.addEventListener('click', () => _popUndoSnap(true));
+  // Keyboard shortcuts — attach once
+  const ov = document.getElementById('garden-map-overlay');
+  if (!ov._kbAttached) {
+    ov._kbAttached = true;
+    document.addEventListener('keydown', e => {
+      if (ov.hidden) return;
+      if ((e.ctrlKey||e.metaKey) && !e.shiftKey && e.key==='z') { e.preventDefault(); _popUndoSnap(false); }
+      if ((e.ctrlKey||e.metaKey) && ((e.shiftKey && e.key==='z') || e.key==='y')) { e.preventDefault(); _popUndoSnap(true); }
+    });
+  }
+  // Minimap click-to-scroll
+  document.getElementById('gm-minimap')?.addEventListener('click', e => {
+    const mc = e.currentTarget, rect = mc.getBoundingClientRect();
+    const mx = (e.clientX-rect.left)/mc.width, my = (e.clientY-rect.top)/mc.height;
+    const sc = document.getElementById('gm-canvas-scroll');
+    if (sc) {
+      sc.scrollLeft = mx*gardenCanvas.cols*TILE_SIZE*_mapZoom - sc.clientWidth/2;
+      sc.scrollTop  = my*gardenCanvas.rows*TILE_SIZE*_mapZoom - sc.clientHeight/2;
+    }
+  });
+  document.getElementById('gm-canvas-scroll')?.addEventListener('scroll', renderMinimap, { passive: true });
 }
 
 function startBedDrag(bedId, e) {
@@ -6319,15 +6503,15 @@ function onBedDragMove(e) {
   const dy = e.clientY - _drag.startY;
   if (Math.abs(dx) > 6 || Math.abs(dy) > 6) _drag.moved = true;
   if (!_drag.moved) return;
-  bed.x = Math.max(0, Math.min(gardenCanvas.cols - (bed.cols || 4), Math.round(_drag.startBedX + dx / TILE_SIZE)));
-  bed.y = Math.max(0, Math.min(gardenCanvas.rows - (bed.rows || 2), Math.round(_drag.startBedY + dy / TILE_SIZE)));
+  bed.x = Math.max(0, Math.min(gardenCanvas.cols - (bed.cols || 4), Math.round(_drag.startBedX + dx / (TILE_SIZE * _mapZoom))));
+  bed.y = Math.max(0, Math.min(gardenCanvas.rows - (bed.rows || 2), Math.round(_drag.startBedY + dy / (TILE_SIZE * _mapZoom))));
   const el = document.querySelector(`.gm-bed[data-bed="${_drag.bedId}"]`);
   if (el) { el.style.left = bed.x * TILE_SIZE + 'px'; el.style.top = bed.y * TILE_SIZE + 'px'; }
 }
 
 function onBedDragEnd() {
   document.removeEventListener('pointermove', onBedDragMove);
-  if (_drag?.moved) saveBeds();
+  if (_drag?.moved) { saveBeds(); pushUndoSnapshot(); }
   else if (_drag) selectMapBed(_drag.bedId);
   _drag = null;
 }
@@ -6347,8 +6531,8 @@ function onStructDragMove(e) {
   const dx = e.clientX - _structureDrag.startX, dy = e.clientY - _structureDrag.startY;
   if (Math.abs(dx) > 6 || Math.abs(dy) > 6) _structureDrag.moved = true;
   if (!_structureDrag.moved) return;
-  s.x = Math.max(0, Math.min(gardenCanvas.cols - s.cols, Math.round(_structureDrag.startSX + dx / TILE_SIZE)));
-  s.y = Math.max(0, Math.min(gardenCanvas.rows - s.rows, Math.round(_structureDrag.startSY + dy / TILE_SIZE)));
+  s.x = Math.max(0, Math.min(gardenCanvas.cols - s.cols, Math.round(_structureDrag.startSX + dx / (TILE_SIZE * _mapZoom))));
+  s.y = Math.max(0, Math.min(gardenCanvas.rows - s.rows, Math.round(_structureDrag.startSY + dy / (TILE_SIZE * _mapZoom))));
   const el = document.querySelector(`.gm-struct[data-struct="${_structureDrag.structId}"]`);
   if (el) { el.style.left = s.x * TILE_SIZE + 'px'; el.style.top = s.y * TILE_SIZE + 'px'; }
 }
@@ -6376,8 +6560,8 @@ function onResizeDragMove(e) {
   const entity = entityType === 'bed' ? gardenBeds[entityId] : gardenStructures[entityId];
   if (!entity) return;
   const maxDim = entityType === 'bed' ? 12 : 20;
-  const newCols = Math.max(1, Math.min(maxDim, startCols + Math.round((e.clientX - startX) / TILE_SIZE)));
-  const newRows = Math.max(1, Math.min(maxDim, startRows + Math.round((e.clientY - startY) / TILE_SIZE)));
+  const newCols = Math.max(1, Math.min(maxDim, startCols + Math.round((e.clientX - startX) / (TILE_SIZE * _mapZoom))));
+  const newRows = Math.max(1, Math.min(maxDim, startRows + Math.round((e.clientY - startY) / (TILE_SIZE * _mapZoom))));
   if (newCols === entity.cols && newRows === entity.rows) return;
   entity.cols = newCols; entity.rows = newRows;
   entity.x = Math.max(0, Math.min(gardenCanvas.cols - entity.cols, entity.x || 0));
@@ -6397,8 +6581,8 @@ function onResizeDragMove(e) {
 function onResizeDragEnd() {
   document.removeEventListener('pointermove', onResizeDragMove);
   if (_resizeDrag) {
-    if (_resizeDrag.entityType === 'bed') { saveBeds(); renderGardenMapCanvas(); }
-    else { saveStructures(); renderGardenMapCanvas(); }
+    if (_resizeDrag.entityType === 'bed') { saveBeds(); pushUndoSnapshot(); renderGardenMapCanvas(); }
+    else { saveStructures(); pushUndoSnapshot(); renderGardenMapCanvas(); }
   }
   _resizeDrag = null;
 }
@@ -6411,6 +6595,8 @@ function selectMapBed(bedId) {
     el.classList.toggle('gm-bed--selected', el.dataset.bed === bedId);
   });
   renderGardenMapDetail();
+  renderCompanionLines(bedId);
+  renderMinimap();
 }
 
 function selectMapStruct(structId) {

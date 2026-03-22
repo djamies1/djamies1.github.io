@@ -4541,20 +4541,35 @@ body.garden-mode .plant-section ul {
 .rp-empty { color: var(--text-muted); font-size: 12px; padding: 8px 0; }
 
 /* ── Phase 87: Garden Map overlay ───────────── */
-#garden-map-overlay { display: flex; flex-direction: column; inset: 0; position: fixed; z-index: 300; background: var(--surface); }
+#garden-map-overlay { background: var(--bg); display: flex; flex-direction: column; inset: 0; position: fixed; z-index: 300; }
 #garden-map-overlay[hidden] { display: none; }
+.gm-map-body  { display: flex; flex: 1; flex-direction: row; min-height: 0; overflow: hidden; }
+.gm-map-left  { display: flex; flex: 1; flex-direction: column; min-width: 0; position: relative; }
+.gm-map-right {
+  background: var(--surface); border-left: 1px solid var(--border);
+  display: flex; flex-direction: column; flex-shrink: 0; overflow-y: auto; width: 320px;
+}
+@media (max-width: 767px) {
+  .gm-map-body  { flex-direction: column; }
+  .gm-map-right { border-left: none; border-top: 2px solid var(--accent); flex-shrink: 0; max-height: 45vh; width: auto; }
+}
+.gm-panel-placeholder { align-items: center; color: var(--text-muted); display: flex; flex: 1; flex-direction: column; gap: 10px; justify-content: center; padding: 32px 16px; text-align: center; }
+.gm-placeholder-icon  { font-size: 36px; opacity: 0.35; }
+.gm-placeholder-text  { font-size: 13px; line-height: 1.5; max-width: 180px; }
 .gm-header { align-items: center; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; flex-shrink: 0; gap: 8px; justify-content: space-between; padding: 10px 14px; }
 .gm-title { font-size: 14px; font-weight: 700; }
 .gm-close-btn { background: none; border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); cursor: pointer; font-size: 12px; padding: 4px 8px; }
 .gm-close-btn:hover { border-color: var(--accent); color: var(--accent); }
 .gm-add-btn { background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.3); border-radius: 4px; color: var(--accent); cursor: pointer; font-size: 12px; padding: 4px 8px; }
+#gm-canvas-zoom { display: inline-block; transform-origin: 0 0; }
 #gm-canvas-scroll {
-  flex: 1; overflow: auto; -webkit-overflow-scrolling: touch;
-  background-color: #161d0f;
+  flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; position: relative;
+  background-color: #111a0a;
   background-image:
-    linear-gradient(rgba(74,222,128,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74,222,128,0.06) 1px, transparent 1px);
-  background-size: 44px 44px;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E"),
+    linear-gradient(rgba(74,222,128,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,222,128,0.05) 1px, transparent 1px);
+  background-size: 200px 200px, 44px 44px, 44px 44px;
 }
 #gm-canvas { position: relative; }
 .gm-bed {
@@ -4563,6 +4578,16 @@ body.garden-mode .plant-section ul {
   border-radius: 6px; box-sizing: border-box; cursor: grab;
   overflow: hidden; position: absolute; touch-action: none;
   transition: box-shadow 0.2s, transform 0.1s; user-select: none;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.13),
+    inset -1px 0 0 rgba(0,0,0,0.2),
+    inset 0 -2px 0 rgba(0,0,0,0.28),
+    0 6px 18px rgba(0,0,0,0.55);
+}
+.gm-bed--in-ground {
+  box-shadow:
+    inset 0 3px 10px rgba(0,0,0,0.55),
+    inset 0 0 0 1px rgba(0,0,0,0.3);
 }
 .gm-bed:active { cursor: grabbing; }
 .gm-bed:hover:not(.gm-bed--selected) { box-shadow: 0 4px 18px rgba(0,0,0,0.5); }
@@ -4622,7 +4647,7 @@ body.garden-mode .plant-section ul {
 .gm-cap-bar-fill { background: var(--accent); height: 100%; opacity: 0.55; transition: width 0.3s; }
 .gm-canvas-controls { align-items: center; background: var(--surface2); border-top: 1px solid var(--border); color: var(--text-muted); display: flex; flex-shrink: 0; font-size: 11px; gap: 6px; padding: 5px 14px; }
 .gm-canvas-resize-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; color: var(--text); cursor: pointer; font-size: 12px; padding: 1px 6px; }
-#gm-bed-detail { background: var(--surface); border-top: 2px solid var(--accent); flex-shrink: 0; max-height: 45vh; overflow-y: auto; padding: 10px 14px 20px; }
+#gm-bed-detail { background: var(--surface); flex-shrink: 0; overflow-y: auto; padding: 10px 14px 20px; }
 #gm-bed-detail[hidden] { display: none; }
 .gm-detail-header { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
 .gm-crop-chips { align-items: flex-start; display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; min-height: 30px; }
@@ -4709,7 +4734,58 @@ body.garden-mode .plant-section ul {
   background-color: transparent !important;
 }
 .gm-struct-type-label { color: var(--text-muted); font-size: 11px; }
-.gm-header-actions { display: flex; gap: 6px; }
+.gm-header-actions { display: flex; gap: 6px; align-items: center; }
+
+/* ── Phase 96–99: Professional map features ── */
+/* SVG companion overlay */
+.gm-svg-overlay { height: 100%; inset: 0; overflow: visible; pointer-events: none; position: absolute; width: 100%; z-index: 20; }
+.gm-companion-line--good { stroke: rgba(74,222,128,0.6); stroke-dasharray: 6 4; stroke-linecap: round; stroke-width: 2.5; }
+.gm-companion-line--bad  { stroke: rgba(248,113,113,0.6); stroke-dasharray: 4 4; stroke-linecap: round; stroke-width: 2.5; }
+/* Minimap */
+#gm-minimap {
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 5px; bottom: 14px;
+  cursor: crosshair; opacity: 0.82; pointer-events: auto; position: absolute; right: 14px; z-index: 30;
+  transition: opacity 0.2s;
+}
+#gm-minimap:hover { opacity: 1; }
+/* Compass + scale bar */
+.gm-map-compass { bottom: 14px; left: 14px; opacity: 0.75; pointer-events: none; position: absolute; z-index: 30; }
+.gm-map-scale-bar {
+  align-items: flex-start; bottom: 62px; display: flex; flex-direction: column;
+  gap: 3px; left: 14px; pointer-events: none; position: absolute; z-index: 30;
+}
+.gm-scale-line  { background: rgba(255,255,255,0.65); height: 2px; min-width: 10px; position: relative; transition: width 0.2s; }
+.gm-scale-line::before, .gm-scale-line::after {
+  content: ''; background: rgba(255,255,255,0.65); display: block;
+  height: 6px; position: absolute; top: -2px; width: 2px;
+}
+.gm-scale-line::before { left: 0; }
+.gm-scale-line::after  { right: 0; }
+.gm-scale-label { color: rgba(255,255,255,0.7); font-size: 9px; font-weight: 600; letter-spacing: 0.04em; }
+/* Toolbar buttons */
+.gm-tool-btn {
+  background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 4px;
+  color: var(--text); cursor: pointer; font-size: 11px; padding: 4px 8px; transition: border-color 0.12s, background 0.12s;
+}
+.gm-tool-btn--icon { font-size: 14px; padding: 3px 7px; }
+.gm-tool-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.gm-tool-btn--active { background: rgba(74,222,128,0.12); border-color: var(--accent); color: var(--accent); }
+.gm-tool-btn:disabled { cursor: default; opacity: 0.3; }
+/* Season mode */
+.gm-season-active .gm-crop-bubble:not(.gm-bubble--growing):not(.gm-bubble--ready) { opacity: 0.25; }
+.gm-season-active .gm-bubble--growing { background: rgba(251,191,36,0.55); }
+.gm-season-active .gm-bubble--ready   { background: rgba(74,222,128,0.60); }
+/* Color swatches */
+.gm-color-swatches   { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.gm-color-swatch {
+  background: var(--sw, #2d5a27); border: 2px solid transparent; border-radius: 50%;
+  cursor: pointer; height: 20px; padding: 0; transition: border-color 0.1s, transform 0.1s; width: 20px;
+}
+.gm-color-swatch:hover  { transform: scale(1.2); }
+.gm-color-swatch--sel   { border-color: #fff; transform: scale(1.15); }
+/* Zoom controls */
+.gm-zoom-sep     { color: var(--border); padding: 0 3px; }
+#gm-zoom-display { color: var(--text-muted); font-size: 11px; min-width: 36px; text-align: center; }
 
 /* ── Phase 89: Add-item modal ── */
 .gm-modal-overlay {

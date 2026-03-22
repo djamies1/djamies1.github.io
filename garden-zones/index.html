@@ -685,24 +685,58 @@
       <button class="gm-close-btn" id="gm-close-btn">✕ Close</button>
       <span class="gm-title">🗺 Garden Map</span>
       <div class="gm-header-actions">
+        <button class="gm-tool-btn gm-tool-btn--icon" id="gm-undo-btn" title="Undo (Ctrl+Z)" disabled>↩</button>
+        <button class="gm-tool-btn gm-tool-btn--icon" id="gm-redo-btn" title="Redo (Ctrl+Y)" disabled>↪</button>
+        <button class="gm-tool-btn" id="gm-season-btn">🌤 Season</button>
         <button class="gm-add-btn" id="gm-add-bed-btn">＋ Bed</button>
         <button class="gm-add-btn" id="gm-add-struct-btn">＋ Structure</button>
       </div>
     </div>
-    <div id="gm-canvas-scroll">
-      <div id="gm-canvas"></div>
+    <div class="gm-map-body">
+      <div class="gm-map-left">
+        <div id="gm-canvas-scroll">
+          <div id="gm-canvas-zoom">
+            <div id="gm-canvas"></div>
+          </div>
+          <div class="gm-map-compass" aria-hidden="true">
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+              <circle cx="22" cy="22" r="20" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+              <polygon points="22,4 25,22 22,20 19,22" fill="#4ade80"/>
+              <polygon points="22,40 25,22 22,24 19,22" fill="rgba(255,255,255,0.35)"/>
+              <text x="22" y="13" text-anchor="middle" font-size="7" font-weight="700" fill="#4ade80" font-family="sans-serif">N</text>
+            </svg>
+          </div>
+          <div class="gm-map-scale-bar">
+            <div class="gm-scale-line"></div>
+            <span class="gm-scale-label" id="gm-scale-label">2.5m</span>
+          </div>
+          <canvas id="gm-minimap" width="120" height="80"></canvas>
+        </div>
+        <div class="gm-canvas-controls">
+          <span>Canvas:</span>
+          <button class="gm-canvas-resize-btn" data-dim="cols" data-delta="-1">−</button>
+          <span id="gm-canvas-size">20×15</span>
+          <button class="gm-canvas-resize-btn" data-dim="cols" data-delta="1">＋</button>
+          <span>cols</span>
+          <button class="gm-canvas-resize-btn" data-dim="rows" data-delta="-1">−</button>
+          <button class="gm-canvas-resize-btn" data-dim="rows" data-delta="1">＋</button>
+          <span>rows</span>
+          <span class="gm-zoom-sep">│</span>
+          <button class="gm-canvas-resize-btn" id="gm-zoom-out">−</button>
+          <span id="gm-zoom-display">100%</span>
+          <button class="gm-canvas-resize-btn" id="gm-zoom-in">＋</button>
+          <button class="gm-canvas-resize-btn" id="gm-zoom-fit">Fit</button>
+          <span>zoom</span>
+        </div>
+      </div>
+      <div class="gm-map-right" id="gm-map-right">
+        <div id="gm-panel-placeholder" class="gm-panel-placeholder">
+          <div class="gm-placeholder-icon">🗺️</div>
+          <p class="gm-placeholder-text">Click a bed or structure to edit</p>
+        </div>
+        <div id="gm-bed-detail" hidden></div>
+      </div>
     </div>
-    <div class="gm-canvas-controls">
-      <span>Canvas:</span>
-      <button class="gm-canvas-resize-btn" data-dim="cols" data-delta="-1">−</button>
-      <span id="gm-canvas-size">20×15</span>
-      <button class="gm-canvas-resize-btn" data-dim="cols" data-delta="1">＋</button>
-      <span>cols</span>
-      <button class="gm-canvas-resize-btn" data-dim="rows" data-delta="-1">−</button>
-      <button class="gm-canvas-resize-btn" data-dim="rows" data-delta="1">＋</button>
-      <span>rows</span>
-    </div>
-    <div id="gm-bed-detail" hidden></div>
   </div>
   <div id="bed-crop-picker" hidden>
     <input id="bed-crop-search" type="text" placeholder="Search crops…" autocomplete="off">
