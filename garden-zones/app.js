@@ -520,8 +520,6 @@ const TILE_SIZE = 44;
 let gardenCanvas = { cols: 20, rows: 15 };
 let _mapSelectedBed = null;
 let _mapPendingBed  = null;   // bed to auto-assign when crop is added via the modal
-let _mapPendingCell = null;   // { col, row } to assign into (optional)
-let _mapSelectedCell = null;  // currently highlighted empty cell in the detail panel
 let _drag = null;
 let gardenStructures   = {};
 let _structureDrag     = null;
@@ -2650,10 +2648,6 @@ function renderModalGardenBar(name) {
       gardenAdd(name);
       if (_mapPendingBed) {
         addCropToBed(name, _mapPendingBed);
-        if (_mapPendingCell) {
-          setBedCell(_mapPendingBed, _mapPendingCell.col, _mapPendingCell.row, name);
-          _mapPendingCell = null;
-        }
         _mapPendingBed = null;
       }
       renderModalGardenBar(name);
@@ -5929,25 +5923,23 @@ function renderMapBedHTML(id) {
   const color = bed.color || '#2d5a27';
   const selected = _mapSelectedBed === id;
 
-  const cellsData = bed.cells || {};
-  let gridHtml = '';
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const name = cellsData[`${c}-${r}`];
-      const s = name ? getGardenStatus(name) : null;
-      const cls = s?.type === 'ready' ? 'gm-tile--ready' : s?.type === 'growing' ? 'gm-tile--growing' : '';
-      gridHtml += name
-        ? `<span class="gm-map-tile ${cls}" title="${name}">${cropData[name]?.emoji || '🌱'}</span>`
-        : `<span class="gm-map-tile gm-map-tile--empty"></span>`;
-    }
-  }
-  const cap = getCropsInBed(id).length;
-  const capBadge = cap ? `<span class="gm-bed-cap">${cap}/${cols * rows}</span>` : '';
+  const allCrops = getCropsInBed(id);
+  const cap = cols * rows;
+  const displayCrops = allCrops.slice(0, cap);
+  const overflow = Math.max(0, allCrops.length - cap);
+  const cropHtml = displayCrops.map(name => {
+    const s = getGardenStatus(name);
+    const cls = s?.type === 'ready' ? ' gm-bubble--ready' : s?.type === 'growing' ? ' gm-bubble--growing' : '';
+    return `<span class="gm-crop-bubble${cls}" title="${name}">${cropData[name]?.emoji || '🌱'}</span>`;
+  }).join('') + (overflow ? `<span class="gm-bubble-overflow">+${overflow}</span>` : '');
+  const pct = allCrops.length ? Math.min(100, Math.round((allCrops.length / cap) * 100)) : 0;
+  const capBar = allCrops.length ? `<div class="gm-cap-bar"><div class="gm-cap-bar-fill" style="width:${pct}%"></div></div>` : '';
 
   return `<div class="gm-bed gm-bed--${bed.type || 'raised'}${selected ? ' gm-bed--selected' : ''}" data-bed="${id}"
-    style="left:${x * TILE_SIZE}px;top:${y * TILE_SIZE}px;width:${cols * TILE_SIZE}px;height:${rows * TILE_SIZE}px;background:${color}22;border-color:${color}">
+    style="left:${x * TILE_SIZE}px;top:${y * TILE_SIZE}px;width:${cols * TILE_SIZE}px;height:${rows * TILE_SIZE}px;--bed-color:${color}">
     <div class="gm-bed-label">${bed.emoji} ${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
-    <div class="gm-bed-tile-grid" style="--gm-tile-cols:${cols}">${gridHtml}</div>${capBadge}
+    <div class="gm-crop-bubble-wrap">${cropHtml}</div>
+    ${capBar}
     <div class="gm-resize-handle" data-bed="${id}"></div>
   </div>`;
 }
@@ -5976,58 +5968,44 @@ function renderGardenMapDetail() {
   const cols = bed.cols || 4;
   const rows = bed.rows || 2;
 
-  function renderCellGrid() {
-    const el = document.getElementById('gm-cell-grid');
+  function renderBedDetailCrops() {
+    const assigned = getCropsInBed(id);
+    const el = document.getElementById('gm-crop-chips-list');
     if (!el) return;
-    const cells = bed.cells || {};
-    let html = '';
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const key = `${c}-${r}`;
-        const name = cells[key];
-        const sel = _mapSelectedCell?.col === c && _mapSelectedCell?.row === r;
-        if (name) {
-          const em = cropData[name]?.emoji || '🌱';
-          html += `<div class="gm-cell-tile gm-cell-tile--crop${sel ? ' gm-cell-tile--sel' : ''}" data-col="${c}" data-row="${r}">
-            <span class="gm-cell-em">${em}</span>
-            <span class="gm-cell-name">${name}</span>
-            <button class="gm-cell-x" data-col="${c}" data-row="${r}" aria-label="Remove">×</button>
-          </div>`;
-        } else {
-          html += `<div class="gm-cell-tile gm-cell-tile--empty${sel ? ' gm-cell-tile--sel' : ''}" data-col="${c}" data-row="${r}">
-            <span class="gm-cell-plus">＋</span>
-          </div>`;
-        }
-      }
+    if (!assigned.length) {
+      el.innerHTML = '<span class="gm-crops-empty">No crops yet — search below to add one</span>';
+      return;
     }
-    el.innerHTML = html;
-    const hint = document.getElementById('gm-cell-hint');
-    if (hint) {
-      if (_mapSelectedCell) {
-        hint.textContent = `Assigning to cell (${_mapSelectedCell.col + 1}, ${_mapSelectedCell.row + 1}) — search below`;
-        hint.hidden = false;
-      } else { hint.hidden = true; }
-    }
-    el.querySelectorAll('.gm-cell-tile').forEach(tile => {
-      tile.addEventListener('click', e => {
-        if (e.target.classList.contains('gm-cell-x')) return;
-        _mapSelectedCell = { col: parseInt(tile.dataset.col), row: parseInt(tile.dataset.row) };
-        renderCellGrid();
-        document.getElementById('gm-crop-search')?.focus();
+    el.innerHTML = assigned.map(name => {
+      const em = cropData[name]?.emoji || '🌱';
+      const s = getGardenStatus(name);
+      const dotCls = s?.type === 'ready' ? 'gm-chip-dot--ready' : s?.type === 'growing' ? 'gm-chip-dot--growing' : '';
+      const statusLabel = s?.type === 'ready' ? 'Ready' : s?.type === 'growing' ? 'Growing' : '';
+      const issues = getBedCompatibility(id, name);
+      const warn = issues.length ? ` <span class="gm-compat-warn" title="${issues.join('\n')}">⚠️</span>` : '';
+      return `<button class="gm-crop-chip-v2" data-crop="${name}">
+        <span class="gm-chip-em">${em}</span>
+        <span class="gm-chip-body">
+          <span class="gm-chip-name">${name.replace(/&/g,'&amp;')}${warn}</span>
+          ${statusLabel ? `<span class="gm-chip-status ${dotCls}">${statusLabel}</span>` : ''}
+        </span>
+        <button class="gm-crop-chip-x" data-crop="${name}" aria-label="Remove">×</button>
+      </button>`;
+    }).join('');
+    el.querySelectorAll('.gm-crop-chip-v2').forEach(chip => {
+      chip.addEventListener('click', e => {
+        if (e.target.classList.contains('gm-crop-chip-x')) return;
+        openCropDetail(chip.dataset.crop);
       });
     });
-    el.querySelectorAll('.gm-cell-x').forEach(btn => {
+    el.querySelectorAll('.gm-crop-chip-x').forEach(btn => {
       btn.addEventListener('click', e => {
         e.stopPropagation();
-        setBedCell(id, parseInt(btn.dataset.col), parseInt(btn.dataset.row), null);
-        _mapSelectedCell = null;
-        renderCellGrid(); renderGardenMapCanvas();
+        removeCropFromBed(btn.dataset.crop, id);
+        renderBedDetailCrops();
+        renderGardenMapCanvas();
       });
     });
-  }
-
-  function renderBedDetailCrops() {
-    renderCellGrid();
   }
 
   function renderBedCropSuggestions(query) {
@@ -6048,8 +6026,15 @@ function renderGardenMapDetail() {
     const showCreate = q && !cropData[q] && !myGarden[q];
     const items = candidates.map(n => {
       const inG = inGarden.has(n);
-      return `<button class="gm-crop-sugg${inG ? '' : ' gm-crop-sugg--new'}" data-crop="${n}">
-        ${cropData[n]?.emoji || '🌱'} ${n}${inG ? ' <span class="gm-sugg-star">★</span>' : ''}
+      const s = inG ? getGardenStatus(n) : null;
+      const tagCls = s?.type === 'ready' ? ' gm-sugg-tag--ready' : s?.type === 'growing' ? ' gm-sugg-tag--growing' : inG ? ' gm-sugg-tag--saved' : ' gm-sugg-tag--new';
+      const tagTxt = inG ? (s?.type === 'ready' ? '● Ready' : s?.type === 'growing' ? '● Growing' : 'In garden ★') : '＋ Add to garden';
+      return `<button class="gm-crop-sugg" data-crop="${n}">
+        <span class="gm-sugg-em">${cropData[n]?.emoji || '🌱'}</span>
+        <span class="gm-sugg-label">
+          <span class="gm-sugg-name">${n}</span>
+          <span class="gm-sugg-tag${tagCls}">${tagTxt}</span>
+        </span>
       </button>`;
     }).join('');
     el.innerHTML = items + (showCreate ? `<button class="gm-crop-sugg gm-crop-sugg--create" data-crop="${q}">＋ Add "${q}"</button>` : '');
@@ -6061,14 +6046,13 @@ function renderGardenMapDetail() {
         document.getElementById('gm-crop-search').value = '';
         el.hidden = true;
         if (myGarden[crop]) {
-          // Already in garden — assign directly, optionally to a specific cell
+          // Already in garden — assign directly to bed
           addCropToBed(crop, id);
-          if (_mapSelectedCell) { setBedCell(id, _mapSelectedCell.col, _mapSelectedCell.row, crop); _mapSelectedCell = null; }
-          renderCellGrid(); renderGardenMapCanvas();
+          renderBedDetailCrops();
+          renderGardenMapCanvas();
         } else {
-          // Not yet in garden — open crop detail modal with pending bed/cell context
+          // Not yet in garden — open crop detail modal with pending bed context
           _mapPendingBed = id;
-          if (_mapSelectedCell) { _mapPendingCell = { ..._mapSelectedCell }; _mapSelectedCell = null; }
           openCropDetail(crop);
         }
       });
@@ -6092,8 +6076,7 @@ function renderGardenMapDetail() {
     <button class="bed-delete-btn" id="gm-bed-delete-btn" title="Delete bed">🗑</button>
   </div>
   ${bed.type === 'container' ? '<div class="gm-container-hint">🪣 Container-friendly crops sorted first</div>' : ''}
-  <div class="gm-cell-grid" id="gm-cell-grid" style="--gm-cell-cols:${cols}"></div>
-  <span class="gm-cell-hint" id="gm-cell-hint" hidden></span>
+  <div class="gm-crop-chips" id="gm-crop-chips-list"></div>
   <div class="gm-crop-add">
     <input class="gm-crop-search" id="gm-crop-search" type="text" placeholder="＋ Add crop…" autocomplete="off">
     <div class="gm-crop-suggestions" id="gm-crop-suggestions" hidden></div>
@@ -6126,7 +6109,7 @@ function renderGardenMapDetail() {
     e.target.style.background = e.target.value;
     saveBeds();
     const bedEl = document.querySelector(`.gm-bed[data-bed="${id}"]`);
-    if (bedEl) { bedEl.style.background = bed.color + '22'; bedEl.style.borderColor = bed.color; }
+    if (bedEl) { bedEl.style.setProperty('--bed-color', bed.color); }
   });
   detail.querySelectorAll('.bed-resize-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -6422,7 +6405,6 @@ function onResizeDragEnd() {
 
 function selectMapBed(bedId) {
   _mapSelectedStruct = null;
-  _mapSelectedCell = null;
   document.querySelectorAll('.gm-struct').forEach(el => el.classList.remove('gm-struct--selected'));
   _mapSelectedBed = bedId;
   document.querySelectorAll('.gm-bed').forEach(el => {
@@ -7174,12 +7156,9 @@ function renderBedGrid(bedId, crops) {
       const cd = cropData[name];
       const s = getGardenStatus(name);
       const cls = s?.type === 'ready' ? 'bed-cell--ready' : s?.type === 'growing' ? 'bed-cell--growing' : 'bed-cell--saved';
-      cells += `<div class="bed-cell ${cls}" data-crop="${name}" title="${name}">
-        <span class="bed-cell-em">${cd?.emoji || '🌱'}</span>
-        <span class="bed-cell-name">${name}</span>
-      </div>`;
+      cells += `<div class="bed-cell ${cls}" data-crop="${name}" title="${name}">${cd?.emoji || '🌱'}</div>`;
     } else {
-      cells += `<div class="bed-cell bed-cell--empty"><span class="bed-cell-plus">＋</span></div>`;
+      cells += `<div class="bed-cell bed-cell--empty"></div>`;
     }
   }
   return `<div class="bed-grid-visual" style="--bed-cols:${cols}">${cells}
