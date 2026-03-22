@@ -1387,7 +1387,7 @@ function renderCropDetail(c) {
 
   const quickFacts = [
     c.days_min ? `<span class="cd-fact">⏱ ${c.days_min}–${c.days_max || c.days_min}d</span>` : '',
-    c.transplant_weeks ? `<span class="cd-fact">🪴 Start ${c.transplant_weeks}w indoors</span>` : '',
+    (features.startIndoors && c.transplant_weeks) ? `<span class="cd-fact">🪴 Start ${c.transplant_weeks}w indoors</span>` : '',
     c.succession_weeks ? `<span class="cd-fact">🔄 Sow every ${c.succession_weeks}w</span>` : '',
     c.seed_life_years ? `<span class="cd-fact">🌰 Seeds viable ${c.seed_life_years}yr</span>` : '',
     c.container_ok ? `<span class="cd-fact cd-fact--ok">🪣 Container OK</span>` : '',
@@ -1406,7 +1406,7 @@ function renderCropDetail(c) {
       ${row('Soil pH', c.soil_ph)}
       ${row('Fertilizer', c.fertilizer)}
     </div>
-    <div class="modal-section">
+    ${features.companionPlanting ? `<div class="modal-section">
       <div class="modal-section-title">Companions &amp; Enemies</div>
       <div class="companion-guide">
         ${(c.companions||[]).length ? `<div class="cg-group">
@@ -1431,7 +1431,7 @@ function renderCropDetail(c) {
         </div>` : ''}
         ${!(c.companions||[]).length && !(c.avoid||[]).length ? '<span class="detail-empty">None listed</span>' : ''}
       </div>
-    </div>
+    </div>` : ''}
     <div class="modal-section">
       <div class="modal-section-title">Pests &amp; Problems</div>
       <div class="detail-tags detail-tags--pests">${tagList(c.pests, 'detail-tag--pests')}</div>
@@ -2388,9 +2388,11 @@ function renderGardenTab() {
   if (!list) return;
   const names = Object.keys(myGarden);
 
+  if (!features.beds && gardenViewMode === 'bed') gardenViewMode = 'crop';
+
   const toggle = `<div class="garden-view-toggle">
     <button class="gvt-btn${gardenViewMode === 'crop' ? ' gvt-btn--active' : ''}" id="gvt-crop">🌿 By Crop</button>
-    <button class="gvt-btn${gardenViewMode === 'bed' ? ' gvt-btn--active' : ''}" id="gvt-bed">🛏 By Bed</button>
+    ${features.beds ? `<button class="gvt-btn${gardenViewMode === 'bed' ? ' gvt-btn--active' : ''}" id="gvt-bed">🛏 By Bed</button>` : ''}
   </div>`;
 
   if (gardenViewMode === 'bed') {
@@ -2431,7 +2433,7 @@ function renderGardenTab() {
       const todayStr = new Date().toISOString().slice(0,10);
       const reminderDue = entry.reminder && entry.reminder <= todayStr;
       const badges = [
-        entry.hasSeeds ? '<span class="gi-badge gi-badge--seeds" title="Have seeds">🌰</span>' : '',
+        (features.seeds && entry.hasSeeds) ? '<span class="gi-badge gi-badge--seeds" title="Have seeds">🌰</span>' : '',
         (entry.harvestLog?.length) ? `<span class="gi-badge gi-badge--harvests" title="${entry.harvestLog.length} harvest(s) logged">🌾×${entry.harvestLog.length}</span>` : '',
         entry.notes ? '<span class="gi-badge" title="Has notes">📝</span>' : '',
         entry.reminder ? `<span class="gi-badge gi-badge--reminder" title="Reminder: ${entry.reminder}">${reminderDue ? '🔔' : '⏰'}</span>` : '',
@@ -2447,7 +2449,7 @@ function renderGardenTab() {
             ${(entry.bedIds || []).filter(bid => gardenBeds[bid]).map(bid => `<span class="garden-item-bed-tag">${gardenBeds[bid].emoji} ${gardenBeds[bid].name}</span>`).join('')}
             ${entry.harvestLog?.length ? `<span class="garden-last-harvest">🌾 Last harvest: ${entry.harvestLog[0].date}</span>` : ''}
             ${(() => { const ws = getWaterStatus(name); if (!ws || ws.type === 'unknown') return ''; const cls = ws.type === 'dry' ? 'water-badge--dry' : ws.type === 'rain' ? 'water-badge--rain' : ws.type === 'fresh' ? 'water-badge--fresh' : ''; return `<span class="water-badge ${cls}">${ws.label}</span>`; })()}
-            ${(() => { const nd = getNextSuccessionDate(name); if (!nd) return ''; const diff = Math.round((nd - new Date().setHours(0,0,0,0) + 0) / 86400000); if (diff > 14) return ''; return diff <= 0 ? '<span class="garden-sow-badge garden-sow-badge--due">🔄 Sow now</span>' : `<span class="garden-sow-badge">🔄 Sow in ${diff}d</span>`; })()}
+            ${features.succession ? (() => { const nd = getNextSuccessionDate(name); if (!nd) return ''; const diff = Math.round((nd - new Date().setHours(0,0,0,0) + 0) / 86400000); if (diff > 14) return ''; return diff <= 0 ? '<span class="garden-sow-badge garden-sow-badge--due">🔄 Sow now</span>' : `<span class="garden-sow-badge">🔄 Sow in ${diff}d</span>`; })() : ''}
             ${status?.stage ? `
             <div class="growth-bar-wrap" title="${status.stage.label}">
               <div class="growth-bar-fill growth-bar--${status.stage.stage}" style="width:${Math.min(100,Math.round(status.stage.pct*100))}%"></div>
@@ -2456,7 +2458,7 @@ function renderGardenTab() {
           </div>
         </div>
         <div class="garden-item-actions">
-          ${(type === 'ready' || type === 'growing') && plantedVal ? `<button class="garden-harvest-btn" data-crop="${name}" title="Log a harvest">🌾</button>` : ''}
+          ${features.harvestTracking && (type === 'ready' || type === 'growing') && plantedVal ? `<button class="garden-harvest-btn" data-crop="${name}" title="Log a harvest">🌾</button>` : ''}
           ${entry.planted ? `<button class="garden-water-btn" data-crop="${name}" title="Log watering">💧</button>` : ''}
           ${!plantedVal ? `<button class="garden-log-btn" data-crop="${name}">Log date</button>` : ''}
           <input type="date" class="garden-date-input" data-crop="${name}" value="${plantedVal}" max="${today}" aria-label="Planting date for ${name}"${!plantedVal ? ' style="display:none"' : ''}>
@@ -2485,6 +2487,9 @@ function renderGardenTab() {
   renderGardenHealthScore();
   renderSmartShoppingList();
   checkAchievements();
+  // Feature-flag: hide seeds subtab button
+  const seedsTabBtn = document.querySelector('[data-subtab="seeds"]');
+  if (seedsTabBtn) seedsTabBtn.hidden = !features.seeds;
 }
 
 // ── Phase 46: Garden share card ──────────────────
@@ -2724,6 +2729,7 @@ function initGarden() {
   loadRotation();
   loadPlan();
   loadVarieties();
+  loadFeatures();
 
   document.getElementById('panel-tabs')?.addEventListener('click', e => {
     const tab = e.target.closest('.ptab');
@@ -2991,6 +2997,7 @@ function scorePlantingDay(hi, lo, prec, wmo) {
 function renderPlantingForecast() {
   const el = document.getElementById('planting-forecast');
   if (!el) return;
+  if (!features.weatherForecast) { el.hidden = true; return; }
   if (!weatherData?.daily?.temperature_2m_max || !selectedZone) { el.hidden = true; return; }
 
   const d = weatherData.daily;
@@ -3034,6 +3041,7 @@ function renderPlantingForecast() {
 function renderFrostAlertBanner() {
   const el = document.getElementById('frost-alert-banner');
   if (!el) return;
+  if (!features.weatherForecast) { el.hidden = true; return; }
   if (!weatherData?.daily?.temperature_2m_min || !Object.keys(myGarden).length) { el.hidden = true; return; }
   const frostIdx = weatherData.daily.temperature_2m_min.slice(0, 3).findIndex(t => t < 35);
   if (frostIdx === -1) { el.hidden = true; return; }
@@ -4520,7 +4528,7 @@ function renderPlantingScheduleHTML(name) {
 
   // Compute start-indoors target date from transplant_weeks + last frost
   let startIndoorsHtml = '';
-  if (c?.transplant_weeks && sched.raw.startIndoors?.length) {
+  if (features.startIndoors && c?.transplant_weeks && sched.raw.startIndoors?.length) {
     const climate = getZoneClimateInfo(zone);
     const frostStr = climate?.frost?.last;
     if (frostStr) {
@@ -5515,6 +5523,7 @@ function initChecklist() {
 function renderCompanionMatrix() {
   const el = document.getElementById('garden-companion-matrix');
   if (!el) return;
+  if (!features.companionPlanting) { el.innerHTML = ''; return; }
 
   const names = Object.keys(myGarden);
   if (names.length < 2) { el.innerHTML = ''; return; }
@@ -5697,6 +5706,7 @@ function assignCropToBed(cropName, bedId) {
 function renderGardenBeds() {
   const el = document.getElementById('garden-beds');
   if (!el) return;
+  if (!features.beds) { el.hidden = true; return; }
   el.innerHTML = renderBedSummaryHTML();
   document.getElementById('beds-open-map-btn')
     ?.addEventListener('click', openGardenMap);
@@ -6961,6 +6971,7 @@ function saveSeeds() { localStorage.setItem('pzf-seeds', JSON.stringify(mySeeds)
 
 function renderSeedInventory() {
   const el = document.getElementById('subtab-seeds');
+  if (!features.seeds) { if (el) el.innerHTML = ''; return; }
   if (!el || el.hidden) return;
 
   const names = Object.keys(mySeeds);
@@ -7105,6 +7116,21 @@ function renderBedGrid(bedId, crops) {
 }
 
 // ════════════════════════════════════════════════
+// Phase 93 — Feature Flags
+// ════════════════════════════════════════════════
+const DEFAULT_FEATURES = {
+  seeds: true, startIndoors: true, beds: true, succession: true,
+  companionPlanting: true, harvestTracking: true, weatherForecast: true,
+};
+let features = { ...DEFAULT_FEATURES };
+
+function loadFeatures() {
+  try { features = { ...DEFAULT_FEATURES, ...JSON.parse(localStorage.getItem('pzf-features') || '{}') }; }
+  catch { features = { ...DEFAULT_FEATURES }; }
+}
+function saveFeatures() { localStorage.setItem('pzf-features', JSON.stringify(features)); }
+
+// ════════════════════════════════════════════════
 // Phase 53 — Settings Panel
 // ════════════════════════════════════════════════
 function openSettings() {
@@ -7169,6 +7195,28 @@ function renderSettingsSheet() {
       </div>
     </div>
     <div class="settings-section">
+      <div class="settings-section-title">Features</div>
+      ${[
+        { key: 'seeds',            label: 'Seed tracking',       desc: 'Seeds sub-tab, "Have seeds" checkbox, expiry badges' },
+        { key: 'startIndoors',     label: 'Start-indoors hints', desc: 'Start-indoors schedule rows and transplant banners' },
+        { key: 'beds',             label: 'Garden beds & map',   desc: 'Bed summary, map button, "By Bed" view toggle' },
+        { key: 'succession',       label: 'Succession sowing',   desc: 'Sow-now / sow-in-Xd reminders in garden list' },
+        { key: 'companionPlanting',label: 'Companion planting',  desc: 'Companion matrix and companions/avoid in crop detail' },
+        { key: 'harvestTracking',  label: 'Harvest tracking',    desc: 'Harvest log buttons, harvest analytics, harvest-to-table' },
+        { key: 'weatherForecast',  label: 'Weather features',    desc: 'Planting forecast strip, frost alert, watering intelligence' },
+      ].map(f => `
+      <div class="settings-row">
+        <div class="settings-feature-text">
+          <span>${f.label}</span>
+          <span class="settings-feature-desc">${f.desc}</span>
+        </div>
+        <label class="settings-switch">
+          <input type="checkbox" class="s-feature-toggle" data-feature="${f.key}"${features[f.key] ? ' checked' : ''}>
+          <span class="settings-switch-track"></span>
+        </label>
+      </div>`).join('')}
+    </div>
+    <div class="settings-section">
       <div class="settings-section-title">Data</div>
       <div class="settings-data-row">
         <button class="settings-data-btn" id="s-export-btn">⬇ Backup data</button>
@@ -7207,6 +7255,16 @@ function renderSettingsSheet() {
   });
   body.querySelector('#s-autoarchive')?.addEventListener('change', e => {
     localStorage.setItem('pzf-auto-archive', e.target.checked ? '1' : '0');
+  });
+  body.querySelectorAll('.s-feature-toggle').forEach(cb => {
+    cb.addEventListener('change', e => {
+      features[e.target.dataset.feature] = e.target.checked;
+      saveFeatures();
+      renderGardenTab();
+      renderPlantingForecast();
+      renderFrostAlertBanner();
+      renderWateringIntelligence();
+    });
   });
   body.querySelector('#s-export-btn')?.addEventListener('click', exportGarden);
   body.querySelector('#s-import-btn')?.addEventListener('click', () => body.querySelector('#s-import-input')?.click());
@@ -7772,6 +7830,7 @@ function renderDailyBrief() {
 function renderHarvestAnalytics() {
   const el = document.getElementById('harvest-analytics');
   if (!el) return;
+  if (!features.harvestTracking) { el.innerHTML = ''; return; }
 
   const byMonth = Array(12).fill(0);
   const byCrop = {};
@@ -7909,6 +7968,7 @@ function getCropWaterInterval(name) {
 function renderWateringIntelligence() {
   const el = document.getElementById('watering-intelligence');
   if (!el) return;
+  if (!features.weatherForecast) { el.innerHTML = ''; return; }
 
   const names = Object.keys(myGarden).filter(n => myGarden[n]?.planted);
   if (!names.length) { el.innerHTML = ''; return; }
@@ -8162,6 +8222,7 @@ const HARVEST_TO_TABLE = {
 function renderHarvestToTable() {
   const el = document.getElementById('harvest-to-table');
   if (!el) return;
+  if (!features.harvestTracking) { el.innerHTML = ''; return; }
   const readyCrops = Object.keys(myGarden).filter(n => getGardenStatus(n)?.type === 'ready');
   if (!readyCrops.length) { el.innerHTML = ''; return; }
 
