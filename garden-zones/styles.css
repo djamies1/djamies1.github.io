@@ -4758,3 +4758,41 @@ body.garden-mode .plant-section ul {
 /* ── Phase 93: Feature flags settings ── */
 .settings-feature-text { display: flex; flex-direction: column; gap: 2px; }
 .settings-feature-desc { color: var(--text-muted); font-size: 11px; }
+
+/* ── Phase 94: Bed map cell grid ── */
+.gm-cell-grid { display: grid; gap: 4px; grid-template-columns: repeat(var(--gm-cell-cols, 4), 1fr); padding: 6px 0; }
+.gm-cell-tile { align-items: center; border: 1px solid var(--border); border-radius: 6px;
+  cursor: pointer; display: flex; flex-direction: column; gap: 2px; justify-content: center;
+  min-height: 52px; padding: 4px; position: relative; transition: border-color .15s, background .15s; }
+.gm-cell-tile--empty { border-style: dashed; opacity: 0.55; }
+.gm-cell-tile--empty:hover { border-color: var(--accent); opacity: 1; }
+.gm-cell-tile--crop { background: var(--surface); }
+.gm-cell-tile--crop:hover { border-color: var(--accent); }
+.gm-cell-tile--sel { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent); opacity: 1; }
+.gm-cell-em { font-size: 18px; line-height: 1; }
+.gm-cell-name { color: var(--text-muted); font-size: 10px; max-width: 100%; overflow: hidden;
+  text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+.gm-cell-plus { color: var(--text-muted); font-size: 16px; }
+.gm-cell-x { background: none; border: none; color: var(--text-muted); cursor: pointer;
+  font-size: 13px; line-height: 1; padding: 0 2px; position: absolute; right: 2px; top: 2px; }
+.gm-cell-x:hover { color: var(--danger, #ef4444); }
+.gm-cell-hint { color: var(--accent); display: block; font-size: 11px; margin: 0 0 4px; text-align: center; }
+.gm-sugg-star { color: var(--accent); font-size: 10px; opacity: 0.8; }
+
+/* ── Phase 94: Map canvas tile grid ── */
+.gm-bed-tile-grid { bottom: 18px; display: grid; gap: 1px; grid-template-columns: repeat(var(--gm-tile-cols, 4), 1fr);
+  left: 4px; padding: 2px; position: absolute; right: 4px; top: 22px; }
+.gm-map-tile { align-items: center; border-radius: 2px; display: flex; font-size: 11px; justify-content: center; min-height: 10px; }
+.gm-map-tile--empty { background: rgba(255,255,255,0.04); }
+.gm-tile--growing { background: rgba(251,191,36,0.18); }
+.gm-tile--ready   { background: rgba(74,222,128,0.18); }
+.gm-bed-cap { background: rgba(0,0,0,0.55); border-radius: 3px; bottom: 3px; color: rgba(255,255,255,0.85);
+  font-size: 9px; padding: 1px 4px; position: absolute; right: 3px; }
+
+/* ── Phase 94: By Bed cell polish ── */
+.bed-cell { flex-direction: column; font-size: 16px; gap: 2px; height: auto; min-height: 52px; padding: 4px 2px; }
+.bed-cell-em { line-height: 1; }
+.bed-cell-name { color: var(--text-muted); font-size: 9px; max-width: 100%; overflow: hidden;
+  text-align: center; text-overflow: ellipsis; white-space: nowrap; width: 100%; }
+.bed-cell-plus { color: var(--text-muted); font-size: 14px; opacity: 0.4; }
+.bed-cell--empty:hover .bed-cell-plus { opacity: 0.9; }

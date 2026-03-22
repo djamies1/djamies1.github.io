@@ -519,6 +519,9 @@ let activeBedId = null;
 const TILE_SIZE = 44;
 let gardenCanvas = { cols: 20, rows: 15 };
 let _mapSelectedBed = null;
+let _mapPendingBed  = null;   // bed to auto-assign when crop is added via the modal
+let _mapPendingCell = null;   // { col, row } to assign into (optional)
+let _mapSelectedCell = null;  // currently highlighted empty cell in the detail panel
 let _drag = null;
 let gardenStructures   = {};
 let _structureDrag     = null;
@@ -2643,7 +2646,18 @@ function renderModalGardenBar(name) {
     bar.className = 'bar-add';
     bar.innerHTML = `<button class="modal-garden-btn" id="modal-garden-add">☆ Add to My Garden</button>
       <button class="modal-plan-btn${inPlan ? ' modal-plan-btn--active' : ''}" id="modal-plan-btn">${inPlan ? '📋 Planned' : '📋 Plan'}</button>`;
-    bar.querySelector('#modal-garden-add').addEventListener('click', () => gardenAdd(name));
+    bar.querySelector('#modal-garden-add').addEventListener('click', () => {
+      gardenAdd(name);
+      if (_mapPendingBed) {
+        addCropToBed(name, _mapPendingBed);
+        if (_mapPendingCell) {
+          setBedCell(_mapPendingBed, _mapPendingCell.col, _mapPendingCell.row, name);
+          _mapPendingCell = null;
+        }
+        _mapPendingBed = null;
+      }
+      renderModalGardenBar(name);
+    });
     bar.querySelector('#modal-plan-btn').addEventListener('click', () => {
       if (inPlan) { removeFromPlan(name, new Date().getFullYear()+1); renderModalGardenBar(name); }
       else { addToPlan(name, new Date().getFullYear()+1, [], ''); renderModalGardenBar(name); }
@@ -2680,7 +2694,7 @@ function renderModalGardenBar(name) {
         ${Object.keys(gardenBeds).length ? `<select class="modal-bed-select" id="modal-bed-select" aria-label="Assign to bed">
           <option value="">📍 No bed</option>
           ${Object.entries(gardenBeds).map(([id, b]) =>
-            `<option value="${id}"${myGarden[name]?.bedIds?.[0] === id ? ' selected' : ''}>${b.emoji} ${b.name}</option>`
+            `<option value="${id}"${myGarden[name]?.bedIds?.[0] === id || _mapPendingBed === id ? ' selected' : ''}>${b.emoji} ${b.name}</option>`
           ).join('')}
         </select>` : ''}
       </div>`;
@@ -5915,18 +5929,25 @@ function renderMapBedHTML(id) {
   const color = bed.color || '#2d5a27';
   const selected = _mapSelectedBed === id;
 
-  const cap = cols * rows;
-  const allCrops = getCropsInBed(id);
-  const overflow = Math.max(0, allCrops.length - cap);
-  const cropEmoji = allCrops
-    .slice(0, cap)
-    .map(name => `<span class="gm-bed-crop-em" title="${name}">${cropData[name]?.emoji || '🌱'}</span>`)
-    .join('');
+  const cellsData = bed.cells || {};
+  let gridHtml = '';
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const name = cellsData[`${c}-${r}`];
+      const s = name ? getGardenStatus(name) : null;
+      const cls = s?.type === 'ready' ? 'gm-tile--ready' : s?.type === 'growing' ? 'gm-tile--growing' : '';
+      gridHtml += name
+        ? `<span class="gm-map-tile ${cls}" title="${name}">${cropData[name]?.emoji || '🌱'}</span>`
+        : `<span class="gm-map-tile gm-map-tile--empty"></span>`;
+    }
+  }
+  const cap = getCropsInBed(id).length;
+  const capBadge = cap ? `<span class="gm-bed-cap">${cap}/${cols * rows}</span>` : '';
 
   return `<div class="gm-bed gm-bed--${bed.type || 'raised'}${selected ? ' gm-bed--selected' : ''}" data-bed="${id}"
     style="left:${x * TILE_SIZE}px;top:${y * TILE_SIZE}px;width:${cols * TILE_SIZE}px;height:${rows * TILE_SIZE}px;background:${color}22;border-color:${color}">
     <div class="gm-bed-label">${bed.emoji} ${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
-    ${cropEmoji || overflow ? `<div class="gm-bed-crop-row">${cropEmoji}${overflow ? `<span class="gm-bed-overflow">+${overflow}</span>` : ''}</div>` : ''}
+    <div class="gm-bed-tile-grid" style="--gm-tile-cols:${cols}">${gridHtml}</div>${capBadge}
     <div class="gm-resize-handle" data-bed="${id}"></div>
   </div>`;
 }
@@ -5955,55 +5976,101 @@ function renderGardenMapDetail() {
   const cols = bed.cols || 4;
   const rows = bed.rows || 2;
 
-  function renderBedDetailCrops() {
-    const assigned = getCropsInBed(id);
-    const chips = assigned.map(name => {
-      const em = cropData[name]?.emoji || '🌱';
-      const issues = getBedCompatibility(id, name);
-      const warn = issues.length ? ` <span class="gm-compat-warn" title="${issues.join('\n')}">⚠️</span>` : '';
-      return `<span class="gm-crop-chip">${em} ${name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}${warn}<button class="gm-crop-chip-x" data-crop="${name}" aria-label="Remove">×</button></span>`;
-    }).join('');
-    document.getElementById('gm-crop-chips-list').innerHTML =
-      chips || '<span class="gm-crops-empty">No crops yet</span>';
-    document.querySelectorAll('.gm-crop-chip-x').forEach(btn => {
+  function renderCellGrid() {
+    const el = document.getElementById('gm-cell-grid');
+    if (!el) return;
+    const cells = bed.cells || {};
+    let html = '';
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const key = `${c}-${r}`;
+        const name = cells[key];
+        const sel = _mapSelectedCell?.col === c && _mapSelectedCell?.row === r;
+        if (name) {
+          const em = cropData[name]?.emoji || '🌱';
+          html += `<div class="gm-cell-tile gm-cell-tile--crop${sel ? ' gm-cell-tile--sel' : ''}" data-col="${c}" data-row="${r}">
+            <span class="gm-cell-em">${em}</span>
+            <span class="gm-cell-name">${name}</span>
+            <button class="gm-cell-x" data-col="${c}" data-row="${r}" aria-label="Remove">×</button>
+          </div>`;
+        } else {
+          html += `<div class="gm-cell-tile gm-cell-tile--empty${sel ? ' gm-cell-tile--sel' : ''}" data-col="${c}" data-row="${r}">
+            <span class="gm-cell-plus">＋</span>
+          </div>`;
+        }
+      }
+    }
+    el.innerHTML = html;
+    const hint = document.getElementById('gm-cell-hint');
+    if (hint) {
+      if (_mapSelectedCell) {
+        hint.textContent = `Assigning to cell (${_mapSelectedCell.col + 1}, ${_mapSelectedCell.row + 1}) — search below`;
+        hint.hidden = false;
+      } else { hint.hidden = true; }
+    }
+    el.querySelectorAll('.gm-cell-tile').forEach(tile => {
+      tile.addEventListener('click', e => {
+        if (e.target.classList.contains('gm-cell-x')) return;
+        _mapSelectedCell = { col: parseInt(tile.dataset.col), row: parseInt(tile.dataset.row) };
+        renderCellGrid();
+        document.getElementById('gm-crop-search')?.focus();
+      });
+    });
+    el.querySelectorAll('.gm-cell-x').forEach(btn => {
       btn.addEventListener('click', e => {
         e.stopPropagation();
-        removeCropFromBed(btn.dataset.crop, id);
-        renderBedDetailCrops();
-        renderGardenMapCanvas();
+        setBedCell(id, parseInt(btn.dataset.col), parseInt(btn.dataset.row), null);
+        _mapSelectedCell = null;
+        renderCellGrid(); renderGardenMapCanvas();
       });
     });
   }
 
+  function renderBedDetailCrops() {
+    renderCellGrid();
+  }
+
   function renderBedCropSuggestions(query) {
     const inBed = new Set(getCropsInBed(id));
-    const q = query.toLowerCase();
-    let matches = Object.keys(myGarden)
-      .filter(n => !inBed.has(n) && n.toLowerCase().includes(q));
-    if (bed.type === 'container') {
-      matches.sort((a, b) => (cropData[b]?.container_ok ? 1 : 0) - (cropData[a]?.container_ok ? 1 : 0));
-    }
-    matches = matches.slice(0, 8);
+    const q = query.toLowerCase().trim();
+    const inGarden = new Set(Object.keys(myGarden));
+    const all = Object.keys(cropData || {});
+    let candidates = [
+      ...Object.keys(myGarden).filter(n => !inBed.has(n)),
+      ...all.filter(n => !inGarden.has(n) && !inBed.has(n))
+    ].filter((n, i, a) => a.indexOf(n) === i);
+    if (q) candidates = candidates.filter(n => n.toLowerCase().includes(q));
+    if (bed.type === 'container')
+      candidates.sort((a,b) => (cropData[b]?.container_ok?1:0) - (cropData[a]?.container_ok?1:0));
+    candidates = candidates.slice(0, 10);
     const el = document.getElementById('gm-crop-suggestions');
     if (!el) return;
-    const showCreate = query.trim() && !myGarden[query.trim()];
-    const items = matches.map(n =>
-      `<button class="gm-crop-sugg" data-crop="${n}">${cropData[n]?.emoji || '🌱'} ${n}</button>`
-    ).join('');
-    const createBtn = showCreate
-      ? `<button class="gm-crop-sugg gm-crop-sugg--new" data-crop="${query.trim()}">＋ Add "${query.trim()}" to my garden</button>`
-      : '';
-    el.innerHTML = items + createBtn;
-    el.hidden = !(items || createBtn);
+    const showCreate = q && !cropData[q] && !myGarden[q];
+    const items = candidates.map(n => {
+      const inG = inGarden.has(n);
+      return `<button class="gm-crop-sugg${inG ? '' : ' gm-crop-sugg--new'}" data-crop="${n}">
+        ${cropData[n]?.emoji || '🌱'} ${n}${inG ? ' <span class="gm-sugg-star">★</span>' : ''}
+      </button>`;
+    }).join('');
+    el.innerHTML = items + (showCreate ? `<button class="gm-crop-sugg gm-crop-sugg--create" data-crop="${q}">＋ Add "${q}"</button>` : '');
+    el.hidden = !(items || showCreate);
+
     el.querySelectorAll('.gm-crop-sugg').forEach(btn => {
       btn.addEventListener('click', () => {
         const crop = btn.dataset.crop;
-        if (!myGarden[crop]) gardenAdd(crop);
-        addCropToBed(crop, id);
-        renderBedDetailCrops();
-        renderGardenMapCanvas();
         document.getElementById('gm-crop-search').value = '';
         el.hidden = true;
+        if (myGarden[crop]) {
+          // Already in garden — assign directly, optionally to a specific cell
+          addCropToBed(crop, id);
+          if (_mapSelectedCell) { setBedCell(id, _mapSelectedCell.col, _mapSelectedCell.row, crop); _mapSelectedCell = null; }
+          renderCellGrid(); renderGardenMapCanvas();
+        } else {
+          // Not yet in garden — open crop detail modal with pending bed/cell context
+          _mapPendingBed = id;
+          if (_mapSelectedCell) { _mapPendingCell = { ..._mapSelectedCell }; _mapSelectedCell = null; }
+          openCropDetail(crop);
+        }
       });
     });
   }
@@ -6025,7 +6092,8 @@ function renderGardenMapDetail() {
     <button class="bed-delete-btn" id="gm-bed-delete-btn" title="Delete bed">🗑</button>
   </div>
   ${bed.type === 'container' ? '<div class="gm-container-hint">🪣 Container-friendly crops sorted first</div>' : ''}
-  <div class="gm-crop-chips" id="gm-crop-chips-list"></div>
+  <div class="gm-cell-grid" id="gm-cell-grid" style="--gm-cell-cols:${cols}"></div>
+  <span class="gm-cell-hint" id="gm-cell-hint" hidden></span>
   <div class="gm-crop-add">
     <input class="gm-crop-search" id="gm-crop-search" type="text" placeholder="＋ Add crop…" autocomplete="off">
     <div class="gm-crop-suggestions" id="gm-crop-suggestions" hidden></div>
@@ -6354,6 +6422,7 @@ function onResizeDragEnd() {
 
 function selectMapBed(bedId) {
   _mapSelectedStruct = null;
+  _mapSelectedCell = null;
   document.querySelectorAll('.gm-struct').forEach(el => el.classList.remove('gm-struct--selected'));
   _mapSelectedBed = bedId;
   document.querySelectorAll('.gm-bed').forEach(el => {
@@ -7102,12 +7171,15 @@ function renderBedGrid(bedId, crops) {
   for (let i = 0; i < total; i++) {
     const name = crops[i];
     if (name) {
-      const c = cropData[name];
+      const cd = cropData[name];
       const s = getGardenStatus(name);
       const cls = s?.type === 'ready' ? 'bed-cell--ready' : s?.type === 'growing' ? 'bed-cell--growing' : 'bed-cell--saved';
-      cells += `<div class="bed-cell ${cls}" data-crop="${name}" title="${name}">${c?.emoji || '🌱'}</div>`;
+      cells += `<div class="bed-cell ${cls}" data-crop="${name}" title="${name}">
+        <span class="bed-cell-em">${cd?.emoji || '🌱'}</span>
+        <span class="bed-cell-name">${name}</span>
+      </div>`;
     } else {
-      cells += `<div class="bed-cell bed-cell--empty"></div>`;
+      cells += `<div class="bed-cell bed-cell--empty"><span class="bed-cell-plus">＋</span></div>`;
     }
   }
   return `<div class="bed-grid-visual" style="--bed-cols:${cols}">${cells}
