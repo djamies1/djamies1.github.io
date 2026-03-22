@@ -6149,7 +6149,7 @@ function renderGardenMapDetail() {
       const inG = inGarden.has(n);
       const s = inG ? getGardenStatus(n) : null;
       const tagCls = s?.type === 'ready' ? ' gm-sugg-tag--ready' : s?.type === 'growing' ? ' gm-sugg-tag--growing' : inG ? ' gm-sugg-tag--saved' : ' gm-sugg-tag--new';
-      const tagTxt = inG ? (s?.type === 'ready' ? '● Ready' : s?.type === 'growing' ? '● Growing' : 'In garden ★') : '＋ Add to garden';
+      const tagTxt = inG ? (s?.type === 'ready' ? '● Ready' : s?.type === 'growing' ? '● Growing' : 'In garden ★') : '＋ New';
       return `<button class="gm-crop-sugg" data-crop="${n}">
         <span class="gm-sugg-em">${cropData[n]?.emoji || '🌱'}</span>
         <span class="gm-sugg-label">
@@ -6166,16 +6166,11 @@ function renderGardenMapDetail() {
         const crop = btn.dataset.crop;
         document.getElementById('gm-crop-search').value = '';
         el.hidden = true;
-        if (myGarden[crop]) {
-          // Already in garden — assign directly to bed
-          addCropToBed(crop, id);
-          renderBedDetailCrops();
-          renderGardenMapCanvas();
-        } else {
-          // Not yet in garden — open crop detail modal with pending bed context
-          _mapPendingBed = id;
-          openCropDetail(crop);
-        }
+        // Add to garden first if needed, then assign to bed — no modal
+        if (!myGarden[crop]) gardenAdd(crop);
+        addCropToBed(crop, id);
+        renderBedDetailCrops();
+        renderGardenMapCanvas();
       });
     });
   }
@@ -6191,36 +6186,41 @@ function renderGardenMapDetail() {
   detail.innerHTML = `<div class="gm-detail-header">
     <input class="bed-name-input" id="gm-bed-name-edit" type="text" value="${bed.name.replace(/"/g,'&quot;')}" maxlength="30">
     <input type="text" id="gm-bed-emoji-edit" value="${bed.emoji}" maxlength="4" style="background:none;border:none;border-bottom:1px solid var(--border);color:var(--text);font-size:18px;width:32px;padding:2px;outline:none">
-    <div class="bed-resize-group">
-      <button class="bed-resize-btn" data-dir="cols" data-delta="-1">−</button>
-      <span class="bed-resize-label" id="gm-size-label">${cols}×${rows}</span>
-      <button class="bed-resize-btn" data-dir="cols" data-delta="1">＋</button>
-      <span class="bed-resize-label">cols</span>
-      <button class="bed-resize-btn" data-dir="rows" data-delta="-1">−</button>
-      <button class="bed-resize-btn" data-dir="rows" data-delta="1">＋</button>
-      <span class="bed-resize-label">rows</span>
-    </div>
     <button class="bed-delete-btn" id="gm-bed-delete-btn" title="Delete bed">🗑</button>
   </div>
-  <div class="gm-color-swatches" id="gm-color-swatches">${swatchHtml}</div>
   ${bed.type === 'container' ? '<div class="gm-container-hint">🪣 Container-friendly crops sorted first</div>' : ''}
-  <div class="gm-crop-chips" id="gm-crop-chips-list"></div>
-  <div class="gm-crop-add">
+  <div class="gm-crop-add" style="padding:0 14px 6px">
     <input class="gm-crop-search" id="gm-crop-search" type="text" placeholder="＋ Add crop…" autocomplete="off">
     <div class="gm-crop-suggestions" id="gm-crop-suggestions" hidden></div>
   </div>
-  <details class="gm-micro" id="gm-micro-details">
-    <summary class="gm-micro-summary">☀️ Microclimate</summary>
-    <div class="gm-micro-body">
-      <div class="gm-micro-row">
-        <span class="gm-micro-label">Sun</span>
-        <input type="range" min="0" max="12" step="0.5" value="${bed.sunHours ?? 6}" id="gm-sun-hrs" class="gm-micro-range">
-        <span class="gm-micro-val" id="gm-sun-val">${bed.sunHours ?? 6}h</span>
+  <div class="gm-crop-chips" id="gm-crop-chips-list" style="padding:0 14px 6px"></div>
+  <details class="gm-bed-settings">
+    <summary>⚙ Bed settings</summary>
+    <div class="gm-bed-settings-body">
+      <div class="gm-color-swatches" id="gm-color-swatches">${swatchHtml}</div>
+      <div class="bed-resize-group">
+        <button class="bed-resize-btn" data-dir="cols" data-delta="-1">−</button>
+        <span class="bed-resize-label" id="gm-size-label">${cols}×${rows}</span>
+        <button class="bed-resize-btn" data-dir="cols" data-delta="1">＋</button>
+        <span class="bed-resize-label">cols</span>
+        <button class="bed-resize-btn" data-dir="rows" data-delta="-1">−</button>
+        <button class="bed-resize-btn" data-dir="rows" data-delta="1">＋</button>
+        <span class="bed-resize-label">rows</span>
       </div>
-      <div class="gm-micro-row">
-        <span class="gm-micro-label">Soil pH</span>
-        <input type="number" min="4" max="9" step="0.1" value="${bed.soilPh || ''}" placeholder="6.5" id="gm-soil-ph" class="gm-micro-ph">
-      </div>
+      <details class="gm-micro" id="gm-micro-details">
+        <summary class="gm-micro-summary">☀️ Microclimate</summary>
+        <div class="gm-micro-body">
+          <div class="gm-micro-row">
+            <span class="gm-micro-label">Sun</span>
+            <input type="range" min="0" max="12" step="0.5" value="${bed.sunHours ?? 6}" id="gm-sun-hrs" class="gm-micro-range">
+            <span class="gm-micro-val" id="gm-sun-val">${bed.sunHours ?? 6}h</span>
+          </div>
+          <div class="gm-micro-row">
+            <span class="gm-micro-label">Soil pH</span>
+            <input type="number" min="4" max="9" step="0.1" value="${bed.soilPh || ''}" placeholder="6.5" id="gm-soil-ph" class="gm-micro-ph">
+          </div>
+        </div>
+      </details>
     </div>
   </details>`;
 

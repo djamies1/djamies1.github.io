@@ -4553,9 +4553,9 @@ body.garden-mode .plant-section ul {
   .gm-map-body  { flex-direction: column; }
   .gm-map-right { border-left: none; border-top: 2px solid var(--accent); flex-shrink: 0; max-height: 45vh; width: auto; }
 }
-.gm-panel-placeholder { align-items: center; color: var(--text-muted); display: flex; flex: 1; flex-direction: column; gap: 10px; justify-content: center; padding: 32px 16px; text-align: center; }
-.gm-placeholder-icon  { font-size: 36px; opacity: 0.35; }
-.gm-placeholder-text  { font-size: 13px; line-height: 1.5; max-width: 180px; }
+.gm-panel-placeholder { color: var(--text-muted); font-size: 12px; font-style: italic; padding: 10px 14px; }
+.gm-placeholder-icon  { display: none; }
+.gm-placeholder-text  { margin: 0; }
 .gm-header { align-items: center; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; flex-shrink: 0; gap: 8px; justify-content: space-between; padding: 10px 14px; }
 .gm-title { font-size: 14px; font-weight: 700; }
 .gm-close-btn { background: none; border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); cursor: pointer; font-size: 12px; padding: 4px 8px; }
@@ -4825,6 +4825,15 @@ body.garden-mode .plant-section ul {
   align-items: center; background: rgba(0,0,0,0.55); border-radius: 8px; color: #fbbf24;
   display: inline-flex; font-size: 9px; font-weight: 700; padding: 1px 4px;
 }
+
+/* ── Bed settings collapsible ── */
+.gm-bed-settings { border-top: 1px solid var(--border); margin-top: 4px; }
+.gm-bed-settings > summary {
+  color: var(--text-muted); cursor: pointer; font-size: 11px; font-weight: 600;
+  list-style: none; padding: 6px 14px; user-select: none;
+}
+.gm-bed-settings > summary::-webkit-details-marker { display: none; }
+.gm-bed-settings-body { display: flex; flex-direction: column; gap: 8px; padding: 4px 14px 10px; }
 
 /* ── Phase 90A: Microclimate panel ── */
 .gm-micro { border-top: 1px solid var(--border); margin-top: 6px; padding-top: 6px; }
