@@ -1,7 +1,7 @@
 {
-  "name": "Plant Zone Finder",
-  "short_name": "PlantZone",
-  "description": "Find your USDA hardiness zone and discover exactly what to grow each month. Track your garden, log harvests, and get personalised planting advice.",
+  "name": "Organized Abundance",
+  "short_name": "Abundance",
+  "description": "Plan your garden with intention. Zone-aware planting calendars, a visual garden map, crop tracking, and harvest countdowns — all in one free app.",
   "start_url": "/garden-zones/",
   "scope": "/garden-zones/",
   "display": "standalone",

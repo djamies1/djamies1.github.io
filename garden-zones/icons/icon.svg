@@ -1,13 +1,59 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#111827"/>
-  <!-- Stem -->
-  <line x1="256" y1="430" x2="256" y2="210" stroke="#16a34a" stroke-width="22" stroke-linecap="round"/>
-  <!-- Soil -->
-  <ellipse cx="256" cy="430" rx="90" ry="22" fill="#15803d" opacity="0.6"/>
-  <!-- Main leaf (right) -->
-  <path d="M258 210 C265 190 300 150 360 110 C360 110 330 180 280 220 Z" fill="#4ade80"/>
-  <!-- Main leaf (left) -->
-  <path d="M254 270 C247 250 210 210 150 175 C150 175 185 240 240 275 Z" fill="#22c55e"/>
-  <!-- Top leaf -->
-  <path d="M256 175 C256 175 256 130 256 100 C280 115 310 145 295 185 Z" fill="#86efac"/>
+  <!-- App icon background -->
+  <rect width="512" height="512" rx="96" fill="#0d1a0a"/>
+
+  <!-- Raised bed — front face (depth) -->
+  <rect x="72" y="360" width="368" height="88" rx="14" fill="#4a2c1a"/>
+  <!-- Bed top rail / ledge -->
+  <rect x="64" y="342" width="384" height="32" rx="10" fill="#7a4830"/>
+  <!-- Soil surface -->
+  <rect x="82" y="300" width="348" height="56" rx="6" fill="#2a150a"/>
+  <!-- Bed vertical dividers -->
+  <rect x="226" y="300" width="4" height="140" fill="#3d2010" opacity="0.55"/>
+  <rect x="282" y="300" width="4" height="140" fill="#3d2010" opacity="0.55"/>
+
+  <!-- ── Left plant: leafy greens / herbs ── -->
+  <line x1="162" y1="300" x2="148" y2="196" stroke="#4ade80" stroke-width="7" stroke-linecap="round"/>
+  <!-- Leaf spray -->
+  <ellipse cx="108" cy="178" rx="58" ry="28" fill="#15803d" transform="rotate(-28 108 178)"/>
+  <ellipse cx="152" cy="156" rx="54" ry="26" fill="#22c55e" transform="rotate(8 152 156)"/>
+  <ellipse cx="124" cy="146" rx="44" ry="22" fill="#4ade80" transform="rotate(-10 124 146)"/>
+  <!-- Small herb flower dots -->
+  <circle cx="96"  cy="162" r="7" fill="#86efac" opacity="0.8"/>
+  <circle cx="128" cy="134" r="6" fill="#bbf7d0" opacity="0.7"/>
+
+  <!-- ── Centre plant: tomato ── -->
+  <line x1="254" y1="300" x2="254" y2="110" stroke="#4ade80" stroke-width="8" stroke-linecap="round"/>
+  <!-- Large leaf pair -->
+  <ellipse cx="196" cy="168" rx="68" ry="32" fill="#166534" transform="rotate(-30 196 168)"/>
+  <ellipse cx="312" cy="162" rx="68" ry="32" fill="#15803d" transform="rotate(30 312 162)"/>
+  <!-- Upper leaves -->
+  <ellipse cx="220" cy="126" rx="56" ry="26" fill="#22c55e" transform="rotate(-15 220 126)"/>
+  <ellipse cx="288" cy="124" rx="56" ry="26" fill="#22c55e" transform="rotate(15 288 124)"/>
+  <ellipse cx="254" cy="106" rx="48" ry="24" fill="#4ade80"/>
+  <!-- Tomatoes — red, ripe -->
+  <circle cx="216" cy="224" r="28" fill="#dc2626"/>
+  <circle cx="216" cy="224" r="28" fill="url(#tomato-shine)"/>
+  <circle cx="292" cy="232" r="22" fill="#ef4444"/>
+  <circle cx="292" cy="232" r="22" fill="url(#tomato-shine)"/>
+  <!-- Tomato caps -->
+  <path d="M208 204 Q216 196 224 204" stroke="#22c55e" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M285 214 Q292 208 299 214" stroke="#22c55e" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+  <!-- ── Right plant: root veg / colourful ── -->
+  <line x1="350" y1="300" x2="364" y2="196" stroke="#4ade80" stroke-width="7" stroke-linecap="round"/>
+  <ellipse cx="404" cy="178" rx="58" ry="28" fill="#15803d" transform="rotate(28 404 178)"/>
+  <ellipse cx="360" cy="156" rx="54" ry="26" fill="#22c55e" transform="rotate(-8 360 156)"/>
+  <ellipse cx="388" cy="146" rx="44" ry="22" fill="#4ade80" transform="rotate(10 388 146)"/>
+  <!-- Orange produce dot -->
+  <circle cx="378" cy="236" r="18" fill="#ea580c"/>
+  <circle cx="408" cy="164" r="7" fill="#fde68a" opacity="0.8"/>
+
+  <!-- Shine gradient for tomatoes -->
+  <defs>
+    <radialGradient id="tomato-shine" cx="35%" cy="30%" r="55%">
+      <stop offset="0%"   stop-color="rgba(255,255,255,0.25)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.15)"/>
+    </radialGradient>
+  </defs>
 </svg>
