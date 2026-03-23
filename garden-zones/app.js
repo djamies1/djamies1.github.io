@@ -57,6 +57,27 @@ const CROP_FAMILIES = {
   'Savory':'Lamiaceae','Hyssop':'Lamiaceae',
 };
 
+// ── Phase 101: Avg retail price $/kg (organic) ─
+const CROP_VALUES = {
+  'Arugula':10,'Asian Greens':8,'Asparagus':11,'Basil':28,'Bay Leaf':18,
+  'Beans':6,'Beets':4,'Blackberries':11,'Blackcurrants':14,'Blueberries':10,
+  'Borage':15,'Broccoli':5,'Broccoli Rabe':8,'Brussels Sprouts':6,'Butternut Squash':3,
+  'Cabbage':2.5,'Calendula':12,'Carrots':3.5,'Cauliflower':4.5,'Celery':3,
+  'Chervil':20,'Cherry Tomatoes':6,'Chives':18,'Coriander':18,'Corn':2,
+  'Cucumbers':3.5,'Daikon':3,'Dill':16,'Edamame':7,'Eggplant':4.5,
+  'Endive':7,'Fava Beans':7,'Fennel':6,'Garlic':12,'Gooseberries':14,
+  'Ground Cherries':12,'Jalapeño':6,'Kale':6.5,'Kohlrabi':5,'Lavender':20,
+  'Leeks':4.5,'Lemon Balm':20,'Lettuce':7,'Lima Beans':7,'Marjoram':18,
+  'Melons':4,'Mint':24,'Nasturtium':18,'Napa Cabbage':3,'Onions':2.5,
+  'Oregano':16,'Parsley':14,'Parsnips':4,'Peanuts':5,'Peas':7,
+  'Peppers':5,'Potatoes':2,'Pumpkins':2,'Radishes':5,'Raspberries':12,
+  'Redcurrants':14,'Rhubarb':5,'Rosemary':18,'Runner Beans':6,'Sage':18,
+  'Shallots':8,'Snow Peas':8,'Sorrel':14,'Spinach':8,'Squash':3.5,
+  'Strawberries':9,'Sugar Snap Peas':8,'Sunflowers':6,'Sweet Corn':2,
+  'Sweet Potatoes':3,'Swiss Chard':7.5,'Tarragon':22,'Thyme':20,
+  'Tomatillos':6,'Tomatoes':4.5,'Turnips':3,'Watermelon':2,'Zucchini':3,
+};
+
 // ── Frost-sensitive crops ──────────────────────
 const FROST_SENSITIVE = new Set([
   'Tomatoes','Cherry Tomatoes','Peppers','Jalapeño','Eggplant','Basil','Cucumbers',
@@ -2422,6 +2443,7 @@ function renderGardenTab() {
     renderGardenDashboard(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
     renderCompanionMatrix(); renderGrowingTimeline(); renderGardenGantt(); renderGardenFooter();
     renderGardenHistory(); renderGrowNext(); renderPlanSection(); renderHarvestAnalytics();
+    renderHarvestValue();
     renderWateringIntelligence(); renderHarvestToTable(); renderGardenHealthScore();
     renderSmartShoppingList(); checkAchievements();
     return;
@@ -2500,6 +2522,7 @@ function renderGardenTab() {
   renderGrowNext();
   renderPlanSection();
   renderHarvestAnalytics();
+  renderHarvestValue();
   renderWateringIntelligence();
   renderHarvestToTable();
   renderGardenHealthScore();
@@ -8165,72 +8188,94 @@ function renderDailyBrief() {
   const el = document.getElementById('daily-brief');
   if (!el || !selectedZone) { if (el) el.innerHTML = ''; return; }
 
-  const lines = [];
   const today = new Date(); today.setHours(0, 0, 0, 0);
+  const dateStr = today.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
 
-  // Weather summary line
+  // ── Weather header ──
+  let wxHtml = '';
   if (weatherData?.current) {
     const temp = useMetric
       ? Math.round((weatherData.current.temperature_2m - 32) * 5 / 9) + '°C'
       : Math.round(weatherData.current.temperature_2m) + '°F';
     const icon = getWmoIcon(weatherData.current.weather_code);
-    // Tomorrow + day after (indices 6,7 in daily array with past_days=5)
     const rainSoon = weatherData.daily?.precipitation_sum
-      ? (weatherData.daily.precipitation_sum[6] || 0) + (weatherData.daily.precipitation_sum[7] || 0)
-      : 0;
-    const rainNote = rainSoon > 0.15 ? ' · 🌧 Rain forecast' : '';
-    lines.push({ type: 'weather', text: `${icon} ${temp}${rainNote}` });
+      ? (weatherData.daily.precipitation_sum[6] || 0) + (weatherData.daily.precipitation_sum[7] || 0) : 0;
+    const rainNote = rainSoon > 0.15 ? '<span class="today-wx-note">🌧 Rain soon</span>' : '';
+    wxHtml = `<div class="today-wx"><span class="today-wx-icon">${icon}</span><span class="today-wx-temp">${temp}</span>${rainNote}</div>`;
   }
 
+  // ── Ready to harvest ──
   const gardenNames = Object.keys(myGarden);
-
-  // Ready to harvest
   const readyCrops = gardenNames.filter(n => getGardenStatus(n)?.type === 'ready');
+  let harvestHtml = '';
   if (readyCrops.length) {
-    const list = readyCrops.slice(0, 3).join(', ') + (readyCrops.length > 3 ? ` +${readyCrops.length - 3} more` : '');
-    lines.push({ type: 'harvest', text: `🌾 Ready to harvest: ${list}` });
+    const chips = readyCrops.slice(0, 4).map(n =>
+      `<button class="thc" data-crop="${n}">${cropData[n]?.emoji || '🌱'} ${n} <span class="thc-cta">Log →</span></button>`
+    ).join('');
+    const more = readyCrops.length > 4 ? `<span class="thc-more">+${readyCrops.length - 4} more</span>` : '';
+    harvestHtml = `<div class="today-section">
+      <div class="today-section-hd">🌾 Ready to harvest</div>
+      <div class="today-harvest-chips">${chips}${more}</div>
+    </div>`;
   }
 
-  // Frost warning (next 7 days)
-  if (!readyCrops.length) {
-    const frost = FROST_DATES[selectedZone.toLowerCase()];
-    if (frost?.last) {
-      const d = parseFrostDate(frost.last);
-      if (d) {
-        const diff = Math.round((d - today) / 86400000);
-        if (diff > 0 && diff <= 7) lines.push({ type: 'warning', text: `❄️ Last frost in ${diff} day${diff === 1 ? '' : 's'} — hold off on transplanting` });
-      }
-    }
-    if (frost?.first) {
-      const d = parseFrostDate(frost.first);
-      if (d) {
-        const diff = Math.round((d - today) / 86400000);
-        if (diff > 0 && diff <= 7) lines.push({ type: 'warning', text: `🍂 First frost in ${diff} day${diff === 1 ? '' : 's'} — harvest tender crops` });
-      }
-    }
+  // ── Frost / watering alerts ──
+  let alertsHtml = '';
+  const frost = FROST_DATES[selectedZone.toLowerCase()];
+  if (frost?.last) {
+    const d = parseFrostDate(frost.last);
+    if (d) { const diff = Math.round((d - today) / 86400000);
+      if (diff > 0 && diff <= 7) alertsHtml += `<div class="today-alert today-alert--frost">❄️ Last frost in ${diff} day${diff===1?'':'s'} — hold off transplanting</div>`; }
   }
-
-  // Overdue watering
+  if (frost?.first) {
+    const d = parseFrostDate(frost.first);
+    if (d) { const diff = Math.round((d - today) / 86400000);
+      if (diff > 0 && diff <= 7) alertsHtml += `<div class="today-alert today-alert--frost">🍂 First frost in ${diff} day${diff===1?'':'s'} — harvest tender crops now</div>`; }
+  }
   const needWater = gardenNames.filter(n => getWaterStatus(n)?.type === 'dry');
-  if (needWater.length) {
-    lines.push({ type: 'water', text: `💧 ${needWater.length} crop${needWater.length > 1 ? 's' : ''} overdue for watering` });
+  if (needWater.length)
+    alertsHtml += `<div class="today-alert today-alert--water">💧 ${needWater.length} crop${needWater.length > 1 ? 's' : ''} overdue for watering</div>`;
+
+  // ── Up this month (sow / transplant not yet started) ──
+  let weekHtml = '';
+  if (!readyCrops.length) {
+    const pdata = getPlantingData(selectedZone, currentMonth);
+    const sowItems = [...(pdata.startIndoors || []).map(n => ({ n, t: 'sow' })),
+                     ...(pdata.directSow   || []).map(n => ({ n, t: 'sow' }))];
+    const transItems = (pdata.transplant || []).map(n => ({ n, t: 'transplant' }));
+    const monthItems = [...sowItems, ...transItems].filter(({ n }) => !myGarden[n]?.planted).slice(0, 6);
+    if (monthItems.length) {
+      const chips = monthItems.map(({ n, t }) =>
+        `<span class="twk-chip twk-chip--${t}">${t === 'sow' ? '🌱' : '🪴'} ${n}</span>`
+      ).join('');
+      weekHtml = `<div class="today-section">
+        <div class="today-section-hd">📅 Up this month</div>
+        <div class="today-week-chips">${chips}</div>
+      </div>`;
+    }
   }
 
-  // Seasonal sowing nudge if nothing else urgent
-  if (lines.length <= 1) {
-    const data = getPlantingData(selectedZone, currentMonth);
-    const sowable = [...(data.startIndoors || []), ...(data.directSow || [])];
-    const unplanted = sowable.filter(n => !isInGarden(n));
+  // ── Tip fallback ──
+  let tipHtml = '';
+  if (!readyCrops.length && !alertsHtml && !weekHtml) {
+    const pdata = getPlantingData(selectedZone, currentMonth);
+    const unplanted = [...(pdata.startIndoors || []), ...(pdata.directSow || [])].filter(n => !isInGarden(n));
     if (unplanted.length) {
       const pick = unplanted[Math.floor(Math.random() * Math.min(4, unplanted.length))];
-      lines.push({ type: 'tip', text: `🌱 Now's a good time to start ${pick} for your zone` });
+      tipHtml = `<div class="today-tip">💡 Now's a great time to start <strong>${pick}</strong> for your zone</div>`;
     }
   }
 
-  if (!lines.length) { el.innerHTML = ''; return; }
-  el.innerHTML = `<div class="daily-brief">${lines.map(l =>
-    `<div class="db-row db-row--${l.type}">${l.text}</div>`
-  ).join('')}</div>`;
+  if (!wxHtml && !harvestHtml && !alertsHtml && !weekHtml && !tipHtml) { el.innerHTML = ''; return; }
+
+  el.innerHTML = `<div class="today-hero">
+    <div class="today-hero-head">${wxHtml}<span class="today-date">${dateStr}</span></div>
+    ${harvestHtml}${alertsHtml}${weekHtml}${tipHtml}
+  </div>`;
+
+  el.querySelectorAll('.thc[data-crop]').forEach(btn =>
+    btn.addEventListener('click', () => openCropDetail(btn.dataset.crop))
+  );
 }
 
 // ════════════════════════════════════════════════
@@ -8283,6 +8328,68 @@ function renderHarvestAnalytics() {
         </div>`).join('')}
     </div>
   </div>`;
+}
+
+// ════════════════════════════════════════════════
+// Phase 101 — Harvest Value Tracker
+// ════════════════════════════════════════════════
+function getHarvestValueUSD(name, entry) {
+  const price = CROP_VALUES[name] || 4.0; // $/kg
+  let kg = 0;
+  if (entry.qty) {
+    const u = (entry.unit || '').toLowerCase();
+    if      (u === 'kg')              kg = entry.qty;
+    else if (u === 'lbs' || u === 'lb') kg = entry.qty * 0.4536;
+    else if (u === 'g')               kg = entry.qty / 1000;
+    else if (u === 'oz')              kg = entry.qty * 0.02835;
+    else if (u === 'count')           kg = entry.qty * 0.15;  // ~150 g/item
+    else if (u === 'bunch')           kg = entry.qty * 0.25;  // ~250 g/bunch
+    else                              kg = entry.qty * 0.15;
+  } else {
+    kg = 0.3; // no qty — assume ~300 g
+  }
+  return kg * price;
+}
+
+function getSeasonHarvestValue() {
+  const year = String(new Date().getFullYear());
+  let total = 0;
+  const byCrop = {};
+  for (const [name, entry] of Object.entries(myGarden)) {
+    for (const h of (entry.harvestLog || [])) {
+      if (!h.date.startsWith(year)) continue;
+      const val = getHarvestValueUSD(name, h);
+      total += val;
+      byCrop[name] = (byCrop[name] || 0) + val;
+    }
+  }
+  return { total, byCrop };
+}
+
+function renderHarvestValue() {
+  const el = document.getElementById('harvest-value');
+  if (!el) return;
+  const { total, byCrop } = getSeasonHarvestValue();
+  if (total < 0.5) { el.innerHTML = ''; return; }
+  const fmt = v => v >= 100 ? Math.round(v) : v.toFixed(1);
+  const sorted = Object.entries(byCrop).sort(([,a],[,b]) => b - a).slice(0, 4);
+  const cropLines = sorted.map(([name, val]) =>
+    `<span class="hv-crop-item">${cropData[name]?.emoji || '🌱'} ${name} <strong>$${fmt(val)}</strong></span>`
+  ).join('');
+  el.innerHTML = `<div class="hv-card">
+    <div class="hv-card-body">
+      <div class="hv-label">🌱 Garden value this season</div>
+      <div class="hv-amount">$${fmt(total)}<span class="hv-saved"> saved</span></div>
+      <div class="hv-sub">vs. organic retail · ${Object.values(myGarden).reduce((s,e) => s + (e.harvestLog?.length||0), 0)} harvests logged</div>
+      ${cropLines ? `<div class="hv-crops">${cropLines}</div>` : ''}
+    </div>
+    <button class="hv-share-btn" id="hv-share-btn">📤 Share</button>
+  </div>`;
+  document.getElementById('hv-share-btn')?.addEventListener('click', () => {
+    const text = `My garden has saved me an estimated $${fmt(total)} this season! 🌱 Organized Abundance`;
+    if (navigator.share) { navigator.share({ text, url: location.href }).catch(() => {}); }
+    else { navigator.clipboard?.writeText(text).then(() => showToast('Copied to clipboard!')).catch(() => {}); }
+  });
 }
 
 // ════════════════════════════════════════════════

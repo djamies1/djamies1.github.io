@@ -4996,6 +4996,78 @@ body.garden-mode .plant-section ul {
   border-radius: 4px; pointer-events: none; position: absolute; z-index: 50;
 }
 
+/* ── Phase 100: Today Hero Card ─────────────────────────────── */
+.today-hero {
+  background: linear-gradient(135deg, rgba(74,222,128,0.08) 0%, rgba(10,15,26,0) 60%);
+  border: 1px solid rgba(74,222,128,0.18);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  padding: 14px 16px 12px;
+}
+.today-hero-head {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.today-wx { align-items: center; display: flex; gap: 6px; }
+.today-wx-icon { font-size: 22px; line-height: 1; }
+.today-wx-temp { color: var(--text); font-size: 15px; font-weight: 600; }
+.today-wx-note { background: rgba(59,130,246,0.18); border-radius: 10px; color: #93c5fd; font-size: 11px; padding: 2px 7px; }
+.today-date { color: var(--text-muted); font-size: 12px; }
+
+.today-section { margin-top: 8px; }
+.today-section-hd { color: var(--text-muted); font-size: 11px; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 6px; text-transform: uppercase; }
+
+.today-harvest-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.thc {
+  align-items: center; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25);
+  border-radius: 20px; color: var(--text); cursor: pointer; display: inline-flex;
+  font-size: 12px; gap: 5px; padding: 5px 10px; transition: background 0.15s, border-color 0.15s;
+}
+.thc:hover { background: rgba(74,222,128,0.2); border-color: var(--accent); }
+.thc-cta { color: var(--accent); font-weight: 600; }
+.thc-more { color: var(--text-muted); font-size: 11px; line-height: 30px; }
+
+.today-alert {
+  border-radius: 8px; font-size: 12px; margin-top: 7px; padding: 7px 11px;
+}
+.today-alert--frost { background: rgba(147,197,253,0.1); border: 1px solid rgba(147,197,253,0.25); color: #93c5fd; }
+.today-alert--water { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25); color: #7dd3fc; }
+
+.today-week-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.twk-chip {
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 16px;
+  color: var(--text-muted); font-size: 11px; padding: 3px 9px;
+}
+.twk-chip--sow   { border-color: rgba(74,222,128,0.2); color: var(--accent); }
+.twk-chip--transplant { border-color: rgba(251,191,36,0.25); color: #fbbf24; }
+
+.today-tip { border-left: 2px solid var(--accent); color: var(--text-muted); font-size: 12px; margin-top: 8px; padding: 5px 10px; }
+
+/* ── Phase 101: Harvest Value Tracker ───────────────────────── */
+.hv-card {
+  align-items: flex-start; background: linear-gradient(135deg, rgba(74,222,128,0.06), rgba(10,15,26,0));
+  border: 1px solid rgba(74,222,128,0.2); border-radius: 12px;
+  display: flex; gap: 12px; justify-content: space-between;
+  margin-bottom: 12px; padding: 16px;
+}
+.hv-card-body { flex: 1; min-width: 0; }
+.hv-label { color: var(--text-muted); font-size: 11px; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px; text-transform: uppercase; }
+.hv-amount { color: var(--accent); font-size: 28px; font-weight: 700; line-height: 1.1; }
+.hv-saved { color: var(--text-muted); font-size: 14px; font-weight: 400; }
+.hv-sub { color: var(--text-muted); font-size: 11px; margin-top: 3px; }
+.hv-crops { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.hv-crop-item { background: rgba(255,255,255,0.05); border-radius: 8px; color: var(--text); font-size: 12px; padding: 4px 9px; }
+.hv-crop-item strong { color: var(--accent); }
+.hv-share-btn {
+  align-self: center; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25);
+  border-radius: 8px; color: var(--accent); cursor: pointer; flex-shrink: 0;
+  font-size: 12px; padding: 7px 12px; transition: background 0.15s;
+  white-space: nowrap;
+}
+.hv-share-btn:hover { background: rgba(74,222,128,0.2); }
+
 /* T3: Print */
 @media print {
   body > *:not(#garden-map-overlay) { display: none !important; }
