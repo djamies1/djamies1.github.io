@@ -877,7 +877,14 @@ function renderPanel() {
   renderFrostAlertBanner();
 
   // Month display + context
-  document.getElementById('month-display').textContent = MONTH_NAMES[month];
+  const mEl = document.getElementById('month-display');
+  if (mEl) {
+    const s = getSeasonForMonth(month);  // already exists at line 260
+    const SEASON_EMOJI = { spring:'🌸', summer:'☀️', autumn:'🍂', winter:'❄️' };
+    mEl.className = `month-display-band month-display-band--${s}`;
+    mEl.innerHTML = `<span class="mdb-emoji">${SEASON_EMOJI[s]}</span>
+    <span class="mdb-label">${MONTH_NAMES[month]}</span>`;
+  }
   const ctx   = isUSDASys() ? getMonthContext(zone, month) : '';
   const ctxEl = document.getElementById('month-context');
   ctxEl.textContent = ctx;
@@ -899,6 +906,25 @@ function renderPanel() {
     } else {
       section.classList.add('hidden');
     }
+    const countEl = document.getElementById(`count-${key}`);
+    if (countEl) countEl.textContent = items.length || '';
+  }
+
+  const sumEl = document.getElementById('cal-summary');
+  if (sumEl) {
+    const CHIP_META = {
+      startIndoors: { icon: '🏠', label: 'to start',      cls: 'indoors'    },
+      directSow:    { icon: '🌱', label: 'to sow',        cls: 'sow'        },
+      transplant:   { icon: '🪴', label: 'to transplant', cls: 'transplant' },
+      harvest:      { icon: '🌾', label: 'to harvest',    cls: 'harvest'    },
+    };
+    const chips = sections
+      .filter(k => (data[k]||[]).length)
+      .map(k => {
+        const m = CHIP_META[k];
+        return `<span class="csum-chip csum-chip--${m.cls}">${m.icon} <strong>${data[k].length}</strong> ${m.label}</span>`;
+      }).join('');
+    sumEl.innerHTML = chips ? `<div class="cal-summary">${chips}</div>` : '';
   }
 
   document.getElementById('no-tasks').style.display = hasAny ? 'none' : 'block';
@@ -3012,13 +3038,12 @@ function renderWeatherStrip() {
     const lo = fmt(d.temperature_2m_min[idx]);
     const prec = d.precipitation_sum[idx] || 0;
     const lbl = i === 0 ? 'Today' : i === 1 ? 'Tmrw' : DAYS[new Date(date + 'T12:00:00').getDay()];
-    const precLabel = prec > 0.05 ? (useMetric ? `${toMM(prec)}mm` : `${prec.toFixed(2)}"`) : '';
-    const precDot = prec > 0.05 ? `<span class="wx-prec-dot" title="${precLabel} precip">${prec > 0.3 ? '🌧' : '🌦'}</span>` : '';
+    const precPct = Math.min(100, Math.round((prec / 1.2) * 100));
     return `<div class="wx-day">
       <span class="wx-day-name">${lbl}</span>
       <span class="wx-day-icon">${getWmoIcon(d.weather_code[idx])}</span>
-      <span class="wx-day-temp">${hi}/${lo}</span>
-      ${precDot}
+      <span class="wx-day-temp">${hi}<span class="wx-day-lo">/${lo}</span></span>
+      <div class="wx-prec-bar"><div class="wx-prec-fill" style="width:${precPct}%"></div></div>
     </div>`;
   }).join('');
 

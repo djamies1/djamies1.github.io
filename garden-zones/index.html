@@ -53,6 +53,11 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://djamies1.github.io/garden-zones/">
 
+  <!-- Typography: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- Structured data -->
   <script type="application/ld+json">
   {
@@ -222,20 +227,21 @@
         <div id="calendar-search-wrap">
           <input id="calendar-search" type="text" placeholder="Filter crops…" autocomplete="off" spellcheck="false">
         </div>
+        <div id="cal-summary"></div>
         <div class="plant-section" id="section-startIndoors">
-          <h3>Start Indoors</h3>
+          <h3><span class="ps-badge ps-badge--indoors">🏠</span>Start Indoors <span class="ps-count" id="count-startIndoors"></span></h3>
           <ul id="list-startIndoors"></ul>
         </div>
         <div class="plant-section" id="section-directSow">
-          <h3>Direct Sow</h3>
+          <h3><span class="ps-badge ps-badge--sow">🌱</span>Direct Sow <span class="ps-count" id="count-directSow"></span></h3>
           <ul id="list-directSow"></ul>
         </div>
         <div class="plant-section" id="section-transplant">
-          <h3>Transplant Out</h3>
+          <h3><span class="ps-badge ps-badge--transplant">🪴</span>Transplant Out <span class="ps-count" id="count-transplant"></span></h3>
           <ul id="list-transplant"></ul>
         </div>
         <div class="plant-section" id="section-harvest">
-          <h3>Harvest</h3>
+          <h3><span class="ps-badge ps-badge--harvest">🌾</span>Harvest <span class="ps-count" id="count-harvest"></span></h3>
           <ul id="list-harvest"></ul>
         </div>
         <p id="no-tasks">Nothing to plant this month — a good time to plan ahead.</p>
