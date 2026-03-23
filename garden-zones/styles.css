@@ -4626,23 +4626,19 @@ body.garden-mode .plant-section ul {
   position: absolute; right: 0; text-overflow: ellipsis; top: 0;
   white-space: nowrap; z-index: 2;
 }
-.gm-crop-bubble-wrap {
-  align-content: flex-start; bottom: 12px; display: flex; flex-wrap: wrap;
-  gap: 2px; left: 4px; overflow: hidden; padding: 2px;
-  pointer-events: none; position: absolute; right: 4px; top: 24px; z-index: 1;
+/* Crop cells — scalable emoji grid within bed */
+.gm-crop-cell {
+  align-items: center; box-sizing: border-box; cursor: grab;
+  display: flex; justify-content: center;
+  position: absolute; touch-action: none; user-select: none; z-index: 3;
+  transition: background 0.15s, transform 0.1s;
+  border-radius: 4px;
 }
-.gm-crop-bubble {
-  align-items: center; background: rgba(255,255,255,0.09); border-radius: 3px;
-  display: flex; font-size: 13px; height: 18px; justify-content: center;
-  line-height: 1; width: 18px;
-}
-.gm-crop-bubble.gm-bubble--growing { background: rgba(251,191,36,0.28); }
-.gm-crop-bubble.gm-bubble--ready   { background: rgba(74,222,128,0.30); }
-.gm-bubble-overflow {
-  align-items: center; background: rgba(0,0,0,0.5); border-radius: 3px;
-  color: rgba(255,255,255,0.7); display: flex; font-size: 9px; font-weight: 700;
-  height: 18px; justify-content: center; padding: 0 4px;
-}
+.gm-crop-cell:active  { cursor: grabbing; transform: scale(0.9); }
+.gm-crop-cell--drop-target { background: rgba(74,222,128,0.18); outline: 1.5px dashed rgba(74,222,128,0.6); }
+.gm-crop-cell-emoji   { line-height: 1; pointer-events: none; }
+.gm-crop-cell.gm-cell--growing { filter: drop-shadow(0 0 4px rgba(251,191,36,0.55)); }
+.gm-crop-cell.gm-cell--ready   { filter: drop-shadow(0 0 6px rgba(74,222,128,0.70)); }
 .gm-cap-bar { bottom: 0; height: 3px; left: 0; overflow: hidden; position: absolute; right: 0; }
 .gm-cap-bar-fill { background: var(--accent); height: 100%; opacity: 0.55; transition: width 0.3s; }
 .gm-canvas-controls { align-items: center; background: var(--surface2); border-top: 1px solid var(--border); color: var(--text-muted); display: flex; flex-shrink: 0; font-size: 11px; gap: 6px; padding: 5px 14px; }
@@ -4772,9 +4768,9 @@ body.garden-mode .plant-section ul {
 .gm-tool-btn--active { background: rgba(74,222,128,0.12); border-color: var(--accent); color: var(--accent); }
 .gm-tool-btn:disabled { cursor: default; opacity: 0.3; }
 /* Season mode */
-.gm-season-active .gm-crop-bubble:not(.gm-bubble--growing):not(.gm-bubble--ready) { opacity: 0.25; }
-.gm-season-active .gm-bubble--growing { background: rgba(251,191,36,0.55); }
-.gm-season-active .gm-bubble--ready   { background: rgba(74,222,128,0.60); }
+.gm-season-active .gm-crop-cell:not(.gm-cell--growing):not(.gm-cell--ready) { opacity: 0.2; }
+.gm-season-active .gm-cell--growing { filter: drop-shadow(0 0 5px rgba(251,191,36,0.7)); }
+.gm-season-active .gm-cell--ready   { filter: drop-shadow(0 0 7px rgba(74,222,128,0.8)); }
 /* Color swatches */
 .gm-color-swatches   { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
 .gm-color-swatch {

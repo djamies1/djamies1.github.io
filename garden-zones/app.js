@@ -530,6 +530,7 @@ let gardenStructures   = {};
 let _structureDrag     = null;
 let _mapSelectedStruct = null;
 let _resizeDrag        = null;
+let _cropDrag          = null;
 let gardenViewMode     = localStorage.getItem('pzf-garden-view') || 'crop';
 const BED_COLORS = ['#2d5a27','#1a4a6b','#5a2d2d','#5a4a1a','#2d3d5a','#4a2d5a','#1a5a4a','#5a3d1a'];
 const BED_TYPES = {
@@ -1875,12 +1876,20 @@ function addCropToBed(cropName, bedId) {
   if (ids.includes(bedId)) return;
   ids.push(bedId);
   myGarden[cropName].bedIds = ids;
+  const bed = gardenBeds[bedId];
+  if (bed) {
+    if (!bed.cropOrder) bed.cropOrder = [];
+    if (!bed.cropOrder.includes(cropName)) bed.cropOrder.push(cropName);
+    saveBeds();
+  }
   saveGarden(); renderGardenBeds();
   if (currentPanelTab === 'garden') renderGardenTab();
 }
 function removeCropFromBed(cropName, bedId) {
   if (!myGarden[cropName]) return;
   myGarden[cropName].bedIds = (myGarden[cropName].bedIds || []).filter(id => id !== bedId);
+  const bed = gardenBeds[bedId];
+  if (bed?.cropOrder) { bed.cropOrder = bed.cropOrder.filter(n => n !== cropName); saveBeds(); }
   saveGarden(); renderGardenBeds();
   if (currentPanelTab === 'garden') renderGardenTab();
 }
@@ -5978,6 +5987,20 @@ function renderCompanionLines(bedId) {
   }
 }
 
+// Returns {left, top, width, height, fontSize} for crop at index idx within a bed
+function _cropGridCell(idx, count, bedCols, bedRows) {
+  const availW = bedCols * TILE_SIZE;
+  const availH = bedRows * TILE_SIZE - 25; // exclude label (22px) + cap bar (3px)
+  const gCols  = count === 1 ? 1 : Math.min(bedCols, Math.max(1, Math.round(Math.sqrt(count * availW / Math.max(1, availH)))));
+  const gRows  = Math.ceil(count / gCols);
+  const c = idx % gCols, r = Math.floor(idx / gCols);
+  const cellW = availW / gCols, cellH = availH / gRows;
+  return {
+    left: c * cellW, top: 22 + r * cellH, width: cellW, height: cellH,
+    fontSize: Math.max(11, Math.min(38, Math.min(cellW, cellH) * 0.60))
+  };
+}
+
 function renderMinimap() {
   const mc = document.getElementById('gm-minimap');
   if (!mc) return;
@@ -6035,29 +6058,39 @@ function renderGardenMapCanvas() {
 function renderMapBedHTML(id) {
   const bed = gardenBeds[id];
   if (!bed) return '';
-  const cols = bed.cols || 4;
-  const rows = bed.rows || 2;
-  const x = bed.x || 0;
-  const y = bed.y || 0;
+  const cols  = bed.cols  || 4;
+  const rows  = bed.rows  || 2;
+  const x     = bed.x    || 0;
+  const y     = bed.y    || 0;
   const color = bed.color || '#2d5a27';
   const selected = _mapSelectedBed === id;
 
   const allCrops = getCropsInBed(id);
-  const cap = cols * rows;
-  const displayCrops = allCrops.slice(0, cap);
-  const overflow = Math.max(0, allCrops.length - cap);
-  const cropHtml = displayCrops.map(name => {
-    const s = getGardenStatus(name);
-    const cls = s?.type === 'ready' ? ' gm-bubble--ready' : s?.type === 'growing' ? ' gm-bubble--growing' : '';
-    return `<span class="gm-crop-bubble${cls}" title="${name}">${cropData[name]?.emoji || '🌱'}</span>`;
-  }).join('') + (overflow ? `<span class="gm-bubble-overflow">+${overflow}</span>` : '');
-  const pct = allCrops.length ? Math.min(100, Math.round((allCrops.length / cap) * 100)) : 0;
-  const capBar = allCrops.length ? `<div class="gm-cap-bar"><div class="gm-cap-bar-fill" style="width:${pct}%"></div></div>` : '';
+  // Merge stored order with current crops (handle adds/removes between sessions)
+  const stored = (bed.cropOrder || []).filter(n => allCrops.includes(n));
+  const extra  = allCrops.filter(n => !stored.includes(n));
+  const ordered = [...stored, ...extra];
+  const count = ordered.length;
+
+  const cropHtml = ordered.map((name, idx) => {
+    const cell = _cropGridCell(idx, count, cols, rows);
+    const s    = getGardenStatus(name);
+    const cls  = s?.type === 'ready' ? ' gm-cell--ready' : s?.type === 'growing' ? ' gm-cell--growing' : '';
+    const em   = cropData[name]?.emoji || '🌱';
+    return `<div class="gm-crop-cell${cls}" data-bed="${id}" data-crop="${name}"
+      style="left:${cell.left}px;top:${cell.top}px;width:${cell.width}px;height:${cell.height}px">
+      <span class="gm-crop-cell-emoji" style="font-size:${cell.fontSize}px" title="${name}">${em}</span>
+    </div>`;
+  }).join('');
+
+  const cap    = cols * rows;
+  const pct    = count ? Math.min(100, Math.round((count / cap) * 100)) : 0;
+  const capBar = count ? `<div class="gm-cap-bar"><div class="gm-cap-bar-fill" style="width:${pct}%"></div></div>` : '';
 
   return `<div class="gm-bed gm-bed--${bed.type || 'raised'}${selected ? ' gm-bed--selected' : ''}" data-bed="${id}"
-    style="left:${x * TILE_SIZE}px;top:${y * TILE_SIZE}px;width:${cols * TILE_SIZE}px;height:${rows * TILE_SIZE}px;--bed-color:${color}">
+    style="left:${x*TILE_SIZE}px;top:${y*TILE_SIZE}px;width:${cols*TILE_SIZE}px;height:${rows*TILE_SIZE}px;--bed-color:${color}">
     <div class="gm-bed-label">${bed.emoji} ${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
-    <div class="gm-crop-bubble-wrap">${cropHtml}</div>
+    ${cropHtml}
     ${capBar}
     <div class="gm-resize-handle" data-bed="${id}"></div>
   </div>`;
@@ -6160,6 +6193,14 @@ function renderGardenMapDetail() {
     }).join('');
     el.innerHTML = items + (showCreate ? `<button class="gm-crop-sugg gm-crop-sugg--create" data-crop="${q}">＋ Add "${q}"</button>` : '');
     el.hidden = !(items || showCreate);
+    // Position as fixed to escape overflow-y:auto clip on the right panel
+    if (!el.hidden) {
+      const inp = document.getElementById('gm-crop-search');
+      if (inp) {
+        const r = inp.getBoundingClientRect();
+        Object.assign(el.style, { position:'fixed', top:(r.bottom+4)+'px', left:r.left+'px', width:r.width+'px', zIndex:'501', maxHeight:'220px' });
+      }
+    }
 
     el.querySelectorAll('.gm-crop-sugg').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -6385,6 +6426,41 @@ function openGardenMapModal(mode) {
   nameInput.focus();
 }
 
+function _startCropDrag(bedId, cropName, e) {
+  e.stopPropagation(); e.preventDefault();
+  _cropDrag = { bedId, cropName, startX: e.clientX, startY: e.clientY, moved: false, overCrop: null };
+  document.addEventListener('pointermove', _onCropDragMove);
+  document.addEventListener('pointerup',   _onCropDragEnd, { once: true });
+  document.addEventListener('pointercancel', _onCropDragEnd, { once: true });
+}
+function _onCropDragMove(e) {
+  if (!_cropDrag) return;
+  const dx = e.clientX - _cropDrag.startX, dy = e.clientY - _cropDrag.startY;
+  if (Math.abs(dx) > 5 || Math.abs(dy) > 5) _cropDrag.moved = true;
+  if (!_cropDrag.moved) return;
+  const under = document.elementsFromPoint(e.clientX, e.clientY);
+  const tgt   = under.find(el => el.classList.contains('gm-crop-cell') && el.dataset.bed === _cropDrag.bedId && el.dataset.crop !== _cropDrag.cropName);
+  document.querySelectorAll('.gm-crop-cell--drop-target').forEach(el => el.classList.remove('gm-crop-cell--drop-target'));
+  if (tgt) tgt.classList.add('gm-crop-cell--drop-target');
+  _cropDrag.overCrop = tgt?.dataset.crop || null;
+}
+function _onCropDragEnd() {
+  document.removeEventListener('pointermove', _onCropDragMove);
+  document.querySelectorAll('.gm-crop-cell--drop-target').forEach(el => el.classList.remove('gm-crop-cell--drop-target'));
+  if (_cropDrag?.moved && _cropDrag.overCrop) {
+    const bed = gardenBeds[_cropDrag.bedId];
+    if (bed) {
+      if (!bed.cropOrder) bed.cropOrder = getCropsInBed(_cropDrag.bedId);
+      const a = _cropDrag.cropName, b = _cropDrag.overCrop;
+      const ia = bed.cropOrder.indexOf(a), ib = bed.cropOrder.indexOf(b);
+      if (ia >= 0 && ib >= 0) [bed.cropOrder[ia], bed.cropOrder[ib]] = [bed.cropOrder[ib], bed.cropOrder[ia]];
+      else if (ia < 0) bed.cropOrder.splice(ib, 0, a);
+      saveBeds(); renderGardenMapCanvas();
+    }
+  }
+  _cropDrag = null;
+}
+
 function wireGardenMap() {
   document.getElementById('gm-close-btn')?.addEventListener('click', closeGardenMap);
 
@@ -6428,6 +6504,10 @@ function wireGardenMap() {
       if (e.target.classList.contains('gm-resize-handle')) return;
       startStructDrag(el.dataset.struct, e);
     });
+  });
+
+  document.querySelectorAll('.gm-crop-cell').forEach(el => {
+    el.addEventListener('pointerdown', e => _startCropDrag(el.dataset.bed, el.dataset.crop, e));
   });
 
   // Zoom buttons
