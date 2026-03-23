@@ -5725,7 +5725,6 @@ function renderGardenBeds() {
   el.innerHTML = renderBedSummaryHTML();
   document.getElementById('beds-open-map-btn')
     ?.addEventListener('click', openGardenMap);
-  renderRotationPlanView();
 }
 
 function renderBedSummaryHTML() {
@@ -9627,65 +9626,6 @@ function renderSafeToSowBadge(name) {
 }
 
 // ════════════════════════════════════════════════
-// Phase 84 — 3-Year Rotation Planner
-// ════════════════════════════════════════════════
-
-const ROTATION_SEQUENCE = {
-  Solanaceae:  ['Legume','Brassicaceae','Root/Other','Solanaceae'],
-  Brassicaceae:['Root/Other','Solanaceae','Legume','Brassicaceae'],
-  Legume:      ['Brassicaceae','Root/Other','Solanaceae','Legume'],
-  Cucurbit:    ['Legume','Root/Other','Brassicaceae','Cucurbit'],
-  Allium:      ['Solanaceae','Brassicaceae','Legume','Allium'],
-  Apiaceae:    ['Solanaceae','Legume','Brassicaceae','Apiaceae'],
-  'Root/Other':['Solanaceae','Legume','Brassicaceae','Root/Other'],
-};
-const ROTATION_EXAMPLES = {
-  Solanaceae: 'Tomatoes, Peppers, Eggplant', Brassicaceae: 'Brassicas (Broccoli, Kale, Cabbage)',
-  Legume: 'Beans, Peas, Edamame', Cucurbit: 'Cucumbers, Squash, Zucchini',
-  Allium: 'Onions, Garlic, Leeks', Apiaceae: 'Carrots, Parsnips, Celery',
-  'Root/Other': 'Beets, Potatoes, Sweet Potatoes',
-};
-
-function getCurrentBedFamily(bedId) {
-  const crops = getCropsInBed(bedId);
-  const families = crops.map(n => CROP_FAMILIES[n]).filter(Boolean);
-  if (!families.length) return null;
-  // Return most common family
-  const counts = {};
-  families.forEach(f => counts[f] = (counts[f] || 0) + 1);
-  return Object.entries(counts).sort((a,b) => b[1]-a[1])[0][0];
-}
-
-function renderRotationPlanView() {
-  const el = document.getElementById('rotation-plan-view');
-  if (!el) return;
-  const bedIds = Object.keys(gardenBeds);
-  if (!bedIds.length) { el.innerHTML = '<p class="rp-empty">Add beds to see rotation advice.</p>'; return; }
-
-  const yr = new Date().getFullYear();
-  let html = `<div class="rp-header">
-    <span class="rp-yr rp-yr--cur">${yr}</span>
-    <span class="rp-yr">${yr+1}</span>
-    <span class="rp-yr">${yr+2}</span>
-  </div>`;
-
-  for (const id of bedIds) {
-    const bed = gardenBeds[id];
-    const fam = getCurrentBedFamily(id) || 'Unknown';
-    const seq = ROTATION_SEQUENCE[fam] || ROTATION_SEQUENCE['Root/Other'];
-    const [y0, y1, y2] = seq;
-    const ex = f => ROTATION_EXAMPLES[f] || f;
-    html += `<div class="rp-bed">
-      <div class="rp-bed-name">${bed.emoji} ${bed.name}</div>
-      <div class="rp-years">
-        <div class="rp-cell rp-cell--cur" title="${ex(y0)}"><span class="rp-fam">${y0}</span><span class="rp-ex">${ex(y0)}</span></div>
-        <div class="rp-cell" title="${ex(y1)}"><span class="rp-fam">${y1}</span><span class="rp-ex">${ex(y1)}</span></div>
-        <div class="rp-cell" title="${ex(y2)}"><span class="rp-fam">${y2}</span><span class="rp-ex">${ex(y2)}</span></div>
-      </div>
-    </div>`;
-  }
-  el.innerHTML = html;
-}
 
 // ════════════════════════════════════════════════
 // Phase 85 — Crop Share Card (Canvas image)

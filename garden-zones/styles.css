@@ -4474,20 +4474,6 @@ body.garden-mode .plant-section ul {
 #modal-share-crop-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; padding: 4px 6px; transition: color 0.15s; border-radius: 5px; }
 #modal-share-crop-btn:hover { color: var(--accent); background: rgba(74,222,128,0.08); }
 
-/* ── Phase 84: 3-Year Rotation Planner ────────── */
-#rotation-plan-view { margin-top: 8px; }
-.rp-header { display: grid; grid-template-columns: 100px 1fr 1fr 1fr; gap: 4px; margin-bottom: 4px; padding: 0 2px; }
-.rp-yr { color: var(--text-muted); font-size: 10px; font-weight: var(--weight-bold); letter-spacing: 0.07em; text-align: center; text-transform: uppercase; }
-.rp-yr--cur { color: var(--accent); }
-.rp-bed { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 6px; overflow: hidden; }
-.rp-bed-name { background: var(--surface2); border-bottom: 1px solid var(--border); font-size: 11px; font-weight: var(--weight-semibold); padding: 6px 10px; }
-.rp-years { display: grid; grid-template-columns: 1fr 1fr 1fr; }
-.rp-cell { border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: 8px 10px; }
-.rp-cell:last-child { border-right: none; }
-.rp-cell--cur { background: rgba(74,222,128,0.06); }
-.rp-fam { color: var(--text); font-size: 11px; font-weight: var(--weight-semibold); }
-.rp-ex { color: var(--text-muted); font-size: 10px; line-height: 1.4; }
-.rp-empty { color: var(--text-muted); font-size: 12px; padding: 8px 0; }
 
 /* ── Phase 87: Garden Map overlay ───────────── */
 #garden-map-overlay { background: var(--bg); display: flex; flex-direction: column; inset: 0; position: fixed; z-index: 300; }
