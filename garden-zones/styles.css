@@ -4730,6 +4730,11 @@ body.garden-mode .plant-section ul {
   background-color: transparent !important;
 }
 .gm-struct-type-label { color: var(--text-muted); font-size: 11px; }
+.gm-struct-body-emoji {
+  align-items: center; bottom: 0; display: flex; font-size: clamp(18px, 45%, 52px);
+  justify-content: center; left: 0; opacity: 0.55; pointer-events: none;
+  position: absolute; right: 0; top: 22px;
+}
 .gm-header-actions { display: flex; gap: 6px; align-items: center; }
 
 /* ── Phase 96–99: Professional map features ── */

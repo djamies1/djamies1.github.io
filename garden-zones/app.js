@@ -6126,8 +6126,8 @@ function renderMapBedHTML(id) {
     const em   = cropData[name]?.emoji || '🌱';
     return `<div class="gm-crop-cell${cls}" data-bed="${id}" data-crop="${name}"
       style="left:${cell.left}px;top:${cell.top}px;width:${cell.width}px;height:${cell.height}px;flex-direction:column">
-      <span class="gm-crop-cell-emoji" style="font-size:${cell.fontSize}px" title="${name}">${em}</span>
       <span class="gm-crop-name">${name}</span>
+      <span class="gm-crop-cell-emoji" style="font-size:${cell.fontSize}px" title="${name}">${em}</span>
     </div>`;
   }).join('');
 
@@ -6151,6 +6151,7 @@ function renderMapStructHTML(id) {
   return `<div class="gm-struct ${t.cssClass}${selected ? ' gm-struct--selected' : ''}" data-struct="${id}"
     style="left:${s.x*TILE_SIZE}px;top:${s.y*TILE_SIZE}px;width:${s.cols*TILE_SIZE}px;height:${s.rows*TILE_SIZE}px;border-color:${s.color}">
     <div class="gm-bed-label">${t.emoji} ${s.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
+    <div class="gm-struct-body-emoji">${t.emoji}</div>
     <div class="gm-resize-handle" data-struct="${id}"></div>
   </div>`;
 }
@@ -6283,7 +6284,7 @@ function renderGardenMapDetail() {
     <div class="gm-crop-suggestions" id="gm-crop-suggestions" hidden></div>
   </div>
   <div class="gm-crop-chips" id="gm-crop-chips-list" style="padding:0 14px 6px"></div>
-  <details class="gm-bed-settings">
+  <details class="gm-bed-settings" open>
     <summary>⚙ Bed settings</summary>
     <div class="gm-bed-settings-body">
       <div class="gm-color-swatches" id="gm-color-swatches">${swatchHtml}</div>
@@ -6296,7 +6297,7 @@ function renderGardenMapDetail() {
         <button class="bed-resize-btn" data-dir="rows" data-delta="1">＋</button>
         <span class="bed-resize-label">rows</span>
       </div>
-      <details class="gm-micro" id="gm-micro-details">
+      <details class="gm-micro" id="gm-micro-details" open>
         <summary class="gm-micro-summary">☀️ Microclimate</summary>
         <div class="gm-micro-body">
           <div class="gm-micro-row">
