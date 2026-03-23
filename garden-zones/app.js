@@ -2440,7 +2440,7 @@ function renderGardenTab() {
     const bedsEl = document.getElementById('garden-beds');
     if (bedsEl) bedsEl.hidden = true;
     wireGardenViewToggle();
-    renderGardenDashboard(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
+    renderSetupCard(); renderGardenDashboard(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
     renderCompanionMatrix(); renderGrowingTimeline(); renderGardenGantt(); renderGardenFooter();
     renderGardenHistory(); renderGrowNext(); renderPlanSection(); renderHarvestAnalytics();
     renderHarvestValue();
@@ -2452,7 +2452,22 @@ function renderGardenTab() {
   const bedsEl = document.getElementById('garden-beds');
   if (bedsEl) bedsEl.hidden = false;
 
-  if (!names.length) { list.innerHTML = toggle; if (emptyMsg) emptyMsg.hidden = false; wireGardenViewToggle(); renderGardenBeds(); renderCompanionMatrix(); renderGardenHistory(); renderPlanSection(); renderGardenHealthScore(); return; }
+  if (!names.length) {
+    list.innerHTML = toggle;
+    if (emptyMsg) {
+      emptyMsg.hidden = false;
+      emptyMsg.innerHTML = `<div class="empty-hero">
+        <div class="empty-hero-emoji">🌱</div>
+        <div class="empty-hero-title">Your garden is empty</div>
+        <p class="empty-hero-body">Head to <strong>This Month</strong> to browse crops and add them to your garden.</p>
+        <button class="empty-hero-cta" id="empty-goto-calendar">Browse Crops →</button>
+      </div>`;
+      document.getElementById('empty-goto-calendar')?.addEventListener('click', () =>
+        document.querySelector('.ptab[data-tab="calendar"]')?.click()
+      );
+    }
+    wireGardenViewToggle(); renderSetupCard(); renderGardenBeds(); renderCompanionMatrix(); renderGardenHistory(); renderPlanSection(); renderGardenHealthScore(); return;
+  }
   if (emptyMsg) emptyMsg.hidden = true;
 
   const groups = { ready: [], growing: [], saved: [] };
@@ -2509,6 +2524,7 @@ function renderGardenTab() {
   }
   list.innerHTML = toggle + html;
   wireGardenViewToggle();
+  renderSetupCard();
   renderGardenDashboard();
   renderGardenTasks();
   renderGardenChecklist();
@@ -5940,6 +5956,7 @@ function closeGardenMap() {
   _undoStack = []; _redoStack = [];
   _drawDrag = null; _pendingDrawPos = null; if (_drawMode) _toggleDrawMode(false);
   const _sugg = document.getElementById('gm-crop-suggestions'); if (_sugg) _sugg.hidden = true;
+  const _sp = document.getElementById('gm-shortcuts-panel'); if (_sp) _sp.hidden = true;
   document.removeEventListener('pointermove', onBedDragMove);
   document.removeEventListener('pointermove', onStructDragMove);
   document.removeEventListener('pointermove', onResizeDragMove);
@@ -6640,6 +6657,27 @@ function wireGardenMap() {
   if (_drawBtn && !_drawBtn._attached) { _drawBtn._attached = true; _drawBtn.addEventListener('click', _toggleDrawMode); }
   const _printBtn = document.getElementById('gm-print-btn');
   if (_printBtn && !_printBtn._attached) { _printBtn._attached = true; _printBtn.addEventListener('click', () => window.print()); }
+  // Help / shortcuts panel toggle
+  const _helpBtn = document.getElementById('gm-help-btn');
+  if (_helpBtn && !_helpBtn._attached) {
+    _helpBtn._attached = true;
+    _helpBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const p = document.getElementById('gm-shortcuts-panel');
+      if (p) p.hidden = !p.hidden;
+    });
+  }
+  const _ov = document.getElementById('garden-map-overlay');
+  if (_ov && !_ov._shortcutsAttached) {
+    _ov._shortcutsAttached = true;
+    _ov.addEventListener('click', e => {
+      if (!e.target.closest('#gm-help-btn,#gm-shortcuts-panel')) {
+        const p = document.getElementById('gm-shortcuts-panel');
+        if (p) p.hidden = true;
+      }
+    });
+  }
+
   const _csc = document.getElementById('gm-canvas-scroll');
   if (_csc && !_csc._drawAttached) {
     _csc._drawAttached = true;
@@ -8983,6 +9021,54 @@ function computeGardenHealthScore() {
 
   const worstTip = breakdown.find(b => b.tip)?.tip;
   return { score: Math.min(100, score), breakdown, tip: worstTip };
+}
+
+// ════════════════════════════════════════════════
+// Phase 102 — Setup Progress Card
+// ════════════════════════════════════════════════
+function renderSetupCard() {
+  const el = document.getElementById('setup-card');
+  if (!el) return;
+  if (localStorage.getItem('pzf-setup-done')) { el.innerHTML = ''; return; }
+
+  const steps = [
+    { label: 'Set your growing zone',  done: !!(selectedZone) },
+    { label: 'Save your first crop',   done: Object.keys(myGarden).length > 0 },
+    { label: 'Log a planting date',    done: Object.values(myGarden).some(e => e.planted) },
+    { label: 'Create a garden bed',    done: Object.keys(gardenBeds).length > 0 },
+    { label: 'Log your first harvest', done: Object.values(myGarden).some(e => (e.harvestLog||[]).length > 0) },
+  ];
+  const done = steps.filter(s => s.done).length;
+  const pct  = Math.round(done / steps.length * 100);
+
+  if (done === steps.length) {
+    localStorage.setItem('pzf-setup-done', '1');
+    el.innerHTML = '<div class="setup-card setup-card--complete">🎉 You\'re all set up — your garden is ready to grow!</div>';
+    setTimeout(() => { el.innerHTML = ''; }, 3500);
+    return;
+  }
+
+  const stepsHtml = steps.map(s =>
+    `<div class="sc-step${s.done ? ' sc-step--done' : ''}">
+      <span class="sc-check">${s.done ? '✓' : ''}</span>
+      <span class="sc-label">${s.label}</span>
+    </div>`
+  ).join('');
+
+  el.innerHTML = `<div class="setup-card">
+    <div class="sc-head">
+      <span class="sc-title">🌱 Getting started</span>
+      <span class="sc-pct">${done}/${steps.length} complete</span>
+      <button class="sc-dismiss" id="sc-dismiss-btn" aria-label="Dismiss">×</button>
+    </div>
+    <div class="sc-bar-wrap"><div class="sc-bar-fill" style="width:${pct}%"></div></div>
+    <div class="sc-steps">${stepsHtml}</div>
+  </div>`;
+
+  document.getElementById('sc-dismiss-btn')?.addEventListener('click', () => {
+    localStorage.setItem('pzf-setup-done', '1');
+    el.innerHTML = '';
+  });
 }
 
 function renderGardenHealthScore() {

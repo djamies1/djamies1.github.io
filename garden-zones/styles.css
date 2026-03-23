@@ -690,12 +690,14 @@ button, [role="button"], input[type="range"], select, a {
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: border-color 0.15s, background 0.15s;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s, box-shadow 0.15s;
 }
 
 .crop-card:hover, .crop-card:focus-visible {
   border-left-color: var(--accent);
   background: #2a3749;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 .crop-card:focus-visible {
@@ -1421,9 +1423,10 @@ button, [role="button"], input[type="range"], select, a {
    Panel tabs
 ────────────────────────────────────────────── */
 #panel-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
-.ptab { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--text-muted); cursor: pointer; font-size: 11px; font-weight: 600; padding: 7px 10px; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+.ptab { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-bottom: 2px solid transparent; border-radius: 6px 6px 0 0; color: var(--text-muted); cursor: pointer; font-size: 11px; font-weight: 600; letter-spacing: 0.02em; padding: 8px 10px; transition: color 0.15s, border-color 0.15s, background 0.15s; }
 .ptab:hover { color: var(--text); border-color: var(--text-muted); }
-.ptab.active { background: rgba(74,222,128,0.12); border-color: var(--accent); color: var(--accent); }
+.ptab.active { background: rgba(74,222,128,0.12); border-color: rgba(74,222,128,0.3); border-bottom-color: var(--accent); color: var(--accent); }
+@media (max-width: 767px) { .ptab { font-size: 12px; padding: 10px 6px; } }
 #garden-count-badge { font-size: 10px; font-weight: 700; background: var(--accent); color: #0a0f1a; border-radius: 99px; padding: 0 5px; margin-left: 3px; }
 
 /* ──────────────────────────────────────────────
@@ -5079,5 +5082,105 @@ body.garden-mode .plant-section ul {
   #gm-minimap, .gm-map-compass, .gm-map-scale-bar, #gm-weather-badge { display: none !important; }
   .gm-bed, .gm-struct { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .gm-bed-label { background: rgba(255,255,255,0.9) !important; color: #000 !important; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Phase 102 — Progressive Feature Discovery
+════════════════════════════════════════════════════════════════ */
+
+/* Setup Progress Card */
+.setup-card {
+  background: linear-gradient(135deg, rgba(74,222,128,0.06), rgba(10,15,26,0));
+  border: 1px solid rgba(74,222,128,0.18); border-radius: 12px;
+  margin-bottom: 14px; padding: 14px 16px;
+}
+.setup-card--complete {
+  color: var(--accent); font-size: 14px; font-weight: 600;
+  padding: 16px; text-align: center;
+}
+.sc-head { align-items: center; display: flex; gap: 8px; margin-bottom: 8px; }
+.sc-title { color: var(--text); flex: 1; font-size: 13px; font-weight: 600; }
+.sc-pct   { color: var(--text-muted); font-size: 11px; }
+.sc-dismiss {
+  background: none; border: none; color: var(--text-muted); cursor: pointer;
+  font-size: 18px; line-height: 1; padding: 0 2px; transition: color 0.12s;
+}
+.sc-dismiss:hover { color: var(--text); }
+.sc-bar-wrap {
+  background: var(--surface2); border-radius: 99px; height: 4px;
+  margin-bottom: 10px; overflow: hidden;
+}
+.sc-bar-fill { background: var(--accent); border-radius: 99px; height: 100%; transition: width 0.4s ease; }
+.sc-steps    { display: flex; flex-direction: column; gap: 5px; }
+.sc-step     { align-items: center; color: var(--text-muted); display: flex; font-size: 12px; gap: 8px; }
+.sc-step--done { color: var(--text); }
+.sc-check {
+  align-items: center; border: 1.5px solid var(--border); border-radius: 50%;
+  color: transparent; display: flex; flex-shrink: 0; font-size: 9px; font-weight: 700;
+  height: 16px; justify-content: center; width: 16px;
+}
+.sc-step--done .sc-check { background: var(--accent); border-color: var(--accent); color: #0a0f1a; }
+
+/* Empty Garden Hero */
+#garden-empty-msg { padding: 0; }
+.empty-hero {
+  align-items: center; border: 1px dashed var(--border); border-radius: 12px;
+  display: flex; flex-direction: column; gap: 8px; padding: 32px 20px; text-align: center;
+}
+.empty-hero-emoji  { font-size: 40px; opacity: 0.6; }
+.empty-hero-title  { color: var(--text); font-size: 16px; font-weight: 600; }
+.empty-hero-body   { color: var(--text-muted); font-size: 13px; line-height: 1.5; margin: 0; max-width: 240px; }
+.empty-hero-cta {
+  background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); border-radius: 20px;
+  color: var(--accent); cursor: pointer; font-size: 13px; font-weight: 600;
+  margin-top: 4px; padding: 8px 20px; transition: background 0.15s;
+}
+.empty-hero-cta:hover { background: rgba(74,222,128,0.2); }
+
+/* Map Shortcuts Panel */
+.gm-header { position: relative; }
+.gm-shortcuts-panel {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  box-shadow: var(--shadow-lg); min-width: 210px; padding: 12px 14px;
+  position: absolute; right: 8px; top: calc(100% + 6px); z-index: 400;
+}
+.gsp-title {
+  color: var(--text-muted); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; margin-bottom: 8px; text-transform: uppercase;
+}
+.gsp-row   { align-items: center; color: var(--text); display: flex; font-size: 12px; gap: 10px; padding: 3px 0; }
+.gsp-row kbd {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 4px;
+  color: var(--text-muted); font-family: inherit; font-size: 10px;
+  min-width: 54px; padding: 2px 6px; text-align: center;
+}
+.gsp-tip { border-top: 1px solid var(--border); color: var(--text-muted); font-size: 11px; margin-top: 6px; padding-top: 6px; }
+
+/* ══════════════════════════════════════════════════════════════
+   Phase 103 — Design System Polish
+════════════════════════════════════════════════════════════════ */
+
+/* Card depth — key info cards get subtle shadow */
+.today-hero, .hv-card {
+  box-shadow: var(--shadow-md);
+}
+.grow-next-card {
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.grow-next-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+
+/* Consistent section title utility */
+.app-section-title {
+  color: var(--text-muted); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.07em; margin-bottom: 8px; text-transform: uppercase;
+}
+
+/* Garden-item touch target improvement on mobile */
+@media (max-width: 767px) {
+  .garden-item { padding: 10px 12px; }
+  .garden-item-emoji { font-size: 20px; }
+  .garden-harvest-btn, .garden-water-btn { font-size: 18px; padding: 4px; }
+  #panel-tabs { margin-bottom: 10px; }
 }
 

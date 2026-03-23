@@ -248,6 +248,7 @@
           <button class="garden-subtab" data-subtab="seeds">🌰 Seeds</button>
         </div>
         <div id="subtab-main">
+          <div id="setup-card"></div>
           <div id="garden-dashboard"></div>
           <div id="achievement-banner"></div>
           <div id="garden-tasks"></div>
@@ -269,7 +270,7 @@
           <div id="garden-health-score"></div>
           <div id="smart-shopping"></div>
           <div id="plan-section"></div>
-          <p id="garden-empty-msg" class="garden-empty">No crops saved yet.<br>Tap any crop to add it to your garden.</p>
+          <div id="garden-empty-msg" class="garden-empty" hidden></div>
         </div>
         <div id="subtab-seeds" hidden></div>
         <!-- Phase 55: FAB -->
@@ -693,6 +694,16 @@
         <button class="gm-tool-btn gm-tool-btn--icon" id="gm-print-btn" title="Print garden map">🖨</button>
         <button class="gm-add-btn" id="gm-add-bed-btn">＋ Bed</button>
         <button class="gm-add-btn" id="gm-add-struct-btn">＋ Structure</button>
+        <button class="gm-tool-btn gm-tool-btn--icon" id="gm-help-btn" title="Keyboard shortcuts &amp; tips">?</button>
+      </div>
+      <div id="gm-shortcuts-panel" class="gm-shortcuts-panel" hidden>
+        <div class="gsp-title">⌨ Shortcuts &amp; Tips</div>
+        <div class="gsp-row"><kbd>Ctrl+Z</kbd><span>Undo last change</span></div>
+        <div class="gsp-row"><kbd>Ctrl+Y</kbd><span>Redo</span></div>
+        <div class="gsp-row"><kbd>Scroll</kbd><span>Zoom canvas</span></div>
+        <div class="gsp-tip">✏ <strong>Draw</strong> → drag on canvas to place a bed</div>
+        <div class="gsp-tip">🗺 Click minimap to scroll to that area</div>
+        <div class="gsp-tip">Click any bed to edit crops &amp; settings</div>
       </div>
     </div>
     <div class="gm-map-body">
