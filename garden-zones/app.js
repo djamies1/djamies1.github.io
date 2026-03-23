@@ -935,9 +935,6 @@ function renderPanel() {
   const csInput = document.getElementById('calendar-search');
   if (csInput && csInput.value) { csInput.value = ''; filterCalendarSearch(''); }
 
-  // Year calendar
-  renderYearCalendar();
-
   // Tip
   document.getElementById('garden-tip').innerHTML =
     `<span class="tip-label">💡 Did you know?</span>${currentTip}`;
@@ -1147,7 +1144,6 @@ function initUI() {
   initCropModal();
   initZoneLegend();
   initBrowse();
-  initYearCalendar();
   initGarden();
   initBeds();
   initJournal();
@@ -1594,79 +1590,6 @@ function restoreFromURL() {
         onZoneClick(layer.feature, layer);
       }
     });
-  }
-}
-
-// ── Year calendar ──────────────────────────────
-function initYearCalendar() {
-  const container = document.getElementById('year-cal-cells');
-  if (!container) return;
-
-  container.addEventListener('click', e => {
-    const cell = e.target.closest('.ycal-cell');
-    if (!cell) return;
-    const m = parseInt(cell.dataset.month, 10);
-    if (!m) return;
-    currentMonth = m;
-    const slider = document.getElementById('month-slider');
-    slider.value = m;
-    updateMonthLabels();
-    updateSeasonBg();
-    renderPanel();
-    updateURL();
-  });
-
-  container.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      const cell = e.target.closest('.ycal-cell');
-      if (cell) { e.preventDefault(); cell.click(); }
-    }
-  });
-}
-
-function renderYearCalendar() {
-  const wrapper   = document.getElementById('year-calendar');
-  const container = document.getElementById('year-cal-cells');
-  if (!wrapper || !container) return;
-  if (!selectedZone) { wrapper.hidden = true; return; }
-
-  wrapper.hidden = false;
-  container.innerHTML = '';
-
-  const climate = getZoneClimateInfo(selectedZone);
-  const lastFrostM  = climate?.lastM  || null;
-  const firstFrostM = climate?.firstM || null;
-
-  for (let m = 1; m <= 12; m++) {
-    const data  = getPlantingData(selectedZone, m);
-    const actKeys = ['startIndoors','directSow','transplant','harvest'];
-    const present = actKeys.filter(k => data[k]?.length > 0);
-    const count = present.length;
-    const pct   = (count / 4 * 100).toFixed(0);
-
-    // Dominant bar colour class
-    const barClass = present.includes('harvest')    ? 'ycal-bar-harvest'    :
-                     present.includes('transplant') ? 'ycal-bar-transplant' :
-                     present.includes('directSow')  ? 'ycal-bar-sow'        :
-                     present.length > 0             ? 'ycal-bar-start'      : '';
-
-    const isLastFrost  = m === lastFrostM;
-    const isFirstFrost = m === firstFrostM;
-    const frostMark = isLastFrost  ? '<span class="ycal-frost-mark" title="Last frost">❄</span>'  :
-                      isFirstFrost ? '<span class="ycal-frost-mark" title="First frost">🍂</span>' : '';
-
-    const cell = document.createElement('div');
-    cell.className = `ycal-cell${barClass ? ' ' + barClass : ''}${m === currentMonth ? ' ycal-active' : ''}`;
-    cell.dataset.month = m;
-    cell.title = MONTH_NAMES[m];
-    cell.setAttribute('role', 'button');
-    cell.setAttribute('tabindex', '0');
-    cell.setAttribute('aria-label', `${MONTH_NAMES[m]}: ${count} activities`);
-    cell.innerHTML = `
-      <div class="ycal-bar-wrap"><div class="ycal-bar-fill" style="height:${pct}%"></div></div>
-      <span class="ycal-label">${MONTH_NAMES[m][0]}</span>
-      ${frostMark}`;
-    container.appendChild(cell);
   }
 }
 

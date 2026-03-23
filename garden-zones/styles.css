@@ -1367,68 +1367,6 @@ button, [role="button"], input[type="range"], select, a {
 /* ──────────────────────────────────────────────
    Year calendar strip
 ────────────────────────────────────────────── */
-#year-calendar {
-  margin-bottom: 14px;
-}
-
-.ycal-title {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  margin-bottom: 5px;
-}
-
-#year-cal-cells {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 2px;
-}
-
-.ycal-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  padding: 4px 0 3px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.ycal-cell:hover { background: var(--surface2); }
-
-.ycal-cell.ycal-active { background: rgba(74,222,128,0.1); }
-
-.ycal-bar-wrap {
-  width: 8px;
-  height: 24px;
-  background: var(--surface2);
-  border-radius: 2px;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-}
-
-.ycal-bar-fill {
-  width: 100%;
-  background: var(--accent-dark);
-  border-radius: 2px;
-  transition: height 0.3s ease;
-}
-
-.ycal-cell.ycal-active .ycal-bar-fill { background: var(--accent); }
-
-.ycal-label {
-  font-size: 8px;
-  color: var(--text-muted);
-  line-height: 1;
-}
-
-.ycal-cell.ycal-active .ycal-label {
-  color: var(--accent);
-  font-weight: 700;
-}
 
 @media (max-width: 640px) {
   #crop-modal {
@@ -2184,23 +2122,6 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
 .crop-quick-add:hover { color: var(--accent); transform: scale(1.2); }
 .crop-quick-add.in-garden { color: var(--accent); }
 
-/* ──────────────────────────────────────────────
-   Phase 5 — Year calendar activity colours + frost markers
-────────────────────────────────────────────── */
-.ycal-cell { position: relative; }
-.ycal-bar-harvest    .ycal-bar-fill { background: #f87171 !important; }
-.ycal-bar-transplant .ycal-bar-fill { background: #fbbf24 !important; }
-.ycal-bar-sow        .ycal-bar-fill { background: var(--accent) !important; }
-.ycal-bar-start      .ycal-bar-fill { background: #60a5fa !important; }
-.ycal-frost-mark {
-  display: block;
-  font-size: 7px;
-  line-height: 1;
-  position: absolute;
-  bottom: -1px;
-  left: 50%;
-  transform: translateX(-50%);
-}
 
 /* ──────────────────────────────────────────────
    Phase 5 — Zone climate card
