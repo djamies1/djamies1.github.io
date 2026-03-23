@@ -4961,13 +4961,13 @@ body.garden-mode .plant-section ul {
 }
 .gm-crop-cell.gm-cell--ready { animation: gm-ready-pulse 2.2s ease-in-out infinite; }
 
-/* T2: Crop name label — visible only at zoom ≥ 1.5 */
+/* T2: Crop name label — always visible except at very low zoom */
 .gm-crop-name {
-  color: rgba(255,255,255,0.72); display: none; font-size: 8px; font-weight: 600;
+  color: rgba(255,255,255,0.72); display: block; font-size: 8px; font-weight: 600;
   line-height: 1.1; max-width: 100%; overflow: hidden; pointer-events: none;
   text-align: center; text-overflow: ellipsis; white-space: nowrap;
 }
-.gm-canvas--zoom-high .gm-crop-name { display: block; }
+.gm-canvas--zoom-low .gm-crop-name { display: none; }
 
 /* T2: Garden boundary */
 .gm-boundary {

@@ -5916,6 +5916,7 @@ function closeGardenMap() {
   _drag = null; _structureDrag = null; _resizeDrag = null;
   _undoStack = []; _redoStack = [];
   _drawDrag = null; _pendingDrawPos = null; if (_drawMode) _toggleDrawMode(false);
+  const _sugg = document.getElementById('gm-crop-suggestions'); if (_sugg) _sugg.hidden = true;
   document.removeEventListener('pointermove', onBedDragMove);
   document.removeEventListener('pointermove', onStructDragMove);
   document.removeEventListener('pointermove', onResizeDragMove);
@@ -6224,8 +6225,13 @@ function renderGardenMapDetail() {
     if (bed.type === 'container')
       candidates.sort((a,b) => (cropData[b]?.container_ok?1:0) - (cropData[a]?.container_ok?1:0));
     candidates = candidates.slice(0, 10);
-    const el = document.getElementById('gm-crop-suggestions');
-    if (!el) return;
+    // Portal to body so overflow-y:auto on the panel can't clip it
+    let el = document.getElementById('gm-crop-suggestions');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'gm-crop-suggestions'; el.className = 'gm-crop-suggestions';
+      el.hidden = true; document.body.appendChild(el);
+    }
     const showCreate = q && !cropData[q] && !myGarden[q];
     const items = candidates.map(n => {
       const inG = inGarden.has(n);
@@ -6247,7 +6253,7 @@ function renderGardenMapDetail() {
       const inp = document.getElementById('gm-crop-search');
       if (inp) {
         const r = inp.getBoundingClientRect();
-        Object.assign(el.style, { position:'fixed', top:(r.bottom+4)+'px', left:r.left+'px', width:r.width+'px', zIndex:'501', maxHeight:'220px' });
+        Object.assign(el.style, { position:'fixed', top:(r.bottom+4)+'px', left:r.left+'px', right:'auto', width:r.width+'px', zIndex:'9999', maxHeight:'220px' });
       }
     }
 
@@ -6281,7 +6287,6 @@ function renderGardenMapDetail() {
   ${bed.type === 'container' ? '<div class="gm-container-hint">🪣 Container-friendly crops sorted first</div>' : ''}
   <div class="gm-crop-add" style="padding:0 14px 6px">
     <input class="gm-crop-search" id="gm-crop-search" type="text" placeholder="＋ Add crop…" autocomplete="off">
-    <div class="gm-crop-suggestions" id="gm-crop-suggestions" hidden></div>
   </div>
   <div class="gm-crop-chips" id="gm-crop-chips-list" style="padding:0 14px 6px"></div>
   <details class="gm-bed-settings" open>
