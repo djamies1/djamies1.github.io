@@ -531,6 +531,9 @@ let _structureDrag     = null;
 let _mapSelectedStruct = null;
 let _resizeDrag        = null;
 let _cropDrag          = null;
+let _drawMode          = false;
+let _drawDrag          = null;
+let _pendingDrawPos    = null;
 let gardenViewMode     = localStorage.getItem('pzf-garden-view') || 'crop';
 const BED_COLORS = ['#2d5a27','#1a4a6b','#5a2d2d','#5a4a1a','#2d3d5a','#4a2d5a','#1a5a4a','#5a3d1a'];
 const BED_TYPES = {
@@ -5656,12 +5659,15 @@ function addBed(name, type) {
   const t = BED_TYPES[type] || BED_TYPES['raised'];
   const id = String(Date.now());
   const idx = Object.keys(gardenBeds).length;
+  const pos = _pendingDrawPos; _pendingDrawPos = null;
   gardenBeds[id] = {
     name: name.trim() || t.label, emoji: t.emoji, type,
-    cols: 4, rows: 2, color: BED_COLORS[idx % BED_COLORS.length],
-    cells: {}, x: undefined, y: undefined
+    cols: pos ? Math.max(1, pos.cols) : 4,
+    rows: pos ? Math.max(1, pos.rows) : 2,
+    color: BED_COLORS[idx % BED_COLORS.length],
+    cells: {}, x: pos ? pos.x : undefined, y: pos ? pos.y : undefined
   };
-  autoPlaceBeds(); saveBeds(); activeBedId = id;
+  if (!pos) autoPlaceBeds(); saveBeds(); activeBedId = id;
   closeGardenMapModal();
   if (document.getElementById('garden-map-overlay')?.hidden === false) {
     renderGardenMapCanvas(); selectMapBed(id);
@@ -5909,6 +5915,7 @@ function closeGardenMap() {
   _mapSelectedBed = null; _mapSelectedStruct = null;
   _drag = null; _structureDrag = null; _resizeDrag = null;
   _undoStack = []; _redoStack = [];
+  _drawDrag = null; _pendingDrawPos = null; if (_drawMode) _toggleDrawMode(false);
   document.removeEventListener('pointermove', onBedDragMove);
   document.removeEventListener('pointermove', onStructDragMove);
   document.removeEventListener('pointermove', onResizeDragMove);
@@ -5936,6 +5943,29 @@ function _updateUndoBtns() {
   if (u) u.disabled = !_undoStack.length;
   if (r) r.disabled = !_redoStack.length;
 }
+function _toggleDrawMode(force) {
+  _drawMode = force !== undefined ? force : !_drawMode;
+  const sc  = document.getElementById('gm-canvas-scroll');
+  const btn = document.getElementById('gm-draw-btn');
+  if (sc)  sc.classList.toggle('gm-draw-mode', _drawMode);
+  if (btn) btn.classList.toggle('gm-tool-btn--active', _drawMode);
+  if (!_drawMode) { _drawDrag = null; _removeDrawPreview(); }
+}
+function _updateDrawPreview() {
+  if (!_drawDrag) return;
+  const canvas = document.getElementById('gm-canvas'); if (!canvas) return;
+  let prev = document.getElementById('gm-draw-preview');
+  if (!prev) {
+    prev = document.createElement('div');
+    prev.id = 'gm-draw-preview'; prev.className = 'gm-draw-preview';
+    canvas.appendChild(prev);
+  }
+  const x = _drawDrag.sx * TILE_SIZE, y = _drawDrag.sy * TILE_SIZE;
+  const w = (_drawDrag.ex - _drawDrag.sx + 1) * TILE_SIZE;
+  const h = (_drawDrag.ey - _drawDrag.sy + 1) * TILE_SIZE;
+  Object.assign(prev.style, { left:x+'px', top:y+'px', width:w+'px', height:h+'px' });
+}
+function _removeDrawPreview() { document.getElementById('gm-draw-preview')?.remove(); }
 
 function applyMapZoom() {
   const w = document.getElementById('gm-canvas-zoom');
@@ -5954,6 +5984,11 @@ function applyMapZoom() {
     const px = tiles * TILE_SIZE * _mapZoom;
     line.style.width = px + 'px';
     lbl.textContent = metres >= 1 ? metres + 'm' : (metres * 100) + 'cm';
+  }
+  const _zc = document.getElementById('gm-canvas');
+  if (_zc) {
+    _zc.classList.toggle('gm-canvas--zoom-low',  _mapZoom < 0.75);
+    _zc.classList.toggle('gm-canvas--zoom-high', _mapZoom >= 1.5);
   }
 }
 
@@ -6034,7 +6069,7 @@ function renderGardenMapCanvas() {
   const canvas = document.getElementById('gm-canvas'); if (!canvas) return;
   canvas.style.width  = gardenCanvas.cols * TILE_SIZE + 'px';
   canvas.style.height = gardenCanvas.rows * TILE_SIZE + 'px';
-  let html = '';
+  let html = '<div id="gm-boundary" class="gm-boundary"></div>';
   for (const id of Object.keys(gardenStructures)) html += renderMapStructHTML(id);
   for (const id of Object.keys(gardenBeds))       html += renderMapBedHTML(id);
   canvas.innerHTML = html;
@@ -6051,6 +6086,18 @@ function renderGardenMapCanvas() {
   renderMinimap();
   _updateUndoBtns();
   if (_mapSeasonMode) canvas.classList.add('gm-season-active');
+  // Weather badge (T3) — lives in canvas-scroll, not canvas, so survives innerHTML reset
+  const _wbSc = document.getElementById('gm-canvas-scroll');
+  let _wb = document.getElementById('gm-weather-badge');
+  if (!_wb && _wbSc) { _wb = document.createElement('div'); _wb.id = 'gm-weather-badge'; _wbSc.appendChild(_wb); }
+  if (_wb) {
+    if (weatherData?.current) {
+      const { temperature_2m: _wt, weather_code: _wcode } = weatherData.current;
+      const _wtemp = useMetric ? `${Math.round(_wt)}°C` : `${Math.round(_wt * 9/5 + 32)}°F`;
+      _wb.innerHTML = `${getWmoIcon(_wcode)} <span class="gm-wx-temp">${_wtemp}</span>`;
+      _wb.hidden = false;
+    } else { _wb.hidden = true; }
+  }
   renderGardenMapDetail();
   wireGardenMap();
 }
@@ -6078,8 +6125,9 @@ function renderMapBedHTML(id) {
     const cls  = s?.type === 'ready' ? ' gm-cell--ready' : s?.type === 'growing' ? ' gm-cell--growing' : '';
     const em   = cropData[name]?.emoji || '🌱';
     return `<div class="gm-crop-cell${cls}" data-bed="${id}" data-crop="${name}"
-      style="left:${cell.left}px;top:${cell.top}px;width:${cell.width}px;height:${cell.height}px">
+      style="left:${cell.left}px;top:${cell.top}px;width:${cell.width}px;height:${cell.height}px;flex-direction:column">
       <span class="gm-crop-cell-emoji" style="font-size:${cell.fontSize}px" title="${name}">${em}</span>
+      <span class="gm-crop-name">${name}</span>
     </div>`;
   }).join('');
 
@@ -6558,6 +6606,44 @@ function wireGardenMap() {
     }
   });
   document.getElementById('gm-canvas-scroll')?.addEventListener('scroll', renderMinimap, { passive: true });
+  // Draw-to-add & print (guarded against re-attachment)
+  const _drawBtn = document.getElementById('gm-draw-btn');
+  if (_drawBtn && !_drawBtn._attached) { _drawBtn._attached = true; _drawBtn.addEventListener('click', _toggleDrawMode); }
+  const _printBtn = document.getElementById('gm-print-btn');
+  if (_printBtn && !_printBtn._attached) { _printBtn._attached = true; _printBtn.addEventListener('click', () => window.print()); }
+  const _csc = document.getElementById('gm-canvas-scroll');
+  if (_csc && !_csc._drawAttached) {
+    _csc._drawAttached = true;
+    _csc.addEventListener('pointerdown', e => {
+      if (!_drawMode) return;
+      if (e.target.closest('.gm-bed,.gm-struct,.gm-resize-handle')) return;
+      e.preventDefault(); e.stopPropagation();
+      const cz = document.getElementById('gm-canvas-zoom'); if (!cz) return;
+      const rect = cz.getBoundingClientRect();
+      const gx = Math.max(0, Math.floor((e.clientX - rect.left) / (TILE_SIZE * _mapZoom)));
+      const gy = Math.max(0, Math.floor((e.clientY - rect.top)  / (TILE_SIZE * _mapZoom)));
+      _drawDrag = { sx: gx, sy: gy, ex: gx, ey: gy };
+      _updateDrawPreview();
+      _csc.setPointerCapture(e.pointerId);
+    }, { capture: true });
+    _csc.addEventListener('pointermove', e => {
+      if (!_drawDrag) return;
+      const cz = document.getElementById('gm-canvas-zoom'); if (!cz) return;
+      const rect = cz.getBoundingClientRect();
+      _drawDrag.ex = Math.max(_drawDrag.sx, Math.floor((e.clientX - rect.left) / (TILE_SIZE * _mapZoom)));
+      _drawDrag.ey = Math.max(_drawDrag.sy, Math.floor((e.clientY - rect.top)  / (TILE_SIZE * _mapZoom)));
+      _updateDrawPreview();
+    });
+    _csc.addEventListener('pointerup', e => {
+      if (!_drawDrag) return;
+      const cols = Math.max(1, _drawDrag.ex - _drawDrag.sx + 1);
+      const rows = Math.max(1, _drawDrag.ey - _drawDrag.sy + 1);
+      _pendingDrawPos = { x: _drawDrag.sx, y: _drawDrag.sy, cols, rows };
+      _drawDrag = null; _removeDrawPreview();
+      _toggleDrawMode(false);
+      openGardenMapModal('bed');
+    });
+  }
 }
 
 function startBedDrag(bedId, e) {
