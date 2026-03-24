@@ -4451,14 +4451,22 @@ body.garden-mode .plant-section ul {
 .ssb-tip { background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; font-size: 12px; margin-top: 6px; padding: 6px 10px; }
 .ssb-no-zone { color: var(--text-muted); font-size: 12px; margin: 4px 0; }
 
-/* ── Phase 81: Pest Guide ─────────────────────── */
-.pg-pest { border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 10px; padding-bottom: 10px; }
+/* ── Phase 81 / 116: Pest Guide ───────────────── */
+.pg-pest          { border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 10px; padding-bottom: 10px; }
 .pg-pest:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.pg-name { color: var(--text); font-size: 12px; font-weight: var(--weight-semibold); margin-bottom: 5px; }
-.pg-sol { color: var(--text-muted); font-size: 11px; line-height: 1.5; margin-bottom: 3px; }
-.pg-label { border-radius: 3px; font-size: 9px; font-weight: 700; letter-spacing: 0.05em; margin-right: 4px; padding: 1px 5px; text-transform: uppercase; }
-.pg-label.organic { background: rgba(74,222,128,0.15); color: var(--accent); }
-.pg-label.conv { background: rgba(147,197,253,0.15); color: #93c5fd; }
+.pg-header        { align-items: center; display: flex; gap: 6px; margin-bottom: 5px; }
+.pg-emoji         { flex-shrink: 0; font-size: 14px; line-height: 1; }
+.pg-name          { color: var(--text); flex: 1; font-size: 12px; font-weight: 600; }
+.pg-type          { border-radius: 4px; flex-shrink: 0; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; padding: 2px 6px; text-transform: uppercase; }
+.pg-type--insect  { background: rgba(251,191,36,0.12);  color: #fbbf24; }
+.pg-type--disease { background: rgba(249,115,22,0.12);  color: #fb923c; }
+.pg-type--other   { background: rgba(147,197,253,0.12); color: #93c5fd; }
+.pg-signs         { color: var(--text-muted); font-size: 11px; font-style: italic; line-height: 1.5; margin-bottom: 4px; }
+.pg-sol           { color: var(--text-muted); font-size: 11px; line-height: 1.5; margin-bottom: 3px; }
+.pg-label         { border-radius: 3px; font-size: 9px; font-weight: 700; letter-spacing: 0.05em; margin-right: 4px; padding: 1px 5px; text-transform: uppercase; }
+.pg-label.signs   { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+.pg-label.organic { background: rgba(74,222,128,0.15);  color: var(--accent); }
+.pg-label.conv    { background: rgba(147,197,253,0.15); color: #93c5fd; }
 
 /* ── Phase 82: Spacing Calculator ────────────── */
 .sc-hint { color: var(--text-muted); font-size: 12px; margin-bottom: 10px; }

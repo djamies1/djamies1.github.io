@@ -9519,39 +9519,94 @@ function showLongPressActions(name) {
 // Phase 81 — Season Suitability Bar + Pest Guide
 // ════════════════════════════════════════════════
 
+// ── Phase 116: Expanded pest guide (55 entries, signs + type fields) ──────────
 const NAMED_PEST_GUIDE = {
-  'Aphids':            { organic:'Blast with water; neem oil; insecticidal soap. Attract ladybirds with nearby flowers.', conventional:'Pyrethrin spray; imidacloprid systemic drench for severe infestations.' },
-  'Slugs':             { organic:'Beer traps; copper tape; crushed eggshells; evening torch patrol.', conventional:'Iron phosphate bait (Sluggo) — safe around pets; reapply after rain.' },
-  'Snails':            { organic:'Hand-pick at night; copper tape barrier; crushed eggshells.', conventional:'Iron phosphate bait; reapply after heavy rain.' },
-  'Flea Beetles':      { organic:'Row covers; diatomaceous earth around base; sticky traps.', conventional:'Pyrethrin at dusk; spinosad spray; use transplants instead of direct sow.' },
-  'Cabbage Worm':      { organic:'Hand-pick eggs + caterpillars; Bt (Bacillus thuringiensis) spray.', conventional:'Spinosad; check undersides daily and spray pyrethrin at first sign.' },
-  'Cabbage White':     { organic:'Row cover; hand-pick eggs; Bt spray when caterpillars appear.', conventional:'Spinosad spray; remove egg masses from leaf undersides promptly.' },
-  'Whitefly':          { organic:'Yellow sticky traps; insecticidal soap on undersides; neem oil.', conventional:'Imidacloprid systemic drench; bifenthrin spray on undersides.' },
-  'Spider Mites':      { organic:'Daily water spray on undersides; neem oil; predatory mites; increase humidity.', conventional:'Abamectin or spiromesifen miticide; repeat weekly 3 times.' },
-  'Thrips':            { organic:'Blue sticky traps; neem oil; spinosad at dawn.', conventional:'Spinosad or imidacloprid; repeat every 5-7 days until gone.' },
-  'Caterpillars':      { organic:'Hand-pick at night; Bt (Bacillus thuringiensis) spray in morning.', conventional:'Spinosad or pyrethrin spray in evening.' },
-  'Blackfly':          { organic:'Pinch out shoot tips (most infested area); strong water blast; neem oil.', conventional:'Pyrethrin spray on colonies; imidacloprid systemic for persistent cases.' },
-  'Powdery Mildew':    { organic:'Baking soda spray (1 tsp/qt); improve airflow; avoid overhead watering.', conventional:'Myclobutanil or trifloxystrobin fungicide at first sign.' },
-  'Downy Mildew':      { organic:'Copper fungicide; remove affected leaves; improve air circulation.', conventional:'Chlorothalonil or mancozeb; remove severely affected material.' },
-  'Botrytis':          { organic:'Remove affected parts; improve airflow urgently; reduce humidity.', conventional:'Iprodione or fludioxonil fungicide; avoid plant damage.' },
-  'Rust':              { organic:'Remove infected leaves; copper fungicide; avoid wetting foliage.', conventional:'Trifloxystrobin or mancozeb fungicide; repeat every 10-14 days.' },
-  'Clubroot':          { organic:'Lime soil to pH 7.5+; long rotation (7+ yrs); improve drainage.', conventional:'No effective chemical cure — prevention via liming and rotation only.' },
-  'Root Maggot':       { organic:'Row cover at sowing; sand collar around base; neem soil drench.', conventional:'Chlorpyrifos granules worked into soil at planting.' },
-  'Carrot Fly':        { organic:'70cm barrier around crop; row cover; delay sowing to June.', conventional:'Seed-treatment or soil insecticide at sowing.' },
-  'Vine Borer':        { organic:'Aluminium foil mulch at base; row cover in spring; hand-remove larvae.', conventional:'Pyrethrin on vine bases before egg-laying (June-July).' },
-  'Cucumber Beetle':   { organic:'Row cover; kaolin clay; beneficial nematodes in soil.', conventional:'Pyrethrin or carbaryl; treat soil around roots.' },
-  'Asparagus Beetle':  { organic:'Hand-pick adults and larvae; neem oil spray; keep bed weeded.', conventional:'Pyrethrin; spinosad spray on foliage.' },
-  'Tarnished Bug':     { organic:'Remove weeds (alternative hosts); row cover; sticky traps.', conventional:'Pyrethrin or spinosad early morning when bugs are sluggish.' },
-  'Leek Rust':         { organic:'Remove affected leaves; improve airflow; avoid overcrowding.', conventional:'Propiconazole fungicide; remove worst affected plants.' },
-  'Onion Fly':         { organic:'Row cover; avoid disturbing soil near plants; grow from sets not seed.', conventional:'Chlorpyrifos at planting; remove infested plants promptly.' },
-  'Potato Blight':     { organic:'Copper fungicide on a 7-10 day schedule; remove and burn tops at first sign.', conventional:'Chlorothalonil or mancozeb; spray preventatively in warm, wet weather.' },
-  'Colorado Beetle':   { organic:'Hand-pick adults, eggs, and larvae daily; Bt tenebrionis spray.', conventional:'Spinosad; imidacloprid at planting as soil drench.' },
-  'Scale Insects':     { organic:'Rub off with damp cloth; isopropyl alcohol wipes; neem oil.', conventional:'Imidacloprid systemic drench; horticultural oil spray.' },
-  'Bay Sucker':        { organic:'Prune affected shoot tips in spring; remove curled leaves by hand.', conventional:'Systemic insecticide spray early in season before curling begins.' },
-  'Gooseberry Sawfly': { organic:'Hand-pick caterpillars; spray with insecticidal soap.', conventional:'Pyrethrin spray; spinosad on foliage as soon as damage appears.' },
-  'Big Bud Mite':      { organic:'Remove and burn affected buds; plant resistant varieties.', conventional:'No effective chemical — remove affected plants; replant with clean stock.' },
-  'Birds':             { organic:'Netting over crop; reflective tape; fake predators (owl/hawk shapes).', conventional:'Same — physical exclusion is most effective.' },
-  'Squirrels':         { organic:'Wire cloche or mesh; cayenne pepper sprinkle; hardware cloth cage.', conventional:'Same — physical exclusion only.' },
+  // ── Insects ──────────────────────────────────────────────────────────────
+  'Aphids':              { emoji:'🦗', type:'insect', signs:'Sticky honeydew; curled/yellowed new growth; soft clusters on stems and buds.', organic:'Blast with water; neem oil; insecticidal soap. Plant nearby flowers to attract ladybirds.', conventional:'Pyrethrin spray; imidacloprid systemic drench for severe infestations.' },
+  'Blackfly':            { emoji:'🪲', type:'insect', signs:'Dense black colonies on shoot tips; sticky honeydew; leaves curl downward.', organic:'Pinch out infested shoot tips; strong water blast; neem oil.', conventional:'Pyrethrin spray on colonies; imidacloprid systemic for persistent cases.' },
+  'Whitefly':            { emoji:'🪰', type:'insect', signs:'Clouds of tiny white flies when plants are disturbed; yellow stippled leaves under.', organic:'Yellow sticky traps; insecticidal soap on undersides; neem oil.', conventional:'Imidacloprid systemic drench; bifenthrin spray on leaf undersides.' },
+  'Spider Mites':        { emoji:'\u{1F577}\ufe0f', type:'insect', signs:'Fine silky webbing on undersides; tiny moving specks; leaves bronze or silver-streaked.', organic:'Daily water misting on undersides; neem oil; predatory mites; raise humidity.', conventional:'Abamectin or spiromesifen miticide; repeat weekly for 3 weeks.' },
+  'Thrips':              { emoji:'🪲', type:'insect', signs:'Silver-white streaking on leaves; tiny black droppings; distorted or scarred growth.', organic:'Blue sticky traps; neem oil; spinosad at dawn.', conventional:'Spinosad or imidacloprid; repeat every 5-7 days until clear.' },
+  'Scale Insects':       { emoji:'🪲', type:'insect', signs:'Hard brown/white bumps fixed to stems; sticky honeydew; stunted growth.', organic:'Rub off with damp cloth; isopropyl alcohol wipes on stems; neem oil.', conventional:'Imidacloprid systemic drench; horticultural oil spray.' },
+  'Mealybugs':           { emoji:'🪲', type:'insect', signs:'White cottony masses in leaf joints and under leaves; sticky residue below.', organic:'Isopropyl alcohol on cotton buds; neem oil spray; insecticidal soap.', conventional:'Imidacloprid systemic drench; bifenthrin spray.' },
+  'Flea Beetles':        { emoji:'🪲', type:'insect', signs:'Many tiny round holes (shotgun pattern) in leaves; worst on young seedlings.', organic:'Row covers; diatomaceous earth around base; sticky yellow traps.', conventional:'Pyrethrin at dusk; spinosad spray; use transplants rather than direct sow.' },
+  'Leaf Miners':         { emoji:'🪲', type:'insect', signs:'Winding white or silvery tunnels visible inside leaves; blisters on leaf surface.', organic:'Remove affected leaves; yellow sticky traps; neem oil spray.', conventional:'Spinosad or abamectin spray; remove affected leaves promptly.' },
+  'Caterpillars':        { emoji:'\U0001f41b', type:'insect', signs:'Large ragged holes in leaves; droppings visible; caterpillars hide under leaves at night.', organic:'Hand-pick at night; Bt (Bacillus thuringiensis) spray in the morning.', conventional:'Spinosad or pyrethrin spray in the evening.' },
+  'Cabbage Worm':        { emoji:'\U0001f41b', type:'insect', signs:'Large ragged holes in brassica leaves; green caterpillars and black droppings present.', organic:'Hand-pick eggs and caterpillars; Bt spray at first sign.', conventional:'Spinosad; check leaf undersides daily and spray pyrethrin at first sign.' },
+  'Cabbage White':       { emoji:'\U0001f98b', type:'insect', signs:'Rows of pale yellow eggs under leaves; pale green caterpillars later; holes in leaves.', organic:'Row cover; hand-pick eggs; Bt spray when caterpillars appear.', conventional:'Spinosad spray; remove egg masses from leaf undersides promptly.' },
+  'Cabbage Maggot':      { emoji:'🪰', type:'insect', signs:'Brassica plants wilt suddenly; white grubs at stem base; plant pulls up easily.', organic:'Row cover at transplanting; collar around stem base; sticky barrier.', conventional:'Diazinon or chlorpyrifos granules at planting; remove infested plants.' },
+  'Hornworm':            { emoji:'\U0001f41b', type:'insect', signs:'Rapid large-scale defoliation; large green caterpillar with a horn; dark droppings.', organic:'Hand-pick (check undersides); Bt spray; parasitic wasps — look for white egg sacs.', conventional:'Spinosad or pyrethrin spray; hand removal most effective for large larvae.' },
+  'Corn Earworm':        { emoji:'\U0001f41b', type:'insect', signs:'Fresh silky frass at corn ear tips; feeding damage inside ears; caterpillar at entry.', organic:'Mineral oil drops into ear tips at 50% silk stage; Bt spray; trichogramma wasps.', conventional:'Pyrethrin at silk emergence every 2 days; spinosad spray on silks.' },
+  'Corn Borer':          { emoji:'\U0001f41b', type:'insect', signs:'Broken or shot tassels; sawdust-like frass at stem joints; larvae boring inside stalks.', organic:'Bt spray on silks and borers; remove and destroy affected stalks in autumn.', conventional:'Pyrethrin at first adult flight; spinosad spray on new growth.' },
+  'Squash Bug':          { emoji:'🪲', type:'insect', signs:'Wilting vines despite moisture; flat dark-brown bugs and bronze egg clusters under leaves.', organic:'Hand-pick eggs, nymphs, and adults; row cover; boards as traps at night.', conventional:'Pyrethrin or carbaryl spray on undersides; remove boards with trapped bugs.' },
+  'Squash Vine Borer':   { emoji:'\U0001f41b', type:'insect', signs:'Sudden vine wilt; sawdust-like frass near vine base; caterpillar boring inside stem.', organic:'Aluminium foil mulch; row cover in spring; inject Bt into borer entry hole.', conventional:'Pyrethrin on vine bases before egg-laying (early summer); repeat weekly.' },
+  'Cucumber Beetle':     { emoji:'🪲', type:'insect', signs:'Yellowed/spotted leaves; bacterial wilt following feeding; striped/spotted beetles visible.', organic:'Row cover; kaolin clay coating; yellow sticky traps; beneficial nematodes in soil.', conventional:'Pyrethrin or carbaryl spray; treat soil around roots.' },
+  'Japanese Beetle':     { emoji:'🪲', type:'insect', signs:'Skeletonised leaves (lacy appearance); metallic green/copper beetles feeding in groups on foliage.', organic:'Hand-pick in morning when sluggish; neem oil; milky spore for larvae in soil.', conventional:'Carbaryl or pyrethrin spray; imidacloprid soil drench for grubs.' },
+  'Bean Beetle':         { emoji:'🪲', type:'insect', signs:'Round or irregular holes in bean leaves and pods; yellow/orange beetles with black spots.', organic:'Row cover; hand-pick adults and larvae; neem oil spray.', conventional:'Pyrethrin or spinosad spray; remove egg clusters from leaf undersides.' },
+  'Asparagus Beetle':    { emoji:'🪲', type:'insect', signs:'Defoliation of asparagus fronds; grey-green larvae and red-orange eggs on stems.', organic:'Hand-pick adults and larvae; neem oil spray; keep bed weeded.', conventional:'Pyrethrin; spinosad spray on foliage.' },
+  'Raspberry Beetle':    { emoji:'🪲', type:'insect', signs:'Maggots inside harvested fruit; white grubs found when berries split or pressed.', organic:'Cultivate soil shallowly after harvest to expose pupae; netting to exclude adults.', conventional:'Pyrethrin spray at 80% petal fall and 2 weeks later.' },
+  'Cane Borer':          { emoji:'🪲', type:'insect', signs:'Wilting or dying fruiting canes; sawdust frass at base; grub boring inside lower cane.', organic:'Prune and destroy affected canes; remove debris; plant resistant varieties.', conventional:'Pyrethrin spray on new canes in spring before adults lay eggs.' },
+  'Gooseberry Sawfly':   { emoji:'\U0001f41b', type:'insect', signs:'Rapid defoliation by green caterpillars from the centre of the bush outward.', organic:'Hand-pick caterpillars; insecticidal soap spray.', conventional:'Pyrethrin spray; spinosad on foliage as soon as damage appears.' },
+  'Pea Moth':            { emoji:'\U0001f98b', type:'insect', signs:'Maggots inside pea pods; caterpillar feeding on developing seeds; damaged seeds.', organic:'Late or early sowings to avoid peak moth flight; fine row cover during flowering.', conventional:'Pyrethrin at petal fall; spray in evening to target egg-laying moths.' },
+  'Pea Weevil':          { emoji:'🪲', type:'insect', signs:'Round holes in harvested dried peas; grubs found inside seeds when split.', organic:'Store peas in sealed containers; freeze seeds for 48 hrs to kill grubs.', conventional:'Treat grain stores; inspect seeds before planting next season.' },
+  'Onion Maggot':        { emoji:'🪰', type:'insect', signs:'Yellowing/wilting tops despite watering; white maggots at bulb base; plants pull up easily.', organic:'Row cover; avoid companion planting of carrots/onions together; crush infested plants.', conventional:'Diazinon or chlorpyrifos in soil at planting; remove infested plants.' },
+  'Onion Fly':           { emoji:'🪰', type:'insect', signs:'Wilting/yellowing outer leaves; similar to onion maggot — fly lays eggs at soil level.', organic:'Row cover; grow from sets not seed; avoid spring sowing if possible.', conventional:'Chlorpyrifos at planting; remove infested plants promptly.' },
+  'Pepper Maggot':       { emoji:'🪰', type:'insect', signs:'Maggots inside ripened pepper fruit; white tunnelling larvae; fruit drops early.', organic:'Red sphere traps; row cover; remove fallen fruit promptly.', conventional:'Pyrethrin or spinosad spray at first adult flight (mid-summer).' },
+  'Pepper Weevil':       { emoji:'🪲', type:'insect', signs:'Dropped flower buds with small exit holes; weevil grub inside fallen buds; pitted fruit.', organic:'Remove fallen buds; trap crops of susceptible varieties; neem oil spray.', conventional:'Pyrethrin or imidacloprid; spray at bud stage when weevils first appear.' },
+  'Carrot Fly':          { emoji:'🪰', type:'insect', signs:'Red/bronze leaves; rusty surface tunnels on carrot roots; white larvae in soil.', organic:'70 cm solid barrier around crop; row cover; delay sowing to June.', conventional:'Seed treatment or soil insecticide at sowing.' },
+  'Wireworm':            { emoji:'🪲', type:'insect', signs:'Plants wilt and die; slim, yellow-orange larvae tunnelling in roots and tubers.', organic:'Cultivate soil repeatedly to expose larvae; plant trap crops (wheat/mustard).', conventional:'Chlorpyrifos or imidacloprid granules worked into soil at planting.' },
+  'Corn Rootworm':       { emoji:'🪲', type:'insect', signs:'Lodged/fallen corn stalks; damaged or pruned roots; yellow-green beetles on silks.', organic:'Crop rotation away from corn annually; beneficial nematodes in soil.', conventional:'Soil-applied insecticide granules at planting; seed treatment.' },
+  'Tarnished Bug':       { emoji:'🪲', type:'insect', signs:'Distorted/blackened shoot tips; feeding scars on fruit; shield-shaped brown-green bugs.', organic:'Remove weeds (alternative hosts); row cover; sticky traps at field margins.', conventional:'Pyrethrin or spinosad early morning when bugs are sluggish.' },
+  'Stink Bugs':          { emoji:'🪲', type:'insect', signs:'Dimpled, scarred, or corky spots in fruit flesh; shield-shaped brown marbled bugs visible.', organic:'Kaolin clay on fruit; row cover on young plants; hand-pick bugs into soapy water.', conventional:'Pyrethrin spray; bifenthrin on plant and fruit surfaces.' },
+  'Vine Borer':          { emoji:'\U0001f41b', type:'insect', signs:'Sudden plant wilt; sawdust-like frass at vine base; caterpillar inside hollow stem.', organic:'Aluminium foil mulch at base; row cover in early spring; hand-remove larvae.', conventional:'Pyrethrin on vine bases before egg-laying (June-July).' },
+  'Root Maggot':         { emoji:'🪰', type:'insect', signs:'Plants wilt then die; white maggots around roots and stem bases; worse in cool wet spring.', organic:'Row cover at sowing; sand collar around base; neem soil drench.', conventional:'Chlorpyrifos granules worked into soil at planting.' },
+  'Bay Sucker':          { emoji:'🦟', type:'insect', signs:'Thickened, rolled or pale leaf margins in spring; jumping psyllid colonies inside.', organic:'Prune affected shoot tips in spring; remove curled leaves by hand.', conventional:'Systemic insecticide spray early in season before leaf curling begins.' },
+  'Big Bud Mite':        { emoji:'\u{1F577}\ufe0f', type:'insect', signs:'Abnormally round, swollen buds that fail to open; spread by contact and handling.', organic:'Remove and burn affected buds; plant resistant varieties (Ben Hope, etc.).', conventional:'No effective chemical — remove affected plants; replant with certified stock.' },
+  'Birds':               { emoji:'\U0001f426', type:'other', signs:'Pecked or missing fruit; seeds removed; entire seedlings pulled from soil.', organic:'Netting over crops; reflective tape or CDs; hawk/owl silhouettes.', conventional:'Same — physical exclusion is most effective method.' },
+  'Squirrels':           { emoji:'\U0001f43f\ufe0f', type:'other', signs:'Dug-up bulbs and tubers; gnawed roots; stolen nuts and ripe fruit overnight.', organic:'Wire cloche or mesh; cayenne pepper sprinkle; hardware cloth cage over roots.', conventional:'Same — physical exclusion only.' },
+  // ── Diseases ─────────────────────────────────────────────────────────────
+  'Powdery Mildew':      { emoji:'\U0001f344', type:'disease', signs:'White powdery coating on upper leaf surfaces; worse in warm dry spells with cool nights.', organic:'Baking soda spray (1 tsp/qt water); improve airflow; avoid overhead watering.', conventional:'Myclobutanil or trifloxystrobin fungicide at first sign.' },
+  'Downy Mildew':        { emoji:'\U0001f344', type:'disease', signs:'Yellow patches on upper leaves with grey-purple fuzzy growth underneath; in cool wet weather.', organic:'Copper fungicide; remove affected leaves; improve air circulation.', conventional:'Chlorothalonil or mancozeb; remove severely affected material.' },
+  'Botrytis':            { emoji:'\U0001f344', type:'disease', signs:'Grey fuzzy mould on leaves, stems, or fruit; especially in cool, humid, or crowded conditions.', organic:'Remove affected parts immediately; improve airflow urgently; reduce humidity.', conventional:'Iprodione or fludioxonil fungicide; avoid wounding plants.' },
+  'Rust':                { emoji:'\U0001f344', type:'disease', signs:'Orange or brown powdery pustules on leaf undersides; yellowing on the upper surface.', organic:'Remove infected leaves; copper fungicide; avoid wetting foliage when watering.', conventional:'Trifloxystrobin or mancozeb fungicide; repeat every 10-14 days.' },
+  'Leek Rust':           { emoji:'\U0001f344', type:'disease', signs:'Orange powdery stripes on outer allium leaves; starts lower, spreads upward.', organic:'Remove affected leaves; improve airflow; avoid overcrowding in bed.', conventional:'Propiconazole fungicide; remove worst affected plants.' },
+  'Clubroot':            { emoji:'\U0001f344', type:'disease', signs:'Wilting despite moist soil; swollen, distorted, club-like roots when plant is lifted.', organic:'Lime soil to pH 7.5+; long rotation (7+ yrs); improve drainage; use resistant varieties.', conventional:'No effective chemical cure — prevention via liming and rotation only.' },
+  'Potato Blight':       { emoji:'\U0001f344', type:'disease', signs:'Dark brown patches with yellow border; white mould on leaf undersides in wet weather; rapid spread.', organic:'Copper fungicide on a 7-10 day schedule; remove and burn tops at first sign.', conventional:'Chlorothalonil or mancozeb; spray preventatively in warm, wet weather.' },
+  'Fusarium Wilt':       { emoji:'\U0001f344', type:'disease', signs:'One-sided yellowing; brown discolouration inside stem when cut; soil-borne; wilts in heat.', organic:'Remove and destroy affected plants; solarise soil; rotate 4+ years.', conventional:'No chemical cure — remove plants; use resistant varieties; improve drainage.' },
+  'Root Rot':            { emoji:'\U0001f344', type:'disease', signs:'Wilting despite moist soil; dark, mushy roots when lifted; often from overwatering or poor drainage.', organic:'Improve drainage; reduce watering; apply beneficial mycorrhizal fungi to healthy plants.', conventional:'Metalaxyl or fosetyl-aluminium drench for pythium/phytophthora root rot.' },
+  'Chocolate Spot':      { emoji:'\U0001f344', type:'disease', signs:'Brown spots and streaks on bean stems and leaves; worse in cold, wet, or nitrogen-rich conditions.', organic:'Improve airflow; avoid overcrowding; reduce nitrogen; copper fungicide.', conventional:'Mancozeb or chlorothalonil fungicide at first sign.' },
+};
+
+// Case/plural/variant normalisation map — maps crop.pests strings to NAMED_PEST_GUIDE keys
+const PEST_ALIASES = {
+  'aphid': 'Aphids',
+  'spider mites': 'Spider Mites',
+  'spider mite': 'Spider Mites',
+  'flea beetle': 'Flea Beetles',
+  'flea beetles': 'Flea Beetles',
+  'powdery mildew': 'Powdery Mildew',
+  'downy mildew': 'Downy Mildew',
+  'japanese beetle': 'Japanese Beetle',
+  'japanese beetles': 'Japanese Beetle',
+  'scale': 'Scale Insects',
+  'scale insects': 'Scale Insects',
+  'colorado potato beetle': 'Colorado Beetle',
+  'colorado beetle': 'Colorado Beetle',
+  'squash vine borer': 'Squash Vine Borer',
+  'vine borer': 'Squash Vine Borer',
+  'root-knot nematode': 'Root Knot Nematode',
+  'root knot nematode': 'Root Knot Nematode',
+  'blackfly': 'Blackfly',
+  'black fly': 'Blackfly',
+  'rootworm': 'Corn Rootworm',
+  'corn rootworm': 'Corn Rootworm',
+  'fruit fly': 'Fruit Fly',
+  'fusarium wilt': 'Fusarium Wilt',
+  'fusarium crown rot': 'Fusarium Wilt',
+  'rhizome rot': 'Root Rot',
+  'root rot': 'Root Rot',
+  'botrytis': 'Botrytis',
+  'caterpillar': 'Caterpillars',
 };
 
 function renderSeasonSuitabilityBar(name) {
@@ -9603,30 +9658,56 @@ function renderSeasonSuitabilityBar(name) {
   else body.prepend(sec);
 }
 
+// Resolve a pest name from crops.json → NAMED_PEST_GUIDE key, using aliases + case folding
+function resolvePestKey(raw) {
+  if (NAMED_PEST_GUIDE[raw]) return raw;
+  const lower = raw.toLowerCase().trim();
+  if (PEST_ALIASES[lower]) return PEST_ALIASES[lower];
+  // Fuzzy: try the guide's own keys case-insensitively
+  const guideKey = Object.keys(NAMED_PEST_GUIDE).find(k => k.toLowerCase() === lower);
+  if (guideKey) return guideKey;
+  return null;
+}
+
 function renderCropPestGuide(name) {
   const body = document.getElementById('modal-body');
   if (!body) return;
   body.querySelector('.modal-pest-guide')?.remove();
 
   const c = cropData[name];
-  const pests = c?.pests || [];
-  const known = pests.filter(p => NAMED_PEST_GUIDE[p]);
-  if (!known.length) return;
+  const rawPests = c?.pests || [];
 
-  const rows = known.map(p => {
-    const g = NAMED_PEST_GUIDE[p];
+  // Deduplicate resolved keys while preserving display name
+  const seen = new Set();
+  const resolved = rawPests
+    .map(raw => ({ raw, key: resolvePestKey(raw) }))
+    .filter(({ key }) => key && !seen.has(key) && seen.add(key));
+
+  if (!resolved.length) return;
+
+  const TYPE_LABEL = { insect: 'Insect', disease: 'Disease', other: 'Other' };
+  const TYPE_CLS   = { insect: 'pg-type--insect', disease: 'pg-type--disease', other: 'pg-type--other' };
+
+  const rows = resolved.map(({ raw, key }) => {
+    const g = NAMED_PEST_GUIDE[key];
+    const typeLbl = TYPE_LABEL[g.type] || g.type;
+    const typeCls = TYPE_CLS[g.type]  || '';
     return `<div class="pg-pest">
-      <div class="pg-name">🐛 ${p}</div>
+      <div class="pg-header">
+        <span class="pg-emoji">${g.emoji}</span>
+        <span class="pg-name">${raw}</span>
+        <span class="pg-type ${typeCls}">${typeLbl}</span>
+      </div>
+      ${g.signs ? `<div class="pg-signs"><span class="pg-label signs">Signs:</span> ${g.signs}</div>` : ''}
       <div class="pg-sol"><span class="pg-label organic">Organic:</span> ${g.organic}</div>
-      <div class="pg-sol"><span class="pg-label conv">Conventional:</span> ${g.conventional}</div>
+      <div class="pg-sol"><span class="pg-label conv">Chemical:</span> ${g.conventional}</div>
     </div>`;
   }).join('');
 
   const sec = document.createElement('div');
   sec.className = 'modal-section modal-pest-guide';
-  sec.innerHTML = `<div class="modal-section-title">🐛 Pest & Disease Guide</div>${rows}`;
+  sec.innerHTML = `<div class="modal-section-title">🐛 Pest &amp; Disease Guide</div>${rows}`;
 
-  // Insert after the pests section (which is in the static renderCropDetail HTML)
   const pestsSection = [...body.querySelectorAll('.modal-section')].find(s => s.querySelector('.detail-tags--pests'));
   if (pestsSection) pestsSection.insertAdjacentElement('afterend', sec);
   else body.appendChild(sec);
