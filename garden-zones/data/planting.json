@@ -2,20 +2,29 @@
   "3a": {
     "1": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "2": {
       "startIndoors": [
         "Onions",
         "Leeks",
         "Shallots",
-        "Chives"
+        "Chives",
+        "Lavender"
       ],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "3": {
       "startIndoors": [
@@ -29,11 +38,21 @@
         "Parsley",
         "Celeriac",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Hamburg Parsley",
+        "Lovage"
       ],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "4": {
       "startIndoors": [
@@ -45,7 +64,13 @@
         "Bok Choy",
         "Endive",
         "Zucchini",
-        "Butternut Squash"
+        "Butternut Squash",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Savory",
+        "Shiso",
+        "Sunflowers",
+        "Lemon Verbena"
       ],
       "directSow": [
         "Spinach",
@@ -59,7 +84,15 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Mizuna",
+        "Tatsoi",
+        "Calendula",
+        "Microgreens",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil"
       ],
       "transplant": [
         "Onions",
@@ -67,14 +100,24 @@
         "Asparagus",
         "Rhubarb",
         "Horseradish",
-        "Strawberries"
+        "Strawberries",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Good King Henry"
       ],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "5": {
       "startIndoors": [
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Sunflowers"
       ],
       "directSow": [
         "Peas",
@@ -95,7 +138,24 @@
         "Mangetout",
         "Runner Beans",
         "Broad Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Savory",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil"
       ],
       "transplant": [
         "Broccoli",
@@ -105,9 +165,27 @@
         "Sage",
         "Thyme",
         "Mint",
-        "Collard Greens"
+        "Collard Greens",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Hamburg Parsley",
+        "Lovage",
+        "Good King Henry"
       ],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "6": {
       "startIndoors": [],
@@ -123,7 +201,13 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Savory",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [
         "Tomatoes",
@@ -140,7 +224,15 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Shiso",
+        "Lemon Verbena"
       ],
       "harvest": [
         "Lettuce",
@@ -154,14 +246,23 @@
         "Watercress",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Mizuna",
+        "Tatsoi",
+        "Calendula",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil",
+        "Good King Henry"
       ]
     },
     "7": {
       "startIndoors": [],
       "directSow": [
         "Cucumbers",
-        "Beans"
+        "Beans",
+        "Microgreens"
       ],
       "transplant": [
         "Squash",
@@ -178,12 +279,38 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Sweet Peas",
+        "Chervil",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "8": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
       "harvest": [
         "Beans",
@@ -208,7 +335,33 @@
         "Broad Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "9": {
@@ -217,7 +370,9 @@
         "Cabbage",
         "Kale"
       ],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
       "harvest": [
         "Tomatoes",
@@ -240,14 +395,33 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Napa Cabbage",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "10": {
       "startIndoors": [],
       "directSow": [
         "Spinach",
-        "Lettuce"
+        "Lettuce",
+        "Microgreens"
       ],
       "transplant": [
         "Broccoli",
@@ -260,12 +434,17 @@
         "Rutabaga",
         "Collard Greens",
         "Celeriac",
-        "Butternut Squash"
+        "Butternut Squash",
+        "Microgreens",
+        "Salsify",
+        "Hamburg Parsley"
       ]
     },
     "11": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
       "harvest": [
         "Broccoli",
@@ -273,22 +452,31 @@
         "Carrots",
         "Beets",
         "Jerusalem Artichoke",
-        "Collard Greens"
+        "Collard Greens",
+        "Microgreens"
       ]
     },
     "12": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     }
   },
   "4a": {
     "1": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "2": {
       "startIndoors": [
@@ -297,11 +485,17 @@
         "Celery",
         "Shallots",
         "Chives",
-        "Parsley"
+        "Parsley",
+        "Lavender",
+        "Lovage"
       ],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "3": {
       "startIndoors": [
@@ -317,11 +511,31 @@
         "Celeriac",
         "Collard Greens",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Hamburg Parsley",
+        "Lovage"
       ],
-      "directSow": [],
-      "transplant": [],
-      "harvest": []
+      "directSow": [
+        "Microgreens"
+      ],
+      "transplant": [
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries"
+      ],
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "4": {
       "startIndoors": [
@@ -335,7 +549,13 @@
         "Endive",
         "Zucchini",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Savory",
+        "Shiso",
+        "Sunflowers",
+        "Lemon Verbena"
       ],
       "directSow": [
         "Spinach",
@@ -349,7 +569,18 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Quinoa",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil"
       ],
       "transplant": [
         "Onions",
@@ -358,9 +589,19 @@
         "Asparagus",
         "Rhubarb",
         "Horseradish",
-        "Strawberries"
+        "Strawberries",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Hamburg Parsley",
+        "Good King Henry"
       ],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "5": {
       "startIndoors": [
@@ -384,7 +625,20 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Savory",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa"
       ],
       "transplant": [
         "Cabbage",
@@ -398,14 +652,32 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Shiso",
+        "Blackberries",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage",
+        "Good King Henry"
       ],
       "harvest": [
         "Spinach",
         "Radishes",
         "Arugula",
         "Mâche",
-        "Turnips"
+        "Turnips",
+        "Mizuna",
+        "Tatsoi",
+        "Microgreens",
+        "Chervil",
+        "Good King Henry"
       ]
     },
     "6": {
@@ -419,7 +691,8 @@
         "Edamame",
         "Sweet Corn",
         "Lima Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Microgreens"
       ],
       "transplant": [
         "Tomatoes",
@@ -438,7 +711,9 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Shiso",
+        "Lemon Verbena"
       ],
       "harvest": [
         "Peas",
@@ -451,7 +726,21 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane",
+        "Sweet Peas",
+        "Chervil",
+        "Good King Henry"
       ]
     },
     "7": {
@@ -460,7 +749,8 @@
         "Beans",
         "Carrots",
         "Bok Choy",
-        "Turnips"
+        "Turnips",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -474,7 +764,34 @@
         "Sugar Snap Peas",
         "Mangetout",
         "Runner Beans",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Sweet Peas",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "8": {
@@ -482,7 +799,13 @@
         "Broccoli",
         "Kale"
       ],
-      "directSow": [],
+      "directSow": [
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Microgreens"
+      ],
       "transplant": [],
       "harvest": [
         "Tomatoes",
@@ -505,7 +828,31 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "9": {
@@ -513,7 +860,8 @@
       "directSow": [
         "Spinach",
         "Lettuce",
-        "Kale"
+        "Kale",
+        "Microgreens"
       ],
       "transplant": [
         "Broccoli",
@@ -537,12 +885,33 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Mizuna",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "10": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
       "harvest": [
         "Broccoli",
@@ -554,34 +923,52 @@
         "Brussels Sprouts",
         "Cauliflower",
         "Collard Greens",
-        "Butternut Squash"
+        "Butternut Squash",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Microgreens",
+        "Salsify",
+        "Hamburg Parsley"
       ]
     },
     "11": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
       "harvest": [
         "Kale",
         "Beets",
         "Carrots",
         "Jerusalem Artichoke",
-        "Collard Greens"
+        "Collard Greens",
+        "Microgreens"
       ]
     },
     "12": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     }
   },
   "5b": {
     "1": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "2": {
       "startIndoors": [
@@ -593,11 +980,21 @@
         "Chives",
         "Parsley",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Lovage"
       ],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "3": {
       "startIndoors": [
@@ -613,7 +1010,16 @@
         "Globe Artichoke",
         "Celeriac",
         "Collard Greens",
-        "Cherry Tomatoes"
+        "Cherry Tomatoes",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Lemon Verbena"
       ],
       "directSow": [
         "Peas",
@@ -622,13 +1028,30 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Onions",
-        "Shallots"
+        "Shallots",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries"
       ],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "4": {
       "startIndoors": [
@@ -640,7 +1063,8 @@
         "Endive",
         "Zucchini",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Sunflowers"
       ],
       "directSow": [
         "Lettuce",
@@ -659,7 +1083,25 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Broccoli",
@@ -673,11 +1115,26 @@
         "Sage",
         "Thyme",
         "Mint",
-        "Collard Greens"
+        "Collard Greens",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Lavender",
+        "Tarragon",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Hamburg Parsley",
+        "Lovage",
+        "Good King Henry"
       ],
       "harvest": [
         "Spinach",
-        "Kale"
+        "Kale",
+        "Microgreens"
       ]
     },
     "5": {
@@ -697,7 +1154,14 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Savory",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [
         "Tomatoes",
@@ -717,7 +1181,18 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Shiso",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ],
       "harvest": [
         "Peas",
@@ -730,7 +1205,16 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Mizuna",
+        "Tatsoi",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil",
+        "Good King Henry"
       ]
     },
     "6": {
@@ -740,7 +1224,8 @@
         "Carrots",
         "Beets",
         "Rutabaga",
-        "Bok Choy"
+        "Bok Choy",
+        "Microgreens"
       ],
       "transplant": [
         "Melons",
@@ -761,7 +1246,28 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Sweet Peas",
+        "Chervil",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "7": {
@@ -771,7 +1277,8 @@
         "Cabbage"
       ],
       "directSow": [
-        "Turnips"
+        "Turnips",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -788,7 +1295,29 @@
         "Cherry Tomatoes",
         "Runner Beans",
         "Broad Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "8": {
@@ -800,7 +1329,14 @@
         "Radishes",
         "Arugula",
         "Mustard Greens",
-        "Bok Choy"
+        "Bok Choy",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Chervil"
       ],
       "transplant": [
         "Broccoli",
@@ -825,14 +1361,40 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "9": {
       "startIndoors": [],
       "directSow": [
         "Spinach",
-        "Mâche"
+        "Mâche",
+        "Mizuna",
+        "Tatsoi",
+        "Calendula",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -853,12 +1415,33 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Chervil",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "10": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
       "harvest": [
         "Broccoli",
@@ -872,26 +1455,44 @@
         "Cauliflower",
         "Collard Greens",
         "Celeriac",
-        "Butternut Squash"
+        "Butternut Squash",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Salsify",
+        "Chervil"
       ]
     },
     "11": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
       "harvest": [
         "Kale",
         "Carrots",
         "Jerusalem Artichoke",
         "Mâche",
-        "Collard Greens"
+        "Collard Greens",
+        "Mizuna",
+        "Tatsoi",
+        "Microgreens"
       ]
     },
     "12": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     }
   },
   "6b": {
@@ -901,9 +1502,13 @@
         "Leeks",
         "Shallots"
       ],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "2": {
       "startIndoors": [
@@ -918,19 +1523,36 @@
         "Celeriac",
         "Collard Greens",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Lemon Verbena",
+        "Lovage"
       ],
       "directSow": [
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Broccoli Rabe",
+        "Microgreens",
+        "Sweet Peas"
       ],
       "transplant": [
         "Onions",
-        "Shallots"
+        "Shallots",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries"
       ],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     },
     "3": {
       "startIndoors": [
@@ -946,7 +1568,10 @@
         "Zucchini",
         "Butternut Squash",
         "Watermelon",
-        "Cherry Tomatoes"
+        "Cherry Tomatoes",
+        "Pak Choi",
+        "Shiso",
+        "Lemon Verbena"
       ],
       "directSow": [
         "Peas",
@@ -965,7 +1590,23 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Microgreens",
+        "Quinoa",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Broccoli",
@@ -975,9 +1616,24 @@
         "Rhubarb",
         "Horseradish",
         "Strawberries",
-        "Collard Greens"
+        "Collard Greens",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Tarragon",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Lovage",
+        "Good King Henry"
       ],
-      "harvest": []
+      "harvest": [
+        "Microgreens",
+        "Salsify"
+      ]
     },
     "4": {
       "startIndoors": [
@@ -998,7 +1654,20 @@
         "Sweet Corn",
         "Runner Beans",
         "Lima Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Tomatoes",
@@ -1014,7 +1683,21 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Blackberries",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage",
+        "Good King Henry"
       ],
       "harvest": [
         "Spinach",
@@ -1028,7 +1711,15 @@
         "Watercress",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Mizuna",
+        "Tatsoi",
+        "Broccoli Rabe",
+        "Microgreens",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Good King Henry"
       ]
     },
     "5": {
@@ -1049,7 +1740,13 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [
         "Basil",
@@ -1065,7 +1762,9 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Shiso",
+        "Lemon Verbena"
       ],
       "harvest": [
         "Lettuce",
@@ -1081,7 +1780,24 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Tarragon",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane",
+        "Sweet Peas",
+        "Chervil",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "6": {
@@ -1091,7 +1807,8 @@
       ],
       "directSow": [
         "Beans",
-        "Carrots"
+        "Carrots",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -1109,7 +1826,32 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Sweet Peas",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "7": {
@@ -1123,7 +1865,8 @@
         "Turnips",
         "Bok Choy",
         "Mustard Greens",
-        "Endive"
+        "Endive",
+        "Microgreens"
       ],
       "transplant": [
         "Broccoli",
@@ -1147,7 +1890,29 @@
         "Cherry Tomatoes",
         "Jalapeño",
         "Runner Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "8": {
@@ -1158,7 +1923,16 @@
         "Chard",
         "Mâche",
         "Cilantro",
-        "Watercress"
+        "Watercress",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Chervil"
       ],
       "transplant": [],
       "harvest": [
@@ -1175,14 +1949,40 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "9": {
       "startIndoors": [],
       "directSow": [
         "Spinach",
-        "Peas"
+        "Peas",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Salsify",
+        "Chervil"
       ],
       "transplant": [],
       "harvest": [
@@ -1203,13 +2003,28 @@
         "Cherry Tomatoes",
         "Jalapeño",
         "Lima Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Salsify",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "10": {
       "startIndoors": [],
       "directSow": [
-        "Broad Beans"
+        "Broad Beans",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -1221,7 +2036,17 @@
         "Cauliflower",
         "Turnips",
         "Collard Greens",
-        "Butternut Squash"
+        "Butternut Squash",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Salsify",
+        "Chervil"
       ]
     },
     "11": {
@@ -1229,7 +2054,8 @@
         "Onions"
       ],
       "directSow": [
-        "Broad Beans"
+        "Broad Beans",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -1237,14 +2063,26 @@
         "Carrots",
         "Jerusalem Artichoke",
         "Mâche",
-        "Collard Greens"
+        "Collard Greens",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Chervil"
       ]
     },
     "12": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
-      "harvest": []
+      "harvest": [
+        "Microgreens"
+      ]
     }
   },
   "7b": {
@@ -1257,20 +2095,27 @@
         "Cauliflower",
         "Shallots",
         "Parsley",
-        "Celeriac"
+        "Celeriac",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Lavender",
+        "Tarragon",
+        "Lovage"
       ],
       "directSow": [
         "Spinach",
         "Kale",
         "Lettuce",
         "Mâche",
-        "Fava Beans"
+        "Fava Beans",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
         "Kale",
         "Spinach",
-        "Carrots"
+        "Carrots",
+        "Microgreens"
       ]
     },
     "2": {
@@ -1285,7 +2130,14 @@
         "Globe Artichoke",
         "Collard Greens",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Shiso",
+        "Lemon Verbena"
       ],
       "directSow": [
         "Peas",
@@ -1299,7 +2151,20 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Lemon Balm",
+        "Calendula",
+        "Microgreens",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Onions",
@@ -1307,14 +2172,22 @@
         "Cabbage",
         "Cauliflower",
         "Shallots",
-        "Strawberries"
+        "Strawberries",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Good King Henry"
       ],
       "harvest": [
         "Lettuce",
         "Spinach",
         "Kale",
         "Mâche",
-        "Fava Beans"
+        "Fava Beans",
+        "Microgreens"
       ]
     },
     "3": {
@@ -1338,7 +2211,21 @@
         "Parsnips",
         "Dill",
         "Mustard Greens",
-        "Fennel"
+        "Fennel",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Tomatoes",
@@ -1354,7 +2241,25 @@
         "Celeriac",
         "Collard Greens",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage",
+        "Good King Henry"
       ],
       "harvest": [
         "Peas",
@@ -1367,7 +2272,14 @@
         "Watercress",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Mizuna",
+        "Tatsoi",
+        "Microgreens",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Good King Henry"
       ]
     },
     "4": {
@@ -1384,7 +2296,15 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Savory",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [
         "Basil",
@@ -1402,7 +2322,15 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Lemon Verbena",
+        "Hamburg Parsley"
       ],
       "harvest": [
         "Lettuce",
@@ -1419,7 +2347,22 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Tarragon",
+        "Lemon Balm",
+        "Calendula",
+        "Microgreens",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "5": {
@@ -1435,12 +2378,17 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [
         "Zucchini",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Shiso"
       ],
       "harvest": [
         "Beans",
@@ -1455,7 +2403,28 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Sweet Peas",
+        "Chervil",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "6": {
@@ -1467,7 +2436,8 @@
       "directSow": [
         "Beans",
         "Okra",
-        "Bok Choy"
+        "Bok Choy",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -1483,7 +2453,27 @@
         "Zucchini",
         "Cherry Tomatoes",
         "Jalapeño",
-        "Runner Beans"
+        "Runner Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "7": {
@@ -1494,7 +2484,8 @@
       "directSow": [
         "Beans",
         "Beets",
-        "Carrots"
+        "Carrots",
+        "Microgreens"
       ],
       "transplant": [
         "Broccoli",
@@ -1517,7 +2508,29 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Blackcurrants",
+        "Redcurrants",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "8": {
@@ -1533,7 +2546,16 @@
         "Cilantro",
         "Mustard Greens",
         "Endive",
-        "Watercress"
+        "Watercress",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Chervil"
       ],
       "transplant": [
         "Brussels Sprouts",
@@ -1555,7 +2577,23 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Microgreens",
+        "Purslane",
+        "Salsify",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "9": {
@@ -1570,7 +2608,18 @@
         "Fava Beans",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil"
       ],
       "transplant": [],
       "harvest": [
@@ -1588,7 +2637,20 @@
         "Cherry Tomatoes",
         "Jalapeño",
         "Lima Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "10": {
@@ -1599,7 +2661,10 @@
         "Kale",
         "Garlic",
         "Shallots",
-        "Broad Beans"
+        "Broad Beans",
+        "Calendula",
+        "Microgreens",
+        "Sweet Peas"
       ],
       "transplant": [
         "Strawberries"
@@ -1615,7 +2680,17 @@
         "Parsnips",
         "Collard Greens",
         "Fennel",
-        "Butternut Squash"
+        "Butternut Squash",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Raspberries",
+        "Microgreens",
+        "Chervil"
       ]
     },
     "11": {
@@ -1625,7 +2700,8 @@
       "directSow": [
         "Spinach",
         "Lettuce",
-        "Broad Beans"
+        "Broad Beans",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -1639,7 +2715,17 @@
         "Collard Greens",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil"
       ]
     },
     "12": {
@@ -1648,13 +2734,18 @@
         "Leeks",
         "Celeriac"
       ],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
       "harvest": [
         "Kale",
         "Carrots",
         "Spinach",
-        "Mâche"
+        "Mâche",
+        "Calendula",
+        "Microgreens",
+        "Sweet Peas"
       ]
     }
   },
@@ -1672,7 +2763,12 @@
         "Parsley",
         "Celeriac",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Verbena",
+        "Lovage"
       ],
       "directSow": [
         "Spinach",
@@ -1688,14 +2784,26 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Broccoli Rabe",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil"
       ],
-      "transplant": [],
+      "transplant": [
+        "Blueberries"
+      ],
       "harvest": [
         "Kale",
         "Spinach",
         "Broccoli",
-        "Carrots"
+        "Carrots",
+        "Microgreens",
+        "Hamburg Parsley"
       ]
     },
     "2": {
@@ -1713,7 +2821,11 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Lavender",
+        "Marjoram",
+        "Shiso",
+        "Lemon Verbena"
       ],
       "directSow": [
         "Radishes",
@@ -1722,7 +2834,25 @@
         "Carrots",
         "Turnips",
         "Green Onions",
-        "Fennel"
+        "Fennel",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Onions",
@@ -1734,7 +2864,18 @@
         "Rhubarb",
         "Strawberries",
         "Celeriac",
-        "Endive"
+        "Endive",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Tarragon",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Redcurrants",
+        "Gooseberries",
+        "Lovage",
+        "Good King Henry"
       ],
       "harvest": [
         "Lettuce",
@@ -1747,7 +2888,11 @@
         "Watercress",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Mizuna",
+        "Tatsoi",
+        "Microgreens",
+        "Chervil"
       ]
     },
     "3": {
@@ -1777,7 +2922,22 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Tomatoes",
@@ -1792,7 +2952,20 @@
         "Zucchini",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Blackberries",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ],
       "harvest": [
         "Broccoli",
@@ -1808,7 +2981,15 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Mizuna",
+        "Tatsoi",
+        "Broccoli Rabe",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil",
+        "Good King Henry"
       ]
     },
     "4": {
@@ -1826,7 +3007,14 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [
         "Basil",
@@ -1844,7 +3032,8 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Shiso"
       ],
       "harvest": [
         "Lettuce",
@@ -1862,14 +3051,35 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "5": {
       "startIndoors": [],
       "directSow": [
         "Beans",
-        "Okra"
+        "Okra",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -1882,7 +3092,28 @@
         "Edamame",
         "Zucchini",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Napa Cabbage",
+        "Daikon",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Redcurrants",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "6": {
@@ -1891,7 +3122,9 @@
         "Kale",
         "Cabbage"
       ],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
       "harvest": [
         "Tomatoes",
@@ -1909,7 +3142,28 @@
         "Cherry Tomatoes",
         "Jalapeño",
         "Runner Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Redcurrants",
+        "Gooseberries",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "7": {
@@ -1920,7 +3174,8 @@
       "directSow": [
         "Beans",
         "Carrots",
-        "Beets"
+        "Beets",
+        "Microgreens"
       ],
       "transplant": [
         "Broccoli",
@@ -1942,7 +3197,25 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Blueberries",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "8": {
@@ -1963,7 +3236,14 @@
         "Endive",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Calendula",
+        "Microgreens",
+        "Chervil"
       ],
       "transplant": [
         "Brussels Sprouts",
@@ -1983,7 +3263,21 @@
         "Jalapeño",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "9": {
@@ -2001,7 +3295,20 @@
         "Fava Beans",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Strawberries"
@@ -2022,7 +3329,19 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "10": {
@@ -2035,7 +3354,16 @@
         "Onions",
         "Shallots",
         "Cilantro",
-        "Broad Beans"
+        "Broad Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil"
       ],
       "transplant": [
         "Broccoli"
@@ -2055,7 +3383,21 @@
         "Cherry Tomatoes",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Calendula",
+        "Raspberries",
+        "Microgreens",
+        "Chervil",
+        "Lemon Verbena"
       ]
     },
     "11": {
@@ -2065,7 +3407,8 @@
         "Lettuce",
         "Peas",
         "Fava Beans",
-        "Broad Beans"
+        "Broad Beans",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -2080,7 +3423,18 @@
         "Collard Greens",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil"
       ]
     },
     "12": {
@@ -2091,7 +3445,8 @@
       ],
       "directSow": [
         "Spinach",
-        "Kale"
+        "Kale",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -2099,7 +3454,17 @@
         "Carrots",
         "Spinach",
         "Broccoli",
-        "Lemongrass"
+        "Lemongrass",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ]
     }
   },
@@ -2116,7 +3481,10 @@
         "Shallots",
         "Celeriac",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Marjoram",
+        "Shiso",
+        "Lemon Verbena"
       ],
       "directSow": [
         "Peas",
@@ -2136,15 +3504,39 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil"
       ],
-      "transplant": [],
+      "transplant": [
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Good King Henry"
+      ],
       "harvest": [
         "Kale",
         "Spinach",
         "Broccoli",
         "Carrots",
-        "Lettuce"
+        "Lettuce",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Sweet Peas",
+        "Hamburg Parsley"
       ]
     },
     "2": {
@@ -2158,7 +3550,8 @@
         "Collard Greens",
         "Zucchini",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Shiso"
       ],
       "directSow": [
         "Radishes",
@@ -2171,7 +3564,26 @@
         "Fennel",
         "Sweet Corn",
         "Runner Beans",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Tomatoes",
@@ -2185,7 +3597,17 @@
         "Celeriac",
         "Endive",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Pak Choi",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ],
       "harvest": [
         "Peas",
@@ -2201,7 +3623,13 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil",
+        "Good King Henry"
       ]
     },
     "3": {
@@ -2224,7 +3652,19 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa"
       ],
       "transplant": [
         "Squash",
@@ -2244,7 +3684,14 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Lemon Verbena"
       ],
       "harvest": [
         "Lettuce",
@@ -2262,7 +3709,22 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Tarragon",
+        "Lemon Balm",
+        "Calendula",
+        "Microgreens",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "4": {
@@ -2272,7 +3734,12 @@
         "Okra",
         "Watermelon",
         "Sweet Corn",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [
         "Globe Artichoke",
@@ -2297,12 +3764,35 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Blueberries",
+        "Raspberries",
+        "Microgreens",
+        "Purslane",
+        "Sweet Peas",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "5": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens",
+        "Purslane"
+      ],
       "transplant": [],
       "harvest": [
         "Tomatoes",
@@ -2317,7 +3807,26 @@
         "Cherry Tomatoes",
         "Jalapeño",
         "Runner Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Microgreens",
+        "Purslane",
+        "Salsify",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "6": {
@@ -2327,7 +3836,9 @@
         "Cabbage",
         "Onions"
       ],
-      "directSow": [],
+      "directSow": [
+        "Microgreens"
+      ],
       "transplant": [],
       "harvest": [
         "Tomatoes",
@@ -2346,7 +3857,24 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Blueberries",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Lemon Verbena",
+        "Lovage"
       ]
     },
     "7": {
@@ -2359,7 +3887,8 @@
       "directSow": [
         "Beans",
         "Squash",
-        "Cucumbers"
+        "Cucumbers",
+        "Microgreens"
       ],
       "transplant": [
         "Broccoli",
@@ -2379,7 +3908,20 @@
         "Jalapeño",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Sunflowers",
+        "Blackberries",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "8": {
@@ -2399,7 +3941,8 @@
         "Mustard Greens",
         "Fava Beans",
         "Watercress",
-        "Runner Beans"
+        "Runner Beans",
+        "Microgreens"
       ],
       "transplant": [
         "Cauliflower",
@@ -2420,7 +3963,18 @@
         "Sweet Corn",
         "Cherry Tomatoes",
         "Jalapeño",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "9": {
@@ -2432,7 +3986,19 @@
         "Green Onions",
         "Dill",
         "Endive",
-        "Fennel"
+        "Fennel",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Broccoli Rabe",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Salsify",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Potatoes"
@@ -2449,7 +4015,16 @@
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Lovage"
       ]
     },
     "10": {
@@ -2465,7 +4040,19 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil"
       ],
       "transplant": [
         "Broccoli",
@@ -2484,13 +4071,23 @@
         "Butternut Squash",
         "Cherry Tomatoes",
         "Jalapeño",
-        "Runner Beans"
+        "Runner Beans",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Raspberries",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena"
       ]
     },
     "11": {
       "startIndoors": [
         "Tomatoes",
-        "Peppers"
+        "Peppers",
+        "Lavender"
       ],
       "directSow": [
         "Spinach",
@@ -2503,7 +4100,15 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil"
       ],
       "transplant": [],
       "harvest": [
@@ -2517,7 +4122,20 @@
         "Collard Greens",
         "Fennel",
         "Cherry Tomatoes",
-        "Runner Beans"
+        "Runner Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Raspberries",
+        "Microgreens",
+        "Chervil",
+        "Lemon Verbena"
       ]
     },
     "12": {
@@ -2525,7 +4143,11 @@
         "Tomatoes",
         "Peppers",
         "Eggplant",
-        "Celeriac"
+        "Celeriac",
+        "Lavender",
+        "Tarragon",
+        "Lemon Verbena",
+        "Lovage"
       ],
       "directSow": [
         "Spinach",
@@ -2536,7 +4158,10 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -2550,7 +4175,20 @@
         "Fava Beans",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ]
     }
   },
@@ -2586,9 +4224,34 @@
         "Jalapeño",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Quinoa",
+        "Salsify",
+        "Chervil",
+        "Hamburg Parsley"
       ],
-      "transplant": [],
+      "transplant": [
+        "Lavender",
+        "Tarragon",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Lovage",
+        "Good King Henry"
+      ],
       "harvest": [
         "Kale",
         "Spinach",
@@ -2599,7 +4262,16 @@
         "Cauliflower",
         "Collard Greens",
         "Celeriac",
-        "Broad Beans"
+        "Broad Beans",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Sweet Peas",
+        "Hamburg Parsley"
       ]
     },
     "2": {
@@ -2626,7 +4298,26 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Tomatoes",
@@ -2638,7 +4329,15 @@
         "Endive",
         "Zucchini",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Pak Choi",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Blackberries",
+        "Lemon Verbena",
+        "Lovage"
       ],
       "harvest": [
         "Peas",
@@ -2654,7 +4353,15 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Broccoli Rabe",
+        "Calendula",
+        "Microgreens",
+        "Sweet Peas",
+        "Chervil",
+        "Good King Henry"
       ]
     },
     "3": {
@@ -2672,7 +4379,18 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [
         "Squash",
@@ -2691,7 +4409,12 @@
         "Collard Greens",
         "Zucchini",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Pak Choi",
+        "Marjoram",
+        "Lemon Balm",
+        "Shiso",
+        "Lemon Verbena"
       ],
       "harvest": [
         "Tomatoes",
@@ -2709,16 +4432,42 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane",
+        "Sweet Peas",
+        "Chervil",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "4": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Borage",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane"
+      ],
       "transplant": [
         "Zucchini",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Shiso"
       ],
       "harvest": [
         "Tomatoes",
@@ -2740,12 +4489,37 @@
         "Sugar Snap Peas",
         "Mangetout",
         "Runner Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Blackberries",
+        "Blueberries",
+        "Raspberries",
+        "Microgreens",
+        "Purslane",
+        "Salsify",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "5": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens",
+        "Purslane"
+      ],
       "transplant": [],
       "harvest": [
         "Tomatoes",
@@ -2763,7 +4537,27 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Blueberries",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "6": {
@@ -2773,7 +4567,10 @@
         "Cabbage",
         "Onions"
       ],
-      "directSow": [],
+      "directSow": [
+        "Microgreens",
+        "Purslane"
+      ],
       "transplant": [],
       "harvest": [
         "Peppers",
@@ -2792,7 +4589,23 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage"
       ]
     },
     "7": {
@@ -2800,7 +4613,8 @@
       "directSow": [
         "Beans",
         "Squash",
-        "Cucumbers"
+        "Cucumbers",
+        "Microgreens"
       ],
       "transplant": [
         "Broccoli",
@@ -2816,7 +4630,17 @@
         "Watermelon",
         "Jalapeño",
         "Lima Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Lovage"
       ]
     },
     "8": {
@@ -2847,7 +4671,9 @@
         "Mangetout",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Sunflowers",
+        "Microgreens"
       ],
       "transplant": [
         "Strawberries"
@@ -2857,7 +4683,16 @@
         "Squash",
         "Sweet Potatoes",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Microgreens",
+        "Lemon Verbena",
+        "Lovage"
       ]
     },
     "9": {
@@ -2879,7 +4714,22 @@
         "Mangetout",
         "Runner Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Broccoli Rabe",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Potatoes",
@@ -2893,11 +4743,20 @@
         "Bok Choy",
         "Arugula",
         "Turnips",
-        "Butternut Squash"
+        "Butternut Squash",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Microgreens",
+        "Lemon Verbena"
       ]
     },
     "10": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Lavender"
+      ],
       "directSow": [
         "Spinach",
         "Lettuce",
@@ -2914,7 +4773,23 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Broccoli",
@@ -2941,11 +4816,23 @@
         "Sugar Snap Peas",
         "Mangetout",
         "Lima Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena"
       ]
     },
     "11": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Lavender",
+        "Tarragon",
+        "Lovage"
+      ],
       "directSow": [
         "Tomatoes",
         "Beans",
@@ -2957,7 +4844,18 @@
         "Bok Choy",
         "Green Onions",
         "Edamame",
-        "Broad Beans"
+        "Broad Beans",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane",
+        "Sweet Peas",
+        "Chervil"
       ],
       "transplant": [],
       "harvest": [
@@ -2981,11 +4879,28 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Chervil",
+        "Lemon Verbena"
       ]
     },
     "12": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Tarragon",
+        "Lovage"
+      ],
       "directSow": [
         "Tomatoes",
         "Peppers",
@@ -3001,7 +4916,9 @@
         "Watercress",
         "Fennel",
         "Endive",
-        "Broad Beans"
+        "Broad Beans",
+        "Microgreens",
+        "Sweet Peas"
       ],
       "transplant": [],
       "harvest": [
@@ -3018,7 +4935,24 @@
         "Cherry Tomatoes",
         "Jalapeño",
         "Runner Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ]
     }
   },
@@ -3054,14 +4988,31 @@
         "Jalapeño",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Mizuna",
+        "Tatsoi",
+        "Marjoram",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [
         "Zucchini",
         "Butternut Squash",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Marjoram",
+        "Lemon Balm",
+        "Blackberries",
+        "Lemon Verbena",
+        "Lovage"
       ],
       "harvest": [
         "Tomatoes",
@@ -3082,7 +5033,31 @@
         "Sugar Snap Peas",
         "Mangetout",
         "Broad Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley",
+        "Good King Henry"
       ]
     },
     "2": {
@@ -3096,7 +5071,14 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Savory",
+        "Lemon Balm",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [
         "Tomatoes",
@@ -3110,7 +5092,10 @@
         "Zucchini",
         "Butternut Squash",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Marjoram",
+        "Lemon Balm",
+        "Lemon Verbena"
       ],
       "harvest": [
         "Tomatoes",
@@ -3131,7 +5116,32 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Broad Beans"
+        "Broad Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "3": {
@@ -3147,7 +5157,10 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Savory",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [
         "Asparagus",
@@ -3159,7 +5172,8 @@
         "Mint",
         "Rosemary",
         "Oregano",
-        "Celeriac"
+        "Celeriac",
+        "Lemon Balm"
       ],
       "harvest": [
         "Tomatoes",
@@ -3179,7 +5193,28 @@
         "Jalapeño",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Mizuna",
+        "Tatsoi",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Blackberries",
+        "Microgreens",
+        "Purslane",
+        "Salsify",
+        "Lemon Verbena",
+        "Hamburg Parsley",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "4": {
@@ -3187,7 +5222,9 @@
       "directSow": [
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Microgreens",
+        "Purslane"
       ],
       "transplant": [],
       "harvest": [
@@ -3208,12 +5245,30 @@
         "Cherry Tomatoes",
         "Jalapeño",
         "Runner Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Mizuna",
+        "Tatsoi",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Sunflowers",
+        "Blackberries",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Lovage",
+        "Good King Henry"
       ]
     },
     "5": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens",
+        "Purslane"
+      ],
       "transplant": [],
       "harvest": [
         "Peppers",
@@ -3231,12 +5286,26 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Blackberries",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Lovage"
       ]
     },
     "6": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Microgreens",
+        "Purslane"
+      ],
       "transplant": [],
       "harvest": [
         "Peppers",
@@ -3250,7 +5319,16 @@
         "Runner Beans",
         "Lima Beans",
         "Yardlong Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Savory",
+        "Lemon Balm",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Lovage"
       ]
     },
     "7": {
@@ -3260,7 +5338,8 @@
         "Squash",
         "Cucumbers",
         "Corn",
-        "Edamame"
+        "Edamame",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
@@ -3270,7 +5349,14 @@
         "Avocados",
         "Butternut Squash",
         "Lima Beans",
-        "Borlotti Beans"
+        "Borlotti Beans",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Microgreens",
+        "Purslane",
+        "Lemon Verbena",
+        "Lovage"
       ]
     },
     "8": {
@@ -3292,20 +5378,27 @@
         "Fava Beans",
         "Watercress",
         "Endive",
-        "Fennel"
+        "Fennel",
+        "Microgreens"
       ],
       "transplant": [],
       "harvest": [
         "Beans",
         "Squash",
         "Sweet Potatoes",
-        "Edamame"
+        "Edamame",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Microgreens",
+        "Lemon Verbena"
       ]
     },
     "9": {
       "startIndoors": [
         "Cauliflower",
-        "Broccoli"
+        "Broccoli",
+        "Lavender"
       ],
       "directSow": [
         "Broccoli",
@@ -3321,7 +5414,24 @@
         "Jalapeño",
         "Runner Beans",
         "Broad Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Tomatoes",
@@ -3338,11 +5448,16 @@
         "Bok Choy",
         "Arugula",
         "Watercress",
-        "Fennel"
+        "Fennel",
+        "Microgreens",
+        "Lemon Verbena"
       ]
     },
     "10": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Lavender",
+        "Lovage"
+      ],
       "directSow": [
         "Spinach",
         "Lettuce",
@@ -3368,7 +5483,28 @@
         "Mangetout",
         "Runner Beans",
         "Broad Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Broccoli",
@@ -3384,11 +5520,15 @@
         "Beets",
         "Ginger",
         "Turmeric",
-        "Edamame"
+        "Edamame",
+        "Microgreens",
+        "Lemon Verbena"
       ]
     },
     "11": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Lovage"
+      ],
       "directSow": [
         "Tomatoes",
         "Peppers",
@@ -3410,13 +5550,39 @@
         "Sugar Snap Peas",
         "Mangetout",
         "Broad Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Savory",
+        "Lemon Balm",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Salsify",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Zucchini",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Lavender",
+        "Tarragon",
+        "Shiso",
+        "Blackberries",
+        "Good King Henry"
       ],
       "harvest": [
         "Kale",
@@ -3432,7 +5598,19 @@
         "Celeriac",
         "Runner Beans",
         "Broad Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Microgreens",
+        "Purslane",
+        "Chervil"
       ]
     },
     "12": {
@@ -3461,13 +5639,39 @@
         "Jalapeño",
         "Snow Peas",
         "Sugar Snap Peas",
-        "Mangetout"
+        "Mangetout",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Marjoram",
+        "Savory",
+        "Lemon Balm",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ],
       "transplant": [
         "Zucchini",
         "Watermelon",
         "Cherry Tomatoes",
-        "Jalapeño"
+        "Jalapeño",
+        "Lavender",
+        "Marjoram",
+        "Tarragon",
+        "Lemon Balm",
+        "Shiso",
+        "Blackberries",
+        "Lovage",
+        "Good King Henry"
       ],
       "harvest": [
         "Tomatoes",
@@ -3485,7 +5689,25 @@
         "Mangetout",
         "Runner Beans",
         "Broad Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Pak Choi",
+        "Napa Cabbage",
+        "Mizuna",
+        "Tatsoi",
+        "Daikon",
+        "Broccoli Rabe",
+        "Savory",
+        "Shiso",
+        "Borage",
+        "Calendula",
+        "Nasturtium",
+        "Sunflowers",
+        "Microgreens",
+        "Purslane",
+        "Quinoa",
+        "Sweet Peas",
+        "Chervil",
+        "Hamburg Parsley"
       ]
     }
   }
