@@ -27,7 +27,9 @@
         "Ground Cherries",
         "Cauliflower",
         "Parsley",
-        "Celeriac"
+        "Celeriac",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "directSow": [],
       "transplant": [],
@@ -41,7 +43,9 @@
         "Brussels Sprouts",
         "Kohlrabi",
         "Bok Choy",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash"
       ],
       "directSow": [
         "Spinach",
@@ -51,7 +55,11 @@
         "Mâche",
         "Mustard Greens",
         "Turnips",
-        "Green Onions"
+        "Green Onions",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [
         "Onions",
@@ -64,7 +72,10 @@
       "harvest": []
     },
     "5": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Butternut Squash",
+        "Watermelon"
+      ],
       "directSow": [
         "Peas",
         "Radishes",
@@ -76,7 +87,15 @@
         "Dill",
         "Fava Beans",
         "Fennel",
-        "Watercress"
+        "Watercress",
+        "Zucchini",
+        "Sweet Corn",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Runner Beans",
+        "Broad Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Broccoli",
@@ -98,7 +117,13 @@
         "Squash",
         "Rutabaga",
         "Bok Choy",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -110,7 +135,12 @@
         "Rosemary",
         "Oregano",
         "Celeriac",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Lettuce",
@@ -121,7 +151,10 @@
         "Turnips",
         "Kohlrabi",
         "Fava Beans",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ]
     },
     "7": {
@@ -141,7 +174,11 @@
         "Kale",
         "Bok Choy",
         "Green Onions",
-        "Fennel"
+        "Fennel",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "8": {
@@ -161,7 +198,17 @@
         "Cauliflower",
         "Edamame",
         "Endive",
-        "Watercress"
+        "Watercress",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Broad Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "9": {
@@ -183,7 +230,17 @@
         "Beets",
         "Collard Greens",
         "Celeriac",
-        "Fennel"
+        "Fennel",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "10": {
@@ -202,7 +259,8 @@
         "Brussels Sprouts",
         "Rutabaga",
         "Collard Greens",
-        "Celeriac"
+        "Celeriac",
+        "Butternut Squash"
       ]
     },
     "11": {
@@ -257,7 +315,9 @@
         "Tomatillos",
         "Ground Cherries",
         "Celeriac",
-        "Collard Greens"
+        "Collard Greens",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "directSow": [],
       "transplant": [],
@@ -272,7 +332,10 @@
         "Kohlrabi",
         "Bok Choy",
         "Globe Artichoke",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon"
       ],
       "directSow": [
         "Spinach",
@@ -282,7 +345,11 @@
         "Arugula",
         "Mâche",
         "Turnips",
-        "Green Onions"
+        "Green Onions",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [
         "Onions",
@@ -296,7 +363,9 @@
       "harvest": []
     },
     "5": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Watermelon"
+      ],
       "directSow": [
         "Radishes",
         "Carrots",
@@ -308,7 +377,14 @@
         "Dill",
         "Fava Beans",
         "Fennel",
-        "Watercress"
+        "Watercress",
+        "Zucchini",
+        "Butternut Squash",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Cabbage",
@@ -318,7 +394,11 @@
         "Thyme",
         "Mint",
         "Chives",
-        "Collard Greens"
+        "Collard Greens",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Spinach",
@@ -336,7 +416,10 @@
         "Squash",
         "Cucumbers",
         "Rutabaga",
-        "Edamame"
+        "Edamame",
+        "Sweet Corn",
+        "Lima Beans",
+        "Yardlong Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -350,7 +433,12 @@
         "Oregano",
         "Globe Artichoke",
         "Celeriac",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Peas",
@@ -359,7 +447,11 @@
         "Bok Choy",
         "Kohlrabi",
         "Fava Beans",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "7": {
@@ -377,7 +469,12 @@
         "Squash",
         "Beets",
         "Green Onions",
-        "Fennel"
+        "Fennel",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Runner Beans",
+        "Broad Beans"
       ]
     },
     "8": {
@@ -399,7 +496,16 @@
         "Strawberries",
         "Edamame",
         "Endive",
-        "Celeriac"
+        "Celeriac",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "9": {
@@ -421,7 +527,17 @@
         "Melons",
         "Rutabaga",
         "Collard Greens",
-        "Fennel"
+        "Fennel",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "10": {
@@ -437,7 +553,8 @@
         "Parsnips",
         "Brussels Sprouts",
         "Cauliflower",
-        "Collard Greens"
+        "Collard Greens",
+        "Butternut Squash"
       ]
     },
     "11": {
@@ -474,7 +591,9 @@
         "Peppers",
         "Shallots",
         "Chives",
-        "Parsley"
+        "Parsley",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "directSow": [],
       "transplant": [],
@@ -493,12 +612,17 @@
         "Ground Cherries",
         "Globe Artichoke",
         "Celeriac",
-        "Collard Greens"
+        "Collard Greens",
+        "Cherry Tomatoes"
       ],
       "directSow": [
         "Peas",
         "Spinach",
-        "Kale"
+        "Kale",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [
         "Onions",
@@ -513,7 +637,10 @@
         "Melons",
         "Kohlrabi",
         "Bok Choy",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon"
       ],
       "directSow": [
         "Lettuce",
@@ -528,7 +655,11 @@
         "Cilantro",
         "Dill",
         "Fava Beans",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [
         "Broccoli",
@@ -559,7 +690,14 @@
         "Potatoes",
         "Parsnips",
         "Fennel",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Butternut Squash",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -574,7 +712,12 @@
         "Rosemary",
         "Oregano",
         "Celeriac",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Peas",
@@ -583,7 +726,11 @@
         "Arugula",
         "Turnips",
         "Kohlrabi",
-        "Fava Beans"
+        "Fava Beans",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "6": {
@@ -596,7 +743,8 @@
         "Bok Choy"
       ],
       "transplant": [
-        "Melons"
+        "Melons",
+        "Zucchini"
       ],
       "harvest": [
         "Lettuce",
@@ -609,7 +757,11 @@
         "Green Onions",
         "Peas",
         "Watercress",
-        "Fennel"
+        "Fennel",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "7": {
@@ -630,7 +782,13 @@
         "Tomatoes",
         "Potatoes",
         "Strawberries",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Runner Beans",
+        "Broad Beans",
+        "Yardlong Beans"
       ]
     },
     "8": {
@@ -658,7 +816,16 @@
         "Beans",
         "Tomatillos",
         "Ground Cherries",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "9": {
@@ -676,7 +843,17 @@
         "Pumpkins",
         "Rutabaga",
         "Celeriac",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "10": {
@@ -694,7 +871,8 @@
         "Brussels Sprouts",
         "Cauliflower",
         "Collard Greens",
-        "Celeriac"
+        "Celeriac",
+        "Butternut Squash"
       ]
     },
     "11": {
@@ -738,9 +916,16 @@
         "Globe Artichoke",
         "Parsley",
         "Celeriac",
-        "Collard Greens"
+        "Collard Greens",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
-      "directSow": [],
+      "directSow": [
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
+      ],
       "transplant": [
         "Onions",
         "Shallots"
@@ -757,7 +942,11 @@
         "Ground Cherries",
         "Kohlrabi",
         "Bok Choy",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes"
       ],
       "directSow": [
         "Peas",
@@ -772,7 +961,11 @@
         "Cilantro",
         "Dill",
         "Fava Beans",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [
         "Broccoli",
@@ -789,7 +982,9 @@
     "4": {
       "startIndoors": [
         "Cucumbers",
-        "Melons"
+        "Melons",
+        "Butternut Squash",
+        "Watermelon"
       ],
       "directSow": [
         "Carrots",
@@ -797,7 +992,13 @@
         "Chard",
         "Potatoes",
         "Parsnips",
-        "Fennel"
+        "Fennel",
+        "Zucchini",
+        "Butternut Squash",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -808,7 +1009,12 @@
         "Thyme",
         "Mint",
         "Celeriac",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Spinach",
@@ -819,7 +1025,10 @@
         "Turnips",
         "Kohlrabi",
         "Fava Beans",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ]
     },
     "5": {
@@ -832,7 +1041,15 @@
         "Peanuts",
         "Rutabaga",
         "Bok Choy",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Basil",
@@ -843,7 +1060,12 @@
         "Ground Cherries",
         "Globe Artichoke",
         "Rosemary",
-        "Oregano"
+        "Oregano",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Lettuce",
@@ -855,7 +1077,11 @@
         "Bok Choy",
         "Green Onions",
         "Fennel",
-        "Collard Greens"
+        "Collard Greens",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "6": {
@@ -877,7 +1103,13 @@
         "Peas",
         "Strawberries",
         "Potatoes",
-        "Watercress"
+        "Watercress",
+        "Zucchini",
+        "Cherry Tomatoes",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "7": {
@@ -908,7 +1140,14 @@
         "Tomatillos",
         "Ground Cherries",
         "Edamame",
-        "Celeriac"
+        "Celeriac",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Yardlong Beans"
       ]
     },
     "8": {
@@ -927,7 +1166,16 @@
         "Peppers",
         "Squash",
         "Melons",
-        "Peanuts"
+        "Peanuts",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "9": {
@@ -947,12 +1195,22 @@
         "Brussels Sprouts",
         "Endive",
         "Celeriac",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Lima Beans",
+        "Borlotti Beans"
       ]
     },
     "10": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Broad Beans"
+      ],
       "transplant": [],
       "harvest": [
         "Broccoli",
@@ -962,14 +1220,17 @@
         "Cabbage",
         "Cauliflower",
         "Turnips",
-        "Collard Greens"
+        "Collard Greens",
+        "Butternut Squash"
       ]
     },
     "11": {
       "startIndoors": [
         "Onions"
       ],
-      "directSow": [],
+      "directSow": [
+        "Broad Beans"
+      ],
       "transplant": [],
       "harvest": [
         "Kale",
@@ -1022,7 +1283,9 @@
         "Tomatillos",
         "Ground Cherries",
         "Globe Artichoke",
-        "Collard Greens"
+        "Collard Greens",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "directSow": [
         "Peas",
@@ -1032,7 +1295,11 @@
         "Turnips",
         "Green Onions",
         "Cilantro",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [
         "Onions",
@@ -1058,7 +1325,10 @@
         "Melons",
         "Kohlrabi",
         "Bok Choy",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon"
       ],
       "directSow": [
         "Carrots",
@@ -1082,7 +1352,9 @@
         "Thyme",
         "Mint",
         "Celeriac",
-        "Collard Greens"
+        "Collard Greens",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Peas",
@@ -1092,7 +1364,10 @@
         "Arugula",
         "Turnips",
         "Kohlrabi",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ]
     },
     "4": {
@@ -1101,7 +1376,15 @@
         "Beans",
         "Corn",
         "Peanuts",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Basil",
@@ -1114,7 +1397,12 @@
         "Globe Artichoke",
         "Rosemary",
         "Oregano",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Lettuce",
@@ -1127,7 +1415,11 @@
         "Green Onions",
         "Strawberries",
         "Fennel",
-        "Celeriac"
+        "Celeriac",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "5": {
@@ -1136,9 +1428,20 @@
         "Squash",
         "Cucumbers",
         "Sweet Potatoes",
-        "Rutabaga"
+        "Rutabaga",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
-      "transplant": [],
+      "transplant": [
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon"
+      ],
       "harvest": [
         "Beans",
         "Beets",
@@ -1148,7 +1451,11 @@
         "Potatoes",
         "Peas",
         "Watercress",
-        "Endive"
+        "Endive",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "6": {
@@ -1172,7 +1479,11 @@
         "Tomatillos",
         "Ground Cherries",
         "Edamame",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans"
       ]
     },
     "7": {
@@ -1197,7 +1508,16 @@
         "Okra",
         "Corn",
         "Peanuts",
-        "Celeriac"
+        "Celeriac",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "8": {
@@ -1225,7 +1545,17 @@
         "Squash",
         "Melons",
         "Sweet Potatoes",
-        "Bok Choy"
+        "Bok Choy",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "9": {
@@ -1237,7 +1567,10 @@
         "Beets",
         "Green Onions",
         "Bok Choy",
-        "Fava Beans"
+        "Fava Beans",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ],
       "transplant": [],
       "harvest": [
@@ -1247,7 +1580,15 @@
         "Eggplant",
         "Rutabaga",
         "Endive",
-        "Celeriac"
+        "Celeriac",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Lima Beans",
+        "Borlotti Beans"
       ]
     },
     "10": {
@@ -1257,7 +1598,8 @@
         "Lettuce",
         "Kale",
         "Garlic",
-        "Shallots"
+        "Shallots",
+        "Broad Beans"
       ],
       "transplant": [
         "Strawberries"
@@ -1272,7 +1614,8 @@
         "Brussels Sprouts",
         "Parsnips",
         "Collard Greens",
-        "Fennel"
+        "Fennel",
+        "Butternut Squash"
       ]
     },
     "11": {
@@ -1281,7 +1624,8 @@
       ],
       "directSow": [
         "Spinach",
-        "Lettuce"
+        "Lettuce",
+        "Broad Beans"
       ],
       "transplant": [],
       "harvest": [
@@ -1292,7 +1636,10 @@
         "Jerusalem Artichoke",
         "Mâche",
         "Fava Beans",
-        "Collard Greens"
+        "Collard Greens",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ]
     },
     "12": {
@@ -1323,7 +1670,9 @@
         "Tomatillos",
         "Shallots",
         "Parsley",
-        "Celeriac"
+        "Celeriac",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "directSow": [
         "Spinach",
@@ -1335,7 +1684,11 @@
         "Cilantro",
         "Fava Beans",
         "Watercress",
-        "Endive"
+        "Endive",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [],
       "harvest": [
@@ -1355,7 +1708,12 @@
         "Ginger",
         "Turmeric",
         "Lemongrass",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "directSow": [
         "Radishes",
@@ -1386,7 +1744,10 @@
         "Arugula",
         "Mâche",
         "Fava Beans",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ]
     },
     "3": {
@@ -1395,7 +1756,10 @@
         "Cucumbers",
         "Melons",
         "Kohlrabi",
-        "Bok Choy"
+        "Bok Choy",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon"
       ],
       "directSow": [
         "Beans",
@@ -1405,7 +1769,15 @@
         "Dill",
         "Cilantro",
         "Mustard Greens",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -1416,7 +1788,11 @@
         "Sage",
         "Thyme",
         "Mint",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Broccoli",
@@ -1428,7 +1804,11 @@
         "Kohlrabi",
         "Bok Choy",
         "Fennel",
-        "Endive"
+        "Endive",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "4": {
@@ -1438,7 +1818,15 @@
         "Cucumbers",
         "Sweet Potatoes",
         "Okra",
-        "Peanuts"
+        "Peanuts",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Basil",
@@ -1451,7 +1839,12 @@
         "Turmeric",
         "Lemongrass",
         "Rosemary",
-        "Oregano"
+        "Oregano",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Lettuce",
@@ -1465,7 +1858,11 @@
         "Strawberries",
         "Fava Beans",
         "Watercress",
-        "Celeriac"
+        "Celeriac",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "5": {
@@ -1482,7 +1879,10 @@
         "Squash",
         "Potatoes",
         "Tomatillos",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ]
     },
     "6": {
@@ -1502,7 +1902,14 @@
         "Squash",
         "Melons",
         "Peanuts",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Yardlong Beans"
       ]
     },
     "7": {
@@ -1526,7 +1933,16 @@
         "Eggplant",
         "Squash",
         "Melons",
-        "Celeriac"
+        "Celeriac",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "8": {
@@ -1544,7 +1960,10 @@
         "Turnips",
         "Cilantro",
         "Watercress",
-        "Endive"
+        "Endive",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ],
       "transplant": [
         "Brussels Sprouts",
@@ -1556,7 +1975,15 @@
         "Peppers",
         "Sweet Potatoes",
         "Corn",
-        "Okra"
+        "Okra",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "9": {
@@ -1571,7 +1998,10 @@
         "Mustard Greens",
         "Green Onions",
         "Fennel",
-        "Fava Beans"
+        "Fava Beans",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ],
       "transplant": [
         "Strawberries"
@@ -1587,7 +2017,12 @@
         "Ginger",
         "Turmeric",
         "Watercress",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ]
     },
     "10": {
@@ -1599,7 +2034,8 @@
         "Garlic",
         "Onions",
         "Shallots",
-        "Cilantro"
+        "Cilantro",
+        "Broad Beans"
       ],
       "transplant": [
         "Broccoli"
@@ -1614,7 +2050,12 @@
         "Cauliflower",
         "Collard Greens",
         "Fennel",
-        "Celeriac"
+        "Celeriac",
+        "Butternut Squash",
+        "Cherry Tomatoes",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ]
     },
     "11": {
@@ -1623,7 +2064,8 @@
         "Spinach",
         "Lettuce",
         "Peas",
-        "Fava Beans"
+        "Fava Beans",
+        "Broad Beans"
       ],
       "transplant": [],
       "harvest": [
@@ -1635,7 +2077,10 @@
         "Cauliflower",
         "Parsnips",
         "Mâche",
-        "Collard Greens"
+        "Collard Greens",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ]
     },
     "12": {
@@ -1669,7 +2114,9 @@
         "Brussels Sprouts",
         "Tomatillos",
         "Shallots",
-        "Celeriac"
+        "Celeriac",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "directSow": [
         "Peas",
@@ -1685,7 +2132,11 @@
         "Bok Choy",
         "Fava Beans",
         "Watercress",
-        "Endive"
+        "Endive",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [],
       "harvest": [
@@ -1704,7 +2155,10 @@
         "Ginger",
         "Turmeric",
         "Lemongrass",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon"
       ],
       "directSow": [
         "Radishes",
@@ -1714,7 +2168,10 @@
         "Dill",
         "Mustard Greens",
         "Potatoes",
-        "Fennel"
+        "Fennel",
+        "Sweet Corn",
+        "Runner Beans",
+        "Broad Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -1726,7 +2183,9 @@
         "Rhubarb",
         "Strawberries",
         "Celeriac",
-        "Endive"
+        "Endive",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Peas",
@@ -1738,11 +2197,17 @@
         "Bok Choy",
         "Turnips",
         "Fava Beans",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "3": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Butternut Squash"
+      ],
       "directSow": [
         "Beans",
         "Corn",
@@ -1751,7 +2216,15 @@
         "Okra",
         "Parsnips",
         "Peanuts",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Squash",
@@ -1766,7 +2239,12 @@
         "Mint",
         "Rosemary",
         "Oregano",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Lettuce",
@@ -1780,18 +2258,27 @@
         "Cauliflower",
         "Fennel",
         "Endive",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "4": {
       "startIndoors": [],
       "directSow": [
         "Sweet Potatoes",
-        "Okra"
+        "Okra",
+        "Watermelon",
+        "Sweet Corn",
+        "Yardlong Beans"
       ],
       "transplant": [
         "Globe Artichoke",
-        "Tomatillos"
+        "Tomatillos",
+        "Butternut Squash",
+        "Watermelon"
       ],
       "harvest": [
         "Tomatoes",
@@ -1803,7 +2290,14 @@
         "Arugula",
         "Fava Beans",
         "Collard Greens",
-        "Celeriac"
+        "Celeriac",
+        "Zucchini",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "5": {
@@ -1817,7 +2311,13 @@
         "Okra",
         "Corn",
         "Peanuts",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Yardlong Beans"
       ]
     },
     "6": {
@@ -1837,7 +2337,16 @@
         "Sweet Potatoes",
         "Melons",
         "Tomatillos",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "7": {
@@ -1862,7 +2371,15 @@
         "Eggplant",
         "Okra",
         "Ginger",
-        "Turmeric"
+        "Turmeric",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "8": {
@@ -1881,7 +2398,8 @@
         "Cilantro",
         "Mustard Greens",
         "Fava Beans",
-        "Watercress"
+        "Watercress",
+        "Runner Beans"
       ],
       "transplant": [
         "Cauliflower",
@@ -1895,7 +2413,14 @@
         "Beans",
         "Squash",
         "Sweet Potatoes",
-        "Lemongrass"
+        "Lemongrass",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Yardlong Beans"
       ]
     },
     "9": {
@@ -1919,7 +2444,12 @@
         "Pumpkins",
         "Kohlrabi",
         "Bok Choy",
-        "Watercress"
+        "Watercress",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ]
     },
     "10": {
@@ -1931,7 +2461,11 @@
         "Garlic",
         "Onions",
         "Peas",
-        "Cilantro"
+        "Cilantro",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [
         "Broccoli",
@@ -1946,7 +2480,11 @@
         "Brussels Sprouts",
         "Parsnips",
         "Endive",
-        "Celeriac"
+        "Celeriac",
+        "Butternut Squash",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans"
       ]
     },
     "11": {
@@ -1961,7 +2499,11 @@
         "Turnips",
         "Bok Choy",
         "Mâche",
-        "Fava Beans"
+        "Fava Beans",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [],
       "harvest": [
@@ -1973,7 +2515,9 @@
         "Cauliflower",
         "Potatoes",
         "Collard Greens",
-        "Fennel"
+        "Fennel",
+        "Cherry Tomatoes",
+        "Runner Beans"
       ]
     },
     "12": {
@@ -1988,7 +2532,11 @@
         "Kale",
         "Carrots",
         "Peas",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [],
       "harvest": [
@@ -1999,7 +2547,10 @@
         "Lettuce",
         "Brussels Sprouts",
         "Mâche",
-        "Fava Beans"
+        "Fava Beans",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ]
     }
   },
@@ -2028,7 +2579,14 @@
         "Fava Beans",
         "Watercress",
         "Endive",
-        "Fennel"
+        "Fennel",
+        "Zucchini",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ],
       "transplant": [],
       "harvest": [
@@ -2040,7 +2598,8 @@
         "Tomatoes",
         "Cauliflower",
         "Collard Greens",
-        "Celeriac"
+        "Celeriac",
+        "Broad Beans"
       ]
     },
     "2": {
@@ -2059,7 +2618,15 @@
         "Green Onions",
         "Dill",
         "Mustard Greens",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -2068,7 +2635,10 @@
         "Asparagus",
         "Rhubarb",
         "Strawberries",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Peas",
@@ -2080,7 +2650,11 @@
         "Bok Choy",
         "Fava Beans",
         "Watercress",
-        "Fennel"
+        "Fennel",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "3": {
@@ -2090,7 +2664,15 @@
         "Corn",
         "Squash",
         "Cucumbers",
-        "Okra"
+        "Okra",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Squash",
@@ -2106,7 +2688,10 @@
         "Mint",
         "Rosemary",
         "Oregano",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon"
       ],
       "harvest": [
         "Tomatoes",
@@ -2119,13 +2704,22 @@
         "Turnips",
         "Kohlrabi",
         "Fava Beans",
-        "Celeriac"
+        "Celeriac",
+        "Cherry Tomatoes",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "4": {
       "startIndoors": [],
       "directSow": [],
-      "transplant": [],
+      "transplant": [
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon"
+      ],
       "harvest": [
         "Tomatoes",
         "Peppers",
@@ -2137,7 +2731,16 @@
         "Bok Choy",
         "Peas",
         "Edamame",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Runner Beans",
+        "Yardlong Beans"
       ]
     },
     "5": {
@@ -2151,7 +2754,16 @@
         "Okra",
         "Sweet Potatoes",
         "Peanuts",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "6": {
@@ -2171,7 +2783,16 @@
         "Melons",
         "Ginger",
         "Turmeric",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "7": {
@@ -2191,7 +2812,11 @@
         "Eggplant",
         "Okra",
         "Lemongrass",
-        "Collard Greens"
+        "Collard Greens",
+        "Watermelon",
+        "Jalapeño",
+        "Lima Beans",
+        "Yardlong Beans"
       ]
     },
     "8": {
@@ -2213,7 +2838,16 @@
         "Fava Beans",
         "Watercress",
         "Endive",
-        "Fennel"
+        "Fennel",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Strawberries"
@@ -2221,7 +2855,9 @@
       "harvest": [
         "Beans",
         "Squash",
-        "Sweet Potatoes"
+        "Sweet Potatoes",
+        "Butternut Squash",
+        "Watermelon"
       ]
     },
     "9": {
@@ -2233,10 +2869,21 @@
         "Peppers",
         "Green Onions",
         "Dill",
-        "Edamame"
+        "Edamame",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Runner Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
-        "Potatoes"
+        "Potatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Peppers",
@@ -2245,7 +2892,8 @@
         "Pumpkins",
         "Bok Choy",
         "Arugula",
-        "Turnips"
+        "Turnips",
+        "Butternut Squash"
       ]
     },
     "10": {
@@ -2262,7 +2910,11 @@
         "Mâche",
         "Peas",
         "Fava Beans",
-        "Watercress"
+        "Watercress",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ],
       "transplant": [
         "Broccoli",
@@ -2270,7 +2922,8 @@
         "Tomatoes",
         "Peppers",
         "Cauliflower",
-        "Collard Greens"
+        "Collard Greens",
+        "Cherry Tomatoes"
       ],
       "harvest": [
         "Broccoli",
@@ -2281,7 +2934,14 @@
         "Cauliflower",
         "Potatoes",
         "Endive",
-        "Fennel"
+        "Fennel",
+        "Zucchini",
+        "Butternut Squash",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Lima Beans",
+        "Yardlong Beans"
       ]
     },
     "11": {
@@ -2296,7 +2956,8 @@
         "Turnips",
         "Bok Choy",
         "Green Onions",
-        "Edamame"
+        "Edamame",
+        "Broad Beans"
       ],
       "transplant": [],
       "harvest": [
@@ -2308,7 +2969,19 @@
         "Tomatoes",
         "Cauliflower",
         "Collard Greens",
-        "Celeriac"
+        "Celeriac",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "12": {
@@ -2327,7 +3000,8 @@
         "Fava Beans",
         "Watercress",
         "Fennel",
-        "Endive"
+        "Endive",
+        "Broad Beans"
       ],
       "transplant": [],
       "harvest": [
@@ -2337,7 +3011,14 @@
         "Broccoli",
         "Lettuce",
         "Tomatoes",
-        "Collard Greens"
+        "Collard Greens",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Borlotti Beans"
       ]
     }
   },
@@ -2365,9 +3046,23 @@
         "Fava Beans",
         "Watercress",
         "Endive",
-        "Fennel"
+        "Fennel",
+        "Zucchini",
+        "Butternut Squash",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ],
-      "transplant": [],
+      "transplant": [
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
+      ],
       "harvest": [
         "Tomatoes",
         "Peppers",
@@ -2377,7 +3072,17 @@
         "Lettuce",
         "Cauliflower",
         "Collard Greens",
-        "Celeriac"
+        "Celeriac",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans",
+        "Yardlong Beans"
       ]
     },
     "2": {
@@ -2387,7 +3092,11 @@
         "Pumpkins",
         "Peanuts",
         "Potatoes",
-        "Edamame"
+        "Edamame",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -2397,7 +3106,11 @@
         "Ginger",
         "Turmeric",
         "Lemongrass",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Butternut Squash",
+        "Cherry Tomatoes",
+        "Jalapeño"
       ],
       "harvest": [
         "Tomatoes",
@@ -2409,7 +3122,16 @@
         "Arugula",
         "Fava Beans",
         "Watercress",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans"
       ]
     },
     "3": {
@@ -2421,7 +3143,11 @@
         "Cucumbers",
         "Okra",
         "Green Onions",
-        "Dill"
+        "Dill",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ],
       "transplant": [
         "Asparagus",
@@ -2445,12 +3171,24 @@
         "Cauliflower",
         "Broccoli",
         "Fava Beans",
-        "Fennel"
+        "Fennel",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ]
     },
     "4": {
       "startIndoors": [],
-      "directSow": [],
+      "directSow": [
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
+      ],
       "transplant": [],
       "harvest": [
         "Tomatoes",
@@ -2464,7 +3202,13 @@
         "Potatoes",
         "Edamame",
         "Collard Greens",
-        "Celeriac"
+        "Celeriac",
+        "Zucchini",
+        "Butternut Squash",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Yardlong Beans"
       ]
     },
     "5": {
@@ -2480,7 +3224,14 @@
         "Avocados",
         "Ginger",
         "Turmeric",
-        "Edamame"
+        "Edamame",
+        "Butternut Squash",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "6": {
@@ -2494,7 +3245,12 @@
         "Sweet Potatoes",
         "Avocados",
         "Lemongrass",
-        "Collard Greens"
+        "Collard Greens",
+        "Butternut Squash",
+        "Runner Beans",
+        "Lima Beans",
+        "Yardlong Beans",
+        "Borlotti Beans"
       ]
     },
     "7": {
@@ -2511,7 +3267,10 @@
         "Peppers",
         "Eggplant",
         "Okra",
-        "Avocados"
+        "Avocados",
+        "Butternut Squash",
+        "Lima Beans",
+        "Borlotti Beans"
       ]
     },
     "8": {
@@ -2555,7 +3314,14 @@
         "Basil",
         "Green Onions",
         "Dill",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Runner Beans",
+        "Broad Beans",
+        "Yardlong Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -2591,7 +3357,18 @@
         "Cilantro",
         "Mâche",
         "Fava Beans",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Runner Beans",
+        "Broad Beans",
+        "Yardlong Beans"
       ],
       "transplant": [
         "Broccoli",
@@ -2622,9 +3399,25 @@
         "Turnips",
         "Bok Choy",
         "Green Onions",
-        "Watercress"
+        "Watercress",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Broad Beans",
+        "Yardlong Beans"
       ],
-      "transplant": [],
+      "transplant": [
+        "Zucchini",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
+      ],
       "harvest": [
         "Kale",
         "Carrots",
@@ -2636,7 +3429,10 @@
         "Cauliflower",
         "Collard Greens",
         "Fennel",
-        "Celeriac"
+        "Celeriac",
+        "Runner Beans",
+        "Broad Beans",
+        "Yardlong Beans"
       ]
     },
     "12": {
@@ -2656,9 +3452,23 @@
         "Fava Beans",
         "Watercress",
         "Fennel",
-        "Endive"
+        "Endive",
+        "Zucchini",
+        "Butternut Squash",
+        "Watermelon",
+        "Sweet Corn",
+        "Cherry Tomatoes",
+        "Jalapeño",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout"
       ],
-      "transplant": [],
+      "transplant": [
+        "Zucchini",
+        "Watermelon",
+        "Cherry Tomatoes",
+        "Jalapeño"
+      ],
       "harvest": [
         "Tomatoes",
         "Peppers",
@@ -2668,7 +3478,14 @@
         "Kale",
         "Carrots",
         "Lettuce",
-        "Collard Greens"
+        "Collard Greens",
+        "Zucchini",
+        "Snow Peas",
+        "Sugar Snap Peas",
+        "Mangetout",
+        "Runner Beans",
+        "Broad Beans",
+        "Yardlong Beans"
       ]
     }
   }
