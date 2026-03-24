@@ -5213,3 +5213,14 @@ body.garden-mode .plant-section ul {
 .suc-chip           { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2); border-radius: 4px; color: var(--accent); font-size: 10px; font-variant-numeric: tabular-nums; font-weight: 500; padding: 2px 6px; }
 .suc-chip--past     { background: var(--surface2); border-color: var(--border); color: var(--text-muted); opacity: 0.6; }
 .suc-chip--now      { background: rgba(74,222,128,0.25); border-color: var(--accent); font-weight: 700; }
+
+/* Phase 119 — Frost countdown banner */
+.fcd         { align-items: center; border-radius: 8px; border-left: 3px solid; display: flex; gap: 10px; margin-bottom: 10px; padding: 9px 12px; }
+.fcd--calm   { background: rgba(147,197,253,0.08); border-color: rgba(147,197,253,0.4); }
+.fcd--warn   { background: rgba(251,191,36,0.08);  border-color: rgba(251,191,36,0.5);  }
+.fcd--urgent { background: rgba(239,68,68,0.08);   border-color: rgba(239,68,68,0.6);   }
+.fcd--safe   { background: rgba(74,222,128,0.08);  border-color: rgba(74,222,128,0.4);  }
+.fcd-icon    { flex-shrink: 0; font-size: 18px; line-height: 1; }
+.fcd-body    { display: flex; flex-direction: column; gap: 1px; }
+.fcd-label   { color: var(--text); font-size: 13px; font-weight: 700; }
+.fcd-detail  { color: var(--text-muted); font-size: 11px; }

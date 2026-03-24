@@ -950,6 +950,7 @@ function renderPanel() {
   const ctxEl = document.getElementById('month-context');
   ctxEl.textContent = ctx;
   ctxEl.hidden = !ctx;
+  renderFrostCountdown();
 
   // Plant sections
   const data     = getPlantingData(zone, month);
@@ -10191,5 +10192,74 @@ function renderSuccessionStrip(month) {
   el.innerHTML = `<div class="suc-wrap">
     <div class="suc-hd">Succession Schedule</div>
     ${rows}
+  </div>`;
+}
+
+function renderFrostCountdown() {
+  const el = document.getElementById('frost-countdown');
+  if (!el || !selectedZone) { if (el) el.innerHTML = ''; return; }
+
+  const frost = FROST_DATES[selectedZone.toLowerCase()];
+  if (!frost?.last && !frost?.first) { el.innerHTML = ''; return; }
+
+  // Parse frost dates for a specific year (no year-advance logic)
+  const MON_IDX = { jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11 };
+  const MON_ABR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function parseFrostForYear(str, yr) {
+    if (!str) return null;
+    const m = str.match(/([a-zA-Z]+)\s+(\d+)/);
+    if (!m) return null;
+    const mi = MON_IDX[m[1].toLowerCase().slice(0, 3)];
+    return (mi !== undefined) ? new Date(yr, mi, parseInt(m[2])) : null;
+  }
+
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const yr    = today.getFullYear();
+
+  const lastFrost  = parseFrostForYear(frost.last,  yr);
+  const firstFrost = parseFrostForYear(frost.first, yr);
+
+  let icon, label, detail, mod;
+
+  if (lastFrost && today <= lastFrost) {
+    // Spring — counting down to last frost
+    const days = Math.round((lastFrost - today) / 86400000);
+    const ds   = `${MON_ABR[lastFrost.getMonth()]} ${lastFrost.getDate()}`;
+    icon   = '❄️';
+    label  = days === 0 ? 'Last frost today' : `Last frost in ${days} day${days === 1 ? '' : 's'}`;
+    detail = days <= 7  ? `${ds} — hold off on tender transplants`
+           : days <= 21 ? `${ds} — start hardening off soon`
+           :               `${ds} — good time to start seeds indoors`;
+    mod    = days <= 7  ? 'fcd--urgent' : days <= 21 ? 'fcd--warn' : 'fcd--calm';
+
+  } else if (firstFrost && today < firstFrost) {
+    // Frost-free window — counting down to first frost
+    const days = Math.round((firstFrost - today) / 86400000);
+    const ds   = `${MON_ABR[firstFrost.getMonth()]} ${firstFrost.getDate()}`;
+    icon   = '🌱';
+    label  = `${days} frost-free day${days === 1 ? '' : 's'} left`;
+    detail = days <= 14 ? `First frost ${ds} — protect tender crops now`
+           : days <= 45 ? `First frost ${ds} — plan your harvest`
+           :               `First frost ~${ds}`;
+    mod    = days <= 14 ? 'fcd--warn' : 'fcd--safe';
+
+  } else {
+    // Winter — show next last frost (next year)
+    const nextLast = parseFrostForYear(frost.last, yr + 1);
+    if (!nextLast) { el.innerHTML = ''; return; }
+    const days = Math.round((nextLast - today) / 86400000);
+    const ds   = `${MON_ABR[nextLast.getMonth()]} ${nextLast.getDate()}`;
+    icon   = '❄️';
+    label  = `Last frost in ${days} days`;
+    detail = `${ds} — plan seeds to start indoors`;
+    mod    = 'fcd--calm';
+  }
+
+  el.innerHTML = `<div class="fcd ${mod}">
+    <span class="fcd-icon">${icon}</span>
+    <div class="fcd-body">
+      <span class="fcd-label">${label}</span>
+      <span class="fcd-detail">${detail}</span>
+    </div>
   </div>`;
 }
