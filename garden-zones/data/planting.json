@@ -44,7 +44,10 @@
         "Tarragon",
         "Lemon Balm",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Yarrow"
       ],
       "directSow": [
         "Microgreens"
@@ -70,7 +73,9 @@
         "Savory",
         "Shiso",
         "Sunflowers",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Echinacea"
       ],
       "directSow": [
         "Spinach",
@@ -155,7 +160,11 @@
         "Quinoa",
         "Salsify",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Chamomile",
+        "Chicory",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Broccoli",
@@ -181,7 +190,11 @@
         "Gooseberries",
         "Hamburg Parsley",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Elderberries"
       ],
       "harvest": [
         "Microgreens"
@@ -207,7 +220,9 @@
         "Nasturtium",
         "Sunflowers",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chicory",
+        "Flaxseed"
       ],
       "transplant": [
         "Tomatoes",
@@ -232,7 +247,10 @@
         "Tarragon",
         "Lemon Balm",
         "Shiso",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Echinacea",
+        "Yarrow"
       ],
       "harvest": [
         "Lettuce",
@@ -254,7 +272,9 @@
         "Microgreens",
         "Sweet Peas",
         "Chervil",
-        "Good King Henry"
+        "Good King Henry",
+        "Comfrey",
+        "Cress"
       ]
     },
     "7": {
@@ -303,13 +323,20 @@
         "Sweet Peas",
         "Chervil",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Flaxseed"
       ]
     },
     "8": {
       "startIndoors": [],
       "directSow": [
-        "Microgreens"
+        "Microgreens",
+        "Cress"
       ],
       "transplant": [],
       "harvest": [
@@ -361,7 +388,14 @@
         "Purslane",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Elderberries",
+        "Flaxseed"
       ]
     },
     "9": {
@@ -413,7 +447,13 @@
         "Salsify",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Elderberries",
+        "Chicory",
+        "Cress"
       ]
     },
     "10": {
@@ -425,7 +465,8 @@
       ],
       "transplant": [
         "Broccoli",
-        "Kale"
+        "Kale",
+        "Elderberries"
       ],
       "harvest": [
         "Squash",
@@ -437,7 +478,8 @@
         "Butternut Squash",
         "Microgreens",
         "Salsify",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chicory"
       ]
     },
     "11": {
@@ -522,7 +564,11 @@
         "Lemon Balm",
         "Shiso",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Yarrow",
+        "Valerian"
       ],
       "directSow": [
         "Microgreens"
@@ -555,7 +601,9 @@
         "Savory",
         "Shiso",
         "Sunflowers",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Valerian"
       ],
       "directSow": [
         "Spinach",
@@ -580,7 +628,10 @@
         "Quinoa",
         "Salsify",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Onions",
@@ -597,7 +648,11 @@
         "Redcurrants",
         "Gooseberries",
         "Hamburg Parsley",
-        "Good King Henry"
+        "Good King Henry",
+        "Comfrey",
+        "Hops",
+        "Elderberries",
+        "Grapes"
       ],
       "harvest": [
         "Microgreens"
@@ -638,7 +693,11 @@
         "Sunflowers",
         "Microgreens",
         "Purslane",
-        "Quinoa"
+        "Quinoa",
+        "Chamomile",
+        "Chicory",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Cabbage",
@@ -665,7 +724,15 @@
         "Lemon Verbena",
         "Hamburg Parsley",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Grapes"
       ],
       "harvest": [
         "Spinach",
@@ -677,7 +744,8 @@
         "Tatsoi",
         "Microgreens",
         "Chervil",
-        "Good King Henry"
+        "Good King Henry",
+        "Cress"
       ]
     },
     "6": {
@@ -692,7 +760,9 @@
         "Sweet Corn",
         "Lima Beans",
         "Yardlong Beans",
-        "Microgreens"
+        "Microgreens",
+        "Radicchio",
+        "Chicory"
       ],
       "transplant": [
         "Tomatoes",
@@ -713,7 +783,9 @@
         "Cherry Tomatoes",
         "Jalapeño",
         "Shiso",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Valerian"
       ],
       "harvest": [
         "Peas",
@@ -740,7 +812,10 @@
         "Purslane",
         "Sweet Peas",
         "Chervil",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Comfrey",
+        "Cress"
       ]
     },
     "7": {
@@ -750,9 +825,12 @@
         "Carrots",
         "Bok Choy",
         "Turnips",
-        "Microgreens"
+        "Microgreens",
+        "Radicchio"
       ],
-      "transplant": [],
+      "transplant": [
+        "Radicchio"
+      ],
       "harvest": [
         "Beans",
         "Cucumbers",
@@ -791,7 +869,13 @@
         "Sweet Peas",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Flaxseed"
       ]
     },
     "8": {
@@ -804,9 +888,12 @@
         "Tatsoi",
         "Daikon",
         "Broccoli Rabe",
-        "Microgreens"
+        "Microgreens",
+        "Cress"
       ],
-      "transplant": [],
+      "transplant": [
+        "Radicchio"
+      ],
       "harvest": [
         "Tomatoes",
         "Peppers",
@@ -852,7 +939,16 @@
         "Quinoa",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Flaxseed"
       ]
     },
     "9": {
@@ -904,7 +1000,17 @@
         "Salsify",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Grapes",
+        "Radicchio",
+        "Chicory",
+        "Cress"
       ]
     },
     "10": {
@@ -912,7 +1018,9 @@
       "directSow": [
         "Microgreens"
       ],
-      "transplant": [],
+      "transplant": [
+        "Elderberries"
+      ],
       "harvest": [
         "Broccoli",
         "Kale",
@@ -930,7 +1038,10 @@
         "Broccoli Rabe",
         "Microgreens",
         "Salsify",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Grapes",
+        "Radicchio",
+        "Chicory"
       ]
     },
     "11": {
@@ -945,7 +1056,8 @@
         "Carrots",
         "Jerusalem Artichoke",
         "Collard Greens",
-        "Microgreens"
+        "Microgreens",
+        "Chicory"
       ]
     },
     "12": {
@@ -986,7 +1098,9 @@
         "Marjoram",
         "Tarragon",
         "Lemon Balm",
-        "Lovage"
+        "Lovage",
+        "Echinacea",
+        "Yarrow"
       ],
       "directSow": [
         "Microgreens"
@@ -1019,7 +1133,11 @@
         "Savory",
         "Lemon Balm",
         "Shiso",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Echinacea",
+        "Yarrow",
+        "Valerian"
       ],
       "directSow": [
         "Peas",
@@ -1037,7 +1155,8 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Cress"
       ],
       "transplant": [
         "Onions",
@@ -1101,7 +1220,10 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Broccoli",
@@ -1129,12 +1251,20 @@
         "Gooseberries",
         "Hamburg Parsley",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Echinacea",
+        "Comfrey",
+        "Hops",
+        "Elderberries",
+        "Grapes",
+        "Kiwi",
+        "Mulberry"
       ],
       "harvest": [
         "Spinach",
         "Kale",
-        "Microgreens"
+        "Microgreens",
+        "Cress"
       ]
     },
     "5": {
@@ -1161,7 +1291,11 @@
         "Nasturtium",
         "Sunflowers",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chamomile",
+        "Chicory",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Tomatoes",
@@ -1192,7 +1326,17 @@
         "Shiso",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Grapes",
+        "Kiwi",
+        "Mulberry"
       ],
       "harvest": [
         "Peas",
@@ -1214,7 +1358,9 @@
         "Microgreens",
         "Sweet Peas",
         "Chervil",
-        "Good King Henry"
+        "Good King Henry",
+        "Comfrey",
+        "Cress"
       ]
     },
     "6": {
@@ -1225,7 +1371,9 @@
         "Beets",
         "Rutabaga",
         "Bok Choy",
-        "Microgreens"
+        "Microgreens",
+        "Radicchio",
+        "Chicory"
       ],
       "transplant": [
         "Melons",
@@ -1267,7 +1415,13 @@
         "Sweet Peas",
         "Chervil",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Comfrey",
+        "Yarrow",
+        "Mulberry",
+        "Cress"
       ]
     },
     "7": {
@@ -1278,9 +1432,12 @@
       ],
       "directSow": [
         "Turnips",
-        "Microgreens"
+        "Microgreens",
+        "Radicchio"
       ],
-      "transplant": [],
+      "transplant": [
+        "Radicchio"
+      ],
       "harvest": [
         "Beans",
         "Cucumbers",
@@ -1317,7 +1474,16 @@
         "Purslane",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Elderberries",
+        "Mulberry",
+        "Flaxseed"
       ]
     },
     "8": {
@@ -1336,13 +1502,16 @@
         "Broccoli Rabe",
         "Calendula",
         "Microgreens",
-        "Chervil"
+        "Chervil",
+        "Cress"
       ],
       "transplant": [
         "Broccoli",
         "Kale",
         "Cabbage",
-        "Cauliflower"
+        "Cauliflower",
+        "Radicchio",
+        "Saffron"
       ],
       "harvest": [
         "Tomatoes",
@@ -1383,7 +1552,16 @@
         "Lemon Verbena",
         "Hamburg Parsley",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Flaxseed"
       ]
     },
     "9": {
@@ -1394,9 +1572,12 @@
         "Mizuna",
         "Tatsoi",
         "Calendula",
-        "Microgreens"
+        "Microgreens",
+        "Cress"
       ],
-      "transplant": [],
+      "transplant": [
+        "Saffron"
+      ],
       "harvest": [
         "Tomatoes",
         "Peppers",
@@ -1434,7 +1615,18 @@
         "Chervil",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Grapes",
+        "Kiwi",
+        "Radicchio",
+        "Chicory",
+        "Cress"
       ]
     },
     "10": {
@@ -1442,7 +1634,9 @@
       "directSow": [
         "Microgreens"
       ],
-      "transplant": [],
+      "transplant": [
+        "Elderberries"
+      ],
       "harvest": [
         "Broccoli",
         "Kale",
@@ -1464,7 +1658,13 @@
         "Calendula",
         "Microgreens",
         "Salsify",
-        "Chervil"
+        "Chervil",
+        "Grapes",
+        "Kiwi",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Saffron"
       ]
     },
     "11": {
@@ -1481,7 +1681,10 @@
         "Collard Greens",
         "Mizuna",
         "Tatsoi",
-        "Microgreens"
+        "Microgreens",
+        "Radicchio",
+        "Chicory",
+        "Saffron"
       ]
     },
     "12": {
@@ -1531,7 +1734,11 @@
         "Tarragon",
         "Lemon Balm",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Yarrow",
+        "Valerian"
       ],
       "directSow": [
         "Snow Peas",
@@ -1571,7 +1778,10 @@
         "Cherry Tomatoes",
         "Pak Choi",
         "Shiso",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Echinacea",
+        "Valerian"
       ],
       "directSow": [
         "Peas",
@@ -1606,7 +1816,10 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Broccoli",
@@ -1628,7 +1841,12 @@
         "Redcurrants",
         "Gooseberries",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Comfrey",
+        "Hops",
+        "Elderberries",
+        "Grapes",
+        "Mulberry"
       ],
       "harvest": [
         "Microgreens",
@@ -1667,7 +1885,10 @@
         "Microgreens",
         "Purslane",
         "Quinoa",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Tomatoes",
@@ -1697,7 +1918,17 @@
         "Lemon Verbena",
         "Hamburg Parsley",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Grapes",
+        "Kiwi",
+        "Mulberry"
       ],
       "harvest": [
         "Spinach",
@@ -1719,7 +1950,8 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Good King Henry"
+        "Good King Henry",
+        "Cress"
       ]
     },
     "5": {
@@ -1746,7 +1978,8 @@
         "Nasturtium",
         "Sunflowers",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chicory"
       ],
       "transplant": [
         "Basil",
@@ -1764,7 +1997,10 @@
         "Cherry Tomatoes",
         "Jalapeño",
         "Shiso",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Yarrow",
+        "Valerian"
       ],
       "harvest": [
         "Lettuce",
@@ -1797,7 +2033,11 @@
         "Sweet Peas",
         "Chervil",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Comfrey",
+        "Cress"
       ]
     },
     "6": {
@@ -1808,7 +2048,8 @@
       "directSow": [
         "Beans",
         "Carrots",
-        "Microgreens"
+        "Microgreens",
+        "Chicory"
       ],
       "transplant": [],
       "harvest": [
@@ -1851,7 +2092,13 @@
         "Sweet Peas",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Comfrey",
+        "Yarrow",
+        "Mulberry",
+        "Flaxseed"
       ]
     },
     "7": {
@@ -1866,7 +2113,9 @@
         "Bok Choy",
         "Mustard Greens",
         "Endive",
-        "Microgreens"
+        "Microgreens",
+        "Radicchio",
+        "Chicory"
       ],
       "transplant": [
         "Broccoli",
@@ -1912,7 +2161,16 @@
         "Quinoa",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Elderberries",
+        "Mulberry",
+        "Flaxseed"
       ]
     },
     "8": {
@@ -1932,9 +2190,14 @@
         "Broccoli Rabe",
         "Calendula",
         "Microgreens",
-        "Chervil"
+        "Chervil",
+        "Radicchio",
+        "Cress"
       ],
-      "transplant": [],
+      "transplant": [
+        "Radicchio",
+        "Saffron"
+      ],
       "harvest": [
         "Tomatoes",
         "Peppers",
@@ -1967,7 +2230,15 @@
         "Quinoa",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Grapes"
       ]
     },
     "9": {
@@ -1982,9 +2253,14 @@
         "Calendula",
         "Microgreens",
         "Salsify",
-        "Chervil"
+        "Chervil",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
-      "transplant": [],
+      "transplant": [
+        "Saffron"
+      ],
       "harvest": [
         "Squash",
         "Pumpkins",
@@ -2017,7 +2293,17 @@
         "Salsify",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Grapes",
+        "Kiwi",
+        "Cress"
       ]
     },
     "10": {
@@ -2026,7 +2312,9 @@
         "Broad Beans",
         "Microgreens"
       ],
-      "transplant": [],
+      "transplant": [
+        "Elderberries"
+      ],
       "harvest": [
         "Broccoli",
         "Kale",
@@ -2046,7 +2334,17 @@
         "Calendula",
         "Microgreens",
         "Salsify",
-        "Chervil"
+        "Chervil",
+        "Chamomile",
+        "Echinacea",
+        "Comfrey",
+        "Valerian",
+        "Grapes",
+        "Kiwi",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Saffron"
       ]
     },
     "11": {
@@ -2071,7 +2369,11 @@
         "Broccoli Rabe",
         "Calendula",
         "Microgreens",
-        "Chervil"
+        "Chervil",
+        "Radicchio",
+        "Chicory",
+        "Saffron",
+        "Flaxseed"
       ]
     },
     "12": {
@@ -2081,7 +2383,8 @@
       ],
       "transplant": [],
       "harvest": [
-        "Microgreens"
+        "Microgreens",
+        "Chicory"
       ]
     }
   },
@@ -2100,7 +2403,8 @@
         "Napa Cabbage",
         "Lavender",
         "Tarragon",
-        "Lovage"
+        "Lovage",
+        "Yarrow"
       ],
       "directSow": [
         "Spinach",
@@ -2137,7 +2441,11 @@
         "Marjoram",
         "Tarragon",
         "Shiso",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Echinacea",
+        "Yarrow",
+        "Valerian"
       ],
       "directSow": [
         "Peas",
@@ -2164,7 +2472,8 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Cress"
       ],
       "transplant": [
         "Onions",
@@ -2201,7 +2510,8 @@
         "Endive",
         "Zucchini",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Marigolds"
       ],
       "directSow": [
         "Carrots",
@@ -2225,7 +2535,10 @@
         "Quinoa",
         "Salsify",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Tomatoes",
@@ -2259,7 +2572,16 @@
         "Lemon Verbena",
         "Hamburg Parsley",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Kiwi",
+        "Mulberry"
       ],
       "harvest": [
         "Peas",
@@ -2279,7 +2601,8 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Good King Henry"
+        "Good King Henry",
+        "Cress"
       ]
     },
     "4": {
@@ -2304,7 +2627,10 @@
         "Nasturtium",
         "Sunflowers",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Basil",
@@ -2330,7 +2656,18 @@
         "Lemon Balm",
         "Shiso",
         "Lemon Verbena",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Kiwi",
+        "Mulberry"
       ],
       "harvest": [
         "Lettuce",
@@ -2362,7 +2699,9 @@
         "Sweet Peas",
         "Chervil",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Comfrey",
+        "Cress"
       ]
     },
     "5": {
@@ -2382,7 +2721,8 @@
         "Nasturtium",
         "Sunflowers",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chicory"
       ],
       "transplant": [
         "Zucchini",
@@ -2424,7 +2764,14 @@
         "Chervil",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Comfrey",
+        "Yarrow",
+        "Mulberry",
+        "Cress",
+        "Flaxseed"
       ]
     },
     "6": {
@@ -2437,7 +2784,8 @@
         "Beans",
         "Okra",
         "Bok Choy",
-        "Microgreens"
+        "Microgreens",
+        "Chicory"
       ],
       "transplant": [],
       "harvest": [
@@ -2473,7 +2821,15 @@
         "Purslane",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Mulberry",
+        "Flaxseed"
       ]
     },
     "7": {
@@ -2485,7 +2841,9 @@
         "Beans",
         "Beets",
         "Carrots",
-        "Microgreens"
+        "Microgreens",
+        "Radicchio",
+        "Chicory"
       ],
       "transplant": [
         "Broccoli",
@@ -2530,7 +2888,16 @@
         "Lemon Verbena",
         "Hamburg Parsley",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Mulberry"
       ]
     },
     "8": {
@@ -2555,11 +2922,14 @@
         "Broccoli Rabe",
         "Calendula",
         "Microgreens",
-        "Chervil"
+        "Chervil",
+        "Radicchio"
       ],
       "transplant": [
         "Brussels Sprouts",
-        "Cauliflower"
+        "Cauliflower",
+        "Radicchio",
+        "Saffron"
       ],
       "harvest": [
         "Tomatoes",
@@ -2593,7 +2963,16 @@
         "Salsify",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes"
       ]
     },
     "9": {
@@ -2619,9 +2998,15 @@
         "Microgreens",
         "Salsify",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
-      "transplant": [],
+      "transplant": [
+        "Radicchio",
+        "Saffron"
+      ],
       "harvest": [
         "Squash",
         "Pumpkins",
@@ -2650,7 +3035,17 @@
         "Purslane",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Kiwi"
       ]
     },
     "10": {
@@ -2664,10 +3059,14 @@
         "Broad Beans",
         "Calendula",
         "Microgreens",
-        "Sweet Peas"
+        "Sweet Peas",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
-        "Strawberries"
+        "Strawberries",
+        "Elderberries"
       ],
       "harvest": [
         "Broccoli",
@@ -2690,7 +3089,18 @@
         "Calendula",
         "Raspberries",
         "Microgreens",
-        "Chervil"
+        "Chervil",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Valerian",
+        "Figs",
+        "Grapes",
+        "Kiwi",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Saffron"
       ]
     },
     "11": {
@@ -2703,7 +3113,9 @@
         "Broad Beans",
         "Microgreens"
       ],
-      "transplant": [],
+      "transplant": [
+        "Elderberries"
+      ],
       "harvest": [
         "Kale",
         "Carrots",
@@ -2725,7 +3137,13 @@
         "Calendula",
         "Microgreens",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Chamomile",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Saffron",
+        "Flaxseed"
       ]
     },
     "12": {
@@ -2745,7 +3163,10 @@
         "Mâche",
         "Calendula",
         "Microgreens",
-        "Sweet Peas"
+        "Sweet Peas",
+        "Radicchio",
+        "Chicory",
+        "Flaxseed"
       ]
     }
   },
@@ -2768,7 +3189,10 @@
         "Marjoram",
         "Tarragon",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Echinacea",
+        "Yarrow",
+        "Valerian"
       ],
       "directSow": [
         "Spinach",
@@ -2825,7 +3249,10 @@
         "Lavender",
         "Marjoram",
         "Shiso",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Echinacea",
+        "Valerian"
       ],
       "directSow": [
         "Radishes",
@@ -2852,7 +3279,10 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Onions",
@@ -2875,7 +3305,12 @@
         "Redcurrants",
         "Gooseberries",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Comfrey",
+        "Hops",
+        "Elderberries",
+        "Grapes",
+        "Mulberry"
       ],
       "harvest": [
         "Lettuce",
@@ -2904,7 +3339,9 @@
         "Bok Choy",
         "Zucchini",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Luffa",
+        "Bitter Melon"
       ],
       "directSow": [
         "Beans",
@@ -2937,7 +3374,10 @@
         "Purslane",
         "Quinoa",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Tomatoes",
@@ -2965,7 +3405,19 @@
         "Blackberries",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Kiwi",
+        "Mulberry",
+        "Citrus"
       ],
       "harvest": [
         "Broccoli",
@@ -2989,11 +3441,15 @@
         "Microgreens",
         "Sweet Peas",
         "Chervil",
-        "Good King Henry"
+        "Good King Henry",
+        "Cress"
       ]
     },
     "4": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Luffa",
+        "Bitter Melon"
+      ],
       "directSow": [
         "Squash",
         "Cucumbers",
@@ -3014,7 +3470,8 @@
         "Nasturtium",
         "Sunflowers",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chia"
       ],
       "transplant": [
         "Basil",
@@ -3033,7 +3490,11 @@
         "Watermelon",
         "Cherry Tomatoes",
         "Jalapeño",
-        "Shiso"
+        "Shiso",
+        "Marigolds",
+        "Figs",
+        "Citrus",
+        "Taro"
       ],
       "harvest": [
         "Lettuce",
@@ -3071,7 +3532,10 @@
         "Sweet Peas",
         "Chervil",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Comfrey",
+        "Cress"
       ]
     },
     "5": {
@@ -3079,9 +3543,15 @@
       "directSow": [
         "Beans",
         "Okra",
-        "Microgreens"
+        "Microgreens",
+        "Chicory",
+        "Chia"
       ],
-      "transplant": [],
+      "transplant": [
+        "Taro",
+        "Luffa",
+        "Bitter Melon"
+      ],
       "harvest": [
         "Tomatoes",
         "Beans",
@@ -3113,7 +3583,15 @@
         "Purslane",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Mulberry",
+        "Flaxseed"
       ]
     },
     "6": {
@@ -3123,7 +3601,8 @@
         "Cabbage"
       ],
       "directSow": [
-        "Microgreens"
+        "Microgreens",
+        "Chicory"
       ],
       "transplant": [],
       "harvest": [
@@ -3163,7 +3642,16 @@
         "Quinoa",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Elderberries",
+        "Mulberry",
+        "Flaxseed"
       ]
     },
     "7": {
@@ -3175,7 +3663,8 @@
         "Beans",
         "Carrots",
         "Beets",
-        "Microgreens"
+        "Microgreens",
+        "Chicory"
       ],
       "transplant": [
         "Broccoli",
@@ -3215,7 +3704,18 @@
         "Salsify",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Mulberry",
+        "Bitter Melon"
       ]
     },
     "8": {
@@ -3243,12 +3743,15 @@
         "Tatsoi",
         "Calendula",
         "Microgreens",
-        "Chervil"
+        "Chervil",
+        "Radicchio",
+        "Chicory"
       ],
       "transplant": [
         "Brussels Sprouts",
         "Cauliflower",
-        "Collard Greens"
+        "Collard Greens",
+        "Saffron"
       ],
       "harvest": [
         "Tomatoes",
@@ -3277,7 +3780,19 @@
         "Purslane",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Luffa",
+        "Bitter Melon",
+        "Chia"
       ]
     },
     "9": {
@@ -3308,10 +3823,16 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Radicchio",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
-        "Strawberries"
+        "Strawberries",
+        "Radicchio",
+        "Saffron"
       ],
       "harvest": [
         "Squash",
@@ -3341,7 +3862,21 @@
         "Purslane",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Kiwi",
+        "Taro",
+        "Luffa",
+        "Bitter Melon",
+        "Chia"
       ]
     },
     "10": {
@@ -3363,10 +3898,14 @@
         "Nasturtium",
         "Microgreens",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Chamomile",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
-        "Broccoli"
+        "Broccoli",
+        "Elderberries"
       ],
       "harvest": [
         "Broccoli",
@@ -3397,7 +3936,20 @@
         "Raspberries",
         "Microgreens",
         "Chervil",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Figs",
+        "Grapes",
+        "Kiwi",
+        "Taro",
+        "Chicory",
+        "Luffa",
+        "Cress",
+        "Saffron",
+        "Chia"
       ]
     },
     "11": {
@@ -3408,9 +3960,12 @@
         "Peas",
         "Fava Beans",
         "Broad Beans",
-        "Microgreens"
+        "Microgreens",
+        "Cress"
       ],
-      "transplant": [],
+      "transplant": [
+        "Elderberries"
+      ],
       "harvest": [
         "Kale",
         "Carrots",
@@ -3434,7 +3989,16 @@
         "Nasturtium",
         "Microgreens",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Chamomile",
+        "Comfrey",
+        "Citrus",
+        "Taro",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Saffron",
+        "Flaxseed"
       ]
     },
     "12": {
@@ -3464,7 +4028,13 @@
         "Microgreens",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Citrus",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Flaxseed"
       ]
     }
   },
@@ -3484,7 +4054,8 @@
         "Jalapeño",
         "Marjoram",
         "Shiso",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Echinacea"
       ],
       "directSow": [
         "Peas",
@@ -3515,7 +4086,10 @@
         "Microgreens",
         "Salsify",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Chamomile",
+        "Marigolds",
+        "Cress"
       ],
       "transplant": [
         "Blackberries",
@@ -3536,7 +4110,10 @@
         "Nasturtium",
         "Microgreens",
         "Sweet Peas",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Citrus",
+        "Radicchio",
+        "Chicory"
       ]
     },
     "2": {
@@ -3551,7 +4128,10 @@
         "Zucchini",
         "Butternut Squash",
         "Watermelon",
-        "Shiso"
+        "Shiso",
+        "Passionfruit",
+        "Luffa",
+        "Bitter Melon"
       ],
       "directSow": [
         "Radishes",
@@ -3583,7 +4163,11 @@
         "Quinoa",
         "Salsify",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Marigolds",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Tomatoes",
@@ -3607,7 +4191,17 @@
         "Raspberries",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Kiwi",
+        "Mulberry"
       ],
       "harvest": [
         "Peas",
@@ -3629,12 +4223,19 @@
         "Microgreens",
         "Sweet Peas",
         "Chervil",
-        "Good King Henry"
+        "Good King Henry",
+        "Citrus",
+        "Radicchio",
+        "Chicory",
+        "Cress"
       ]
     },
     "3": {
       "startIndoors": [
-        "Butternut Squash"
+        "Butternut Squash",
+        "Passionfruit",
+        "Luffa",
+        "Bitter Melon"
       ],
       "directSow": [
         "Beans",
@@ -3664,7 +4265,10 @@
         "Sunflowers",
         "Microgreens",
         "Purslane",
-        "Quinoa"
+        "Quinoa",
+        "Cress",
+        "Flaxseed",
+        "Chia"
       ],
       "transplant": [
         "Squash",
@@ -3691,7 +4295,20 @@
         "Savory",
         "Lemon Balm",
         "Shiso",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Kiwi",
+        "Mulberry",
+        "Citrus",
+        "Taro"
       ],
       "harvest": [
         "Lettuce",
@@ -3724,7 +4341,10 @@
         "Sweet Peas",
         "Chervil",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Comfrey",
+        "Cress"
       ]
     },
     "4": {
@@ -3739,13 +4359,20 @@
         "Nasturtium",
         "Sunflowers",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chia"
       ],
       "transplant": [
         "Globe Artichoke",
         "Tomatillos",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Marigolds",
+        "Citrus",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon"
       ],
       "harvest": [
         "Tomatoes",
@@ -3784,16 +4411,30 @@
         "Sweet Peas",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Mulberry",
+        "Cress",
+        "Flaxseed"
       ]
     },
     "5": {
       "startIndoors": [],
       "directSow": [
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chia"
       ],
-      "transplant": [],
+      "transplant": [
+        "Passionfruit",
+        "Luffa",
+        "Bitter Melon"
+      ],
       "harvest": [
         "Tomatoes",
         "Peppers",
@@ -3826,7 +4467,16 @@
         "Salsify",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Elderberries",
+        "Mulberry",
+        "Flaxseed"
       ]
     },
     "6": {
@@ -3837,7 +4487,8 @@
         "Onions"
       ],
       "directSow": [
-        "Microgreens"
+        "Microgreens",
+        "Chicory"
       ],
       "transplant": [],
       "harvest": [
@@ -3874,7 +4525,15 @@
         "Quinoa",
         "Salsify",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Elderberries",
+        "Figs",
+        "Mulberry"
       ]
     },
     "7": {
@@ -3888,7 +4547,8 @@
         "Beans",
         "Squash",
         "Cucumbers",
-        "Microgreens"
+        "Microgreens",
+        "Chicory"
       ],
       "transplant": [
         "Broccoli",
@@ -3921,7 +4581,19 @@
         "Purslane",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Passionfruit",
+        "Luffa",
+        "Bitter Melon"
       ]
     },
     "8": {
@@ -3942,7 +4614,9 @@
         "Fava Beans",
         "Watercress",
         "Runner Beans",
-        "Microgreens"
+        "Microgreens",
+        "Radicchio",
+        "Chicory"
       ],
       "transplant": [
         "Cauliflower",
@@ -3950,7 +4624,8 @@
         "Kohlrabi",
         "Bok Choy",
         "Strawberries",
-        "Collard Greens"
+        "Collard Greens",
+        "Saffron"
       ],
       "harvest": [
         "Beans",
@@ -3974,7 +4649,20 @@
         "Purslane",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Hops",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Passionfruit",
+        "Luffa",
+        "Bitter Melon",
+        "Chia"
       ]
     },
     "9": {
@@ -3998,10 +4686,15 @@
         "Microgreens",
         "Salsify",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Radicchio",
+        "Cress"
       ],
       "transplant": [
-        "Potatoes"
+        "Potatoes",
+        "Radicchio",
+        "Saffron"
       ],
       "harvest": [
         "Peppers",
@@ -4024,7 +4717,19 @@
         "Microgreens",
         "Purslane",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Figs",
+        "Grapes",
+        "Kiwi",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon",
+        "Chia"
       ]
     },
     "10": {
@@ -4052,12 +4757,18 @@
         "Nasturtium",
         "Microgreens",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Chamomile",
+        "Marigolds",
+        "Radicchio",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Broccoli",
         "Cabbage",
-        "Cauliflower"
+        "Cauliflower",
+        "Radicchio"
       ],
       "harvest": [
         "Broccoli",
@@ -4080,7 +4791,19 @@
         "Raspberries",
         "Microgreens",
         "Purslane",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Figs",
+        "Kiwi",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon",
+        "Cress",
+        "Saffron",
+        "Chia"
       ]
     },
     "11": {
@@ -4108,9 +4831,13 @@
         "Nasturtium",
         "Microgreens",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Cress",
+        "Flaxseed"
       ],
-      "transplant": [],
+      "transplant": [
+        "Elderberries"
+      ],
       "harvest": [
         "Kale",
         "Carrots",
@@ -4135,7 +4862,16 @@
         "Raspberries",
         "Microgreens",
         "Chervil",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Chamomile",
+        "Marigolds",
+        "Comfrey",
+        "Citrus",
+        "Taro",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Saffron"
       ]
     },
     "12": {
@@ -4188,13 +4924,22 @@
         "Microgreens",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Citrus",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Flaxseed"
       ]
     }
   },
   "10a": {
     "1": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Echinacea",
+        "Passionfruit"
+      ],
       "directSow": [
         "Tomatoes",
         "Peppers",
@@ -4241,7 +4986,10 @@
         "Quinoa",
         "Salsify",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Marigolds",
+        "Cress"
       ],
       "transplant": [
         "Lavender",
@@ -4250,7 +4998,13 @@
         "Blueberries",
         "Raspberries",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Elderberries",
+        "Grapes",
+        "Mulberry"
       ],
       "harvest": [
         "Kale",
@@ -4271,14 +5025,21 @@
         "Nasturtium",
         "Microgreens",
         "Sweet Peas",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Citrus",
+        "Radicchio",
+        "Chicory",
+        "Flaxseed"
       ]
     },
     "2": {
       "startIndoors": [
         "Ginger",
         "Turmeric",
-        "Lemongrass"
+        "Lemongrass",
+        "Passionfruit",
+        "Luffa",
+        "Bitter Melon"
       ],
       "directSow": [
         "Melons",
@@ -4317,7 +5078,10 @@
         "Purslane",
         "Quinoa",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Marigolds",
+        "Cress"
       ],
       "transplant": [
         "Tomatoes",
@@ -4337,7 +5101,16 @@
         "Lemon Balm",
         "Blackberries",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Mulberry",
+        "Citrus"
       ],
       "harvest": [
         "Peas",
@@ -4361,7 +5134,12 @@
         "Microgreens",
         "Sweet Peas",
         "Chervil",
-        "Good King Henry"
+        "Good King Henry",
+        "Citrus",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Flaxseed"
       ]
     },
     "3": {
@@ -4390,7 +5168,8 @@
         "Nasturtium",
         "Sunflowers",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chia"
       ],
       "transplant": [
         "Squash",
@@ -4414,7 +5193,14 @@
         "Marjoram",
         "Lemon Balm",
         "Shiso",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Echinacea",
+        "Figs",
+        "Citrus",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon"
       ],
       "harvest": [
         "Tomatoes",
@@ -4452,7 +5238,15 @@
         "Sweet Peas",
         "Chervil",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Radicchio",
+        "Chicory",
+        "Cress"
       ]
     },
     "4": {
@@ -4461,13 +5255,18 @@
         "Borage",
         "Nasturtium",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chia"
       ],
       "transplant": [
         "Zucchini",
         "Butternut Squash",
         "Watermelon",
-        "Shiso"
+        "Shiso",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon"
       ],
       "harvest": [
         "Tomatoes",
@@ -4511,7 +5310,15 @@
         "Salsify",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Elderberries",
+        "Mulberry"
       ]
     },
     "5": {
@@ -4557,7 +5364,16 @@
         "Lemon Verbena",
         "Hamburg Parsley",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Elderberries",
+        "Figs",
+        "Mulberry"
       ]
     },
     "6": {
@@ -4605,7 +5421,18 @@
         "Quinoa",
         "Lemon Verbena",
         "Hamburg Parsley",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Mulberry",
+        "Passionfruit",
+        "Bitter Melon"
       ]
     },
     "7": {
@@ -4614,7 +5441,8 @@
         "Beans",
         "Squash",
         "Cucumbers",
-        "Microgreens"
+        "Microgreens",
+        "Chicory"
       ],
       "transplant": [
         "Broccoli",
@@ -4640,7 +5468,19 @@
         "Microgreens",
         "Purslane",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Elderberries",
+        "Figs",
+        "Grapes",
+        "Passionfruit",
+        "Luffa",
+        "Bitter Melon",
+        "Chia"
       ]
     },
     "8": {
@@ -4673,7 +5513,8 @@
         "Yardlong Beans",
         "Borlotti Beans",
         "Sunflowers",
-        "Microgreens"
+        "Microgreens",
+        "Chicory"
       ],
       "transplant": [
         "Strawberries"
@@ -4692,7 +5533,18 @@
         "Shiso",
         "Microgreens",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Figs",
+        "Grapes",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon",
+        "Chia"
       ]
     },
     "9": {
@@ -4729,7 +5581,10 @@
         "Quinoa",
         "Salsify",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Radicchio",
+        "Chicory",
+        "Cress"
       ],
       "transplant": [
         "Potatoes",
@@ -4750,7 +5605,16 @@
         "Lemon Balm",
         "Shiso",
         "Microgreens",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Comfrey",
+        "Figs",
+        "Grapes",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon",
+        "Chia"
       ]
     },
     "10": {
@@ -4789,7 +5653,12 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Marigolds",
+        "Radicchio",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Broccoli",
@@ -4798,7 +5667,8 @@
         "Peppers",
         "Cauliflower",
         "Collard Greens",
-        "Cherry Tomatoes"
+        "Cherry Tomatoes",
+        "Radicchio"
       ],
       "harvest": [
         "Broccoli",
@@ -4824,7 +5694,16 @@
         "Shiso",
         "Microgreens",
         "Purslane",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Comfrey",
+        "Figs",
+        "Citrus",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon",
+        "Cress"
       ]
     },
     "11": {
@@ -4855,9 +5734,15 @@
         "Microgreens",
         "Purslane",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Chamomile",
+        "Marigolds",
+        "Cress",
+        "Flaxseed"
       ],
-      "transplant": [],
+      "transplant": [
+        "Elderberries"
+      ],
       "harvest": [
         "Kale",
         "Carrots",
@@ -4893,7 +5778,13 @@
         "Microgreens",
         "Purslane",
         "Chervil",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Citrus",
+        "Taro",
+        "Chicory",
+        "Luffa",
+        "Cress"
       ]
     },
     "12": {
@@ -4918,9 +5809,12 @@
         "Endive",
         "Broad Beans",
         "Microgreens",
-        "Sweet Peas"
+        "Sweet Peas",
+        "Cress"
       ],
-      "transplant": [],
+      "transplant": [
+        "Elderberries"
+      ],
       "harvest": [
         "Kale",
         "Carrots",
@@ -4952,13 +5846,25 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Marigolds",
+        "Citrus",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Flaxseed"
       ]
     }
   },
   "11a": {
     "1": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Echinacea",
+        "Passionfruit",
+        "Luffa",
+        "Bitter Melon"
+      ],
       "directSow": [
         "Tomatoes",
         "Peppers",
@@ -5000,7 +5906,10 @@
         "Nasturtium",
         "Sunflowers",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chamomile",
+        "Marigolds",
+        "Cress"
       ],
       "transplant": [
         "Zucchini",
@@ -5012,7 +5921,13 @@
         "Lemon Balm",
         "Blackberries",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Figs",
+        "Mulberry",
+        "Citrus"
       ],
       "harvest": [
         "Tomatoes",
@@ -5057,7 +5972,11 @@
         "Sweet Peas",
         "Chervil",
         "Hamburg Parsley",
-        "Good King Henry"
+        "Good King Henry",
+        "Citrus",
+        "Radicchio",
+        "Chicory",
+        "Flaxseed"
       ]
     },
     "2": {
@@ -5078,7 +5997,10 @@
         "Lemon Balm",
         "Sunflowers",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chamomile",
+        "Marigolds",
+        "Cress"
       ],
       "transplant": [
         "Tomatoes",
@@ -5095,7 +6017,17 @@
         "Jalapeño",
         "Marjoram",
         "Lemon Balm",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Figs",
+        "Mulberry",
+        "Citrus",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon"
       ],
       "harvest": [
         "Tomatoes",
@@ -5141,7 +6073,13 @@
         "Chervil",
         "Hamburg Parsley",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Valerian",
+        "Citrus",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Flaxseed"
       ]
     },
     "3": {
@@ -5160,7 +6098,8 @@
         "Borlotti Beans",
         "Savory",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chia"
       ],
       "transplant": [
         "Asparagus",
@@ -5173,7 +6112,12 @@
         "Rosemary",
         "Oregano",
         "Celeriac",
-        "Lemon Balm"
+        "Lemon Balm",
+        "Echinacea",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon"
       ],
       "harvest": [
         "Tomatoes",
@@ -5214,7 +6158,16 @@
         "Lemon Verbena",
         "Hamburg Parsley",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Mulberry",
+        "Radicchio",
+        "Chicory",
+        "Cress"
       ]
     },
     "4": {
@@ -5224,7 +6177,8 @@
         "Yardlong Beans",
         "Borlotti Beans",
         "Microgreens",
-        "Purslane"
+        "Purslane",
+        "Chia"
       ],
       "transplant": [],
       "harvest": [
@@ -5260,7 +6214,16 @@
         "Purslane",
         "Lemon Verbena",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Mulberry",
+        "Radicchio",
+        "Chicory"
       ]
     },
     "5": {
@@ -5297,7 +6260,17 @@
         "Microgreens",
         "Purslane",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Chamomile",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Valerian",
+        "Figs",
+        "Mulberry",
+        "Passionfruit",
+        "Bitter Melon"
       ]
     },
     "6": {
@@ -5328,7 +6301,16 @@
         "Microgreens",
         "Purslane",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Echinacea",
+        "Comfrey",
+        "Yarrow",
+        "Figs",
+        "Mulberry",
+        "Passionfruit",
+        "Luffa",
+        "Bitter Melon"
       ]
     },
     "7": {
@@ -5356,7 +6338,15 @@
         "Microgreens",
         "Purslane",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Marigolds",
+        "Comfrey",
+        "Figs",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon",
+        "Chia"
       ]
     },
     "8": {
@@ -5379,7 +6369,8 @@
         "Watercress",
         "Endive",
         "Fennel",
-        "Microgreens"
+        "Microgreens",
+        "Chicory"
       ],
       "transplant": [],
       "harvest": [
@@ -5391,7 +6382,15 @@
         "Tarragon",
         "Lemon Balm",
         "Microgreens",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Comfrey",
+        "Figs",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon",
+        "Chia"
       ]
     },
     "9": {
@@ -5431,7 +6430,10 @@
         "Quinoa",
         "Salsify",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Radicchio",
+        "Chicory",
+        "Cress"
       ],
       "transplant": [
         "Tomatoes",
@@ -5450,7 +6452,15 @@
         "Watercress",
         "Fennel",
         "Microgreens",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Figs",
+        "Citrus",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon",
+        "Chia"
       ]
     },
     "10": {
@@ -5504,14 +6514,21 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Marigolds",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Broccoli",
         "Cabbage",
         "Cauliflower",
         "Collard Greens",
-        "Celeriac"
+        "Celeriac",
+        "Radicchio"
       ],
       "harvest": [
         "Tomatoes",
@@ -5522,7 +6539,15 @@
         "Turmeric",
         "Edamame",
         "Microgreens",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Marigolds",
+        "Figs",
+        "Citrus",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Bitter Melon",
+        "Cress"
       ]
     },
     "11": {
@@ -5571,7 +6596,11 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Marigolds",
+        "Cress",
+        "Flaxseed"
       ],
       "transplant": [
         "Zucchini",
@@ -5582,7 +6611,8 @@
         "Tarragon",
         "Shiso",
         "Blackberries",
-        "Good King Henry"
+        "Good King Henry",
+        "Radicchio"
       ],
       "harvest": [
         "Kale",
@@ -5610,7 +6640,13 @@
         "Nasturtium",
         "Microgreens",
         "Purslane",
-        "Chervil"
+        "Chervil",
+        "Marigolds",
+        "Citrus",
+        "Passionfruit",
+        "Taro",
+        "Luffa",
+        "Cress"
       ]
     },
     "12": {
@@ -5657,7 +6693,8 @@
         "Purslane",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Cress"
       ],
       "transplant": [
         "Zucchini",
@@ -5671,7 +6708,8 @@
         "Shiso",
         "Blackberries",
         "Lovage",
-        "Good King Henry"
+        "Good King Henry",
+        "Mulberry"
       ],
       "harvest": [
         "Tomatoes",
@@ -5707,7 +6745,14 @@
         "Quinoa",
         "Sweet Peas",
         "Chervil",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chamomile",
+        "Marigolds",
+        "Citrus",
+        "Radicchio",
+        "Chicory",
+        "Cress",
+        "Flaxseed"
       ]
     }
   }

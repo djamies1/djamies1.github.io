@@ -4872,5 +4872,951 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false
+  },
+  "Chamomile": {
+    "emoji": "🌼",
+    "depth": "surface",
+    "spacing": "6 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "60-65 days",
+    "tip": "Press seeds onto soil surface — they need light to germinate. Pinch early blooms to encourage bushier growth.",
+    "difficulty": "Easy",
+    "germ_temp": "55-65°F",
+    "soil_ph": "5.6-7.5",
+    "fertilizer": "Low-nitrogen; excess fertility reduces flower production.",
+    "companions": [
+      "Cabbage",
+      "Onions",
+      "Brassicas",
+      "Cucumbers"
+    ],
+    "avoid": [],
+    "pests": [
+      "Aphids"
+    ],
+    "harvest_cues": "Harvest flowers when fully open, petals reflexed back — snap off individually.",
+    "storage": "Dry flowers on a screen in a warm place; store in an airtight jar up to 1 year.",
+    "varieties": [
+      "German Chamomile",
+      "Roman Chamomile",
+      "Bodegold"
+    ],
+    "aliases": [
+      "German Chamomile",
+      "Wild Chamomile",
+      "Matricaria"
+    ],
+    "days_min": 60,
+    "days_max": 65,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 2,
+    "container_ok": true
+  },
+  "Marigolds": {
+    "emoji": "🌻",
+    "depth": "1/4 in",
+    "spacing": "8 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "50-70 days",
+    "tip": "Plant throughout the vegetable garden — marigold root secretions deter nematodes and the scent confuses many pests.",
+    "difficulty": "Easy",
+    "germ_temp": "65-75°F",
+    "soil_ph": "6.0-7.5",
+    "fertilizer": "Low nitrogen; fertiliser encourages foliage at expense of flowers.",
+    "companions": [
+      "Tomatoes",
+      "Peppers",
+      "Beans",
+      "Cucumbers",
+      "Brassicas"
+    ],
+    "avoid": [],
+    "pests": [
+      "Slugs",
+      "Spider mites"
+    ],
+    "harvest_cues": "Deadhead spent blooms to prolong flowering; harvest whole heads for seed when dry and brown.",
+    "storage": "Dried petals keep 6 months in an airtight container. Collect seeds from dried heads.",
+    "varieties": [
+      "French Marigold",
+      "African Marigold",
+      "Pot Marigold",
+      "Signet Marigold"
+    ],
+    "aliases": [
+      "Tagetes",
+      "French Marigold",
+      "African Marigold"
+    ],
+    "days_min": 50,
+    "days_max": 70,
+    "succession_weeks": 0,
+    "transplant_weeks": 6,
+    "seed_life_years": 4,
+    "container_ok": true
+  },
+  "Echinacea": {
+    "emoji": "🌸",
+    "depth": "1/8 in",
+    "spacing": "18 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "120-180 days",
+    "tip": "Cold-stratify seeds for 4–8 weeks before sowing. First-year plants rarely bloom; roots are harvestable after 3 years.",
+    "difficulty": "Moderate",
+    "germ_temp": "65-70°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Minimal; thrives in average to lean soil. Avoid high nitrogen.",
+    "companions": [
+      "Lavender",
+      "Yarrow",
+      "Fennel"
+    ],
+    "avoid": [],
+    "pests": [
+      "Japanese beetle",
+      "Aphids"
+    ],
+    "harvest_cues": "Cut flowers just as petals begin to droop. Harvest roots in autumn of year 3 or 4.",
+    "storage": "Dry flowers/roots at low heat; store in airtight jars up to 2 years.",
+    "varieties": [
+      "Purple Coneflower",
+      "Magnus",
+      "White Swan",
+      "Cheyenne Spirit"
+    ],
+    "aliases": [
+      "Coneflower",
+      "Purple Coneflower"
+    ],
+    "days_min": 120,
+    "days_max": 180,
+    "succession_weeks": 0,
+    "transplant_weeks": 8,
+    "seed_life_years": 2,
+    "container_ok": true
+  },
+  "Comfrey": {
+    "emoji": "🌿",
+    "depth": "2 in",
+    "spacing": "24 in",
+    "water": "1 in/week",
+    "sun": "Full sun to partial shade",
+    "days": "60-90 days",
+    "tip": "Plant root cuttings 2 in deep. Chop-and-drop leaves as a free fertiliser mulch — very high in potassium and nitrogen.",
+    "difficulty": "Easy",
+    "germ_temp": "50-65°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Self-fertilising via deep taproots; rarely needs feeding.",
+    "companions": [
+      "Fruit trees",
+      "Potatoes",
+      "Tomatoes"
+    ],
+    "avoid": [],
+    "pests": [
+      "Comfrey moth"
+    ],
+    "harvest_cues": "Cut leaves at ground level when plants reach 24 in. Repeat 3–4 times per season.",
+    "storage": "Use fresh as liquid feed (steep in water 4 weeks) or dry for herbal use.",
+    "varieties": [
+      "Bocking 14",
+      "Russian Comfrey",
+      "Common Comfrey"
+    ],
+    "aliases": [
+      "Russian Comfrey",
+      "Knitbone"
+    ],
+    "days_min": 60,
+    "days_max": 90,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Yarrow": {
+    "emoji": "🌾",
+    "depth": "surface",
+    "spacing": "12 in",
+    "water": "0.5 in/week",
+    "sun": "Full sun",
+    "days": "90-120 days",
+    "tip": "Drought-tolerant once established. Spreads freely — divide clumps every 2–3 years to keep tidy. Excellent pollinator plant.",
+    "difficulty": "Easy",
+    "germ_temp": "60-65°F",
+    "soil_ph": "5.5-7.0",
+    "fertilizer": "Thrives without feeding; rich soil causes floppy growth.",
+    "companions": [
+      "Lavender",
+      "Echinacea",
+      "Chamomile",
+      "Brassicas"
+    ],
+    "avoid": [],
+    "pests": [
+      "Few"
+    ],
+    "harvest_cues": "Cut flower heads when 2/3 open for fresh use or when fully open for drying.",
+    "storage": "Hang upside down in bunches to dry; keeps up to 2 years dried.",
+    "varieties": [
+      "Achillea millefolium",
+      "Cerise Queen",
+      "Moonshine",
+      "White Beauty"
+    ],
+    "aliases": [
+      "Achillea",
+      "Milfoil"
+    ],
+    "days_min": 90,
+    "days_max": 120,
+    "succession_weeks": 0,
+    "transplant_weeks": 8,
+    "seed_life_years": 3,
+    "container_ok": true
+  },
+  "Valerian": {
+    "emoji": "💜",
+    "depth": "1/8 in",
+    "spacing": "18 in",
+    "water": "1 in/week",
+    "sun": "Full sun to partial shade",
+    "days": "120-150 days",
+    "tip": "Sow on the soil surface — needs light to germinate. Roots are harvestable in autumn of year 2. Cats are attracted to the plant.",
+    "difficulty": "Moderate",
+    "germ_temp": "60-65°F",
+    "soil_ph": "5.5-7.0",
+    "fertilizer": "Moderate; balanced fertiliser in spring.",
+    "companions": [
+      "Chamomile",
+      "Lavender"
+    ],
+    "avoid": [],
+    "pests": [
+      "Few"
+    ],
+    "harvest_cues": "Harvest roots in autumn of year 2 when dormant; flowers are harvested just before peak bloom.",
+    "storage": "Dry roots at low temperature; store in airtight containers up to 2 years.",
+    "varieties": [
+      "Common Valerian",
+      "Red Valerian"
+    ],
+    "aliases": [
+      "Garden Valerian",
+      "Setwall"
+    ],
+    "days_min": 120,
+    "days_max": 150,
+    "succession_weeks": 0,
+    "transplant_weeks": 8,
+    "seed_life_years": 2,
+    "container_ok": true
+  },
+  "Hops": {
+    "emoji": "🍺",
+    "depth": "1 in",
+    "spacing": "36 in",
+    "water": "1.5 in/week",
+    "sun": "Full sun",
+    "days": "120-150 days",
+    "tip": "Plant rhizomes in spring. Vigorous climbers reaching 20 ft — provide a sturdy trellis. Harvest in late summer when cones are papery and fragrant.",
+    "difficulty": "Moderate",
+    "germ_temp": "55-65°F",
+    "soil_ph": "6.0-7.5",
+    "fertilizer": "Heavy feeder; apply compost in spring and a balanced feed at bud formation.",
+    "companions": [
+      "Yarrow",
+      "Chamomile"
+    ],
+    "avoid": [],
+    "pests": [
+      "Spider mites",
+      "Downy mildew",
+      "Hop aphid"
+    ],
+    "harvest_cues": "Harvest cone clusters when they turn light green/gold, feel dry and papery, and smell strongly hoppy.",
+    "storage": "Dry at 120°F for 8–10 hours; vacuum-seal and freeze for up to 1 year.",
+    "varieties": [
+      "Cascade",
+      "Centennial",
+      "Fuggle",
+      "Goldings",
+      "Chinook"
+    ],
+    "aliases": [
+      "Common Hops",
+      "Humulus lupulus"
+    ],
+    "days_min": 120,
+    "days_max": 150,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": false
+  },
+  "Elderberries": {
+    "emoji": "🫐",
+    "depth": "surface",
+    "spacing": "72 in",
+    "water": "1 in/week",
+    "sun": "Full sun to partial shade",
+    "days": "730-1095 days",
+    "tip": "Plant two varieties for best fruiting. Prune old canes each spring. Never eat raw berries — they must be cooked first.",
+    "difficulty": "Easy",
+    "germ_temp": "55-65°F",
+    "soil_ph": "5.5-6.5",
+    "fertilizer": "Apply balanced slow-release in spring; topdress with compost annually.",
+    "companions": [
+      "Yarrow",
+      "Chamomile"
+    ],
+    "avoid": [
+      "Walnuts"
+    ],
+    "pests": [
+      "Birds",
+      "Elderberry aphid"
+    ],
+    "harvest_cues": "Harvest full clusters when berries are deep purple-black and just starting to droop. Leaves and unripe berries are toxic.",
+    "storage": "Freeze or cook into syrup, juice, or jam. Dried berries keep up to 1 year.",
+    "varieties": [
+      "Sambucus nigra",
+      "Adams",
+      "Nova",
+      "Bob Gordon",
+      "Wyldewood"
+    ],
+    "aliases": [
+      "Elderberry",
+      "Black Elder",
+      "Sambucus"
+    ],
+    "days_min": 730,
+    "days_max": 1095,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": false
+  },
+  "Figs": {
+    "emoji": "🍑",
+    "depth": "surface",
+    "spacing": "120 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "1460-1825 days",
+    "tip": "In colder zones (6b-7a) grow in a pot and overwinter under cover. Prune lightly to encourage the 'breba' early crop on old wood.",
+    "difficulty": "Moderate",
+    "germ_temp": "65-75°F",
+    "soil_ph": "6.0-6.5",
+    "fertilizer": "Feed with balanced fertiliser monthly in summer; avoid excess nitrogen which delays fruiting.",
+    "companions": [
+      "Basil",
+      "Comfrey"
+    ],
+    "avoid": [],
+    "pests": [
+      "Fig beetle",
+      "Gopher",
+      "Birds"
+    ],
+    "harvest_cues": "Ripe figs droop, skin softens, and a drop of nectar may appear at the eye. Pick gently — they bruise easily.",
+    "storage": "Best eaten fresh the same day. Refrigerate up to 2 days; dry or jam for longer storage.",
+    "varieties": [
+      "Brown Turkey",
+      "Black Mission",
+      "Celeste",
+      "Desert King",
+      "Panachée"
+    ],
+    "aliases": [
+      "Common Fig",
+      "Ficus carica"
+    ],
+    "days_min": 1460,
+    "days_max": 1825,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": true
+  },
+  "Grapes": {
+    "emoji": "🍇",
+    "depth": "surface",
+    "spacing": "72 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "1095-1460 days",
+    "tip": "Plant bare-root vines in early spring. Train along a wire trellis. Annual winter pruning (leaving 2 buds per spur) is essential for productive fruit spurs.",
+    "difficulty": "Hard",
+    "germ_temp": "60-70°F",
+    "soil_ph": "5.5-6.5",
+    "fertilizer": "Low nitrogen; excess causes lush vines with little fruit. Apply compost annually.",
+    "companions": [
+      "Basil",
+      "Rosemary",
+      "Oregano"
+    ],
+    "avoid": [
+      "Brassicas"
+    ],
+    "pests": [
+      "Grape phylloxera",
+      "Powdery mildew",
+      "Botrytis",
+      "Birds"
+    ],
+    "harvest_cues": "Taste test is the best guide — sugar develops in the last weeks. Colour change alone is not reliable.",
+    "storage": "Keep unwashed in refrigerator up to 3 weeks. Freeze, juice, or make wine/jam.",
+    "varieties": [
+      "Concord",
+      "Niagara",
+      "Flame Seedless",
+      "Thompson Seedless",
+      "Marquette"
+    ],
+    "aliases": [
+      "Grapevine",
+      "Vitis vinifera"
+    ],
+    "days_min": 1095,
+    "days_max": 1460,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": true
+  },
+  "Kiwi": {
+    "emoji": "🥝",
+    "depth": "surface",
+    "spacing": "120 in",
+    "water": "1 in/week",
+    "sun": "Full sun to partial shade",
+    "days": "1095-1825 days",
+    "tip": "Hardy kiwi (Actinidia arguta) fruits reliably to zone 4. Plant one male vine for every 6–8 female vines. Provide a very sturdy trellis — vines can live 50 years.",
+    "difficulty": "Hard",
+    "germ_temp": "65-75°F",
+    "soil_ph": "6.0-6.5",
+    "fertilizer": "Moderate nitrogen in spring; avoid feeding after midsummer to harden new growth.",
+    "companions": [
+      "Comfrey"
+    ],
+    "avoid": [],
+    "pests": [
+      "Japanese beetle",
+      "Root-knot nematode",
+      "Birds"
+    ],
+    "harvest_cues": "Hardy kiwi fruits are ripe when they yield slightly to pressure and taste sweet. Pick before frost.",
+    "storage": "Refrigerate up to 4 weeks. Ripen at room temperature if picked slightly early.",
+    "varieties": [
+      "Actinidia arguta (Hardy Kiwi)",
+      "Ken's Red",
+      "Issai",
+      "Michigan State"
+    ],
+    "aliases": [
+      "Hardy Kiwi",
+      "Baby Kiwi",
+      "Actinidia"
+    ],
+    "days_min": 1095,
+    "days_max": 1825,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": false
+  },
+  "Mulberry": {
+    "emoji": "🍇",
+    "depth": "surface",
+    "spacing": "240 in",
+    "water": "1 in/week",
+    "sun": "Full sun to partial shade",
+    "days": "1825-2190 days",
+    "tip": "Fast-growing once established. Fruit stains everything — plant away from paths and use a tarp at harvest. Birds love them too, so netting helps.",
+    "difficulty": "Easy",
+    "germ_temp": "65-75°F",
+    "soil_ph": "5.5-7.0",
+    "fertilizer": "Low fertility; self-sufficient once mature. Light compost mulch annually.",
+    "companions": [
+      "Comfrey"
+    ],
+    "avoid": [],
+    "pests": [
+      "Birds",
+      "Scale insects"
+    ],
+    "harvest_cues": "Berries are ripe when deep purple-black (red varieties when fully red) and drop easily. Shake branches over a tarp.",
+    "storage": "Very perishable — eat within 1–2 days or freeze immediately. Also makes excellent jam.",
+    "varieties": [
+      "Illinois Everbearing",
+      "Pakistan Mulberry",
+      "Shangri-La",
+      "White Mulberry"
+    ],
+    "aliases": [
+      "Morus",
+      "Black Mulberry",
+      "White Mulberry",
+      "Red Mulberry"
+    ],
+    "days_min": 1825,
+    "days_max": 2190,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": true
+  },
+  "Citrus": {
+    "emoji": "🍋",
+    "depth": "surface",
+    "spacing": "120 in",
+    "water": "1.5 in/week",
+    "sun": "Full sun",
+    "days": "730-1095 days",
+    "tip": "In zones below 9b grow in a large pot and move under cover when frost threatens. Lemons and limes fruit almost year-round; oranges and mandarins fruit in winter.",
+    "difficulty": "Moderate",
+    "germ_temp": "70-80°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "Citrus-specific slow-release fertiliser 3× per year; iron/manganese trace minerals if leaves yellow.",
+    "companions": [
+      "Basil",
+      "Lavender"
+    ],
+    "avoid": [],
+    "pests": [
+      "Citrus leafminer",
+      "Scale",
+      "Spider mites",
+      "Citrus psyllid"
+    ],
+    "harvest_cues": "Colour change is the main cue; taste-test to confirm sweetness. Fruit won't continue ripening off the tree.",
+    "storage": "Store at room temperature 1 week or refrigerate up to 4 weeks.",
+    "varieties": [
+      "Meyer Lemon",
+      "Improved Meyer",
+      "Persian Lime",
+      "Navel Orange",
+      "Mandarin",
+      "Calamondin"
+    ],
+    "aliases": [
+      "Lemon",
+      "Orange",
+      "Lime",
+      "Mandarin",
+      "Grapefruit"
+    ],
+    "days_min": 730,
+    "days_max": 1095,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": true
+  },
+  "Passionfruit": {
+    "emoji": "🌺",
+    "depth": "1/4 in",
+    "spacing": "120 in",
+    "water": "1.5 in/week",
+    "sun": "Full sun",
+    "days": "365-540 days",
+    "tip": "Start seeds indoors 8–10 weeks before last frost. Provide a trellis immediately — vines grow rapidly. Flowers are self-fertile but benefit from hand-pollinating.",
+    "difficulty": "Moderate",
+    "germ_temp": "65-75°F",
+    "soil_ph": "6.0-7.5",
+    "fertilizer": "High potassium feed every 4 weeks during fruiting. Avoid excess nitrogen.",
+    "companions": [
+      "Basil"
+    ],
+    "avoid": [],
+    "pests": [
+      "Passion vine hopper",
+      "Scale",
+      "Fruit fly"
+    ],
+    "harvest_cues": "Fruit falls to the ground when ripe. Wrinkled purple/yellow skin means peak ripeness.",
+    "storage": "Store at room temperature up to 1 week; refrigerate up to 3 weeks. Freeze pulp up to 12 months.",
+    "varieties": [
+      "Purple Granadilla",
+      "Yellow Passionfruit",
+      "Banana Passionfruit"
+    ],
+    "aliases": [
+      "Passion Vine",
+      "Granadilla"
+    ],
+    "days_min": 365,
+    "days_max": 540,
+    "succession_weeks": 0,
+    "transplant_weeks": 10,
+    "seed_life_years": 3,
+    "container_ok": false
+  },
+  "Taro": {
+    "emoji": "🌿",
+    "depth": "4 in",
+    "spacing": "18 in",
+    "water": "2 in/week",
+    "sun": "Full sun to partial shade",
+    "days": "180-240 days",
+    "tip": "Plant corms in warm, moist soil once all frost risk has passed. Taro thrives in waterlogged or consistently moist conditions. Leaves are also edible when cooked.",
+    "difficulty": "Moderate",
+    "germ_temp": "70-80°F",
+    "soil_ph": "5.5-7.0",
+    "fertilizer": "High nitrogen and potassium; top-dress with balanced fertiliser monthly.",
+    "companions": [
+      "Sweet Corn",
+      "Beans"
+    ],
+    "avoid": [],
+    "pests": [
+      "Leaf blight",
+      "Aphids",
+      "Root-knot nematode"
+    ],
+    "harvest_cues": "Harvest when leaves start to yellow and die back, indicating corms have reached full size (7–9 months).",
+    "storage": "Cure in a warm, dry place 5–7 days, then store in a cool, dry location up to 2 months.",
+    "varieties": [
+      "Dasheen",
+      "Eddoe",
+      "Bun-Long",
+      "Lehua Maoli"
+    ],
+    "aliases": [
+      "Cocoyam",
+      "Dasheen",
+      "Eddoe",
+      "Colocasia"
+    ],
+    "days_min": 180,
+    "days_max": 240,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": true
+  },
+  "Radicchio": {
+    "emoji": "🥬",
+    "depth": "1/4 in",
+    "spacing": "12 in",
+    "water": "1 in/week",
+    "sun": "Full sun to partial shade",
+    "days": "80-100 days",
+    "tip": "Sow in midsummer for a late autumn harvest — cool weather develops the best colour and flavour. Cut back summer sowings and the stumps will resprout.",
+    "difficulty": "Moderate",
+    "germ_temp": "55-65°F",
+    "soil_ph": "5.5-7.0",
+    "fertilizer": "Moderate nitrogen; consistent moisture prevents bitterness.",
+    "companions": [
+      "Carrots",
+      "Fennel"
+    ],
+    "avoid": [],
+    "pests": [
+      "Slugs",
+      "Aphids"
+    ],
+    "harvest_cues": "Harvest firm, tight heads when they reach tennis-ball size and the colour is deep red-purple.",
+    "storage": "Refrigerate up to 2 weeks. Lightly braising or grilling mellows the bitterness.",
+    "varieties": [
+      "Chioggia",
+      "Trevisano",
+      "Castelfranco",
+      "Palla Rossa"
+    ],
+    "aliases": [
+      "Red Chicory",
+      "Italian Chicory"
+    ],
+    "days_min": 80,
+    "days_max": 100,
+    "succession_weeks": 0,
+    "transplant_weeks": 4,
+    "seed_life_years": 4,
+    "container_ok": true
+  },
+  "Chicory": {
+    "emoji": "🌿",
+    "depth": "1/4 in",
+    "spacing": "8 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "90-120 days",
+    "tip": "For witloof/Belgian endive: dig roots in autumn, pot in moist sand indoors, and 'force' in darkness for crisp, pale chicons in winter.",
+    "difficulty": "Moderate",
+    "germ_temp": "60-68°F",
+    "soil_ph": "5.5-6.8",
+    "fertilizer": "Moderate; balanced fertiliser at sowing, then minimal feeding.",
+    "companions": [
+      "Carrots",
+      "Herbs"
+    ],
+    "avoid": [],
+    "pests": [
+      "Slugs",
+      "Aphids"
+    ],
+    "harvest_cues": "Cut leaves young for salads; dig roots in autumn for forcing. Forced chicons are ready in 3–4 weeks.",
+    "storage": "Fresh leaves use immediately. Forced chicons refrigerate up to 2 weeks. Dried roots grind into coffee substitute.",
+    "varieties": [
+      "Witloof",
+      "Sugar Loaf",
+      "Catalogna",
+      "Puntarelle"
+    ],
+    "aliases": [
+      "Belgian Endive",
+      "Witloof",
+      "Cichorium"
+    ],
+    "days_min": 90,
+    "days_max": 120,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 4,
+    "container_ok": false
+  },
+  "Luffa": {
+    "emoji": "🌿",
+    "depth": "1/2 in",
+    "spacing": "24 in",
+    "water": "1.5 in/week",
+    "sun": "Full sun",
+    "days": "150-200 days",
+    "tip": "Soak seeds overnight before sowing. Needs a long hot season — start indoors 4–6 weeks early. Provide a strong vertical trellis for 10+ ft vines.",
+    "difficulty": "Moderate",
+    "germ_temp": "70-80°F",
+    "soil_ph": "6.0-6.8",
+    "fertilizer": "Regular balanced feeding throughout the long growing season.",
+    "companions": [
+      "Corn",
+      "Beans"
+    ],
+    "avoid": [],
+    "pests": [
+      "Squash vine borer",
+      "Powdery mildew",
+      "Cucumber beetle"
+    ],
+    "harvest_cues": "For eating: harvest 4–6 in long (smooth, firm). For sponges: leave until the skin turns brown and the gourd rattles when shaken.",
+    "storage": "Eating-size luffa: refrigerate 1 week. Dry sponge luffa: peel, bleach, and store indefinitely.",
+    "varieties": [
+      "Smooth Luffa",
+      "Ridged Luffa",
+      "Egyptian Luffa"
+    ],
+    "aliases": [
+      "Loofah",
+      "Sponge Gourd",
+      "Luffa aegyptiaca"
+    ],
+    "days_min": 150,
+    "days_max": 200,
+    "succession_weeks": 0,
+    "transplant_weeks": 5,
+    "seed_life_years": 4,
+    "container_ok": false
+  },
+  "Bitter Melon": {
+    "emoji": "🥒",
+    "depth": "1/2 in",
+    "spacing": "18 in",
+    "water": "1.5 in/week",
+    "sun": "Full sun",
+    "days": "55-70 days",
+    "tip": "Start indoors 4 weeks before last frost. Soak seeds 24 hours first to aid germination. Provide a trellis — vines climb vigorously to 15 ft.",
+    "difficulty": "Moderate",
+    "germ_temp": "75-85°F",
+    "soil_ph": "6.0-6.5",
+    "fertilizer": "Compost-rich soil plus balanced liquid feed every 2 weeks during fruiting.",
+    "companions": [
+      "Corn",
+      "Beans"
+    ],
+    "avoid": [],
+    "pests": [
+      "Aphids",
+      "Fruit fly",
+      "Powdery mildew"
+    ],
+    "harvest_cues": "Harvest young when skin is still bright green and firm — about 4–6 in long. Overripe fruit turns orange.",
+    "storage": "Refrigerate unwrapped up to 1 week. Slice and blanch to freeze up to 3 months.",
+    "varieties": [
+      "Chinese Bitter Melon",
+      "Indian Bitter Melon",
+      "White Bitter Melon"
+    ],
+    "aliases": [
+      "Bitter Gourd",
+      "Karela",
+      "Momordica charantia"
+    ],
+    "days_min": 55,
+    "days_max": 70,
+    "succession_weeks": 0,
+    "transplant_weeks": 4,
+    "seed_life_years": 4,
+    "container_ok": true
+  },
+  "Cress": {
+    "emoji": "🌱",
+    "depth": "surface",
+    "spacing": "2 in",
+    "water": "1 in/week",
+    "sun": "Full sun to partial shade",
+    "days": "10-20 days",
+    "tip": "One of the fastest crops you can grow — ready from sowing in 10–14 days on a sunny windowsill or direct in the garden. Sow thickly and cut with scissors.",
+    "difficulty": "Easy",
+    "germ_temp": "50-65°F",
+    "soil_ph": "6.0-7.0",
+    "fertilizer": "No feeding needed for such a short crop.",
+    "companions": [
+      "Radishes",
+      "Lettuce"
+    ],
+    "avoid": [],
+    "pests": [
+      "Flea beetle"
+    ],
+    "harvest_cues": "Cut when seedlings reach 2–3 in, leaving roots for a second (smaller) cut.",
+    "storage": "Best eaten immediately. Store cut cress in water in the fridge up to 2 days.",
+    "varieties": [
+      "Garden Cress",
+      "Curly Cress",
+      "Broadleaf Cress"
+    ],
+    "aliases": [
+      "Garden Cress",
+      "Pepper Cress",
+      "Lepidium sativum"
+    ],
+    "days_min": 10,
+    "days_max": 20,
+    "succession_weeks": 1,
+    "transplant_weeks": 0,
+    "seed_life_years": 5,
+    "container_ok": true
+  },
+  "Saffron": {
+    "emoji": "🌸",
+    "depth": "4 in",
+    "spacing": "4 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "60-90 days",
+    "tip": "Plant corms in late summer; they bloom in autumn. Each flower has only 3 stigmas — harvest them by hand in the morning on the day they open.",
+    "difficulty": "Moderate",
+    "germ_temp": "55-60°F",
+    "soil_ph": "6.0-8.0",
+    "fertilizer": "Low-phosphorus balanced fertiliser in early spring. Corms multiply over years.",
+    "companions": [
+      "Lavender",
+      "Rosemary"
+    ],
+    "avoid": [],
+    "pests": [
+      "Rodents",
+      "Birds"
+    ],
+    "harvest_cues": "Harvest vivid red stigmas from freshly opened flowers on dry mornings. Dry on paper at low heat for 15 minutes.",
+    "storage": "Dried saffron keeps 2–3 years in an airtight container away from light.",
+    "varieties": [
+      "Crocus sativus",
+      "Persian Saffron"
+    ],
+    "aliases": [
+      "Saffron Crocus",
+      "Crocus sativus"
+    ],
+    "days_min": 60,
+    "days_max": 90,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 1,
+    "container_ok": true
+  },
+  "Flaxseed": {
+    "emoji": "🌾",
+    "depth": "1/4 in",
+    "spacing": "3 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "90-110 days",
+    "tip": "Direct sow thickly in cool soil in spring or early autumn. Beautiful blue flowers precede the seed heads. Grow in large blocks for wind pollination.",
+    "difficulty": "Easy",
+    "germ_temp": "45-65°F",
+    "soil_ph": "5.5-7.0",
+    "fertilizer": "Minimal; over-feeding produces straw with few seeds.",
+    "companions": [
+      "Carrots",
+      "Potatoes"
+    ],
+    "avoid": [],
+    "pests": [
+      "Flea beetle"
+    ],
+    "harvest_cues": "Harvest seed heads when 90% of stems have turned golden-brown and pods rattle. Pull whole plants and dry in bundles.",
+    "storage": "Dried seeds keep up to 1 year at room temperature, or 2 years refrigerated.",
+    "varieties": [
+      "Flax",
+      "Linseed",
+      "Blue Flax",
+      "Omega",
+      "Norlin"
+    ],
+    "aliases": [
+      "Linseed",
+      "Linum usitatissimum"
+    ],
+    "days_min": 90,
+    "days_max": 110,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 4,
+    "container_ok": false
+  },
+  "Chia": {
+    "emoji": "🌱",
+    "depth": "surface",
+    "spacing": "12 in",
+    "water": "1 in/week",
+    "sun": "Full sun",
+    "days": "120-180 days",
+    "tip": "Direct sow after all frost danger has passed and the soil is warm. Chia needs a long hot season of 4–5 months to produce mature seed. Thin to 12 in.",
+    "difficulty": "Moderate",
+    "germ_temp": "65-75°F",
+    "soil_ph": "6.0-8.0",
+    "fertilizer": "Minimal; grows well in average, well-drained soil.",
+    "companions": [
+      "Basil",
+      "Sunflowers"
+    ],
+    "avoid": [],
+    "pests": [
+      "Few"
+    ],
+    "harvest_cues": "Harvest seed heads when bracts turn grey-brown and seeds fall when tapped. Cut whole spikes, bag, and dry.",
+    "storage": "Dried seeds keep up to 4 years in an airtight container.",
+    "varieties": [
+      "Salvia hispanica",
+      "Black Chia",
+      "White Chia"
+    ],
+    "aliases": [
+      "Chia Sage",
+      "Salvia hispanica"
+    ],
+    "days_min": 120,
+    "days_max": 180,
+    "succession_weeks": 0,
+    "transplant_weeks": 0,
+    "seed_life_years": 4,
+    "container_ok": true
   }
 }
