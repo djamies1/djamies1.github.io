@@ -40,7 +40,8 @@
     "succession_weeks": 2,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Brassicaceae"
   },
   "Asparagus": {
     "emoji": "🌿",
@@ -81,7 +82,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Asparagaceae",
+    "aliases": [
+      "Garden Asparagus",
+      "Sparrowgrass"
+    ]
   },
   "Avocados": {
     "emoji": "🥑",
@@ -117,7 +123,13 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Lauraceae",
+    "aliases": [
+      "Avocado",
+      "Alligator Pear",
+      "Butter Fruit"
+    ]
   },
   "Basil": {
     "emoji": "🌿",
@@ -154,10 +166,17 @@
     ],
     "days_min": 25,
     "days_max": 35,
-    "succession_weeks": null,
+    "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Lamiaceae",
+    "aliases": [
+      "Sweet Basil",
+      "Genovese Basil",
+      "Thai Basil",
+      "Tulsi"
+    ]
   },
   "Beans": {
     "emoji": "🫘",
@@ -197,7 +216,15 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Fabaceae",
+    "aliases": [
+      "Green Beans",
+      "French Beans",
+      "String Beans",
+      "Snap Beans",
+      "Bush Beans"
+    ]
   },
   "Beets": {
     "emoji": "🫀",
@@ -241,7 +268,8 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Amaranthaceae"
   },
   "Bok Choy": {
     "emoji": "🥬",
@@ -281,7 +309,12 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Chinese White Cabbage",
+      "White Stem Bok Choy"
+    ]
   },
   "Broccoli": {
     "emoji": "🥦",
@@ -319,10 +352,16 @@
     ],
     "days_min": 70,
     "days_max": 100,
-    "succession_weeks": null,
+    "succession_weeks": 3,
     "transplant_weeks": 6,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Calabrese",
+      "Heading Broccoli",
+      "Italian Broccoli"
+    ]
   },
   "Brussels Sprouts": {
     "emoji": "🥦",
@@ -363,7 +402,12 @@
     "succession_weeks": null,
     "transplant_weeks": 8,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Sprouts",
+      "Mini Cabbages"
+    ]
   },
   "Cabbage": {
     "emoji": "🥬",
@@ -400,10 +444,16 @@
     ],
     "days_min": 70,
     "days_max": 120,
-    "succession_weeks": null,
+    "succession_weeks": 4,
     "transplant_weeks": 6,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae",
+    "aliases": [
+      "White Cabbage",
+      "Red Cabbage",
+      "Savoy Cabbage"
+    ]
   },
   "Carrots": {
     "emoji": "🥕",
@@ -443,7 +493,12 @@
     "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Apiaceae",
+    "aliases": [
+      "Garden Carrot",
+      "Daucus carota"
+    ]
   },
   "Cauliflower": {
     "emoji": "⚪",
@@ -483,7 +538,12 @@
     "succession_weeks": null,
     "transplant_weeks": 6,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae",
+    "aliases": [
+      "White Cauliflower",
+      "Romanesco"
+    ]
   },
   "Celeriac": {
     "emoji": "🌿",
@@ -523,7 +583,13 @@
     "succession_weeks": null,
     "transplant_weeks": 10,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Apiaceae",
+    "aliases": [
+      "Celery Root",
+      "Turnip-Rooted Celery",
+      "Knob Celery"
+    ]
   },
   "Celery": {
     "emoji": "🌿",
@@ -563,7 +629,12 @@
     "succession_weeks": null,
     "transplant_weeks": 10,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Apiaceae",
+    "aliases": [
+      "Garden Celery",
+      "Pascal Celery"
+    ]
   },
   "Chard": {
     "emoji": "🌈",
@@ -607,7 +678,8 @@
     "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Amaranthaceae"
   },
   "Chives": {
     "emoji": "🌿",
@@ -644,7 +716,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Amaryllidaceae",
+    "aliases": [
+      "Garden Chives",
+      "Onion Chives"
+    ]
   },
   "Cilantro": {
     "emoji": "🌿",
@@ -686,7 +763,8 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Apiaceae"
   },
   "Collard Greens": {
     "emoji": "🥬",
@@ -723,10 +801,15 @@
     ],
     "days_min": 60,
     "days_max": 80,
-    "succession_weeks": null,
+    "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Collards",
+      "Tree Cabbage"
+    ]
   },
   "Corn": {
     "emoji": "🌽",
@@ -767,10 +850,11 @@
     ],
     "days_min": 60,
     "days_max": 100,
-    "succession_weeks": null,
+    "succession_weeks": 2,
     "transplant_weeks": 0,
     "seed_life_years": 2,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Poaceae"
   },
   "Cucumbers": {
     "emoji": "🥒",
@@ -807,10 +891,15 @@
     ],
     "days_min": 50,
     "days_max": 70,
-    "succession_weeks": null,
+    "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Cucurbitaceae",
+    "aliases": [
+      "Cuke",
+      "Garden Cucumber"
+    ]
   },
   "Dill": {
     "emoji": "🌿",
@@ -850,7 +939,12 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Apiaceae",
+    "aliases": [
+      "Garden Dill",
+      "Dillweed"
+    ]
   },
   "Edamame": {
     "emoji": "🫛",
@@ -890,7 +984,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Fabaceae",
+    "aliases": [
+      "Green Soybeans",
+      "Vegetable Soybean"
+    ]
   },
   "Eggplant": {
     "emoji": "🍆",
@@ -933,7 +1032,8 @@
     "succession_weeks": null,
     "transplant_weeks": 8,
     "seed_life_years": 4,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Solanaceae"
   },
   "Endive": {
     "emoji": "🥬",
@@ -972,7 +1072,13 @@
     "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Asteraceae",
+    "aliases": [
+      "Curly Endive",
+      "Frisée",
+      "Chicory Endive"
+    ]
   },
   "Fava Beans": {
     "emoji": "🫘",
@@ -1012,7 +1118,13 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Fabaceae",
+    "aliases": [
+      "Horse Beans",
+      "Windsor Beans",
+      "Tick Beans"
+    ]
   },
   "Fennel": {
     "emoji": "🌿",
@@ -1051,10 +1163,16 @@
     ],
     "days_min": 65,
     "days_max": 80,
-    "succession_weeks": null,
+    "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Apiaceae",
+    "aliases": [
+      "Florence Fennel",
+      "Bulb Fennel",
+      "Finocchio"
+    ]
   },
   "Garlic": {
     "emoji": "🧄",
@@ -1094,7 +1212,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Amaryllidaceae",
+    "aliases": [
+      "Hardneck Garlic",
+      "Softneck Garlic"
+    ]
   },
   "Ginger": {
     "emoji": "🫚",
@@ -1133,7 +1256,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Zingiberaceae",
+    "aliases": [
+      "Root Ginger",
+      "Cooking Ginger"
+    ]
   },
   "Globe Artichoke": {
     "emoji": "🌿",
@@ -1173,7 +1301,12 @@
     "succession_weeks": null,
     "transplant_weeks": 8,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Asteraceae",
+    "aliases": [
+      "Artichoke",
+      "French Artichoke"
+    ]
   },
   "Green Onions": {
     "emoji": "🌿",
@@ -1210,10 +1343,16 @@
     ],
     "days_min": 50,
     "days_max": 60,
-    "succession_weeks": null,
+    "succession_weeks": 2,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Amaryllidaceae",
+    "aliases": [
+      "Scallions",
+      "Spring Onions",
+      "Bunching Onions"
+    ]
   },
   "Ground Cherries": {
     "emoji": "🫑",
@@ -1253,7 +1392,13 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 4,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Solanaceae",
+    "aliases": [
+      "Physalis",
+      "Husk Cherry",
+      "Cape Gooseberry"
+    ]
   },
   "Horseradish": {
     "emoji": "🌿",
@@ -1289,7 +1434,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Mountain Radish",
+      "Red Cole"
+    ]
   },
   "Jerusalem Artichoke": {
     "emoji": "🌻",
@@ -1327,7 +1477,13 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Asteraceae",
+    "aliases": [
+      "Sunchoke",
+      "Earth Apple",
+      "Topinambur"
+    ]
   },
   "Kale": {
     "emoji": "🥦",
@@ -1367,7 +1523,14 @@
     "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Curly Kale",
+      "Borecole",
+      "Lacinato Kale",
+      "Dinosaur Kale"
+    ]
   },
   "Kohlrabi": {
     "emoji": "🌿",
@@ -1408,7 +1571,12 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae",
+    "aliases": [
+      "German Turnip",
+      "Turnip Cabbage"
+    ]
   },
   "Leeks": {
     "emoji": "🌿",
@@ -1448,7 +1616,12 @@
     "succession_weeks": null,
     "transplant_weeks": 10,
     "seed_life_years": 1,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Amaryllidaceae",
+    "aliases": [
+      "Garden Leek",
+      "Allium porrum"
+    ]
   },
   "Lemongrass": {
     "emoji": "🌾",
@@ -1484,7 +1657,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Poaceae",
+    "aliases": [
+      "Barbed Wire Grass",
+      "Cymbopogon"
+    ]
   },
   "Lettuce": {
     "emoji": "🥬",
@@ -1524,7 +1702,14 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Asteraceae",
+    "aliases": [
+      "Butterhead",
+      "Romaine",
+      "Iceberg",
+      "Loose-leaf Lettuce"
+    ]
   },
   "Mangoes": {
     "emoji": "🥭",
@@ -1560,7 +1745,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Anacardiaceae",
+    "aliases": [
+      "Mango",
+      "Mangifera indica"
+    ]
   },
   "Melons": {
     "emoji": "🍈",
@@ -1599,7 +1789,13 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Cucurbitaceae",
+    "aliases": [
+      "Cantaloupe",
+      "Honeydew",
+      "Muskmelon"
+    ]
   },
   "Mint": {
     "emoji": "🌿",
@@ -1639,7 +1835,13 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Lamiaceae",
+    "aliases": [
+      "Spearmint",
+      "Peppermint",
+      "Apple Mint"
+    ]
   },
   "Mustard Greens": {
     "emoji": "🌿",
@@ -1677,7 +1879,13 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Brown Mustard",
+      "Chinese Mustard",
+      "Leaf Mustard"
+    ]
   },
   "Mâche": {
     "emoji": "🌿",
@@ -1715,7 +1923,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Caprifoliaceae",
+    "aliases": [
+      "Lamb's Lettuce",
+      "Corn Salad"
+    ]
   },
   "Okra": {
     "emoji": "🫛",
@@ -1752,10 +1965,16 @@
     ],
     "days_min": 50,
     "days_max": 65,
-    "succession_weeks": null,
+    "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Malvaceae",
+    "aliases": [
+      "Lady's Fingers",
+      "Gumbo",
+      "Bhindi"
+    ]
   },
   "Onions": {
     "emoji": "🧅",
@@ -1795,7 +2014,12 @@
     "succession_weeks": null,
     "transplant_weeks": 10,
     "seed_life_years": 1,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Amaryllidaceae",
+    "aliases": [
+      "Bulb Onion",
+      "Garden Onion"
+    ]
   },
   "Oregano": {
     "emoji": "🌿",
@@ -1831,7 +2055,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Lamiaceae",
+    "aliases": [
+      "Wild Marjoram",
+      "Greek Oregano"
+    ]
   },
   "Parsley": {
     "emoji": "🌿",
@@ -1868,10 +2097,16 @@
     ],
     "days_min": 70,
     "days_max": 90,
-    "succession_weeks": null,
+    "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Apiaceae",
+    "aliases": [
+      "Flat-leaf Parsley",
+      "Curly Parsley",
+      "Italian Parsley"
+    ]
   },
   "Parsnips": {
     "emoji": "🌿",
@@ -1911,7 +2146,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Apiaceae",
+    "aliases": [
+      "Garden Parsnip",
+      "White Carrot"
+    ]
   },
   "Peanuts": {
     "emoji": "🥜",
@@ -1951,7 +2191,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Fabaceae",
+    "aliases": [
+      "Groundnuts",
+      "Monkey Nuts"
+    ]
   },
   "Peas": {
     "emoji": "🫛",
@@ -1991,7 +2236,13 @@
     "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Fabaceae",
+    "aliases": [
+      "Garden Peas",
+      "Green Peas",
+      "Shelling Peas"
+    ]
   },
   "Peppers": {
     "emoji": "🌶️",
@@ -2037,7 +2288,8 @@
     "succession_weeks": null,
     "transplant_weeks": 8,
     "seed_life_years": 2,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Solanaceae"
   },
   "Potatoes": {
     "emoji": "🥔",
@@ -2075,10 +2327,16 @@
     ],
     "days_min": 70,
     "days_max": 120,
-    "succession_weeks": null,
+    "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Solanaceae",
+    "aliases": [
+      "Garden Potato",
+      "Spud",
+      "Tatties"
+    ]
   },
   "Pumpkins": {
     "emoji": "🎃",
@@ -2117,7 +2375,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Cucurbitaceae",
+    "aliases": [
+      "Field Pumpkin",
+      "Winter Squash"
+    ]
   },
   "Radishes": {
     "emoji": "🔴",
@@ -2156,7 +2419,12 @@
     "succession_weeks": 2,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Garden Radish",
+      "Spring Radish"
+    ]
   },
   "Rhubarb": {
     "emoji": "🌿",
@@ -2195,7 +2463,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Polygonaceae",
+    "aliases": [
+      "Pie Plant",
+      "Garden Rhubarb"
+    ]
   },
   "Rosemary": {
     "emoji": "🌿",
@@ -2214,7 +2487,9 @@
       "Carrots",
       "Cabbage"
     ],
-    "avoid": [],
+    "avoid": [
+      "Cucumbers"
+    ],
     "pests": [
       "Aphids",
       "Spider Mites",
@@ -2232,7 +2507,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Lamiaceae",
+    "aliases": [
+      "Garden Rosemary",
+      "Salvia rosmarinus"
+    ]
   },
   "Rutabaga": {
     "emoji": "🌿",
@@ -2271,7 +2551,14 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Swede",
+      "Yellow Turnip",
+      "Swedish Turnip",
+      "Neep"
+    ]
   },
   "Sage": {
     "emoji": "🌿",
@@ -2311,7 +2598,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Lamiaceae",
+    "aliases": [
+      "Garden Sage",
+      "Common Sage"
+    ]
   },
   "Shallots": {
     "emoji": "🧅",
@@ -2351,7 +2643,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Amaryllidaceae",
+    "aliases": [
+      "Eschalot",
+      "French Shallot"
+    ]
   },
   "Spinach": {
     "emoji": "🌿",
@@ -2390,7 +2687,12 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Amaranthaceae",
+    "aliases": [
+      "Garden Spinach",
+      "Baby Spinach"
+    ]
   },
   "Squash": {
     "emoji": "🎃",
@@ -2434,7 +2736,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Cucurbitaceae"
   },
   "Strawberries": {
     "emoji": "🍓",
@@ -2475,7 +2778,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Rosaceae",
+    "aliases": [
+      "Garden Strawberry",
+      "Wild Strawberry"
+    ]
   },
   "Sweet Potatoes": {
     "emoji": "🍠",
@@ -2514,7 +2822,13 @@
     "succession_weeks": null,
     "transplant_weeks": 4,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Convolvulaceae",
+    "aliases": [
+      "Yam",
+      "Kumara",
+      "Ipomoea batatas"
+    ]
   },
   "Thyme": {
     "emoji": "🌿",
@@ -2549,7 +2863,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Lamiaceae",
+    "aliases": [
+      "Garden Thyme",
+      "Common Thyme"
+    ]
   },
   "Tomatillos": {
     "emoji": "🫑",
@@ -2589,7 +2908,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 4,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Solanaceae",
+    "aliases": [
+      "Husk Tomato",
+      "Mexican Ground Cherry"
+    ]
   },
   "Tomatoes": {
     "emoji": "🍅",
@@ -2633,7 +2957,8 @@
     "succession_weeks": null,
     "transplant_weeks": 6,
     "seed_life_years": 4,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Solanaceae"
   },
   "Turmeric": {
     "emoji": "🟡",
@@ -2668,7 +2993,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Zingiberaceae",
+    "aliases": [
+      "Indian Saffron",
+      "Yellow Root"
+    ]
   },
   "Turnips": {
     "emoji": "🌿",
@@ -2707,7 +3037,12 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae",
+    "aliases": [
+      "White Turnip",
+      "Garden Turnip"
+    ]
   },
   "Watercress": {
     "emoji": "🌿",
@@ -2741,7 +3076,12 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Water Cress",
+      "Nasturtium officinale"
+    ]
   },
   "Zucchini": {
     "emoji": "🥒",
@@ -2782,10 +3122,11 @@
     ],
     "days_min": 45,
     "days_max": 65,
-    "succession_weeks": null,
+    "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Cucurbitaceae"
   },
   "Microgreens": {
     "emoji": "🌱",
@@ -2821,10 +3162,11 @@
     ],
     "days_min": 7,
     "days_max": 21,
-    "succession_weeks": null,
+    "succession_weeks": 1,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Various"
   },
   "Jalapeño": {
     "emoji": "🌶️",
@@ -2869,7 +3211,8 @@
     "succession_weeks": null,
     "transplant_weeks": 8,
     "seed_life_years": 4,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Solanaceae"
   },
   "Cherry Tomatoes": {
     "emoji": "🍅",
@@ -2915,7 +3258,8 @@
     "succession_weeks": null,
     "transplant_weeks": 6,
     "seed_life_years": 4,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Solanaceae"
   },
   "Sweet Corn": {
     "emoji": "🌽",
@@ -2956,10 +3300,11 @@
     ],
     "days_min": 60,
     "days_max": 90,
-    "succession_weeks": null,
+    "succession_weeks": 2,
     "transplant_weeks": 0,
     "seed_life_years": 2,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Poaceae"
   },
   "Butternut Squash": {
     "emoji": "🎃",
@@ -3002,7 +3347,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Cucurbitaceae"
   },
   "Raspberries": {
     "emoji": "🫐",
@@ -3049,7 +3395,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Rosaceae"
   },
   "Blueberries": {
     "emoji": "🫐",
@@ -3094,7 +3441,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Ericaceae"
   },
   "Blackberries": {
     "emoji": "🫐",
@@ -3138,7 +3486,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Rosaceae"
   },
   "Gooseberries": {
     "emoji": "🍈",
@@ -3183,7 +3532,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Grossulariaceae"
   },
   "Redcurrants": {
     "emoji": "🍒",
@@ -3226,7 +3576,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Grossulariaceae"
   },
   "Nasturtium": {
     "emoji": "🌸",
@@ -3269,7 +3620,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Tropaeolaceae"
   },
   "Borage": {
     "emoji": "💙",
@@ -3308,7 +3660,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Boraginaceae"
   },
   "Calendula": {
     "emoji": "🌼",
@@ -3350,7 +3703,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Asteraceae"
   },
   "Lemon Balm": {
     "emoji": "🍋",
@@ -3391,7 +3745,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Lamiaceae"
   },
   "Tarragon": {
     "emoji": "🌿",
@@ -3430,7 +3785,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Asteraceae"
   },
   "Sorrel": {
     "emoji": "🌱",
@@ -3449,7 +3805,10 @@
       "Chives",
       "Lettuce"
     ],
-    "avoid": [],
+    "avoid": [
+      "Beans",
+      "Peas"
+    ],
     "pests": [
       "Aphids",
       "Slugs"
@@ -3470,7 +3829,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Polygonaceae"
   },
   "Watermelon": {
     "emoji": "🍉",
@@ -3514,7 +3874,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Cucurbitaceae"
   },
   "Runner Beans": {
     "emoji": "🫘",
@@ -3561,7 +3922,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Fabaceae"
   },
   "Sugar Snap Peas": {
     "emoji": "🫛",
@@ -3607,7 +3969,8 @@
     "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Fabaceae"
   },
   "Snow Peas": {
     "emoji": "🫛",
@@ -3653,7 +4016,8 @@
     "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Fabaceae"
   },
   "Bay Leaf": {
     "emoji": "🌿",
@@ -3694,7 +4058,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Lauraceae"
   },
   "Lavender": {
     "emoji": "💜",
@@ -3740,7 +4105,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Lamiaceae"
   },
   "Sunflowers": {
     "emoji": "🌻",
@@ -3785,7 +4151,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Asteraceae"
   },
   "Blackcurrants": {
     "emoji": "🫐",
@@ -3827,7 +4194,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Grossulariaceae"
   },
   "Lima Beans": {
     "emoji": "🫘",
@@ -3874,7 +4242,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Fabaceae"
   },
   "Broccoli Rabe": {
     "emoji": "🥦",
@@ -3921,7 +4290,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae"
   },
   "Daikon": {
     "emoji": "🌿",
@@ -3970,7 +4340,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae"
   },
   "Napa Cabbage": {
     "emoji": "🥬",
@@ -4020,7 +4391,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Brassicaceae"
   },
   "Chervil": {
     "emoji": "🌿",
@@ -4063,7 +4435,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Apiaceae"
   },
   "Marjoram": {
     "emoji": "🌿",
@@ -4101,7 +4474,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Lamiaceae",
+    "aliases": [
+      "Sweet Marjoram",
+      "Pot Marjoram"
+    ]
   },
   "Savory": {
     "emoji": "🌿",
@@ -4138,7 +4516,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Lamiaceae",
+    "aliases": [
+      "Summer Savory",
+      "Winter Savory"
+    ]
   },
   "Mizuna": {
     "emoji": "🥬",
@@ -4178,7 +4561,13 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Japanese Mustard",
+      "Spider Mustard",
+      "Kyona"
+    ]
   },
   "Tatsoi": {
     "emoji": "🥬",
@@ -4217,7 +4606,13 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Brassicaceae",
+    "aliases": [
+      "Spoon Mustard",
+      "Rosette Bok Choy",
+      "Flat Cabbage"
+    ]
   },
   "Pak Choi": {
     "emoji": "🥬",
@@ -4260,7 +4655,8 @@
     "succession_weeks": 3,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Brassicaceae"
   },
   "Salsify": {
     "emoji": "🌱",
@@ -4301,7 +4697,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Asteraceae"
   },
   "Hamburg Parsley": {
     "emoji": "🌿",
@@ -4343,7 +4740,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Apiaceae"
   },
   "Purslane": {
     "emoji": "🌿",
@@ -4377,7 +4775,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Portulacaceae",
+    "aliases": [
+      "Common Purslane",
+      "Verdolaga"
+    ]
   },
   "Good King Henry": {
     "emoji": "🌿",
@@ -4396,7 +4799,10 @@
       "Kale",
       "Spinach"
     ],
-    "avoid": [],
+    "avoid": [
+      "Beets",
+      "Chard"
+    ],
     "pests": [
       "Leaf Miners",
       "Aphids"
@@ -4416,7 +4822,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Amaranthaceae"
   },
   "Shiso": {
     "emoji": "🌿",
@@ -4458,7 +4865,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Lamiaceae"
   },
   "Amaranth": {
     "emoji": "🌾",
@@ -4497,7 +4905,13 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Amaranthaceae",
+    "aliases": [
+      "Grain Amaranth",
+      "Callaloo",
+      "Pigweed"
+    ]
   },
   "Quinoa": {
     "emoji": "🌾",
@@ -4536,7 +4950,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Amaranthaceae",
+    "aliases": [
+      "Goosefoot",
+      "Inca Wheat"
+    ]
   },
   "Broad Beans": {
     "emoji": "🫘",
@@ -4582,7 +5001,8 @@
     "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Fabaceae"
   },
   "Yardlong Beans": {
     "emoji": "🫘",
@@ -4627,7 +5047,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Fabaceae"
   },
   "Sweet Peas": {
     "emoji": "🌸",
@@ -4668,7 +5089,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Fabaceae",
+    "aliases": [
+      "Climbing Sweet Pea",
+      "Lathyrus odoratus"
+    ]
   },
   "Borlotti Beans": {
     "emoji": "🫘",
@@ -4711,7 +5137,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Fabaceae"
   },
   "Mangetout": {
     "emoji": "🫛",
@@ -4757,7 +5184,8 @@
     "succession_weeks": 4,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Fabaceae"
   },
   "Lemon Verbena": {
     "emoji": "🌿",
@@ -4794,7 +5222,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Verbenaceae",
+    "aliases": [
+      "Lemon Beebrush",
+      "Aloysia citrodora"
+    ]
   },
   "Stevia": {
     "emoji": "🌿",
@@ -4831,7 +5264,12 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Asteraceae",
+    "aliases": [
+      "Sweetleaf",
+      "Sugar Leaf"
+    ]
   },
   "Lovage": {
     "emoji": "🌿",
@@ -4871,7 +5309,8 @@
     "succession_weeks": null,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Apiaceae"
   },
   "Chamomile": {
     "emoji": "🌼",
@@ -4912,7 +5351,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 2,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Asteraceae"
   },
   "Marigolds": {
     "emoji": "🌻",
@@ -4956,7 +5396,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 6,
     "seed_life_years": 4,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Asteraceae"
   },
   "Echinacea": {
     "emoji": "🌸",
@@ -4997,7 +5438,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 8,
     "seed_life_years": 2,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Asteraceae"
   },
   "Comfrey": {
     "emoji": "🌿",
@@ -5036,7 +5478,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Boraginaceae"
   },
   "Yarrow": {
     "emoji": "🌾",
@@ -5077,7 +5520,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 8,
     "seed_life_years": 3,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Asteraceae"
   },
   "Valerian": {
     "emoji": "💜",
@@ -5114,7 +5558,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 8,
     "seed_life_years": 2,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Caprifoliaceae"
   },
   "Hops": {
     "emoji": "🍺",
@@ -5156,7 +5601,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Cannabaceae"
   },
   "Elderberries": {
     "emoji": "🫐",
@@ -5200,7 +5646,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Adoxaceae"
   },
   "Figs": {
     "emoji": "🍑",
@@ -5242,7 +5689,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Moraceae"
   },
   "Grapes": {
     "emoji": "🍇",
@@ -5288,7 +5736,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Vitaceae"
   },
   "Kiwi": {
     "emoji": "🥝",
@@ -5329,7 +5778,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Actinidiaceae"
   },
   "Mulberry": {
     "emoji": "🍇",
@@ -5370,7 +5820,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Moraceae"
   },
   "Citrus": {
     "emoji": "🍋",
@@ -5417,7 +5868,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Rutaceae"
   },
   "Passionfruit": {
     "emoji": "🌺",
@@ -5456,7 +5908,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 10,
     "seed_life_years": 3,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Passifloraceae"
   },
   "Taro": {
     "emoji": "🌿",
@@ -5499,7 +5952,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Araceae"
   },
   "Radicchio": {
     "emoji": "🥬",
@@ -5539,7 +5993,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 4,
     "seed_life_years": 4,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Asteraceae"
   },
   "Chicory": {
     "emoji": "🌿",
@@ -5580,7 +6035,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 4,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Asteraceae"
   },
   "Luffa": {
     "emoji": "🌿",
@@ -5621,7 +6077,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 5,
     "seed_life_years": 4,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Cucurbitaceae"
   },
   "Bitter Melon": {
     "emoji": "🥒",
@@ -5662,7 +6119,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 4,
     "seed_life_years": 4,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Cucurbitaceae"
   },
   "Cress": {
     "emoji": "🌱",
@@ -5701,7 +6159,8 @@
     "succession_weeks": 1,
     "transplant_weeks": 0,
     "seed_life_years": 5,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Brassicaceae"
   },
   "Saffron": {
     "emoji": "🌸",
@@ -5739,7 +6198,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 1,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Iridaceae"
   },
   "Flaxseed": {
     "emoji": "🌾",
@@ -5779,7 +6239,8 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 4,
-    "container_ok": false
+    "container_ok": false,
+    "family": "Linaceae"
   },
   "Chia": {
     "emoji": "🌱",
@@ -5817,6 +6278,7 @@
     "succession_weeks": 0,
     "transplant_weeks": 0,
     "seed_life_years": 4,
-    "container_ok": true
+    "container_ok": true,
+    "family": "Lamiaceae"
   }
 }
