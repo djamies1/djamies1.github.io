@@ -134,6 +134,52 @@ const COMPANION_REASONS = {
   'Strawberries|Borage':'Borage repels pests and attracts pollinators; improves berry flavour.',
   'Peas|Carrots':'Peas fix nitrogen that benefits carrots; both prefer cool weather.',
   'Lettuce|Tall Crops':'Shade from taller neighbours slows lettuce bolting in summer.',
+  // Beans/peas extended
+  'Beans|Potatoes':'Mutual pest deterrence — beans repel Colorado potato beetle; potatoes repel Mexican bean beetle.',
+  'Beans|Carrots':'Beans fix nitrogen; different root depths avoid competition for moisture.',
+  'Peas|Radishes':'Radishes deter pea aphids and open up soil for pea roots.',
+  'Peas|Mint':'Mint scent repels aphids and pea weevil.',
+  'Peas|Lettuce':'Cool-season companions that share space and season efficiently.',
+  // Brassicas extended
+  'Cabbage|Onions':'Onion scent confuses cabbage white butterfly and repels aphids.',
+  'Broccoli|Celery':'Celery scent repels cabbage white butterfly from nearby brassicas.',
+  'Kale|Chamomile':'Chamomile said to improve brassica vigour and attracts hoverfly predators.',
+  'Cauliflower|Dill':'Dill attracts parasitic wasps that prey on caterpillars attacking brassicas.',
+  // Solanaceae extended
+  'Tomatoes|Parsley':'Parsley attracts hoverflies whose larvae prey on aphids on tomatoes.',
+  'Tomatoes|Borage':'Borage deters tomato hornworm and is said to improve tomato vigour.',
+  'Peppers|Marigolds':'Marigolds deter aphids, spider mites, and soil nematodes near peppers.',
+  // Cucurbitaceae extended
+  'Cucumbers|Marigolds':'Marigolds deter cucumber beetle and aphids; attract pollinating bees.',
+  'Melons|Marigolds':'Marigolds deter cucumber beetles and soil nematodes near melons.',
+  'Watermelon|Marigolds':'Marigolds deter cucumber beetles and squash vine borers.',
+  'Pumpkins|Corn':'Three Sisters companion: corn provides a trellis; pumpkin shades out weeds.',
+  'Zucchini|Beans':'Beans fix nitrogen for heavy-feeding zucchini; different root depths.',
+  'Zucchini|Nasturtiums':'Nasturtiums trap aphids and cucumber beetles away from zucchini.',
+  // Root veg extended
+  'Beets|Onions':'Onion scent deters beet leaf miners and other flying pests.',
+  'Beets|Garlic':'Garlic repels soil pests and aphids that target beet foliage.',
+  'Potatoes|Beans':'Mutual deterrence: bean scent repels Colorado potato beetle.',
+  'Potatoes|Marigolds':'Marigold root secretions deter Colorado potato beetle and nematodes.',
+  'Potatoes|Horseradish':'Horseradish planted at bed corners traditionally deters potato pests.',
+  // Alliums extended
+  'Chives|Roses':'Chives deter aphids and are said to improve rose disease resistance.',
+  // Berries / fruit
+  'Strawberries|Garlic':'Garlic deters aphids and fungal disease; improves strawberry health.',
+  'Strawberries|Thyme':'Thyme repels worm pests and attracts pollinators to improve fruit set.',
+  'Raspberries|Garlic':'Garlic repels aphids, raspberry beetle, and helps prevent fungal issues.',
+  // Flowers/herbs as companions
+  'Yarrow|Vegetables':'Yarrow attracts ladybirds, lacewings, and hoverflies — key aphid predators.',
+  'Chamomile|Brassicas':'Chamomile said to improve brassica health and attract beneficial hoverflies.',
+  'Nasturtiums|Tomatoes':'Acts as a trap crop luring aphids and whitefly away from tomatoes.',
+  'Parsley|Tomatoes':'Attracts hoverflies and parasitic wasps that prey on tomato pests.',
+  'Calendula|Beans':'Attracts pollinators and deters aphids and other bean pests.',
+  'Sunflowers|Beans':'Sunflowers attract pollinators; different root depths avoid competition.',
+  'Lavender|Roses':'Lavender deters aphids, repels deer, and draws pollinators to roses.',
+  'Marigolds|Cucumbers':'Deters cucumber beetle and aphids; attracts pollinating bees.',
+  'Marigolds|Potatoes':'Deters Colorado potato beetle and soil nematodes.',
+  'Marigolds|Peppers':'Deters aphids, spider mites, and nematodes near peppers.',
+  'Comfrey|Fruit trees':'Comfrey deep-mined minerals are released as mulch; feeds tree roots.',
 };
 const AVOID_REASONS = {
   'Tomatoes|Fennel':'Fennel releases allelopathic chemicals that stunt tomato growth.',
@@ -153,6 +199,19 @@ const AVOID_REASONS = {
   'Potatoes|Cucumbers':'Cucumbers can encourage potato blight; keep well apart.',
   'Corn|Tomatoes':'Both attract hornworms and earworms; double the pest pressure.',
   'Squash|Potatoes':'Potatoes harbour diseases that can spread to squash.',
+  'Fennel|Basil':'Fennel releases allelopathic compounds that inhibit most nearby plants.',
+  'Fennel|Beans':'Fennel allelopathy inhibits legume growth and nitrogen fixation.',
+  'Fennel|Lettuce':'Fennel chemicals trigger premature bolting in lettuce.',
+  'Garlic|Beans':'Garlic sulphur compounds inhibit nitrogen-fixing bacteria in legume roots.',
+  'Garlic|Peas':'Allium chemicals inhibit pea nodule formation and overall growth.',
+  'Onions|Asparagus':'Allium root exudates stunt asparagus growth; keep apart permanently.',
+  'Potatoes|Pumpkins':'Both susceptible to blight; growing together doubles disease risk.',
+  'Strawberries|Cabbage':'Brassicas may stunt strawberry growth and reduce fruit set.',
+  'Rosemary|Cucumbers':'Rosemary prefers dry conditions; cucumber moisture needs may be inhibited.',
+  'Sorrel|Beans':'Sorrel oxalic acid compounds inhibit nitrogen fixation in bean roots.',
+  'Sorrel|Peas':'Same inhibitory effect on pea nodules as on beans.',
+  'Good King Henry|Beets':'Same Amaranthaceae family — direct competition for identical nutrients.',
+  'Good King Henry|Chard':'Closely related species; heavy nutrient competition in shared beds.',
 };
 
 // ── Phase 64: Problem diagnosis data ───────────
@@ -1467,8 +1526,10 @@ function renderCropDetail(c) {
           <div class="cg-group-label cg-group-label--with">✅ Plant with</div>
           ${(c.companions||[]).map(t => {
             const reason = COMPANION_REASONS[`${c._name}|${t}`] || '';
-            return `<div class="cg-item" data-open-crop="${t}">
-              <span class="detail-tag detail-tag--companions cg-tag">${t}</span>
+            const inG = isInGarden(t);
+            const em = cropData[t]?.emoji || '🌱';
+            return `<div class="cg-item${inG ? ' cg-item--in-garden' : ''}" data-open-crop="${t}">
+              <span class="detail-tag detail-tag--companions cg-tag">${em} ${t}${inG ? '<span class="cg-in-garden">★</span>' : ''}</span>
               ${reason ? `<span class="cg-reason">${reason}</span>` : ''}
             </div>`;
           }).join('')}
@@ -1477,12 +1538,24 @@ function renderCropDetail(c) {
           <div class="cg-group-label cg-group-label--avoid">⚠️ Avoid near</div>
           ${(c.avoid||[]).map(t => {
             const reason = AVOID_REASONS[`${c._name}|${t}`] || '';
+            const em = cropData[t]?.emoji || '🌱';
             return `<div class="cg-item" data-open-crop="${t}">
-              <span class="detail-tag detail-tag--avoid cg-tag">${t}</span>
+              <span class="detail-tag detail-tag--avoid cg-tag">${em} ${t}</span>
               ${reason ? `<span class="cg-reason cg-reason--avoid">${reason}</span>` : ''}
             </div>`;
           }).join('')}
         </div>` : ''}
+        ${(() => {
+          const reverse = cropData ? Object.keys(cropData)
+            .filter(n => n !== c._name && cropData[n].companions?.includes(c._name))
+            .slice(0, 8) : [];
+          return reverse.length ? `<div class="cg-group cg-group--reverse">
+            <div class="cg-group-label cg-group-label--reverse">↩ Also pairs well with</div>
+            <div class="cg-reverse-chips">
+              ${reverse.map(n => `<span class="cg-reverse-chip${isInGarden(n) ? ' cg-reverse-chip--in-garden' : ''}" data-open-crop="${n}">${cropData[n]?.emoji || '🌱'} ${n}</span>`).join('')}
+            </div>
+          </div>` : '';
+        })()}
         ${!(c.companions||[]).length && !(c.avoid||[]).length ? '<span class="detail-empty">None listed</span>' : ''}
       </div>
     </div>` : ''}

@@ -4196,6 +4196,13 @@ body.garden-mode .plant-section ul {
 .cg-tag { cursor: pointer; display: inline-block; }
 .cg-reason { color: var(--text-muted); font-size: var(--text-2xs); line-height: 1.4; padding-left: 2px; }
 .cg-reason--avoid { color: rgba(248,113,113,0.8); }
+.cg-item--in-garden { background: rgba(74,222,128,0.05); border-radius: 4px; padding-left: 4px; }
+.cg-in-garden { color: var(--accent); font-size: 10px; margin-left: 3px; }
+.cg-group-label--reverse { color: var(--text-muted); }
+.cg-reverse-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+.cg-reverse-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; cursor: pointer; font-size: 11px; padding: 2px 8px; transition: border-color 0.12s; }
+.cg-reverse-chip:hover { border-color: var(--accent); }
+.cg-reverse-chip--in-garden { border-color: var(--accent-dark); }
 
 /* ── Phase 68: Seed Starting Calculator ────────── */
 .ssc-card { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
