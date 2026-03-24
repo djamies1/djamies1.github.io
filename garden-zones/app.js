@@ -2558,7 +2558,7 @@ function renderGardenTab() {
     const bedsEl = document.getElementById('garden-beds');
     if (bedsEl) bedsEl.hidden = true;
     wireGardenViewToggle();
-    renderSetupCard(); renderGardenDashboard(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
+    renderSetupCard(); renderGardenDashboard(); renderGardenDiversity(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
     renderCompanionMatrix(); renderGrowingTimeline(); renderGardenGantt(); renderGardenFooter();
     renderGardenHistory(); renderGrowNext(); renderPlanSection(); renderHarvestAnalytics();
     renderHarvestValue();
@@ -2644,6 +2644,7 @@ function renderGardenTab() {
   wireGardenViewToggle();
   renderSetupCard();
   renderGardenDashboard();
+  renderGardenDiversity();
   renderGardenTasks();
   renderGardenChecklist();
   renderGardenBeds();
@@ -10434,4 +10435,71 @@ function renderWateringSchedule() {
   el.querySelectorAll('.ws-log-btn').forEach(btn =>
     btn.addEventListener('click', e => { e.stopPropagation(); logWatering(btn.dataset.crop); })
   );
+}
+
+function renderGardenDiversity() {
+  const el = document.getElementById('garden-diversity');
+  if (!el) return;
+  const names = Object.keys(myGarden);
+  if (names.length < 2) { el.innerHTML = ''; return; }
+
+  // 1. Family diversity
+  const famCount = {};
+  names.forEach(n => {
+    const f = CROP_FAMILIES[n] || cropData[n]?.family;
+    if (f) famCount[f] = (famCount[f] || 0) + 1;
+  });
+  const uniqueFams = Object.keys(famCount);
+  const topFam     = [...uniqueFams].sort((a, b) => famCount[b] - famCount[a])[0];
+  const famScore   = Math.min(100, Math.round((uniqueFams.length / 5) * 100));
+
+  // 2. Companion coverage
+  const gardenSet = new Set(names);
+  const paired    = names.filter(n => cropData[n]?.companions?.some(c => gardenSet.has(c))).length;
+  const compPct   = Math.round((paired / names.length) * 100);
+
+  // 3. Succession eligible
+  const succCount = names.filter(n => cropData[n]?.succession_weeks).length;
+  const succScore = Math.min(100, succCount * 20);
+
+  // Diversity index
+  const score     = Math.round(famScore * 0.5 + compPct * 0.3 + succScore * 0.2);
+  const grade     = score >= 80 ? 'A' : score >= 60 ? 'B' : score >= 40 ? 'C' : 'D';
+  const gradeDesc = { A:'Diverse & balanced', B:'Good variety', C:'Building balance', D:'Just starting' }[grade];
+  const gradeCls  = { A:'gdiv--a', B:'gdiv--b', C:'gdiv--c', D:'gdiv--d' }[grade];
+
+  // Single most-actionable nudge
+  const hasLegume = uniqueFams.includes('Legume');
+  const hasAllium = uniqueFams.includes('Allium');
+  let nudge = '';
+  if (!hasLegume && names.length >= 3)
+    nudge = 'Add beans or peas — legumes fix nitrogen and support your brassicas';
+  else if (!hasAllium && names.length >= 4)
+    nudge = 'Add garlic or onions — alliums deter aphids, slugs, and carrot fly';
+  else if (topFam && famCount[topFam] >= names.length * 0.6 && names.length >= 4)
+    nudge = `${topFam} dominates your garden — diversify for better rotation`;
+  else if (compPct < 30 && names.length >= 4)
+    nudge = 'Add companion plants — many crops have no pairing partner in your garden';
+
+  function mRow(label, pct, val) {
+    return `<div class="gdiv-row">
+      <span class="gdiv-lbl">${label}</span>
+      <div class="gdiv-bar-track"><div class="gdiv-bar-fill" style="width:${pct}%"></div></div>
+      <span class="gdiv-val">${val}</span>
+    </div>`;
+  }
+
+  el.innerHTML = `<div class="gdiv-card ${gradeCls}">
+    <div class="gdiv-header">
+      <span class="gdiv-title">🌿 Garden Diversity</span>
+      <span class="gdiv-grade">${grade}</span>
+    </div>
+    <div class="gdiv-desc">${gradeDesc}</div>
+    <div class="gdiv-rows">
+      ${mRow('Family spread', famScore, `${uniqueFams.length} families`)}
+      ${mRow('Companion pairs', compPct, `${compPct}%`)}
+      ${mRow('Succession crops', succScore, `${succCount} eligible`)}
+    </div>
+    ${nudge ? `<div class="gdiv-nudge">💡 ${nudge}</div>` : ''}
+  </div>`;
 }
