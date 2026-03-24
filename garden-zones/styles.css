@@ -5201,3 +5201,15 @@ body.garden-mode .plant-section ul {
 .yv-zone-note  { border-top: 1px solid var(--border); color: var(--text-muted); font-size: 10px; padding: 7px 12px; text-align: center; }
 
 .crop-tip--storage { background: rgba(147,197,253,0.06); border-color: rgba(147,197,253,0.2); color: #93c5fd; }
+
+/* Phase 118 — Succession planting strip */
+.suc-wrap           { border: 1px solid var(--border); border-radius: 10px; margin-top: 14px; overflow: hidden; }
+.suc-hd             { border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 7px 12px; text-transform: uppercase; }
+.suc-row            { align-items: center; border-bottom: 1px solid var(--border); display: flex; gap: 8px; padding: 6px 10px; }
+.suc-row:last-child { border-bottom: none; }
+.suc-crop           { align-items: center; color: var(--text); display: flex; flex-shrink: 0; font-size: 12px; font-weight: 600; gap: 5px; min-width: 130px; }
+.suc-every          { background: var(--surface2); border-radius: 99px; color: var(--text-muted); font-size: 9px; font-weight: 700; padding: 1px 5px; }
+.suc-chips          { display: flex; flex-wrap: wrap; gap: 4px; }
+.suc-chip           { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2); border-radius: 4px; color: var(--accent); font-size: 10px; font-variant-numeric: tabular-nums; font-weight: 500; padding: 2px 6px; }
+.suc-chip--past     { background: var(--surface2); border-color: var(--border); color: var(--text-muted); opacity: 0.6; }
+.suc-chip--now      { background: rgba(74,222,128,0.25); border-color: var(--accent); font-weight: 700; }

@@ -1001,6 +1001,7 @@ function renderPanel() {
     `<span class="tip-label">💡 Did you know?</span>${currentTip}`;
 
   renderYearView();
+  renderSuccessionStrip(month);
 }
 
 function getPlantingData(zoneStr, month) {
@@ -10133,4 +10134,62 @@ function renderYearView() {
   el.querySelectorAll('.yv-row[data-crop]').forEach(row => {
     row.addEventListener('click', () => openCropDetail(row.dataset.crop));
   });
+}
+
+function renderSuccessionStrip(month) {
+  const el = document.getElementById('succession-strip');
+  if (!el) return;
+
+  const zone     = selectedZone?.toLowerCase();
+  const zoneData = zone ? getPlantingData(zone, month) : {};
+
+  // Collect all sowable crops for this month
+  const sowable = [...new Set([
+    ...(zoneData.directSow    || []),
+    ...(zoneData.startIndoors || []),
+  ])];
+
+  // Keep only those with succession_weeks
+  const succCrops = sowable
+    .filter(name => cropData?.[name]?.succession_weeks)
+    .map(name => ({
+      name,
+      weeks: cropData[name].succession_weeks,
+      emoji: cropData[name].emoji || '🌱',
+    }));
+
+  if (!succCrops.length) { el.innerHTML = ''; return; }
+
+  // Cutoff: first frost date, or 5 months out if unknown
+  let cutoff = null;
+  if (selectedZone) {
+    const frost = FROST_DATES[selectedZone.toLowerCase()];
+    if (frost?.first) cutoff = parseFrostDate(frost.first);
+  }
+  const year    = new Date().getFullYear();
+  const today   = new Date(); today.setHours(0, 0, 0, 0);
+  const maxDate = cutoff || new Date(year, month - 1 + 5, 1);
+  const MON     = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  const rows = succCrops.map(({ name, weeks, emoji }) => {
+    const chips = [];
+    let d = new Date(year, month - 1, 1);
+    while (d <= maxDate && chips.length < 6) {
+      const diff = Math.round((d - today) / 86400000);
+      const cls  = diff < -1 ? 'suc-chip--past'
+                 : diff <= 1 ? 'suc-chip--now'
+                 :              '';
+      chips.push(`<span class="suc-chip ${cls}">${MON[d.getMonth()]} ${d.getDate()}</span>`);
+      d = new Date(d.getTime() + weeks * 7 * 86400000);
+    }
+    return `<div class="suc-row">
+      <span class="suc-crop">${emoji} ${name}<span class="suc-every">↻${weeks}w</span></span>
+      <div class="suc-chips">${chips.join('')}</div>
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `<div class="suc-wrap">
+    <div class="suc-hd">Succession Schedule</div>
+    ${rows}
+  </div>`;
 }
