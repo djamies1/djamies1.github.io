@@ -711,6 +711,7 @@ button, [role="button"], input[type="range"], select, a {
   gap: 6px;
   transition: border-color 0.15s, background 0.15s, transform 0.15s, box-shadow 0.15s;
 }
+.crop-card[hidden] { display: none !important; }
 
 .crop-card:hover, .crop-card:focus-visible {
   border-left-color: var(--accent);

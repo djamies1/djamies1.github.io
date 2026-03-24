@@ -4206,8 +4206,8 @@ function filterCalendarSearch(query) {
     if (section.classList.contains('hidden')) continue;
     let sectionVisible = false;
     for (const li of list.querySelectorAll('li')) {
-      const name = li.dataset.crop || li.querySelector('[data-crop]')?.dataset.crop || li.textContent;
-      const match = !q || name.toLowerCase().includes(q);
+      const name = li.dataset.crop || li.querySelector('[data-crop]')?.dataset.crop || li.textContent.trim();
+      const match = !q || cropMatchesQuery(name, q);
       li.hidden = !match;
       if (match) { sectionVisible = true; anyVisible = true; }
     }
