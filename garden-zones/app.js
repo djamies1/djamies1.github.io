@@ -660,6 +660,7 @@ let browseSun = '';
 let browseShortSeason = false;
 let browseInGarden = false;
 let browseFamily = '';
+let yearViewMode = 'garden'; // 'garden' | 'zone'
 
 // ── Zone display helpers ───────────────────────
 function isUSDASys() {
@@ -998,6 +999,8 @@ function renderPanel() {
   // Tip
   document.getElementById('garden-tip').innerHTML =
     `<span class="tip-label">💡 Did you know?</span>${currentTip}`;
+
+  renderYearView();
 }
 
 function getPlantingData(zoneStr, month) {
@@ -9819,4 +9822,175 @@ function shareCropCard(name) {
       setTimeout(() => URL.revokeObjectURL(url), 5000);
     }
   }, 'image/png');
+}
+
+// ── Phase 115: Year-at-a-Glance Calendar ─────────────────────────────────────
+function setYearView(mode) {
+  yearViewMode = mode;
+  renderYearView();
+}
+
+function renderYearView() {
+  const el = document.getElementById('year-view');
+  if (!el || !selectedZone) return;
+
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const ABBR   = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+  const curM   = currentMonth; // 1-indexed
+
+  const gardenCrops = Object.keys(myGarden || {})
+    .filter(n => myGarden[n] && myGarden[n].status !== 'archived');
+
+  const tabsHtml = `
+    <div class="yv-tabs">
+      <button class="yv-tab${yearViewMode==='garden'?' yv-tab--active':''}" data-yv="garden">My Garden</button>
+      <button class="yv-tab${yearViewMode==='zone'?' yv-tab--active':''}" data-yv="zone">All in Zone</button>
+    </div>`;
+
+  const headerHtml = `
+    <div class="yv-header">
+      <span class="yv-title">Year at a Glance</span>
+      ${tabsHtml}
+    </div>`;
+
+  // ── Month header row ──────────────────────────────
+  const thCells = ABBR.map((a, i) =>
+    `<th class="yv-mth${i+1===curM?' yv-mth--cur':''}" data-yv-month="${i+1}">${a}</th>`
+  ).join('');
+
+  if (yearViewMode === 'garden') {
+    // My Garden view — one row per garden crop
+    if (!gardenCrops.length) {
+      el.innerHTML = `
+        <div class="yv-wrap">
+          ${headerHtml}
+          <p class="yv-empty">Add crops to your garden to see your year at a glance.</p>
+        </div>`;
+      el.querySelectorAll('.yv-tab').forEach(btn =>
+        btn.addEventListener('click', () => setYearView(btn.dataset.yv)));
+      return;
+    }
+
+    // Build activity data for each garden crop across all 12 months
+    const rows = gardenCrops.map(name => {
+      const months = ABBR.map((_, i) => {
+        const m = i + 1;
+        const d = getPlantingData(selectedZone, m);
+        const acts = [];
+        if ((d.startIndoors || []).includes(name)) acts.push('si');
+        if ((d.directSow    || []).includes(name)) acts.push('ds');
+        if ((d.transplant   || []).includes(name)) acts.push('tr');
+        if ((d.harvest      || []).includes(name)) acts.push('hv');
+        return acts;
+      });
+      const firstActive = months.findIndex(a => a.length > 0);
+      return { name, months, firstActive };
+    }).sort((a, b) => {
+      // Sort by first active month; crops with no data go to bottom
+      if (a.firstActive === -1 && b.firstActive === -1) return 0;
+      if (a.firstActive === -1) return 1;
+      if (b.firstActive === -1) return -1;
+      return a.firstActive - b.firstActive;
+    });
+
+    const bodyRows = rows.map(({ name, months }) => {
+      const em = cropData?.[name]?.emoji || '🌱';
+      const cells = months.map((acts, i) => {
+        const isCur = i + 1 === curM;
+        if (!acts.length) return `<td class="yv-cell${isCur?' yv-cell--cur':''}"></td>`;
+        const dots = acts.map(a => `<span class="yv-dot yv-dot--${a}"></span>`).join('');
+        return `<td class="yv-cell yv-cell--has${isCur?' yv-cell--cur':''}">${dots}</td>`;
+      }).join('');
+      return `<tr class="yv-row" data-crop="${name}">
+        <td class="yv-name">${em} <span class="yv-crop-label">${name}</span></td>
+        ${cells}
+      </tr>`;
+    }).join('');
+
+    const legendHtml = `
+      <div class="yv-legend">
+        <span class="yv-legend-item"><span class="yv-dot yv-dot--si"></span>Start Indoors</span>
+        <span class="yv-legend-item"><span class="yv-dot yv-dot--ds"></span>Direct Sow</span>
+        <span class="yv-legend-item"><span class="yv-dot yv-dot--tr"></span>Transplant</span>
+        <span class="yv-legend-item"><span class="yv-dot yv-dot--hv"></span>Harvest</span>
+      </div>`;
+
+    el.innerHTML = `
+      <div class="yv-wrap">
+        ${headerHtml}
+        <div class="yv-scroll">
+          <table class="yv-table">
+            <thead><tr><th class="yv-name-col"></th>${thCells}</tr></thead>
+            <tbody>${bodyRows}</tbody>
+          </table>
+        </div>
+        ${legendHtml}
+      </div>`;
+
+  } else {
+    // All in Zone view — 4 activity-type rows, cells show count heat
+    const CATS = [
+      { key: 'startIndoors', cls: 'si', label: '🏠 Start Indoors' },
+      { key: 'directSow',    cls: 'ds', label: '🌱 Direct Sow' },
+      { key: 'transplant',   cls: 'tr', label: '🪴 Transplant' },
+      { key: 'harvest',      cls: 'hv', label: '🌾 Harvest' },
+    ];
+
+    const bodyRows = CATS.map(({ key, cls, label }) => {
+      const cells = ABBR.map((_, i) => {
+        const m = i + 1;
+        const d = getPlantingData(selectedZone, m);
+        const count = (d[key] || []).length;
+        const isCur = m === curM;
+        const intensity = count === 0 ? 0 : count < 5 ? 1 : count < 15 ? 2 : count < 30 ? 3 : 4;
+        return `<td class="yv-cell yv-zone-cell${isCur?' yv-cell--cur':''}" data-yv-month="${m}" data-count="${count}">
+          ${count ? `<span class="yv-count yv-count--${cls} yv-count--i${intensity}">${count}</span>` : ''}
+        </td>`;
+      }).join('');
+      return `<tr class="yv-row-zone">
+        <td class="yv-name yv-name--zone">${label}</td>
+        ${cells}
+      </tr>`;
+    }).join('');
+
+    el.innerHTML = `
+      <div class="yv-wrap">
+        ${headerHtml}
+        <div class="yv-scroll">
+          <table class="yv-table">
+            <thead><tr><th class="yv-name-col"></th>${thCells}</tr></thead>
+            <tbody>${bodyRows}</tbody>
+          </table>
+        </div>
+        <p class="yv-zone-note">Numbers show how many crops are active. Tap a month to jump to it.</p>
+      </div>`;
+  }
+
+  // ── Wire event listeners ──────────────────────────
+  // Tab toggle
+  el.querySelectorAll('.yv-tab').forEach(btn =>
+    btn.addEventListener('click', () => setYearView(btn.dataset.yv)));
+
+  // Month header click → navigate to that month
+  el.querySelectorAll('.yv-mth[data-yv-month]').forEach(th => {
+    th.addEventListener('click', () => {
+      currentMonth = parseInt(th.dataset.yvMonth, 10);
+      renderPanel();
+    });
+  });
+
+  // Zone view cell click → navigate
+  el.querySelectorAll('.yv-zone-cell[data-yv-month]').forEach(td => {
+    if (parseInt(td.dataset.count, 10) > 0) {
+      td.addEventListener('click', () => {
+        currentMonth = parseInt(td.dataset.yvMonth, 10);
+        renderPanel();
+      });
+    }
+  });
+
+  // Garden view row click → open crop detail
+  el.querySelectorAll('.yv-row[data-crop]').forEach(row => {
+    row.addEventListener('click', () => openCropDetail(row.dataset.crop));
+  });
 }
