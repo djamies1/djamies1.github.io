@@ -2562,7 +2562,7 @@ function renderGardenTab() {
     renderCompanionMatrix(); renderGrowingTimeline(); renderGardenGantt(); renderGardenFooter();
     renderGardenHistory(); renderGrowNext(); renderPlanSection(); renderHarvestAnalytics();
     renderHarvestValue();
-    renderWateringIntelligence(); renderHarvestToTable(); renderGardenHealthScore();
+    renderWateringSchedule(); renderWateringIntelligence(); renderHarvestToTable(); renderGardenHealthScore();
     renderSmartShoppingList(); checkAchievements();
     return;
   }
@@ -2657,6 +2657,7 @@ function renderGardenTab() {
   renderPlanSection();
   renderHarvestAnalytics();
   renderHarvestValue();
+  renderWateringSchedule();
   renderWateringIntelligence();
   renderHarvestToTable();
   renderGardenHealthScore();
@@ -3093,6 +3094,7 @@ async function fetchWeatherAndUpdate() {
   renderWateringAlert();
   renderThisWeek();
   renderDailyBrief();
+  renderWateringSchedule();
   renderWateringIntelligence();
   checkFrostNotification();
 }
@@ -10374,4 +10376,62 @@ function renderCompareDrawer() {
     </div>
     <button class="cmp-clear" onclick="toggleCompareMode()">✕ Done</button>
   </div>`;
+}
+
+function renderWateringSchedule() {
+  const el = document.getElementById('watering-schedule');
+  if (!el) return;
+
+  const planted = Object.keys(myGarden).filter(n => myGarden[n]?.planted);
+  if (!planted.length) { el.innerHTML = ''; return; }
+
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+
+  // Recent rain extends the schedule
+  const recentRain = weatherData?.daily?.precipitation_sum
+    ? (weatherData.daily.precipitation_sum[0] || 0) + (weatherData.daily.precipitation_sum[1] || 0)
+    : 0;
+  const rainBonus = recentRain >= 5 ? 2 : recentRain >= 2 ? 1 : 0;
+
+  const crops = planted.map(name => {
+    const interval  = getCropWaterInterval(name);
+    const lastDate  = myGarden[name].waterLog?.[0]?.date;
+    const daysSince = lastDate ? Math.round((today - new Date(lastDate + 'T00:00:00')) / 86400000) : null;
+    const daysUntil = daysSince !== null ? (interval - daysSince) + rainBonus : null;
+    return { name, daysUntil };
+  }).filter(c => c.daysUntil === null || c.daysUntil <= 7)
+    .sort((a, b) => (a.daysUntil ?? -99) - (b.daysUntil ?? -99));
+
+  if (!crops.length) { el.innerHTML = ''; return; }
+
+  const rainNote = rainBonus > 0
+    ? `<div class="ws-rain-note">🌧 ${Math.round(recentRain)}mm recently — schedule extended by ${rainBonus}d</div>`
+    : '';
+
+  const rows = crops.map(({ name, daysUntil }) => {
+    const emoji = cropData[name]?.emoji || '🌱';
+    let status, cls;
+    if      (daysUntil === null)  { status = 'Never logged'; cls = 'ws-row--nolog';   }
+    else if (daysUntil < 0)       { status = `${Math.abs(daysUntil)}d overdue`;  cls = 'ws-row--overdue'; }
+    else if (daysUntil === 0)     { status = 'Due today';    cls = 'ws-row--today';   }
+    else if (daysUntil === 1)     { status = 'Due tomorrow'; cls = 'ws-row--soon';    }
+    else                          { status = `in ${daysUntil}d`;   cls = 'ws-row--later';   }
+    const showBtn = daysUntil === null || daysUntil <= 1;
+    return `<div class="ws-row ${cls}">
+      <span class="ws-emoji">${emoji}</span>
+      <span class="ws-name">${name}</span>
+      <span class="ws-status">${status}</span>
+      ${showBtn ? `<button class="ws-log-btn" data-crop="${name}">💧</button>` : ''}
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `<div class="ws-card">
+    <div class="ws-hd">💧 Watering Schedule</div>
+    ${rainNote}
+    <div class="ws-list">${rows}</div>
+  </div>`;
+
+  el.querySelectorAll('.ws-log-btn').forEach(btn =>
+    btn.addEventListener('click', e => { e.stopPropagation(); logWatering(btn.dataset.crop); })
+  );
 }

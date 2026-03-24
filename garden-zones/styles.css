@@ -5248,3 +5248,20 @@ body.garden-mode .plant-section ul {
 .cmp-none                   { color: var(--text-muted); font-size: 11px; }
 .cmp-clear                  { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--text-muted); cursor: pointer; display: block; font-size: 11px; font-weight: 600; margin-top: 10px; padding: 5px 12px; }
 .cmp-clear:hover            { color: var(--text); }
+
+/* Phase 121 — Watering schedule card */
+.ws-card             { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+.ws-hd               { border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 7px 12px; text-transform: uppercase; }
+.ws-rain-note        { background: rgba(147,197,253,0.08); border-bottom: 1px solid var(--border); color: #93c5fd; font-size: 11px; padding: 5px 12px; }
+.ws-row              { align-items: center; border-bottom: 1px solid var(--border); display: flex; gap: 8px; padding: 7px 10px; }
+.ws-row:last-child   { border-bottom: none; }
+.ws-emoji            { flex-shrink: 0; font-size: 16px; line-height: 1; }
+.ws-name             { flex: 1; font-size: 12px; font-weight: 600; }
+.ws-status           { font-size: 11px; font-weight: 600; }
+.ws-row--overdue .ws-status { color: #f87171; }
+.ws-row--today .ws-status   { color: #fbbf24; }
+.ws-row--soon .ws-status    { color: #fbbf24; }
+.ws-row--later .ws-status   { color: var(--accent); }
+.ws-row--nolog .ws-status   { color: var(--text-muted); }
+.ws-log-btn          { background: rgba(147,197,253,0.1); border: 1px solid rgba(147,197,253,0.25); border-radius: 4px; color: #93c5fd; cursor: pointer; flex-shrink: 0; font-size: 11px; padding: 2px 8px; }
+.ws-log-btn:hover    { background: rgba(147,197,253,0.2); }
