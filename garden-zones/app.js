@@ -600,6 +600,7 @@ let browseCompanions = false;
 let browseSun = '';
 let browseShortSeason = false;
 let browseInGarden = false;
+let browseFamily = '';
 
 // ── Zone display helpers ───────────────────────
 function isUSDASys() {
@@ -1663,6 +1664,14 @@ function initBrowse() {
     });
   }
 
+  const familySel = document.getElementById('browse-family');
+  if (familySel) {
+    familySel.addEventListener('change', () => {
+      browseFamily = familySel.value;
+      renderBrowseGrid();
+    });
+  }
+
   // Phase 65: advanced filter chips
   document.getElementById('browse-extra')?.addEventListener('click', e => {
     const chip = e.target.closest('.browse-adv-chip');
@@ -1754,6 +1763,9 @@ function renderBrowseGrid() {
   }
   if (browseInGarden) {
     crops = crops.filter(([name]) => isInGarden(name));
+  }
+  if (browseFamily) {
+    crops = crops.filter(([name, c]) => (c.family || CROP_FAMILIES[name]) === browseFamily);
   }
 
   // Companion filter: crops that are companions to anything in my garden
@@ -1995,6 +2007,9 @@ function refreshGardenUI(name) {
         document.getElementById(`list-${key}`).innerHTML = (data[key]||[]).map(renderCropItem).join('');
     }
   }
+  // Re-apply calendar search filter after list re-render (so hidden items stay hidden)
+  const csInput = document.getElementById('calendar-search');
+  if (csInput?.value) filterCalendarSearch(csInput.value);
   // Re-render browse grid if open
   const browseView = document.getElementById('browse-view');
   if (browseView && !browseView.classList.contains('browse-hidden')) renderBrowseGrid();
@@ -2042,7 +2057,7 @@ function archiveGardenEntry(name) {
     loadRotation();
     cropRotation.push({
       name,
-      family: CROP_FAMILIES[name] || null,
+      family: CROP_FAMILIES[name] || cropData[name]?.family || null,
       bedId: primaryBedId,
       bedName: gardenBeds[primaryBedId]?.name || '',
       year: new Date().getFullYear(),
@@ -7710,8 +7725,8 @@ function loadRotation() {
 function saveRotation() { localStorage.setItem('pzf-rotation', JSON.stringify(cropRotation)); }
 
 function checkRotationConflict(name, bedId) {
-  if (!bedId || !CROP_FAMILIES[name]) return null;
-  const family = CROP_FAMILIES[name];
+  const family = CROP_FAMILIES[name] || cropData[name]?.family;
+  if (!bedId || !family) return null;
   const thisYear = new Date().getFullYear();
   loadRotation();
   const conflicts = cropRotation.filter(r =>
