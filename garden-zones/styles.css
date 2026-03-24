@@ -5200,3 +5200,4 @@ body.garden-mode .plant-section ul {
 .yv-empty      { color: var(--text-muted); font-size: 12px; padding: 16px 14px; text-align: center; }
 .yv-zone-note  { border-top: 1px solid var(--border); color: var(--text-muted); font-size: 10px; padding: 7px 12px; text-align: center; }
 
+.crop-tip--storage { background: rgba(147,197,253,0.06); border-color: rgba(147,197,253,0.2); color: #93c5fd; }

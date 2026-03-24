@@ -962,7 +962,7 @@ function renderPanel() {
     const list    = document.getElementById(`list-${key}`);
     if (items.length > 0) {
       hasAny         = true;
-      list.innerHTML = items.map(renderCropItem).join('');
+      list.innerHTML = items.map(name => renderCropItem(name, key)).join('');
       section.classList.remove('hidden');
     } else {
       section.classList.add('hidden');
@@ -1431,16 +1431,75 @@ function zoomToPoint(lat, lng) {
 }
 
 // ── Crop card rendering ────────────────────────
-function renderCropItem(name) {
+// section: 'startIndoors' | 'directSow' | 'transplant' | 'harvest' | null (generic)
+function renderCropItem(name, section = null) {
   const c = cropData && cropData[name];
   if (!c) return `<li class="crop-plain">${name}</li>`;
   const inG = isInGarden(name);
+
+  let detail = '';
+  let tipHtml = c.tip ? `<div class="crop-tip">${c.tip}</div>` : '';
+
+  if (c.custom) {
+    detail  = c.days ? `🗓 ${c.days} days to harvest` : 'Custom crop';
+    tipHtml = c.description ? `<div class="crop-tip">${c.description}</div>` : '';
+
+  } else if (section === 'startIndoors') {
+    // Germination temp + exact start-by date
+    let timingStr = '';
+    const weeks = c.transplant_weeks;
+    if (weeks && selectedZone) {
+      const frost = FROST_DATES[selectedZone.toLowerCase()];
+      if (frost?.last) {
+        const lastFrost = parseFrostDate(frost.last);
+        if (lastFrost) {
+          const startBy  = new Date(lastFrost.getTime() - weeks * 7 * 86400000);
+          const today    = new Date(); today.setHours(0,0,0,0);
+          const daysLeft = Math.round((startBy - today) / 86400000);
+          const MON      = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+          const dateStr  = `${MON[startBy.getMonth()]} ${startBy.getDate()}`;
+          timingStr = daysLeft > 0
+            ? `📅 Start by ${dateStr} (${daysLeft}d)`
+            : daysLeft >= -14
+              ? `📅 Start now — ${-daysLeft}d overdue`
+              : `📅 ${weeks} wks before last frost`;
+        }
+      }
+    } else if (weeks) {
+      timingStr = `📅 ${weeks} wks before last frost`;
+    }
+    detail = [c.germ_temp ? `🌡 ${c.germ_temp}` : '', timingStr].filter(Boolean).join(' · ');
+
+  } else if (section === 'directSow') {
+    detail = [
+      c.depth   ? `${convertMeasurement(c.depth)} deep`  : '',
+      c.spacing ? `${convertMeasurement(c.spacing)} apart` : '',
+      c.germ_temp ? `🌡 ${c.germ_temp}` : '',
+    ].filter(Boolean).join(' · ');
+
+  } else if (section === 'transplant') {
+    detail = [
+      c.spacing ? `${convertMeasurement(c.spacing)} apart` : '',
+      c.water   ? convertMeasurement(c.water) : '',
+      c.days    || '',
+    ].filter(Boolean).join(' · ');
+
+  } else if (section === 'harvest') {
+    detail  = c.harvest_cues || c.days || '';
+    tipHtml = c.storage
+      ? `<div class="crop-tip crop-tip--storage">📦 ${c.storage}</div>`
+      : (c.tip ? `<div class="crop-tip">${c.tip}</div>` : '');
+
+  } else {
+    // Generic (browse, search, etc.)
+    detail = `${convertMeasurement(c.depth)} deep · ${convertMeasurement(c.spacing)} apart · ${convertMeasurement(c.water)} · ${c.days}`;
+  }
+
   return `<li class="crop-card" data-crop="${name}" role="button" tabindex="0" aria-label="${name} — tap for details">
     <div class="crop-card-body">
       <div class="crop-title">${c.emoji || '🌱'} ${name}${inG ? '<span class="crop-garden-star">★</span>' : ''}${c.custom ? '<span class="custom-crop-badge">Custom</span>' : ''}</div>
-      <div class="crop-detail">${c.custom ? (c.days ? `🗓 ${c.days} days to harvest` : 'Custom crop') : `${convertMeasurement(c.depth)} deep · ${convertMeasurement(c.spacing)} apart · ${convertMeasurement(c.water)} · ${c.days}`}</div>
-      ${c.tip ? `<div class="crop-tip">${c.tip}</div>` : ''}
-      ${c.custom && c.description ? `<div class="crop-tip">${c.description}</div>` : ''}
+      ${detail ? `<div class="crop-detail">${detail}</div>` : ''}
+      ${tipHtml}
     </div>
     <button class="crop-quick-add${inG ? ' in-garden' : ''}" data-crop="${name}" aria-label="${inG ? 'Remove from' : 'Add to'} My Garden" title="${inG ? 'Remove from My Garden' : 'Add to My Garden'}">${inG ? '★' : '☆'}</button>
     <span class="crop-card-chevron" aria-hidden="true">›</span>
