@@ -660,6 +660,8 @@ let browseSun = '';
 let browseShortSeason = false;
 let browseInGarden = false;
 let browseFamily = '';
+let compareMode = false;
+let compareSet  = []; // max 2 crop names
 let yearViewMode = 'garden'; // 'garden' | 'zone'
 
 // ── Zone display helpers ───────────────────────
@@ -1832,15 +1834,20 @@ function initBrowse() {
   if (grid) {
     grid.addEventListener('click', e => {
       const card = e.target.closest('.browse-card');
-      if (card?.dataset.crop) openCropDetail(card.dataset.crop);
+      if (!card?.dataset.crop) return;
+      if (compareMode) { addToCompare(card.dataset.crop); } else { openCropDetail(card.dataset.crop); }
     });
     grid.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
         const card = e.target.closest('.browse-card');
-        if (card?.dataset.crop) { e.preventDefault(); openCropDetail(card.dataset.crop); }
+        if (!card?.dataset.crop) return;
+        e.preventDefault();
+        if (compareMode) { addToCompare(card.dataset.crop); } else { openCropDetail(card.dataset.crop); }
       }
     });
   }
+
+  document.getElementById('browse-compare-btn')?.addEventListener('click', toggleCompareMode);
 }
 
 function toggleBrowse(show) {
@@ -1856,6 +1863,15 @@ function toggleBrowse(show) {
     if (search) search.focus();
     setBottomNavActive('browse');
   } else {
+    // Reset compare state on close
+    if (compareMode) {
+      compareMode = false;
+      compareSet  = [];
+      document.getElementById('browse-compare-btn')?.classList.remove('browse-cmp-btn--active');
+      document.getElementById('browse-view')?.classList.remove('browse-compare-mode');
+      const dr = document.getElementById('compare-drawer');
+      if (dr) dr.hidden = true;
+    }
     syncBottomNavToPanel();
   }
 }
@@ -1962,7 +1978,8 @@ function renderBrowseGrid() {
     const isActive     = activeSet.has(name);
     const isCompanion  = gardenCompanionSet.has(name) && !isInGarden(name);
     const diff         = c.difficulty ? c.difficulty.toLowerCase() : '';
-    return `<div class="browse-card${isActive ? ' browse-card--active' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.025}s">
+    const isSelected   = compareMode && compareSet.includes(name);
+    return `<div class="browse-card${isActive ? ' browse-card--active' : ''}${isSelected ? ' browse-card--selected' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.025}s">
       <div class="browse-card-emoji">${c.emoji || '🌱'}</div>
       <div class="browse-card-name">${name}</div>
       <div class="browse-card-meta">
@@ -10261,5 +10278,100 @@ function renderFrostCountdown() {
       <span class="fcd-label">${label}</span>
       <span class="fcd-detail">${detail}</span>
     </div>
+  </div>`;
+}
+
+function toggleCompareMode() {
+  compareMode = !compareMode;
+  compareSet  = [];
+  const btn  = document.getElementById('browse-compare-btn');
+  const view = document.getElementById('browse-view');
+  const dr   = document.getElementById('compare-drawer');
+  if (btn)  btn.classList.toggle('browse-cmp-btn--active', compareMode);
+  if (view) view.classList.toggle('browse-compare-mode', compareMode);
+  if (dr)   dr.hidden = true;
+  renderBrowseGrid();
+}
+
+function addToCompare(name) {
+  const idx = compareSet.indexOf(name);
+  if (idx !== -1) {
+    compareSet.splice(idx, 1); // deselect
+  } else if (compareSet.length < 2) {
+    compareSet.push(name);
+  }
+  renderBrowseGrid();
+  renderCompareDrawer();
+}
+
+function renderCompareDrawer() {
+  const el = document.getElementById('compare-drawer');
+  if (!el) return;
+
+  if (!compareMode || compareSet.length === 0) { el.hidden = true; return; }
+
+  el.hidden = false;
+
+  if (compareSet.length === 1) {
+    const c = cropData[compareSet[0]];
+    el.innerHTML = `<div class="cmp-tray">
+      <span class="cmp-tray-item">${c?.emoji || '🌱'} ${compareSet[0]}</span>
+      <span class="cmp-tray-hint">Select one more crop to compare</span>
+      <button class="cmp-clear" onclick="toggleCompareMode()">✕ Clear</button>
+    </div>`;
+    return;
+  }
+
+  const [nameA, nameB] = compareSet;
+  const a = cropData[nameA];
+  const b = cropData[nameB];
+  if (!a || !b) return;
+
+  const DIFF_ICON = { Easy: '🟢', Moderate: '🟡', Hard: '🔴' };
+
+  function cmpRow(lbl, va, vb) {
+    const fa = va ? convertMeasurement(String(va)) : '—';
+    const fb = vb ? convertMeasurement(String(vb)) : '—';
+    const diff = fa !== '—' && fb !== '—' && fa !== fb ? ' cmp-val--diff' : '';
+    return `<div class="cmp-row">
+      <span class="cmp-lbl">${lbl}</span>
+      <span class="cmp-val${diff}">${fa}</span>
+      <span class="cmp-val${diff}">${fb}</span>
+    </div>`;
+  }
+
+  const famA = a.family || CROP_FAMILIES?.[nameA] || '—';
+  const famB = b.family || CROP_FAMILIES?.[nameB] || '—';
+
+  const rows = [
+    cmpRow('Days', a.days, b.days),
+    cmpRow('Difficulty',
+      a.difficulty ? `${DIFF_ICON[a.difficulty] || ''} ${a.difficulty}` : null,
+      b.difficulty ? `${DIFF_ICON[b.difficulty] || ''} ${b.difficulty}` : null),
+    cmpRow('Sun', a.sun, b.sun),
+    cmpRow('Water', a.water, b.water),
+    cmpRow('Depth', a.depth, b.depth),
+    cmpRow('Spacing', a.spacing, b.spacing),
+    cmpRow('Family', famA, famB),
+    cmpRow('Container', a.container_ok ? '✅ Yes' : '—', b.container_ok ? '✅ Yes' : '—'),
+  ].join('');
+
+  const sharedComps = (a.companions || []).filter(c => (b.companions || []).includes(c));
+  const sharedHtml  = sharedComps.length
+    ? sharedComps.map(c => `<span class="cmp-tag">${cropData[c]?.emoji || '🌱'} ${c}</span>`).join('')
+    : '<span class="cmp-none">No shared companions</span>';
+
+  el.innerHTML = `<div class="cmp-drawer-inner">
+    <div class="cmp-head-row">
+      <span class="cmp-lbl"></span>
+      <span class="cmp-head-crop">${a.emoji || '🌱'} ${nameA}</span>
+      <span class="cmp-head-crop">${b.emoji || '🌱'} ${nameB}</span>
+    </div>
+    ${rows}
+    <div class="cmp-shared-row">
+      <span class="cmp-lbl">🤝 Shared companions</span>
+      <div class="cmp-shared-tags">${sharedHtml}</div>
+    </div>
+    <button class="cmp-clear" onclick="toggleCompareMode()">✕ Done</button>
   </div>`;
 }
