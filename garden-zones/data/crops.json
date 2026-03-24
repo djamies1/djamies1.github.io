@@ -6280,5 +6280,954 @@
     "seed_life_years": 4,
     "container_ok": true,
     "family": "Lamiaceae"
+  },
+  "Chickpeas": {
+    "aliases": [
+      "Garbanzo Beans",
+      "Ceci Beans",
+      "Bengal Gram"
+    ],
+    "avoid": [
+      "Onions",
+      "Garlic"
+    ],
+    "companions": [
+      "Potatoes",
+      "Spinach",
+      "Cucumbers"
+    ],
+    "container_ok": false,
+    "days": "90-100 days",
+    "days_max": 100,
+    "days_min": 90,
+    "depth": "1-2 in",
+    "difficulty": "Moderate",
+    "emoji": "🫘",
+    "family": "Fabaceae",
+    "fertilizer": "Low nitrogen (fixes own); avoid heavy feeding.",
+    "germ_temp": "65-85°F",
+    "harvest_cues": "Pods turn tan and begin to rattle; plant starts to dry out.",
+    "pests": [
+      "Aphids",
+      "Armyworm",
+      "Fusarium Wilt"
+    ],
+    "seed_life_years": 3,
+    "soil_ph": "6.0-8.0",
+    "spacing": "6 in",
+    "storage": "Dry beans store 2+ years in a cool, dark place.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "Needs hot, dry conditions to ripen; avoid waterlogged soils.",
+    "transplant_weeks": 0,
+    "varieties": [
+      "Kabuli",
+      "Desi",
+      "Black Chickpea"
+    ],
+    "water": "1 in/week; reduce as pods form"
+  },
+  "Lentils": {
+    "aliases": [
+      "Dal",
+      "Dhal"
+    ],
+    "avoid": [
+      "Onions",
+      "Fennel"
+    ],
+    "companions": [
+      "Celery",
+      "Spinach",
+      "Cucumbers"
+    ],
+    "container_ok": false,
+    "days": "80-110 days",
+    "days_max": 110,
+    "days_min": 80,
+    "depth": "1 in",
+    "difficulty": "Moderate",
+    "emoji": "🫘",
+    "family": "Fabaceae",
+    "fertilizer": "Minimal; nitrogen-fixing crop.",
+    "germ_temp": "50-65°F",
+    "harvest_cues": "Lower pods turn tan and rattle; harvest before pods shatter.",
+    "pests": [
+      "Aphids",
+      "Lygus Bug",
+      "Sclerotinia"
+    ],
+    "seed_life_years": 3,
+    "soil_ph": "6.0-8.0",
+    "spacing": "3-4 in",
+    "storage": "Dried lentils store 2+ years in airtight container.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "Cool-season crop; sow as soon as soil can be worked in spring.",
+    "transplant_weeks": 0,
+    "varieties": [
+      "Red",
+      "Green",
+      "French Puy",
+      "Beluga Black"
+    ],
+    "water": "1 in/week"
+  },
+  "Goji Berries": {
+    "aliases": [
+      "Wolfberry",
+      "Lycium",
+      "Chinese Wolfberry"
+    ],
+    "avoid": [],
+    "companions": [
+      "Lavender",
+      "Sage",
+      "Thyme"
+    ],
+    "container_ok": true,
+    "days": "2-3 years to first harvest (perennial)",
+    "days_max": 1095,
+    "days_min": 730,
+    "depth": "N/A (transplant)",
+    "difficulty": "Moderate",
+    "emoji": "🍒",
+    "family": "Solanaceae",
+    "fertilizer": "Balanced fertiliser in spring; avoid excess nitrogen.",
+    "germ_temp": "65-75°F",
+    "harvest_cues": "Berries are bright red and come off the stem cleanly without squishing.",
+    "pests": [
+      "Aphids",
+      "Spider Mites",
+      "Japanese Beetle"
+    ],
+    "seed_life_years": 2,
+    "soil_ph": "6.5-8.0",
+    "spacing": "3-5 ft",
+    "storage": "Fresh 1-2 weeks in fridge; dry for long-term storage.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "Tolerates drought once established; train as a hedge or on trellis.",
+    "transplant_weeks": 8,
+    "varieties": [
+      "Ningxia",
+      "Big Lifeberry",
+      "Sweet Lifeberry"
+    ],
+    "water": "Moderate; drought tolerant once established"
+  },
+  "New Zealand Spinach": {
+    "aliases": [
+      "Tetragonia",
+      "Warrigal Greens"
+    ],
+    "avoid": [],
+    "companions": [
+      "Beans",
+      "Cucumbers",
+      "Corn"
+    ],
+    "container_ok": true,
+    "days": "55-70 days",
+    "days_max": 70,
+    "days_min": 55,
+    "depth": "1/2 in",
+    "difficulty": "Easy",
+    "emoji": "🥬",
+    "family": "Aizoaceae",
+    "fertilizer": "Light balanced feed monthly.",
+    "germ_temp": "55-75°F",
+    "harvest_cues": "Pick young tip shoots; plant produces continuously through heat.",
+    "pests": [
+      "Aphids",
+      "Caterpillars"
+    ],
+    "seed_life_years": 3,
+    "soil_ph": "6.5-7.5",
+    "spacing": "12-18 in",
+    "storage": "Fridge 3-5 days.",
+    "succession_weeks": null,
+    "sun": "Full sun to partial shade",
+    "tip": "Soak seeds 24 hrs before planting; excellent heat-tolerant spinach substitute.",
+    "transplant_weeks": 0,
+    "varieties": [
+      "Standard"
+    ],
+    "water": "Moderate; more drought-tolerant than true spinach"
+  },
+  "Malabar Spinach": {
+    "aliases": [
+      "Ceylon Spinach",
+      "Indian Spinach",
+      "Basella",
+      "Red Vine Spinach"
+    ],
+    "avoid": [],
+    "companions": [
+      "Beans",
+      "Corn",
+      "Sweet Potatoes"
+    ],
+    "container_ok": true,
+    "days": "70-85 days",
+    "days_max": 85,
+    "days_min": 70,
+    "depth": "1/2 in",
+    "difficulty": "Easy",
+    "emoji": "🥬",
+    "family": "Basellaceae",
+    "fertilizer": "High nitrogen for lush leaf growth.",
+    "germ_temp": "65-80°F",
+    "harvest_cues": "Harvest young leaves and stem tips; continual picking extends season.",
+    "pests": [
+      "Caterpillars",
+      "Slugs"
+    ],
+    "seed_life_years": 2,
+    "soil_ph": "6.0-6.8",
+    "spacing": "12 in",
+    "storage": "Fridge 3-5 days.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "Thrives in hot, humid conditions; grows vigorously on a trellis.",
+    "transplant_weeks": 6,
+    "varieties": [
+      "Red Stem",
+      "Green Stem"
+    ],
+    "water": "High; keep consistently moist"
+  },
+  "Cavolo Nero": {
+    "aliases": [
+      "Black Kale",
+      "Tuscan Kale",
+      "Lacinato Kale",
+      "Dinosaur Kale",
+      "Italian Kale"
+    ],
+    "avoid": [
+      "Strawberries",
+      "Tomatoes"
+    ],
+    "companions": [
+      "Beans",
+      "Beets",
+      "Celery",
+      "Nasturtium",
+      "Marigolds"
+    ],
+    "container_ok": true,
+    "days": "60-80 days",
+    "days_max": 80,
+    "days_min": 60,
+    "depth": "1/4-1/2 in",
+    "difficulty": "Easy",
+    "emoji": "🥬",
+    "family": "Brassicaceae",
+    "fertilizer": "High nitrogen; top-dress with compost mid-season.",
+    "germ_temp": "45-85°F",
+    "harvest_cues": "Pick lower leaves when dark green and about 10 in long.",
+    "pests": [
+      "Cabbage Worm",
+      "Aphids",
+      "Flea Beetle"
+    ],
+    "seed_life_years": 4,
+    "soil_ph": "6.0-7.5",
+    "spacing": "18 in",
+    "storage": "Fridge 1-2 weeks; freezes well.",
+    "succession_weeks": 4,
+    "sun": "Full sun to partial shade",
+    "tip": "Frost improves flavour. Harvest outer leaves and the plant keeps growing.",
+    "transplant_weeks": 4,
+    "varieties": [
+      "Cavolo Nero di Toscana",
+      "Black Magic"
+    ],
+    "water": "1 in/week"
+  },
+  "Boysenberry": {
+    "aliases": [
+      "Boysen"
+    ],
+    "avoid": [],
+    "companions": [
+      "Garlic",
+      "Chives",
+      "Marigolds"
+    ],
+    "container_ok": false,
+    "days": "2 years to first harvest (perennial)",
+    "days_max": 730,
+    "days_min": 365,
+    "depth": "N/A (transplant)",
+    "difficulty": "Moderate",
+    "emoji": "🫐",
+    "family": "Rosaceae",
+    "fertilizer": "Balanced fertiliser in spring; add potassium for fruit quality.",
+    "germ_temp": "N/A",
+    "harvest_cues": "Berries are deep purple-maroon and come off the cane with gentle pulling.",
+    "pests": [
+      "Spider Mites",
+      "Japanese Beetle",
+      "Cane Borer"
+    ],
+    "seed_life_years": null,
+    "soil_ph": "6.0-7.0",
+    "spacing": "3-5 ft",
+    "storage": "Fridge 2-3 days; freezes well.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "Trailing canes need a trellis; prune old canes after fruiting in autumn.",
+    "transplant_weeks": 0,
+    "varieties": [
+      "Standard",
+      "Thornless Boysenberry"
+    ],
+    "water": "1-1.5 in/week"
+  },
+  "Loganberry": {
+    "aliases": [
+      "Logan"
+    ],
+    "avoid": [],
+    "companions": [
+      "Garlic",
+      "Chives",
+      "Marigolds"
+    ],
+    "container_ok": false,
+    "days": "2 years to first harvest (perennial)",
+    "days_max": 730,
+    "days_min": 365,
+    "depth": "N/A (transplant)",
+    "difficulty": "Moderate",
+    "emoji": "🍓",
+    "family": "Rosaceae",
+    "fertilizer": "Balanced fertiliser in spring; add potassium for fruit quality.",
+    "germ_temp": "N/A",
+    "harvest_cues": "Large dark-red berries with slightly tart flavour; harvest before they soften.",
+    "pests": [
+      "Spider Mites",
+      "Cane Borer",
+      "Raspberry Beetle"
+    ],
+    "seed_life_years": null,
+    "soil_ph": "6.0-7.0",
+    "spacing": "3-5 ft",
+    "storage": "Fridge 2-3 days; freezes well.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "Trailing canes need a trellis; remove old canes after harvest.",
+    "transplant_weeks": 0,
+    "varieties": [
+      "Standard",
+      "Thornless Loganberry"
+    ],
+    "water": "1-1.5 in/week"
+  },
+  "Aronia": {
+    "aliases": [
+      "Chokeberry",
+      "Black Chokeberry",
+      "Aronia Berry"
+    ],
+    "avoid": [],
+    "companions": [
+      "Blueberries",
+      "Elderberries",
+      "Gooseberries"
+    ],
+    "container_ok": true,
+    "days": "3 years to first harvest (perennial)",
+    "days_max": 1095,
+    "days_min": 730,
+    "depth": "N/A (transplant)",
+    "difficulty": "Easy",
+    "emoji": "🫐",
+    "family": "Rosaceae",
+    "fertilizer": "Minimal; balanced fertiliser in spring.",
+    "germ_temp": "N/A",
+    "harvest_cues": "Clusters of dark purple-black berries in late summer; taste before picking.",
+    "pests": [
+      "Japanese Beetle",
+      "Brown Stink Bug"
+    ],
+    "seed_life_years": null,
+    "soil_ph": "5.0-7.0",
+    "spacing": "4-6 ft",
+    "storage": "Fridge 1-2 weeks; freezes well.",
+    "succession_weeks": null,
+    "sun": "Full sun to partial shade",
+    "tip": "Extremely cold-hardy; tolerates wet soils. High in antioxidants.",
+    "transplant_weeks": 0,
+    "varieties": [
+      "Viking",
+      "Nero",
+      "McKenzie"
+    ],
+    "water": "Moderate; drought-tolerant once established"
+  },
+  "Sea Buckthorn": {
+    "aliases": [
+      "Seaberry",
+      "Hippophae",
+      "Sea Berry"
+    ],
+    "avoid": [],
+    "companions": [
+      "Marigolds",
+      "Lavender"
+    ],
+    "container_ok": false,
+    "days": "3-4 years to first harvest (perennial)",
+    "days_max": 1460,
+    "days_min": 1095,
+    "depth": "N/A (transplant)",
+    "difficulty": "Moderate",
+    "emoji": "🍊",
+    "family": "Elaeagnaceae",
+    "fertilizer": "Nitrogen-fixing shrub; minimal fertiliser needed.",
+    "germ_temp": "N/A",
+    "harvest_cues": "Bright orange berry clusters in fall; harvest before hard frost.",
+    "pests": [
+      "Aphids",
+      "Scale Insects"
+    ],
+    "seed_life_years": null,
+    "soil_ph": "6.0-7.5",
+    "spacing": "6-8 ft",
+    "storage": "Freeze berries; excellent for juice and jam.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "Plant one male for every 6 female shrubs to ensure fruiting. Extremely cold-hardy.",
+    "transplant_weeks": 0,
+    "varieties": [
+      "Titan",
+      "Leikora",
+      "Pollmix"
+    ],
+    "water": "Low; very drought-tolerant"
+  },
+  "Scorzonera": {
+    "aliases": [
+      "Black Salsify",
+      "Black Oyster Plant"
+    ],
+    "avoid": [],
+    "companions": [
+      "Carrots",
+      "Parsnips",
+      "Leeks"
+    ],
+    "container_ok": false,
+    "days": "120-150 days",
+    "days_max": 150,
+    "days_min": 120,
+    "depth": "1 in",
+    "difficulty": "Moderate",
+    "emoji": "🥕",
+    "family": "Asteraceae",
+    "fertilizer": "Low; avoid fresh manure which causes forking.",
+    "germ_temp": "50-75°F",
+    "harvest_cues": "Roots reach 1 in diameter; can be left in ground over winter.",
+    "pests": [
+      "Carrot Fly",
+      "Slugs"
+    ],
+    "seed_life_years": 1,
+    "soil_ph": "6.0-7.0",
+    "spacing": "4-6 in",
+    "storage": "Leave in ground until needed; fridge up to 2 weeks.",
+    "succession_weeks": null,
+    "sun": "Full sun to partial shade",
+    "tip": "Use fresh seed only; old seed germinates poorly. Needs deep, stone-free soil.",
+    "transplant_weeks": 0,
+    "varieties": [
+      "Maxima",
+      "Duplex",
+      "Gigantia"
+    ],
+    "water": "Moderate; even moisture prevents bolting"
+  },
+  "Cardoon": {
+    "aliases": [
+      "Artichoke Thistle",
+      "Cardo"
+    ],
+    "avoid": [
+      "Beans"
+    ],
+    "companions": [
+      "Globe Artichoke",
+      "Peppers",
+      "Eggplant"
+    ],
+    "container_ok": false,
+    "days": "120-150 days",
+    "days_max": 150,
+    "days_min": 120,
+    "depth": "1 in",
+    "difficulty": "Moderate",
+    "emoji": "🌿",
+    "family": "Asteraceae",
+    "fertilizer": "High nitrogen and potassium; heavy feeder.",
+    "germ_temp": "60-80°F",
+    "harvest_cues": "Blanch stalks by tying together for 3-4 weeks; harvest when tender and pale.",
+    "pests": [
+      "Aphids",
+      "Blackfly",
+      "Cardoon Fly"
+    ],
+    "seed_life_years": 4,
+    "soil_ph": "6.0-8.0",
+    "spacing": "24-36 in",
+    "storage": "Use fresh; stores 1 week in fridge.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "Blanch stems to reduce bitterness before harvest. A dramatic, architectural plant.",
+    "transplant_weeks": 8,
+    "varieties": [
+      "Plein Blanc Inerme",
+      "Gigante di Romagna"
+    ],
+    "water": "High; 2 in/week"
+  },
+  "Orach": {
+    "aliases": [
+      "Mountain Spinach",
+      "Garden Orache",
+      "French Spinach"
+    ],
+    "avoid": [],
+    "companions": [
+      "Beans",
+      "Radishes",
+      "Carrots"
+    ],
+    "container_ok": true,
+    "days": "40-60 days",
+    "days_max": 60,
+    "days_min": 40,
+    "depth": "1/4 in",
+    "difficulty": "Easy",
+    "emoji": "🥬",
+    "family": "Amaranthaceae",
+    "fertilizer": "Balanced; moderate nitrogen.",
+    "germ_temp": "50-65°F",
+    "harvest_cues": "Pick young leaves; remove flower spikes to prolong the harvest season.",
+    "pests": [
+      "Aphids",
+      "Flea Beetle"
+    ],
+    "seed_life_years": 3,
+    "soil_ph": "6.0-7.5",
+    "spacing": "12 in",
+    "storage": "Fridge 3-5 days.",
+    "succession_weeks": 3,
+    "sun": "Full sun to partial shade",
+    "tip": "More heat-tolerant than spinach; bolt-resistant and self-seeds readily.",
+    "transplant_weeks": 0,
+    "varieties": [
+      "Red Orach",
+      "Golden Orach",
+      "Green Orach"
+    ],
+    "water": "Moderate"
+  },
+  "Water Chestnut": {
+    "aliases": [
+      "Chinese Water Chestnut",
+      "Eleocharis"
+    ],
+    "avoid": [],
+    "companions": [
+      "Taro",
+      "Lotus"
+    ],
+    "container_ok": true,
+    "days": "180-210 days",
+    "days_max": 210,
+    "days_min": 180,
+    "depth": "2-3 in (in water)",
+    "difficulty": "Hard",
+    "emoji": "🌾",
+    "family": "Cyperaceae",
+    "fertilizer": "Aquatic fertiliser tablet; balanced NPK.",
+    "germ_temp": "65-85°F",
+    "harvest_cues": "Corms form after plants die back in autumn; harvest by hand.",
+    "pests": [
+      "Aphids",
+      "Cutworm"
+    ],
+    "seed_life_years": 1,
+    "soil_ph": "6.0-7.0",
+    "spacing": "12-18 in",
+    "storage": "Fridge up to 2 weeks; freeze peeled corms.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "Grow in a tub of water at least 6 in deep; needs a long, warm growing season.",
+    "transplant_weeks": 8,
+    "varieties": [
+      "Standard"
+    ],
+    "water": "Aquatic; keep in 2-4 in of standing water"
+  },
+  "Thai Basil": {
+    "aliases": [
+      "Asian Basil",
+      "Horapa",
+      "Thai Sweet Basil"
+    ],
+    "avoid": [
+      "Fennel",
+      "Sage"
+    ],
+    "companions": [
+      "Tomatoes",
+      "Peppers",
+      "Eggplant",
+      "Marigolds"
+    ],
+    "container_ok": true,
+    "days": "60-75 days",
+    "days_max": 75,
+    "days_min": 60,
+    "depth": "1/4 in",
+    "difficulty": "Easy",
+    "emoji": "🌿",
+    "family": "Lamiaceae",
+    "fertilizer": "Balanced; avoid excess nitrogen which reduces flavour.",
+    "germ_temp": "65-85°F",
+    "harvest_cues": "Pinch stems just above a leaf pair; harvest before flowering for best flavour.",
+    "pests": [
+      "Aphids",
+      "Japanese Beetle",
+      "Fusarium Wilt"
+    ],
+    "seed_life_years": 3,
+    "soil_ph": "6.0-7.0",
+    "spacing": "10-12 in",
+    "storage": "Fridge 1-2 weeks; freeze or blend into pesto.",
+    "succession_weeks": 3,
+    "sun": "Full sun",
+    "tip": "More heat-tolerant and slower to bolt than sweet basil; purple flowers are edible.",
+    "transplant_weeks": 6,
+    "varieties": [
+      "Siam Queen",
+      "Spicy Globe",
+      "Cardinal"
+    ],
+    "water": "Moderate; consistent moisture"
+  },
+  "Galangal": {
+    "aliases": [
+      "Thai Ginger",
+      "Blue Ginger",
+      "Alpinia",
+      "Greater Galangal"
+    ],
+    "avoid": [],
+    "companions": [
+      "Lemongrass",
+      "Turmeric",
+      "Ginger"
+    ],
+    "container_ok": true,
+    "days": "9-12 months",
+    "days_max": 365,
+    "days_min": 270,
+    "depth": "2-3 in",
+    "difficulty": "Moderate",
+    "emoji": "🌿",
+    "family": "Zingiberaceae",
+    "fertilizer": "Balanced slow-release; top-dress with compost monthly.",
+    "germ_temp": "65-80°F",
+    "harvest_cues": "Rhizomes mature when plant yellows in autumn; harvest as needed.",
+    "pests": [
+      "Rhizome Rot",
+      "Spider Mites"
+    ],
+    "seed_life_years": 1,
+    "soil_ph": "5.5-7.0",
+    "spacing": "18-24 in",
+    "storage": "Fridge up to 1 month; freeze sliced rhizomes.",
+    "succession_weeks": null,
+    "sun": "Partial shade to full sun",
+    "tip": "Needs tropical warmth; grow in pots indoors in cool climates.",
+    "transplant_weeks": 12,
+    "varieties": [
+      "Greater Galangal",
+      "Lesser Galangal"
+    ],
+    "water": "High; consistently moist but well-drained"
+  },
+  "Shishito Peppers": {
+    "aliases": [
+      "Shishito",
+      "Japanese Pepper",
+      "Lion Head Pepper"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "companions": [
+      "Basil",
+      "Carrots",
+      "Marigolds",
+      "Tomatoes"
+    ],
+    "container_ok": true,
+    "days": "55-75 days",
+    "days_max": 75,
+    "days_min": 55,
+    "depth": "1/4 in",
+    "difficulty": "Easy",
+    "emoji": "🌶️",
+    "family": "Solanaceae",
+    "fertilizer": "Balanced; high phosphorus at transplant; potassium when fruiting.",
+    "germ_temp": "70-85°F",
+    "harvest_cues": "Pick at 3-4 in, bright green; harvest frequently to encourage production.",
+    "pests": [
+      "Aphids",
+      "Pepper Maggot",
+      "Spider Mites"
+    ],
+    "seed_life_years": 2,
+    "soil_ph": "6.0-7.0",
+    "spacing": "18 in",
+    "storage": "Fridge up to 2 weeks; best eaten blistered and fresh.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "About 1 in 10 peppers is spicy — the variety's famous quirk!",
+    "transplant_weeks": 8,
+    "varieties": [
+      "Standard"
+    ],
+    "water": "1 in/week; consistent moisture"
+  },
+  "Padron Peppers": {
+    "aliases": [
+      "Pimientos de Padron",
+      "Spanish Pepper"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "companions": [
+      "Basil",
+      "Carrots",
+      "Marigolds",
+      "Tomatoes"
+    ],
+    "container_ok": true,
+    "days": "60-80 days",
+    "days_max": 80,
+    "days_min": 60,
+    "depth": "1/4 in",
+    "difficulty": "Easy",
+    "emoji": "🌶️",
+    "family": "Solanaceae",
+    "fertilizer": "Balanced; high phosphorus at transplant; potassium when fruiting.",
+    "germ_temp": "70-85°F",
+    "harvest_cues": "Pick small at 1-2 in for mild; allow to grow for more heat.",
+    "pests": [
+      "Aphids",
+      "Pepper Maggot",
+      "Spider Mites"
+    ],
+    "seed_life_years": 2,
+    "soil_ph": "6.0-7.0",
+    "spacing": "18 in",
+    "storage": "Fridge up to 2 weeks; pan-fry with sea salt.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "Pick small for milder flavour; some turn spicy when larger like Shishito.",
+    "transplant_weeks": 8,
+    "varieties": [
+      "Padron"
+    ],
+    "water": "1 in/week; consistent moisture"
+  },
+  "Pattypan Squash": {
+    "aliases": [
+      "Patty Pan",
+      "Scallop Squash",
+      "Button Squash",
+      "UFO Squash"
+    ],
+    "avoid": [
+      "Potatoes",
+      "Fennel"
+    ],
+    "companions": [
+      "Corn",
+      "Beans",
+      "Nasturtium",
+      "Marigolds"
+    ],
+    "container_ok": false,
+    "days": "50-65 days",
+    "days_max": 65,
+    "days_min": 50,
+    "depth": "1 in",
+    "difficulty": "Easy",
+    "emoji": "🎃",
+    "family": "Cucurbitaceae",
+    "fertilizer": "High nitrogen early; switch to potassium when flowering.",
+    "germ_temp": "70-95°F",
+    "harvest_cues": "Harvest at 2-4 in diameter; skin should yield to a fingernail.",
+    "pests": [
+      "Squash Vine Borer",
+      "Cucumber Beetle",
+      "Powdery Mildew"
+    ],
+    "seed_life_years": 4,
+    "soil_ph": "6.0-7.5",
+    "spacing": "24-36 in",
+    "storage": "Fridge up to 1 week; eat fresh.",
+    "succession_weeks": 3,
+    "sun": "Full sun",
+    "tip": "Harvest frequently to keep plant producing; small fruits are most tender.",
+    "transplant_weeks": 3,
+    "varieties": [
+      "Sunburst Yellow",
+      "Benning's Green Tint",
+      "Starship"
+    ],
+    "water": "1.5 in/week"
+  },
+  "Spaghetti Squash": {
+    "aliases": [
+      "Vegetable Spaghetti",
+      "Noodle Squash"
+    ],
+    "avoid": [
+      "Potatoes",
+      "Fennel"
+    ],
+    "companions": [
+      "Corn",
+      "Beans",
+      "Nasturtium",
+      "Marigolds"
+    ],
+    "container_ok": false,
+    "days": "85-100 days",
+    "days_max": 100,
+    "days_min": 85,
+    "depth": "1 in",
+    "difficulty": "Easy",
+    "emoji": "🎃",
+    "family": "Cucurbitaceae",
+    "fertilizer": "High nitrogen early; switch to potassium when flowering.",
+    "germ_temp": "70-95°F",
+    "harvest_cues": "Skin is yellow and hard; vine is dying back; stem is corky.",
+    "pests": [
+      "Squash Vine Borer",
+      "Cucumber Beetle",
+      "Powdery Mildew"
+    ],
+    "seed_life_years": 4,
+    "soil_ph": "6.0-7.5",
+    "spacing": "24-36 in",
+    "storage": "Cool dry place up to 3 months.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "A winter squash; allow full maturity on the vine before harvesting.",
+    "transplant_weeks": 3,
+    "varieties": [
+      "Small Wonder",
+      "Hasta La Pasta",
+      "Primavera"
+    ],
+    "water": "1.5 in/week"
+  },
+  "Celtuce": {
+    "aliases": [
+      "Stem Lettuce",
+      "Asparagus Lettuce",
+      "Chinese Lettuce",
+      "Wosun"
+    ],
+    "avoid": [],
+    "companions": [
+      "Carrots",
+      "Radishes",
+      "Strawberries",
+      "Dill"
+    ],
+    "container_ok": true,
+    "days": "55-80 days",
+    "days_max": 80,
+    "days_min": 55,
+    "depth": "1/8 in",
+    "difficulty": "Easy",
+    "emoji": "🥬",
+    "family": "Asteraceae",
+    "fertilizer": "Light balanced; nitrogen for leaf growth.",
+    "germ_temp": "50-75°F",
+    "harvest_cues": "Stem reaches 12-18 in; peel and eat stem raw or cooked. Leaves are also edible.",
+    "pests": [
+      "Aphids",
+      "Slugs"
+    ],
+    "seed_life_years": 2,
+    "soil_ph": "6.0-7.0",
+    "spacing": "8-12 in",
+    "storage": "Fridge up to 1 week.",
+    "succession_weeks": 3,
+    "sun": "Full sun to partial shade",
+    "tip": "Bolt-tolerant; can grow through summer heat when regular lettuce fails.",
+    "transplant_weeks": 3,
+    "varieties": [
+      "Green Stem",
+      "Red Stem"
+    ],
+    "water": "Moderate; even moisture prevents bolting"
+  },
+  "Hyacinth Beans": {
+    "aliases": [
+      "Lablab Bean",
+      "Indian Bean",
+      "Dolichos Bean",
+      "Egyptian Bean"
+    ],
+    "avoid": [
+      "Fennel"
+    ],
+    "companions": [
+      "Corn",
+      "Squash",
+      "Cucumbers"
+    ],
+    "container_ok": false,
+    "days": "65-90 days",
+    "days_max": 90,
+    "days_min": 65,
+    "depth": "1-2 in",
+    "difficulty": "Easy",
+    "emoji": "🌸",
+    "family": "Fabaceae",
+    "fertilizer": "Minimal; nitrogen-fixer.",
+    "germ_temp": "65-85°F",
+    "harvest_cues": "Flat pods are bright purple or white; pick before seeds visibly bulge.",
+    "pests": [
+      "Bean Beetle",
+      "Aphids"
+    ],
+    "seed_life_years": 3,
+    "soil_ph": "6.0-7.5",
+    "spacing": "6-12 in",
+    "storage": "Use fresh; must be well-cooked before eating.",
+    "succession_weeks": null,
+    "sun": "Full sun",
+    "tip": "Must cook thoroughly — raw beans contain toxic compounds. A beautiful ornamental vine.",
+    "transplant_weeks": 4,
+    "varieties": [
+      "Ruby Moon",
+      "Alba"
+    ],
+    "water": "Moderate; drought-tolerant once established"
   }
 }

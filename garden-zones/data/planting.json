@@ -47,7 +47,12 @@
         "Lovage",
         "Marigolds",
         "Echinacea",
-        "Yarrow"
+        "Yarrow",
+        "Goji Berries",
+        "Cavolo Nero",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Microgreens"
@@ -75,7 +80,12 @@
         "Sunflowers",
         "Lemon Verbena",
         "Marigolds",
-        "Echinacea"
+        "Echinacea",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Cardoon",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Spinach",
@@ -97,7 +107,10 @@
         "Microgreens",
         "Salsify",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Lentils",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Onions",
@@ -112,7 +125,9 @@
         "Blackcurrants",
         "Redcurrants",
         "Gooseberries",
-        "Good King Henry"
+        "Good King Henry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Microgreens"
@@ -122,7 +137,8 @@
       "startIndoors": [
         "Butternut Squash",
         "Watermelon",
-        "Sunflowers"
+        "Sunflowers",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Peas",
@@ -164,7 +180,13 @@
         "Chamomile",
         "Chicory",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Broccoli",
@@ -194,7 +216,11 @@
         "Echinacea",
         "Comfrey",
         "Yarrow",
-        "Elderberries"
+        "Elderberries",
+        "Goji Berries",
+        "Cavolo Nero",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Microgreens"
@@ -222,7 +248,10 @@
         "Microgreens",
         "Purslane",
         "Chicory",
-        "Flaxseed"
+        "Flaxseed",
+        "New Zealand Spinach",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -250,7 +279,15 @@
         "Lemon Verbena",
         "Marigolds",
         "Echinacea",
-        "Yarrow"
+        "Yarrow",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Cardoon",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Lettuce",
@@ -274,7 +311,9 @@
         "Chervil",
         "Good King Henry",
         "Comfrey",
-        "Cress"
+        "Cress",
+        "Orach",
+        "Celtuce"
       ]
     },
     "7": {
@@ -329,7 +368,11 @@
         "Echinacea",
         "Comfrey",
         "Yarrow",
-        "Flaxseed"
+        "Flaxseed",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Orach",
+        "Celtuce"
       ]
     },
     "8": {
@@ -395,7 +438,14 @@
         "Comfrey",
         "Yarrow",
         "Elderberries",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Orach",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "9": {
@@ -453,7 +503,20 @@
         "Comfrey",
         "Elderberries",
         "Chicory",
-        "Cress"
+        "Cress",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "10": {
@@ -461,7 +524,8 @@
       "directSow": [
         "Spinach",
         "Lettuce",
-        "Microgreens"
+        "Microgreens",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -479,7 +543,11 @@
         "Microgreens",
         "Salsify",
         "Hamburg Parsley",
-        "Chicory"
+        "Chicory",
+        "Cavolo Nero",
+        "Sea Buckthorn",
+        "Scorzonera",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -570,7 +638,12 @@
         "Lavender",
         "Savory",
         "Shiso",
-        "Valerian"
+        "Valerian",
+        "Goji Berries",
+        "Cavolo Nero",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Microgreens"
@@ -607,7 +680,13 @@
         "Basil",
         "Globe Artichoke",
         "Watermelon",
-        "Valerian"
+        "Valerian",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Cardoon",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Spinach",
@@ -636,7 +715,10 @@
         "Quinoa",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Onions",
@@ -657,7 +739,10 @@
         "Comfrey",
         "Hops",
         "Elderberries",
-        "Grapes"
+        "Grapes",
+        "Boysenberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Microgreens"
@@ -667,7 +752,8 @@
       "startIndoors": [
         "Butternut Squash",
         "Watermelon",
-        "Sunflowers"
+        "Sunflowers",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Peas",
@@ -713,7 +799,14 @@
         "Chard",
         "Butternut Squash",
         "Lima Beans",
-        "Yardlong Beans"
+        "Yardlong Beans",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Broccoli",
@@ -754,7 +847,14 @@
         "Marigolds",
         "Valerian",
         "Hops",
-        "Grapes"
+        "Grapes",
+        "Goji Berries",
+        "Cavolo Nero",
+        "Boysenberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Spaghetti Squash",
+        "Celtuce"
       ],
       "harvest": [
         "Microgreens",
@@ -794,7 +894,9 @@
         "Chicory",
         "Flaxseed",
         "Cucumbers",
-        "Radicchio"
+        "Radicchio",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -825,7 +927,15 @@
         "Yarrow",
         "Squash",
         "Globe Artichoke",
-        "Valerian"
+        "Valerian",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Cardoon",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Lettuce",
@@ -860,7 +970,9 @@
         "Borage",
         "Nasturtium",
         "Purslane",
-        "Chamomile"
+        "Chamomile",
+        "Orach",
+        "Celtuce"
       ]
     },
     "7": {
@@ -929,7 +1041,12 @@
         "Napa Cabbage",
         "Shiso",
         "Blackberries",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Orach",
+        "Hyacinth Beans",
+        "Celtuce"
       ]
     },
     "8": {
@@ -1010,7 +1127,17 @@
         "Celeriac",
         "Quinoa",
         "Valerian",
-        "Hops"
+        "Hops",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Boysenberry",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "9": {
@@ -1023,7 +1150,8 @@
         "Microgreens",
         "Spinach",
         "Lettuce",
-        "Kale"
+        "Kale",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -1082,7 +1210,20 @@
         "Valerian",
         "Hops",
         "Grapes",
-        "Radicchio"
+        "Radicchio",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "10": {
@@ -1090,7 +1231,8 @@
       "directSow": [
         "Spinach",
         "Lettuce",
-        "Microgreens"
+        "Microgreens",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -1119,7 +1261,11 @@
         "Daikon",
         "Broccoli Rabe",
         "Grapes",
-        "Radicchio"
+        "Radicchio",
+        "Cavolo Nero",
+        "Sea Buckthorn",
+        "Scorzonera",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -1209,7 +1355,13 @@
         "Marigolds",
         "Echinacea",
         "Yarrow",
-        "Valerian"
+        "Valerian",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Microgreens"
@@ -1244,7 +1396,13 @@
         "Sunflowers",
         "Lemon Verbena",
         "Marigolds",
-        "Valerian"
+        "Valerian",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Cardoon",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Spinach",
@@ -1272,7 +1430,11 @@
         "Chervil",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Onions",
@@ -1293,7 +1455,10 @@
         "Comfrey",
         "Hops",
         "Elderberries",
-        "Grapes"
+        "Grapes",
+        "Boysenberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Microgreens"
@@ -1338,7 +1503,14 @@
         "Chamomile",
         "Chicory",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Cabbage",
@@ -1373,7 +1545,15 @@
         "Valerian",
         "Hops",
         "Elderberries",
-        "Grapes"
+        "Grapes",
+        "Goji Berries",
+        "Cavolo Nero",
+        "Boysenberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Spaghetti Squash",
+        "Celtuce"
       ],
       "harvest": [
         "Spinach",
@@ -1426,7 +1606,15 @@
         "Shiso",
         "Lemon Verbena",
         "Marigolds",
-        "Valerian"
+        "Valerian",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Cardoon",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Peas",
@@ -1456,7 +1644,9 @@
         "Good King Henry",
         "Chamomile",
         "Comfrey",
-        "Cress"
+        "Cress",
+        "Orach",
+        "Celtuce"
       ]
     },
     "7": {
@@ -1516,7 +1706,11 @@
         "Echinacea",
         "Comfrey",
         "Yarrow",
-        "Flaxseed"
+        "Flaxseed",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Orach",
+        "Hyacinth Beans"
       ]
     },
     "8": {
@@ -1589,7 +1783,17 @@
         "Valerian",
         "Hops",
         "Elderberries",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "9": {
@@ -1598,7 +1802,8 @@
         "Spinach",
         "Lettuce",
         "Kale",
-        "Microgreens"
+        "Microgreens",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -1651,7 +1856,21 @@
         "Grapes",
         "Radicchio",
         "Chicory",
-        "Cress"
+        "Cress",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Boysenberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "10": {
@@ -1682,7 +1901,10 @@
         "Hamburg Parsley",
         "Grapes",
         "Radicchio",
-        "Chicory"
+        "Chicory",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -1741,7 +1963,10 @@
         "Tarragon",
         "Lemon Balm",
         "Echinacea",
-        "Yarrow"
+        "Yarrow",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Microgreens"
@@ -1783,7 +2008,14 @@
         "Valerian",
         "Basil",
         "Globe Artichoke",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Cardoon",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Microgreens",
@@ -1838,7 +2070,12 @@
         "Sunflowers",
         "Lemon Verbena",
         "Marigolds",
-        "Valerian"
+        "Valerian",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Spinach",
@@ -1881,7 +2118,11 @@
         "Borage",
         "Nasturtium",
         "Purslane",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Lentils",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Onions",
@@ -1918,7 +2159,11 @@
         "Lovage",
         "Echinacea",
         "Kiwi",
-        "Mulberry"
+        "Mulberry",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Microgreens",
@@ -1971,7 +2216,14 @@
         "Corn",
         "Squash",
         "Cucumbers",
-        "Edamame"
+        "Edamame",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Cabbage",
@@ -2022,7 +2274,21 @@
         "Endive",
         "Zucchini",
         "Kiwi",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Celtuce"
       ],
       "harvest": [
         "Spinach",
@@ -2048,7 +2314,9 @@
         "Broccoli Rabe",
         "Calendula",
         "Sweet Peas",
-        "Comfrey"
+        "Comfrey",
+        "Orach",
+        "Celtuce"
       ]
     },
     "6": {
@@ -2092,7 +2360,14 @@
         "Lemon Verbena",
         "Marigolds",
         "Valerian",
-        "Melons"
+        "Melons",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Peas",
@@ -2138,7 +2413,10 @@
         "Lovage",
         "Marigolds",
         "Yarrow",
-        "Mulberry"
+        "Mulberry",
+        "New Zealand Spinach",
+        "Orach",
+        "Celtuce"
       ]
     },
     "7": {
@@ -2213,7 +2491,14 @@
         "Yardlong Beans",
         "Valerian",
         "Elderberries",
-        "Mulberry"
+        "Mulberry",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Orach",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "8": {
@@ -2236,7 +2521,8 @@
         "Mustard Greens",
         "Bok Choy",
         "Calendula",
-        "Chervil"
+        "Chervil",
+        "Celtuce"
       ],
       "transplant": [
         "Radicchio",
@@ -2302,7 +2588,18 @@
         "Elderberries",
         "Flaxseed",
         "Eggplant",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Lentils",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "9": {
@@ -2316,7 +2613,8 @@
         "Mizuna",
         "Tatsoi",
         "Calendula",
-        "Cress"
+        "Cress",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -2375,7 +2673,21 @@
         "Celeriac",
         "Napa Cabbage",
         "Chervil",
-        "Kiwi"
+        "Kiwi",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Aronia",
+        "Sea Buckthorn",
+        "Scorzonera",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "10": {
@@ -2415,7 +2727,11 @@
         "Chervil",
         "Kiwi",
         "Cress",
-        "Saffron"
+        "Saffron",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Cardoon",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -2479,7 +2795,11 @@
         "Tarragon",
         "Lemon Balm",
         "Echinacea",
-        "Yarrow"
+        "Yarrow",
+        "Goji Berries",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Microgreens"
@@ -2521,7 +2841,13 @@
         "Valerian",
         "Basil",
         "Globe Artichoke",
-        "Lemon Verbena"
+        "Lemon Verbena",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cardoon",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Microgreens",
@@ -2540,7 +2866,9 @@
         "Sweet Peas",
         "Chervil",
         "Hamburg Parsley",
-        "Cress"
+        "Cress",
+        "Lentils",
+        "Orach"
       ],
       "transplant": [
         "Raspberries",
@@ -2576,7 +2904,12 @@
         "Sunflowers",
         "Lemon Verbena",
         "Marigolds",
-        "Valerian"
+        "Valerian",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Spinach",
@@ -2619,7 +2952,13 @@
         "Borage",
         "Nasturtium",
         "Purslane",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Chickpeas",
+        "Lentils",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Onions",
@@ -2656,7 +2995,12 @@
         "Lovage",
         "Echinacea",
         "Kiwi",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Microgreens",
@@ -2667,7 +3011,8 @@
     },
     "5": {
       "startIndoors": [
-        "Watermelon"
+        "Watermelon",
+        "Cavolo Nero"
       ],
       "directSow": [
         "Radishes",
@@ -2709,7 +3054,13 @@
         "Corn",
         "Squash",
         "Cucumbers",
-        "Edamame"
+        "Edamame",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Orach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Cabbage",
@@ -2760,7 +3111,19 @@
         "Endive",
         "Zucchini",
         "Kiwi",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Boysenberry",
+        "Loganberry",
+        "Cardoon",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Celtuce"
       ],
       "harvest": [
         "Spinach",
@@ -2786,7 +3149,9 @@
         "Broccoli Rabe",
         "Calendula",
         "Sweet Peas",
-        "Comfrey"
+        "Comfrey",
+        "Orach",
+        "Celtuce"
       ]
     },
     "6": {
@@ -2830,7 +3195,14 @@
         "Lemon Verbena",
         "Marigolds",
         "Valerian",
-        "Melons"
+        "Melons",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Peas",
@@ -2876,7 +3248,10 @@
         "Lovage",
         "Marigolds",
         "Yarrow",
-        "Mulberry"
+        "Mulberry",
+        "New Zealand Spinach",
+        "Orach",
+        "Celtuce"
       ]
     },
     "7": {
@@ -2951,7 +3326,15 @@
         "Yardlong Beans",
         "Valerian",
         "Elderberries",
-        "Mulberry"
+        "Mulberry",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Orach",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "8": {
@@ -2974,7 +3357,8 @@
         "Mustard Greens",
         "Bok Choy",
         "Calendula",
-        "Chervil"
+        "Chervil",
+        "Celtuce"
       ],
       "transplant": [
         "Radicchio",
@@ -3040,7 +3424,19 @@
         "Elderberries",
         "Flaxseed",
         "Eggplant",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Lentils",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "9": {
@@ -3054,7 +3450,8 @@
         "Mizuna",
         "Tatsoi",
         "Calendula",
-        "Cress"
+        "Cress",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -3113,7 +3510,21 @@
         "Celeriac",
         "Napa Cabbage",
         "Chervil",
-        "Kiwi"
+        "Kiwi",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Aronia",
+        "Sea Buckthorn",
+        "Scorzonera",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "10": {
@@ -3153,7 +3564,11 @@
         "Chervil",
         "Kiwi",
         "Cress",
-        "Saffron"
+        "Saffron",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Cardoon",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -3174,7 +3589,8 @@
         "Mizuna",
         "Tatsoi",
         "Radicchio",
-        "Saffron"
+        "Saffron",
+        "Cavolo Nero"
       ]
     },
     "12": {
@@ -3217,7 +3633,11 @@
         "Lemon Balm",
         "Lovage",
         "Echinacea",
-        "Yarrow"
+        "Yarrow",
+        "Goji Berries",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Microgreens"
@@ -3254,7 +3674,11 @@
         "Marigolds",
         "Echinacea",
         "Yarrow",
-        "Valerian"
+        "Valerian",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cardoon",
+        "Thai Basil"
       ],
       "directSow": [
         "Peas",
@@ -3273,7 +3697,9 @@
         "Sweet Peas",
         "Chervil",
         "Hamburg Parsley",
-        "Cress"
+        "Cress",
+        "Lentils",
+        "Orach"
       ],
       "transplant": [
         "Onions",
@@ -3283,7 +3709,11 @@
         "Raspberries",
         "Blackcurrants",
         "Redcurrants",
-        "Gooseberries"
+        "Gooseberries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Microgreens"
@@ -3300,7 +3730,10 @@
         "Zucchini",
         "Butternut Squash",
         "Watermelon",
-        "Sunflowers"
+        "Sunflowers",
+        "Malabar Spinach",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Lettuce",
@@ -3340,7 +3773,13 @@
         "Hamburg Parsley",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "Lentils",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -3375,7 +3814,12 @@
         "Elderberries",
         "Grapes",
         "Kiwi",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Spinach",
@@ -3385,7 +3829,9 @@
       ]
     },
     "5": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Cavolo Nero"
+      ],
       "directSow": [
         "Beans",
         "Corn",
@@ -3412,7 +3858,13 @@
         "Chamomile",
         "Chicory",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Orach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -3453,7 +3905,15 @@
         "Elderberries",
         "Grapes",
         "Kiwi",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cardoon",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Peas",
@@ -3477,11 +3937,15 @@
         "Chervil",
         "Good King Henry",
         "Comfrey",
-        "Cress"
+        "Cress",
+        "Orach",
+        "Celtuce"
       ]
     },
     "6": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Cavolo Nero"
+      ],
       "directSow": [
         "Beans",
         "Carrots",
@@ -3494,7 +3958,9 @@
       ],
       "transplant": [
         "Melons",
-        "Zucchini"
+        "Zucchini",
+        "Cavolo Nero",
+        "Pattypan Squash"
       ],
       "harvest": [
         "Lettuce",
@@ -3538,7 +4004,11 @@
         "Comfrey",
         "Yarrow",
         "Mulberry",
-        "Cress"
+        "Cress",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Orach",
+        "Celtuce"
       ]
     },
     "7": {
@@ -3553,7 +4023,8 @@
         "Radicchio"
       ],
       "transplant": [
-        "Radicchio"
+        "Radicchio",
+        "Cavolo Nero"
       ],
       "harvest": [
         "Beans",
@@ -3600,7 +4071,15 @@
         "Valerian",
         "Elderberries",
         "Mulberry",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Orach",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "8": {
@@ -3620,7 +4099,8 @@
         "Calendula",
         "Microgreens",
         "Chervil",
-        "Cress"
+        "Cress",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -3678,7 +4158,19 @@
         "Valerian",
         "Hops",
         "Elderberries",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "9": {
@@ -3743,7 +4235,20 @@
         "Kiwi",
         "Radicchio",
         "Chicory",
-        "Cress"
+        "Cress",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Sea Buckthorn",
+        "Scorzonera",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "10": {
@@ -3781,7 +4286,11 @@
         "Radicchio",
         "Chicory",
         "Cress",
-        "Saffron"
+        "Saffron",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Cardoon",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -3801,7 +4310,9 @@
         "Microgreens",
         "Radicchio",
         "Chicory",
-        "Saffron"
+        "Saffron",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     },
     "12": {
@@ -3860,7 +4371,11 @@
         "Napa Cabbage",
         "Lemon Verbena",
         "Marigolds",
-        "Valerian"
+        "Valerian",
+        "Goji Berries",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Microgreens",
@@ -3917,7 +4432,12 @@
         "Endive",
         "Zucchini",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Peas",
@@ -3955,7 +4475,11 @@
         "Borage",
         "Quinoa",
         "Chamomile",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Onions",
@@ -3984,7 +4508,11 @@
         "Hops",
         "Elderberries",
         "Grapes",
-        "Mulberry"
+        "Mulberry",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Microgreens",
@@ -4002,7 +4530,9 @@
         "Zucchini",
         "Butternut Squash",
         "Watermelon",
-        "Sunflowers"
+        "Sunflowers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Lettuce",
@@ -4052,7 +4582,15 @@
         "Runner Beans",
         "Lima Beans",
         "Borlotti Beans",
-        "Sunflowers"
+        "Sunflowers",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -4105,7 +4643,17 @@
         "Lemon Verbena",
         "Marigolds",
         "Yarrow",
-        "Valerian"
+        "Valerian",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Spinach",
@@ -4129,11 +4677,14 @@
         "Salsify",
         "Sweet Peas",
         "Chervil",
-        "Good King Henry"
+        "Good King Henry",
+        "Celtuce"
       ]
     },
     "5": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Cavolo Nero"
+      ],
       "directSow": [
         "Beans",
         "Corn",
@@ -4164,7 +4715,12 @@
         "Peanuts",
         "Rutabaga",
         "Bok Choy",
-        "Watermelon"
+        "Watermelon",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -4206,7 +4762,15 @@
         "Grapes",
         "Kiwi",
         "Mulberry",
-        "Melons"
+        "Melons",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cardoon",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Peas",
@@ -4249,13 +4813,16 @@
         "Purslane",
         "Lovage",
         "Chamomile",
-        "Marigolds"
+        "Marigolds",
+        "Orach",
+        "Celtuce"
       ]
     },
     "6": {
       "startIndoors": [
         "Broccoli",
-        "Kale"
+        "Kale",
+        "Cavolo Nero"
       ],
       "directSow": [
         "Beans",
@@ -4269,7 +4836,9 @@
       ],
       "transplant": [
         "Melons",
-        "Zucchini"
+        "Zucchini",
+        "Cavolo Nero",
+        "Pattypan Squash"
       ],
       "harvest": [
         "Lettuce",
@@ -4329,7 +4898,14 @@
         "Blackcurrants",
         "Redcurrants",
         "Lemon Verbena",
-        "Flaxseed"
+        "Flaxseed",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Celtuce"
       ]
     },
     "7": {
@@ -4350,13 +4926,15 @@
         "Bok Choy",
         "Mustard Greens",
         "Endive",
-        "Chicory"
+        "Chicory",
+        "Celtuce"
       ],
       "transplant": [
         "Radicchio",
         "Broccoli",
         "Kale",
-        "Cauliflower"
+        "Cauliflower",
+        "Cavolo Nero"
       ],
       "harvest": [
         "Beans",
@@ -4414,7 +4992,17 @@
         "Watermelon",
         "Jalapeño",
         "Sunflowers",
-        "Quinoa"
+        "Quinoa",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "8": {
@@ -4442,7 +5030,9 @@
         "Watercress",
         "Pak Choi",
         "Napa Cabbage",
-        "Radicchio"
+        "Radicchio",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -4504,7 +5094,19 @@
         "Squash",
         "Melons",
         "Peanuts",
-        "Grapes"
+        "Grapes",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "9": {
@@ -4581,7 +5183,16 @@
         "Parsnips",
         "Brussels Sprouts",
         "Endive",
-        "Yarrow"
+        "Yarrow",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "10": {
@@ -4626,7 +5237,13 @@
         "Chamomile",
         "Echinacea",
         "Comfrey",
-        "Valerian"
+        "Valerian",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Cardoon",
+        "Orach",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -4655,7 +5272,9 @@
         "Broccoli Rabe",
         "Calendula",
         "Chervil",
-        "Flaxseed"
+        "Flaxseed",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     },
     "12": {
@@ -4666,7 +5285,9 @@
       "transplant": [],
       "harvest": [
         "Microgreens",
-        "Chicory"
+        "Chicory",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     }
   },
@@ -4710,7 +5331,11 @@
         "Marigolds",
         "Echinacea",
         "Yarrow",
-        "Valerian"
+        "Valerian",
+        "Goji Berries",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Snow Peas",
@@ -4753,7 +5378,12 @@
         "Lemon Verbena",
         "Marigolds",
         "Echinacea",
-        "Valerian"
+        "Valerian",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Peas",
@@ -4791,7 +5421,11 @@
         "Hamburg Parsley",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -4818,7 +5452,11 @@
         "Hops",
         "Elderberries",
         "Grapes",
-        "Mulberry"
+        "Mulberry",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Microgreens",
@@ -4830,7 +5468,8 @@
         "Cucumbers",
         "Melons",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Carrots",
@@ -4860,7 +5499,14 @@
         "Hamburg Parsley",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -4900,7 +5546,17 @@
         "Elderberries",
         "Grapes",
         "Kiwi",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Spinach",
@@ -4923,11 +5579,15 @@
         "Sweet Peas",
         "Chervil",
         "Good King Henry",
-        "Cress"
+        "Cress",
+        "Orach",
+        "Celtuce"
       ]
     },
     "5": {
-      "startIndoors": [],
+      "startIndoors": [
+        "Cavolo Nero"
+      ],
       "directSow": [
         "Beans",
         "Corn",
@@ -4951,7 +5611,12 @@
         "Sunflowers",
         "Microgreens",
         "Purslane",
-        "Chicory"
+        "Chicory",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Basil",
@@ -4972,7 +5637,11 @@
         "Lemon Verbena",
         "Marigolds",
         "Yarrow",
-        "Valerian"
+        "Valerian",
+        "Malabar Spinach",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Lettuce",
@@ -5009,13 +5678,17 @@
         "Chamomile",
         "Marigolds",
         "Comfrey",
-        "Cress"
+        "Cress",
+        "New Zealand Spinach",
+        "Orach",
+        "Celtuce"
       ]
     },
     "6": {
       "startIndoors": [
         "Broccoli",
-        "Kale"
+        "Kale",
+        "Cavolo Nero"
       ],
       "directSow": [
         "Beans",
@@ -5070,7 +5743,14 @@
         "Comfrey",
         "Yarrow",
         "Mulberry",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash"
       ]
     },
     "7": {
@@ -5087,12 +5767,14 @@
         "Endive",
         "Microgreens",
         "Radicchio",
-        "Chicory"
+        "Chicory",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
         "Kale",
-        "Cauliflower"
+        "Cauliflower",
+        "Cavolo Nero"
       ],
       "harvest": [
         "Tomatoes",
@@ -5142,7 +5824,17 @@
         "Valerian",
         "Elderberries",
         "Mulberry",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "8": {
@@ -5164,7 +5856,8 @@
         "Microgreens",
         "Chervil",
         "Radicchio",
-        "Cress"
+        "Cress",
+        "Orach"
       ],
       "transplant": [
         "Radicchio",
@@ -5210,7 +5903,17 @@
         "Valerian",
         "Hops",
         "Elderberries",
-        "Grapes"
+        "Grapes",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Sea Buckthorn",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "9": {
@@ -5275,7 +5978,15 @@
         "Elderberries",
         "Grapes",
         "Kiwi",
-        "Cress"
+        "Cress",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ]
     },
     "10": {
@@ -5316,7 +6027,13 @@
         "Radicchio",
         "Chicory",
         "Cress",
-        "Saffron"
+        "Saffron",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Cardoon",
+        "Orach",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -5345,7 +6062,9 @@
         "Radicchio",
         "Chicory",
         "Saffron",
-        "Flaxseed"
+        "Flaxseed",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     },
     "12": {
@@ -5356,7 +6075,9 @@
       "transplant": [],
       "harvest": [
         "Microgreens",
-        "Chicory"
+        "Chicory",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     }
   },
@@ -5376,7 +6097,9 @@
         "Lavender",
         "Tarragon",
         "Lovage",
-        "Yarrow"
+        "Yarrow",
+        "Goji Berries",
+        "Cardoon"
       ],
       "directSow": [
         "Microgreens",
@@ -5384,14 +6107,16 @@
         "Kale",
         "Lettuce",
         "Mâche",
-        "Fava Beans"
+        "Fava Beans",
+        "Celtuce"
       ],
       "transplant": [],
       "harvest": [
         "Microgreens",
         "Kale",
         "Spinach",
-        "Carrots"
+        "Carrots",
+        "Cavolo Nero"
       ]
     },
     "2": {
@@ -5424,7 +6149,12 @@
         "Eggplant",
         "Tomatillos",
         "Ground Cherries",
-        "Shiso"
+        "Shiso",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Snow Peas",
@@ -5452,7 +6182,9 @@
         "Salsify",
         "Chervil",
         "Hamburg Parsley",
-        "Cress"
+        "Cress",
+        "Lentils",
+        "Orach"
       ],
       "transplant": [
         "Onions",
@@ -5467,7 +6199,11 @@
         "Strawberries",
         "Blackberries",
         "Blueberries",
-        "Good King Henry"
+        "Good King Henry",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Microgreens",
@@ -5475,7 +6211,8 @@
         "Spinach",
         "Kale",
         "Mâche",
-        "Fava Beans"
+        "Fava Beans",
+        "Celtuce"
       ]
     },
     "3": {
@@ -5500,7 +6237,11 @@
         "Echinacea",
         "Valerian",
         "Cucumbers",
-        "Melons"
+        "Melons",
+        "Malabar Spinach",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Peas",
@@ -5546,7 +6287,13 @@
         "Mustard Greens",
         "Fennel",
         "Nasturtium",
-        "Purslane"
+        "Purslane",
+        "Chickpeas",
+        "Lentils",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -5593,7 +6340,15 @@
         "Echinacea",
         "Yarrow",
         "Figs",
-        "Kiwi"
+        "Kiwi",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "harvest": [
         "Microgreens",
@@ -5614,7 +6369,8 @@
         "Sweet Peas",
         "Chervil",
         "Good King Henry",
-        "Cress"
+        "Cress",
+        "Celtuce"
       ]
     },
     "4": {
@@ -5622,7 +6378,8 @@
         "Cucumbers",
         "Melons",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Carrots",
@@ -5659,7 +6416,13 @@
         "Edamame",
         "Watermelon",
         "Yardlong Beans",
-        "Shiso"
+        "Shiso",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Orach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -5709,7 +6472,15 @@
         "Globe Artichoke",
         "Rosemary",
         "Oregano",
-        "Figs"
+        "Figs",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cardoon",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Spinach",
@@ -5750,7 +6521,9 @@
         "Lemon Balm",
         "Calendula",
         "Lovage",
-        "Comfrey"
+        "Comfrey",
+        "Orach",
+        "Celtuce"
       ]
     },
     "5": {
@@ -5779,7 +6552,10 @@
         "Microgreens",
         "Purslane",
         "Chicory",
-        "Sweet Potatoes"
+        "Sweet Potatoes",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Basil",
@@ -5800,7 +6576,12 @@
         "Lemon Verbena",
         "Marigolds",
         "Yarrow",
-        "Valerian"
+        "Valerian",
+        "Malabar Spinach",
+        "Water Chestnut",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Lettuce",
@@ -5851,14 +6632,18 @@
         "Lemon Verbena",
         "Yarrow",
         "Mulberry",
-        "Flaxseed"
+        "Flaxseed",
+        "New Zealand Spinach",
+        "Orach",
+        "Celtuce"
       ]
     },
     "6": {
       "startIndoors": [
         "Broccoli",
         "Kale",
-        "Cabbage"
+        "Cabbage",
+        "Cavolo Nero"
       ],
       "directSow": [
         "Beans",
@@ -5924,13 +6709,24 @@
         "Runner Beans",
         "Blackberries",
         "Echinacea",
-        "Valerian"
+        "Valerian",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "7": {
       "startIndoors": [
         "Brussels Sprouts",
-        "Cauliflower"
+        "Cauliflower",
+        "Cavolo Nero"
       ],
       "directSow": [
         "Spinach",
@@ -5946,13 +6742,15 @@
         "Radicchio",
         "Chicory",
         "Beans",
-        "Carrots"
+        "Carrots",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
         "Kale",
         "Cauliflower",
-        "Cabbage"
+        "Cabbage",
+        "Cavolo Nero"
       ],
       "harvest": [
         "Tomatoes",
@@ -6009,7 +6807,18 @@
         "Borlotti Beans",
         "Salsify",
         "Hamburg Parsley",
-        "Hops"
+        "Hops",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "8": {
@@ -6038,13 +6847,17 @@
         "Arugula",
         "Turnips",
         "Mustard Greens",
-        "Endive"
+        "Endive",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Radicchio",
         "Saffron",
         "Brussels Sprouts",
-        "Cauliflower"
+        "Cauliflower",
+        "Cavolo Nero"
       ],
       "harvest": [
         "Tomatoes",
@@ -6091,7 +6904,19 @@
         "Bok Choy",
         "Butternut Squash",
         "Salsify",
-        "Figs"
+        "Figs",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "9": {
@@ -6121,7 +6946,8 @@
         "Mangetout",
         "Pak Choi",
         "Napa Cabbage",
-        "Sweet Peas"
+        "Sweet Peas",
+        "Orach"
       ],
       "transplant": [
         "Saffron",
@@ -6171,7 +6997,14 @@
         "Kiwi",
         "Cress",
         "Eggplant",
-        "Figs"
+        "Figs",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ]
     },
     "10": {
@@ -6188,7 +7021,8 @@
         "Sweet Peas",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Celtuce"
       ],
       "transplant": [
         "Elderberries",
@@ -6229,7 +7063,12 @@
         "Fennel",
         "Raspberries",
         "Marigolds",
-        "Figs"
+        "Figs",
+        "Malabar Spinach",
+        "Cardoon",
+        "Orach",
+        "Water Chestnut",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -6240,7 +7079,8 @@
         "Broad Beans",
         "Microgreens",
         "Spinach",
-        "Lettuce"
+        "Lettuce",
+        "Celtuce"
       ],
       "transplant": [
         "Elderberries"
@@ -6272,7 +7112,11 @@
         "Pak Choi",
         "Sweet Peas",
         "Chamomile",
-        "Cress"
+        "Cress",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach",
+        "Water Chestnut"
       ]
     },
     "12": {
@@ -6295,7 +7139,9 @@
         "Calendula",
         "Sweet Peas",
         "Radicchio",
-        "Flaxseed"
+        "Flaxseed",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     }
   },
@@ -6315,7 +7161,9 @@
         "Lavender",
         "Tarragon",
         "Lovage",
-        "Yarrow"
+        "Yarrow",
+        "Goji Berries",
+        "Cardoon"
       ],
       "directSow": [
         "Spinach",
@@ -6323,14 +7171,17 @@
         "Lettuce",
         "Mâche",
         "Fava Beans",
-        "Microgreens"
+        "Microgreens",
+        "Celtuce"
       ],
       "transplant": [],
       "harvest": [
         "Kale",
         "Spinach",
         "Carrots",
-        "Microgreens"
+        "Microgreens",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     },
     "2": {
@@ -6356,7 +7207,11 @@
         "Marigolds",
         "Echinacea",
         "Yarrow",
-        "Valerian"
+        "Valerian",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Peas",
@@ -6384,7 +7239,9 @@
         "Sweet Peas",
         "Chervil",
         "Hamburg Parsley",
-        "Cress"
+        "Cress",
+        "Lentils",
+        "Orach"
       ],
       "transplant": [
         "Onions",
@@ -6399,7 +7256,11 @@
         "Blackcurrants",
         "Redcurrants",
         "Gooseberries",
-        "Good King Henry"
+        "Good King Henry",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Lettuce",
@@ -6407,7 +7268,8 @@
         "Kale",
         "Mâche",
         "Fava Beans",
-        "Microgreens"
+        "Microgreens",
+        "Celtuce"
       ]
     },
     "3": {
@@ -6422,7 +7284,11 @@
         "Zucchini",
         "Butternut Squash",
         "Watermelon",
-        "Marigolds"
+        "Marigolds",
+        "Malabar Spinach",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Carrots",
@@ -6449,7 +7315,13 @@
         "Hamburg Parsley",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "Lentils",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Tomatoes",
@@ -6492,7 +7364,15 @@
         "Figs",
         "Grapes",
         "Kiwi",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "harvest": [
         "Peas",
@@ -6513,7 +7393,9 @@
         "Sweet Peas",
         "Chervil",
         "Good King Henry",
-        "Cress"
+        "Cress",
+        "Orach",
+        "Celtuce"
       ]
     },
     "4": {
@@ -6541,7 +7423,13 @@
         "Purslane",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Orach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Basil",
@@ -6578,7 +7466,14 @@
         "Figs",
         "Grapes",
         "Kiwi",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cardoon",
+        "Water Chestnut",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Lettuce",
@@ -6612,7 +7507,9 @@
         "Lovage",
         "Good King Henry",
         "Comfrey",
-        "Cress"
+        "Cress",
+        "Orach",
+        "Celtuce"
       ]
     },
     "5": {
@@ -6633,13 +7530,19 @@
         "Sunflowers",
         "Microgreens",
         "Purslane",
-        "Chicory"
+        "Chicory",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Zucchini",
         "Butternut Squash",
         "Watermelon",
-        "Shiso"
+        "Shiso",
+        "Malabar Spinach",
+        "Water Chestnut",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Beans",
@@ -6682,14 +7585,17 @@
         "Yarrow",
         "Mulberry",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "New Zealand Spinach",
+        "Orach"
       ]
     },
     "6": {
       "startIndoors": [
         "Broccoli",
         "Kale",
-        "Cabbage"
+        "Cabbage",
+        "Cavolo Nero"
       ],
       "directSow": [
         "Beans",
@@ -6740,13 +7646,24 @@
         "Yarrow",
         "Valerian",
         "Mulberry",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "7": {
       "startIndoors": [
         "Brussels Sprouts",
-        "Cauliflower"
+        "Cauliflower",
+        "Cavolo Nero"
       ],
       "directSow": [
         "Beans",
@@ -6808,7 +7725,18 @@
         "Valerian",
         "Hops",
         "Elderberries",
-        "Mulberry"
+        "Mulberry",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "8": {
@@ -6834,13 +7762,17 @@
         "Calendula",
         "Microgreens",
         "Chervil",
-        "Radicchio"
+        "Radicchio",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Brussels Sprouts",
         "Cauliflower",
         "Radicchio",
-        "Saffron"
+        "Saffron",
+        "Cavolo Nero"
       ],
       "harvest": [
         "Tomatoes",
@@ -6883,7 +7815,18 @@
         "Hops",
         "Elderberries",
         "Figs",
-        "Grapes"
+        "Grapes",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "9": {
@@ -6912,7 +7855,8 @@
         "Chervil",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Orach"
       ],
       "transplant": [
         "Radicchio",
@@ -6956,7 +7900,14 @@
         "Elderberries",
         "Figs",
         "Grapes",
-        "Kiwi"
+        "Kiwi",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ]
     },
     "10": {
@@ -6973,7 +7924,8 @@
         "Sweet Peas",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Celtuce"
       ],
       "transplant": [
         "Strawberries",
@@ -7011,7 +7963,13 @@
         "Radicchio",
         "Chicory",
         "Cress",
-        "Saffron"
+        "Saffron",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cardoon",
+        "Orach",
+        "Water Chestnut",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -7022,7 +7980,8 @@
         "Spinach",
         "Lettuce",
         "Broad Beans",
-        "Microgreens"
+        "Microgreens",
+        "Celtuce"
       ],
       "transplant": [
         "Elderberries"
@@ -7054,7 +8013,11 @@
         "Chicory",
         "Cress",
         "Saffron",
-        "Flaxseed"
+        "Flaxseed",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach",
+        "Water Chestnut"
       ]
     },
     "12": {
@@ -7077,7 +8040,9 @@
         "Sweet Peas",
         "Radicchio",
         "Chicory",
-        "Flaxseed"
+        "Flaxseed",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     }
   },
@@ -7106,7 +8071,12 @@
         "Marjoram",
         "Lemon Verbena",
         "Echinacea",
-        "Valerian"
+        "Valerian",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Spinach",
@@ -7130,10 +8100,13 @@
         "Tatsoi",
         "Broccoli Rabe",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Celtuce"
       ],
       "transplant": [
-        "Blueberries"
+        "Blueberries",
+        "Boysenberry",
+        "Loganberry"
       ],
       "harvest": [
         "Kale",
@@ -7141,7 +8114,9 @@
         "Carrots",
         "Microgreens",
         "Broccoli",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     },
     "2": {
@@ -7174,7 +8149,14 @@
         "Lemongrass",
         "Zucchini",
         "Butternut Squash",
-        "Watermelon"
+        "Watermelon",
+        "Malabar Spinach",
+        "Thai Basil",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Peas",
@@ -7212,7 +8194,10 @@
         "Purslane",
         "Quinoa",
         "Chamomile",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "Scorzonera",
+        "Orach"
       ],
       "transplant": [
         "Onions",
@@ -7242,7 +8227,14 @@
         "Hops",
         "Elderberries",
         "Grapes",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Celtuce"
       ],
       "harvest": [
         "Lettuce",
@@ -7259,7 +8251,10 @@
         "Mangetout",
         "Mizuna",
         "Tatsoi",
-        "Chervil"
+        "Chervil",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Celtuce"
       ]
     },
     "3": {
@@ -7276,7 +8271,10 @@
         "Watermelon",
         "Marigolds",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Carrots",
@@ -7317,7 +8315,16 @@
         "Yardlong Beans",
         "Borlotti Beans",
         "Shiso",
-        "Sunflowers"
+        "Sunflowers",
+        "Chickpeas",
+        "Lentils",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans",
+        "Celtuce"
       ],
       "transplant": [
         "Tomatoes",
@@ -7367,7 +8374,13 @@
         "Shiso",
         "Marigolds",
         "Valerian",
-        "Citrus"
+        "Citrus",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash"
       ],
       "harvest": [
         "Peas",
@@ -7395,7 +8408,9 @@
         "Endive",
         "Broad Beans",
         "Pak Choi",
-        "Broccoli Rabe"
+        "Broccoli Rabe",
+        "Orach",
+        "Celtuce"
       ]
     },
     "4": {
@@ -7431,7 +8446,12 @@
         "Cucumbers",
         "Sweet Potatoes",
         "Okra",
-        "Chia"
+        "Chia",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Basil",
@@ -7473,7 +8493,13 @@
         "Turmeric",
         "Lemongrass",
         "Citrus",
-        "Taro"
+        "Taro",
+        "Malabar Spinach",
+        "Water Chestnut",
+        "Thai Basil",
+        "Galangal",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Lettuce",
@@ -7516,7 +8542,10 @@
         "Borage",
         "Nasturtium",
         "Purslane",
-        "Chamomile"
+        "Chamomile",
+        "New Zealand Spinach",
+        "Orach",
+        "Celtuce"
       ]
     },
     "5": {
@@ -7540,7 +8569,9 @@
         "Chicory",
         "Beans",
         "Okra",
-        "Chia"
+        "Chia",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Zucchini",
@@ -7549,7 +8580,10 @@
         "Shiso",
         "Taro",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Water Chestnut",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Beans",
@@ -7607,7 +8641,14 @@
         "Raspberries",
         "Redcurrants",
         "Echinacea",
-        "Valerian"
+        "Valerian",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Orach",
+        "Pattypan Squash"
       ]
     },
     "6": {
@@ -7676,13 +8717,24 @@
         "Yardlong Beans",
         "Sunflowers",
         "Quinoa",
-        "Elderberries"
+        "Elderberries",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "7": {
       "startIndoors": [
         "Brussels Sprouts",
-        "Cauliflower"
+        "Cauliflower",
+        "Cavolo Nero"
       ],
       "directSow": [
         "Beans",
@@ -7749,13 +8801,25 @@
         "Melons",
         "Figs",
         "Grapes",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "8": {
       "startIndoors": [
         "Kohlrabi",
-        "Bok Choy"
+        "Bok Choy",
+        "Cavolo Nero"
       ],
       "directSow": [
         "Spinach",
@@ -7783,7 +8847,10 @@
         "Snow Peas",
         "Sugar Snap Peas",
         "Mangetout",
-        "Chicory"
+        "Chicory",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Brussels Sprouts",
@@ -7838,7 +8905,17 @@
         "Okra",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "9": {
@@ -7874,12 +8951,14 @@
         "Fennel",
         "Nasturtium",
         "Hamburg Parsley",
-        "Radicchio"
+        "Radicchio",
+        "Orach"
       ],
       "transplant": [
         "Radicchio",
         "Saffron",
-        "Strawberries"
+        "Strawberries",
+        "Cavolo Nero"
       ],
       "harvest": [
         "Squash",
@@ -7929,7 +9008,15 @@
         "Taro",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cardoon",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ]
     },
     "10": {
@@ -7954,7 +9041,8 @@
         "Daikon",
         "Broccoli Rabe",
         "Nasturtium",
-        "Chervil"
+        "Chervil",
+        "Celtuce"
       ],
       "transplant": [
         "Strawberries",
@@ -8008,7 +9096,12 @@
         "Yarrow",
         "Taro",
         "Luffa",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Orach",
+        "Water Chestnut",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -8022,7 +9115,8 @@
         "Microgreens",
         "Peas",
         "Fava Beans",
-        "Cress"
+        "Cress",
+        "Celtuce"
       ],
       "transplant": [
         "Elderberries"
@@ -8061,14 +9155,19 @@
         "Nasturtium",
         "Comfrey",
         "Citrus",
-        "Taro"
+        "Taro",
+        "Malabar Spinach",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ]
     },
     "12": {
       "startIndoors": [
         "Onions",
         "Leeks",
-        "Celeriac"
+        "Celeriac",
+        "Cardoon"
       ],
       "directSow": [
         "Microgreens",
@@ -8098,7 +9197,9 @@
         "Hamburg Parsley",
         "Chamomile",
         "Citrus",
-        "Cress"
+        "Cress",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     }
   },
@@ -8124,7 +9225,11 @@
         "Lovage",
         "Echinacea",
         "Yarrow",
-        "Valerian"
+        "Valerian",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Spinach",
@@ -8148,10 +9253,16 @@
         "Broccoli Rabe",
         "Microgreens",
         "Sweet Peas",
-        "Chervil"
+        "Chervil",
+        "Lentils",
+        "Celtuce"
       ],
       "transplant": [
-        "Blueberries"
+        "Blueberries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Kale",
@@ -8159,7 +9270,9 @@
         "Broccoli",
         "Carrots",
         "Microgreens",
-        "Hamburg Parsley"
+        "Hamburg Parsley",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     },
     "2": {
@@ -8184,7 +9297,12 @@
         "Lemon Verbena",
         "Marigolds",
         "Echinacea",
-        "Valerian"
+        "Valerian",
+        "Malabar Spinach",
+        "Thai Basil",
+        "Galangal",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Radishes",
@@ -8214,7 +9332,11 @@
         "Hamburg Parsley",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "New Zealand Spinach",
+        "Scorzonera",
+        "Orach"
       ],
       "transplant": [
         "Onions",
@@ -8242,7 +9364,14 @@
         "Hops",
         "Elderberries",
         "Grapes",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Celtuce"
       ],
       "harvest": [
         "Lettuce",
@@ -8259,7 +9388,10 @@
         "Mizuna",
         "Tatsoi",
         "Microgreens",
-        "Chervil"
+        "Chervil",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Celtuce"
       ]
     },
     "3": {
@@ -8273,7 +9405,9 @@
         "Butternut Squash",
         "Watermelon",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Beans",
@@ -8309,7 +9443,13 @@
         "Hamburg Parsley",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Orach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -8349,7 +9489,14 @@
         "Grapes",
         "Kiwi",
         "Mulberry",
-        "Citrus"
+        "Citrus",
+        "Goji Berries",
+        "Malabar Spinach",
+        "Cardoon",
+        "Water Chestnut",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash"
       ],
       "harvest": [
         "Broccoli",
@@ -8374,7 +9521,10 @@
         "Sweet Peas",
         "Chervil",
         "Good King Henry",
-        "Cress"
+        "Cress",
+        "Cavolo Nero",
+        "Orach",
+        "Celtuce"
       ]
     },
     "4": {
@@ -8403,7 +9553,11 @@
         "Sunflowers",
         "Microgreens",
         "Purslane",
-        "Chia"
+        "Chia",
+        "Chickpeas",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Basil",
@@ -8426,7 +9580,13 @@
         "Marigolds",
         "Figs",
         "Citrus",
-        "Taro"
+        "Taro",
+        "Malabar Spinach",
+        "Water Chestnut",
+        "Thai Basil",
+        "Galangal",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Lettuce",
@@ -8467,7 +9627,10 @@
         "Good King Henry",
         "Chamomile",
         "Comfrey",
-        "Cress"
+        "Cress",
+        "New Zealand Spinach",
+        "Orach",
+        "Celtuce"
       ]
     },
     "5": {
@@ -8523,7 +9686,14 @@
         "Yarrow",
         "Valerian",
         "Mulberry",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Orach",
+        "Pattypan Squash"
       ]
     },
     "6": {
@@ -8583,13 +9753,23 @@
         "Valerian",
         "Elderberries",
         "Mulberry",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "7": {
       "startIndoors": [
         "Brussels Sprouts",
-        "Cauliflower"
+        "Cauliflower",
+        "Cavolo Nero"
       ],
       "directSow": [
         "Beans",
@@ -8647,13 +9827,25 @@
         "Figs",
         "Grapes",
         "Mulberry",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "8": {
       "startIndoors": [
         "Kohlrabi",
-        "Bok Choy"
+        "Bok Choy",
+        "Cavolo Nero"
       ],
       "directSow": [
         "Spinach",
@@ -8677,7 +9869,10 @@
         "Microgreens",
         "Chervil",
         "Radicchio",
-        "Chicory"
+        "Chicory",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Brussels Sprouts",
@@ -8724,7 +9919,14 @@
         "Grapes",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash"
       ]
     },
     "9": {
@@ -8759,12 +9961,15 @@
         "Chamomile",
         "Radicchio",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Scorzonera",
+        "Orach"
       ],
       "transplant": [
         "Strawberries",
         "Radicchio",
-        "Saffron"
+        "Saffron",
+        "Cavolo Nero"
       ],
       "harvest": [
         "Squash",
@@ -8808,7 +10013,14 @@
         "Taro",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ]
     },
     "10": {
@@ -8833,7 +10045,8 @@
         "Chervil",
         "Chamomile",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -8881,7 +10094,12 @@
         "Luffa",
         "Cress",
         "Saffron",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Orach",
+        "Water Chestnut",
+        "Spaghetti Squash"
       ]
     },
     "11": {
@@ -8893,7 +10111,8 @@
         "Fava Beans",
         "Broad Beans",
         "Microgreens",
-        "Cress"
+        "Cress",
+        "Celtuce"
       ],
       "transplant": [
         "Elderberries"
@@ -8930,14 +10149,19 @@
         "Chicory",
         "Cress",
         "Saffron",
-        "Flaxseed"
+        "Flaxseed",
+        "Malabar Spinach",
+        "Orach",
+        "Celtuce"
       ]
     },
     "12": {
       "startIndoors": [
         "Onions",
         "Leeks",
-        "Celeriac"
+        "Celeriac",
+        "Goji Berries",
+        "Cardoon"
       ],
       "directSow": [
         "Spinach",
@@ -8966,7 +10190,9 @@
         "Radicchio",
         "Chicory",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Cavolo Nero",
+        "Scorzonera"
       ]
     }
   },
@@ -8996,7 +10222,10 @@
         "Eggplant",
         "Basil",
         "Brussels Sprouts",
-        "Shiso"
+        "Shiso",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Spinach",
@@ -9030,13 +10259,22 @@
         "Salsify",
         "Chamomile",
         "Marigolds",
-        "Cress"
+        "Cress",
+        "Lentils",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Blueberries",
         "Blackberries",
         "Raspberries",
-        "Good King Henry"
+        "Good King Henry",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon"
       ],
       "harvest": [
         "Kale",
@@ -9054,7 +10292,10 @@
         "Sweet Peas",
         "Citrus",
         "Radicchio",
-        "Chicory"
+        "Chicory",
+        "Cavolo Nero",
+        "Orach",
+        "Celtuce"
       ]
     },
     "2": {
@@ -9085,7 +10326,11 @@
         "Melons",
         "Passionfruit",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Thai Basil",
+        "Galangal",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Radishes",
@@ -9125,7 +10370,12 @@
         "Broad Beans",
         "Marjoram",
         "Sunflowers",
-        "Marigolds"
+        "Marigolds",
+        "Chickpeas",
+        "Lentils",
+        "New Zealand Spinach",
+        "Orach",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Onions",
@@ -9167,7 +10417,16 @@
         "Yarrow",
         "Valerian",
         "Figs",
-        "Kiwi"
+        "Kiwi",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Cardoon",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Celtuce"
       ],
       "harvest": [
         "Lettuce",
@@ -9195,7 +10454,11 @@
         "Citrus",
         "Radicchio",
         "Chicory",
-        "Cress"
+        "Cress",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ]
     },
     "3": {
@@ -9210,7 +10473,9 @@
         "Watermelon",
         "Luffa",
         "Bitter Melon",
-        "Passionfruit"
+        "Passionfruit",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Beans",
@@ -9251,7 +10516,13 @@
         "Cucumbers",
         "Okra",
         "Peanuts",
-        "Chia"
+        "Chia",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -9301,7 +10572,13 @@
         "Rosemary",
         "Oregano",
         "Butternut Squash",
-        "Taro"
+        "Taro",
+        "Water Chestnut",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Broccoli",
@@ -9340,7 +10617,12 @@
         "Salsify",
         "Lovage",
         "Chamomile",
-        "Comfrey"
+        "Comfrey",
+        "Lentils",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ]
     },
     "4": {
@@ -9369,7 +10651,11 @@
         "Sunflowers",
         "Microgreens",
         "Purslane",
-        "Chia"
+        "Chia",
+        "Malabar Spinach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Basil",
@@ -9395,7 +10681,12 @@
         "Taro",
         "Passionfruit",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Water Chestnut",
+        "Thai Basil",
+        "Galangal",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Lettuce",
@@ -9454,7 +10745,15 @@
         "Yarrow",
         "Valerian",
         "Mulberry",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "New Zealand Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Scorzonera",
+        "Orach",
+        "Pattypan Squash",
+        "Celtuce"
       ]
     },
     "5": {
@@ -9523,7 +10822,16 @@
         "Yardlong Beans",
         "Sunflowers",
         "Salsify",
-        "Elderberries"
+        "Elderberries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "6": {
@@ -9590,7 +10898,17 @@
         "Lima Beans",
         "Borlotti Beans",
         "Salsify",
-        "Figs"
+        "Figs",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "7": {
@@ -9663,7 +10981,18 @@
         "Ginger",
         "Turmeric",
         "Passionfruit",
-        "Luffa"
+        "Luffa",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "8": {
@@ -9699,7 +11028,10 @@
         "Mâche",
         "Mustard Greens",
         "Fava Beans",
-        "Runner Beans"
+        "Runner Beans",
+        "Cavolo Nero",
+        "Hyacinth Beans",
+        "Celtuce"
       ],
       "transplant": [
         "Brussels Sprouts",
@@ -9754,7 +11086,13 @@
         "Squash",
         "Lemongrass",
         "Butternut Squash",
-        "Passionfruit"
+        "Passionfruit",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ]
     },
     "9": {
@@ -9793,7 +11131,11 @@
         "Cabbage",
         "Dill",
         "Endive",
-        "Borage"
+        "Borage",
+        "Chickpeas",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach"
       ],
       "transplant": [
         "Strawberries",
@@ -9844,7 +11186,15 @@
         "Luffa",
         "Bitter Melon",
         "Chia",
-        "Passionfruit"
+        "Passionfruit",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Water Chestnut",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ]
     },
     "10": {
@@ -9878,7 +11228,12 @@
         "Napa Cabbage",
         "Borage",
         "Marigolds",
-        "Radicchio"
+        "Radicchio",
+        "Chickpeas",
+        "Lentils",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -9936,14 +11291,22 @@
         "Runner Beans",
         "Purslane",
         "Passionfruit",
-        "Bitter Melon"
+        "Bitter Melon",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Water Chestnut",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "11": {
       "startIndoors": [
         "Tomatoes",
         "Peppers",
-        "Lavender"
+        "Lavender",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Spinach",
@@ -9967,7 +11330,9 @@
         "Nasturtium",
         "Sweet Peas",
         "Chervil",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "Celtuce"
       ],
       "transplant": [
         "Elderberries"
@@ -10013,7 +11378,13 @@
         "Borage",
         "Raspberries",
         "Lemon Verbena",
-        "Marigolds"
+        "Marigolds",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Orach",
+        "Hyacinth Beans",
+        "Celtuce"
       ]
     },
     "12": {
@@ -10027,7 +11398,10 @@
         "Lavender",
         "Tarragon",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Spinach",
@@ -10075,7 +11449,11 @@
         "Mangetout",
         "Pak Choi",
         "Napa Cabbage",
-        "Borage"
+        "Borage",
+        "Chickpeas",
+        "Cavolo Nero",
+        "Orach",
+        "Celtuce"
       ]
     }
   },
@@ -10096,7 +11474,10 @@
         "Marjoram",
         "Shiso",
         "Lemon Verbena",
-        "Echinacea"
+        "Echinacea",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Peas",
@@ -10130,13 +11511,22 @@
         "Chervil",
         "Chamomile",
         "Marigolds",
-        "Cress"
+        "Cress",
+        "Lentils",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Blackberries",
         "Blueberries",
         "Raspberries",
-        "Good King Henry"
+        "Good King Henry",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon"
       ],
       "harvest": [
         "Kale",
@@ -10154,7 +11544,10 @@
         "Hamburg Parsley",
         "Citrus",
         "Radicchio",
-        "Chicory"
+        "Chicory",
+        "Cavolo Nero",
+        "Orach",
+        "Celtuce"
       ]
     },
     "2": {
@@ -10172,7 +11565,10 @@
         "Shiso",
         "Passionfruit",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Galangal",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Radishes",
@@ -10208,7 +11604,12 @@
         "Chamomile",
         "Marigolds",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "Lentils",
+        "New Zealand Spinach",
+        "Orach",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -10242,7 +11643,11 @@
         "Figs",
         "Grapes",
         "Kiwi",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "harvest": [
         "Peas",
@@ -10268,7 +11673,11 @@
         "Citrus",
         "Radicchio",
         "Chicory",
-        "Cress"
+        "Cress",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ]
     },
     "3": {
@@ -10276,7 +11685,8 @@
         "Butternut Squash",
         "Passionfruit",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Spaghetti Squash"
       ],
       "directSow": [
         "Beans",
@@ -10309,7 +11719,13 @@
         "Quinoa",
         "Cress",
         "Flaxseed",
-        "Chia"
+        "Chia",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Squash",
@@ -10349,7 +11765,11 @@
         "Kiwi",
         "Mulberry",
         "Citrus",
-        "Taro"
+        "Taro",
+        "Water Chestnut",
+        "Galangal",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Lettuce",
@@ -10385,7 +11805,13 @@
         "Good King Henry",
         "Chamomile",
         "Comfrey",
-        "Cress"
+        "Cress",
+        "Lentils",
+        "New Zealand Spinach",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ]
     },
     "4": {
@@ -10401,7 +11827,8 @@
         "Sunflowers",
         "Microgreens",
         "Purslane",
-        "Chia"
+        "Chia",
+        "Malabar Spinach"
       ],
       "transplant": [
         "Globe Artichoke",
@@ -10413,7 +11840,9 @@
         "Passionfruit",
         "Taro",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Water Chestnut",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Tomatoes",
@@ -10461,7 +11890,14 @@
         "Valerian",
         "Mulberry",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "New Zealand Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Scorzonera",
+        "Orach",
+        "Pattypan Squash"
       ]
     },
     "5": {
@@ -10517,7 +11953,16 @@
         "Valerian",
         "Elderberries",
         "Mulberry",
-        "Flaxseed"
+        "Flaxseed",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Boysenberry",
+        "Loganberry",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "6": {
@@ -10574,7 +12019,18 @@
         "Valerian",
         "Elderberries",
         "Figs",
-        "Mulberry"
+        "Mulberry",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "7": {
@@ -10634,7 +12090,16 @@
         "Grapes",
         "Passionfruit",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Sea Buckthorn",
+        "Cardoon",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash"
       ]
     },
     "8": {
@@ -10657,7 +12122,10 @@
         "Runner Beans",
         "Microgreens",
         "Radicchio",
-        "Chicory"
+        "Chicory",
+        "Cavolo Nero",
+        "Hyacinth Beans",
+        "Celtuce"
       ],
       "transplant": [
         "Cauliflower",
@@ -10703,7 +12171,11 @@
         "Passionfruit",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ]
     },
     "9": {
@@ -10730,7 +12202,11 @@
         "Hamburg Parsley",
         "Chamomile",
         "Radicchio",
-        "Cress"
+        "Cress",
+        "Chickpeas",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach"
       ],
       "transplant": [
         "Potatoes",
@@ -10770,7 +12246,14 @@
         "Taro",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Water Chestnut",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ]
     },
     "10": {
@@ -10803,7 +12286,13 @@
         "Marigolds",
         "Radicchio",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "Lentils",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -10844,14 +12333,22 @@
         "Bitter Melon",
         "Cress",
         "Saffron",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Water Chestnut",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "11": {
       "startIndoors": [
         "Tomatoes",
         "Peppers",
-        "Lavender"
+        "Lavender",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Spinach",
@@ -10874,7 +12371,9 @@
         "Sweet Peas",
         "Chervil",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "Celtuce"
       ],
       "transplant": [
         "Elderberries"
@@ -10912,7 +12411,13 @@
         "Radicchio",
         "Chicory",
         "Cress",
-        "Saffron"
+        "Saffron",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Orach",
+        "Hyacinth Beans",
+        "Celtuce"
       ]
     },
     "12": {
@@ -10924,7 +12429,9 @@
         "Lavender",
         "Tarragon",
         "Lemon Verbena",
-        "Lovage"
+        "Lovage",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "directSow": [
         "Spinach",
@@ -10971,7 +12478,11 @@
         "Radicchio",
         "Chicory",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "Cavolo Nero",
+        "Orach",
+        "Celtuce"
       ]
     }
   },
@@ -11030,7 +12541,14 @@
         "Hamburg Parsley",
         "Chamomile",
         "Marigolds",
-        "Cress"
+        "Cress",
+        "Chickpeas",
+        "Lentils",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Celtuce"
       ],
       "transplant": [
         "Lavender",
@@ -11045,7 +12563,12 @@
         "Valerian",
         "Elderberries",
         "Grapes",
-        "Mulberry"
+        "Mulberry",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn"
       ],
       "harvest": [
         "Kale",
@@ -11070,7 +12593,10 @@
         "Citrus",
         "Radicchio",
         "Chicory",
-        "Flaxseed"
+        "Flaxseed",
+        "Cavolo Nero",
+        "Orach",
+        "Celtuce"
       ]
     },
     "2": {
@@ -11080,7 +12606,8 @@
         "Lemongrass",
         "Passionfruit",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Galangal"
       ],
       "directSow": [
         "Melons",
@@ -11122,7 +12649,16 @@
         "Hamburg Parsley",
         "Chamomile",
         "Marigolds",
-        "Cress"
+        "Cress",
+        "Chickpeas",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Orach",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -11151,7 +12687,11 @@
         "Figs",
         "Grapes",
         "Mulberry",
-        "Citrus"
+        "Citrus",
+        "Water Chestnut",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash"
       ],
       "harvest": [
         "Peas",
@@ -11180,7 +12720,11 @@
         "Radicchio",
         "Chicory",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ]
     },
     "3": {
@@ -11210,7 +12754,13 @@
         "Sunflowers",
         "Microgreens",
         "Purslane",
-        "Chia"
+        "Chia",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Squash",
@@ -11241,7 +12791,12 @@
         "Passionfruit",
         "Taro",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Water Chestnut",
+        "Thai Basil",
+        "Galangal",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Tomatoes",
@@ -11287,7 +12842,12 @@
         "Valerian",
         "Radicchio",
         "Chicory",
-        "Cress"
+        "Cress",
+        "Lentils",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Cardoon",
+        "Orach"
       ]
     },
     "4": {
@@ -11297,7 +12857,9 @@
         "Nasturtium",
         "Microgreens",
         "Purslane",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach"
       ],
       "transplant": [
         "Zucchini",
@@ -11307,7 +12869,9 @@
         "Passionfruit",
         "Taro",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Tomatoes",
@@ -11359,7 +12923,20 @@
         "Yarrow",
         "Valerian",
         "Elderberries",
-        "Mulberry"
+        "Mulberry",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Boysenberry",
+        "Loganberry",
+        "Scorzonera",
+        "Cardoon",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "5": {
@@ -11414,7 +12991,17 @@
         "Valerian",
         "Elderberries",
         "Figs",
-        "Mulberry"
+        "Mulberry",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Cardoon",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "6": {
@@ -11473,7 +13060,18 @@
         "Grapes",
         "Mulberry",
         "Passionfruit",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Sea Buckthorn",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ]
     },
     "7": {
@@ -11521,7 +13119,11 @@
         "Passionfruit",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Shishito Peppers",
+        "Padron Peppers"
       ]
     },
     "8": {
@@ -11555,7 +13157,10 @@
         "Borlotti Beans",
         "Sunflowers",
         "Microgreens",
-        "Chicory"
+        "Chicory",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Celtuce"
       ],
       "transplant": [
         "Strawberries"
@@ -11585,7 +13190,10 @@
         "Taro",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Spaghetti Squash"
       ]
     },
     "9": {
@@ -11625,7 +13233,13 @@
         "Hamburg Parsley",
         "Radicchio",
         "Chicory",
-        "Cress"
+        "Cress",
+        "Chickpeas",
+        "Cavolo Nero",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Potatoes",
@@ -11655,12 +13269,19 @@
         "Taro",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Water Chestnut",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Spaghetti Squash"
       ]
     },
     "10": {
       "startIndoors": [
-        "Lavender"
+        "Lavender",
+        "Cardoon"
       ],
       "directSow": [
         "Spinach",
@@ -11699,7 +13320,13 @@
         "Marigolds",
         "Radicchio",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "Lentils",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -11709,7 +13336,9 @@
         "Cauliflower",
         "Collard Greens",
         "Cherry Tomatoes",
-        "Radicchio"
+        "Radicchio",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "harvest": [
         "Broccoli",
@@ -11744,14 +13373,20 @@
         "Taro",
         "Luffa",
         "Bitter Melon",
-        "Cress"
+        "Cress",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Water Chestnut",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ]
     },
     "11": {
       "startIndoors": [
         "Lavender",
         "Tarragon",
-        "Lovage"
+        "Lovage",
+        "Cardoon"
       ],
       "directSow": [
         "Tomatoes",
@@ -11779,7 +13414,11 @@
         "Chamomile",
         "Marigolds",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach"
       ],
       "transplant": [
         "Elderberries"
@@ -11825,7 +13464,13 @@
         "Taro",
         "Chicory",
         "Luffa",
-        "Cress"
+        "Cress",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Orach",
+        "Pattypan Squash",
+        "Hyacinth Beans",
+        "Celtuce"
       ]
     },
     "12": {
@@ -11851,10 +13496,13 @@
         "Broad Beans",
         "Microgreens",
         "Sweet Peas",
-        "Cress"
+        "Cress",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "transplant": [
-        "Elderberries"
+        "Elderberries",
+        "Cardoon"
       ],
       "harvest": [
         "Kale",
@@ -11894,7 +13542,14 @@
         "Radicchio",
         "Chicory",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Orach",
+        "Spaghetti Squash",
+        "Hyacinth Beans",
+        "Celtuce"
       ]
     }
   },
@@ -11950,7 +13605,18 @@
         "Purslane",
         "Chamomile",
         "Marigolds",
-        "Cress"
+        "Cress",
+        "Chickpeas",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Orach",
+        "Thai Basil",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Celtuce"
       ],
       "transplant": [
         "Zucchini",
@@ -11968,7 +13634,14 @@
         "Valerian",
         "Figs",
         "Mulberry",
-        "Citrus"
+        "Citrus",
+        "Goji Berries",
+        "Boysenberry",
+        "Loganberry",
+        "Aronia",
+        "Sea Buckthorn",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Tomatoes",
@@ -12017,7 +13690,13 @@
         "Citrus",
         "Radicchio",
         "Chicory",
-        "Flaxseed"
+        "Flaxseed",
+        "Cavolo Nero",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Celtuce"
       ]
     },
     "2": {
@@ -12041,7 +13720,11 @@
         "Purslane",
         "Chamomile",
         "Marigolds",
-        "Cress"
+        "Cress",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -12068,7 +13751,16 @@
         "Passionfruit",
         "Taro",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Goji Berries",
+        "Aronia",
+        "Water Chestnut",
+        "Thai Basil",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "harvest": [
         "Tomatoes",
@@ -12120,7 +13812,13 @@
         "Radicchio",
         "Chicory",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Cavolo Nero",
+        "Cardoon",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash"
       ]
     },
     "3": {
@@ -12140,7 +13838,10 @@
         "Savory",
         "Microgreens",
         "Purslane",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Asparagus",
@@ -12158,7 +13859,8 @@
         "Passionfruit",
         "Taro",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Water Chestnut"
       ],
       "harvest": [
         "Tomatoes",
@@ -12208,7 +13910,18 @@
         "Mulberry",
         "Radicchio",
         "Chicory",
-        "Cress"
+        "Cress",
+        "Lentils",
+        "New Zealand Spinach",
+        "Cavolo Nero",
+        "Boysenberry",
+        "Loganberry",
+        "Scorzonera",
+        "Cardoon",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash"
       ]
     },
     "4": {
@@ -12219,7 +13932,9 @@
         "Borlotti Beans",
         "Microgreens",
         "Purslane",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach"
       ],
       "transplant": [],
       "harvest": [
@@ -12264,7 +13979,21 @@
         "Valerian",
         "Mulberry",
         "Radicchio",
-        "Chicory"
+        "Chicory",
+        "Lentils",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Boysenberry",
+        "Loganberry",
+        "Scorzonera",
+        "Cardoon",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "5": {
@@ -12311,7 +14040,18 @@
         "Figs",
         "Mulberry",
         "Passionfruit",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Chickpeas",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Aronia",
+        "Scorzonera",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "6": {
@@ -12351,7 +14091,15 @@
         "Mulberry",
         "Passionfruit",
         "Luffa",
-        "Bitter Melon"
+        "Bitter Melon",
+        "Goji Berries",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Sea Buckthorn",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Spaghetti Squash",
+        "Hyacinth Beans"
       ]
     },
     "7": {
@@ -12387,7 +14135,12 @@
         "Taro",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Spaghetti Squash"
       ]
     },
     "8": {
@@ -12411,7 +14164,10 @@
         "Endive",
         "Fennel",
         "Microgreens",
-        "Chicory"
+        "Chicory",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Celtuce"
       ],
       "transplant": [],
       "harvest": [
@@ -12431,14 +14187,18 @@
         "Taro",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Water Chestnut"
       ]
     },
     "9": {
       "startIndoors": [
         "Cauliflower",
         "Broccoli",
-        "Lavender"
+        "Lavender",
+        "Cardoon"
       ],
       "directSow": [
         "Broccoli",
@@ -12474,7 +14234,12 @@
         "Hamburg Parsley",
         "Radicchio",
         "Chicory",
-        "Cress"
+        "Cress",
+        "Chickpeas",
+        "Cavolo Nero",
+        "Thai Basil",
+        "Pattypan Squash",
+        "Hyacinth Beans"
       ],
       "transplant": [
         "Tomatoes",
@@ -12482,7 +14247,10 @@
         "Eggplant",
         "Ginger",
         "Turmeric",
-        "Lemongrass"
+        "Lemongrass",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers"
       ],
       "harvest": [
         "Squash",
@@ -12501,13 +14269,17 @@
         "Taro",
         "Luffa",
         "Bitter Melon",
-        "Chia"
+        "Chia",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Water Chestnut"
       ]
     },
     "10": {
       "startIndoors": [
         "Lavender",
-        "Lovage"
+        "Lovage",
+        "Cardoon"
       ],
       "directSow": [
         "Spinach",
@@ -12561,7 +14333,15 @@
         "Radicchio",
         "Chicory",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "Lentils",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach",
+        "Pattypan Squash",
+        "Hyacinth Beans",
+        "Celtuce"
       ],
       "transplant": [
         "Broccoli",
@@ -12588,7 +14368,12 @@
         "Taro",
         "Luffa",
         "Bitter Melon",
-        "Cress"
+        "Cress",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Galangal",
+        "Shishito Peppers",
+        "Padron Peppers"
       ]
     },
     "11": {
@@ -12641,7 +14426,15 @@
         "Chamomile",
         "Marigolds",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Lentils",
+        "Cavolo Nero",
+        "Scorzonera",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "transplant": [
         "Zucchini",
@@ -12653,7 +14446,9 @@
         "Shiso",
         "Blackberries",
         "Good King Henry",
-        "Radicchio"
+        "Radicchio",
+        "Cardoon",
+        "Pattypan Squash"
       ],
       "harvest": [
         "Kale",
@@ -12687,7 +14482,13 @@
         "Passionfruit",
         "Taro",
         "Luffa",
-        "Cress"
+        "Cress",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Hyacinth Beans",
+        "Celtuce"
       ]
     },
     "12": {
@@ -12735,7 +14536,12 @@
         "Sweet Peas",
         "Chervil",
         "Hamburg Parsley",
-        "Cress"
+        "Cress",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Spaghetti Squash"
       ],
       "transplant": [
         "Zucchini",
@@ -12750,7 +14556,11 @@
         "Blackberries",
         "Lovage",
         "Good King Henry",
-        "Mulberry"
+        "Mulberry",
+        "Boysenberry",
+        "Loganberry",
+        "Cardoon",
+        "Pattypan Squash"
       ],
       "harvest": [
         "Tomatoes",
@@ -12793,7 +14603,17 @@
         "Radicchio",
         "Chicory",
         "Cress",
-        "Flaxseed"
+        "Flaxseed",
+        "Chickpeas",
+        "New Zealand Spinach",
+        "Malabar Spinach",
+        "Cavolo Nero",
+        "Orach",
+        "Shishito Peppers",
+        "Padron Peppers",
+        "Pattypan Squash",
+        "Hyacinth Beans",
+        "Celtuce"
       ]
     }
   }
