@@ -5533,3 +5533,18 @@ body.garden-mode .plant-section ul {
 .hm-today { box-shadow: 0 0 0 1.5px var(--accent); }
 .hm-legend { align-items: center; display: flex; gap: 3px; justify-content: flex-end; margin-top: 8px; }
 .hm-legend-lbl { color: var(--text-muted); font-size: 9px; margin: 0 2px; }
+
+/* Phase 139: Harvest Recipe Suggestions */
+.recipe-overlay { z-index: 3100; }
+.recipe-sheet { padding-top: 14px; position: relative; }
+.recipe-close-btn { background: none; border: none; color: var(--text-muted); cursor: pointer;
+  font-size: 22px; line-height: 1; padding: 0; position: absolute; right: 16px; top: 14px; }
+.recipe-header { align-items: center; display: flex; gap: 10px; margin-bottom: 14px; padding-right: 28px; }
+.recipe-header-emoji { font-size: 26px; line-height: 1; }
+.recipe-header-title { color: var(--text); font-size: 14px; font-weight: 700; }
+.recipe-cards { display: flex; flex-direction: column; gap: 10px; }
+.recipe-card { background: var(--surface2); border-radius: 10px; padding: 12px; }
+.recipe-card-top { align-items: baseline; display: flex; gap: 8px; justify-content: space-between; margin-bottom: 4px; }
+.recipe-card-name { color: var(--text); font-size: 13px; font-weight: 700; }
+.recipe-card-time { color: var(--text-muted); font-size: 11px; flex-shrink: 0; white-space: nowrap; }
+.recipe-card-tip { color: var(--text-muted); font-size: 12px; line-height: 1.5; margin: 0; }
