@@ -2579,7 +2579,7 @@ function renderGardenTab() {
     const bedsEl = document.getElementById('garden-beds');
     if (bedsEl) bedsEl.hidden = true;
     wireGardenViewToggle();
-    renderSetupCard(); renderGardenDashboard(); renderGardenDiversity(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
+    renderSetupCard(); renderGardenDashboard(); renderGardenDiversity(); renderRotationAdvisor(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
     renderCompanionMatrix(); renderGrowingTimeline(); renderGardenGantt(); renderGardenFooter();
     renderGardenHistory(); renderGrowNext(); renderPlanSection(); renderHarvestAnalytics();
     renderHarvestValue();
@@ -2667,6 +2667,7 @@ function renderGardenTab() {
   renderSetupCard();
   renderGardenDashboard();
   renderGardenDiversity();
+  renderRotationAdvisor();
   renderGardenTasks();
   renderGardenChecklist();
   renderGardenBeds();
@@ -10609,4 +10610,109 @@ function autoMilestone(text, cropName, type) {
   journalEntries.unshift(entry);
   saveJournal();
   if (currentPanelTab === 'journal') renderJournalTab();
+}
+
+// ── Phase 126: Crop rotation advisor ─────────────────
+const ROTATION_RULES = {
+  // family → { warn: 'reason', after: 'ideal predecessor note', next: ['ideal successor families'] }
+  Solanaceae:    { warn: 'Blight & nematodes build up rapidly', next: ['Legume','Apiaceae','Allium'] },
+  Brassicaceae:  { warn: 'Clubroot & cabbage root fly persist in soil', next: ['Allium','Legume','Chenopodiaceae'] },
+  Cucurbit:      { warn: 'Powdery mildew spores & vine borers overwinter', next: ['Legume','Allium','Apiaceae'] },
+  Apiaceae:      { warn: 'Carrot fly larvae overwinter', next: ['Legume','Solanaceae','Brassicaceae'] },
+  Chenopodiaceae:{ warn: 'Beet cyst nematode & leaf miners accumulate', next: ['Legume','Allium','Cucurbit'] },
+  Asteraceae:    { warn: 'Sclerotinia & aphid colonies can persist', next: ['Legume','Allium'] },
+};
+// Families considered low-risk for repeating (nitrogen-fixers, aromatics)
+const ROTATION_SAFE = new Set(['Legume','Allium','Lamiaceae','Tropaeolaceae','Boraginaceae','Grass','Rosaceae','Ericaceae','Grossulariaceae']);
+
+const FAMILY_EMOJI = {
+  Solanaceae:'🍅', Brassicaceae:'🥦', Legume:'🫘', Cucurbit:'🥒',
+  Allium:'🧅', Apiaceae:'🥕', Chenopodiaceae:'🥬', Asteraceae:'🌼',
+  Lamiaceae:'🌿', Grass:'🌽', Chenopodiaceae:'🥬',
+};
+
+function renderRotationAdvisor() {
+  const el = document.getElementById('rotation-advisor');
+  if (!el) return;
+
+  const currentNames = Object.keys(myGarden);
+  if (currentNames.length < 2) { el.innerHTML = ''; return; }
+
+  loadHistory();
+  const thisYear = new Date().getFullYear();
+
+  // Build family → years grown map from history + current
+  const famYears = {}; // family → Set of years
+  for (const h of gardenHistory) {
+    const fam = CROP_FAMILIES[h.name] || cropData?.[h.name]?.family;
+    if (!fam || ROTATION_SAFE.has(fam)) continue;
+    if (!famYears[fam]) famYears[fam] = new Set();
+    famYears[fam].add(h.year || thisYear);
+  }
+  // Add current crops as this year
+  for (const name of currentNames) {
+    const fam = CROP_FAMILIES[name] || cropData?.[name]?.family;
+    if (!fam || ROTATION_SAFE.has(fam)) continue;
+    if (!famYears[fam]) famYears[fam] = new Set();
+    famYears[fam].add(thisYear);
+  }
+
+  // Warnings: families grown in 2+ of last 3 years
+  const warnings = [];
+  for (const [fam, years] of Object.entries(famYears)) {
+    const recent = [...years].filter(y => y >= thisYear - 2);
+    if (recent.length >= 2) {
+      const rule = ROTATION_RULES[fam];
+      if (!rule) continue;
+      const icon = FAMILY_EMOJI[fam] || '🌿';
+      warnings.push({ fam, icon, years: recent.sort(), reason: rule.warn, next: rule.next });
+    }
+  }
+
+  // Current families → what to plant next season
+  const currentFams = [...new Set(
+    currentNames.map(n => CROP_FAMILIES[n] || cropData?.[n]?.family).filter(Boolean)
+  )];
+  const suggestions = [];
+  for (const fam of currentFams) {
+    const rule = ROTATION_RULES[fam];
+    if (!rule) continue;
+    // Filter out families already in current garden this season
+    const freshNext = rule.next.filter(f => !currentFams.includes(f));
+    if (freshNext.length) {
+      suggestions.push({ afterFam: fam, afterIcon: FAMILY_EMOJI[fam] || '🌿', next: freshNext });
+    }
+  }
+
+  if (!warnings.length && !suggestions.length) { el.innerHTML = ''; return; }
+
+  const warnHtml = warnings.map(w => {
+    const yrsStr = w.years.join(', ');
+    const nextFams = w.next.map(f => `<span class="rota-chip">${FAMILY_EMOJI[f] || ''} ${f}</span>`).join('');
+    return `<div class="rota-warn-row">
+      <span class="rota-fam-icon">${w.icon}</span>
+      <div class="rota-warn-body">
+        <span class="rota-fam-name">${w.fam}</span>
+        <span class="rota-warn-reason">${w.reason} (${yrsStr})</span>
+        <div class="rota-next-row"><span class="rota-next-label">Try next:</span>${nextFams}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const sugHtml = suggestions.length ? `
+    <div class="rota-sug-section">
+      <div class="rota-sug-hd">Next season suggestions</div>
+      ${suggestions.map(s => {
+        const chips = s.next.map(f => `<span class="rota-chip rota-chip--sug">${FAMILY_EMOJI[f] || ''} ${f}</span>`).join('');
+        return `<div class="rota-sug-row">After ${s.afterIcon} ${s.afterFam}: ${chips}</div>`;
+      }).join('')}
+    </div>` : '';
+
+  el.innerHTML = `<div class="rota-card">
+    <div class="rota-header">
+      <span class="rota-title">Rotation Advisor</span>
+    </div>
+    ${warnHtml}
+    ${sugHtml}
+  </div>`;
 }

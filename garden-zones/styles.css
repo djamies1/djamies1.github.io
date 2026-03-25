@@ -5291,6 +5291,25 @@ body.garden-mode .plant-section ul {
 /* Phase 124 — Growth stage care tips */
 .growth-stage-tip { color: var(--text-muted); font-size: 10px; line-height: 1.4; margin-top: 3px; }
 
+/* Phase 126 — Crop rotation advisor */
+.rota-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.rota-header { align-items: center; border-bottom: 1px solid var(--border); display: flex; gap: 8px; padding: 10px 14px; }
+.rota-title { color: var(--text-muted); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.rota-warn-row { align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 10px; padding: 10px 14px; }
+.rota-warn-row:last-of-type { border-bottom: none; }
+.rota-fam-icon { flex-shrink: 0; font-size: 18px; line-height: 1; margin-top: 1px; }
+.rota-warn-body { display: flex; flex-direction: column; gap: 3px; }
+.rota-fam-name { color: var(--text); font-size: 12px; font-weight: 600; }
+.rota-warn-reason { color: var(--text-muted); font-size: 11px; line-height: 1.4; }
+.rota-next-row { align-items: center; display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.rota-next-label { color: var(--text-muted); font-size: 10px; font-weight: 600; letter-spacing: 0.04em; margin-right: 2px; text-transform: uppercase; }
+.rota-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; color: var(--text); font-size: 10px; font-weight: 500; padding: 2px 8px; }
+.rota-chip--sug { background: rgba(74,222,128,0.08); border-color: rgba(74,222,128,0.2); color: var(--accent); }
+.rota-sug-section { border-top: 1px solid var(--border); padding: 10px 14px; }
+.rota-sug-hd { color: var(--text-muted); font-size: 10px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 8px; text-transform: uppercase; }
+.rota-sug-row { align-items: center; color: var(--text-muted); display: flex; flex-wrap: wrap; font-size: 11px; gap: 4px; margin-bottom: 6px; }
+.rota-sug-row:last-child { margin-bottom: 0; }
+
 /* Phase 125 — Journal auto-milestones */
 .journal-entry--milestone { border-left: 3px solid var(--border); padding-left: 10px; }
 .journal-entry--ms-planted   { border-left-color: rgba(74,222,128,0.6); }
