@@ -11729,14 +11729,14 @@ function renderActivityHeatmap() {
 const RECIPE_DB = {
   'Tomatoes':       [{name:'Caprese salad',time:'10 min',tip:'Use at room temp — cold dulls flavour.'},{name:'Slow-roasted tomatoes',time:'2 hr',tip:'Low oven (120 °C) concentrates sweetness.'},{name:'Fresh tomato pasta',time:'20 min',tip:'Salt 15 min before serving to draw out juice — it becomes its own dressing.'}],
   'Peppers':        [{name:'Stuffed peppers',time:'45 min',tip:'Par-boil peppers 5 min before filling.'},{name:'Roasted pepper hummus',time:'30 min',tip:'Blacken all over under the grill, seal in a bag 10 min, then the skins slip off cleanly.'},{name:'Stir-fried pepper medley',time:'15 min',tip:'High heat keeps them slightly crisp.'}],
-  'Cucumbers':      [{name:'Tzatziki',time:'10 min',tip:'Salt and squeeze out excess water first.'},{name:'Cucumber salad',time:'10 min',tip:'Rice vinegar + sesame oil for an Asian twist.'},{name:'Gazpacho',time:'20 min',tip:'Chill for at least 1 hour before serving.'}],
+  'Cucumbers':      [{name:'Tzatziki',time:'10 min',tip:'Salt and squeeze out excess water first.'},{name:'Cucumber salad',time:'10 min',tip:'Salt slices 10 min then pat dry before dressing — removes bitterness and stops it going watery.'},{name:'Gazpacho',time:'20 min',tip:'Blend with day-old bread soaked in water for 10 min — it emulsifies the soup and adds body.'}],
   'Courgette':      [{name:'Courgette fritters',time:'20 min',tip:'Squeeze out moisture — key to crispy fritters.'},{name:'Courgette ribbon pasta',time:'15 min',tip:'Use a peeler to make thin ribbons.'},{name:'Stuffed courgette boats',time:'40 min',tip:'Salt the hollowed flesh, rest 5 min and squeeze dry before mixing back into the filling.'}],
   'Lettuce':        [{name:'Classic green salad',time:'5 min',tip:'Dress just before serving to avoid wilting.'},{name:'Lettuce wraps',time:'15 min',tip:'Butter lettuce cups hold fillings best.'},{name:'Braised little gems',time:'20 min',tip:'Cook cut-side down in butter until golden.'}],
   'Spinach':        [{name:'Saag paneer',time:'30 min',tip:'Add spinach off the heat to keep colour bright.'},{name:'Spinach & feta pastry',time:'40 min',tip:'Brush every filo sheet with melted butter and work fast — it dries and cracks within a minute.'},{name:'Creamed spinach',time:'15 min',tip:'A grating of nutmeg lifts the whole dish.'}],
   'Kale':           [{name:'Crispy kale chips',time:'15 min',tip:'Dry thoroughly — any moisture makes them soggy.'},{name:'Kale & white bean soup',time:'35 min',tip:'Tuscan ribollita style — better the next day.'},{name:'Kale Caesar salad',time:'15 min',tip:'Massage the leaves to soften bitterness.'}],
   'Carrots':        [{name:'Honey-glazed carrots',time:'20 min',tip:'Finish with a squeeze of lemon to balance.'},{name:'Carrot & ginger soup',time:'30 min',tip:'Roast carrots first for deeper flavour.'},{name:'Carrot cake',time:'1 hr',tip:'Grated, not chopped — finer texture.'}],
-  'Beans':          [{name:'Green bean almondine',time:'15 min',tip:'Blanch then finish in brown butter with almonds.'},{name:'Bean & tomato stew',time:'30 min',tip:'A sprig of rosemary while simmering adds depth.'},{name:'Pickled green beans',time:'20 min',tip:'Ready to eat in 48 hrs — great as a snack.'}],
-  'Peas':           [{name:'Pea & mint soup',time:'15 min',tip:'Frozen peas work just as well for this.'},{name:'Mushy peas',time:'10 min',tip:'Marrowfat peas give authentic starchy texture; garden peas make a sweeter, brighter version.'},{name:'Pea & ham risotto',time:'35 min',tip:'Stir peas in off the heat to keep them green.'}],
+  'Beans':          [{name:'Green bean almondine',time:'15 min',tip:'Blanch then finish in brown butter with almonds.'},{name:'Bean & tomato stew',time:'30 min',tip:'A sprig of rosemary while simmering adds depth.'},{name:'Pickled green beans',time:'20 min',tip:'Pack upright in jars with dill, garlic and a dried chilli — the classic American dilly bean.'}],
+  'Peas':           [{name:'Pea & mint soup',time:'15 min',tip:'Reserve a handful of raw peas to add after blending for fresher flavour and visible green flecks.'},{name:'Mushy peas',time:'10 min',tip:'Marrowfat peas give authentic starchy texture; garden peas make a sweeter, brighter version.'},{name:'Pea & ham risotto',time:'35 min',tip:'Stir peas in off the heat to keep them green.'}],
   'Radishes':       [{name:'Radish butter toasts',time:'5 min',tip:'Slice thin, layer on good butter and sea salt.'},{name:'Quick pickled radishes',time:'10 min',tip:'Ready in 30 min — great on tacos.'},{name:'Radish salad with miso',time:'10 min',tip:'White miso keeps it mild; whisk with rice vinegar, sesame oil and a pinch of sugar until smooth.'}],
   'Beetroot':       [{name:'Roasted beet salad',time:'1 hr',tip:'Wrap in foil and roast whole for best results.'},{name:'Borscht',time:'45 min',tip:'Add a splash of red wine vinegar in the last 5 min — it brightens colour and sharpens the flavour.'},{name:'Beetroot hummus',time:'15 min',tip:'Blend roasted beet with standard hummus mix.'}],
   'Onions':         [{name:'French onion soup',time:'1 hr',tip:'Low, slow caramelisation — at least 40 min.'},{name:'Pickled red onions',time:'10 min',tip:'Ready in 30 min; lasts 2 weeks in the fridge.'},{name:'Caramelised onion tart',time:'50 min',tip:'The filling should be almost jam-like before going in the case; balsamic in the last 5 min deepens it.'}],
@@ -11748,7 +11748,7 @@ const RECIPE_DB = {
   'Coriander':      [{name:'Fresh salsa',time:'10 min',tip:'Add coriander stalks too — full of flavour.'},{name:'Coriander chutney',time:'10 min',tip:'Blend with green chilli, ginger and lemon juice.'},{name:'Pho garnish bowl',time:'5 min',tip:'The root goes in the broth for depth; stalks and leaves go fresh at the table just before eating.'}],
   'Dill':           [{name:'Gravlax',time:'48 hr',tip:'Equal weight salt and sugar; weigh down in the fridge, flip every 12 hrs, done in 48.'},{name:'Dill pickles',time:'15 min',tip:'Use whole peppercorns and mustard seeds.'},{name:'Cucumber & dill salad',time:'10 min',tip:'Soured cream or crème fraîche dressing.'}],
   'Thyme':          [{name:'Roast chicken with thyme',time:'1.5 hr',tip:'Stuff sprigs under the skin with butter.'},{name:'Thyme-infused olive oil',time:'10 min',tip:'Warm oil gently — don\'t boil.'},{name:'Mushroom & thyme toast',time:'15 min',tip:'Deglaze with a splash of white wine.'}],
-  'Rosemary':       [{name:'Focaccia',time:'2 hr',tip:'Press rosemary in just before baking.'},{name:'Rosemary roast potatoes',time:'50 min',tip:'Par-boil, rough up edges, roast in goose fat.'},{name:'Lamb chops with rosemary',time:'20 min',tip:'Marinate at least 30 min.'}],
+  'Rosemary':       [{name:'Focaccia',time:'2 hr',tip:'Press rosemary in just before baking.'},{name:'Rosemary roast potatoes',time:'50 min',tip:'Par-boil, rough up edges, roast in goose fat.'},{name:'Lamb chops with rosemary',time:'20 min',tip:'Pound the needles with salt in a pestle first — it releases significantly more of the essential oils.'}],
   'Sage':           [{name:'Brown butter & sage pasta',time:'15 min',tip:'Fry sage in butter until just crisp.'},{name:'Saltimbocca',time:'20 min',tip:'Sage leaf under prosciutto, quick pan-fry.'},{name:'Sage stuffing',time:'40 min',tip:'Fry the onions and sage in butter before mixing — raw stuffing tastes flat no matter how long it bakes.'}],
   'Potatoes':       [{name:'Roast potatoes',time:'1 hr',tip:'Parboil, shake to rough up, roast in hot fat.'},{name:'Potato soup',time:'30 min',tip:'Leave it slightly rough — a completely smooth potato soup loses all its body and interest.'},{name:'Potato gratin',time:'1.5 hr',tip:'Layer thin, season each layer, cream and garlic.'}],
   'Sweet Potatoes': [{name:'Sweet potato soup',time:'30 min',tip:'Coconut milk + lime + ginger is a winning combo.'},{name:'Sweet potato wedges',time:'35 min',tip:'Toss in cornflour first for extra crispiness.'},{name:'Stuffed sweet potato',time:'45 min',tip:'Prick all over and microwave 8 min to cook through, then oven 5 min to crisp and blister the skin.'}],
@@ -11775,7 +11775,7 @@ const RECIPE_DB = {
   'Pak Choi':          [{name:'Stir-fried pak choi',time:'8 min',tip:'High heat, 2–3 min max — it wilts fast and turns watery if overdone.'},{name:'Pak choi in oyster sauce',time:'10 min',tip:'Blanch then dress — don\'t stir-fry in sauce or it goes slimy.'},{name:'Braised pak choi',time:'15 min',tip:'Cook cut-side down in stock until tender but still glossy green.'}],
   'Rocket':            [{name:'Rocket & Parmesan salad',time:'5 min',tip:'Dress only with lemon and good olive oil — rocket needs nothing more.'},{name:'Rocket pesto',time:'10 min',tip:'More peppery than basil pesto; outstanding on pasta or bruschetta.'},{name:'Pizza bianca with rocket',time:'25 min',tip:'Add raw rocket after baking — heat makes it bitter and grey.'}],
   'Watercress':        [{name:'Watercress soup',time:'20 min',tip:'Add watercress off the heat and blend immediately to preserve the colour.'},{name:'Watercress, pear & walnut salad',time:'10 min',tip:'Add blue cheese to complete the classic trio.'},{name:'Watercress butter',time:'5 min',tip:'Blend with softened butter and lemon; excellent on fish or steak.'}],
-  'Broad Beans':       [{name:'Broad bean bruschetta',time:'15 min',tip:'Double-pod (remove the grey skin too) for a vivid green, tender result.'},{name:'Broad bean & mint salad',time:'15 min',tip:'The inner skin is worth removing — it dramatically improves texture.'},{name:'Ful medames',time:'30 min',tip:'Egyptian staple: olive oil, garlic, cumin, lemon — simple and brilliant.'}],
+  'Broad Beans':       [{name:'Broad bean bruschetta',time:'15 min',tip:'Double-pod (remove the grey skin too) for a vivid green, tender result.'},{name:'Broad bean & mint salad',time:'15 min',tip:'The inner skin is worth removing — it dramatically improves texture.'},{name:'Ful medames',time:'30 min',tip:'Use dried fava beans soaked overnight for authentic texture; fresh broad beans give a sweeter result.'}],
   'Runner Beans':      [{name:'Braised runner beans',time:'25 min',tip:'Slow-cook in olive oil and tomatoes Italian-style — they collapse perfectly.'},{name:'Runner bean salad',time:'10 min',tip:'Blanch and dress with anchovy vinaigrette while still warm.'},{name:'Runner beans with almonds',time:'15 min',tip:'Blanch, toss in brown butter with toasted flaked almonds.'}],
   'Mangetout':         [{name:'Stir-fried mangetout',time:'5 min',tip:'30 seconds is enough in a hot wok — they should still snap when bitten.'},{name:'Mangetout with sesame',time:'10 min',tip:'Blanch, cool in ice water, dress with sesame oil, seeds and soy.'},{name:'Spring stir-fry',time:'15 min',tip:'Add mangetout in the final 60 seconds to preserve crunch.'}],
   'Edamame':           [{name:'Salted edamame',time:'10 min',tip:'Boil 5 min in heavily salted water; eat directly from the pod.'},{name:'Edamame hummus',time:'10 min',tip:'Replace chickpeas for a lighter, brighter-coloured dip.'},{name:'Edamame & corn salad',time:'10 min',tip:'Dress with lime, sesame and ginger — excellent hot or cold.'}],
@@ -11788,12 +11788,12 @@ const RECIPE_DB = {
   'Redcurrants':       [{name:'Redcurrant jelly',time:'1 hr',tip:'Strain overnight through a jelly bag — squeezing will cloud it.'},{name:'Cumberland sauce',time:'20 min',tip:'Redcurrant jelly + port + orange zest — classic with game and cold meats.'},{name:'Redcurrant tart',time:'45 min',tip:'Arrange on crème patissière, glaze with warmed jelly for a bakery finish.'}],
   'Blackberries':      [{name:'Blackberry & apple crumble',time:'45 min',tip:'Season the filling with cinnamon and lemon; the pair is a natural classic.'},{name:'Blackberry jam',time:'45 min',tip:'Add cooking apple — its pectin helps compensate for blackberry\'s low level.'},{name:'Blackberry vinegar',time:'1 week',tip:'Steep in white wine vinegar; extraordinary in salad dressings and sauces.'}],
   'Blueberries':       [{name:'Blueberry pancakes',time:'20 min',tip:'Fold in from frozen — they hold shape far better than fresh berries.'},{name:'Blueberry muffins',time:'35 min',tip:'Toss berries in a little flour before folding in to stop them sinking.'},{name:'Blueberry compote',time:'10 min',tip:'Cook half the berries, stir in fresh at the end for mixed texture.'}],
-  'Grapes':            [{name:'Roasted grapes',time:'20 min',tip:'Roast whole bunches with rosemary and honey — exceptional on a cheese board.'},{name:'Grape focaccia',time:'2 hr',tip:'Press whole red grapes into dough with rosemary and a scatter of sugar.'},{name:'Grape chutney',time:'45 min',tip:'Red grapes + red onion + red wine vinegar — deep, jammy, and complex.'}],
+  'Grapes':            [{name:'Roasted grapes',time:'20 min',tip:'Roast at 200 °C for 15–20 min until they burst; save every drop of the caramelised pan syrup.'},{name:'Grape focaccia',time:'2 hr',tip:'Press whole red grapes into dough with rosemary and a scatter of sugar.'},{name:'Grape chutney',time:'45 min',tip:'Red grapes + red onion + red wine vinegar — deep, jammy, and complex.'}],
   'Melon':             [{name:'Melon & prosciutto',time:'5 min',tip:'Serve at room temperature — cold melon loses its perfume entirely.'},{name:'Melon salad with mint',time:'10 min',tip:'A pinch of chilli flakes and a squeeze of lime elevates this completely.'},{name:'Chilled melon soup',time:'15 min',tip:'Blend with a little white wine and serve very cold with a mint oil drizzle.'}],
   'Oregano':           [{name:'Greek salad',time:'5 min',tip:'Use fresh sparingly — it\'s more potent than dried and can dominate.'},{name:'Pizza sauce',time:'15 min',tip:'Add dried oregano into the sauce; scatter fresh on top after baking.'},{name:'Oregano oil',time:'10 min',tip:'Steep in warm olive oil with garlic; use on bread, grilled meat, roasted veg.'}],
   'Marjoram':          [{name:'Roasted vegetables with marjoram',time:'35 min',tip:'Add in the final 5 min — it scorches and turns bitter with prolonged heat.'},{name:'Marjoram butter sauce',time:'10 min',tip:'Melt into butter with white wine and lemon — excellent on white fish.'},{name:'Braised chicken with marjoram',time:'45 min',tip:'Subtler sweetness than oregano — add generously and confidently.'}],
   'Tarragon':          [{name:'Béarnaise sauce',time:'20 min',tip:'Clarified butter + egg yolks + white wine vinegar reduction + tarragon — precise heat is everything.'},{name:'Poulet à l\'estragon',time:'1 hr',tip:'French bistro classic: chicken in tarragon cream sauce. Use whole sprigs.'},{name:'Tarragon vinegar',time:'2 weeks',tip:'Steep sprigs in white wine vinegar; transforms salad dressings.'}],
-  'Bay':               [{name:'Bouquet garni',time:'5 min',tip:'Bay + thyme + parsley stalks — the backbone of every stock and braise.'},{name:'Bay-infused custard',time:'30 min',tip:'Warm cream with 2–3 leaves, steep 20 min off heat — remarkable fragrance.'},{name:'Slow-braised beans with bay',time:'2 hr',tip:'Dried beans with bay, garlic and olive oil — Tuscany in a pot.'}],
+  'Bay':               [{name:'Bouquet garni',time:'5 min',tip:'Bay + thyme + parsley stalks — the backbone of every stock and braise.'},{name:'Bay-infused custard',time:'30 min',tip:'Warm cream with 2–3 leaves, steep 20 min off heat — remarkable fragrance.'},{name:'Slow-braised beans with bay',time:'2 hr',tip:'Add salt only at the very end of cooking — salting early keeps the skins permanently tough.'}],
   'Borage':            [{name:'Summer drink garnish',time:'2 min',tip:'Flowers and young leaves both work — the classic Pimm\'s garnish.'},{name:'Borage flower ice cubes',time:'5 min',tip:'Freeze individual flowers in ice cubes — stunning in cold drinks.'},{name:'Borage fritters',time:'15 min',tip:'Dip flowers in thin tempura batter and fry for 60 seconds only.'}],
   'Chervil':           [{name:'Fines herbes omelette',time:'5 min',tip:'The classic French four: chervil + chives + parsley + tarragon in equal parts.'},{name:'Chervil soup',time:'20 min',tip:'Gentle anise flavour; blend with potato, cream and plenty of butter.'},{name:'Spring herb sauce',time:'10 min',tip:'Blend with creme fraiche and lemon — remarkable with salmon or eggs.'}],
   'Lovage':            [{name:'Lovage soup',time:'25 min',tip:'Intense celery-like flavour — one or two stalks is almost always enough.'},{name:'Lovage salt',time:'5 min',tip:'Blend dried lovage with sea salt; excellent seasoning for roast meat.'},{name:'Potato & lovage salad',time:'20 min',tip:'Use leaves wherever you\'d use celery — much more complex flavour.'}],
@@ -11812,18 +11812,36 @@ const RECIPE_DB = {
   'Salsify':                 [{name:'Salsify chips',time:'30 min',tip:'Peel under water and transfer to acidulated water immediately — it oxidises in seconds.'},{name:'Cream of salsify soup',time:'30 min',tip:'The subtle oyster-like flavour is exceptional alongside a drizzle of good truffle oil.'},{name:'Roasted salsify',time:'35 min',tip:'Wrap in foil with butter and thyme; the skin peels cleanly away once fully cooked.'}],
   'Purple Sprouting Broccoli':[{name:'PSB with anchovy butter',time:'15 min',tip:'Steam for exactly 3 min; the anchovy butter is the dish — make a generous amount.'},{name:'Roasted PSB with chilli',time:'20 min',tip:'Roast at 200 °C until crispy at the edges — responds better to this than standard broccoli.'},{name:'PSB with hollandaise',time:'20 min',tip:'One of the great seasonal pairings; serve as a first course at peak season.'}],
 
+  'Apples':                  [{name:'Apple crumble',time:'45 min',tip:'Add oats to the topping; it should be rough and clumpy, not like fine breadcrumbs.'},{name:'Tarte Tatin',time:'1 hr',tip:'Use a heavy ovenproof pan; once the caramel starts to colour, don\'t stir it.'},{name:'Apple chutney',time:'1.5 hr',tip:'Use half Bramley (sharp) and half eating apple for the best balance of flavour.'},{name:'Apple sauce',time:'15 min',tip:'Bramley collapses perfectly; add a knob of butter at the very end for gloss.'}],
+  'Pears':                   [{name:'Poached pears in red wine',time:'45 min',tip:'Keep the liquid at a bare simmer — a rolling boil makes pears collapse and turn mushy.'},{name:'Pear & walnut tart',time:'1 hr',tip:'Halve and core onto frangipane; the almond cream is the natural partner for pear.'},{name:'Pear chutney',time:'1 hr',tip:'Slightly underripe pears hold their shape far better than fully ripe ones.'}],
+  'Plums':                   [{name:'Plum jam',time:'1 hr',tip:'Plum stones contain pectin; crack a few, tie in muslin and add to the pan.'},{name:'Roasted plums',time:'30 min',tip:'Roast with vanilla and a little sugar — the juice in the pan is as good as the fruit.'},{name:'Plum crumble',time:'45 min',tip:'No need to peel; the skins dissolve during cooking and deepen the colour of the filling.'}],
+  'Damsons':                 [{name:'Damson gin',time:'3 months',tip:'Fill a jar with damsons, sugar and gin; shake daily for a week, then leave to steep.'},{name:'Damson jam',time:'1 hr',tip:'Higher pectin than most plums — sets reliably. Remove stones as they float to the surface.'},{name:'Damson cheese',time:'2 hr',tip:'A thick, sliceable preserve; exceptional alongside a piece of mature cheddar.'}],
+  'Cherries':                [{name:'Clafoutis',time:'45 min',tip:'Leave the stones in — they add a subtle almond note and keep the cherries firmer during baking.'},{name:'Cherry jam',time:'45 min',tip:'Low pectin fruit; add lemon juice and use jam sugar for a reliable, firm set.'},{name:'Brandied cherries',time:'1 week',tip:'Pack into sterilised jars with sugar syrup and brandy; ready in a week, keeps for a year.'}],
+  'Figs':                    [{name:'Roasted figs with honey',time:'20 min',tip:'Score the top in a cross, push in butter and honey, roast at 200 °C for 12–15 min.'},{name:'Fig jam',time:'45 min',tip:'Low pectin — add lemon juice and cook to 105 °C (use a thermometer) for a reliable set.'},{name:'Fig & blue cheese salad',time:'10 min',tip:'Halve fresh figs, drizzle with aged balsamic; the bitter-sweet contrast is exceptional.'}],
+  'Quinces':                 [{name:'Quince paste (membrillo)',time:'2 hr',tip:'Cook until deep amber and very stiff — it will set firm when cool; essential with Manchego.'},{name:'Quince jelly',time:'2 hr',tip:'Strain through a jelly bag overnight; squeezing even slightly will make it permanently cloudy.'},{name:'Poached quince',time:'1 hr',tip:'They turn from yellow to a beautiful deep rose-pink as they cook — the transformation is remarkable.'}],
+  'Cavolo Nero':             [{name:'Ribollita',time:'1 hr',tip:'Cavolo nero is what makes this Tuscan soup distinctive; reheat the next day — it improves markedly.'},{name:'Cavolo nero with garlic & chilli',time:'10 min',tip:'Blanch 2 min, then finish in very hot oil with lots of garlic and chilli — pure aglio e olio logic.'},{name:'White bean & cavolo nero soup',time:'30 min',tip:'Add a Parmesan rind while simmering; it dissolves slowly and adds extraordinary depth.'}],
+  'Mizuna':                  [{name:'Mizuna salad',time:'5 min',tip:'Dress very lightly — its peppery bite needs little enhancement; lemon and olive oil is enough.'},{name:'Mizuna stir-fry',time:'5 min',tip:'Add in the final 30 seconds only; it wilts to almost nothing if left any longer.'},{name:'Mizuna & miso soup',time:'10 min',tip:'Stir raw leaves into the hot soup just before serving — they wilt gently without losing freshness.'}],
+  'Mustard Greens':          [{name:'Braised mustard greens',time:'30 min',tip:'Low and slow with smoked bacon or ham hock; the bitterness mellows completely with time.'},{name:'Mustard green stir-fry',time:'8 min',tip:'High heat with garlic and ginger; the spicy bite softens significantly with cooking.'},{name:'Mustard green pesto',time:'10 min',tip:'A fiery, peppery alternative to basil — balance the heat with extra Parmesan and lemon.'}],
+  'Elderflower':             [{name:'Elderflower cordial',time:'24 hr',tip:'Pick heads away from roads; rinse gently but never soak — you lose the pollen and with it the flavour.'},{name:'Elderflower fritters',time:'15 min',tip:'Dip whole heads in thin batter, fry 60 seconds; dust with icing sugar and eat immediately.'},{name:'Elderflower & gooseberry jam',time:'45 min',tip:'A classic pairing — tie 3–4 heads in muslin and add to the pan while the jam cooks.'}],
+  'Nettles':                 [{name:'Nettle soup',time:'25 min',tip:'Use only the young top leaves; wear gloves until blanched — the sting vanishes in 30 seconds.'},{name:'Nettle pasta dough',time:'30 min',tip:'Blanch, squeeze completely dry and blend into the dough for vivid green colour and earthy depth.'},{name:'Nettle pesto',time:'10 min',tip:'Blanch 30 seconds, refresh in ice water and treat exactly like basil in any pesto recipe.'}],
+
 };
 
 const RECIPE_ALIASES = {
-  // Herbs & general
+  // Herbs & foraged
   cilantro:'Coriander', melissa:'Lemon Balm', 'lemon melissa':'Lemon Balm',
+  nettle:'Nettles', 'stinging nettle':'Nettles', 'stinging nettles':'Nettles',
+  elderflowers:'Elderflower',
   // Brassicas
   arugula:'Rocket', rucola:'Rocket',
-  'cavolo nero':'Kale', 'black kale':'Kale', 'curly kale':'Kale', lacinato:'Kale', 'tuscan kale':'Kale', 'spring greens':'Kale',
+  'curly kale':'Kale', 'spring greens':'Kale',
+  'cavolo nero':'Cavolo Nero', lacinato:'Cavolo Nero', 'tuscan kale':'Cavolo Nero', 'black kale':'Cavolo Nero',
   'purple sprouting':'Purple Sprouting Broccoli', psb:'Purple Sprouting Broccoli', 'sprouting broccoli':'Purple Sprouting Broccoli',
   // Salad & chicory family
   endive:'Chicory', witloof:'Chicory', 'belgian endive':'Chicory',
   treviso:'Radicchio', 'red chicory':'Radicchio',
+  'japanese mustard':'Mizuna', 'japanese salad leaf':'Mizuna',
+  'mustard leaf':'Mustard Greens', 'mustard leaves':'Mustard Greens', 'chinese mustard':'Mustard Greens',
   // Alliums
   'spring onion':'Spring Onions', scallion:'Spring Onions', scallions:'Spring Onions',
   shallot:'Shallots', 'banana shallot':'Shallots', 'echalion shallot':'Shallots',
@@ -11832,7 +11850,7 @@ const RECIPE_ALIASES = {
   eggplant:'Aubergine', zucchini:'Courgette', courgettes:'Courgette', marrow:'Courgette',
   butternut:'Squash', pumpkin:'Squash',
   tomatillo:'Tomatillos',
-  // Peppers (sweet) vs Chillies (hot) — now separate entries
+  // Peppers (sweet) vs Chillies (hot)
   capsicum:'Peppers', 'bell pepper':'Peppers', 'sweet pepper':'Peppers',
   chilli:'Chillies', chili:'Chillies', chile:'Chillies', chilies:'Chillies', 'hot pepper':'Chillies',
   // Asian greens
@@ -11851,14 +11869,21 @@ const RECIPE_ALIASES = {
   'borlotti bean':'Borlotti Beans', 'cranberry bean':'Borlotti Beans', 'roman bean':'Borlotti Beans',
   // Artichokes
   'globe artichoke':'Artichoke', artichokes:'Artichoke',
-  // Edible flowers & herbs
+  // Edible flowers & specialty
   nasturtiums:'Nasturtium',
   'marsh samphire':'Samphire', 'rock samphire':'Samphire', glasswort:'Samphire',
-  // Physalis
   'cape gooseberry':'Physalis', 'ground cherry':'Physalis',
   // Corn & sweet potato
   'sweet corn':'Corn', 'sweet potato':'Sweet Potatoes',
-  // Fruit
+  // Tree fruits
+  apple:'Apples', 'cooking apple':'Apples', 'eating apple':'Apples', bramley:'Apples', coxes:'Apples',
+  pear:'Pears', conference:'Pears', 'williams pear':'Pears', 'conference pear':'Pears',
+  plum:'Plums', 'victoria plum':'Plums', greengage:'Plums', mirabelle:'Plums', 'gage':'Plums',
+  damson:'Damsons', 'damson plum':'Damsons', bullace:'Damsons',
+  cherry:'Cherries', 'morello cherry':'Cherries', 'sour cherry':'Cherries', 'sweet cherry':'Cherries',
+  fig:'Figs',
+  quince:'Quinces',
+  // Soft fruit
   blueberry:'Blueberries', blueberries:'Blueberries',
   blackberry:'Blackberries', blackberries:'Blackberries',
   'black currant':'Blackcurrants', 'black currants':'Blackcurrants', blackcurrant:'Blackcurrants',
@@ -11888,7 +11913,7 @@ function getRecipesForCrop(name) {
 function showHarvestRecipes(name) {
   const recipes = getRecipesForCrop(name);
   if (!recipes.length) return;
-  const shown = recipes.slice(0, 3);
+  const shown = [...recipes].sort(() => Math.random() - 0.5).slice(0, 3);
   const overlay = document.createElement('div');
   overlay.className = 'variety-log-overlay recipe-overlay';
   overlay.innerHTML = `<div class="variety-log-sheet recipe-sheet">
