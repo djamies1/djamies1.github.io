@@ -699,6 +699,23 @@
     </div>
   </div>
 
+  <!-- Phase 133: Plant Problem Solver -->
+  <div id="problem-solver-overlay" class="ps-overlay" hidden role="dialog" aria-modal="true" aria-label="Plant Problem Solver">
+    <div class="ps-sheet">
+      <div class="ps-header">
+        <span class="ps-header-title">🔍 Diagnose a Problem</span>
+        <button class="ps-close-btn" onclick="closeProblemSolver()">✕</button>
+      </div>
+      <div id="ps-crop-label"></div>
+      <p class="ps-symptom-prompt">What do you see on your plant?</p>
+      <div id="ps-symptom-grid" class="ps-symptom-grid"></div>
+      <div id="ps-results" class="ps-results"></div>
+      <div id="ps-log-row" class="ps-log-row" hidden>
+        <button class="ps-log-btn" id="ps-log-btn"></button>
+      </div>
+    </div>
+  </div>
+
   <!-- Long-press quick actions (Phase 79) -->
   <div id="longpress-overlay" class="lp-overlay" hidden></div>
 

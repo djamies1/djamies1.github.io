@@ -2111,6 +2111,7 @@ function renderModalProblems(name) {
     ${openRows || '<p class="prob-none">No active problems logged.</p>'}
     ${resolvedRows ? `<div class="prob-resolved-group">${resolvedRows}</div>` : ''}
     <div class="prob-add-form">
+      <button class="prob-diagnose-btn" data-crop="${name}">🔍 Not sure? Diagnose the problem</button>
       <div class="prob-type-chips">${TYPES.map(t => `<button class="prob-chip" data-type="${t}">${t}</button>`).join('')}</div>
       <div class="prob-add-row">
         <input type="text" class="prob-notes-input" id="prob-notes-in" placeholder="Notes (optional)">
@@ -2118,6 +2119,10 @@ function renderModalProblems(name) {
       </div>
     </div>`;
   body.appendChild(sec);
+
+  sec.querySelector('.prob-diagnose-btn').addEventListener('click', e => {
+    openProblemSolver(e.currentTarget.dataset.crop);
+  });
 
   let selectedType = null;
   sec.querySelectorAll('.prob-chip').forEach(chip => {
@@ -11190,4 +11195,178 @@ function renderSeasonSummaryPrompt() {
     </div>
     <button class="sspr-btn" onclick="openSeasonWrapUp()">View summary</button>
   </div>`;
+}
+
+// ── Phase 133: Plant Problem Solver ─────────────────────────────────────────
+
+const PROBLEM_DATABASE = [
+  {
+    id: 'yellow_leaves',
+    label: 'Yellow / Pale Leaves',
+    emoji: '🟡',
+    causes: [
+      { name: 'Nitrogen Deficiency',     prob: 'Likely',   fix: 'Top-dress with balanced fertiliser, blood meal or well-rotted compost. Feed every 2 weeks through the growing season.' },
+      { name: 'Overwatering',            prob: 'Possible', fix: 'Allow the top 2\u20133 cm of soil to dry between waterings. Check drainage \u2014 roots sitting in water rot quickly.' },
+      { name: 'Spider Mites',            prob: 'Possible', fix: 'Check undersides of leaves for fine webbing. Spray with neem oil or insecticidal soap; raise humidity to deter them.' },
+      { name: 'Natural Leaf Senescence', prob: 'Normal',   fix: 'Lower leaves naturally yellow as the plant matures. Remove and compost if there is no sign of pest or disease.' },
+    ]
+  },
+  {
+    id: 'white_powder',
+    label: 'White Powder on Leaves',
+    emoji: '🌫️',
+    causes: [
+      { name: 'Powdery Mildew', prob: 'Very Likely', fix: 'Remove badly affected leaves. Spray with 1 tsp baking soda + \u00bd tsp dish soap per litre of water, or neem oil. Improve air circulation and avoid overhead watering.' },
+      { name: 'Mealybugs',      prob: 'Possible',   fix: 'White cottony clusters on stems and leaf nodes. Wipe off with rubbing alcohol on a cotton bud; spray with insecticidal soap.' },
+    ]
+  },
+  {
+    id: 'holes_in_leaves',
+    label: 'Holes in Leaves',
+    emoji: '🕳️',
+    causes: [
+      { name: 'Caterpillars / Cabbage White', prob: 'Likely',   fix: 'Hand-pick caterpillars and eggs from leaf undersides. Use Bacillus thuringiensis (Bt) spray for heavy infestations; net brassicas.' },
+      { name: 'Slugs & Snails',              prob: 'Likely',   fix: 'Set beer traps or lay copper tape around pots. Apply iron phosphate pellets. Check under debris and pots at night.' },
+      { name: 'Flea Beetles',                prob: 'Possible', fix: 'Tiny round holes in brassicas and aubergines. Use floating row covers; apply diatomaceous earth around the base of plants.' },
+    ]
+  },
+  {
+    id: 'wilting',
+    label: 'Wilting / Drooping',
+    emoji: '😔',
+    causes: [
+      { name: 'Underwatering',                prob: 'Very Likely', fix: 'Water deeply and thoroughly, then mulch to retain moisture. Check soil 5 cm down \u2014 if dry, water immediately.' },
+      { name: 'Root Rot',                     prob: 'Possible',    fix: 'Occurs in waterlogged soil. Inspect roots \u2014 healthy roots are white; rotten roots are brown and mushy. Repot in fresh, well-draining mix.' },
+      { name: 'Fusarium / Verticillium Wilt', prob: 'Possible',    fix: 'Fungal wilt causes one-sided yellowing then collapse. No cure \u2014 remove the plant; avoid replanting the same family in that spot for 3+ years.' },
+      { name: 'Vine Borers / Root Pests',     prob: 'Possible',    fix: 'Check the base of stems for entry holes or sawdust-like frass. Cut open the stem to remove the larva; wrap stems in foil to deter future egg-laying.' },
+    ]
+  },
+  {
+    id: 'black_spots',
+    label: 'Black / Brown Spots',
+    emoji: '🔵',
+    causes: [
+      { name: 'Early Blight (Alternaria)',  prob: 'Likely',   fix: 'Dark spots with concentric rings, lower leaves first. Remove affected leaves; spray copper fungicide; avoid overhead watering.' },
+      { name: 'Late Blight (Phytophthora)', prob: 'Possible', fix: 'Water-soaked, rapidly spreading dark patches \u2014 spreads in cool humid weather. Remove and bag affected material; apply copper spray immediately.' },
+      { name: 'Bacterial Leaf Spot',        prob: 'Possible', fix: 'Angular water-soaked spots that turn brown/black. Avoid wetting foliage; remove affected leaves; copper sprays can limit spread.' },
+      { name: 'Frost Damage',              prob: 'Seasonal', fix: 'Black/brown patches after cold nights. Remove damaged tissue; protect remaining plants with horticultural fleece.' },
+    ]
+  },
+  {
+    id: 'stunted_growth',
+    label: 'Stunted Growth',
+    emoji: '🐢',
+    causes: [
+      { name: 'Nutrient Deficiency',  prob: 'Likely',   fix: 'Apply a balanced slow-release fertiliser. Test soil pH \u2014 most crops prefer 6.0\u20137.0; outside this range, nutrients become locked out.' },
+      { name: 'Compacted Soil',       prob: 'Possible', fix: 'Roots cannot penetrate hard soil. Fork over deeply; add compost or horticultural grit to improve structure and drainage.' },
+      { name: 'Root-knot Nematodes',  prob: 'Possible', fix: 'Check roots for small galls or knots. Grow marigolds as a companion (they suppress nematodes); rotate crop families each year.' },
+      { name: 'Pest Root Damage',     prob: 'Possible', fix: 'Vine weevil grubs or carrot fly larvae eat roots unseen. Inspect soil around the base; apply nematode biological control in spring.' },
+    ]
+  },
+  {
+    id: 'sticky_residue',
+    label: 'Sticky Residue / Sooty Mould',
+    emoji: '🫧',
+    causes: [
+      { name: 'Aphids',        prob: 'Very Likely', fix: 'Check undersides of young leaves and growing tips for colonies. Blast off with water; encourage ladybirds; spray neem oil or insecticidal soap.' },
+      { name: 'Whitefly',      prob: 'Likely',      fix: 'White clouds fly up when the plant is disturbed. Hang yellow sticky traps; spray undersides of leaves with insecticidal soap.' },
+      { name: 'Scale Insects', prob: 'Possible',    fix: 'Brown bumps on stems or leaf midribs. Scrape off with a fingernail or soft brush; spray with horticultural oil.' },
+    ]
+  },
+  {
+    id: 'rotting_base',
+    label: 'Rotting at Base / Stem',
+    emoji: '🫠',
+    causes: [
+      { name: 'Damping Off (seedlings)', prob: 'Very Likely', fix: 'Fungal collapse at soil level in young seedlings. Use sterile seed mix; water from below; improve ventilation; apply a copper-based fungicide drench.' },
+      { name: 'Crown / Stem Rot',        prob: 'Likely',      fix: 'Overwatering and poor drainage cause crown rot. Reduce watering; keep mulch away from direct stem contact; dress with grit around the base.' },
+      { name: 'Sclerotinia Stem Rot',    prob: 'Possible',    fix: 'White fluffy mould inside the stem. Remove and destroy affected plants; improve airflow; avoid planting susceptible crops in the same spot next year.' },
+    ]
+  },
+];
+
+let _psCropName  = null;
+let _psSymptomId = null;
+
+function openProblemSolver(cropName) {
+  _psCropName  = cropName || null;
+  _psSymptomId = null;
+  const overlay = document.getElementById('problem-solver-overlay');
+  if (!overlay) return;
+
+  const cropLabel = document.getElementById('ps-crop-label');
+  if (cropLabel) {
+    cropLabel.innerHTML = (_psCropName && cropData[_psCropName])
+      ? `<div class="ps-crop-tag">${cropData[_psCropName].emoji || '\u{1F331}'} Diagnosing: <strong>${_psCropName}</strong></div>`
+      : '';
+  }
+
+  const grid = document.getElementById('ps-symptom-grid');
+  if (grid) {
+    grid.innerHTML = PROBLEM_DATABASE.map(s =>
+      `<button class="ps-symptom-chip" data-sid="${s.id}">${s.emoji} <span>${s.label}</span></button>`
+    ).join('');
+    grid.querySelectorAll('.ps-symptom-chip').forEach(chip =>
+      chip.addEventListener('click', () => {
+        _psSymptomId = chip.dataset.sid;
+        grid.querySelectorAll('.ps-symptom-chip').forEach(c =>
+          c.classList.toggle('ps-symptom-chip--active', c === chip)
+        );
+        renderPsResults();
+      })
+    );
+  }
+
+  document.getElementById('ps-results').innerHTML = '';
+  const logRow = document.getElementById('ps-log-row');
+  if (logRow) logRow.hidden = true;
+
+  overlay.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProblemSolver() {
+  const overlay = document.getElementById('problem-solver-overlay');
+  if (overlay) overlay.hidden = true;
+  document.body.style.overflow = '';
+}
+
+function renderPsResults() {
+  const symptom = PROBLEM_DATABASE.find(s => s.id === _psSymptomId);
+  const el = document.getElementById('ps-results');
+  const logRow = document.getElementById('ps-log-row');
+  if (!el || !symptom) return;
+
+  const PROB_CLASS = {
+    'Very Likely': 'ps-prob--high',
+    'Likely':      'ps-prob--med',
+    'Possible':    'ps-prob--low',
+    'Normal':      'ps-prob--info',
+    'Seasonal':    'ps-prob--info',
+  };
+
+  el.innerHTML = symptom.causes.map(c => `
+    <div class="ps-cause-card">
+      <div class="ps-cause-header">
+        <span class="ps-cause-name">${c.name}</span>
+        <span class="ps-prob ${PROB_CLASS[c.prob] || ''}">${c.prob}</span>
+      </div>
+      <p class="ps-cause-fix">${c.fix}</p>
+    </div>`).join('');
+
+  if (logRow) {
+    logRow.hidden = !_psCropName;
+    const btn = document.getElementById('ps-log-btn');
+    if (btn && _psCropName) {
+      btn.textContent = `Log problem on ${_psCropName}`;
+      btn.onclick = () => {
+        closeProblemSolver();
+        openCropDetail(_psCropName);
+        setTimeout(() => {
+          document.querySelector('.modal-problems-section')
+            ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      };
+    }
+  }
 }
