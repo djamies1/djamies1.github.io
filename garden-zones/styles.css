@@ -5481,3 +5481,9 @@ body.garden-mode .plant-section ul {
 .care-log-label { flex: 1; font-size: 12px; }
 .care-log-date { color: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
 .td-item--fert { border-left-color: #a78bfa; }
+
+/* Phase 135 — Weather-to-garden alert colours */
+.td-item--rain      { border-left-color: #60a5fa; }
+.td-item--heat      { border-left-color: #f97316; }
+.td-item--dry       { border-left-color: #facc15; }
+.td-item--transplant { border-left-color: var(--accent); }

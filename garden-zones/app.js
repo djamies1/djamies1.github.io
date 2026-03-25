@@ -86,6 +86,12 @@ const FROST_SENSITIVE = new Set([
   'Sweet Potatoes','Ginger','Lemongrass','Okra','Peanuts',
 ]);
 
+// Phase 135 — crops that bolt or suffer in heat (bolt risk, bitter flavour, wilting)
+const HEAT_SENSITIVE = new Set([
+  'Lettuce','Spinach','Arugula','Cilantro','Peas','Kale','Broccoli','Cauliflower',
+  'Radishes','Parsley','Bok Choy','Cabbage','Brussels Sprouts','Leeks','Swiss Chard',
+]);
+
 // ── Phase 67: Companion reasons ────────────────
 const COMPANION_REASONS = {
   'Tomatoes|Basil':'Basil repels aphids and thrips; traditionally said to improve tomato flavour.',
@@ -11071,6 +11077,52 @@ function renderTodayDashboard() {
     const ns = maturingSoon.slice(0, 2).map(n => `${cropData[n]?.emoji || '🌱'} ${n}`).join(', ')
              + (maturingSoon.length > 2 ? ` +${maturingSoon.length - 2}` : '');
     ok.push({ icon: '📈', text: `${ns} almost harvest-ready`, action: null, cls: 'td-item--stage' });
+  }
+
+  // 8. Smart weather-to-garden alerts (Phase 135)
+  if (weatherData?.daily) {
+    const d = weatherData.daily;
+    const todayStr = new Date().toISOString().slice(0, 10);
+    const ti = Math.max(0, d.time.findIndex(t => t === todayStr));
+    const prec = d.precipitation_sum;
+    const tmax = d.temperature_2m_max;
+
+    // Rain tomorrow → skip watering
+    if (planted.length && prec?.[ti + 1] >= 0.1) {
+      ok.push({ icon: '🌧', text: 'Rain forecast tomorrow — save watering until after', action: null, cls: 'td-item--rain' });
+    }
+
+    // Heat wave: max ≥ 93°F on 2+ of next 3 days
+    if (tmax) {
+      const hotDays = [ti, ti+1, ti+2].filter(i => (tmax[i] ?? 0) >= 93).length;
+      if (hotDays >= 2 && planted.length) {
+        const heatSensitive = planted.filter(n => HEAT_SENSITIVE.has(n));
+        const extra = heatSensitive.length
+          ? ` — protect ${heatSensitive.slice(0,2).map(n => cropData[n]?.emoji + ' ' + n).join(', ')}`
+          : '';
+        warn.push({ icon: '🔥', text: `Heat wave this week — water daily${extra}`, action: null, cls: 'td-item--heat' });
+      }
+    }
+
+    // Dry spell: no rain past 4 days + next 3 days
+    if (prec && planted.length) {
+      const pastDry  = [ti-3, ti-2, ti-1, ti  ].every(i => i < 0 || (prec[i] ?? 0) < 0.05);
+      const futureDry = [ti+1, ti+2, ti+3].every(i => (prec[i] ?? 0) < 0.05);
+      if (pastDry && futureDry) {
+        warn.push({ icon: '☀️', text: 'Extended dry spell — check soil moisture daily', action: null, cls: 'td-item--dry' });
+      }
+    }
+
+    // Good transplant window: next 2–4 days cool (max < 72°F) with some rain
+    if (tmax && prec) {
+      const windowDays = [ti+1, ti+2, ti+3];
+      const coolDays  = windowDays.filter(i => (tmax[i] ?? 99) < 72).length;
+      const rainDays  = windowDays.filter(i => (prec[i] ?? 0) >= 0.04).length;
+      const unplanted = planted.filter(n => !myGarden[n]?.planted);
+      if (coolDays >= 2 && rainDays >= 1 && (unplanted.length || planted.length)) {
+        ok.push({ icon: '🌱', text: 'Good transplant conditions coming — cool & cloudy days ahead', action: null, cls: 'td-item--transplant' });
+      }
+    }
   }
 
   if (!urgent.length && !warn.length && !ok.length) { el.innerHTML = ''; return; }
