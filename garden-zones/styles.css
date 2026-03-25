@@ -5423,3 +5423,19 @@ body.garden-mode .plant-section ul {
 .sw-streak    { color: #fb923c; font-size: 12px; font-weight: 600; margin-bottom: 12px; text-align: center; }
 .sw-up   { color: var(--accent); font-size: 10px; font-weight: 700; }
 .sw-down { color: #f87171; font-size: 10px; font-weight: 700; }
+
+/* Phase 132 — Inline bed cell grid */
+.bgv-grid-wrap { overflow-x: auto; padding: 10px 14px 12px; scrollbar-width: none; }
+.bgv-grid-wrap::-webkit-scrollbar { display: none; }
+.bgv-grid { display: grid; gap: 5px; grid-template-columns: repeat(var(--bgv-cols), minmax(52px, 1fr)); width: max-content; min-width: 100%; }
+.bgv-cell { align-items: center; aspect-ratio: 1; border-radius: 8px; cursor: pointer; display: flex; flex-direction: column; justify-content: center; min-width: 52px; position: relative; transition: opacity 0.15s; }
+.bgv-cell:active { opacity: 0.7; }
+.bgv-cell--empty  { background: rgba(255,255,255,0.04); border: 1.5px dashed rgba(255,255,255,0.12); }
+.bgv-cell--filled { background: var(--surface2); border: 1px solid var(--border); }
+.bgv-cell--growing { border-color: rgba(74,222,128,0.35); }
+.bgv-cell--ready   { border-color: rgba(249,115,22,0.45); background: rgba(249,115,22,0.06); }
+.bgv-cell--saved   { border-color: var(--border); }
+.bgv-cell-emoji { font-size: 18px; line-height: 1; }
+.bgv-cell-label { color: var(--text-muted); font-size: 8px; margin-top: 2px; overflow: hidden; text-align: center; text-overflow: ellipsis; white-space: nowrap; width: 100%; padding: 0 3px; }
+.bgv-cell-stage { bottom: 3px; font-size: 9px; position: absolute; right: 3px; }
+.bgv-cell-plus  { color: rgba(255,255,255,0.2); font-size: 18px; font-weight: 300; line-height: 1; }

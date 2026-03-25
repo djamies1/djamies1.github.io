@@ -2531,26 +2531,53 @@ function renderGardenByBed() {
   }
   return bedIds.map(bedId => {
     const bed = gardenBeds[bedId];
-    const crops = getCropsInBed(bedId);
-    const cap = (bed.cols || 4) * (bed.rows || 2);
-    const fillPct = Math.round(Math.min(100, (crops.length / cap) * 100));
+    const cols = bed.cols || 4;
+    const rows = bed.rows || 2;
+    const cap  = cols * rows;
+    const cells = bed.cells || {};
+    const filledCount = Object.keys(cells).length;
     const t = BED_TYPES[bed.type || 'raised'];
-    const chips = crops.map(name => {
-      const c = cropData[name];
-      const s = getGardenStatus(name);
-      return `<span class="gvb-chip gvb-chip--${s?.type || 'saved'}">${c?.emoji || '🌱'} ${name.replace(/&/g,'&amp;')}</span>`;
-    }).join('');
-    return `<div class="gvb-card" style="border-color:${bed.color}88">
-      <div class="gvb-card-header" style="background:${bed.color}22">
+
+    // Build inline cell grid
+    let gridCells = '';
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const key  = `${c}-${r}`;
+        const name = cells[key];
+        if (name) {
+          const cd  = cropData[name];
+          const st  = getGardenStatus(name)?.type || 'saved';
+          const stageIcon = (() => {
+            const stage = getGardenStatus(name)?.stage?.stage;
+            return { germinating:'🌱', seedling:'🪴', growing:'🌿', maturing:'🌸', ready:'🌾' }[stage] || '';
+          })();
+          gridCells += `<div class="bgv-cell bgv-cell--filled bgv-cell--${st}"
+            data-col="${c}" data-row="${r}" data-bed="${bedId}" title="${name}">
+            <span class="bgv-cell-emoji">${cd?.emoji || '🌱'}</span>
+            <span class="bgv-cell-label">${name.split(' ')[0]}</span>
+            ${stageIcon ? `<span class="bgv-cell-stage">${stageIcon}</span>` : ''}
+          </div>`;
+        } else {
+          gridCells += `<div class="bgv-cell bgv-cell--empty"
+            data-col="${c}" data-row="${r}" data-bed="${bedId}" title="Tap to assign crop">
+            <span class="bgv-cell-plus">+</span>
+          </div>`;
+        }
+      }
+    }
+
+    return `<div class="gvb-card" style="border-color:${bed.color}55">
+      <div class="gvb-card-header" style="background:${bed.color}18">
         <span class="gvb-bed-icon">${bed.emoji}</span>
         <div class="gvb-bed-info">
           <span class="gvb-bed-name">${bed.name.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
-          <span class="gvb-bed-meta">${t?.label || 'Bed'} · ${crops.length}/${cap} crops</span>
+          <span class="gvb-bed-meta">${t?.label || 'Bed'} · ${filledCount}/${cap} cells filled</span>
         </div>
-        <button class="gvb-map-btn" data-bed="${bedId}">📐</button>
+        <button class="gvb-map-btn" data-bed="${bedId}" title="Open in map">📐</button>
       </div>
-      <div class="gvb-fill-bar"><div class="gvb-fill-fill" style="width:${fillPct}%;background:${bed.color}"></div></div>
-      <div class="gvb-chips">${chips || '<span class="gvb-empty-chips">Empty — add crops in map</span>'}</div>
+      <div class="bgv-grid-wrap">
+        <div class="bgv-grid" style="--bgv-cols:${cols}">${gridCells}</div>
+      </div>
     </div>`;
   }).join('');
 }
@@ -2565,6 +2592,14 @@ function wireGardenViewToggle() {
   document.getElementById('gvb-open-map')?.addEventListener('click', openGardenMap);
   document.querySelectorAll('.gvb-map-btn[data-bed]').forEach(btn => {
     btn.addEventListener('click', () => { openGardenMap(); setTimeout(() => selectMapBed(btn.dataset.bed), 100); });
+  });
+  // Phase 132: tap cells to assign crops
+  document.querySelectorAll('.bgv-cell[data-bed]').forEach(cell => {
+    cell.addEventListener('click', () => {
+      const { bed, col, row } = cell.dataset;
+      const existing = gardenBeds[bed]?.cells?.[`${col}-${row}`] || null;
+      openBedCropPicker(bed, parseInt(col), parseInt(row), existing);
+    });
   });
 }
 
@@ -6108,6 +6143,8 @@ function setBedCell(bedId, col, row, cropName) {
   saveBeds();
   if (document.getElementById('garden-map-overlay')?.hidden === false) {
     renderGardenMapCanvas();
+  } else if (currentPanelTab === 'garden' && gardenViewMode === 'bed') {
+    renderGardenTab();
   } else {
     renderGardenBeds();
   }
