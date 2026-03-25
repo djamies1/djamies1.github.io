@@ -3569,6 +3569,8 @@ function renderModalGardenSections(name) {
   renderSuccessionSection(name);
   // Phase 58: Hardening off
   renderHardeningSection(name);
+  // Phase 134: Care actions
+  renderCareSection(name);
   // Phase 22: Problems
   renderModalProblems(name);
   // Phase 44: Photos
@@ -11043,7 +11045,24 @@ function renderTodayDashboard() {
     warn.push({ icon: '💧', text: `${ns} newly planted — log first watering`, action: null, cls: 'td-item--water' });
   }
 
-  // 6. Crops maturing soon (within 4 days)
+  // 6. Overdue fertilising (>21 days since last or never fertilised + planted ≥21 days)
+  const FERT_INTERVAL = 21;
+  const fertOverdue = planted.filter(n => {
+    if (!myGarden[n]?.planted) return false;
+    const daysSincePlant = Math.round((today - new Date(myGarden[n].planted + 'T00:00:00')) / 86400000);
+    if (daysSincePlant < FERT_INTERVAL) return false;
+    const fertLog = (myGarden[n].careLog || []).filter(e => e.type === 'fertilise');
+    if (!fertLog.length) return true; // never fertilised
+    const lastFert = new Date(fertLog[fertLog.length - 1].date + 'T00:00:00');
+    return Math.round((today - lastFert) / 86400000) >= FERT_INTERVAL;
+  });
+  if (fertOverdue.length) {
+    const ns = fertOverdue.slice(0, 2).map(n => `${cropData[n]?.emoji || '🌱'} ${n}`).join(', ')
+             + (fertOverdue.length > 2 ? ` +${fertOverdue.length - 2}` : '');
+    warn.push({ icon: '🧪', text: `${ns} due for fertilising`, action: null, cls: 'td-item--fert' });
+  }
+
+  // 7. Crops maturing soon (within 4 days)
   const maturingSoon = planted.filter(n => {
     const st = getGardenStatus(n);
     return st?.stage?.stage === 'maturing' && st?.stage?.pct >= 80;
@@ -11369,4 +11388,74 @@ function renderPsResults() {
       };
     }
   }
+}
+
+// ── Phase 134: Care Actions Log ───────────────────────────────────────────────
+
+const CARE_TYPES = [
+  { id: 'fertilise', icon: '\u{1F9EA}', label: 'Fertilise'     },
+  { id: 'prune',     icon: '\u2702\uFE0F', label: 'Prune'     },
+  { id: 'spray',     icon: '\u{1F4A6}', label: 'Pest Spray'    },
+  { id: 'stake',     icon: '\u{1FA9D}', label: 'Stake'         },
+];
+
+function gardenLogCare(name, type) {
+  if (!myGarden[name]) return;
+  if (!myGarden[name].careLog) myGarden[name].careLog = [];
+  const today = new Date().toISOString().slice(0, 10);
+  myGarden[name].careLog.push({ date: today, type });
+  saveGarden();
+  const label = CARE_TYPES.find(c => c.id === type)?.label || type;
+  showToast(`${label} logged for ${name}`, 'success');
+  earnXP(8, `Care action: ${label} on ${name}`);
+  updateStreak();
+  renderCareSection(name);
+  renderTodayDashboard();
+}
+
+function renderCareSection(name) {
+  const body = document.getElementById('modal-body');
+  if (!body || !isInGarden(name)) return;
+  body.querySelector('.modal-care-section')?.remove();
+
+  const careLog = myGarden[name]?.careLog || [];
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+
+  // Last logged per type
+  const lastOf = type => {
+    const entries = careLog.filter(e => e.type === type).sort((a, b) => b.date.localeCompare(a.date));
+    if (!entries.length) return null;
+    const days = Math.round((today - new Date(entries[0].date + 'T00:00:00')) / 86400000);
+    return days === 0 ? 'today' : days === 1 ? 'yesterday' : `${days}d ago`;
+  };
+
+  const statusRows = CARE_TYPES.map(ct => {
+    const last = lastOf(ct.id);
+    return last ? `<span class="care-last-item">${ct.icon} <strong>${ct.label}</strong>: ${last}</span>` : '';
+  }).filter(Boolean).join('');
+
+  // Recent log (last 6 entries, newest first)
+  const recent = [...careLog].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6);
+  const logHtml = recent.map(e => {
+    const ct = CARE_TYPES.find(c => c.id === e.type);
+    return `<div class="care-log-row"><span class="care-log-icon">${ct?.icon || '\u2699\uFE0F'}</span><span class="care-log-label">${ct?.label || e.type}</span><span class="care-log-date">${e.date}</span></div>`;
+  }).join('');
+
+  const sec = document.createElement('div');
+  sec.className = 'modal-section modal-care-section';
+  sec.innerHTML = `
+    <div class="modal-section-title">\u{1F33F} Care</div>
+    <div class="care-quick-btns">
+      ${CARE_TYPES.map(ct =>
+        `<button class="care-btn" data-type="${ct.id}" title="${ct.label}">${ct.icon}<span>${ct.label}</span></button>`
+      ).join('')}
+    </div>
+    ${statusRows ? `<div class="care-last-row">${statusRows}</div>` : ''}
+    ${logHtml ? `<div class="care-log-list">${logHtml}</div>` : ''}`;
+
+  body.appendChild(sec);
+
+  sec.querySelectorAll('.care-btn').forEach(btn =>
+    btn.addEventListener('click', () => gardenLogCare(name, btn.dataset.type))
+  );
 }

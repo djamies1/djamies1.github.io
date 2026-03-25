@@ -5467,3 +5467,17 @@ body.garden-mode .plant-section ul {
 .ps-log-btn { background: var(--accent); border: none; border-radius: 10px; color: #000; cursor: pointer; font-size: 13px; font-weight: 600; padding: 11px 16px; width: 100%; }
 .prob-diagnose-btn { background: rgba(255,255,255,0.04); border: 1px dashed var(--border); border-radius: 8px; color: var(--text-muted); cursor: pointer; font-size: 12px; margin-bottom: 10px; padding: 8px 12px; text-align: left; width: 100%; }
 .prob-diagnose-btn:active { opacity: 0.7; }
+
+/* Phase 134 — Care Actions Log */
+.care-quick-btns { display: flex; gap: 8px; margin-bottom: 10px; }
+.care-btn { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); cursor: pointer; display: flex; flex: 1; flex-direction: column; font-size: 11px; gap: 3px; padding: 8px 4px; transition: background 0.15s; }
+.care-btn:active { background: rgba(74,222,128,0.15); border-color: var(--accent); }
+.care-btn span { color: var(--text-muted); font-size: 10px; white-space: nowrap; }
+.care-last-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.care-last-item { background: rgba(255,255,255,0.04); border-radius: 20px; font-size: 11px; padding: 3px 9px; }
+.care-log-list { border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 0; margin-top: 4px; padding-top: 6px; }
+.care-log-row { align-items: center; display: flex; gap: 8px; padding: 4px 0; }
+.care-log-icon { font-size: 14px; width: 18px; }
+.care-log-label { flex: 1; font-size: 12px; }
+.care-log-date { color: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.td-item--fert { border-left-color: #a78bfa; }
