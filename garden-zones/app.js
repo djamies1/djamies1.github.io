@@ -640,6 +640,7 @@ let cropRotation = [];
 let myPlan = {};
 let myVarieties = {};
 let journalSearchQuery = '';
+let calPersonal = (() => { try { return localStorage.getItem('pzf-cal-personal') === '1'; } catch { return false; } })();
 let layoutMode = localStorage.getItem('pzf-layout') || 'map';
 let journalEntries = [];
 let _photoDB = null;
@@ -967,8 +968,13 @@ function renderPanel() {
   const sections = ['startIndoors', 'directSow', 'transplant', 'harvest'];
   let hasAny     = false;
 
+  // Phase 136: build personal crop set for "Mine" filter
+  renderCalViewToggle();
+  const myPersonalSet = calPersonal ? buildPersonalCropSet() : null;
+
   for (const key of sections) {
-    const items   = data[key] || [];
+    let items = data[key] || [];
+    if (myPersonalSet) items = items.filter(n => myPersonalSet.has(n));
     const section = document.getElementById(`section-${key}`);
     const list    = document.getElementById(`list-${key}`);
     if (items.length > 0) {
@@ -1507,9 +1513,17 @@ function renderCropItem(name, section = null) {
     detail = `${convertMeasurement(c.depth)} deep · ${convertMeasurement(c.spacing)} apart · ${convertMeasurement(c.water)} · ${c.days}`;
   }
 
+  // Phase 136: personal badges
+  const seedEntry   = mySeeds?.[name];
+  const grewBefore  = gardenHistory?.some(h => h.name === name);
+  const personalBadges = [
+    seedEntry  ? `<span class="crop-badge crop-badge--seeds" title="In your seed stash">🌰${seedEntry.qty ? ' ' + seedEntry.qty : ''}</span>` : '',
+    grewBefore && !inG ? `<span class="crop-badge crop-badge--history" title="You grew this before">✓ grew</span>` : '',
+  ].join('');
+
   return `<li class="crop-card" data-crop="${name}" role="button" tabindex="0" aria-label="${name} — tap for details">
     <div class="crop-card-body">
-      <div class="crop-title">${c.emoji || '🌱'} ${name}${inG ? '<span class="crop-garden-star">★</span>' : ''}${c.custom ? '<span class="custom-crop-badge">Custom</span>' : ''}</div>
+      <div class="crop-title">${c.emoji || '🌱'} ${name}${inG ? '<span class="crop-garden-star">★</span>' : ''}${c.custom ? '<span class="custom-crop-badge">Custom</span>' : ''}${personalBadges}</div>
       ${detail ? `<div class="crop-detail">${detail}</div>` : ''}
       ${tipHtml}
     </div>
@@ -11510,4 +11524,36 @@ function renderCareSection(name) {
   sec.querySelectorAll('.care-btn').forEach(btn =>
     btn.addEventListener('click', () => gardenLogCare(name, btn.dataset.type))
   );
+}
+
+// ── Phase 136: My Plants Calendar Filter ─────────────────────────────────────
+
+function buildPersonalCropSet() {
+  const set = new Set();
+  // Currently in garden
+  Object.keys(myGarden).forEach(n => set.add(n));
+  // In plan (any year)
+  Object.values(myPlan || {}).forEach(yr => Object.keys(yr).forEach(n => set.add(n)));
+  // In seed stash
+  Object.keys(mySeeds || {}).forEach(n => set.add(n));
+  // In history (grew before)
+  (gardenHistory || []).forEach(h => { if (h.name) set.add(h.name); });
+  return set;
+}
+
+function renderCalViewToggle() {
+  const el = document.getElementById('cal-view-toggle');
+  if (!el) return;
+  const hasPersonal = buildPersonalCropSet().size > 0;
+  if (!hasPersonal) { el.innerHTML = ''; return; }
+  el.innerHTML = `<div class="cal-toggle">
+    <button class="cal-toggle-btn${!calPersonal ? ' cal-toggle-btn--active' : ''}" id="cal-toggle-all">All crops</button>
+    <button class="cal-toggle-btn${calPersonal  ? ' cal-toggle-btn--active' : ''}" id="cal-toggle-mine">My plants</button>
+  </div>`;
+  el.querySelector('#cal-toggle-all').addEventListener('click', () => {
+    if (calPersonal) { calPersonal = false; try { localStorage.setItem('pzf-cal-personal','0'); } catch {} renderPanel(); }
+  });
+  el.querySelector('#cal-toggle-mine').addEventListener('click', () => {
+    if (!calPersonal) { calPersonal = true; try { localStorage.setItem('pzf-cal-personal','1'); } catch {} renderPanel(); }
+  });
 }

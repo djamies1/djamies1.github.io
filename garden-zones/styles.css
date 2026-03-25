@@ -5487,3 +5487,11 @@ body.garden-mode .plant-section ul {
 .td-item--heat      { border-left-color: #f97316; }
 .td-item--dry       { border-left-color: #facc15; }
 .td-item--transplant { border-left-color: var(--accent); }
+
+/* Phase 136 — My Plants calendar filter */
+.cal-toggle { display: flex; gap: 4px; margin-bottom: 12px; }
+.cal-toggle-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; color: var(--text-muted); cursor: pointer; font-size: 12px; font-weight: 500; padding: 5px 14px; transition: background 0.15s, color 0.15s; }
+.cal-toggle-btn--active { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
+.crop-badge { border-radius: 20px; display: inline-flex; font-size: 10px; font-weight: 600; margin-left: 5px; padding: 1px 6px; vertical-align: middle; }
+.crop-badge--seeds   { background: rgba(180,140,80,0.15); border: 1px solid rgba(180,140,80,0.3); color: #c9a227; }
+.crop-badge--history { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25); color: var(--accent); }
