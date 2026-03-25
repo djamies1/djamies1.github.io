@@ -2589,7 +2589,7 @@ function renderGardenTab() {
     wireGardenViewToggle();
     renderTodayDashboard(); renderSetupCard(); renderGardenDashboard(); renderGardenDiversity(); renderRotationAdvisor(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
     renderCompanionMatrix(); renderGrowingTimeline(); renderGardenGantt(); renderGardenFooter();
-    renderGardenHistory(); renderGrowNext(); renderPlanSection(); renderHarvestAnalytics();
+    renderSeasonSummaryPrompt(); renderGardenHistory(); renderGrowNext(); renderPlanSection(); renderHarvestAnalytics();
     renderHarvestValue(); renderYieldLogger();
     renderWateringSchedule(); renderWateringIntelligence(); renderHarvestToTable(); renderGardenHealthScore();
     renderSmartShoppingList(); checkAchievements();
@@ -2685,6 +2685,7 @@ function renderGardenTab() {
   renderGrowingTimeline();
   renderGardenGantt();
   renderGardenFooter();
+  renderSeasonSummaryPrompt();
   renderGardenHistory();
   renderGrowNext();
   renderPlanSection();
@@ -3573,6 +3574,8 @@ async function addCropPhoto(name, file) {
     saveGarden();
     renderCropPhotoSection(name);
     haptic(5);
+    earnXP(8, `Photo of ${name}`);
+    updateStreak();
   } catch { showToast('Could not add photo', 'error'); }
 }
 
@@ -3588,37 +3591,68 @@ function renderCropPhotoSection(name) {
   if (!body || !isInGarden(name)) return;
   body.querySelector('.modal-photo-section')?.remove();
 
-  const photos = myGarden[name]?.photos || [];
+  // Photos sorted oldest → newest for timeline
+  const photos = [...(myGarden[name]?.photos || [])].sort((a, b) => a.date.localeCompare(b.date));
+  const planted = myGarden[name]?.planted;
+  const harvestMin = parseHarvestDays(cropData[name]?.days);
+
+  const getStageAt = dateStr => {
+    if (!planted || !harvestMin) return null;
+    const days = Math.round((new Date(dateStr + 'T00:00:00') - new Date(planted + 'T00:00:00')) / 86400000);
+    return getGrowthStage(days, harvestMin);
+  };
+
   const sec = document.createElement('div');
   sec.className = 'modal-section modal-photo-section';
-  sec.innerHTML = `
-    <div class="modal-section-title">
-      📷 Garden Photos
-      <label class="photo-add-label" title="Add photo">
-        +
+
+  const timelineHtml = photos.length ? `
+    <div class="cpt-timeline">
+      ${photos.map((p, i) => {
+        const stage = getStageAt(p.date);
+        const isLast = i === photos.length - 1;
+        return `<div class="cpt-frame${isLast ? ' cpt-frame--latest' : ''}">
+          <div class="cpt-img-wrap" data-thumb="${p.thumb}">
+            <img src="${p.thumb}" alt="${p.date}" loading="lazy" class="cpt-img">
+            ${stage ? `<span class="cpt-stage-badge">${stage.icon}</span>` : ''}
+            ${isLast ? `<span class="cpt-latest-badge">Latest</span>` : ''}
+          </div>
+          <span class="cpt-date">${p.date}</span>
+          <button class="cpt-del" data-id="${p.id}" aria-label="Delete">×</button>
+        </div>`;
+      }).join('')}
+      <div class="cpt-add-frame">
+        <label class="cpt-add-label" title="Add photo">
+          <span class="cpt-add-icon">+</span>
+          <span class="cpt-add-txt">Add</span>
+          <input type="file" class="crop-photo-input" accept="image/*" capture="environment" style="display:none">
+        </label>
+      </div>
+    </div>` : `
+    <div class="cpt-empty">
+      <label class="cpt-empty-label">
+        <span>📷 No photos yet — tap to add your first</span>
         <input type="file" class="crop-photo-input" accept="image/*" capture="environment" style="display:none">
       </label>
+    </div>`;
+
+  sec.innerHTML = `
+    <div class="modal-section-title">
+      ${photos.length >= 2 ? `📽 ${cropData[name]?.emoji || '🌱'} Journey (${photos.length} photos)` : '📷 Garden Photos'}
     </div>
-    ${photos.length ? `<div class="crop-photo-grid">
-      ${photos.map(p => `
-        <div class="crop-photo-thumb" data-id="${p.id}">
-          <img src="${p.thumb}" alt="${p.date}" loading="lazy">
-          <span class="crop-photo-date">${p.date}</span>
-          <button class="crop-photo-del" data-id="${p.id}" aria-label="Delete photo">×</button>
-        </div>`).join('')}
-    </div>` : `<p class="photo-empty-msg">No photos yet — tap + to add your first.</p>`}`;
+    ${timelineHtml}`;
 
   body.appendChild(sec);
 
-  sec.querySelector('.crop-photo-input').addEventListener('change', async e => {
-    const file = e.target.files[0];
-    if (file) { e.target.value = ''; await addCropPhoto(name, file); }
+  sec.querySelectorAll('.crop-photo-input').forEach(inp => {
+    inp.addEventListener('change', async e => {
+      const file = e.target.files[0];
+      if (file) { e.target.value = ''; await addCropPhoto(name, file); }
+    });
   });
-  sec.querySelectorAll('.crop-photo-del').forEach(btn => {
+  sec.querySelectorAll('.cpt-del').forEach(btn => {
     btn.addEventListener('click', e => { e.stopPropagation(); deleteCropPhoto(name, parseInt(btn.dataset.id, 10)); });
   });
-  // Tap thumbnail → open lightbox
-  sec.querySelectorAll('.crop-photo-thumb img').forEach(img => {
+  sec.querySelectorAll('.cpt-img').forEach(img => {
     img.addEventListener('click', () => {
       const lb = document.getElementById('photo-lightbox');
       const lbImg = document.getElementById('photo-lightbox-img');
@@ -9409,12 +9443,21 @@ function renderSeasonWrapUp() {
   const totalCrops    = names.length;
   const withDates     = names.filter(n => myGarden[n]?.planted).length;
   const totalHarvests = names.reduce((s, n) => s + (myGarden[n]?.harvestLog?.length || 0), 0);
+  const totalPhotos   = names.reduce((s, n) => s + (myGarden[n]?.photos?.length || 0), 0);
   let journal = [];
   try { journal = JSON.parse(localStorage.getItem('pzf-journal') || '[]'); } catch {}
 
-  const bestCrop  = [...names].sort((a, b) => (myGarden[b]?.harvestLog?.length || 0) - (myGarden[a]?.harvestLog?.length || 0))[0];
-  const topRated  = names.filter(n => myGarden[n]?.rating).sort((a, b) => (myGarden[b].rating || 0) - (myGarden[a].rating || 0))[0];
-  const health    = computeGardenHealthScore();
+  // Yield & value (Phase 127 helpers)
+  const totalKg = names.reduce((s, n) => s + getYieldKg(n), 0);
+  const { total: totalValue } = getSeasonHarvestValue();
+  const fmtKg   = kg => kg >= 1 ? `${kg.toFixed(1)} kg` : kg > 0 ? `${Math.round(kg * 1000)} g` : null;
+
+  const bestCrop = [...names].sort((a, b) => (myGarden[b]?.harvestLog?.length || 0) - (myGarden[a]?.harvestLog?.length || 0))[0];
+  const topRated = names.filter(n => myGarden[n]?.rating).sort((a, b) => (myGarden[b].rating || 0) - (myGarden[a].rating || 0))[0];
+  const health   = computeGardenHealthScore();
+
+  // XP + level (Phase 129)
+  const lvl = getGardenLevel(gardenXP);
 
   const lessons = [];
   if (!withDates) lessons.push('Set planting dates to unlock harvest tracking and countdowns.');
@@ -9426,39 +9469,55 @@ function renderSeasonWrapUp() {
   if (noCompanions.length) lessons.push(`Add companion plants for ${noCompanions.slice(0, 2).join(' and ')} to naturally deter pests.`);
   if (!lessons.length) lessons.push('Great season! Keep up the consistent planting and logging habits.');
 
-  const snap = { year, totalCrops, withDates, totalHarvests, journalEntries: journal.length, healthScore: health?.score || 0 };
+  const snap = { year, totalCrops, withDates, totalHarvests, journalEntries: journal.length, healthScore: health?.score || 0, totalKg, totalValue, xp: gardenXP };
   localStorage.setItem(`pzf-season-${year}`, JSON.stringify(snap));
 
   let prevSnap = null;
   try { prevSnap = JSON.parse(localStorage.getItem(`pzf-season-${year - 1}`)); } catch {}
 
-  const diff = (curr, prev) => {
+  const diff = (curr, prev, fmt) => {
     if (prev == null) return '';
     const d = curr - prev;
-    if (!d) return '';
-    return d > 0 ? ` <span class="sw-up">+${d}</span>` : `<span class="sw-down">${d}</span>`;
+    if (Math.abs(d) < 0.1) return '';
+    const label = fmt ? fmt(Math.abs(d)) : Math.abs(Math.round(d));
+    return d > 0 ? ` <span class="sw-up">↑${label}</span>` : ` <span class="sw-down">↓${label}</span>`;
   };
 
+  const yieldHtml = totalKg > 0 ? `
+    <div class="sw-yield-row">
+      <span class="sw-yield-kg">🏆 ${fmtKg(totalKg)} harvested</span>
+      ${totalValue >= 0.5 ? `<span class="sw-yield-val">≈ $${totalValue >= 100 ? Math.round(totalValue) : totalValue.toFixed(1)} saved</span>` : ''}
+    </div>` : '';
+
+  const streakHtml = gardenStreak.count >= 2
+    ? `<div class="sw-streak">🔥 ${gardenStreak.count}-day activity streak</div>` : '';
+
   content.innerHTML = `
-    <div class="sw-year">📋 ${year} Season Summary</div>
+    <div class="sw-hero">
+      <div class="sw-year-label">${year}</div>
+      <div class="sw-title">Your Garden Season</div>
+      <div class="sw-level-pill">Lv.${lvl.level} ${lvl.title} · ${gardenXP} XP</div>
+    </div>
+    ${yieldHtml}
+    ${streakHtml}
     <div class="sw-stats">
       <div class="sw-stat"><span class="sw-stat-val">${totalCrops}${diff(totalCrops, prevSnap?.totalCrops)}</span><span class="sw-stat-label">Crops grown</span></div>
       <div class="sw-stat"><span class="sw-stat-val">${totalHarvests}${diff(totalHarvests, prevSnap?.totalHarvests)}</span><span class="sw-stat-label">Harvests</span></div>
-      <div class="sw-stat"><span class="sw-stat-val">${journal.length}${diff(journal.length, prevSnap?.journalEntries)}</span><span class="sw-stat-label">Journal entries</span></div>
-      ${health ? `<div class="sw-stat"><span class="sw-stat-val">${health.score}${diff(health.score, prevSnap?.healthScore)}</span><span class="sw-stat-label">Health score</span></div>` : ''}
+      <div class="sw-stat"><span class="sw-stat-val">${journal.filter(e=>!e.milestone).length}${diff(journal.filter(e=>!e.milestone).length, prevSnap?.journalEntries)}</span><span class="sw-stat-label">Journal entries</span></div>
+      ${totalPhotos > 0 ? `<div class="sw-stat"><span class="sw-stat-val">${totalPhotos}</span><span class="sw-stat-label">Photos taken</span></div>` : (health ? `<div class="sw-stat"><span class="sw-stat-val">${health.score}${diff(health.score, prevSnap?.healthScore)}</span><span class="sw-stat-label">Health score</span></div>` : '')}
     </div>
     ${bestCrop && (myGarden[bestCrop]?.harvestLog?.length || 0) > 0 ? `
-      <div class="sw-highlight"><span class="sw-hl-label">⭐ Best performer</span>
+      <div class="sw-highlight"><span class="sw-hl-label">⭐ Star crop</span>
       <span class="sw-hl-value">${cropData[bestCrop]?.emoji || '🌱'} ${bestCrop} — ${myGarden[bestCrop].harvestLog.length} harvest${myGarden[bestCrop].harvestLog.length > 1 ? 's' : ''}</span></div>` : ''}
     ${topRated ? `
-      <div class="sw-highlight"><span class="sw-hl-label">🏆 Top rated</span>
+      <div class="sw-highlight"><span class="sw-hl-label">🏅 Top rated</span>
       <span class="sw-hl-value">${cropData[topRated]?.emoji || '🌱'} ${topRated} — ${'★'.repeat(myGarden[topRated].rating)}${'☆'.repeat(5 - myGarden[topRated].rating)}</span></div>` : ''}
+    ${prevSnap ? `<div class="sw-prev">vs ${year - 1}: ${prevSnap.totalCrops} crops · ${prevSnap.totalHarvests} harvests${prevSnap.totalKg ? ` · ${fmtKg(prevSnap.totalKg)}` : ''}</div>` : ''}
     <div class="sw-lessons">
       <div class="sw-lessons-title">💡 Tips for next season</div>
       ${lessons.map(l => `<div class="sw-lesson">• ${l}</div>`).join('')}
     </div>
-    ${prevSnap ? `<div class="sw-prev">vs ${year - 1}: ${prevSnap.totalCrops} crops · ${prevSnap.totalHarvests} harvests · score ${prevSnap.healthScore}</div>` : ''}
-    <button class="sw-close-btn" id="sw-close">Close</button>`;
+    <button class="sw-close-btn" id="sw-close">Done</button>`;
 
   document.getElementById('sw-close')?.addEventListener('click', () => {
     document.getElementById('season-wrap-overlay').hidden = true;
@@ -11066,4 +11125,32 @@ function updateStreak() {
     showToast(`🔥 ${gardenStreak.count}-day streak! Keep it up!`, 'success');
   }
   if (currentPanelTab === 'garden') renderGardenDashboard();
+}
+
+// ── Phase 131: Season summary prompt card ────────────
+function renderSeasonSummaryPrompt() {
+  const el = document.getElementById('season-summary-prompt');
+  if (!el) return;
+  const names = Object.keys(myGarden);
+  const totalHarvests = names.reduce((s, n) => s + (myGarden[n]?.harvestLog?.length || 0), 0);
+  const totalKg = names.reduce((s, n) => s + getYieldKg(n), 0);
+  // Show when: ≥3 harvests OR ≥5 crops OR ≥5 journal entries (something meaningful to summarise)
+  const journalCount = journalEntries.filter(e => !e.milestone).length;
+  if (totalHarvests < 3 && names.length < 5 && journalCount < 5) { el.innerHTML = ''; return; }
+
+  const lvl = getGardenLevel(gardenXP);
+  const fmtKg = kg => kg >= 1 ? `${kg.toFixed(1)} kg` : `${Math.round(kg * 1000)} g`;
+  const month = new Date().getMonth(); // 0-indexed
+  const isEndOfSeason = month >= 8; // Sep–Dec: encourage wrap-up
+
+  el.innerHTML = `<div class="sspr-card${isEndOfSeason ? ' sspr-card--season' : ''}">
+    <div class="sspr-left">
+      <span class="sspr-icon">${isEndOfSeason ? '🍂' : '📊'}</span>
+      <div class="sspr-body">
+        <span class="sspr-title">${isEndOfSeason ? 'Season winding down' : 'Your garden so far'}</span>
+        <span class="sspr-sub">${names.length} crops · ${totalHarvests} harvests${totalKg > 0.1 ? ` · ${fmtKg(totalKg)}` : ''} · Lv.${lvl.level} ${lvl.title}</span>
+      </div>
+    </div>
+    <button class="sspr-btn" onclick="openSeasonWrapUp()">View summary</button>
+  </div>`;
 }

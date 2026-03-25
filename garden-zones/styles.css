@@ -5384,3 +5384,42 @@ body.garden-mode .plant-section ul {
 .gd-xp-track { background: var(--surface2); border-radius: 2px; flex: 1; height: 4px; overflow: hidden; max-width: 120px; }
 .gd-xp-fill  { background: var(--accent); border-radius: 2px; height: 100%; transition: width 0.4s ease; }
 .gd-streak   { color: #fb923c; font-size: 11px; font-weight: 700; white-space: nowrap; }
+
+/* Phase 130 — Crop growth photo timeline */
+.cpt-timeline { display: flex; gap: 10px; overflow-x: auto; padding: 4px 0 10px; scrollbar-width: none; }
+.cpt-timeline::-webkit-scrollbar { display: none; }
+.cpt-frame { display: flex; flex-direction: column; flex-shrink: 0; gap: 4px; position: relative; width: 80px; }
+.cpt-frame--latest .cpt-img-wrap { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(74,222,128,0.3); }
+.cpt-img-wrap { border: 1px solid var(--border); border-radius: 8px; cursor: pointer; overflow: hidden; position: relative; }
+.cpt-img { display: block; height: 80px; object-fit: cover; width: 80px; }
+.cpt-stage-badge { background: rgba(0,0,0,0.55); border-radius: 4px; bottom: 4px; font-size: 13px; left: 4px; line-height: 1; padding: 2px 3px; position: absolute; }
+.cpt-latest-badge { background: var(--accent); border-radius: 4px; color: #000; font-size: 8px; font-weight: 700; padding: 2px 5px; position: absolute; right: 4px; top: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+.cpt-date { color: var(--text-muted); font-size: 9px; text-align: center; }
+.cpt-del  { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 13px; padding: 0; text-align: center; }
+.cpt-add-frame { align-items: center; display: flex; flex-shrink: 0; width: 80px; }
+.cpt-add-label { align-items: center; border: 1.5px dashed var(--border); border-radius: 8px; color: var(--text-muted); cursor: pointer; display: flex; flex-direction: column; gap: 3px; height: 80px; justify-content: center; width: 80px; }
+.cpt-add-icon { font-size: 22px; font-weight: 300; line-height: 1; }
+.cpt-add-txt  { font-size: 10px; }
+.cpt-empty { padding: 4px 0 10px; }
+.cpt-empty-label { align-items: center; border: 1.5px dashed var(--border); border-radius: 8px; color: var(--text-muted); cursor: pointer; display: flex; font-size: 12px; gap: 8px; justify-content: center; padding: 14px; }
+
+/* Phase 131 — Season summary prompt + wrap-up upgrades */
+.sspr-card { align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; display: flex; gap: 10px; justify-content: space-between; margin-bottom: 12px; padding: 12px 14px; }
+.sspr-card--season { border-color: rgba(249,115,22,0.3); background: linear-gradient(135deg, rgba(249,115,22,0.05), transparent); }
+.sspr-left { align-items: center; display: flex; gap: 10px; min-width: 0; }
+.sspr-icon { flex-shrink: 0; font-size: 20px; }
+.sspr-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sspr-title { color: var(--text); font-size: 12px; font-weight: 600; }
+.sspr-sub   { color: var(--text-muted); font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sspr-btn   { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; flex-shrink: 0; font-size: 11px; font-weight: 600; padding: 6px 12px; white-space: nowrap; }
+/* Upgraded season wrap-up hero */
+.sw-hero { margin-bottom: 16px; text-align: center; }
+.sw-year-label { color: var(--text-muted); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+.sw-title { color: var(--text); font-size: 20px; font-weight: 800; letter-spacing: -0.02em; margin: 4px 0; }
+.sw-level-pill { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25); border-radius: 99px; color: var(--accent); display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 12px; }
+.sw-yield-row { align-items: center; background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.15); border-radius: 10px; display: flex; gap: 10px; justify-content: center; margin-bottom: 12px; padding: 10px 14px; }
+.sw-yield-kg  { color: var(--text); font-size: 14px; font-weight: 700; }
+.sw-yield-val { color: var(--text-muted); font-size: 12px; }
+.sw-streak    { color: #fb923c; font-size: 12px; font-weight: 600; margin-bottom: 12px; text-align: center; }
+.sw-up   { color: var(--accent); font-size: 10px; font-weight: 700; }
+.sw-down { color: #f87171; font-size: 10px; font-weight: 700; }

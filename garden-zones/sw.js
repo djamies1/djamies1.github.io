@@ -1,4 +1,4 @@
-const CACHE     = 'plant-zone-v80';
+const CACHE     = 'plant-zone-v83';
 const API_CACHE = 'pzf-api-v1'; // separate; survives app-code updates
 
 const CORE = [
