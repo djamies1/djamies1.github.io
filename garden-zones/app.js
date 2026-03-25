@@ -2043,6 +2043,7 @@ function gardenAdd(name) {
 }
 function gardenRemove(name) {
   const hadPlanted = !!myGarden[name]?.planted;
+  if (hadPlanted) autoMilestone(`Removed ${name} from the garden.`, name, 'removed');
   archiveGardenEntry(name); delete myGarden[name]; saveGarden(); refreshGardenUI(name); haptic(5);
   if (hadPlanted) promptVarietyLog(name);
 }
@@ -2059,6 +2060,8 @@ function gardenLogProblem(name, type, notes) {
     resolved: false,
   });
   saveGarden(); refreshGardenUI(name);
+  const noteStr = notes ? `: ${notes.trim().split(/[.!?]/)[0]}` : '';
+  autoMilestone(`Problem logged for ${name} — ${type}${noteStr}.`, name, 'problem');
 }
 function gardenResolveProblem(name, id) {
   const p = myGarden[name]?.problems?.find(p => p.id === id);
@@ -2133,10 +2136,28 @@ function renderModalProblems(name) {
   );
 }
 function gardenSetPlanted(name, dateStr) {
-  if (myGarden[name]) { myGarden[name].planted = dateStr || null; saveGarden(); refreshGardenUI(name); }
+  if (myGarden[name]) {
+    myGarden[name].planted = dateStr || null;
+    saveGarden();
+    refreshGardenUI(name);
+    if (dateStr) autoMilestone(`Planted ${name} on ${dateStr}.`, name, 'planted');
+  }
 }
 
 function refreshGardenUI(name) {
+  // Phase 125: detect stage transitions and fire milestone
+  if (name && myGarden[name]?.planted) {
+    const status = getGardenStatus(name);
+    const newStage = status?.stage?.stage;
+    if (newStage) {
+      const prevStage = myGarden[name]._lastStage;
+      if (prevStage && prevStage !== newStage) {
+        const STAGE_LABELS = { germinating:'germinating', seedling:'seedling stage', growing:'growing', maturing:'maturing', ready:'harvest-ready' };
+        autoMilestone(`${name} reached ${STAGE_LABELS[newStage] || newStage}.`, name, 'stage');
+      }
+      myGarden[name]._lastStage = newStage;
+    }
+  }
   updateGardenBadge();
   updateBnavGardenBadge();
   checkReminders();
@@ -3415,6 +3436,7 @@ function gardenSetNotes(name, notes) {
 function gardenLogHarvest(name, date, notes, qty, unit) {
   if (!myGarden[name]) return;
   if (!myGarden[name].harvestLog) myGarden[name].harvestLog = [];
+  const isFirst = myGarden[name].harvestLog.length === 0;
   myGarden[name].harvestLog.unshift({
     date,
     notes: (notes || '').trim(),
@@ -3423,6 +3445,10 @@ function gardenLogHarvest(name, date, notes, qty, unit) {
   });
   saveGarden();
   refreshGardenUI(name);
+  if (isFirst) {
+    const qtyStr = qty ? ` (${qty}${unit ? ' ' + unit : ''})` : '';
+    autoMilestone(`First harvest of ${name}${qtyStr}!`, name, 'harvest');
+  }
 }
 
 function renderModalGardenSections(name) {
@@ -5177,8 +5203,13 @@ function renderJournalTab() {
     const textHtml = e.text
       ? `<div class="journal-entry-text">${e.text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>`
       : '';
-    return `<div class="journal-entry" data-id="${e.id}">
-      <div class="journal-entry-meta">${tagHtml}${weatherHtml}</div>
+    const milestoneIcon = e.milestone ? (MILESTONE_ICONS[e.milestoneType] || '📌') : null;
+    const milestoneBadge = milestoneIcon
+      ? `<span class="journal-milestone-badge journal-milestone-badge--${e.milestoneType}">${milestoneIcon}</span>`
+      : '';
+    const entryClass = e.milestone ? `journal-entry journal-entry--milestone journal-entry--ms-${e.milestoneType}` : 'journal-entry';
+    return `<div class="${entryClass}" data-id="${e.id}">
+      <div class="journal-entry-meta">${milestoneBadge}${tagHtml}${weatherHtml}</div>
       <div class="journal-entry-date">${dateStr}</div>
       ${textHtml}
       ${photoHtml}
@@ -10547,4 +10578,35 @@ function getStageTip(name, stage) {
     default:
       return '';
   }
+}
+
+// ── Phase 125: Journal auto-milestones ───────────────
+const MILESTONE_ICONS = {
+  planted:  '🌱',
+  harvest:  '🌾',
+  stage:    '📈',
+  problem:  '⚠️',
+  removed:  '🗑️',
+};
+function autoMilestone(text, cropName, type) {
+  const today = new Date().toISOString().slice(0, 10);
+  // Same-day dedup: skip if identical type+crop already exists today
+  const dup = journalEntries.find(e =>
+    e.milestone && e.milestoneType === type && e.crop === cropName &&
+    (e.date || '').slice(0, 10) === today
+  );
+  if (dup) return;
+  const entry = {
+    id:            Date.now(),
+    date:          new Date().toISOString(),
+    text:          text,
+    crop:          cropName || null,
+    weather:       null,
+    photoId:       null,
+    milestone:     true,
+    milestoneType: type,
+  };
+  journalEntries.unshift(entry);
+  saveJournal();
+  if (currentPanelTab === 'journal') renderJournalTab();
 }

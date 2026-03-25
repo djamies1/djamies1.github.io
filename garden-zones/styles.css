@@ -5290,3 +5290,21 @@ body.garden-mode .plant-section ul {
 
 /* Phase 124 — Growth stage care tips */
 .growth-stage-tip { color: var(--text-muted); font-size: 10px; line-height: 1.4; margin-top: 3px; }
+
+/* Phase 125 — Journal auto-milestones */
+.journal-entry--milestone { border-left: 3px solid var(--border); padding-left: 10px; }
+.journal-entry--ms-planted   { border-left-color: rgba(74,222,128,0.6); }
+.journal-entry--ms-harvest   { border-left-color: rgba(249,115,22,0.6); }
+.journal-entry--ms-stage     { border-left-color: rgba(147,197,253,0.6); }
+.journal-entry--ms-problem   { border-left-color: rgba(251,191,36,0.6); }
+.journal-entry--ms-removed   { border-left-color: rgba(148,163,184,0.5); }
+.journal-milestone-badge {
+  align-items: center; border-radius: 50%; display: inline-flex;
+  font-size: 12px; height: 20px; justify-content: center;
+  margin-right: 4px; vertical-align: middle; width: 20px;
+}
+.journal-milestone-badge--planted  { background: rgba(74,222,128,0.12); }
+.journal-milestone-badge--harvest  { background: rgba(249,115,22,0.12); }
+.journal-milestone-badge--stage    { background: rgba(147,197,253,0.12); }
+.journal-milestone-badge--problem  { background: rgba(251,191,36,0.12); }
+.journal-milestone-badge--removed  { background: rgba(148,163,184,0.1); }
