@@ -5355,3 +5355,32 @@ body.garden-mode .plant-section ul {
 .yl-unit-in { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-size: 11px; padding: 4px 4px; }
 .yl-log-btn    { background: var(--accent); border: none; border-radius: 6px; color: #000; cursor: pointer; font-size: 11px; font-weight: 700; padding: 4px 10px; }
 .yl-cancel-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 14px; padding: 2px 4px; }
+
+/* Phase 128 — Today dashboard */
+.td-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.td-header { align-items: center; display: flex; gap: 8px; padding: 10px 14px 8px; border-bottom: 1px solid var(--border); }
+.td-title { color: var(--text); font-size: 13px; font-weight: 700; }
+.td-date  { color: var(--text-muted); flex: 1; font-size: 11px; }
+.td-badge { border-radius: 99px; font-size: 10px; font-weight: 700; padding: 2px 8px; }
+.td-badge--alert { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+.td-badge--ok    { background: rgba(74,222,128,0.1);  color: var(--accent); border: 1px solid rgba(74,222,128,0.25); }
+.td-items { padding: 6px 0; }
+.td-item  { align-items: center; display: flex; gap: 8px; padding: 7px 14px; }
+.td-item + .td-item { border-top: 1px solid rgba(255,255,255,0.04); }
+.td-item-icon { flex-shrink: 0; font-size: 15px; width: 20px; text-align: center; }
+.td-item-text { color: var(--text); flex: 1; font-size: 12px; line-height: 1.4; }
+.td-item--frost   .td-item-icon { color: #93c5fd; }
+.td-item--problem .td-item-icon { color: #fbbf24; }
+.td-item--harvest .td-item-text { font-weight: 600; }
+.td-item--water   .td-item-text { }
+.td-item--stage   .td-item-text { color: var(--text-muted); font-size: 11px; }
+.td-action-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); cursor: pointer; flex-shrink: 0; font-size: 11px; font-weight: 600; padding: 3px 9px; white-space: nowrap; }
+.td-item--harvest .td-action-btn { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.25); color: #fb923c; }
+.td-item--water   .td-action-btn { background: rgba(147,197,253,0.1); border-color: rgba(147,197,253,0.25); color: #93c5fd; }
+
+/* Phase 129 — XP + Streaks */
+.gd-xp-row { align-items: center; display: flex; gap: 8px; margin-top: 6px; width: 100%; }
+.gd-level-badge { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25); border-radius: 99px; color: var(--accent); cursor: default; font-size: 10px; font-weight: 700; padding: 2px 9px; white-space: nowrap; }
+.gd-xp-track { background: var(--surface2); border-radius: 2px; flex: 1; height: 4px; overflow: hidden; max-width: 120px; }
+.gd-xp-fill  { background: var(--accent); border-radius: 2px; height: 100%; transition: width 0.4s ease; }
+.gd-streak   { color: #fb923c; font-size: 11px; font-weight: 700; white-space: nowrap; }

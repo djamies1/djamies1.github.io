@@ -640,6 +640,8 @@ let _photoDB = null;
 let selectedLocationName = null;
 let savedLocations = [];
 let _pendingPhoto = null; // dataURL staged for next journal entry
+let gardenXP     = 0;
+let gardenStreak = { count: 0, lastDate: null };
 
 let selectedLat = null;
 let selectedLng = null;
@@ -2040,6 +2042,7 @@ function gardenAdd(name) {
   checkCompanionConflicts(name);
   haptic([10, 40, 5]);
   maybeRequestReview();
+  earnXP(20, `Added ${name} to garden`);
 }
 function gardenRemove(name) {
   const hadPlanted = !!myGarden[name]?.planted;
@@ -2067,6 +2070,7 @@ function gardenResolveProblem(name, id) {
   const p = myGarden[name]?.problems?.find(p => p.id === id);
   if (p) { p.resolved = true; p.resolvedDate = new Date().toISOString().slice(0, 10); }
   saveGarden(); refreshGardenUI(name);
+  earnXP(10, `Resolved problem on ${name}`);
 }
 function gardenDeleteProblem(name, id) {
   if (!myGarden[name]?.problems) return;
@@ -2140,7 +2144,10 @@ function gardenSetPlanted(name, dateStr) {
     myGarden[name].planted = dateStr || null;
     saveGarden();
     refreshGardenUI(name);
-    if (dateStr) autoMilestone(`Planted ${name} on ${dateStr}.`, name, 'planted');
+    if (dateStr) {
+      autoMilestone(`Planted ${name} on ${dateStr}.`, name, 'planted');
+      earnXP(15, `Planted ${name}`);
+    }
   }
 }
 
@@ -2167,6 +2174,7 @@ function refreshGardenUI(name) {
   if (currentPanelTab === 'garden') { renderGardenTab(); renderGrowNext(); }
   renderFrostAlertBanner();
   renderThisWeek();
+  renderTodayDashboard();
   // Re-render open modal bar
   const modal = document.getElementById('crop-modal');
   if (modal?.open && document.getElementById('modal-crop-name')?.textContent === name) {
@@ -2579,7 +2587,7 @@ function renderGardenTab() {
     const bedsEl = document.getElementById('garden-beds');
     if (bedsEl) bedsEl.hidden = true;
     wireGardenViewToggle();
-    renderSetupCard(); renderGardenDashboard(); renderGardenDiversity(); renderRotationAdvisor(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
+    renderTodayDashboard(); renderSetupCard(); renderGardenDashboard(); renderGardenDiversity(); renderRotationAdvisor(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
     renderCompanionMatrix(); renderGrowingTimeline(); renderGardenGantt(); renderGardenFooter();
     renderGardenHistory(); renderGrowNext(); renderPlanSection(); renderHarvestAnalytics();
     renderHarvestValue(); renderYieldLogger();
@@ -2665,6 +2673,7 @@ function renderGardenTab() {
   list.innerHTML = toggle + html;
   wireGardenViewToggle();
   renderSetupCard();
+  renderTodayDashboard();
   renderGardenDashboard();
   renderGardenDiversity();
   renderRotationAdvisor();
@@ -2930,6 +2939,7 @@ function renderModalGardenBar(name) {
 function initGarden() {
   loadGarden();
   loadHistory();
+  loadXP();
   updateGardenBadge();
   checkReminders();
 
@@ -3450,7 +3460,11 @@ function gardenLogHarvest(name, date, notes, qty, unit) {
   if (isFirst) {
     const qtyStr = qty ? ` (${qty}${unit ? ' ' + unit : ''})` : '';
     autoMilestone(`First harvest of ${name}${qtyStr}!`, name, 'harvest');
+    earnXP(50, `First harvest of ${name}`);
+  } else {
+    earnXP(20, `Harvested ${name}`);
   }
+  updateStreak();
 }
 
 function renderModalGardenSections(name) {
@@ -5127,6 +5141,7 @@ async function addJournalEntry(text, cropTag) {
   saveJournal();
   checkAchievements();
   renderJournalTab();
+  if (trimmed && !cropTag) { earnXP(10, 'Journal entry'); updateStreak(); }
 }
 
 function deleteJournalEntry(id) {
@@ -5358,6 +5373,7 @@ function unlockAchievement(id) {
   if (earned.has(id)) return;
   earned.add(id);
   saveAchievements(earned);
+  earnXP(25, `Achievement: ${id}`);
   const def = ACHIEVEMENTS.find(a => a.id === id);
   if (!def) return;
   // Show pop-up banner in garden tab if visible, otherwise toast
@@ -5443,6 +5459,13 @@ function renderGardenDashboard() {
       <span class="gd-weather">${getWmoIcon(weatherData.current.weathercode)} ${t}</span>`;
   }
 
+  const lvl = getGardenLevel(gardenXP);
+  const lvlHtml = `<div class="gd-xp-row">
+    <span class="gd-level-badge" title="${gardenXP} XP · ${lvl.xpToNext} to next level">Lv.${lvl.level} ${lvl.title}</span>
+    <div class="gd-xp-track" title="${gardenXP} XP"><div class="gd-xp-fill" style="width:${lvl.pct}%"></div></div>
+    ${gardenStreak.count >= 2 ? `<span class="gd-streak" title="${gardenStreak.count}-day streak">🔥 ${gardenStreak.count}</span>` : ''}
+  </div>`;
+
   el.innerHTML = `
     <span class="gd-zone">${getZoneDisplayLabel(selectedZone)}</span>
     <span class="gd-sep">·</span>
@@ -5450,7 +5473,8 @@ function renderGardenDashboard() {
     ${weatherHtml}
     ${names.length ? `<span class="gd-sep">·</span>
       <span class="gd-stat"><strong>${growing}</strong> growing${ready ? `, <strong>${ready}</strong> ready` : ''}</span>` : ''}
-    <button class="gd-map-btn" id="gd-map-btn">🗺 Change zone</button>`;
+    <button class="gd-map-btn" id="gd-map-btn">🗺 Change zone</button>
+    ${lvlHtml}`;
 
   document.getElementById('gd-map-btn')?.addEventListener('click', () => setLayoutMode('map'));
 }
@@ -7560,6 +7584,8 @@ function logWatering(name, notes) {
   refreshGardenUI(name);
   haptic(5);
   showToast(`💧 Watering logged for ${name}`, 'success');
+  earnXP(5, `Watered ${name}`);
+  updateStreak();
 }
 
 function getWaterStatus(name) {
@@ -10839,4 +10865,205 @@ function ylQuickLog(name) {
   gardenLogHarvest(name, today, '', qty, unit);
   _ylExpanded = null;
   showToast(`${cropData[name]?.emoji || '🌾'} ${name} logged!`, 'success');
+}
+
+// ── Phase 128: Today in the Garden dashboard ──────────
+function renderTodayDashboard() {
+  const el = document.getElementById('today-dashboard');
+  if (!el) return;
+
+  const planted = Object.keys(myGarden).filter(n => myGarden[n]?.planted);
+  if (!planted.length) { el.innerHTML = ''; return; }
+
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const todayStr = today.toISOString().slice(0, 10);
+
+  // ── Gather items by urgency ──
+  const urgent = [], warn = [], ok = [];
+
+  // 1. Frost risk tonight/tomorrow
+  if (weatherData?.daily?.temperature_2m_min) {
+    const idx = weatherData.daily.temperature_2m_min.slice(0, 2).findIndex(t => t < 35);
+    if (idx >= 0) {
+      const atrisk = planted.filter(n => FROST_SENSITIVE.has(n));
+      if (atrisk.length) {
+        const lbl = idx === 0 ? 'tonight' : 'tomorrow night';
+        const ns  = atrisk.slice(0, 2).map(n => cropData[n]?.emoji + ' ' + n).join(', ')
+                  + (atrisk.length > 2 ? ` +${atrisk.length - 2}` : '');
+        urgent.push({ icon: '❄️', text: `Frost possible ${lbl} — cover ${ns}`, action: null, cls: 'td-item--frost' });
+      }
+    }
+  }
+
+  // 2. Open unresolved problems
+  const problems = planted.filter(n => myGarden[n].problems?.some(p => !p.resolved));
+  if (problems.length) {
+    const ns = problems.slice(0, 2).map(n => cropData[n]?.emoji + ' ' + n).join(', ')
+             + (problems.length > 2 ? ` +${problems.length - 2}` : '');
+    urgent.push({ icon: '🐛', text: `Active problem on ${ns}`, action: null, cls: 'td-item--problem' });
+  }
+
+  // 3. Ready to harvest
+  const ready = planted.filter(n => getGardenStatus(n)?.type === 'ready');
+  if (ready.length) {
+    const ns = ready.slice(0, 3).map(n => `${cropData[n]?.emoji || '🌱'} ${n}`).join(', ')
+             + (ready.length > 3 ? ` +${ready.length - 3}` : '');
+    urgent.push({ icon: '🌾', text: `${ns} ready to harvest`, action: 'harvest', cls: 'td-item--harvest' });
+  }
+
+  // 4. Overdue watering
+  const recentRain = weatherData?.daily?.precipitation_sum
+    ? (weatherData.daily.precipitation_sum[0] || 0) + (weatherData.daily.precipitation_sum[1] || 0) : 0;
+  const rainBonus = recentRain >= 5 ? 2 : recentRain >= 2 ? 1 : 0;
+
+  for (const name of planted) {
+    const interval  = getCropWaterInterval(name);
+    if (!interval) continue;
+    const lastDate  = myGarden[name].waterLog?.[0]?.date;
+    if (!lastDate) continue;
+    const daysSince = Math.round((today - new Date(lastDate + 'T00:00:00')) / 86400000);
+    const daysUntil = (interval - daysSince) + rainBonus;
+    if (daysUntil < 0) {
+      urgent.push({ icon: '💧', text: `${cropData[name]?.emoji || '🌱'} ${name} overdue for water (${Math.abs(daysUntil)}d)`, action: `water:${name}`, cls: 'td-item--water' });
+    } else if (daysUntil === 0) {
+      warn.push({ icon: '💧', text: `${cropData[name]?.emoji || '🌱'} ${name} due for water today`, action: `water:${name}`, cls: 'td-item--water' });
+    }
+  }
+
+  // 5. Crops never watered (just planted seedlings)
+  const neverWatered = planted.filter(n => {
+    const p = myGarden[n]?.planted;
+    if (!p || myGarden[n].waterLog?.length) return false;
+    const age = Math.round((today - new Date(p + 'T00:00:00')) / 86400000);
+    return age <= 14;
+  });
+  if (neverWatered.length) {
+    const ns = neverWatered.slice(0, 2).map(n => `${cropData[n]?.emoji || '🌱'} ${n}`).join(', ');
+    warn.push({ icon: '💧', text: `${ns} newly planted — log first watering`, action: null, cls: 'td-item--water' });
+  }
+
+  // 6. Crops maturing soon (within 4 days)
+  const maturingSoon = planted.filter(n => {
+    const st = getGardenStatus(n);
+    return st?.stage?.stage === 'maturing' && st?.stage?.pct >= 80;
+  });
+  if (maturingSoon.length) {
+    const ns = maturingSoon.slice(0, 2).map(n => `${cropData[n]?.emoji || '🌱'} ${n}`).join(', ')
+             + (maturingSoon.length > 2 ? ` +${maturingSoon.length - 2}` : '');
+    ok.push({ icon: '📈', text: `${ns} almost harvest-ready`, action: null, cls: 'td-item--stage' });
+  }
+
+  if (!urgent.length && !warn.length && !ok.length) { el.innerHTML = ''; return; }
+
+  const urgentCount = urgent.length + warn.length;
+  const allItems = [...urgent, ...warn, ...ok];
+
+  const renderItem = item => {
+    const actionBtn = item.action
+      ? item.action === 'harvest'
+        ? `<button class="td-action-btn" onclick="switchToGardenTab()">View</button>`
+        : item.action.startsWith('water:')
+          ? `<button class="td-action-btn" onclick="tdLogWater('${item.action.slice(6).replace(/'/g,"\\'")}')">Log 💧</button>`
+          : ''
+      : '';
+    return `<div class="td-item ${item.cls}">
+      <span class="td-item-icon">${item.icon}</span>
+      <span class="td-item-text">${item.text}</span>
+      ${actionBtn}
+    </div>`;
+  };
+
+  const dateLabel = new Date().toLocaleDateString(undefined, { weekday:'long', month:'short', day:'numeric' });
+  const badge = urgentCount > 0
+    ? `<span class="td-badge td-badge--alert">${urgentCount} action${urgentCount !== 1 ? 's' : ''}</span>`
+    : `<span class="td-badge td-badge--ok">All good</span>`;
+
+  el.innerHTML = `<div class="td-card">
+    <div class="td-header">
+      <span class="td-title">Today</span>
+      <span class="td-date">${dateLabel}</span>
+      ${badge}
+    </div>
+    <div class="td-items">${allItems.map(renderItem).join('')}</div>
+  </div>`;
+}
+
+function switchToGardenTab() {
+  currentPanelTab = 'garden';
+  document.querySelectorAll('.ptab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'garden'));
+  document.getElementById('tab-calendar').hidden = true;
+  document.getElementById('tab-garden').hidden   = false;
+  document.getElementById('tab-journal').hidden  = true;
+  renderGardenTab();
+}
+
+function tdLogWater(name) {
+  logWatering(name);
+  renderTodayDashboard();
+}
+
+// ── Phase 129: XP + Streaks ───────────────────────────
+const LEVEL_TITLES = [
+  '', // 0 unused
+  'Seedling', 'Sprout', 'Grower', 'Gardener', 'Cultivator',
+  'Horticulturist', 'Master Gardener', 'Garden Sage', 'Garden Legend',
+];
+
+function getGardenLevel(xp) {
+  // Each level costs level*50 XP. Thresholds: 0,50,150,300,500,750,1050,1400,1800…
+  let level = 1, threshold = 0;
+  while (xp >= threshold + level * 50) {
+    threshold += level * 50;
+    level++;
+    if (level >= LEVEL_TITLES.length) break;
+  }
+  const xpInLevel  = xp - threshold;
+  const xpForLevel = level < LEVEL_TITLES.length ? level * 50 : level * 50;
+  return {
+    level,
+    title:     LEVEL_TITLES[Math.min(level, LEVEL_TITLES.length - 1)],
+    xpToNext:  xpForLevel - xpInLevel,
+    pct:       Math.min(100, Math.round((xpInLevel / xpForLevel) * 100)),
+  };
+}
+
+function loadXP() {
+  try {
+    const raw = JSON.parse(localStorage.getItem('pzf-xp') || '{}');
+    gardenXP     = raw.xp     || 0;
+    gardenStreak = raw.streak || { count: 0, lastDate: null };
+  } catch { gardenXP = 0; gardenStreak = { count: 0, lastDate: null }; }
+}
+function saveXP() {
+  localStorage.setItem('pzf-xp', JSON.stringify({ xp: gardenXP, streak: gardenStreak }));
+}
+
+function earnXP(amount, reason) {
+  const before = getGardenLevel(gardenXP);
+  gardenXP += amount;
+  saveXP();
+  const after = getGardenLevel(gardenXP);
+  if (after.level > before.level) {
+    showToast(`🎉 Level up! You're now a ${after.title} (Lv.${after.level})`, 'success');
+  }
+  // Refresh dashboard XP bar if visible
+  if (currentPanelTab === 'garden') renderGardenDashboard();
+}
+
+function updateStreak() {
+  const today = new Date().toISOString().slice(0, 10);
+  if (gardenStreak.lastDate === today) return; // already updated today
+  const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+  const yStr = yesterday.toISOString().slice(0, 10);
+  if (gardenStreak.lastDate === yStr) {
+    gardenStreak.count++;
+  } else if (gardenStreak.lastDate !== today) {
+    gardenStreak.count = 1; // reset streak
+  }
+  gardenStreak.lastDate = today;
+  saveXP();
+  if (gardenStreak.count >= 3 && gardenStreak.count % 7 === 0) {
+    showToast(`🔥 ${gardenStreak.count}-day streak! Keep it up!`, 'success');
+  }
+  if (currentPanelTab === 'garden') renderGardenDashboard();
 }
