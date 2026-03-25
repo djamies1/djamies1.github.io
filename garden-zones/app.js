@@ -2627,7 +2627,8 @@ function renderGardenTab() {
             <div class="growth-bar-wrap" title="${status.stage.label}">
               <div class="growth-bar-fill growth-bar--${status.stage.stage}" style="width:${Math.min(100,Math.round(status.stage.pct*100))}%"></div>
             </div>
-            <div class="growth-stage-row"><span class="growth-stage-icon">${status.stage.icon}</span>${status.stage.label}</div>` : ''}
+            <div class="growth-stage-row"><span class="growth-stage-icon">${status.stage.icon}</span>${status.stage.label}</div>
+            ${(() => { const t = getStageTip(name, status.stage.stage); return t ? `<div class="growth-stage-tip">${t}</div>` : ''; })()}` : ''}
           </div>
         </div>
         <div class="garden-item-actions">
@@ -10502,4 +10503,48 @@ function renderGardenDiversity() {
     </div>
     ${nudge ? `<div class="gdiv-nudge">💡 ${nudge}</div>` : ''}
   </div>`;
+}
+
+function getStageTip(name, stage) {
+  if (!stage) return '';
+  const c = cropData?.[name];
+  if (!c) return '';
+
+  const firstPest  = (c.pests || [])[0];
+  const twoPests   = (c.pests || []).slice(0, 2).join(' & ');
+  const fertShort  = c.fertilizer ? c.fertilizer.split(/[.;]/)[0].trim() : '';
+  const cueShort   = c.harvest_cues ? c.harvest_cues.split(/[.;]/)[0].trim() : '';
+  const storShort  = c.storage ? c.storage.split(/[.;]/)[0].trim() : '';
+
+  switch (stage) {
+    case 'germinating':
+      return c.germ_temp
+        ? `Keep soil at ${c.germ_temp} and evenly moist — do not let it dry out.`
+        : 'Keep soil consistently warm and moist until sprouts appear.';
+
+    case 'seedling': {
+      const thin = c.spacing ? `Thin to ${convertMeasurement(c.spacing)}.` : '';
+      const pest = firstPest ? `Watch for ${firstPest}.` : '';
+      return [thin, pest].filter(Boolean).join(' ') || 'Water gently; protect from slugs and damping-off.';
+    }
+
+    case 'growing': {
+      const fert = fertShort ? `${fertShort}.` : '';
+      const pest = twoPests  ? `Watch for ${twoPests}.` : '';
+      return [fert, pest].filter(Boolean).join(' · ') || `Water ${c.water || 'regularly'} and feed for strong growth.`;
+    }
+
+    case 'maturing':
+      return cueShort
+        ? `Almost there — ${cueShort.charAt(0).toLowerCase() + cueShort.slice(1)}.`
+        : 'Monitor daily — the harvest window can be short.';
+
+    case 'ready':
+      return storShort
+        ? `Harvest soon. ${storShort}.`
+        : (cueShort || 'Harvest now before quality peaks and declines.');
+
+    default:
+      return '';
+  }
 }
