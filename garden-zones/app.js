@@ -2582,7 +2582,7 @@ function renderGardenTab() {
     renderSetupCard(); renderGardenDashboard(); renderGardenDiversity(); renderRotationAdvisor(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
     renderCompanionMatrix(); renderGrowingTimeline(); renderGardenGantt(); renderGardenFooter();
     renderGardenHistory(); renderGrowNext(); renderPlanSection(); renderHarvestAnalytics();
-    renderHarvestValue();
+    renderHarvestValue(); renderYieldLogger();
     renderWateringSchedule(); renderWateringIntelligence(); renderHarvestToTable(); renderGardenHealthScore();
     renderSmartShoppingList(); checkAchievements();
     return;
@@ -2681,6 +2681,7 @@ function renderGardenTab() {
   renderPlanSection();
   renderHarvestAnalytics();
   renderHarvestValue();
+  renderYieldLogger();
   renderWateringSchedule();
   renderWateringIntelligence();
   renderHarvestToTable();
@@ -10715,4 +10716,127 @@ function renderRotationAdvisor() {
     ${warnHtml}
     ${sugHtml}
   </div>`;
+}
+
+// ── Phase 127: Yield logger ───────────────────────────
+function getYieldKg(name) {
+  const year = String(new Date().getFullYear());
+  let kg = 0;
+  for (const h of (myGarden[name]?.harvestLog || [])) {
+    if (!h.date.startsWith(year)) continue;
+    if (!h.qty) continue;
+    const u = (h.unit || '').toLowerCase();
+    if      (u === 'kg')              kg += h.qty;
+    else if (u === 'lbs' || u === 'lb') kg += h.qty * 0.4536;
+    else if (u === 'g')               kg += h.qty / 1000;
+    else if (u === 'oz')              kg += h.qty * 0.02835;
+    else if (u === 'count')           kg += h.qty * 0.15;
+    else if (u === 'bunch')           kg += h.qty * 0.25;
+  }
+  return kg;
+}
+
+let _ylExpanded = null; // crop name currently showing inline form
+
+function renderYieldLogger() {
+  const el = document.getElementById('yield-logger');
+  if (!el) return;
+
+  const names = Object.keys(myGarden).filter(n => myGarden[n]?.planted);
+  if (!names.length) { el.innerHTML = ''; return; }
+
+  const year = new Date().getFullYear();
+
+  // Crops eligible for quick-log: harvest-ready or already have a harvest entry
+  const loggable = names.filter(n => {
+    const st = getGardenStatus(n);
+    return st?.type === 'ready' || (myGarden[n]?.harvestLog?.length || 0) > 0;
+  }).sort((a, b) => {
+    // ready crops first, then by name
+    const aReady = getGardenStatus(a)?.type === 'ready' ? 0 : 1;
+    const bReady = getGardenStatus(b)?.type === 'ready' ? 0 : 1;
+    return aReady - bReady || a.localeCompare(b);
+  });
+
+  // Weight leaderboard: crops with any qty data this season
+  const yieldData = names
+    .map(n => ({ name: n, kg: getYieldKg(n), count: (myGarden[n]?.harvestLog || []).filter(h => h.date.startsWith(year)).length }))
+    .filter(d => d.kg > 0)
+    .sort((a, b) => b.kg - a.kg);
+
+  const totalKg = yieldData.reduce((s, d) => s + d.kg, 0);
+  const maxKg   = yieldData[0]?.kg || 1;
+  const fmtKg   = kg => kg >= 1 ? `${kg.toFixed(1)} kg` : `${Math.round(kg * 1000)} g`;
+
+  const leaderboardHtml = yieldData.length ? `
+    <div class="yl-leaderboard">
+      <div class="yl-total">Season total: <strong>${fmtKg(totalKg)}</strong></div>
+      ${yieldData.slice(0, 6).map(d => `
+        <div class="yl-lb-row">
+          <span class="yl-lb-emoji">${cropData[d.name]?.emoji || '🌱'}</span>
+          <span class="yl-lb-name">${d.name}</span>
+          <div class="yl-lb-bar-track"><div class="yl-lb-bar" style="width:${Math.round((d.kg/maxKg)*100)}%"></div></div>
+          <span class="yl-lb-val">${fmtKg(d.kg)}</span>
+        </div>`).join('')}
+    </div>` : '';
+
+  const quickRows = loggable.slice(0, 8).map(name => {
+    const c = cropData[name];
+    const isReady = getGardenStatus(name)?.type === 'ready';
+    const isExpanded = _ylExpanded === name;
+    const inlineForm = isExpanded ? `
+      <div class="yl-inline-form" id="yl-form-${name.replace(/\s/g,'-')}">
+        <input type="number" class="yl-qty-in" placeholder="Qty" min="0" step="any" aria-label="Quantity">
+        <select class="yl-unit-in" aria-label="Unit">
+          <option value="kg">kg</option>
+          <option value="lbs">lbs</option>
+          <option value="g">g</option>
+          <option value="oz">oz</option>
+          <option value="count" selected>count</option>
+          <option value="bunch">bunch</option>
+        </select>
+        <button class="yl-log-btn" onclick="ylQuickLog('${name.replace(/'/g,"\\'")}')">Log</button>
+        <button class="yl-cancel-btn" onclick="ylCancel()">✕</button>
+      </div>` : '';
+    return `<div class="yl-crop-row${isReady ? ' yl-crop-row--ready' : ''}" id="yl-row-${name.replace(/\s/g,'-')}">
+      <span class="yl-crop-emoji">${c?.emoji || '🌱'}</span>
+      <span class="yl-crop-name">${name}${isReady ? ' <span class="yl-ready-dot"></span>' : ''}</span>
+      <button class="yl-harvest-btn" onclick="ylExpand('${name.replace(/'/g,"\\'")}')">+ Log</button>
+      ${inlineForm}
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `<div class="yl-card">
+    <div class="yl-header">
+      <span class="yl-title">Yield Logger</span>
+      <span class="yl-year">${year}</span>
+    </div>
+    ${leaderboardHtml}
+    ${quickRows ? `<div class="yl-quick-section">
+      <div class="yl-quick-hd">Quick log</div>
+      ${quickRows}
+    </div>` : ''}
+  </div>`;
+}
+
+function ylExpand(name) {
+  _ylExpanded = (_ylExpanded === name) ? null : name;
+  renderYieldLogger();
+  // Focus qty input
+  if (_ylExpanded) {
+    const id = `yl-form-${name.replace(/\s/g,'-')}`;
+    setTimeout(() => document.getElementById(id)?.querySelector('.yl-qty-in')?.focus(), 50);
+  }
+}
+function ylCancel() { _ylExpanded = null; renderYieldLogger(); }
+function ylQuickLog(name) {
+  const id = `yl-form-${name.replace(/\s/g,'-')}`;
+  const form = document.getElementById(id);
+  if (!form) return;
+  const qty  = parseFloat(form.querySelector('.yl-qty-in').value) || null;
+  const unit = form.querySelector('.yl-unit-in').value || null;
+  const today = new Date().toISOString().slice(0, 10);
+  gardenLogHarvest(name, today, '', qty, unit);
+  _ylExpanded = null;
+  showToast(`${cropData[name]?.emoji || '🌾'} ${name} logged!`, 'success');
 }
