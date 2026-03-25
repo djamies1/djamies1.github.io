@@ -2878,9 +2878,15 @@ function renderGardenFooter() {
       </div>
     </div>` : '';
 
+  const totalPhotos = Object.values(myGarden).reduce((n, e) => n + (e.photos?.length || 0), 0);
+  const photoBtnHtml = totalPhotos > 0
+    ? `<button class="garden-action-btn" id="garden-gallery-btn">📸 Photos${totalPhotos > 0 ? ` (${totalPhotos})` : ''}</button>`
+    : '';
+
   footer.innerHTML = `
     <div class="garden-actions-row">
       <button class="garden-action-btn" id="garden-share-card-btn" title="Share a garden summary image">📤 Share</button>
+      ${photoBtnHtml}
       <button class="garden-action-btn" id="garden-export-btn">⬇ Backup</button>
       <button class="garden-action-btn" id="garden-import-btn">⬆ Restore</button>
       <input type="file" id="garden-import-input" accept=".json">
@@ -2888,6 +2894,7 @@ function renderGardenFooter() {
     ${shoppingHTML}`;
 
   footer.querySelector('#garden-share-card-btn')?.addEventListener('click', shareGardenCard);
+  footer.querySelector('#garden-gallery-btn')?.addEventListener('click', openGardenGallery);
   footer.querySelector('#garden-export-btn')?.addEventListener('click', exportGarden);
   footer.querySelector('#garden-import-btn')?.addEventListener('click', () => {
     footer.querySelector('#garden-import-input')?.click();
@@ -11556,4 +11563,79 @@ function renderCalViewToggle() {
   el.querySelector('#cal-toggle-mine').addEventListener('click', () => {
     if (!calPersonal) { calPersonal = true; try { localStorage.setItem('pzf-cal-personal','1'); } catch {} renderPanel(); }
   });
+}
+
+// ── Phase 137: Garden Photo Gallery ─────────────────────────────────────────
+
+let _galleryFilter = null;
+
+function openGardenGallery() {
+  _galleryFilter = null;
+  renderGardenGallery();
+  document.getElementById('garden-gallery-overlay').hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGardenGallery() {
+  document.getElementById('garden-gallery-overlay').hidden = true;
+  document.body.style.overflow = '';
+}
+
+function renderGardenGallery() {
+  // Collect all photos across all crops, newest first
+  const allPhotos = [];
+  for (const [name, entry] of Object.entries(myGarden)) {
+    for (const photo of (entry.photos || [])) {
+      allPhotos.push({ ...photo, cropName: name, emoji: cropData[name]?.emoji || '\u{1F331}' });
+    }
+  }
+  allPhotos.sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id);
+
+  const countEl = document.getElementById('gallery-count');
+  if (countEl) countEl.textContent = `${allPhotos.length} photo${allPhotos.length !== 1 ? 's' : ''}`;
+
+  // Filter bar — only show when multiple crops have photos
+  const cropsWithPhotos = [...new Set(allPhotos.map(p => p.cropName))];
+  const filterBar = document.getElementById('gallery-filter-bar');
+  if (filterBar) {
+    if (cropsWithPhotos.length > 1) {
+      filterBar.innerHTML = [
+        `<button class="gallery-filter-chip${!_galleryFilter ? ' gallery-filter-chip--active' : ''}" data-crop="">All</button>`,
+        ...cropsWithPhotos.map(n =>
+          `<button class="gallery-filter-chip${_galleryFilter === n ? ' gallery-filter-chip--active' : ''}" data-crop="${n}">${cropData[n]?.emoji || '\u{1F331}'} ${n}</button>`
+        ),
+      ].join('');
+      filterBar.querySelectorAll('.gallery-filter-chip').forEach(btn =>
+        btn.addEventListener('click', () => {
+          _galleryFilter = btn.dataset.crop || null;
+          renderGardenGallery();
+        })
+      );
+    } else {
+      filterBar.innerHTML = '';
+    }
+  }
+
+  const displayed = _galleryFilter ? allPhotos.filter(p => p.cropName === _galleryFilter) : allPhotos;
+
+  const grid = document.getElementById('gallery-grid');
+  if (!grid) return;
+
+  if (!displayed.length) {
+    grid.innerHTML = '<p class="gallery-empty">No photos yet. Tap a crop and add photos from its detail page.</p>';
+    return;
+  }
+
+  grid.innerHTML = displayed.map(p => `
+    <div class="gallery-cell" data-crop="${p.cropName}">
+      <img class="gallery-img" src="${p.thumb}" alt="${p.cropName}" loading="lazy">
+      <div class="gallery-cell-badge">${p.emoji} ${p.cropName.split(' ')[0]}</div>
+    </div>`).join('');
+
+  grid.querySelectorAll('.gallery-cell').forEach(cell =>
+    cell.addEventListener('click', () => {
+      closeGardenGallery();
+      openCropDetail(cell.dataset.crop);
+    })
+  );
 }
