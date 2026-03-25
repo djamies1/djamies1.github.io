@@ -2647,7 +2647,7 @@ function renderGardenTab() {
     const bedsEl = document.getElementById('garden-beds');
     if (bedsEl) bedsEl.hidden = true;
     wireGardenViewToggle();
-    renderTodayDashboard(); renderSetupCard(); renderGardenDashboard(); renderGardenDiversity(); renderRotationAdvisor(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
+    renderTodayDashboard(); renderSetupCard(); renderGardenDashboard(); renderActivityHeatmap(); renderGardenDiversity(); renderRotationAdvisor(); renderGardenTasks(); renderGardenChecklist(); renderGardenStats();
     renderCompanionMatrix(); renderGrowingTimeline(); renderGardenGantt(); renderGardenFooter();
     renderSeasonSummaryPrompt(); renderGardenHistory(); renderGrowNext(); renderPlanSection(); renderHarvestAnalytics();
     renderHarvestValue(); renderYieldLogger();
@@ -2735,6 +2735,7 @@ function renderGardenTab() {
   renderSetupCard();
   renderTodayDashboard();
   renderGardenDashboard();
+  renderActivityHeatmap();
   renderGardenDiversity();
   renderRotationAdvisor();
   renderGardenTasks();
@@ -11638,4 +11639,87 @@ function renderGardenGallery() {
       openCropDetail(cell.dataset.crop);
     })
   );
+}
+
+// ── Phase 138: Garden Activity Heatmap ───────────────────────────────────────
+
+function renderActivityHeatmap() {
+  const el = document.getElementById('activity-heatmap');
+  if (!el) return;
+  if (!Object.keys(myGarden).length) { el.innerHTML = ''; return; }
+
+  const WEEKS = 16;
+  const todayMs = new Date(); todayMs.setHours(0,0,0,0);
+  const todayStr = todayMs.toISOString().slice(0,10);
+
+  // Monday of current week, then step back (WEEKS-1) more weeks
+  const todayDow = (todayMs.getDay() + 6) % 7; // 0=Mon … 6=Sun
+  const startMs  = new Date(todayMs);
+  startMs.setDate(todayMs.getDate() - todayDow - (WEEKS - 1) * 7);
+  const startStr = startMs.toISOString().slice(0,10);
+
+  // Collect activity counts per date (only within window)
+  const actMap = {};
+  const bump = d => {
+    const k = (d || '').slice(0,10);
+    if (k >= startStr && k <= todayStr) actMap[k] = (actMap[k] || 0) + 1;
+  };
+
+  for (const entry of Object.values(myGarden)) {
+    for (const w  of (entry.waterLog   || [])) bump(w.date);
+    for (const h  of (entry.harvestLog || [])) bump(h.date);
+    for (const p  of (entry.photos     || [])) bump(p.date);
+    for (const c  of (entry.careLog    || [])) bump(c.date);
+    for (const pr of (entry.problems   || [])) bump(pr.date);
+  }
+  for (const j of (journalEntries || [])) bump((j.date || '').slice(0,10));
+
+  const activeDays   = Object.keys(actMap).length;
+  const totalActions = Object.values(actMap).reduce((s, v) => s + v, 0);
+
+  const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const DAY_ABBR   = ['M','','W','','F','','S'];
+
+  // Month label row: spacer + 16 labels
+  let monthHtml = '<span class="hm-day-lbl"></span>';
+  let lastMonth = -1;
+  for (let col = 0; col < WEEKS; col++) {
+    const d = new Date(startMs); d.setDate(startMs.getDate() + col * 7);
+    const m = d.getMonth();
+    monthHtml += `<span class="hm-month-lbl">${m !== lastMonth ? MONTH_ABBR[m] : ''}</span>`;
+    lastMonth = m;
+  }
+
+  // 7 rows × 16 columns of cells
+  let gridHtml = '';
+  for (let row = 0; row < 7; row++) {
+    gridHtml += `<div class="hm-row"><span class="hm-day-lbl">${DAY_ABBR[row]}</span>`;
+    for (let col = 0; col < WEEKS; col++) {
+      const d = new Date(startMs); d.setDate(startMs.getDate() + col * 7 + row);
+      const ds     = d.toISOString().slice(0,10);
+      const future = ds > todayStr;
+      const count  = actMap[ds] || 0;
+      const lvl    = future ? 'hm-future' : count === 0 ? 'hm-0' : count === 1 ? 'hm-1' : count <= 3 ? 'hm-2' : 'hm-3';
+      const todayCls = ds === todayStr ? ' hm-today' : '';
+      const tip    = !future ? `${ds}: ${count} action${count !== 1 ? 's' : ''}` : '';
+      gridHtml += `<span class="hm-cell ${lvl}${todayCls}" title="${tip}"></span>`;
+    }
+    gridHtml += '</div>';
+  }
+
+  el.innerHTML = `<div class="hm-card">
+    <div class="hm-header">
+      <span class="hm-title">Activity</span>
+      <span class="hm-subtitle">${activeDays} active day${activeDays !== 1 ? 's' : ''} \u00b7 ${totalActions} action${totalActions !== 1 ? 's' : ''} in 16 wks</span>
+    </div>
+    <div class="hm-wrap">
+      <div class="hm-months">${monthHtml}</div>
+      ${gridHtml}
+    </div>
+    <div class="hm-legend">
+      <span class="hm-legend-lbl">Less</span>
+      <span class="hm-cell hm-0"></span><span class="hm-cell hm-1"></span><span class="hm-cell hm-2"></span><span class="hm-cell hm-3"></span>
+      <span class="hm-legend-lbl">More</span>
+    </div>
+  </div>`;
 }
