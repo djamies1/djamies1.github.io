@@ -493,6 +493,13 @@ button, [role="button"], input[type="range"], select, a {
   to { transform: rotate(360deg); }
 }
 
+/* Phase 158 — loading brand */
+.loading-brand { font-size: 52px; animation: breathe 2.4s ease-in-out infinite; }
+@keyframes breathe {
+  0%, 100% { transform: scale(1);   opacity: 0.85; }
+  50%       { transform: scale(1.12); opacity: 1;    }
+}
+
 #loading-text {
   color: var(--text-muted);
   font-size: 13px;
@@ -687,8 +694,8 @@ button, [role="button"], input[type="range"], select, a {
   /* Override shared 10px uppercase rule — section headers must be readable */
   font-size: 13px; font-weight: 700; letter-spacing: 0.01em; text-transform: none;
   color: var(--text);
-  padding: 8px 12px 6px;
-  margin: 0 -12px 8px;
+  padding: 8px 14px 6px;
+  margin: 0;
   border-left: 3px solid;
 }
 /* Stage-specific colour identity */
@@ -709,8 +716,25 @@ button, [role="button"], input[type="range"], select, a {
   font-size: 11px; font-weight: 700; margin-left: 2px; padding: 2px 8px;
 }
 
+.plant-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
 .plant-section ul {
   list-style: none;
+  padding: 8px 10px;
+}
+
+/* Crop cards inside a section card — no double surface */
+.plant-section .crop-card {
+  background: var(--surface2);
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
 }
 
 .crop-plain {
@@ -909,7 +933,7 @@ button, [role="button"], input[type="range"], select, a {
     height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px));
     padding-bottom: env(safe-area-inset-bottom, 0px);
     background: var(--surface);
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(120,200,122,0.2);
     z-index: 98;
   }
 
@@ -996,6 +1020,7 @@ button, [role="button"], input[type="range"], select, a {
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
   gap: 10px;
+  background: linear-gradient(135deg, var(--surface2) 0%, rgba(120,200,122,0.08) 100%);
 }
 
 #modal-title-row {
@@ -1017,13 +1042,15 @@ button, [role="button"], input[type="range"], select, a {
 }
 
 .difficulty-badge {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  padding: 2px 8px;
-  border-radius: 99px;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
   border: 1px solid currentColor;
+  display: inline-flex;
+  align-items: center;
 }
 
 .difficulty-easy    { color: var(--accent); }
@@ -1312,32 +1339,43 @@ button, [role="button"], input[type="range"], select, a {
 #browse-grid {
   flex: 1;
   overflow-y: auto;
-  padding: 12px 16px;
+  padding: 12px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 8px;
+  gap: 10px;
   align-content: start;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
 }
 
+@media (max-width: 640px) {
+  #browse-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+}
+
 .browse-card {
-  background: var(--surface2);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 10px 8px;
+  border-radius: var(--radius-lg);
+  padding: 14px 10px 12px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  transition: border-color 0.15s, background 0.15s;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  min-height: 100px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
 }
 
 .browse-card:hover,
 .browse-card:focus-visible {
   border-color: var(--accent-dark);
-  background: #1e2d3f;
+  background: var(--surface2);
+  box-shadow: var(--shadow-sm);
 }
 
 .browse-card:focus-visible {
@@ -1346,29 +1384,30 @@ button, [role="button"], input[type="range"], select, a {
 }
 
 .browse-card--active {
-  border-left: 3px solid var(--accent);
+  border-color: rgba(120,200,122,0.5);
+  background: rgba(120,200,122,0.05);
 }
 
-.browse-card-emoji { font-size: 22px; line-height: 1; }
+.browse-card-emoji { font-size: 32px; line-height: 1; }
 
 .browse-card-name {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   line-height: 1.3;
 }
 
 .browse-card-meta {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
-  margin-top: 1px;
 }
 
 .browse-card-cat {
-  font-size: 9px;
+  font-size: 11px;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
 
 .diff-dot {
@@ -1393,9 +1432,10 @@ button, [role="button"], input[type="range"], select, a {
 .browse-empty {
   grid-column: 1 / -1;
   color: var(--text-muted);
-  font-size: 13px;
-  padding: 24px 0;
+  font-size: 14px;
+  padding: 40px 16px;
   text-align: center;
+  line-height: 1.6;
 }
 
 /* ──────────────────────────────────────────────
@@ -1416,7 +1456,7 @@ button, [role="button"], input[type="range"], select, a {
 #panel-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
 .ptab { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-bottom: 2px solid transparent; border-radius: 6px 6px 0 0; color: var(--text-muted); cursor: pointer; font-size: 11px; font-weight: 600; letter-spacing: 0.02em; padding: 8px 10px; transition: color 0.15s, border-color 0.15s, background 0.15s; }
 .ptab:hover { color: var(--text); border-color: var(--text-muted); }
-.ptab.active { background: rgba(74,222,128,0.12); border-color: rgba(74,222,128,0.3); border-bottom-color: var(--accent); color: var(--accent); }
+.ptab.active { background: rgba(120,200,122,0.12); border-color: rgba(120,200,122,0.3); border-bottom-color: var(--accent); color: var(--accent); }
 @media (max-width: 767px) { .ptab { font-size: 12px; padding: 10px 6px; } }
 #garden-count-badge { font-size: 10px; font-weight: 700; background: var(--accent); color: #0a0f1a; border-radius: 99px; padding: 0 5px; margin-left: 3px; }
 
@@ -1641,8 +1681,8 @@ button, [role="button"], input[type="range"], select, a {
 .ob-actions { display: flex; gap: 10px; justify-content: center; margin-top: 8px; width: 100%; }
 .ob-skip { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 13px; padding: 8px 14px; border-radius: 6px; transition: color 0.15s; }
 .ob-skip:hover { color: var(--text); }
-.ob-primary { background: var(--accent); border: none; border-radius: 6px; color: #0a0f1a; cursor: pointer; font-size: 13px; font-weight: 700; padding: 8px 20px; transition: background 0.15s; }
-.ob-primary:hover { background: #86efac; }
+.ob-primary { background: var(--accent); border: none; border-radius: var(--radius-full); color: #0a0f1a; cursor: pointer; font-size: 15px; font-weight: 800; padding: 13px 28px; min-height: 50px; transition: background 0.15s; }
+.ob-primary:hover { background: var(--accent-dark); color: var(--text); }
 .ob-dots { display: flex; justify-content: center; gap: 8px; margin-top: 22px; }
 .ob-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: background 0.2s; cursor: pointer; }
 .ob-dot.active { background: var(--accent); }
@@ -1694,10 +1734,10 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
 ────────────────────────────────────────────── */
 #panel-drag-handle {
   display: none;
-  width: 36px;
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
+  width: 44px;
+  height: 5px;
+  background: var(--text-faint);
+  border-radius: 3px;
   margin: 10px auto 6px;
   flex-shrink: 0;
   cursor: grab;
@@ -4350,14 +4390,14 @@ body.garden-mode .plant-section ul {
 /* ── Phase 74: Enhanced Onboarding ─────────────── */
 .ob-zone-tip { background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; color: var(--text-muted); font-size: var(--text-2xs); line-height: 1.5; margin: 10px 0; padding: 7px 10px; }
 .ob-level-picker { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
-.ob-level-btn { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; display: grid; gap: 2px 10px; grid-template-columns: 28px 1fr; grid-template-rows: auto auto; padding: 10px 14px; text-align: left; transition: border-color 0.15s, background 0.15s; }
-.ob-level-btn.active { background: rgba(74,222,128,0.1); border-color: var(--accent); }
-.ob-level-icon { font-size: 22px; grid-row: 1 / 3; }
-.ob-level-btn strong { color: var(--text); font-size: var(--text-sm); }
-.ob-level-btn span { color: var(--text-muted); font-size: var(--text-2xs); }
+.ob-level-btn { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); cursor: pointer; display: grid; gap: 2px 12px; grid-template-columns: 32px 1fr; grid-template-rows: auto auto; padding: 14px 16px; min-height: 56px; text-align: left; transition: border-color 0.15s, background 0.15s; }
+.ob-level-btn.active { background: rgba(120,200,122,0.1); border-color: var(--accent); }
+.ob-level-icon { font-size: 24px; grid-row: 1 / 3; }
+.ob-level-btn strong { color: var(--text); font-size: 14px; font-weight: 700; }
+.ob-level-btn span { color: var(--text-muted); font-size: 12px; }
 .ob-crop-grid { display: grid; gap: 6px; grid-template-columns: repeat(3, 1fr); margin: 12px 0; }
 .ob-crop-btn { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 9px 6px; transition: border-color 0.12s, background 0.12s; }
-.ob-crop-btn.selected { background: rgba(74,222,128,0.12); border-color: var(--accent); }
+.ob-crop-btn.selected { background: rgba(120,200,122,0.12); border-color: var(--accent); }
 .ob-crop-emoji { font-size: 20px; }
 .ob-crop-name { color: var(--text); font-size: 10px; font-weight: var(--weight-semibold); text-align: center; line-height: 1.3; }
 .ob-crop-diff { border-radius: 99px; font-size: 9px; font-weight: 700; padding: 1px 5px; }
@@ -4465,8 +4505,7 @@ body.garden-mode .plant-section ul {
 .rv-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; color: var(--text-muted); cursor: pointer; font-size: var(--text-2xs); font-weight: var(--weight-semibold); padding: 3px 10px; transition: color 0.12s, border-color 0.12s; }
 .rv-chip:hover { border-color: var(--accent-dark); color: var(--text); }
 /* Browse card hover lift */
-.browse-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
-.browse-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.25); transform: translateY(-2px); }
+.browse-card { transition: border-color 0.15s, background 0.15s, box-shadow 0.15s; }
 
 /* ── Phase 81: Season Suitability Bar ─────────── */
 .modal-season-bar { padding-bottom: 10px; }
@@ -5107,18 +5146,21 @@ body.garden-mode .plant-section ul {
 /* Empty Garden Hero */
 #garden-empty-msg { padding: 0; }
 .empty-hero {
-  align-items: center; border: 1px dashed var(--border); border-radius: 12px;
-  display: flex; flex-direction: column; gap: 8px; padding: 32px 20px; text-align: center;
+  align-items: center;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface2) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  display: flex; flex-direction: column; gap: 10px; padding: 40px 24px; text-align: center;
 }
-.empty-hero-emoji  { font-size: 40px; opacity: 0.6; }
-.empty-hero-title  { color: var(--text); font-size: 16px; font-weight: 600; }
-.empty-hero-body   { color: var(--text-muted); font-size: 13px; line-height: 1.5; margin: 0; max-width: 240px; }
+.empty-hero-emoji  { font-size: 52px; line-height: 1; }
+.empty-hero-title  { color: var(--text); font-size: 17px; font-weight: 800; }
+.empty-hero-body   { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin: 0; max-width: 260px; }
 .empty-hero-cta {
-  background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); border-radius: 20px;
-  color: var(--accent); cursor: pointer; font-size: 13px; font-weight: 600;
-  margin-top: 4px; padding: 8px 20px; transition: background 0.15s;
+  background: var(--accent); border: none; border-radius: var(--radius-full);
+  color: #0a0f1a; cursor: pointer; font-size: 14px; font-weight: 700;
+  margin-top: 6px; padding: 12px 28px; min-height: 44px; transition: background 0.15s;
 }
-.empty-hero-cta:hover { background: rgba(74,222,128,0.2); }
+.empty-hero-cta:hover { background: var(--accent-dark); color: var(--text); }
 
 /* Map Shortcuts Panel */
 .gm-header { position: relative; }
@@ -5285,14 +5327,14 @@ body.garden-mode .plant-section ul {
 .cmp-clear:hover            { color: var(--text); }
 
 /* Phase 121 — Watering schedule card */
-.ws-card             { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
-.ws-hd               { border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 7px 12px; text-transform: uppercase; }
-.ws-rain-note        { background: rgba(147,197,253,0.08); border-bottom: 1px solid var(--border); color: #93c5fd; font-size: 11px; padding: 5px 12px; }
-.ws-row              { align-items: center; border-bottom: 1px solid var(--border); display: flex; gap: 8px; padding: 7px 10px; }
+.ws-card             { border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 12px; overflow: hidden; }
+.ws-hd               { border-bottom: 1px solid var(--border); color: var(--text); font-size: 13px; font-weight: 700; letter-spacing: 0; padding: 10px 14px; text-transform: none; }
+.ws-rain-note        { background: rgba(147,197,253,0.08); border-bottom: 1px solid var(--border); color: #93c5fd; font-size: 12px; padding: 6px 14px; }
+.ws-row              { align-items: center; border-bottom: 1px solid var(--border); display: flex; gap: 10px; padding: 10px 12px; min-height: 48px; }
 .ws-row:last-child   { border-bottom: none; }
-.ws-emoji            { flex-shrink: 0; font-size: 16px; line-height: 1; }
-.ws-name             { flex: 1; font-size: 12px; font-weight: 600; }
-.ws-status           { font-size: 11px; font-weight: 600; }
+.ws-emoji            { flex-shrink: 0; font-size: 20px; line-height: 1; }
+.ws-name             { flex: 1; font-size: 13px; font-weight: 600; }
+.ws-status           { font-size: 12px; font-weight: 700; }
 .ws-row--overdue .ws-status { color: #f87171; }
 .ws-row--today .ws-status   { color: #fbbf24; }
 .ws-row--soon .ws-status    { color: #fbbf24; }
