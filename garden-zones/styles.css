@@ -323,7 +323,7 @@ button, [role="button"], input[type="range"], select, a {
 .s-winter { flex: 1.5; background: rgba(59,130,246,0.22); color: var(--color-info); }
 .s-spring { flex: 3;   background: rgba(34,197,94,0.2);   color: var(--color-success); }
 .s-summer { flex: 3;   background: rgba(234,179,8,0.2);   color: #fde68a; }
-.s-autumn { flex: 3;   background: rgba(249,115,22,0.2);  color: #fdba74; }
+.s-autumn { flex: 3;   background: color-mix(in srgb, var(--color-harvest) 20%, transparent);  color: #fdba74; }
 /* Dec — inherits .s-winter color, overrides flex */
 .s-dec    { flex: 0.5; font-size: var(--text-xs); }
 
@@ -684,10 +684,10 @@ button, [role="button"], input[type="range"], select, a {
   align-items: center; border-radius: var(--radius-lg); display: flex; gap: 12px;
   margin-bottom: 12px; padding: 14px 16px;
 }
-.month-display-band--spring { background: linear-gradient(135deg,rgba(34,197,94,0.12),rgba(134,239,172,0.04)); border: 1px solid rgba(120,200,122,0.2); }
-.month-display-band--summer { background: linear-gradient(135deg,rgba(234,179,8,0.12),rgba(253,230,138,0.04));  border: 1px solid rgba(251,191,36,0.2); }
-.month-display-band--autumn { background: linear-gradient(135deg,rgba(249,115,22,0.12),rgba(253,186,116,0.04)); border: 1px solid rgba(249,115,22,0.2); }
-.month-display-band--winter { background: linear-gradient(135deg,rgba(59,130,246,0.12),rgba(147,197,253,0.04));  border: 1px solid rgba(147,197,253,0.2); }
+.month-display-band--spring { background: linear-gradient(135deg,rgba(34,197,94,0.12),rgba(134,239,172,0.04)); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); }
+.month-display-band--summer { background: linear-gradient(135deg,rgba(234,179,8,0.12),rgba(253,230,138,0.04));  border: 1px solid color-mix(in srgb, var(--color-warning) 20%, transparent); }
+.month-display-band--autumn { background: linear-gradient(135deg,color-mix(in srgb, var(--color-harvest) 12%, transparent),rgba(253,186,116,0.04)); border: 1px solid color-mix(in srgb, var(--color-harvest) 20%, transparent); }
+.month-display-band--winter { background: linear-gradient(135deg,rgba(59,130,246,0.12),color-mix(in srgb, var(--color-info) 4%, transparent));  border: 1px solid color-mix(in srgb, var(--color-info) 20%, transparent); }
 .mdb-emoji { font-size: 28px; line-height: 1; }
 .mdb-label { color: var(--text); font-size: var(--text-lg); font-weight: var(--weight-bold); letter-spacing: -0.01em; }
 
@@ -715,18 +715,18 @@ button, [role="button"], input[type="range"], select, a {
   border-left: 3px solid;
 }
 /* Stage-specific colour identity */
-#section-startIndoors h3  { border-left-color: var(--color-info); background: rgba(147,197,253,0.07); color: var(--color-info); }
-#section-directSow h3     { border-left-color: var(--accent); background: rgba(120,200,122,0.07); color: var(--accent); }
-#section-transplant h3    { border-left-color: var(--color-warning); background: rgba(251,191,36,0.07); color: var(--color-warning); }
-#section-harvest h3       { border-left-color: var(--color-harvest); background: rgba(249,115,22,0.07); color: var(--color-harvest); }
+#section-startIndoors h3  { border-left-color: var(--color-info); background: color-mix(in srgb, var(--color-info) 7%, transparent); color: var(--color-info); }
+#section-directSow h3     { border-left-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, transparent); color: var(--accent); }
+#section-transplant h3    { border-left-color: var(--color-warning); background: color-mix(in srgb, var(--color-warning) 7%, transparent); color: var(--color-warning); }
+#section-harvest h3       { border-left-color: var(--color-harvest); background: color-mix(in srgb, var(--color-harvest) 7%, transparent); color: var(--color-harvest); }
 .ps-badge {
   align-items: center; border-radius: 50%; display: inline-flex;
   flex-shrink: 0; font-size: var(--text-sm); height: 24px; justify-content: center; width: 24px;
 }
-.ps-badge--indoors    { background: rgba(147,197,253,0.2); }
-.ps-badge--sow        { background: rgba(120,200,122,0.2); }
-.ps-badge--transplant { background: rgba(251,191,36,0.2);  }
-.ps-badge--harvest    { background: rgba(249,115,22,0.2);  }
+.ps-badge--indoors    { background: color-mix(in srgb, var(--color-info) 20%, transparent); }
+.ps-badge--sow        { background: color-mix(in srgb, var(--accent) 20%, transparent); }
+.ps-badge--transplant { background: color-mix(in srgb, var(--color-warning) 20%, transparent);  }
+.ps-badge--harvest    { background: color-mix(in srgb, var(--color-harvest) 20%, transparent);  }
 .ps-count {
   background: var(--surface2); border-radius: var(--radius-full); color: var(--text-muted);
   font-size: var(--text-xs); font-weight: var(--weight-bold); margin-left: 2px; padding: 2px 8px;
@@ -840,8 +840,8 @@ button, [role="button"], input[type="range"], select, a {
 #garden-tip {
   margin-top: 14px;
   padding: 10px 12px;
-  background: rgba(120,200,122,0.07);
-  border: 1px solid rgba(120,200,122,0.2);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
   border-radius: var(--radius-md);
   font-size: var(--text-xs);
   color: var(--text-muted);
@@ -949,7 +949,7 @@ button, [role="button"], input[type="range"], select, a {
     height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px));
     padding-bottom: env(safe-area-inset-bottom, 0px);
     background: var(--surface);
-    border-top: 1px solid rgba(120,200,122,0.2);
+    border-top: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
     z-index: 98;
   }
 
@@ -973,7 +973,7 @@ button, [role="button"], input[type="range"], select, a {
 
   .bnav-btn.bnav-active {
     color: var(--accent);
-    background: rgba(120,200,122,0.12);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
   }
 
   .bnav-icon { font-size: var(--text-2xl); line-height: 1; }
@@ -1036,7 +1036,7 @@ button, [role="button"], input[type="range"], select, a {
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
   gap: 10px;
-  background: linear-gradient(135deg, var(--surface2) 0%, rgba(120,200,122,0.08) 100%);
+  background: linear-gradient(135deg, var(--surface2) 0%, color-mix(in srgb, var(--accent) 8%, transparent) 100%);
 }
 
 #modal-title-row {
@@ -1148,14 +1148,14 @@ button, [role="button"], input[type="range"], select, a {
 }
 
 .detail-tag--companions {
-  background: rgba(120,200,122,0.1);
-  border-color: rgba(120,200,122,0.35);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
   color: var(--accent);
 }
 
 .detail-tag--avoid {
-  background: rgba(248,113,113,0.1);
-  border-color: rgba(248,113,113,0.35);
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+  border-color: color-mix(in srgb, var(--color-danger) 35%, transparent);
   color: var(--color-danger);
 }
 
@@ -1166,14 +1166,14 @@ button, [role="button"], input[type="range"], select, a {
 }
 
 .detail-tag--pests {
-  background: rgba(251,191,36,0.1);
-  border-color: rgba(251,191,36,0.35);
+  background: color-mix(in srgb, var(--color-warning) 10%, transparent);
+  border-color: color-mix(in srgb, var(--color-warning) 35%, transparent);
   color: var(--color-warning);
 }
 
 .modal-section--tip {
-  background: rgba(120,200,122,0.07);
-  border: 1px solid rgba(120,200,122,0.2);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
   border-radius: var(--radius-md);
   padding: 10px 12px;
 }
@@ -1207,7 +1207,7 @@ button, [role="button"], input[type="range"], select, a {
 }
 
 #browse-btn.active {
-  background: rgba(120,200,122,0.12);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -1318,7 +1318,7 @@ button, [role="button"], input[type="range"], select, a {
 }
 
 .cat-chip.active {
-  background: rgba(120,200,122,0.12);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -1402,8 +1402,8 @@ button, [role="button"], input[type="range"], select, a {
 }
 
 .browse-card--active {
-  border-color: rgba(120,200,122,0.5);
-  background: rgba(120,200,122,0.05);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
 }
 
 .browse-card-emoji { font-size: 32px; line-height: 1; }
@@ -1474,7 +1474,7 @@ button, [role="button"], input[type="range"], select, a {
 #panel-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
 .ptab { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-bottom: 2px solid transparent; border-radius: var(--radius-md) var(--radius-md) 0 0; color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: 0.02em; padding: 8px 10px; transition: color 0.15s, border-color 0.15s, background 0.15s; }
 .ptab:hover { color: var(--text); border-color: var(--text-muted); }
-.ptab.active { background: rgba(120,200,122,0.12); border-color: rgba(120,200,122,0.3); border-bottom-color: var(--accent); color: var(--accent); }
+.ptab.active { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: color-mix(in srgb, var(--accent) 30%, transparent); border-bottom-color: var(--accent); color: var(--accent); }
 @media (max-width: 767px) { .ptab { font-size: var(--text-xs); padding: 10px 6px; } }
 #garden-count-badge { font-size: var(--text-2xs); font-weight: var(--weight-bold); background: var(--accent); color: var(--on-accent); border-radius: var(--radius-full); padding: 0 5px; margin-left: 3px; }
 
@@ -1487,11 +1487,11 @@ button, [role="button"], input[type="range"], select, a {
 .countdown-body { flex: 1; }
 .countdown-body strong { display: block; font-weight: var(--weight-bold); margin-bottom: 2px; }
 .countdown-body span { color: var(--text-muted); }
-.countdown-card--action  { background: rgba(120,200,122,0.07);  border-color: rgba(120,200,122,0.25); }
-.countdown-card--soon    { background: rgba(251,191,36,0.07);   border-color: rgba(251,191,36,0.25); }
-.countdown-card--warning { background: rgba(248,113,113,0.07);  border-color: rgba(248,113,113,0.25); }
-.countdown-card--success { background: rgba(120,200,122,0.12);   border-color: rgba(120,200,122,0.35); }
-.countdown-card--info    { background: rgba(147,197,253,0.07);  border-color: rgba(147,197,253,0.25); }
+.countdown-card--action  { background: color-mix(in srgb, var(--accent) 7%, transparent);  border-color: color-mix(in srgb, var(--accent) 25%, transparent); }
+.countdown-card--soon    { background: color-mix(in srgb, var(--color-warning) 7%, transparent);   border-color: color-mix(in srgb, var(--color-warning) 25%, transparent); }
+.countdown-card--warning { background: color-mix(in srgb, var(--color-danger) 7%, transparent);  border-color: color-mix(in srgb, var(--color-danger) 25%, transparent); }
+.countdown-card--success { background: color-mix(in srgb, var(--accent) 12%, transparent);   border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+.countdown-card--info    { background: color-mix(in srgb, var(--color-info) 7%, transparent);  border-color: color-mix(in srgb, var(--color-info) 25%, transparent); }
 .countdown-card--neutral { background: var(--surface2);         border-color: var(--border); }
 
 /* ──────────────────────────────────────────────
@@ -1549,7 +1549,7 @@ button, [role="button"], input[type="range"], select, a {
   transition: color 0.15s, border-color 0.15s;
 }
 #metric-toggle:hover, #help-btn:hover { color: var(--accent); border-color: var(--accent); }
-#metric-toggle.active { color: var(--accent); border-color: var(--accent); background: rgba(120,200,122,0.1); }
+#metric-toggle.active { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
 
 /* ──────────────────────────────────────────────
    Print header (hidden normally, shown @print)
@@ -1561,8 +1561,8 @@ button, [role="button"], input[type="range"], select, a {
 ────────────────────────────────────────────── */
 #frost-alert-banner {
   display: flex; align-items: flex-start; gap: 10px;
-  padding: 10px 12px; background: rgba(147,197,253,0.1);
-  border: 1px solid rgba(147,197,253,0.4); border-radius: var(--radius-md);
+  padding: 10px 12px; background: color-mix(in srgb, var(--color-info) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-info) 40%, transparent); border-radius: var(--radius-md);
   margin-bottom: 10px; font-size: var(--text-xs); line-height: 1.4;
 }
 #frost-alert-banner[hidden] { display: none; }
@@ -1585,7 +1585,7 @@ button, [role="button"], input[type="range"], select, a {
 .wx-icon { font-size: 26px; line-height: 1; }
 .wx-temp { font-size: var(--text-xl); font-weight: var(--weight-bold); }
 .wx-condition { font-size: var(--text-xs); color: var(--text-muted); flex: 1; }
-.wx-frost-tag { font-size: var(--text-xs); background: rgba(147,197,253,0.15); border: 1px solid rgba(147,197,253,0.3); color: var(--color-info); border-radius: var(--radius-full); padding: 2px 9px; white-space: nowrap; }
+.wx-frost-tag { font-size: var(--text-xs); background: color-mix(in srgb, var(--color-info) 15%, transparent); border: 1px solid color-mix(in srgb, var(--color-info) 30%, transparent); color: var(--color-info); border-radius: var(--radius-full); padding: 2px 9px; white-space: nowrap; }
 .wx-forecast { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 .wx-day {
   background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md);
@@ -1597,7 +1597,7 @@ button, [role="button"], input[type="range"], select, a {
 .wx-day-temp  { font-size: var(--text-xs); font-weight: var(--weight-bold); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .wx-day-lo    { color: var(--text-muted); font-weight: var(--weight-normal); }
 .wx-prec-bar  { background: rgba(255,255,255,0.08); border-radius: 2px; height: 2px; margin-top: 2px; overflow: hidden; width: 80%; }
-.wx-prec-fill { background: rgba(147,197,253,0.65); border-radius: 2px; height: 100%; }
+.wx-prec-fill { background: color-mix(in srgb, var(--color-info) 65%, transparent); border-radius: 2px; height: 100%; }
 .wx-attribution { font-size: var(--text-2xs); color: var(--text-muted); text-align: right; margin-top: 5px; opacity: 0.7; }
 
 /* ──────────────────────────────────────────────
@@ -1622,7 +1622,7 @@ button, [role="button"], input[type="range"], select, a {
 .tw-icon { flex-shrink: 0; font-size: var(--text-lg); line-height: 1.5; }
 .tw-text { flex: 1; }
 .tw-item--urgent .tw-text { font-weight: var(--weight-bold); }
-.tw-item--urgent { background: rgba(120,200,122,0.04); }
+.tw-item--urgent { background: color-mix(in srgb, var(--accent) 4%, transparent); }
 .tw-item--action .tw-text { color: var(--accent); }
 .tw-item--soon .tw-text { color: var(--color-warning); }
 .tw-item--info .tw-text { color: var(--text-muted); }
@@ -1905,8 +1905,8 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
    Phase 3 — Reminder banner
 ────────────────────────────────────────────── */
 #reminder-banner {
-  background: rgba(251,191,36,0.07);
-  border: 1px solid rgba(251,191,36,0.3);
+  background: color-mix(in srgb, var(--color-warning) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-warning) 30%, transparent);
   border-radius: var(--radius-lg);
   margin-bottom: 8px;
   padding: 10px 12px;
@@ -1918,7 +1918,7 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
   gap: 10px;
   padding: 4px 0;
 }
-.reminder-item + .reminder-item { border-top: 1px solid rgba(251,191,36,0.15); margin-top: 4px; padding-top: 8px; }
+.reminder-item + .reminder-item { border-top: 1px solid color-mix(in srgb, var(--color-warning) 15%, transparent); margin-top: 4px; padding-top: 8px; }
 .reminder-item-body { flex: 1; line-height: 1.5; }
 .reminder-item-body strong { display: block; font-size: var(--text-sm); font-weight: var(--weight-bold); }
 .reminder-item-body span { font-size: var(--text-xs); color: var(--text-muted); }
@@ -2038,7 +2038,7 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
   border-radius: 2px;
 }
 .gl-start::before    { background: color-mix(in srgb, var(--color-info) 25%, transparent); border: 1px solid var(--color-info); }
-.gl-sow::before      { background: rgba(120,200,122,0.3); border: 1px solid var(--accent); }
+.gl-sow::before      { background: color-mix(in srgb, var(--accent) 30%, transparent); border: 1px solid var(--accent); }
 .gl-transplant::before { background: color-mix(in srgb, var(--color-warning) 25%, transparent); border: 1px solid var(--color-warning); }
 .gl-harvest::before  { background: color-mix(in srgb, var(--color-danger) 25%, transparent); border: 1px solid var(--color-danger); }
 
@@ -2079,12 +2079,12 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
 .gantt-cell:hover { opacity: 0.8; }
 .gantt-cell--none       { background: transparent; }
 .gantt-cell--start      { background: color-mix(in srgb, var(--color-info) 22%, transparent); border: 1px solid color-mix(in srgb, var(--color-info) 40%, transparent); }
-.gantt-cell--sow        { background: rgba(120,200,122,0.25); border: 1px solid rgba(120,200,122,0.5); }
+.gantt-cell--sow        { background: color-mix(in srgb, var(--accent) 25%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); }
 .gantt-cell--transplant { background: color-mix(in srgb, var(--color-warning) 22%, transparent); border: 1px solid color-mix(in srgb, var(--color-warning) 40%, transparent); }
 .gantt-cell--harvest    { background: color-mix(in srgb, var(--color-danger) 22%, transparent); border: 1px solid color-mix(in srgb, var(--color-danger) 40%, transparent); }
 .gantt-cell--cur        { outline: 1px solid var(--text-faint); outline-offset: -1px; }
 .gantt-cell--start.gantt-cell--cur      { background: color-mix(in srgb, var(--color-info) 45%, transparent); }
-.gantt-cell--sow.gantt-cell--cur        { background: rgba(120,200,122,0.5); }
+.gantt-cell--sow.gantt-cell--cur        { background: color-mix(in srgb, var(--accent) 50%, transparent); }
 .gantt-cell--transplant.gantt-cell--cur { background: color-mix(in srgb, var(--color-warning) 45%, transparent); }
 .gantt-cell--harvest.gantt-cell--cur    { background: color-mix(in srgb, var(--color-danger) 45%, transparent); }
 
@@ -2154,8 +2154,8 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
 }
 .succession-dates { display: flex; flex-wrap: wrap; gap: 5px; }
 .succession-chip {
-  background: rgba(120,200,122,0.1);
-  border: 1px solid rgba(120,200,122,0.3);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   border-radius: var(--radius-full);
   color: var(--accent);
   font-size: var(--text-xs);
@@ -2247,8 +2247,8 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
 .climate-season-days { color: var(--text-muted); }
 .climate-season-days strong { color: var(--text); }
 .climate-type-badge {
-  background: rgba(120,200,122,0.12);
-  border: 1px solid rgba(120,200,122,0.3);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   border-radius: var(--radius-full);
   color: var(--accent);
   font-size: var(--text-2xs);
@@ -2271,7 +2271,7 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
   position: absolute;
   top: 0;
   height: 100%;
-  background: rgba(120,200,122,0.35);
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
   border-radius: var(--radius-sm);
 }
 .climate-bar-months {
@@ -2308,7 +2308,7 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
   white-space: nowrap;
 }
 .related-chip:hover { background: var(--surface); border-color: var(--accent-dark); }
-.related-chip.in-season { border-color: rgba(120,200,122,0.4); color: var(--accent); }
+.related-chip.in-season { border-color: color-mix(in srgb, var(--accent) 40%, transparent); color: var(--accent); }
 
 /* ──────────────────────────────────────────────
    Phase 6 — Layout toggle button
@@ -2328,7 +2328,7 @@ kbd { background: var(--surface2); border: 1px solid var(--border); border-radiu
 }
 #layout-toggle:hover { color: var(--accent); border-color: var(--accent); }
 #layout-toggle.garden-active {
-  background: rgba(120,200,122,0.12);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -2381,8 +2381,8 @@ body.garden-mode .plant-section ul {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(120,200,122,0.1);
-  border: 1px solid rgba(120,200,122,0.4);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
   border-radius: var(--radius-lg);
   margin-bottom: 10px;
   padding: 12px 14px;
@@ -2392,7 +2392,7 @@ body.garden-mode .plant-section ul {
   cursor: pointer;
   transition: background 0.15s;
 }
-#harvest-ready-banner:hover { background: rgba(120,200,122,0.16); }
+#harvest-ready-banner:hover { background: color-mix(in srgb, var(--accent) 16%, transparent); }
 #harvest-ready-banner .hrb-icon { font-size: 26px; flex-shrink: 0; }
 #harvest-ready-banner .hrb-text { flex: 1; line-height: 1.4; }
 #harvest-ready-banner .hrb-sub  { font-size: var(--text-xs); color: var(--text-muted); font-weight: var(--weight-normal); }
@@ -2423,8 +2423,8 @@ body.garden-mode .plant-section ul {
 #journal-input::placeholder { color: var(--text-muted); }
 #journal-add-btn {
   align-self: flex-end;
-  background: rgba(120,200,122,0.12);
-  border: 1px solid rgba(120,200,122,0.35);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
   border-radius: var(--radius-md);
   color: var(--accent);
   cursor: pointer;
@@ -2434,7 +2434,7 @@ body.garden-mode .plant-section ul {
   padding: 8px 18px;
   transition: background 0.15s, border-color 0.15s;
 }
-#journal-add-btn:hover { background: rgba(120,200,122,0.2); border-color: var(--accent); }
+#journal-add-btn:hover { background: color-mix(in srgb, var(--accent) 20%, transparent); border-color: var(--accent); }
 #journal-list { display: flex; flex-direction: column; gap: 8px; }
 .journal-entry {
   background: var(--surface2);
@@ -2512,14 +2512,14 @@ body.garden-mode .plant-section ul {
   transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
 .journal-filter-chip.active {
-  background: rgba(120,200,122,0.1);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
   border-color: var(--accent);
   color: var(--accent);
 }
 .journal-entry-crop-tag {
   display: inline-block;
-  background: rgba(120,200,122,0.1);
-  border: 1px solid rgba(120,200,122,0.3);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   border-radius: var(--radius-full);
   color: var(--accent);
   font-size: var(--text-2xs);
@@ -2586,9 +2586,9 @@ body.garden-mode .plant-section ul {
 .garden-task-body { flex: 1; }
 .garden-task-body strong { display: block; font-weight: var(--weight-semibold); }
 .garden-task-body span { color: var(--text-muted); font-size: var(--text-xs); }
-.garden-task--urgent  { background: rgba(248,113,113,0.07);  border-color: rgba(248,113,113,0.3); }
-.garden-task--action  { background: rgba(120,200,122,0.07);   border-color: rgba(120,200,122,0.25); }
-.garden-task--soon    { background: rgba(251,191,36,0.07);   border-color: rgba(251,191,36,0.25); }
+.garden-task--urgent  { background: color-mix(in srgb, var(--color-danger) 7%, transparent);  border-color: color-mix(in srgb, var(--color-danger) 30%, transparent); }
+.garden-task--action  { background: color-mix(in srgb, var(--accent) 7%, transparent);   border-color: color-mix(in srgb, var(--accent) 25%, transparent); }
+.garden-task--soon    { background: color-mix(in srgb, var(--color-warning) 7%, transparent);   border-color: color-mix(in srgb, var(--color-warning) 25%, transparent); }
 .garden-task--info    { background: var(--surface2);         border-color: var(--border); }
 
 /* ──────────────────────────────────────────────
@@ -2708,8 +2708,8 @@ body.garden-mode .plant-section ul {
 .cc-field textarea { resize: vertical; min-height: 60px; }
 #cc-emoji-field { max-width: 80px; }
 #cc-save-btn {
-  background: rgba(120,200,122,0.12);
-  border: 1px solid rgba(120,200,122,0.4);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
   border-radius: var(--radius-lg);
   color: var(--accent);
   cursor: pointer;
@@ -2718,7 +2718,7 @@ body.garden-mode .plant-section ul {
   padding: 10px;
   transition: background 0.15s;
 }
-#cc-save-btn:hover { background: rgba(120,200,122,0.2); }
+#cc-save-btn:hover { background: color-mix(in srgb, var(--accent) 20%, transparent); }
 #cc-error { color: var(--color-danger); font-size: var(--text-xs); display: none; }
 
 /* ──────────────────────────────────────────────
@@ -2792,8 +2792,8 @@ body.garden-mode .plant-section ul {
   padding: 2px 6px;
   border-radius: var(--radius-full);
 }
-.grow-next-tag--companion { background: rgba(120,200,122,0.1); color: var(--accent); border: 1px solid rgba(120,200,122,0.3); }
-.grow-next-tag--season    { background: rgba(120,200,122,0.1); color: var(--accent); border: 1px solid rgba(120,200,122,0.25); }
+.grow-next-tag--companion { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+.grow-next-tag--season    { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); }
 .grow-next-add-btn {
   align-self: flex-end;
   background: none;
@@ -2851,7 +2851,7 @@ body.garden-mode .plant-section ul {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   background: var(--surface2);
-  border-top: 1px solid rgba(120,200,122,0.35);
+  border-top: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
   display: none;
   align-items: center;
   gap: 10px;
@@ -2864,8 +2864,8 @@ body.garden-mode .plant-section ul {
 }
 #install-banner span { flex: 1; }
 #install-accept-btn {
-  background: rgba(120,200,122,0.15);
-  border: 1px solid rgba(120,200,122,0.4);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
   border-radius: var(--radius-md);
   color: var(--accent);
   cursor: pointer;
@@ -2898,8 +2898,8 @@ body.garden-mode .plant-section ul {
   padding: 10px 14px;
 }
 .gd-zone {
-  background: rgba(120,200,122,0.12);
-  border: 1px solid rgba(120,200,122,0.3);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   border-radius: var(--radius-md);
   color: var(--accent);
   font-size: var(--text-sm);
@@ -2934,8 +2934,8 @@ body.garden-mode .plant-section ul {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(251,191,36,0.12);
-  border: 1px solid rgba(251,191,36,0.4);
+  background: color-mix(in srgb, var(--color-warning) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-warning) 40%, transparent);
   border-radius: var(--radius-lg);
   padding: 12px 14px;
   font-size: var(--text-sm);
@@ -2970,8 +2970,8 @@ body.garden-mode .plant-section ul {
   padding: 2px 9px;
 }
 .ach-chip.unlocked {
-  background: rgba(251,191,36,0.08);
-  border-color: rgba(251,191,36,0.3);
+  background: color-mix(in srgb, var(--color-warning) 8%, transparent);
+  border-color: color-mix(in srgb, var(--color-warning) 30%, transparent);
   color: var(--color-warning);
   opacity: 1;
 }
@@ -3080,7 +3080,7 @@ body.garden-mode .plant-section ul {
   flex-shrink: 0;
 }
 #cl-add-btn {
-  background: rgba(120,200,122,0.12);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
   border: 1px solid var(--accent);
   border-radius: var(--radius-md);
   color: var(--accent);
@@ -3091,7 +3091,7 @@ body.garden-mode .plant-section ul {
   flex-shrink: 0;
   transition: background 0.15s;
 }
-#cl-add-btn:hover { background: rgba(120,200,122,0.22); }
+#cl-add-btn:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
 .checklist-item {
   display: flex;
   align-items: center;
@@ -3195,7 +3195,7 @@ body.garden-mode .plant-section ul {
 }
 .country-btn:hover { opacity: 0.8; }
 .country-btn.active {
-  background: rgba(120,200,122,0.15);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
   opacity: 1;
 }
 
@@ -3204,7 +3204,7 @@ body.garden-mode .plant-section ul {
 .beds-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 .beds-title { font-size: var(--text-xs); font-weight: var(--weight-bold); color: var(--text); }
 .beds-add-btn {
-  background: rgba(120,200,122,0.12);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
   border: 1px solid var(--accent);
   border-radius: var(--radius-md);
   color: var(--accent);
@@ -3214,7 +3214,7 @@ body.garden-mode .plant-section ul {
   padding: 4px 10px;
   transition: background 0.15s;
 }
-.beds-add-btn:hover { background: rgba(120,200,122,0.22); }
+.beds-add-btn:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
 .beds-new-form {
   display: flex;
   gap: 5px;
@@ -3244,7 +3244,7 @@ body.garden-mode .plant-section ul {
   width: 48px;
 }
 #bed-save-btn {
-  background: rgba(120,200,122,0.12);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
   border: 1px solid var(--accent);
   border-radius: var(--radius-md);
   color: var(--accent);
@@ -3305,8 +3305,8 @@ body.garden-mode .plant-section ul {
   transition: border-color 0.15s;
 }
 .bed-crop-pill:hover { border-color: var(--accent-dark); }
-.bed-pill--growing { border-color: rgba(251,191,36,0.4); }
-.bed-pill--ready   { border-color: rgba(120,200,122,0.5); color: var(--accent); }
+.bed-pill--growing { border-color: color-mix(in srgb, var(--color-warning) 40%, transparent); }
+.bed-pill--ready   { border-color: color-mix(in srgb, var(--accent) 50%, transparent); color: var(--accent); }
 .bed-pill-remove {
   background: none;
   border: none;
@@ -3364,8 +3364,8 @@ body.garden-mode .plant-section ul {
   margin-bottom: 8px;
   padding: 7px 10px;
 }
-.matrix-alert--bad  { background: rgba(248,113,113,0.07); border-color: rgba(248,113,113,0.3); color: var(--text); }
-.matrix-alert--good { background: rgba(120,200,122,0.07);  border-color: rgba(120,200,122,0.25); color: var(--text); }
+.matrix-alert--bad  { background: color-mix(in srgb, var(--color-danger) 7%, transparent); border-color: color-mix(in srgb, var(--color-danger) 30%, transparent); color: var(--text); }
+.matrix-alert--good { background: color-mix(in srgb, var(--accent) 7%, transparent);  border-color: color-mix(in srgb, var(--accent) 25%, transparent); color: var(--text); }
 .matrix-alert strong { font-weight: var(--weight-semibold); }
 .matrix-scroll { overflow-x: auto; margin-bottom: 6px; }
 .companion-matrix {
@@ -3393,8 +3393,8 @@ body.garden-mode .plant-section ul {
   text-align: center;
   width: 28px;
 }
-.mx-cell--good    { background: rgba(120,200,122,0.15); }
-.mx-cell--bad     { background: rgba(248,113,113,0.15); }
+.mx-cell--good    { background: color-mix(in srgb, var(--accent) 15%, transparent); }
+.mx-cell--bad     { background: color-mix(in srgb, var(--color-danger) 15%, transparent); }
 .mx-cell--neutral { color: var(--border); }
 .mx-cell--self    { background: var(--surface2); }
 .matrix-legend {
@@ -3626,7 +3626,7 @@ body.garden-mode .plant-section ul {
   transition: border-color 0.15s, background 0.15s;
 }
 .saved-loc-chip:hover { border-color: var(--accent-dark, #22c55e); }
-.saved-loc-chip.active { background: rgba(120,200,122,0.12); border-color: var(--accent); color: var(--accent); }
+.saved-loc-chip.active { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); color: var(--accent); }
 .saved-loc-name { flex: 1; font-weight: var(--weight-semibold); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .saved-loc-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; flex-shrink: 0; font-size: var(--text-base); line-height: 1; padding: 0 2px; transition: color 0.15s; }
 .saved-loc-remove:hover { color: var(--color-danger); }
@@ -3635,7 +3635,7 @@ body.garden-mode .plant-section ul {
    Phase 18 — Enhanced planting schedule in modal
 ────────────────────────────────────────────── */
 .sched-zone-badge {
-  background: rgba(120,200,122,0.12);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
   border: 1px solid var(--accent);
   border-radius: var(--radius-sm);
   color: var(--accent);
@@ -3655,10 +3655,10 @@ body.garden-mode .plant-section ul {
   background: var(--surface2);
   border: 1px solid var(--border);
 }
-.sched-next--now  { background: rgba(120,200,122,0.12); border-color: rgba(120,200,122,0.35); }
-.sched-next--soon { background: rgba(251,191,36,0.09);  border-color: rgba(251,191,36,0.3); }
+.sched-next--now  { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+.sched-next--soon { background: color-mix(in srgb, var(--color-warning) 9%, transparent);  border-color: color-mix(in srgb, var(--color-warning) 30%, transparent); }
 
-.schedule-item--now { background: rgba(120,200,122,0.08); }
+.schedule-item--now { background: color-mix(in srgb, var(--accent) 8%, transparent); }
 .schedule-item-now-dot { color: var(--accent); font-size: 8px; margin-left: auto; }
 
 .sched-soil {
@@ -3668,8 +3668,8 @@ body.garden-mode .plant-section ul {
   margin-top: 8px;
   padding: 7px 10px;
 }
-.sched-soil--ok   { background: rgba(120,200,122,0.07);  border: 1px solid rgba(120,200,122,0.2); }
-.sched-soil--cold { background: rgba(147,197,253,0.09); border: 1px solid rgba(147,197,253,0.3); }
+.sched-soil--ok   { background: color-mix(in srgb, var(--accent) 7%, transparent);  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); }
+.sched-soil--cold { background: color-mix(in srgb, var(--color-info) 9%, transparent); border: 1px solid color-mix(in srgb, var(--color-info) 30%, transparent); }
 
 /* ── Phase 20: Growing Timeline ─────────────────── */
 #growing-timeline { margin: 10px 0; }
@@ -3686,19 +3686,19 @@ body.garden-mode .plant-section ul {
 .tl-tick--cur span { color: var(--accent); font-weight: var(--weight-bold); }
 .tl-grid-layer { position: absolute; top: 20px; left: 0; right: 0; bottom: 0; pointer-events: none; }
 .tl-gl { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--border); }
-.tl-today-line { position: absolute; top: 0; bottom: 0; width: 2px; background: rgba(248,113,113,0.65); pointer-events: none; }
+.tl-today-line { position: absolute; top: 0; bottom: 0; width: 2px; background: color-mix(in srgb, var(--color-danger) 65%, transparent); pointer-events: none; }
 .tl-now-tip { position: absolute; top: 2px; left: 4px; font-size: 8px; color: var(--color-danger); font-weight: var(--weight-bold); white-space: nowrap; }
 .tl-bars-layer { position: relative; }
 .tl-row { position: relative; height: 24px; }
 .tl-bar { position: absolute; top: 4px; height: 16px; border-radius: 3px; cursor: pointer; transition: filter 0.15s; display: flex; align-items: center; justify-content: flex-end; padding: 0 4px; font-size: var(--text-2xs); min-width: 6px; box-sizing: border-box; }
 .tl-bar:hover { filter: brightness(1.2); }
-.tl-bar--growing { background: rgba(251,191,36,0.7); border: 1px solid rgba(251,191,36,0.4); }
-.tl-bar--ready { background: rgba(120,200,122,0.8); border: 1px solid var(--accent); animation: tl-pulse 2s ease-in-out infinite; }
+.tl-bar--growing { background: color-mix(in srgb, var(--color-warning) 70%, transparent); border: 1px solid color-mix(in srgb, var(--color-warning) 40%, transparent); }
+.tl-bar--ready { background: color-mix(in srgb, var(--accent) 80%, transparent); border: 1px solid var(--accent); animation: tl-pulse 2s ease-in-out infinite; }
 .tl-bar--saved { background: var(--surface2); border: 1px solid var(--border); }
 .tl-bar--done { opacity: 0.45; }
 .tl-bar--pin { background: none; border: none; width: 20px; height: 20px; top: 2px; transform: translateX(-50%); font-size: var(--text-base); padding: 0; justify-content: center; }
 .tl-bar span { color: var(--accent); font-weight: var(--weight-bold); }
-@keyframes tl-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(120,200,122,0.35); } 50% { box-shadow: 0 0 0 4px rgba(120,200,122,0); } }
+@keyframes tl-pulse { 0%,100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 35%, transparent); } 50% { box-shadow: 0 0 0 4px transparent; } }
 
 /* ── Phase 21: Planting Day Forecast ─────────────── */
 #planting-forecast { margin-bottom: 10px; }
@@ -3706,17 +3706,17 @@ body.garden-mode .plant-section ul {
 .pf-title { font-size: var(--text-xs); font-weight: var(--weight-bold); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
 .pf-strip { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; padding-top: 12px; }
 .pf-day { flex-shrink: 0; width: 66px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 9px 4px 7px; text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.pf-day--best { border-color: var(--accent); background: rgba(120,200,122,0.06); }
+.pf-day--best { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, transparent); }
 .pf-best-tag { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--on-accent); font-size: var(--text-2xs); font-weight: var(--weight-extrabold); padding: 2px 7px; border-radius: var(--radius-full); white-space: nowrap; }
 .pf-day-name { font-size: var(--text-2xs); font-weight: var(--weight-bold); color: var(--text); }
 .pf-icon { font-size: var(--text-xl); line-height: 1.2; }
 .pf-temp { font-size: var(--text-2xs); color: var(--text-muted); }
 .pf-badge { font-size: var(--text-2xs); font-weight: var(--weight-bold); border-radius: var(--radius-sm); padding: 2px 5px; }
-.pf--great { background: rgba(120,200,122,0.2);  color: var(--accent); }
+.pf--great { background: color-mix(in srgb, var(--accent) 20%, transparent);  color: var(--accent); }
 .pf--good  { background: color-mix(in srgb, var(--color-success) 15%, transparent); color: var(--color-success); }
-.pf--fair  { background: rgba(251,191,36,0.15);  color: var(--color-warning); }
-.pf--poor  { background: rgba(249,115,22,0.15);  color: var(--color-harvest); }
-.pf--bad   { background: rgba(248,113,113,0.15); color: var(--color-danger); }
+.pf--fair  { background: color-mix(in srgb, var(--color-warning) 15%, transparent);  color: var(--color-warning); }
+.pf--poor  { background: color-mix(in srgb, var(--color-harvest) 15%, transparent);  color: var(--color-harvest); }
+.pf--bad   { background: color-mix(in srgb, var(--color-danger) 15%, transparent); color: var(--color-danger); }
 
 /* ── Phase 22: Pest & Problem Log ────────────────── */
 .modal-problems-section .prob-none { font-size: var(--text-xs); color: var(--text-muted); margin: 4px 0 8px; }
@@ -3736,7 +3736,7 @@ body.garden-mode .plant-section ul {
 .prob-type-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 7px; }
 .prob-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); padding: 3px 8px; transition: color 0.15s, border-color 0.15s, background 0.15s; }
 .prob-chip:hover { color: var(--text); border-color: var(--text-muted); }
-.prob-chip--active { background: rgba(251,146,60,0.12); border-color: var(--color-harvest); color: var(--color-harvest); }
+.prob-chip--active { background: color-mix(in srgb, var(--color-harvest) 12%, transparent); border-color: var(--color-harvest); color: var(--color-harvest); }
 .prob-add-row { display: flex; gap: 6px; }
 .prob-notes-input { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text); font-size: var(--text-xs); padding: 5px 8px; }
 .prob-add-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 5px 12px; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
@@ -3867,7 +3867,7 @@ body.garden-mode .plant-section ul {
 .modal-seed-expiry { width: 50px; flex-shrink: 0; }
 .modal-seed-input.seed-expired  { border-color: var(--color-danger);  color: var(--color-danger); }
 .modal-seed-input.seed-expiring { border-color: var(--color-warning); color: var(--color-warning); }
-.shopping-chip--warn { border-color: rgba(251,191,36,0.4); background: rgba(251,191,36,0.08); color: var(--color-warning); }
+.shopping-chip--warn { border-color: color-mix(in srgb, var(--color-warning) 40%, transparent); background: color-mix(in srgb, var(--color-warning) 8%, transparent); color: var(--color-warning); }
 
 /* ── Phase 43: Onboarding notification step ─────── */
 .ob-notif-btn { /* inherits .ob-primary styles already defined */ }
@@ -3887,7 +3887,7 @@ body.garden-mode .plant-section ul {
   padding: 1px 7px 3px;
   transition: background var(--transition-fast);
 }
-.photo-add-label:hover { background: rgba(120,200,122,0.1); }
+.photo-add-label:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
 .crop-photo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -3961,8 +3961,8 @@ body.garden-mode .plant-section ul {
 .succession-next--due { color: var(--color-warning); font-weight: var(--weight-semibold); }
 .succession-log-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); padding: 4px 10px; transition: color 0.15s, border-color 0.15s; }
 .succession-log-btn:hover { border-color: var(--accent); color: var(--accent); }
-.garden-sow-badge { background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.3); border-radius: var(--radius-full); color: var(--color-warning); font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 1px 6px; white-space: nowrap; }
-.garden-sow-badge--due { background: rgba(251,191,36,0.25); border-color: rgba(251,191,36,0.55); }
+.garden-sow-badge { background: color-mix(in srgb, var(--color-warning) 15%, transparent); border: 1px solid color-mix(in srgb, var(--color-warning) 30%, transparent); border-radius: var(--radius-full); color: var(--color-warning); font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 1px 6px; white-space: nowrap; }
+.garden-sow-badge--due { background: color-mix(in srgb, var(--color-warning) 25%, transparent); border-color: color-mix(in srgb, var(--color-warning) 55%, transparent); }
 .modal-section-title { align-items: center; display: flex; gap: 6px; justify-content: space-between; }
 
 /* ── Phase 49: Accessibility ─────────────────── */
@@ -3981,7 +3981,7 @@ body.garden-mode .plant-section ul {
 /* ── Phase 51: Seed inventory ────────────────── */
 #garden-subtabs { display: flex; gap: 5px; margin-bottom: 12px; }
 .garden-subtab { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 6px 12px; transition: color 0.15s, border-color 0.15s, background 0.15s; }
-.garden-subtab.active { background: rgba(120,200,122,0.1); border-color: var(--accent); color: var(--accent); }
+.garden-subtab.active { background: color-mix(in srgb, var(--accent) 10%, transparent); border-color: var(--accent); color: var(--accent); }
 .seeds-header { align-items: center; display: flex; justify-content: space-between; margin-bottom: 10px; }
 .seeds-title { font-size: var(--text-sm); font-weight: var(--weight-semibold); }
 .seeds-add-open-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); min-height: 32px; padding: 6px 12px; transition: color 0.15s, border-color 0.15s; }
@@ -4002,7 +4002,7 @@ body.garden-mode .plant-section ul {
 .seed-card-emoji { flex-shrink: 0; font-size: var(--text-xl); }
 .seed-card-info { flex: 1; min-width: 0; }
 .seed-card-name { display: block; font-size: var(--text-xs); font-weight: var(--weight-semibold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.seed-sow-now { background: rgba(120,200,122,0.15); border-radius: var(--radius-full); color: var(--accent); font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 0 5px; }
+.seed-sow-now { background: color-mix(in srgb, var(--accent) 15%, transparent); border-radius: var(--radius-full); color: var(--accent); font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 0 5px; }
 .seed-card-meta { color: var(--text-muted); display: block; font-size: var(--text-2xs); margin-top: 1px; }
 .seed-remove-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; flex-shrink: 0; font-size: var(--text-lg); line-height: 1; padding: 2px 4px; transition: color 0.15s; }
 .seed-remove-btn:hover { color: var(--color-danger); }
@@ -4017,8 +4017,8 @@ body.garden-mode .plant-section ul {
 .bed-cell { align-items: center; border: 1px solid var(--border); border-radius: var(--radius-md); cursor: default; display: flex; font-size: var(--text-xl); height: 42px; justify-content: center; transition: border-color 0.15s; }
 .bed-cell--empty { background: var(--surface); opacity: 0.4; }
 .bed-cell--saved  { background: rgba(55,65,81,0.5); }
-.bed-cell--growing { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.3); }
-.bed-cell--ready  { background: rgba(120,200,122,0.1); border-color: rgba(120,200,122,0.3); }
+.bed-cell--growing { background: color-mix(in srgb, var(--color-warning) 10%, transparent); border-color: color-mix(in srgb, var(--color-warning) 30%, transparent); }
+.bed-cell--ready  { background: color-mix(in srgb, var(--accent) 10%, transparent); border-color: color-mix(in srgb, var(--accent) 30%, transparent); }
 .bed-cell[data-crop] { cursor: pointer; }
 .bed-cell[data-crop]:hover { border-color: var(--accent); }
 .bed-grid-size-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); grid-column: 1 / -1; padding: 2px; text-align: right; }
@@ -4053,7 +4053,7 @@ body.garden-mode .plant-section ul {
 .bed-full-grid { display: grid; gap: 3px; margin-bottom: 12px; width: 100%; }
 .bed-cell-btn { align-items: center; aspect-ratio: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; display: flex; flex-direction: column; font-size: var(--text-base); justify-content: center; line-height: 1.1; overflow: hidden; padding: 2px; transition: border-color 0.15s, background 0.15s; width: 100%; }
 .bed-cell-btn:hover { border-color: var(--accent-dark); }
-.bed-cell-btn--occupied { background: rgba(120,200,122,0.06); border-color: rgba(120,200,122,0.2); }
+.bed-cell-btn--occupied { background: color-mix(in srgb, var(--accent) 6%, transparent); border-color: color-mix(in srgb, var(--accent) 20%, transparent); }
 .bed-cell-label { font-size: 8px; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; text-align: center; }
 
 /* ── Phase 86: Crop picker popover ──────────── */
@@ -4092,7 +4092,7 @@ body.garden-mode .plant-section ul {
 .settings-row:last-child { margin-bottom: 0; }
 .settings-toggle-group { display: flex; gap: 4px; }
 .stoggle { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); min-height: 36px; padding: 6px 12px; transition: all 0.15s; }
-.stoggle--active { background: rgba(120,200,122,0.12); border-color: var(--accent); color: var(--accent); font-weight: var(--weight-bold); }
+.stoggle--active { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); color: var(--accent); font-weight: var(--weight-bold); }
 .settings-switch { align-items: center; cursor: pointer; display: flex; gap: 8px; min-height: 36px; }
 .settings-switch input { display: none; }
 .settings-switch-track { background: var(--border); border-radius: var(--radius-xl); flex-shrink: 0; height: 24px; position: relative; transition: background 0.2s; width: 44px; }
@@ -4107,8 +4107,8 @@ body.garden-mode .plant-section ul {
 .settings-version { color: var(--text-faint); font-size: var(--text-xs); padding: 8px 0 4px; text-align: center; }
 
 /* ── Phase 55: FAB + quick-action sheet ──────── */
-.garden-fab { align-items: center; background: var(--accent); border: none; border-radius: 50%; bottom: 72px; box-shadow: 0 4px 16px rgba(120,200,122,0.35); color: var(--on-accent); cursor: pointer; display: flex; font-size: var(--text-3xl); font-weight: var(--weight-bold); height: 52px; justify-content: center; position: sticky; right: 16px; float: right; transition: transform 0.15s, box-shadow 0.15s; width: 52px; z-index: 10; }
-.garden-fab:hover { box-shadow: 0 6px 20px rgba(120,200,122,0.5); transform: scale(1.07); }
+.garden-fab { align-items: center; background: var(--accent); border: none; border-radius: 50%; bottom: 72px; box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 35%, transparent); color: var(--on-accent); cursor: pointer; display: flex; font-size: var(--text-3xl); font-weight: var(--weight-bold); height: 52px; justify-content: center; position: sticky; right: 16px; float: right; transition: transform 0.15s, box-shadow 0.15s; width: 52px; z-index: 10; }
+.garden-fab:hover { box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 50%, transparent); transform: scale(1.07); }
 .fab-sheet-overlay { align-items: flex-end; background: rgba(0,0,0,0.5); bottom: 0; display: flex; left: 0; position: fixed; right: 0; top: 0; z-index: 2100; }
 .fab-sheet-overlay[hidden] { display: none; }
 .fab-sheet-overlay:not(.open) .fab-sheet { transform: translateY(100%); }
@@ -4159,18 +4159,18 @@ body.garden-mode .plant-section ul {
 .plan-section-title { color: var(--text-muted); font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: 0.07em; margin: 14px 0 6px; text-transform: uppercase; }
 .plan-year-label { color: var(--accent); font-size: var(--text-xs); font-weight: var(--weight-bold); letter-spacing: 0.06em; margin: 10px 0 4px; text-transform: uppercase; }
 .plan-crops-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; }
-.plan-crop-item { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid rgba(251,191,36,0.4); border-radius: var(--radius-md); cursor: pointer; display: flex; gap: 8px; padding: 7px 10px; transition: border-color 0.15s; }
+.plan-crop-item { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid color-mix(in srgb, var(--color-warning) 40%, transparent); border-radius: var(--radius-md); cursor: pointer; display: flex; gap: 8px; padding: 7px 10px; transition: border-color 0.15s; }
 .plan-crop-item:hover { border-color: var(--accent-dark); }
 .plan-crop-emoji { font-size: var(--text-lg); flex-shrink: 0; }
 .plan-crop-name { flex: 1; font-size: var(--text-sm); font-weight: var(--weight-semibold); }
 .plan-crop-notes { color: var(--text-muted); font-size: var(--text-xs); flex: 1; font-style: italic; }
-.plan-activate-btn { background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.3); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-2xs); font-weight: var(--weight-semibold); padding: 3px 8px; white-space: nowrap; transition: background 0.15s; }
-.plan-activate-btn:hover { background: rgba(120,200,122,0.2); }
+.plan-activate-btn { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-2xs); font-weight: var(--weight-semibold); padding: 3px 8px; white-space: nowrap; transition: background 0.15s; }
+.plan-activate-btn:hover { background: color-mix(in srgb, var(--accent) 20%, transparent); }
 .plan-remove-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: var(--text-md); line-height: 1; padding: 2px; transition: color 0.15s; }
 .plan-remove-btn:hover { color: var(--color-danger); }
 .modal-plan-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 5px 10px; transition: color 0.15s, border-color 0.15s; }
 .modal-plan-btn:hover { color: var(--color-warning); border-color: var(--color-warning); }
-.modal-plan-btn--active { color: var(--color-warning); border-color: rgba(251,191,36,0.4); }
+.modal-plan-btn--active { color: var(--color-warning); border-color: color-mix(in srgb, var(--color-warning) 40%, transparent); }
 
 /* ── Phase 60: Bed micro-climate ─────────────── */
 .bed-micro-row { border-top: 1px solid var(--border); margin-top: 8px; padding-top: 8px; }
@@ -4213,10 +4213,10 @@ body.garden-mode .plant-section ul {
 .daily-brief { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
 .db-row { align-items: center; border-radius: var(--radius-md); display: flex; font-size: var(--text-sm); gap: 10px; padding: 9px 12px; }
 .db-row--weather   { background: var(--surface2); color: var(--text-muted); }
-.db-row--harvest   { background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.25); color: var(--accent); font-weight: var(--weight-semibold); }
-.db-row--warning   { background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.25); color: var(--color-danger); }
+.db-row--harvest   { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); color: var(--accent); font-weight: var(--weight-semibold); }
+.db-row--warning   { background: color-mix(in srgb, var(--color-danger) 8%, transparent); border: 1px solid color-mix(in srgb, var(--color-danger) 25%, transparent); color: var(--color-danger); }
 .db-row--water     { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.25); color: var(--color-info); }
-.db-row--tip       { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2); color: var(--color-warning); }
+.db-row--tip       { background: color-mix(in srgb, var(--color-warning) 8%, transparent); border: 1px solid color-mix(in srgb, var(--color-warning) 20%, transparent); color: var(--color-warning); }
 
 /* ── Phase 63: Harvest Analytics Dashboard ───── */
 .harvest-analytics { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 12px; padding: 14px 16px; }
@@ -4242,17 +4242,17 @@ body.garden-mode .plant-section ul {
 .diagnosis-sub { color: var(--text-muted); font-size: var(--text-sm); margin: 0 0 14px; }
 .diagnosis-symptoms { display: grid; gap: 8px; grid-template-columns: 1fr 1fr; margin-bottom: 14px; }
 .diagnosis-symptom-btn { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); color: var(--text); cursor: pointer; display: flex; flex-direction: column; font-size: var(--text-sm); gap: 5px; padding: 12px 8px; text-align: center; transition: border-color 0.12s, background 0.12s; }
-.diagnosis-symptom-btn:hover { border-color: var(--accent); background: rgba(120,200,122,0.07); }
+.diagnosis-symptom-btn:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, transparent); }
 .diag-symptom-emoji { font-size: 22px; }
 .diagnosis-locations { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
 .diagnosis-loc-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); color: var(--text); cursor: pointer; font-size: var(--text-sm); padding: 10px 14px; text-align: left; transition: border-color 0.12s, background 0.12s; }
-.diagnosis-loc-btn:hover { border-color: var(--accent); background: rgba(120,200,122,0.07); }
+.diagnosis-loc-btn:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, transparent); }
 .diagnosis-result { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 10px; padding: 12px; }
 .dr-cause { font-size: var(--text-sm); font-weight: var(--weight-bold); margin-bottom: 5px; }
 .dr-desc { color: var(--text-muted); font-size: var(--text-xs); line-height: 1.5; margin: 0 0 10px; }
 .dr-treatments { display: flex; flex-direction: column; gap: 6px; }
 .dr-treatment { border-radius: var(--radius-md); font-size: var(--text-xs); line-height: 1.5; padding: 7px 9px; }
-.dr-treatment--organic { background: rgba(120,200,122,0.07); border: 1px solid rgba(120,200,122,0.2); }
+.dr-treatment--organic { background: color-mix(in srgb, var(--accent) 7%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); }
 .dr-treatment--conventional { background: rgba(96,165,250,0.07); border: 1px solid rgba(96,165,250,0.2); }
 .dr-label { display: block; font-weight: var(--weight-semibold); margin-bottom: 2px; }
 .diagnosis-back-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); color: var(--text-muted); cursor: pointer; font-size: var(--text-sm); padding: 8px 14px; transition: color 0.12s; }
@@ -4264,24 +4264,24 @@ body.garden-mode .plant-section ul {
 #browse-adv-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
 .browse-adv-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-full); color: var(--text-muted); cursor: pointer; font-size: var(--text-2xs); font-weight: var(--weight-semibold); padding: 4px 10px; transition: color 0.12s, border-color 0.12s, background 0.12s; white-space: nowrap; }
 .browse-adv-chip:hover { border-color: var(--accent-dark); color: var(--text); }
-.browse-adv-chip.active { background: rgba(120,200,122,0.12); border-color: var(--accent); color: var(--accent); }
+.browse-adv-chip.active { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); color: var(--accent); }
 
 /* ── Phase 66: Watering Intelligence ─────────── */
-.watering-intelligence { background: var(--surface2); border: 1px solid rgba(147,197,253,0.2); border-radius: var(--radius-lg); margin-bottom: 12px; padding: 12px 14px; }
+.watering-intelligence { background: var(--surface2); border: 1px solid color-mix(in srgb, var(--color-info) 20%, transparent); border-radius: var(--radius-lg); margin-bottom: 12px; padding: 12px 14px; }
 .wi-title { align-items: center; color: var(--color-info); display: flex; flex-wrap: wrap; font-size: var(--text-xs); font-weight: var(--weight-bold); gap: 8px; letter-spacing: 0.05em; margin-bottom: 8px; text-transform: uppercase; }
-.wi-rain-badge { background: rgba(147,197,253,0.12); border-radius: var(--radius-sm); color: var(--text-muted); font-size: var(--text-2xs); font-weight: var(--weight-normal); padding: 2px 7px; text-transform: none; letter-spacing: 0; }
+.wi-rain-badge { background: color-mix(in srgb, var(--color-info) 12%, transparent); border-radius: var(--radius-sm); color: var(--text-muted); font-size: var(--text-2xs); font-weight: var(--weight-normal); padding: 2px 7px; text-transform: none; letter-spacing: 0; }
 .wi-list { display: flex; flex-direction: column; gap: 6px; }
 .wi-item { align-items: center; border-radius: var(--radius-md); border: 1px solid var(--border); display: flex; gap: 8px; padding: 8px 10px; }
-.wi-item--critical { border-color: rgba(248,113,113,0.4); background: rgba(248,113,113,0.06); }
-.wi-item--overdue  { border-color: rgba(251,191,36,0.35); background: rgba(251,191,36,0.05); }
-.wi-item--due      { border-color: rgba(147,197,253,0.3); background: rgba(147,197,253,0.05); }
+.wi-item--critical { border-color: color-mix(in srgb, var(--color-danger) 40%, transparent); background: color-mix(in srgb, var(--color-danger) 6%, transparent); }
+.wi-item--overdue  { border-color: color-mix(in srgb, var(--color-warning) 35%, transparent); background: color-mix(in srgb, var(--color-warning) 5%, transparent); }
+.wi-item--due      { border-color: color-mix(in srgb, var(--color-info) 30%, transparent); background: color-mix(in srgb, var(--color-info) 5%, transparent); }
 .wi-emoji { flex-shrink: 0; font-size: var(--text-xl); }
 .wi-name { flex: 1; font-size: var(--text-sm); font-weight: var(--weight-semibold); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .wi-status { color: var(--text-muted); flex-shrink: 0; font-size: var(--text-xs); }
 .wi-item--critical .wi-status { color: var(--color-danger); font-weight: var(--weight-semibold); }
 .wi-item--overdue .wi-status { color: var(--color-warning); }
-.wi-log-btn { background: rgba(147,197,253,0.12); border: 1px solid rgba(147,197,253,0.3); border-radius: var(--radius-sm); color: var(--color-info); cursor: pointer; flex-shrink: 0; font-size: var(--text-2xs); font-weight: var(--weight-semibold); min-height: 32px; padding: 5px 10px; transition: background 0.12s; }
-.wi-log-btn:hover { background: rgba(147,197,253,0.22); }
+.wi-log-btn { background: color-mix(in srgb, var(--color-info) 12%, transparent); border: 1px solid color-mix(in srgb, var(--color-info) 30%, transparent); border-radius: var(--radius-sm); color: var(--color-info); cursor: pointer; flex-shrink: 0; font-size: var(--text-2xs); font-weight: var(--weight-semibold); min-height: 32px; padding: 5px 10px; transition: background 0.12s; }
+.wi-log-btn:hover { background: color-mix(in srgb, var(--color-info) 22%, transparent); }
 
 /* ── Phase 67: Companion Guide in Modal ──────── */
 .companion-guide { display: flex; flex-direction: column; gap: 10px; }
@@ -4294,8 +4294,8 @@ body.garden-mode .plant-section ul {
 .cg-item:hover { opacity: 0.8; }
 .cg-tag { cursor: pointer; display: inline-block; }
 .cg-reason { color: var(--text-muted); font-size: var(--text-2xs); line-height: 1.4; padding-left: 2px; }
-.cg-reason--avoid { color: rgba(248,113,113,0.8); }
-.cg-item--in-garden { background: rgba(120,200,122,0.05); border-radius: var(--radius-sm); padding-left: 4px; }
+.cg-reason--avoid { color: color-mix(in srgb, var(--color-danger) 80%, transparent); }
+.cg-item--in-garden { background: color-mix(in srgb, var(--accent) 5%, transparent); border-radius: var(--radius-sm); padding-left: 4px; }
 .cg-in-garden { color: var(--accent); font-size: var(--text-2xs); margin-left: 3px; }
 .cg-group-label--reverse { color: var(--text-muted); }
 .cg-reverse-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
@@ -4306,8 +4306,8 @@ body.garden-mode .plant-section ul {
 /* ── Phase 68: Seed Starting Calculator ────────── */
 .ssc-card { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 10px 12px; }
 .ssc--upcoming { background: rgba(96,165,250,0.07); border-color: rgba(96,165,250,0.25); }
-.ssc--now      { background: rgba(120,200,122,0.10); border-color: rgba(120,200,122,0.35); }
-.ssc--late     { background: rgba(251,191,36,0.08); border-color: rgba(251,191,36,0.3); }
+.ssc--now      { background: color-mix(in srgb, var(--accent) 10%, transparent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+.ssc--late     { background: color-mix(in srgb, var(--color-warning) 8%, transparent); border-color: color-mix(in srgb, var(--color-warning) 30%, transparent); }
 .ssc--passed   { background: var(--surface2); border-color: var(--border); }
 .ssc-main { font-size: var(--text-sm); line-height: 1.5; margin-bottom: 5px; }
 .ssc-detail { color: var(--text-muted); font-size: var(--text-2xs); }
@@ -4322,8 +4322,8 @@ body.garden-mode .plant-section ul {
 .fert-stage-name { font-size: var(--text-xs); font-weight: var(--weight-semibold); display: block; }
 .fert-stage-when { color: var(--accent); font-size: var(--text-2xs); display: block; margin-bottom: 2px; }
 .fert-stage-tip  { color: var(--text-muted); font-size: var(--text-2xs); line-height: 1.45; display: block; }
-.fert-add-tasks-btn { background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.3); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); margin-top: 10px; padding: 6px 12px; transition: background 0.12s; width: 100%; }
-.fert-add-tasks-btn:hover { background: rgba(120,200,122,0.18); }
+.fert-add-tasks-btn { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); margin-top: 10px; padding: 6px 12px; transition: background 0.12s; width: 100%; }
+.fert-add-tasks-btn:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); }
 
 /* ── Phase 70: Harvest-to-Table ─────────────────── */
 .htt-section { margin-bottom: 14px; }
@@ -4333,14 +4333,14 @@ body.garden-mode .plant-section ul {
 .htt-card-header { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
 .htt-emoji { font-size: var(--text-xl); }
 .htt-name { font-size: var(--text-sm); font-weight: var(--weight-semibold); flex: 1; }
-.htt-ready-badge { background: rgba(120,200,122,0.15); border: 1px solid rgba(120,200,122,0.3); border-radius: var(--radius-full); color: var(--accent); font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 1px 7px; }
+.htt-ready-badge { background: color-mix(in srgb, var(--accent) 15%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius: var(--radius-full); color: var(--accent); font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 1px 7px; }
 .htt-ideas { margin: 0; padding-left: 18px; }
 .htt-ideas li { color: var(--text-muted); font-size: var(--text-xs); line-height: 1.6; }
 
 /* ── Phase 71: Crop Comparison ─────────────────── */
 .modal-compare-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-2xs); font-weight: var(--weight-semibold); margin-top: 6px; padding: 5px 10px; transition: color 0.12s, border-color 0.12s; width: 100%; }
 .modal-compare-btn:hover { border-color: var(--accent-dark); color: var(--text); }
-.modal-compare-btn--ready { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.4); color: var(--color-warning); }
+.modal-compare-btn--ready { background: color-mix(in srgb, var(--color-warning) 10%, transparent); border-color: color-mix(in srgb, var(--color-warning) 40%, transparent); color: var(--color-warning); }
 .compare-overlay { align-items: center; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); bottom: 0; display: flex; justify-content: center; left: 0; position: fixed; right: 0; top: 0; z-index: 1200; }
 .compare-overlay[hidden] { display: none; }
 .compare-inner { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); max-height: 85vh; max-width: 360px; overflow-y: auto; padding: 18px; position: relative; width: 90%; }
@@ -4374,7 +4374,7 @@ body.garden-mode .plant-section ul {
 #photo-gallery-content { flex: 1; overflow-y: auto; padding: 12px; }
 .gallery-filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
 .gallery-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-full); color: var(--text-muted); cursor: pointer; font-size: var(--text-2xs); font-weight: var(--weight-semibold); padding: 3px 10px; transition: color 0.12s, border-color 0.12s, background 0.12s; }
-.gallery-chip.active { background: rgba(120,200,122,0.12); border-color: var(--accent); color: var(--accent); }
+.gallery-chip.active { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); color: var(--accent); }
 .gallery-grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
 .gallery-thumb { border-radius: var(--radius-lg); cursor: pointer; overflow: hidden; position: relative; }
 .gallery-thumb img { display: block; height: 120px; object-fit: cover; transition: opacity 0.12s; width: 100%; }
@@ -4387,9 +4387,9 @@ body.garden-mode .plant-section ul {
 
 /* ── Phase 73: Garden Health Score ──────────────── */
 .ghs-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 12px; padding: 14px 16px; }
-.ghs--excellent { border-color: rgba(120,200,122,0.4); }
+.ghs--excellent { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
 .ghs--good      { border-color: rgba(96,165,250,0.35); }
-.ghs--fair      { border-color: rgba(251,191,36,0.3); }
+.ghs--fair      { border-color: color-mix(in srgb, var(--color-warning) 30%, transparent); }
 .ghs--poor      { border-color: var(--border); }
 .ghs-score-row { align-items: center; display: flex; gap: 12px; margin-bottom: 12px; }
 .ghs-ring { flex-shrink: 0; height: 56px; position: relative; width: 56px; }
@@ -4409,25 +4409,25 @@ body.garden-mode .plant-section ul {
 .ghs-bar-track { background: var(--surface); border-radius: var(--radius-full); height: 5px; overflow: hidden; }
 .ghs-bar-fill { background: var(--accent); border-radius: var(--radius-full); height: 100%; transition: width 0.4s ease; }
 .ghs-bar-pts { color: var(--text-muted); font-size: var(--text-2xs); text-align: right; }
-.ghs-tip { background: rgba(120,200,122,0.07); border: 1px solid rgba(120,200,122,0.2); border-radius: var(--radius-md); color: var(--text-muted); font-size: var(--text-xs); line-height: 1.6; margin-top: 10px; padding: 8px 12px; }
+.ghs-tip { background: color-mix(in srgb, var(--accent) 7%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: var(--radius-md); color: var(--text-muted); font-size: var(--text-xs); line-height: 1.6; margin-top: 10px; padding: 8px 12px; }
 
 /* ── Phase 74: Enhanced Onboarding ─────────────── */
-.ob-zone-tip { background: rgba(120,200,122,0.07); border: 1px solid rgba(120,200,122,0.2); border-radius: var(--radius-md); color: var(--text-muted); font-size: var(--text-2xs); line-height: 1.5; margin: 10px 0; padding: 7px 10px; }
+.ob-zone-tip { background: color-mix(in srgb, var(--accent) 7%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: var(--radius-md); color: var(--text-muted); font-size: var(--text-2xs); line-height: 1.5; margin: 10px 0; padding: 7px 10px; }
 .ob-level-picker { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
 .ob-level-btn { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); cursor: pointer; display: grid; gap: 2px 12px; grid-template-columns: 32px 1fr; grid-template-rows: auto auto; padding: 14px 16px; min-height: 56px; text-align: left; transition: border-color 0.15s, background 0.15s; }
-.ob-level-btn.active { background: rgba(120,200,122,0.1); border-color: var(--accent); }
+.ob-level-btn.active { background: color-mix(in srgb, var(--accent) 10%, transparent); border-color: var(--accent); }
 .ob-level-icon { font-size: var(--text-3xl); grid-row: 1 / 3; }
 .ob-level-btn strong { color: var(--text); font-size: var(--text-base); font-weight: var(--weight-bold); }
 .ob-level-btn span { color: var(--text-muted); font-size: var(--text-xs); }
 .ob-crop-grid { display: grid; gap: 6px; grid-template-columns: repeat(3, 1fr); margin: 12px 0; }
 .ob-crop-btn { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); cursor: pointer; display: flex; flex-direction: column; gap: 2px; padding: 9px 6px; transition: border-color 0.12s, background 0.12s; }
-.ob-crop-btn.selected { background: rgba(120,200,122,0.12); border-color: var(--accent); }
+.ob-crop-btn.selected { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); }
 .ob-crop-emoji { font-size: var(--text-2xl); }
 .ob-crop-name { color: var(--text); font-size: var(--text-2xs); font-weight: var(--weight-semibold); text-align: center; line-height: 1.3; }
 .ob-crop-diff { border-radius: var(--radius-full); font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 1px 5px; }
-.ob-diff--easy { background: rgba(120,200,122,0.15); color: var(--accent); }
-.ob-diff--moderate { background: rgba(251,191,36,0.15); color: var(--color-warning); }
-.ob-diff--hard { background: rgba(248,113,113,0.15); color: var(--color-danger); }
+.ob-diff--easy { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+.ob-diff--moderate { background: color-mix(in srgb, var(--color-warning) 15%, transparent); color: var(--color-warning); }
+.ob-diff--hard { background: color-mix(in srgb, var(--color-danger) 15%, transparent); color: var(--color-danger); }
 .ob-selected-count { color: var(--accent); font-size: var(--text-2xs); font-weight: var(--weight-semibold); text-align: center; }
 .ob-feature-list { display: flex; flex-direction: column; gap: 10px; margin: 14px 0; text-align: left; }
 .ob-feature { align-items: flex-start; display: flex; gap: 10px; }
@@ -4466,7 +4466,7 @@ body.garden-mode .plant-section ul {
 .sw-highlight { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); display: flex; gap: 8px; justify-content: space-between; margin-bottom: 8px; padding: 8px 12px; }
 .sw-hl-label { color: var(--text-muted); font-size: var(--text-2xs); }
 .sw-hl-value { color: var(--text); font-size: var(--text-xs); font-weight: var(--weight-semibold); }
-.sw-lessons { background: rgba(120,200,122,0.06); border: 1px solid rgba(120,200,122,0.2); border-radius: var(--radius-lg); margin: 12px 0; padding: 10px 12px; }
+.sw-lessons { background: color-mix(in srgb, var(--accent) 6%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: var(--radius-lg); margin: 12px 0; padding: 10px 12px; }
 .sw-lessons-title { color: var(--accent); font-size: var(--text-2xs); font-weight: var(--weight-bold); margin-bottom: 6px; }
 .sw-lesson { color: var(--text-muted); font-size: var(--text-2xs); line-height: 1.6; }
 .sw-prev { color: var(--text-muted); font-size: var(--text-2xs); margin-bottom: 10px; opacity: 0.7; }
@@ -4492,22 +4492,22 @@ body.garden-mode .plant-section ul {
 .rbr-recipe-sub { color: var(--text-muted); font-size: var(--text-2xs); }
 .rbr-crop-list { display: flex; flex-direction: column; gap: 1px; }
 .rbr-crop-row { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); cursor: default; display: flex; gap: 8px; margin-bottom: 4px; padding: 8px 10px; }
-.rbr-crop-row--ingarden { border-color: rgba(120,200,122,0.25); }
+.rbr-crop-row--ingarden { border-color: color-mix(in srgb, var(--accent) 25%, transparent); }
 .rbr-crop-emoji { font-size: var(--text-xl); flex-shrink: 0; }
 .rbr-crop-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .rbr-crop-name { font-size: var(--text-xs); font-weight: var(--weight-semibold); }
 .rbr-diff { border-radius: var(--radius-full); font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 1px 5px; }
-.rbr-diff--easy { background: rgba(120,200,122,0.12); color: var(--accent); }
-.rbr-diff--moderate { background: rgba(251,191,36,0.12); color: var(--color-warning); }
-.rbr-diff--hard { background: rgba(248,113,113,0.12); color: var(--color-danger); }
+.rbr-diff--easy { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+.rbr-diff--moderate { background: color-mix(in srgb, var(--color-warning) 12%, transparent); color: var(--color-warning); }
+.rbr-diff--hard { background: color-mix(in srgb, var(--color-danger) 12%, transparent); color: var(--color-danger); }
 .rbr-tag { border-radius: var(--radius-full); flex-shrink: 0; font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 2px 7px; }
-.rbr-tag--growing { background: rgba(251,191,36,0.12); color: var(--color-warning); }
-.rbr-tag--ready   { background: rgba(120,200,122,0.12); color: var(--accent); }
+.rbr-tag--growing { background: color-mix(in srgb, var(--color-warning) 12%, transparent); color: var(--color-warning); }
+.rbr-tag--ready   { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
 .rbr-add-btn { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; flex-shrink: 0; font-size: var(--text-2xs); font-weight: var(--weight-semibold); padding: 3px 8px; transition: color 0.12s, border-color 0.12s; white-space: nowrap; }
 .rbr-add-btn:hover { border-color: var(--accent); color: var(--accent); }
 .rbr-detail-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; flex-shrink: 0; font-size: var(--text-base); padding: 2px 4px; }
-.rbr-add-all-btn { background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.3); border-radius: var(--radius-lg); color: var(--accent); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); margin-top: 12px; padding: 8px; transition: background 0.12s; width: 100%; }
-.rbr-add-all-btn:hover { background: rgba(120,200,122,0.18); }
+.rbr-add-all-btn { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius: var(--radius-lg); color: var(--accent); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); margin-top: 12px; padding: 8px; transition: background 0.12s; width: 100%; }
+.rbr-add-all-btn:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); }
 
 /* ── Phase 79: Long-press + Recently Viewed ────── */
 .lp-overlay { align-items: flex-end; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); bottom: 0; display: flex; justify-content: center; left: 0; position: fixed; right: 0; top: 0; z-index: 1400; }
@@ -4520,8 +4520,8 @@ body.garden-mode .plant-section ul {
 .lp-actions { display: flex; flex-direction: column; gap: 6px; }
 .lp-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); color: var(--text); cursor: pointer; font-size: var(--text-sm); font-weight: var(--weight-semibold); padding: 12px; text-align: left; transition: border-color 0.12s, background 0.12s; width: 100%; }
 .lp-btn:hover { border-color: var(--accent-dark); }
-.lp-btn--add { border-color: rgba(120,200,122,0.35); color: var(--accent); }
-.lp-btn--danger { border-color: rgba(248,113,113,0.3); color: var(--color-danger); }
+.lp-btn--add { border-color: color-mix(in srgb, var(--accent) 35%, transparent); color: var(--accent); }
+.lp-btn--danger { border-color: color-mix(in srgb, var(--color-danger) 30%, transparent); color: var(--color-danger); }
 .lp-btn--cancel { background: none; border: none; color: var(--text-muted); font-weight: normal; }
 #browse-recent { margin-bottom: 10px; padding: 0 0 8px; border-bottom: 1px solid var(--border); }
 .rv-label { color: var(--text-muted); font-size: var(--text-2xs); font-weight: var(--weight-semibold); letter-spacing: 0.07em; margin-bottom: 6px; text-transform: uppercase; }
@@ -4536,17 +4536,17 @@ body.garden-mode .plant-section ul {
 .ssb-strip { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; margin: 8px 0 6px; }
 .ssb-cell { border-radius: 3px; color: var(--text-muted); font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 4px 2px; text-align: center; background: var(--surface2); transition: background 0.1s; }
 .ssb-cell.ssb-cur { outline: 2px solid var(--accent); outline-offset: 1px; color: var(--text); }
-.ssb-indoor   { background: rgba(147,197,253,0.25); color: var(--color-info); }
-.ssb-sow      { background: rgba(120,200,122,0.2);  color: var(--accent); }
-.ssb-transplant{ background: rgba(251,191,36,0.2);  color: var(--color-warning); }
-.ssb-harvest  { background: rgba(249,115,22,0.2);  color: var(--color-harvest); }
+.ssb-indoor   { background: color-mix(in srgb, var(--color-info) 25%, transparent); color: var(--color-info); }
+.ssb-sow      { background: color-mix(in srgb, var(--accent) 20%, transparent);  color: var(--accent); }
+.ssb-transplant{ background: color-mix(in srgb, var(--color-warning) 20%, transparent);  color: var(--color-warning); }
+.ssb-harvest  { background: color-mix(in srgb, var(--color-harvest) 20%, transparent);  color: var(--color-harvest); }
 .ssb-legend { display: flex; flex-wrap: wrap; gap: 8px; font-size: var(--text-2xs); color: var(--text-muted); margin-bottom: 4px; }
 .ssb-key { border-radius: 2px; display: inline-block; height: 10px; margin-right: 2px; width: 10px; }
-.ssb-key.ssb-indoor    { background: rgba(147,197,253,0.4); }
-.ssb-key.ssb-sow       { background: rgba(120,200,122,0.4); }
-.ssb-key.ssb-transplant{ background: rgba(251,191,36,0.4); }
-.ssb-key.ssb-harvest   { background: rgba(249,115,22,0.4); }
-.ssb-tip { background: rgba(120,200,122,0.07); border: 1px solid rgba(120,200,122,0.2); border-radius: var(--radius-md); font-size: var(--text-xs); margin-top: 6px; padding: 6px 10px; }
+.ssb-key.ssb-indoor    { background: color-mix(in srgb, var(--color-info) 40%, transparent); }
+.ssb-key.ssb-sow       { background: color-mix(in srgb, var(--accent) 40%, transparent); }
+.ssb-key.ssb-transplant{ background: color-mix(in srgb, var(--color-warning) 40%, transparent); }
+.ssb-key.ssb-harvest   { background: color-mix(in srgb, var(--color-harvest) 40%, transparent); }
+.ssb-tip { background: color-mix(in srgb, var(--accent) 7%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: var(--radius-md); font-size: var(--text-xs); margin-top: 6px; padding: 6px 10px; }
 .ssb-no-zone { color: var(--text-muted); font-size: var(--text-xs); margin: 4px 0; }
 
 /* ── Phase 81 / 116: Pest Guide ───────────────── */
@@ -4556,37 +4556,37 @@ body.garden-mode .plant-section ul {
 .pg-emoji         { flex-shrink: 0; font-size: var(--text-base); line-height: 1; }
 .pg-name          { color: var(--text); flex: 1; font-size: var(--text-xs); font-weight: var(--weight-semibold); }
 .pg-type          { border-radius: var(--radius-sm); flex-shrink: 0; font-size: var(--text-2xs); font-weight: var(--weight-bold); letter-spacing: 0.06em; padding: 2px 6px; text-transform: uppercase; }
-.pg-type--insect  { background: rgba(251,191,36,0.12);  color: var(--color-warning); }
-.pg-type--disease { background: rgba(249,115,22,0.12);  color: var(--color-harvest); }
-.pg-type--other   { background: rgba(147,197,253,0.12); color: var(--color-info); }
+.pg-type--insect  { background: color-mix(in srgb, var(--color-warning) 12%, transparent);  color: var(--color-warning); }
+.pg-type--disease { background: color-mix(in srgb, var(--color-harvest) 12%, transparent);  color: var(--color-harvest); }
+.pg-type--other   { background: color-mix(in srgb, var(--color-info) 12%, transparent); color: var(--color-info); }
 .pg-signs         { color: var(--text-muted); font-size: var(--text-xs); font-style: italic; line-height: 1.5; margin-bottom: 4px; }
 .pg-sol           { color: var(--text-muted); font-size: var(--text-xs); line-height: 1.5; margin-bottom: 3px; }
 .pg-label         { border-radius: 3px; font-size: var(--text-2xs); font-weight: var(--weight-bold); letter-spacing: 0.05em; margin-right: 4px; padding: 1px 5px; text-transform: uppercase; }
 .pg-label.signs   { background: rgba(255,255,255,0.06); color: var(--text-muted); }
-.pg-label.organic { background: rgba(120,200,122,0.15);  color: var(--accent); }
-.pg-label.conv    { background: rgba(147,197,253,0.15); color: var(--color-info); }
+.pg-label.organic { background: color-mix(in srgb, var(--accent) 15%, transparent);  color: var(--accent); }
+.pg-label.conv    { background: color-mix(in srgb, var(--color-info) 15%, transparent); color: var(--color-info); }
 
 /* ── Phase 82: Spacing Calculator ────────────── */
 .sc-hint { color: var(--text-muted); font-size: var(--text-xs); margin-bottom: 10px; }
 .sc-inputs { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
 .sc-label { color: var(--text-muted); font-size: var(--text-xs); display: flex; align-items: center; gap: 6px; }
 .sc-in { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text); font-size: var(--text-sm); padding: 4px 8px; width: 64px; }
-.sc-result { background: rgba(120,200,122,0.07); border: 1px solid rgba(120,200,122,0.2); border-radius: var(--radius-lg); font-size: var(--text-sm); padding: 10px 12px; }
+.sc-result { background: color-mix(in srgb, var(--accent) 7%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: var(--radius-lg); font-size: var(--text-sm); padding: 10px 12px; }
 .sc-count { color: var(--accent); font-size: 22px; font-weight: var(--weight-bold); margin-right: 6px; }
 
 /* ── Phase 83: Safe-to-Sow Badge ─────────────── */
 .modal-safe-sow { align-items: flex-start; border-radius: var(--radius-md); display: flex; flex-direction: column; gap: 2px; margin: 0 0 0; padding: 8px 14px; }
-.modal-safe-sow--safe   { background: rgba(120,200,122,0.1);  border-left: 3px solid var(--accent); }
+.modal-safe-sow--safe   { background: color-mix(in srgb, var(--accent) 10%, transparent);  border-left: 3px solid var(--accent); }
 .modal-safe-sow--wait   { background: color-mix(in srgb, var(--color-danger) 7%, transparent);  border-left: 3px solid var(--color-danger); }
 .modal-safe-sow--soon   { background: color-mix(in srgb, var(--color-warning) 8%, transparent); border-left: 3px solid var(--color-warning); }
-.modal-safe-sow--late   { background: rgba(249,115,22,0.08);  border-left: 3px solid var(--color-harvest); }
+.modal-safe-sow--late   { background: color-mix(in srgb, var(--color-harvest) 8%, transparent);  border-left: 3px solid var(--color-harvest); }
 .safe-sow-label { font-size: var(--text-xs); font-weight: var(--weight-semibold); color: var(--text); }
 .safe-sow-sub   { font-size: var(--text-xs); color: var(--text-muted); }
 
 /* ── Phase 83: Modal header share button ─────── */
 #modal-header-actions { display: flex; align-items: center; gap: 4px; }
 #modal-share-crop-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: var(--text-lg); padding: 4px 6px; transition: color 0.15s; border-radius: var(--radius-md); }
-#modal-share-crop-btn:hover { color: var(--accent); background: rgba(120,200,122,0.08); }
+#modal-share-crop-btn:hover { color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
 
 
 /* ── Phase 87: Garden Map overlay ───────────── */
@@ -4609,16 +4609,16 @@ body.garden-mode .plant-section ul {
 .gm-title { font-size: var(--text-base); font-weight: var(--weight-bold); }
 .gm-close-btn { background: none; border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-sm); min-height: 36px; padding: 6px 12px; transition: border-color 0.15s, color 0.15s; }
 .gm-close-btn:hover { border-color: var(--accent); color: var(--accent); }
-.gm-add-btn { background: rgba(120,200,122,0.12); border: 1px solid rgba(120,200,122,0.3); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-sm); font-weight: var(--weight-semibold); min-height: 36px; padding: 6px 12px; transition: background 0.15s; }
-.gm-add-btn:hover { background: rgba(120,200,122,0.2); }
+.gm-add-btn { background: color-mix(in srgb, var(--accent) 12%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-sm); font-weight: var(--weight-semibold); min-height: 36px; padding: 6px 12px; transition: background 0.15s; }
+.gm-add-btn:hover { background: color-mix(in srgb, var(--accent) 20%, transparent); }
 #gm-canvas-zoom { display: inline-block; transform-origin: 0 0; }
 #gm-canvas-scroll {
   flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; position: relative;
   background-color: #111a0a;
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E"),
-    linear-gradient(rgba(120,200,122,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(120,200,122,0.05) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--accent) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 5%, transparent) 1px, transparent 1px);
   background-size: 200px 200px, 44px 44px, 44px 44px;
 }
 #gm-canvas { position: relative; }
@@ -4664,8 +4664,8 @@ body.garden-mode .plant-section ul {
     rgba(255,255,255,0.02) 58%, transparent 59%);
 }
 @keyframes gm-bed-pulse {
-  0%, 100% { box-shadow: 0 0 0 2px var(--accent), 0 0 14px rgba(120,200,122,0.25); }
-  50%       { box-shadow: 0 0 0 3px var(--accent), 0 0 24px rgba(120,200,122,0.50); }
+  0%, 100% { box-shadow: 0 0 0 2px var(--accent), 0 0 14px color-mix(in srgb, var(--accent) 25%, transparent); }
+  50%       { box-shadow: 0 0 0 3px var(--accent), 0 0 24px color-mix(in srgb, var(--accent) 50%, transparent); }
 }
 .gm-bed--selected { animation: gm-bed-pulse 2.4s ease-in-out infinite; z-index: 10; }
 .gm-bed-label {
@@ -4685,10 +4685,10 @@ body.garden-mode .plant-section ul {
   border-radius: var(--radius-sm);
 }
 .gm-crop-cell:active  { cursor: grabbing; transform: scale(0.9); }
-.gm-crop-cell--drop-target { background: rgba(120,200,122,0.18); outline: 1.5px dashed rgba(120,200,122,0.6); }
+.gm-crop-cell--drop-target { background: color-mix(in srgb, var(--accent) 18%, transparent); outline: 1.5px dashed color-mix(in srgb, var(--accent) 60%, transparent); }
 .gm-crop-cell-emoji   { line-height: 1; pointer-events: none; }
-.gm-crop-cell.gm-cell--growing { filter: drop-shadow(0 0 4px rgba(251,191,36,0.55)); }
-.gm-crop-cell.gm-cell--ready   { filter: drop-shadow(0 0 6px rgba(120,200,122,0.70)); }
+.gm-crop-cell.gm-cell--growing { filter: drop-shadow(0 0 4px color-mix(in srgb, var(--color-warning) 55%, transparent)); }
+.gm-crop-cell.gm-cell--ready   { filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 70%, transparent)); }
 .gm-cap-bar { bottom: 0; height: 3px; left: 0; overflow: hidden; position: absolute; right: 0; }
 .gm-cap-bar-fill { background: var(--accent); height: 100%; opacity: 0.55; transition: width 0.3s; }
 .gm-canvas-controls { align-items: center; background: var(--surface2); border-top: 1px solid var(--border); color: var(--text-muted); display: flex; flex-shrink: 0; font-size: var(--text-xs); gap: 6px; padding: 5px 14px; }
@@ -4732,7 +4732,7 @@ body.garden-mode .plant-section ul {
 .gm-sugg-tag--ready   { color: var(--accent); }
 .gm-sugg-tag--growing { color: var(--color-warning); }
 .gm-sugg-tag--saved   { color: var(--text-muted); }
-.beds-map-btn { background: rgba(120,200,122,0.10); border: 1px solid rgba(120,200,122,0.25); border-radius: var(--radius-sm); color: var(--accent); cursor: pointer; font-size: var(--text-xs); padding: 3px 8px; }
+.beds-map-btn { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: var(--radius-sm); color: var(--accent); cursor: pointer; font-size: var(--text-xs); padding: 3px 8px; }
 
 /* ── Phase 88: Beds summary (replaces card overview) ─── */
 .beds-summary { margin-bottom: 12px; }
@@ -4743,8 +4743,8 @@ body.garden-mode .plant-section ul {
 .beds-summary-empty-msg { color: var(--text-muted); font-size: var(--text-xs); margin: 6px 0 10px; }
 .beds-summary-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
 .beds-summary-tag { border: 1px solid; border-radius: var(--radius-lg); color: var(--text); font-size: var(--text-xs); padding: 2px 8px; }
-.beds-open-map-btn { background: rgba(120,200,122,0.10); border: 1px solid rgba(120,200,122,0.30); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 7px 14px; width: 100%; }
-.beds-open-map-btn:hover { background: rgba(120,200,122,0.18); }
+.beds-open-map-btn { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 7px 14px; width: 100%; }
+.beds-open-map-btn:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); }
 
 /* ── Phase 89: Bed types ── */
 .gm-bed--raised      { border-style: solid; }
@@ -4771,7 +4771,7 @@ body.garden-mode .plant-section ul {
   touch-action: none; transition: box-shadow 0.12s; user-select: none;
 }
 .gm-struct:active { cursor: grabbing; }
-.gm-struct--selected { box-shadow: 0 0 0 3px #f59e0b, 0 4px 20px rgba(0,0,0,0.5); z-index: 9; }
+.gm-struct--selected { box-shadow: 0 0 0 3px var(--color-warning), 0 4px 20px rgba(0,0,0,0.5); z-index: 9; }
 .gm-struct-house { background: rgba(90,90,90,0.45) !important; }
 .gm-struct-shed  { background: rgba(139,99,72,0.45) !important; }
 .gm-struct-path  { background: rgba(160,140,100,0.35) !important; }
@@ -4790,8 +4790,8 @@ body.garden-mode .plant-section ul {
 /* ── Phase 96–99: Professional map features ── */
 /* SVG companion overlay */
 .gm-svg-overlay { height: 100%; inset: 0; overflow: visible; pointer-events: none; position: absolute; width: 100%; z-index: 20; }
-.gm-companion-line--good { stroke: rgba(120,200,122,0.6); stroke-dasharray: 6 4; stroke-linecap: round; stroke-width: 2.5; }
-.gm-companion-line--bad  { stroke: rgba(248,113,113,0.6); stroke-dasharray: 4 4; stroke-linecap: round; stroke-width: 2.5; }
+.gm-companion-line--good { stroke: color-mix(in srgb, var(--accent) 60%, transparent); stroke-dasharray: 6 4; stroke-linecap: round; stroke-width: 2.5; }
+.gm-companion-line--bad  { stroke: color-mix(in srgb, var(--color-danger) 60%, transparent); stroke-dasharray: 4 4; stroke-linecap: round; stroke-width: 2.5; }
 /* Minimap */
 #gm-minimap {
   border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius-md); bottom: 14px;
@@ -4820,12 +4820,12 @@ body.garden-mode .plant-section ul {
 }
 .gm-tool-btn--icon { font-size: var(--text-base); padding: 3px 7px; }
 .gm-tool-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
-.gm-tool-btn--active { background: rgba(120,200,122,0.12); border-color: var(--accent); color: var(--accent); }
+.gm-tool-btn--active { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); color: var(--accent); }
 .gm-tool-btn:disabled { cursor: default; opacity: 0.3; }
 /* Season mode */
 .gm-season-active .gm-crop-cell:not(.gm-cell--growing):not(.gm-cell--ready) { opacity: 0.2; }
-.gm-season-active .gm-cell--growing { filter: drop-shadow(0 0 5px rgba(251,191,36,0.7)); }
-.gm-season-active .gm-cell--ready   { filter: drop-shadow(0 0 7px rgba(120,200,122,0.8)); }
+.gm-season-active .gm-cell--growing { filter: drop-shadow(0 0 5px color-mix(in srgb, var(--color-warning) 70%, transparent)); }
+.gm-season-active .gm-cell--ready   { filter: drop-shadow(0 0 7px color-mix(in srgb, var(--accent) 80%, transparent)); }
 /* Color swatches */
 .gm-color-swatches   { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
 .gm-color-swatch {
@@ -4858,7 +4858,7 @@ body.garden-mode .plant-section ul {
   display: flex; flex-direction: column; gap: 4px; padding: 10px 4px;
   text-align: center; transition: border-color 0.12s, background 0.12s;
 }
-.gm-modal-type-btn--active { background: rgba(120,200,122,0.12); border-color: var(--accent); }
+.gm-modal-type-btn--active { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); }
 .gm-modal-type-emoji { font-size: var(--text-2xl); }
 .gm-modal-type-label { font-size: var(--text-2xs); color: var(--text-muted); }
 .gm-modal-name-input {
@@ -4868,8 +4868,8 @@ body.garden-mode .plant-section ul {
 .gm-modal-name-input:focus { border-color: var(--accent); outline: none; }
 .gm-modal-footer { display: flex; gap: 8px; justify-content: flex-end; }
 .gm-modal-cancel-btn { background: none; border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-sm); padding: 7px 14px; }
-.gm-modal-add-btn { background: rgba(120,200,122,0.15); border: 1px solid rgba(120,200,122,0.4); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-sm); font-weight: var(--weight-semibold); padding: 7px 18px; }
-.gm-modal-add-btn:hover { background: rgba(120,200,122,0.25); }
+.gm-modal-add-btn { background: color-mix(in srgb, var(--accent) 15%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-sm); font-weight: var(--weight-semibold); padding: 7px 18px; }
+.gm-modal-add-btn:hover { background: color-mix(in srgb, var(--accent) 25%, transparent); }
 
 /* ── Phase 90: Canvas overflow badge ── */
 .gm-bed-overflow {
@@ -4913,7 +4913,7 @@ body.garden-mode .plant-section ul {
   color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold);
   padding: 5px 14px; transition: background 0.12s, border-color 0.12s, color 0.12s;
 }
-.gvt-btn--active { background: rgba(120,200,122,0.12); border-color: var(--accent); color: var(--accent); }
+.gvt-btn--active { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent); color: var(--accent); }
 
 /* ── Phase 90B: By-bed view cards ── */
 .gvb-card {
@@ -4928,7 +4928,7 @@ body.garden-mode .plant-section ul {
 .gvb-bed-name { color: var(--text); font-size: var(--text-sm); font-weight: var(--weight-bold); }
 .gvb-bed-meta { color: var(--text-muted); font-size: var(--text-xs); }
 .gvb-map-btn {
-  background: rgba(120,200,122,0.10); border: 1px solid rgba(120,200,122,0.25); border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: var(--radius-md);
   color: var(--accent); cursor: pointer; font-size: var(--text-sm); padding: 4px 8px;
 }
 .gvb-fill-bar { background: var(--border); height: 3px; }
@@ -4938,12 +4938,12 @@ body.garden-mode .plant-section ul {
   background: var(--surface2); border-radius: var(--radius-lg); color: var(--text);
   font-size: var(--text-xs); padding: 3px 8px;
 }
-.gvb-chip--ready { background: rgba(120,200,122,0.12); color: var(--accent); }
+.gvb-chip--ready { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
 .gvb-chip--growing { background: rgba(59,130,246,0.12); color: var(--color-info); }
 .gvb-empty-chips { color: var(--text-muted); font-size: var(--text-xs); font-style: italic; }
 .gvb-empty { color: var(--text-muted); font-size: var(--text-sm); padding: 20px 0; text-align: center; }
 .gvb-open-map-btn {
-  background: rgba(120,200,122,0.10); border: 1px solid rgba(120,200,122,0.25); border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: var(--radius-md);
   color: var(--accent); cursor: pointer; font-size: var(--text-sm); margin-top: 8px; padding: 6px 14px;
 }
 
@@ -4961,7 +4961,7 @@ body.garden-mode .plant-section ul {
   background: var(--surface2); border-radius: var(--radius-lg); color: var(--text-muted);
   font-size: var(--text-xs); padding: 3px 9px;
 }
-.cd-fact--ok { background: rgba(120,200,122,0.10); color: var(--accent); }
+.cd-fact--ok { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); }
 
 /* ── Phase 92: Container hint in bed detail ── */
 .gm-container-hint {
@@ -4975,8 +4975,8 @@ body.garden-mode .plant-section ul {
   border-radius: var(--radius-sm); color: var(--color-violet); font-size: var(--text-xs);
   margin-bottom: 8px; padding: 7px 10px;
 }
-.sched-si--now  { background: rgba(120,200,122,0.10);  border-color: var(--accent); color: var(--accent); }
-.sched-si--soon { background: rgba(251,191,36,0.10);  border-color: var(--color-warning); color: var(--color-warning); }
+.sched-si--now  { background: color-mix(in srgb, var(--accent) 10%, transparent);  border-color: var(--accent); color: var(--accent); }
+.sched-si--soon { background: color-mix(in srgb, var(--color-warning) 10%, transparent);  border-color: var(--color-warning); color: var(--color-warning); }
 
 /* ── Phase 93: Feature flags settings ── */
 .settings-feature-text { display: flex; flex-direction: column; gap: 2px; }
@@ -4998,16 +4998,16 @@ body.garden-mode .plant-section ul {
 
 /* T2: Crop status radial gradient backgrounds */
 .gm-crop-cell.gm-cell--growing {
-  background: radial-gradient(circle at 50% 65%, rgba(251,191,36,0.22) 0%, transparent 70%) !important;
+  background: radial-gradient(circle at 50% 65%, color-mix(in srgb, var(--color-warning) 22%, transparent) 0%, transparent 70%) !important;
 }
 .gm-crop-cell.gm-cell--ready {
-  background: radial-gradient(circle at 50% 65%, rgba(120,200,122,0.24) 0%, transparent 70%) !important;
+  background: radial-gradient(circle at 50% 65%, color-mix(in srgb, var(--accent) 24%, transparent) 0%, transparent 70%) !important;
 }
 
 /* T2: Ready crop pulse animation */
 @keyframes gm-ready-pulse {
-  0%, 100% { filter: drop-shadow(0 0 3px rgba(120,200,122,0.50)); }
-  50%       { filter: drop-shadow(0 0 9px rgba(120,200,122,0.95)); }
+  0%, 100% { filter: drop-shadow(0 0 3px color-mix(in srgb, var(--accent) 50%, transparent)); }
+  50%       { filter: drop-shadow(0 0 9px color-mix(in srgb, var(--accent) 95%, transparent)); }
 }
 .gm-crop-cell.gm-cell--ready { animation: gm-ready-pulse 2.2s ease-in-out infinite; }
 
@@ -5021,7 +5021,7 @@ body.garden-mode .plant-section ul {
 
 /* T2: Garden boundary */
 .gm-boundary {
-  border: 2px dashed rgba(120,200,122,0.18); border-radius: var(--radius-sm);
+  border: 2px dashed color-mix(in srgb, var(--accent) 18%, transparent); border-radius: var(--radius-sm);
   box-shadow: inset 0 0 60px rgba(0,0,0,0.25);
   inset: 0; pointer-events: none; position: absolute; z-index: 0;
 }
@@ -5042,14 +5042,14 @@ body.garden-mode .plant-section ul {
 #gm-canvas-scroll.gm-draw-mode .gm-bed,
 #gm-canvas-scroll.gm-draw-mode .gm-struct { pointer-events: none; }
 .gm-draw-preview {
-  background: rgba(120,200,122,0.10); border: 2px dashed rgba(120,200,122,0.65);
+  background: color-mix(in srgb, var(--accent) 10%, transparent); border: 2px dashed color-mix(in srgb, var(--accent) 65%, transparent);
   border-radius: var(--radius-sm); pointer-events: none; position: absolute; z-index: 50;
 }
 
 /* ── Phase 100: Today Hero Card ─────────────────────────────── */
 .today-hero {
-  background: linear-gradient(135deg, rgba(120,200,122,0.08) 0%, transparent 60%);
-  border: 1px solid rgba(120,200,122,0.2);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, transparent) 0%, transparent 60%);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
   border-radius: var(--radius-xl);
   margin-bottom: 12px;
   padding: 14px 16px 12px;
@@ -5063,7 +5063,7 @@ body.garden-mode .plant-section ul {
 .today-wx { align-items: center; display: flex; gap: 8px; }
 .today-wx-icon { font-size: 26px; line-height: 1; }
 .today-wx-temp { color: var(--text); font-size: 17px; font-weight: var(--weight-bold); }
-.today-wx-note { background: rgba(147,197,253,0.12); border-radius: var(--radius-full); color: var(--color-info); font-size: var(--text-xs); padding: 2px 9px; white-space: nowrap; }
+.today-wx-note { background: color-mix(in srgb, var(--color-info) 12%, transparent); border-radius: var(--radius-full); color: var(--color-info); font-size: var(--text-xs); padding: 2px 9px; white-space: nowrap; }
 .today-date { color: var(--text-muted); font-size: var(--text-xs); }
 
 .today-section { margin-top: 8px; }
@@ -5071,34 +5071,34 @@ body.garden-mode .plant-section ul {
 
 .today-harvest-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .thc {
-  align-items: center; background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.25);
+  align-items: center; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
   border-radius: var(--radius-full); color: var(--text); cursor: pointer; display: inline-flex;
   font-size: var(--text-xs); gap: 5px; padding: 6px 12px; min-height: 36px; transition: background 0.15s, border-color 0.15s;
 }
-.thc:hover { background: rgba(120,200,122,0.2); border-color: var(--accent); }
+.thc:hover { background: color-mix(in srgb, var(--accent) 20%, transparent); border-color: var(--accent); }
 .thc-cta { color: var(--accent); font-weight: var(--weight-bold); }
 .thc-more { color: var(--text-muted); font-size: var(--text-xs); line-height: 30px; }
 
 .today-alert {
   border-radius: var(--radius-md); font-size: var(--text-xs); margin-top: 8px; padding: 8px 12px;
 }
-.today-alert--frost { background: rgba(147,197,253,0.1); border: 1px solid rgba(147,197,253,0.25); color: var(--color-info); }
-.today-alert--water { background: rgba(147,197,253,0.08); border: 1px solid rgba(147,197,253,0.2); color: var(--color-info); }
+.today-alert--frost { background: color-mix(in srgb, var(--color-info) 10%, transparent); border: 1px solid color-mix(in srgb, var(--color-info) 25%, transparent); color: var(--color-info); }
+.today-alert--water { background: color-mix(in srgb, var(--color-info) 8%, transparent); border: 1px solid color-mix(in srgb, var(--color-info) 20%, transparent); color: var(--color-info); }
 
 .today-week-chips { display: flex; flex-wrap: wrap; gap: 5px; }
 .twk-chip {
   background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-full);
   color: var(--text-muted); font-size: var(--text-xs); padding: 3px 10px;
 }
-.twk-chip--sow   { border-color: rgba(120,200,122,0.25); color: var(--accent); }
-.twk-chip--transplant { border-color: rgba(251,191,36,0.3); color: var(--color-warning); }
+.twk-chip--sow   { border-color: color-mix(in srgb, var(--accent) 25%, transparent); color: var(--accent); }
+.twk-chip--transplant { border-color: color-mix(in srgb, var(--color-warning) 30%, transparent); color: var(--color-warning); }
 
 .today-tip { border-left: 2px solid var(--accent); color: var(--text-muted); font-size: var(--text-xs); margin-top: 8px; padding: 5px 10px; }
 
 /* ── Phase 101: Harvest Value Tracker ───────────────────────── */
 .hv-card {
-  align-items: flex-start; background: linear-gradient(135deg, rgba(120,200,122,0.07), transparent);
-  border: 1px solid rgba(120,200,122,0.2); border-radius: var(--radius-xl);
+  align-items: flex-start; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 7%, transparent), transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: var(--radius-xl);
   display: flex; gap: 12px; justify-content: space-between;
   margin-bottom: 12px; padding: 16px;
 }
@@ -5111,12 +5111,12 @@ body.garden-mode .plant-section ul {
 .hv-crop-item { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text); font-size: var(--text-xs); padding: 4px 9px; }
 .hv-crop-item strong { color: var(--accent); }
 .hv-share-btn {
-  align-self: center; background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.25);
+  align-self: center; background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
   border-radius: var(--radius-lg); color: var(--accent); cursor: pointer; flex-shrink: 0;
   font-size: var(--text-xs); padding: 7px 12px; transition: background 0.15s;
   white-space: nowrap;
 }
-.hv-share-btn:hover { background: rgba(120,200,122,0.2); }
+.hv-share-btn:hover { background: color-mix(in srgb, var(--accent) 20%, transparent); }
 
 /* T3: Print */
 @media print {
@@ -5137,8 +5137,8 @@ body.garden-mode .plant-section ul {
 
 /* Setup Progress Card */
 .setup-card {
-  background: linear-gradient(135deg, rgba(120,200,122,0.06), rgba(10,15,26,0));
-  border: 1px solid rgba(120,200,122,0.18); border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 6%, transparent), rgba(10,15,26,0));
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent); border-radius: var(--radius-xl);
   margin-bottom: 14px; padding: 14px 16px;
 }
 .setup-card--complete {
@@ -5240,10 +5240,10 @@ body.garden-mode .plant-section ul {
 .cal-summary { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
 .csum-chip { align-items: center; border-radius: var(--radius-full); display: inline-flex; font-size: var(--text-xs); font-weight: var(--weight-medium); gap: 4px; padding: 4px 10px; }
 .csum-chip strong { font-weight: var(--weight-bold); }
-.csum-chip--indoors    { background: rgba(147,197,253,0.1); border: 1px solid rgba(147,197,253,0.25); color: var(--color-info); }
-.csum-chip--sow        { background: rgba(120,200,122,0.1);  border: 1px solid rgba(120,200,122,0.25);  color: var(--accent); }
-.csum-chip--transplant { background: rgba(251,191,36,0.1);  border: 1px solid rgba(251,191,36,0.25);  color: var(--color-warning); }
-.csum-chip--harvest    { background: rgba(249,115,22,0.1);  border: 1px solid rgba(249,115,22,0.25);  color: var(--color-harvest); }
+.csum-chip--indoors    { background: color-mix(in srgb, var(--color-info) 10%, transparent); border: 1px solid color-mix(in srgb, var(--color-info) 25%, transparent); color: var(--color-info); }
+.csum-chip--sow        { background: color-mix(in srgb, var(--accent) 10%, transparent);  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);  color: var(--accent); }
+.csum-chip--transplant { background: color-mix(in srgb, var(--color-warning) 10%, transparent);  border: 1px solid color-mix(in srgb, var(--color-warning) 25%, transparent);  color: var(--color-warning); }
+.csum-chip--harvest    { background: color-mix(in srgb, var(--color-harvest) 10%, transparent);  border: 1px solid color-mix(in srgb, var(--color-harvest) 25%, transparent);  color: var(--color-harvest); }
 
 /* ── Phase 115: Year-at-a-Glance ──────────────────────── */
 #year-view { margin-top: 20px; }
@@ -5255,7 +5255,7 @@ body.garden-mode .plant-section ul {
 .yv-tabs { display: flex; gap: 4px; }
 .yv-tab  { background: transparent; border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-medium); padding: 4px 10px; transition: all 0.12s; }
 .yv-tab:hover { border-color: var(--accent-dark); color: var(--text); }
-.yv-tab--active { background: rgba(120,200,122,0.12); border-color: var(--accent-dark); color: var(--accent); }
+.yv-tab--active { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: var(--accent-dark); color: var(--accent); }
 
 .yv-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .yv-table  { border-collapse: collapse; font-size: var(--text-xs); min-width: 340px; width: 100%; }
@@ -5273,7 +5273,7 @@ body.garden-mode .plant-section ul {
 .yv-crop-label{ display: inline; }
 
 .yv-cell     { padding: 4px 2px; text-align: center; vertical-align: middle; }
-.yv-cell--cur { background: rgba(120,200,122,0.06); }
+.yv-cell--cur { background: color-mix(in srgb, var(--accent) 6%, transparent); }
 .yv-cell--has { }
 
 /* Activity dots */
@@ -5302,7 +5302,7 @@ body.garden-mode .plant-section ul {
 .yv-empty      { color: var(--text-muted); font-size: var(--text-xs); padding: 16px 14px; text-align: center; }
 .yv-zone-note  { border-top: 1px solid var(--border); color: var(--text-muted); font-size: var(--text-2xs); padding: 7px 12px; text-align: center; }
 
-.crop-tip--storage { background: rgba(147,197,253,0.06); border-color: rgba(147,197,253,0.2); color: var(--color-info); }
+.crop-tip--storage { background: color-mix(in srgb, var(--color-info) 6%, transparent); border-color: color-mix(in srgb, var(--color-info) 20%, transparent); color: var(--color-info); }
 
 /* Phase 118 — Succession planting strip */
 .suc-wrap           { border: 1px solid var(--border); border-radius: var(--radius-lg); margin-top: 14px; overflow: hidden; }
@@ -5312,16 +5312,16 @@ body.garden-mode .plant-section ul {
 .suc-crop           { align-items: center; color: var(--text); display: flex; flex-shrink: 0; font-size: var(--text-xs); font-weight: var(--weight-semibold); gap: 5px; min-width: 130px; }
 .suc-every          { background: var(--surface2); border-radius: var(--radius-full); color: var(--text-muted); font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 1px 5px; }
 .suc-chips          { display: flex; flex-wrap: wrap; gap: 4px; }
-.suc-chip           { background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.2); border-radius: var(--radius-sm); color: var(--accent); font-size: var(--text-2xs); font-variant-numeric: tabular-nums; font-weight: var(--weight-medium); padding: 2px 6px; }
+.suc-chip           { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: var(--radius-sm); color: var(--accent); font-size: var(--text-2xs); font-variant-numeric: tabular-nums; font-weight: var(--weight-medium); padding: 2px 6px; }
 .suc-chip--past     { background: var(--surface2); border-color: var(--border); color: var(--text-muted); opacity: 0.6; }
-.suc-chip--now      { background: rgba(120,200,122,0.25); border-color: var(--accent); font-weight: var(--weight-bold); }
+.suc-chip--now      { background: color-mix(in srgb, var(--accent) 25%, transparent); border-color: var(--accent); font-weight: var(--weight-bold); }
 
 /* Phase 119 — Frost countdown banner */
 .fcd         { align-items: center; border-radius: var(--radius-lg); border-left: 3px solid; display: flex; gap: 10px; margin-bottom: 10px; padding: 9px 12px; }
-.fcd--calm   { background: rgba(147,197,253,0.08); border-color: rgba(147,197,253,0.4); }
-.fcd--warn   { background: rgba(251,191,36,0.08);  border-color: rgba(251,191,36,0.5);  }
+.fcd--calm   { background: color-mix(in srgb, var(--color-info) 8%, transparent); border-color: color-mix(in srgb, var(--color-info) 40%, transparent); }
+.fcd--warn   { background: color-mix(in srgb, var(--color-warning) 8%, transparent);  border-color: color-mix(in srgb, var(--color-warning) 50%, transparent);  }
 .fcd--urgent { background: rgba(239,68,68,0.08);   border-color: rgba(239,68,68,0.6);   }
-.fcd--safe   { background: rgba(120,200,122,0.08);  border-color: rgba(120,200,122,0.4);  }
+.fcd--safe   { background: color-mix(in srgb, var(--accent) 8%, transparent);  border-color: color-mix(in srgb, var(--accent) 40%, transparent);  }
 .fcd-icon    { flex-shrink: 0; font-size: var(--text-xl); line-height: 1; }
 .fcd-body    { display: flex; flex-direction: column; gap: 1px; }
 .fcd-label   { color: var(--text); font-size: var(--text-sm); font-weight: var(--weight-bold); }
@@ -5329,7 +5329,7 @@ body.garden-mode .plant-section ul {
 
 /* Phase 120 — Crop comparison drawer */
 .browse-cmp-btn             { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); margin-left: auto; padding: 4px 9px; }
-.browse-cmp-btn--active     { background: rgba(120,200,122,0.1); border-color: var(--accent); color: var(--accent); }
+.browse-cmp-btn--active     { background: color-mix(in srgb, var(--accent) 10%, transparent); border-color: var(--accent); color: var(--accent); }
 .browse-compare-mode .browse-card { cursor: crosshair; }
 .browse-card--selected      { border-color: var(--accent) !important; box-shadow: 0 0 0 1px var(--accent); }
 #compare-drawer             { background: var(--surface); border-top: 2px solid var(--border); flex-shrink: 0; max-height: 55vh; overflow-y: auto; }
@@ -5346,7 +5346,7 @@ body.garden-mode .plant-section ul {
 .cmp-val--diff              { color: var(--color-warning); }
 .cmp-shared-row             { border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 5px; margin-top: 6px; padding-top: 8px; }
 .cmp-shared-tags            { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
-.cmp-tag                    { background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.2); border-radius: var(--radius-sm); color: var(--accent); font-size: var(--text-2xs); padding: 2px 6px; }
+.cmp-tag                    { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); border-radius: var(--radius-sm); color: var(--accent); font-size: var(--text-2xs); padding: 2px 6px; }
 .cmp-none                   { color: var(--text-muted); font-size: var(--text-xs); }
 .cmp-clear                  { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; display: block; font-size: var(--text-xs); font-weight: var(--weight-semibold); margin-top: 10px; padding: 5px 12px; }
 .cmp-clear:hover            { color: var(--text); }
@@ -5354,7 +5354,7 @@ body.garden-mode .plant-section ul {
 /* Phase 121 — Watering schedule card */
 .ws-card             { border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 12px; overflow: hidden; }
 .ws-hd               { border-bottom: 1px solid var(--border); color: var(--text); font-size: var(--text-sm); font-weight: var(--weight-bold); letter-spacing: 0; padding: 10px 14px; text-transform: none; }
-.ws-rain-note        { background: rgba(147,197,253,0.08); border-bottom: 1px solid var(--border); color: var(--color-info); font-size: var(--text-xs); padding: 6px 14px; }
+.ws-rain-note        { background: color-mix(in srgb, var(--color-info) 8%, transparent); border-bottom: 1px solid var(--border); color: var(--color-info); font-size: var(--text-xs); padding: 6px 14px; }
 .ws-row              { align-items: center; border-bottom: 1px solid var(--border); display: flex; gap: 10px; padding: 10px 12px; min-height: 48px; }
 .ws-row:last-child   { border-bottom: none; }
 .ws-emoji            { flex-shrink: 0; font-size: var(--text-2xl); line-height: 1; }
@@ -5365,21 +5365,21 @@ body.garden-mode .plant-section ul {
 .ws-row--soon .ws-status    { color: var(--color-warning); }
 .ws-row--later .ws-status   { color: var(--accent); }
 .ws-row--nolog .ws-status   { color: var(--text-muted); }
-.ws-log-btn          { background: rgba(147,197,253,0.1); border: 1px solid rgba(147,197,253,0.25); border-radius: var(--radius-md); color: var(--color-info); cursor: pointer; flex-shrink: 0; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 7px 12px; min-height: 36px; }
-.ws-log-btn:hover    { background: rgba(147,197,253,0.2); }
+.ws-log-btn          { background: color-mix(in srgb, var(--color-info) 10%, transparent); border: 1px solid color-mix(in srgb, var(--color-info) 25%, transparent); border-radius: var(--radius-md); color: var(--color-info); cursor: pointer; flex-shrink: 0; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 7px 12px; min-height: 36px; }
+.ws-log-btn:hover    { background: color-mix(in srgb, var(--color-info) 20%, transparent); }
 
 /* Phase 122 — Garden diversity score */
 .gdiv-card           { border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 12px; overflow: hidden; padding: 12px 14px; }
-.gdiv--a             { border-color: rgba(120,200,122,0.3); }
-.gdiv--b             { border-color: rgba(251,191,36,0.3); }
-.gdiv--c             { border-color: rgba(249,115,22,0.3); }
+.gdiv--a             { border-color: color-mix(in srgb, var(--accent) 30%, transparent); }
+.gdiv--b             { border-color: color-mix(in srgb, var(--color-warning) 30%, transparent); }
+.gdiv--c             { border-color: color-mix(in srgb, var(--color-harvest) 30%, transparent); }
 .gdiv--d             { border-color: rgba(239,68,68,0.3); }
 .gdiv-header         { align-items: center; display: flex; justify-content: space-between; margin-bottom: 2px; }
 .gdiv-title          { color: var(--text); font-size: var(--text-sm); font-weight: var(--weight-bold); }
 .gdiv-grade          { border-radius: var(--radius-md); font-size: var(--text-lg); font-weight: var(--weight-extrabold); padding: 0 6px; }
-.gdiv--a .gdiv-grade { background: rgba(120,200,122,0.15); color: var(--accent); }
-.gdiv--b .gdiv-grade { background: rgba(251,191,36,0.15); color: var(--color-warning); }
-.gdiv--c .gdiv-grade { background: rgba(249,115,22,0.15); color: var(--color-harvest); }
+.gdiv--a .gdiv-grade { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+.gdiv--b .gdiv-grade { background: color-mix(in srgb, var(--color-warning) 15%, transparent); color: var(--color-warning); }
+.gdiv--c .gdiv-grade { background: color-mix(in srgb, var(--color-harvest) 15%, transparent); color: var(--color-harvest); }
 .gdiv--d .gdiv-grade { background: rgba(239,68,68,0.15); color: var(--color-danger); }
 .gdiv-desc           { color: var(--text-muted); font-size: var(--text-xs); margin-bottom: 10px; }
 .gdiv-rows           { display: flex; flex-direction: column; gap: 7px; }
@@ -5388,7 +5388,7 @@ body.garden-mode .plant-section ul {
 .gdiv-bar-track      { background: var(--surface2); border-radius: 3px; height: 5px; overflow: hidden; }
 .gdiv-bar-fill       { background: var(--accent); border-radius: 3px; height: 100%; transition: width 0.4s ease; }
 .gdiv-val            { color: var(--text); font-size: var(--text-xs); font-weight: var(--weight-semibold); text-align: right; }
-.gdiv-nudge          { background: rgba(120,200,122,0.06); border: 1px solid rgba(120,200,122,0.15); border-radius: var(--radius-md); color: var(--text-muted); font-size: var(--text-xs); margin-top: 10px; padding: 6px 10px; }
+.gdiv-nudge          { background: color-mix(in srgb, var(--accent) 6%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 15%, transparent); border-radius: var(--radius-md); color: var(--text-muted); font-size: var(--text-xs); margin-top: 10px; padding: 6px 10px; }
 
 /* Phase 124 — Growth stage care tips */
 .growth-stage-tip { color: var(--text-muted); font-size: var(--text-2xs); line-height: 1.4; margin-top: 3px; }
@@ -5406,7 +5406,7 @@ body.garden-mode .plant-section ul {
 .rota-next-row { align-items: center; display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
 .rota-next-label { color: var(--text-muted); font-size: var(--text-2xs); font-weight: var(--weight-semibold); letter-spacing: 0.04em; margin-right: 2px; text-transform: uppercase; }
 .rota-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-full); color: var(--text); font-size: var(--text-2xs); font-weight: var(--weight-medium); padding: 2px 8px; }
-.rota-chip--sug { background: rgba(120,200,122,0.08); border-color: rgba(120,200,122,0.2); color: var(--accent); }
+.rota-chip--sug { background: color-mix(in srgb, var(--accent) 8%, transparent); border-color: color-mix(in srgb, var(--accent) 20%, transparent); color: var(--accent); }
 .rota-sug-section { border-top: 1px solid var(--border); padding: 10px 14px; }
 .rota-sug-hd { color: var(--text-muted); font-size: var(--text-2xs); font-weight: var(--weight-bold); letter-spacing: 0.06em; margin-bottom: 8px; text-transform: uppercase; }
 .rota-sug-row { align-items: center; color: var(--text-muted); display: flex; flex-wrap: wrap; font-size: var(--text-xs); gap: 4px; margin-bottom: 6px; }
@@ -5414,20 +5414,20 @@ body.garden-mode .plant-section ul {
 
 /* Phase 125 — Journal auto-milestones */
 .journal-entry--milestone { border-left: 3px solid var(--border); padding-left: 10px; }
-.journal-entry--ms-planted   { border-left-color: rgba(120,200,122,0.6); }
-.journal-entry--ms-harvest   { border-left-color: rgba(249,115,22,0.6); }
-.journal-entry--ms-stage     { border-left-color: rgba(147,197,253,0.6); }
-.journal-entry--ms-problem   { border-left-color: rgba(251,191,36,0.6); }
+.journal-entry--ms-planted   { border-left-color: color-mix(in srgb, var(--accent) 60%, transparent); }
+.journal-entry--ms-harvest   { border-left-color: color-mix(in srgb, var(--color-harvest) 60%, transparent); }
+.journal-entry--ms-stage     { border-left-color: color-mix(in srgb, var(--color-info) 60%, transparent); }
+.journal-entry--ms-problem   { border-left-color: color-mix(in srgb, var(--color-warning) 60%, transparent); }
 .journal-entry--ms-removed   { border-left-color: rgba(148,163,184,0.5); }
 .journal-milestone-badge {
   align-items: center; border-radius: 50%; display: inline-flex;
   font-size: var(--text-xs); height: 20px; justify-content: center;
   margin-right: 4px; vertical-align: middle; width: 20px;
 }
-.journal-milestone-badge--planted  { background: rgba(120,200,122,0.12); }
-.journal-milestone-badge--harvest  { background: rgba(249,115,22,0.12); }
-.journal-milestone-badge--stage    { background: rgba(147,197,253,0.12); }
-.journal-milestone-badge--problem  { background: rgba(251,191,36,0.12); }
+.journal-milestone-badge--planted  { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.journal-milestone-badge--harvest  { background: color-mix(in srgb, var(--color-harvest) 12%, transparent); }
+.journal-milestone-badge--stage    { background: color-mix(in srgb, var(--color-info) 12%, transparent); }
+.journal-milestone-badge--problem  { background: color-mix(in srgb, var(--color-warning) 12%, transparent); }
 .journal-milestone-badge--removed  { background: rgba(148,163,184,0.1); }
 
 /* Phase 127 — Yield logger */
@@ -5451,7 +5451,7 @@ body.garden-mode .plant-section ul {
 .yl-crop-emoji { font-size: var(--text-md); }
 .yl-crop-name  { color: var(--text); flex: 1; font-size: var(--text-xs); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .yl-ready-dot  { background: var(--accent); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; vertical-align: middle; width: 6px; }
-.yl-harvest-btn { background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.25); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 3px 9px; }
+.yl-harvest-btn { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: var(--radius-md); color: var(--accent); cursor: pointer; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 3px 9px; }
 .yl-inline-form { align-items: center; display: flex; flex-basis: 100%; gap: 6px; padding-left: 22px; }
 .yl-qty-in  { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text); font-size: var(--text-xs); padding: 4px 6px; width: 64px; }
 .yl-unit-in { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text); font-size: var(--text-xs); padding: 4px 4px; }
@@ -5464,8 +5464,8 @@ body.garden-mode .plant-section ul {
 .td-title { color: var(--text); font-size: var(--text-sm); font-weight: var(--weight-bold); }
 .td-date  { color: var(--text-muted); flex: 1; font-size: var(--text-xs); }
 .td-badge { border-radius: var(--radius-full); font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 2px 8px; }
-.td-badge--alert { background: rgba(251,191,36,0.15); color: var(--color-warning); border: 1px solid rgba(251,191,36,0.3); }
-.td-badge--ok    { background: rgba(120,200,122,0.1);  color: var(--accent); border: 1px solid rgba(120,200,122,0.25); }
+.td-badge--alert { background: color-mix(in srgb, var(--color-warning) 15%, transparent); color: var(--color-warning); border: 1px solid color-mix(in srgb, var(--color-warning) 30%, transparent); }
+.td-badge--ok    { background: color-mix(in srgb, var(--accent) 10%, transparent);  color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); }
 .td-items { padding: 6px 0; }
 .td-item  { align-items: center; display: flex; gap: 8px; padding: 7px 14px; }
 .td-item + .td-item { border-top: 1px solid rgba(255,255,255,0.04); }
@@ -5477,12 +5477,12 @@ body.garden-mode .plant-section ul {
 .td-item--water   .td-item-text { }
 .td-item--stage   .td-item-text { color: var(--text-muted); font-size: var(--text-xs); }
 .td-action-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text); cursor: pointer; flex-shrink: 0; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 3px 9px; white-space: nowrap; }
-.td-item--harvest .td-action-btn { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.25); color: var(--color-harvest); }
-.td-item--water   .td-action-btn { background: rgba(147,197,253,0.1); border-color: rgba(147,197,253,0.25); color: var(--color-info); }
+.td-item--harvest .td-action-btn { background: color-mix(in srgb, var(--color-harvest) 10%, transparent); border-color: color-mix(in srgb, var(--color-harvest) 25%, transparent); color: var(--color-harvest); }
+.td-item--water   .td-action-btn { background: color-mix(in srgb, var(--color-info) 10%, transparent); border-color: color-mix(in srgb, var(--color-info) 25%, transparent); color: var(--color-info); }
 
 /* Phase 129 — XP + Streaks */
 .gd-xp-row { align-items: center; display: flex; gap: 8px; margin-top: 6px; width: 100%; }
-.gd-level-badge { background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.25); border-radius: var(--radius-full); color: var(--accent); cursor: default; font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 2px 9px; white-space: nowrap; }
+.gd-level-badge { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: var(--radius-full); color: var(--accent); cursor: default; font-size: var(--text-2xs); font-weight: var(--weight-bold); padding: 2px 9px; white-space: nowrap; }
 .gd-xp-track { background: var(--surface2); border-radius: 2px; flex: 1; height: 4px; overflow: hidden; max-width: 120px; }
 .gd-xp-fill  { background: var(--accent); border-radius: 2px; height: 100%; transition: width 0.4s ease; }
 .gd-streak   { color: var(--color-harvest); font-size: var(--text-xs); font-weight: var(--weight-bold); white-space: nowrap; }
@@ -5491,7 +5491,7 @@ body.garden-mode .plant-section ul {
 .cpt-timeline { display: flex; gap: 10px; overflow-x: auto; padding: 4px 0 10px; scrollbar-width: none; }
 .cpt-timeline::-webkit-scrollbar { display: none; }
 .cpt-frame { display: flex; flex-direction: column; flex-shrink: 0; gap: 4px; position: relative; width: 80px; }
-.cpt-frame--latest .cpt-img-wrap { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(120,200,122,0.3); }
+.cpt-frame--latest .cpt-img-wrap { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent); }
 .cpt-img-wrap { border: 1px solid var(--border); border-radius: var(--radius-lg); cursor: pointer; overflow: hidden; position: relative; }
 .cpt-img { display: block; height: 80px; object-fit: cover; width: 80px; }
 .cpt-stage-badge { background: rgba(0,0,0,0.55); border-radius: var(--radius-sm); bottom: 4px; font-size: var(--text-sm); left: 4px; line-height: 1; padding: 2px 3px; position: absolute; }
@@ -5507,7 +5507,7 @@ body.garden-mode .plant-section ul {
 
 /* Phase 131 — Season summary prompt + wrap-up upgrades */
 .sspr-card { align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); display: flex; gap: 10px; justify-content: space-between; margin-bottom: 12px; padding: 12px 14px; }
-.sspr-card--season { border-color: rgba(249,115,22,0.3); background: linear-gradient(135deg, rgba(249,115,22,0.05), transparent); }
+.sspr-card--season { border-color: color-mix(in srgb, var(--color-harvest) 30%, transparent); background: linear-gradient(135deg, color-mix(in srgb, var(--color-harvest) 5%, transparent), transparent); }
 .sspr-left { align-items: center; display: flex; gap: 10px; min-width: 0; }
 .sspr-icon { flex-shrink: 0; font-size: var(--text-2xl); }
 .sspr-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
@@ -5518,8 +5518,8 @@ body.garden-mode .plant-section ul {
 .sw-hero { margin-bottom: 16px; text-align: center; }
 .sw-year-label { color: var(--text-muted); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; }
 .sw-title { color: var(--text); font-size: var(--text-2xl); font-weight: var(--weight-extrabold); letter-spacing: -0.02em; margin: 4px 0; }
-.sw-level-pill { background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.25); border-radius: var(--radius-full); color: var(--accent); display: inline-block; font-size: var(--text-xs); font-weight: var(--weight-bold); padding: 3px 12px; }
-.sw-yield-row { align-items: center; background: rgba(120,200,122,0.06); border: 1px solid rgba(120,200,122,0.15); border-radius: var(--radius-lg); display: flex; gap: 10px; justify-content: center; margin-bottom: 12px; padding: 10px 14px; }
+.sw-level-pill { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: var(--radius-full); color: var(--accent); display: inline-block; font-size: var(--text-xs); font-weight: var(--weight-bold); padding: 3px 12px; }
+.sw-yield-row { align-items: center; background: color-mix(in srgb, var(--accent) 6%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 15%, transparent); border-radius: var(--radius-lg); display: flex; gap: 10px; justify-content: center; margin-bottom: 12px; padding: 10px 14px; }
 .sw-yield-kg  { color: var(--text); font-size: var(--text-base); font-weight: var(--weight-bold); }
 .sw-yield-val { color: var(--text-muted); font-size: var(--text-xs); }
 .sw-streak    { color: var(--color-harvest); font-size: var(--text-xs); font-weight: var(--weight-semibold); margin-bottom: 12px; text-align: center; }
@@ -5534,8 +5534,8 @@ body.garden-mode .plant-section ul {
 .bgv-cell:active { opacity: 0.7; }
 .bgv-cell--empty  { background: rgba(255,255,255,0.04); border: 1.5px dashed rgba(255,255,255,0.12); }
 .bgv-cell--filled { background: var(--surface2); border: 1px solid var(--border); }
-.bgv-cell--growing { border-color: rgba(120,200,122,0.35); }
-.bgv-cell--ready   { border-color: rgba(249,115,22,0.45); background: rgba(249,115,22,0.06); }
+.bgv-cell--growing { border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+.bgv-cell--ready   { border-color: color-mix(in srgb, var(--color-harvest) 45%, transparent); background: color-mix(in srgb, var(--color-harvest) 6%, transparent); }
 .bgv-cell--saved   { border-color: var(--border); }
 .bgv-cell-emoji { font-size: var(--text-xl); line-height: 1; }
 .bgv-cell-label { color: var(--text-muted); font-size: 8px; margin-top: 2px; overflow: hidden; text-align: center; text-overflow: ellipsis; white-space: nowrap; width: 100%; padding: 0 3px; }
@@ -5554,16 +5554,16 @@ body.garden-mode .plant-section ul {
 .ps-symptom-grid { display: grid; gap: 8px; grid-template-columns: repeat(2, 1fr); }
 .ps-symptom-chip { align-items: center; background: var(--surface2); border: 1.5px solid transparent; border-radius: var(--radius-lg); color: var(--text); cursor: pointer; display: flex; font-size: var(--text-xs); gap: 7px; padding: 10px 12px; text-align: left; transition: border-color 0.15s, background 0.15s; }
 .ps-symptom-chip span { line-height: 1.3; }
-.ps-symptom-chip--active { background: rgba(120,200,122,0.1); border-color: var(--accent); }
+.ps-symptom-chip--active { background: color-mix(in srgb, var(--accent) 10%, transparent); border-color: var(--accent); }
 .ps-results { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
 .ps-cause-card { background: var(--surface2); border-radius: var(--radius-lg); padding: 12px 14px; }
 .ps-cause-header { align-items: center; display: flex; gap: 8px; justify-content: space-between; margin-bottom: 6px; }
 .ps-cause-name { font-size: var(--text-sm); font-weight: var(--weight-semibold); }
 .ps-prob { border-radius: var(--radius-full); font-size: var(--text-2xs); font-weight: var(--weight-bold); letter-spacing: 0.06em; padding: 2px 7px; text-transform: uppercase; white-space: nowrap; }
-.ps-prob--high { background: rgba(249,115,22,0.15); color: var(--color-harvest); }
-.ps-prob--med  { background: rgba(251,191,36,0.12); color: var(--color-warning); }
+.ps-prob--high { background: color-mix(in srgb, var(--color-harvest) 15%, transparent); color: var(--color-harvest); }
+.ps-prob--med  { background: color-mix(in srgb, var(--color-warning) 12%, transparent); color: var(--color-warning); }
 .ps-prob--low  { background: rgba(255,255,255,0.06); color: var(--text-muted); }
-.ps-prob--info { background: rgba(147,197,253,0.1);  color: var(--color-info); }
+.ps-prob--info { background: color-mix(in srgb, var(--color-info) 10%, transparent);  color: var(--color-info); }
 .ps-cause-fix { color: var(--text-muted); font-size: var(--text-xs); line-height: 1.55; margin: 0; }
 .ps-log-row { margin-top: 18px; }
 .ps-log-btn { background: var(--accent); border: none; border-radius: var(--radius-lg); color: var(--on-accent); cursor: pointer; font-size: var(--text-sm); font-weight: var(--weight-semibold); padding: 11px 16px; width: 100%; }
@@ -5573,7 +5573,7 @@ body.garden-mode .plant-section ul {
 /* Phase 134 — Care Actions Log */
 .care-quick-btns { display: flex; gap: 8px; margin-bottom: 10px; }
 .care-btn { align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); color: var(--text); cursor: pointer; display: flex; flex: 1; flex-direction: column; font-size: var(--text-xs); gap: 3px; padding: 8px 4px; transition: background 0.15s; }
-.care-btn:active { background: rgba(120,200,122,0.15); border-color: var(--accent); }
+.care-btn:active { background: color-mix(in srgb, var(--accent) 15%, transparent); border-color: var(--accent); }
 .care-btn span { color: var(--text-muted); font-size: var(--text-2xs); white-space: nowrap; }
 .care-last-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
 .care-last-item { background: rgba(255,255,255,0.04); border-radius: var(--radius-full); font-size: var(--text-xs); padding: 3px 9px; }
@@ -5596,7 +5596,7 @@ body.garden-mode .plant-section ul {
 .cal-toggle-btn--active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: var(--weight-bold); }
 .crop-badge { border-radius: var(--radius-full); display: inline-flex; font-size: var(--text-2xs); font-weight: var(--weight-semibold); margin-left: 5px; padding: 1px 6px; vertical-align: middle; }
 .crop-badge--seeds   { background: color-mix(in srgb, var(--color-warning) 15%, transparent); border: 1px solid color-mix(in srgb, var(--color-warning) 30%, transparent); color: var(--color-warning); }
-.crop-badge--history { background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.25); color: var(--accent); }
+.crop-badge--history { background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); color: var(--accent); }
 
 /* Phase 137 — Garden Photo Gallery */
 .gallery-overlay { background: var(--bg); bottom: 0; display: flex; flex-direction: column; left: 0; position: fixed; right: 0; top: 0; z-index: 2500; }
@@ -5629,9 +5629,9 @@ body.garden-mode .plant-section ul {
 .hm-cell { border-radius: 2px; flex: 0 0 12px; height: 12px; width: 12px; }
 .hm-future { background: transparent; }
 .hm-0 { background: rgba(255,255,255,0.07); }
-.hm-1 { background: rgba(120,200,122,0.30); }
-.hm-2 { background: rgba(120,200,122,0.60); }
-.hm-3 { background: rgba(120,200,122,0.95); }
+.hm-1 { background: color-mix(in srgb, var(--accent) 30%, transparent); }
+.hm-2 { background: color-mix(in srgb, var(--accent) 60%, transparent); }
+.hm-3 { background: color-mix(in srgb, var(--accent) 95%, transparent); }
 .hm-today { box-shadow: 0 0 0 1.5px var(--accent); }
 .hm-legend { align-items: center; display: flex; gap: 3px; justify-content: flex-end; margin-top: 8px; }
 .hm-legend-lbl { color: var(--text-muted); font-size: var(--text-2xs); margin: 0 2px; }
