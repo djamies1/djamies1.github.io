@@ -697,12 +697,15 @@ document.addEventListener('DOMContentLoaded', loadData);
 async function loadData() {
   setLoadingText('Loading zone data…');
   const cfg = COUNTRY_CONFIG[selectedCountry] || COUNTRY_CONFIG.us;
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 20000);
   try {
     const [zonesRes, plantingRes, cropsRes] = await Promise.all([
-      fetch(cfg.geojson),
-      fetch(cfg.planting),
-      fetch('./data/crops.json')
+      fetch(cfg.geojson,          { signal: ctrl.signal }),
+      fetch(cfg.planting,         { signal: ctrl.signal }),
+      fetch('./data/crops.json',  { signal: ctrl.signal })
     ]);
+    clearTimeout(timer);
     if (!zonesRes.ok) throw new Error(`zones: ${zonesRes.status}`);
     if (!plantingRes.ok) throw new Error(`planting: ${plantingRes.status}`);
 
@@ -710,12 +713,22 @@ async function loadData() {
     plantingData = await plantingRes.json();
     cropData     = cropsRes.ok ? await cropsRes.json() : {};
     mergeCustomCrops();
-
     normalizeZoneProperties();
+
+    // Let the browser repaint "Rendering map…" before the synchronous map build
+    setLoadingText('Rendering map…');
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
     initMap();
     initUI();
   } catch (err) {
-    setLoadingText('Failed to load data: ' + err.message);
+    clearTimeout(timer);
+    const msg = err.name === 'AbortError'
+      ? 'Load timed out — check your connection and tap Retry'
+      : err.message;
+    setLoadingText('Failed to load: ' + msg);
+    const retryBtn = document.getElementById('loading-retry');
+    if (retryBtn) retryBtn.hidden = false;
     console.error(err);
   }
 }
@@ -751,7 +764,7 @@ function gridcodeToZone(code) {
 function initMap() {
   const container = document.getElementById('globe-container');
   const cfg = COUNTRY_CONFIG[selectedCountry] || COUNTRY_CONFIG.us;
-  map = L.map(container, { center: cfg.center, zoom: cfg.zoom, minZoom: 3, maxZoom: 12 });
+  map = L.map(container, { center: cfg.center, zoom: cfg.zoom, minZoom: 3, maxZoom: 12, renderer: L.canvas() });
   zonesLayer = L.geoJSON(zonesData, {
     style: styleFeature,
     onEachFeature: attachFeature
