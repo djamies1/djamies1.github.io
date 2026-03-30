@@ -2796,10 +2796,10 @@ async function generateGardenShareCard() {
   // Zone badge
   const zoneLabel = selectedZone ? `Zone ${getZoneDisplayLabel(selectedZone)}` : '';
   if (zoneLabel) {
-    ctx.fillStyle = 'rgba(74,222,128,0.15)';
+    ctx.fillStyle = 'rgba(120,200,122,0.15)';
     const bw = zoneLabel.length * 9 + 24;
     ctx.beginPath(); ctx.roundRect(40, 30, bw, 30, 15); ctx.fill();
-    ctx.fillStyle = '#4ade80'; ctx.font = `bold 14px ${font}`;
+    ctx.fillStyle = '#78c87a'; ctx.font = `bold 14px ${font}`;
     ctx.fillText(zoneLabel, 52, 50);
   }
   if (selectedLocationName) {
@@ -2833,7 +2833,7 @@ async function generateGardenShareCard() {
   // Footer rule + branding
   ctx.strokeStyle = 'rgba(55,65,81,0.7)'; ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(40, 386); ctx.lineTo(760, 386); ctx.stroke();
-  ctx.fillStyle = '#4ade80'; ctx.font = `bold 12px ${font}`;
+  ctx.fillStyle = '#78c87a'; ctx.font = `bold 12px ${font}`;
   ctx.fillText('Plant Zone Finder', 40, 412);
   ctx.fillStyle = '#374151'; ctx.font = `12px ${font}`;
   ctx.fillText('djamies1.github.io/garden-zones', 195, 412);
@@ -5011,7 +5011,7 @@ function showHarvestConfetti(el) {
   const rect = el.getBoundingClientRect();
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
-  const COLORS = ['#4ade80','#fbbf24','#f87171','#60a5fa','#c084fc','#fb923c','#34d399','#f9a8d4'];
+  const COLORS = ['#78c87a','#fbbf24','#f87171','#60a5fa','#c084fc','#fb923c','#34d399','#f9a8d4'];
   for (let i = 0; i < 14; i++) {
     const dot = document.createElement('div');
     dot.className = 'confetti-dot';
@@ -6389,7 +6389,7 @@ function renderMinimap() {
     ctx.strokeStyle = bed.color||'#2d5a27'; ctx.lineWidth = 0.5;
     ctx.fillRect(x,y,w,h); ctx.strokeRect(x,y,w,h);
     if (id === _mapSelectedBed) {
-      ctx.strokeStyle='#4ade80'; ctx.lineWidth=1.5;
+      ctx.strokeStyle='#78c87a'; ctx.lineWidth=1.5;
       ctx.strokeRect(x-1,y-1,w+2,h+2);
     }
   }
@@ -7316,7 +7316,7 @@ async function fireNotif(title, body, tag) {
         id: _tagToId(tag), title, body,
         schedule: { at: new Date(Date.now() + 500) },
         smallIcon: 'ic_stat_icon_config_sample',
-        iconColor: '#4ade80',
+        iconColor: '#78c87a',
         extra: { tag },
       }]});
     } catch {}
@@ -7339,7 +7339,7 @@ async function scheduleNotif(title, body, tag, atDate) {
       id: _tagToId(tag), title, body,
       schedule: { at: atDate },
       smallIcon: 'ic_stat_icon_config_sample',
-      iconColor: '#4ade80',
+      iconColor: '#78c87a',
       extra: { tag },
     }]});
   } catch {}
@@ -10104,7 +10104,7 @@ function shareCropCard(name) {
   ctx.fillRect(0, 0, W, H);
 
   // Accent bar
-  ctx.fillStyle = '#4ade80';
+  ctx.fillStyle = '#78c87a';
   ctx.fillRect(0, 0, 4, H);
 
   // Emoji
@@ -10118,9 +10118,9 @@ function shareCropCard(name) {
 
   // Difficulty badge
   if (c.difficulty) {
-    const diffColors = { Easy: '#4ade80', Moderate: '#fbbf24', Hard: '#f87171' };
+    const diffColors = { Easy: '#78c87a', Moderate: '#fbbf24', Hard: '#f87171' };
     ctx.font = '11px system-ui, sans-serif';
-    ctx.fillStyle = diffColors[c.difficulty] || '#4ade80';
+    ctx.fillStyle = diffColors[c.difficulty] || '#78c87a';
     ctx.fillText(c.difficulty.toUpperCase(), 91, 72);
   }
 
