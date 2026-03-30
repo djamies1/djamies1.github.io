@@ -4999,7 +4999,7 @@ function pulseZone() {
   if (!selectedLayer) return;
   let pulseCount = 0;
   const originalStyle = { fillOpacity: 1.0, weight: 3, color: '#fff', opacity: 1 };
-  const pulseStyle = { fillOpacity: 0.5, weight: 4, color: '#4ade80', opacity: 1 };
+  const pulseStyle = { fillOpacity: 0.5, weight: 4, color: '#78c87a', opacity: 1 };
   const interval = setInterval(() => {
     selectedLayer.setStyle(pulseCount % 2 === 0 ? pulseStyle : originalStyle);
     if (++pulseCount >= 4) { clearInterval(interval); selectedLayer.setStyle(originalStyle); }
