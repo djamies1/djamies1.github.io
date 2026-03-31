@@ -323,3 +323,161 @@ export const DEFAULT_FEATURES = {
   seeds: true, startIndoors: true, beds: true, succession: true,
   companionPlanting: true, harvestTracking: true, weatherForecast: true,
 };
+
+// ── Gardening tips ─────────────────────────────
+export const TIPS = [
+  'Plant tomatoes deep — buried stems develop extra roots, producing stronger plants.',
+  'Marigolds repel aphids, nematodes, and whiteflies. Scatter them throughout your garden.',
+  'Water in the morning so leaves dry before evening, reducing fungal disease risk.',
+  'Succession-sow lettuce every 2 weeks for a continuous harvest all season long.',
+  'A 2–3 inch layer of mulch suppresses weeds and keeps soil moisture even.',
+  'Pinch off the first flowers on peppers to redirect energy into bigger yields later.',
+  'Rotate crop families each year to prevent soil-borne disease and pest buildup.',
+  'Corn, beans, and squash — the Three Sisters — grow better together than apart.',
+  'Never compost diseased plant material. Pathogens can survive and spread next season.',
+  'Harvest herbs in the morning after dew dries for the most intense essential oils.',
+  'Garlic planted in autumn produces the largest bulbs the following summer.',
+  'Water deeply and infrequently. Shallow watering encourages shallow, weak roots.',
+  'Baking soda spray (1 tsp per quart of water) prevents powdery mildew on squash.',
+  'Radishes sown alongside carrots break up soil and mark slow-germinating rows.',
+  'A soil thermometer is more useful than air temperature for deciding when to plant.',
+  'Hardening off is essential — move seedlings outside for 1 more hour per day over 7–10 days.',
+  'Parsnips get sweeter after the first frost converts their starches to sugar.',
+  'Floating row cover keeps most pests out while letting light through — remove during pollination.',
+  'Test your soil pH before planting. Most vegetables prefer a range of 6.0–7.0.',
+  'Snap peas taste sweetest when picked young, before seeds bulge through the pod.',
+  'Cold frames extend your growing season by 4–6 weeks in both spring and autumn.',
+  'Kale and Brussels sprouts taste better after a frost — wait for it.',
+  'Tomatoes need consistent moisture to prevent blossom end rot. Mulch keeps it even.',
+  'Legumes like beans and peas fix nitrogen from the air into your soil for future crops.',
+  'Growing vertically on trellises saves space, improves airflow, and simplifies harvesting.',
+  'Asparagus is a 20-year crop — prepare its permanent bed deeply and well.',
+  'Interplanting fast and slow crops (lettuce under tomatoes) maximises every square foot.',
+  'Watering at the base of plants rather than overhead prevents many leaf diseases.',
+  'Earthworms are a sign of healthy soil. Their castings are the finest natural fertiliser.',
+  'Borage flowers are edible and attract pollinators to your vegetable beds.',
+  'Pinching basil flowers as they appear keeps leaves flavorful and prolific.',
+  'Neem oil spray is effective against aphids, mites, and whiteflies — apply at dusk.',
+  'Hilling potatoes every 2 weeks as they grow dramatically increases your yield.',
+  'Save seeds from your best-performing plants each year for locally adapted varieties.',
+  'Green tomatoes will ripen off the vine — store stem-side down at room temperature.',
+  'Dill attracts beneficial insects that prey on aphids and caterpillars.',
+  'Planting onions near carrots helps deter carrot fly.',
+  'Fennel is allelopathic — most vegetables grow poorly near it. Grow it in isolation.',
+  'Squash vine borer damage can be prevented by wrapping stem bases with foil or fabric.',
+  'Cilantro bolts quickly in heat. Use slow-bolt varieties and sow a new batch monthly.',
+  'Cold stratification (a week in the fridge) improves germination of many perennial seeds.',
+  'Deadheading herbs that flower encourages bushy, productive regrowth.',
+  'Coffee grounds improve drainage and add nitrogen — work them into soil in moderation.',
+  'Eggshells around seedling bases can deter slugs and add slow-release calcium.',
+  'Hand-pick hornworms at dusk with a torch — they glow under UV light.',
+  'Planting basil near tomatoes may improve their flavour and deter certain pests.',
+  'A thin layer of compost applied each spring feeds soil life and slowly releases nutrients.',
+  'Leeks can be blanched by mounding soil around the stems as they grow.',
+  'Rhubarb leaves are toxic — harvest stems only, and never eat the leaves.',
+  'Soak large seeds like beans and squash overnight before planting for faster germination.',
+  'Companion-plant nasturtiums as a trap crop — aphids prefer them over your vegetables.',
+  'Over-watering is the most common cause of seedling death — let soil dry slightly between waterings.',
+  'Chives repel aphids and Japanese beetles. Their flowers are also edible.',
+  'Hardneck garlic produces edible scapes in early summer — harvest them to boost bulb size.',
+  'Plant a cover crop of crimson clover or winter rye in empty beds to feed the soil.',
+  'Mint spreads aggressively — grow it in a container buried in the bed to contain roots.',
+  'Cucumber beetles can be deterred by planting radishes as a companion.',
+  'Direct-sow root vegetables like carrots and parsnips — they dislike transplanting.',
+  'The best time to plant a tree was 20 years ago. The second best time is now.',
+];
+
+// ── Phase 9: Achievements ──────────────────────
+export const ACHIEVEMENTS = [
+  { id: 'first-seed',    icon: '🌱', name: 'First Seed',      desc: 'Add your first crop to My Garden' },
+  { id: 'planner',       icon: '📅', name: 'Planner',         desc: 'Log a planting date for a crop' },
+  { id: 'first-harvest', icon: '🌾', name: 'First Harvest',   desc: 'Log your first harvest' },
+  { id: 'growing-5',     icon: '🌿', name: 'Growing Strong',  desc: 'Grow 5 or more crops at once' },
+  { id: 'growing-10',    icon: '🌻', name: 'Green Thumb',     desc: 'Grow 10 or more crops at once' },
+  { id: 'journaler',     icon: '✍️', name: 'Journaler',       desc: 'Write your first garden journal entry' },
+  { id: 'critic',        icon: '⭐', name: 'Critic',          desc: 'Rate a crop after growing it' },
+  { id: 'companion',     icon: '🤝', name: 'Good Neighbours', desc: 'Add a companion crop recommendation' },
+  { id: 'custom-crop',   icon: '🔬', name: 'Experimenter',    desc: 'Add a custom crop of your own' },
+];
+
+// ── Phase 129: XP level titles ─────────────────
+export const LEVEL_TITLES = [
+  '', // 0 unused
+  'Seedling', 'Sprout', 'Grower', 'Gardener', 'Cultivator',
+  'Horticulturist', 'Master Gardener', 'Garden Sage', 'Garden Legend',
+];
+
+// ── Phase 125: Milestone type icons ───────────
+export const MILESTONE_ICONS = {
+  planted:  '🌱',
+  harvest:  '🌾',
+  stage:    '📈',
+  problem:  '⚠️',
+  removed:  '🗑️',
+};
+
+// ── Phase 58: Hardening-off schedule ──────────
+export const HARDENING_STEPS = [
+  { day: 1,  desc: '1h outside in sheltered, shady spot' },
+  { day: 2,  desc: '2h outside, partial shade' },
+  { day: 3,  desc: '3h outside, morning sun OK' },
+  { day: 4,  desc: '4h outside, some direct sun' },
+  { day: 5,  desc: '5h outside, dappled sun' },
+  { day: 6,  desc: '6h outside, more sun exposure' },
+  { day: 7,  desc: 'Rest day indoors if cool weather expected' },
+  { day: 8,  desc: '6h, full morning sun' },
+  { day: 9,  desc: '7h, light breeze OK' },
+  { day: 10, desc: '8h outside, check soil moisture carefully' },
+  { day: 11, desc: '9h, overnight in cold frame if available' },
+  { day: 12, desc: 'Overnight outside if no frost forecast' },
+  { day: 13, desc: 'Full day and night outside' },
+  { day: 14, desc: 'Ready to transplant! 🌱' },
+];
+
+// ── Phase 47: Seasonal nudge triggers ─────────
+export const NUDGE_TRIGGERS = [
+  { key: 'spring-start-warm',  daysBefore: 42, frost: 'last',
+    title: '🌱 Start warm-season seeds indoors',
+    body: 'Last frost is ~6 weeks away — prime time to start tomatoes, peppers, and eggplant.' },
+  { key: 'spring-start-slow',  daysBefore: 56, frost: 'last',
+    title: '🌱 Start slow-growing seedlings',
+    body: 'Celery, leeks, and celeriac need 8+ weeks indoors before transplanting.' },
+  { key: 'spring-sow-cold',    daysBefore: 21, frost: 'last',
+    title: '🥬 Direct sow cold-tolerant crops',
+    body: 'Peas, spinach, lettuce, and radishes can handle light frost — sow outdoors now.' },
+  { key: 'spring-transplant',  daysAfter:   7, frost: 'last',
+    title: '✅ Last frost has passed',
+    body: 'Harden off seedlings and get warm-season crops in the ground.' },
+  { key: 'autumn-start',       daysBefore: 56, frost: 'first',
+    title: '🍂 Start fall crops indoors',
+    body: 'First frost is ~8 weeks away. Start brassicas and root veg for a fall harvest.' },
+  { key: 'autumn-harvest',     daysBefore: 14, frost: 'first',
+    title: '⚠️ First frost in ~2 weeks',
+    body: 'Harvest tomatoes, cucumbers, and peppers soon before frost hits.' },
+];
+
+// ── Phase 126: Crop rotation rules ────────────
+export const ROTATION_RULES = {
+  Solanaceae:    { warn: 'Blight & nematodes build up rapidly', next: ['Legume','Apiaceae','Allium'] },
+  Brassicaceae:  { warn: 'Clubroot & cabbage root fly persist in soil', next: ['Allium','Legume','Chenopodiaceae'] },
+  Cucurbit:      { warn: 'Powdery mildew spores & vine borers overwinter', next: ['Legume','Allium','Apiaceae'] },
+  Apiaceae:      { warn: 'Carrot fly larvae overwinter', next: ['Legume','Solanaceae','Brassicaceae'] },
+  Chenopodiaceae:{ warn: 'Beet cyst nematode & leaf miners accumulate', next: ['Legume','Allium','Cucurbit'] },
+  Asteraceae:    { warn: 'Sclerotinia & aphid colonies can persist', next: ['Legume','Allium'] },
+};
+export const ROTATION_SAFE = new Set(['Legume','Allium','Lamiaceae','Tropaeolaceae','Boraginaceae','Grass','Rosaceae','Ericaceae','Grossulariaceae']);
+
+// ── Family emoji map ───────────────────────────
+export const FAMILY_EMOJI = {
+  Solanaceae:'🍅', Brassicaceae:'🥦', Legume:'🫘', Cucurbit:'🥒',
+  Allium:'🧅', Apiaceae:'🥕', Chenopodiaceae:'🥬', Asteraceae:'🌼',
+  Lamiaceae:'🌿', Grass:'🌽',
+};
+
+// ── Phase 134: Care action types ───────────────
+export const CARE_TYPES = [
+  { id: 'fertilise', icon: '🧪', label: 'Fertilise'  },
+  { id: 'prune',     icon: '✂️', label: 'Prune'      },
+  { id: 'spray',     icon: '💦', label: 'Pest Spray' },
+  { id: 'stake',     icon: '🪝', label: 'Stake'      },
+];

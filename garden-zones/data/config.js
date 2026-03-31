@@ -108,3 +108,7 @@ export const STRUCTURE_TYPES = {
   'path':  { label: 'Path',  emoji: '🛤️', color: '#a08c64', cssClass: 'gm-struct-path'  },
   'fence': { label: 'Fence', emoji: '🚧', color: '#b0845a', cssClass: 'gm-struct-fence' },
 };
+
+// ── Garden map constants ───────────────────────
+export const BED_COLORS = ['#2d5a27','#1a4a6b','#5a2d2d','#5a4a1a','#2d3d5a','#4a2d5a','#1a5a4a','#5a3d1a'];
+export const ZOOM_STEPS  = [0.4, 0.5, 0.6, 0.75, 1, 1.25, 1.5, 2, 2.5, 3];
