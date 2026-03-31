@@ -11582,10 +11582,10 @@ function renderCalViewToggle() {
 
 // ── Phase 137: Garden Photo Gallery ─────────────────────────────────────────
 
-let _galleryFilter = null;
+let _gardenGalleryFilter = null;
 
 function openGardenGallery() {
-  _galleryFilter = null;
+  _gardenGalleryFilter = null;
   renderGardenGallery();
   document.getElementById('garden-gallery-overlay').hidden = false;
   document.body.style.overflow = 'hidden';
@@ -11615,14 +11615,14 @@ function renderGardenGallery() {
   if (filterBar) {
     if (cropsWithPhotos.length > 1) {
       filterBar.innerHTML = [
-        `<button class="gallery-filter-chip${!_galleryFilter ? ' gallery-filter-chip--active' : ''}" data-crop="">All</button>`,
+        `<button class="gallery-filter-chip${!_gardenGalleryFilter ? ' gallery-filter-chip--active' : ''}" data-crop="">All</button>`,
         ...cropsWithPhotos.map(n =>
-          `<button class="gallery-filter-chip${_galleryFilter === n ? ' gallery-filter-chip--active' : ''}" data-crop="${n}">${cropData[n]?.emoji || '\u{1F331}'} ${n}</button>`
+          `<button class="gallery-filter-chip${_gardenGalleryFilter === n ? ' gallery-filter-chip--active' : ''}" data-crop="${n}">${cropData[n]?.emoji || '\u{1F331}'} ${n}</button>`
         ),
       ].join('');
       filterBar.querySelectorAll('.gallery-filter-chip').forEach(btn =>
         btn.addEventListener('click', () => {
-          _galleryFilter = btn.dataset.crop || null;
+          _gardenGalleryFilter = btn.dataset.crop || null;
           renderGardenGallery();
         })
       );
@@ -11631,7 +11631,7 @@ function renderGardenGallery() {
     }
   }
 
-  const displayed = _galleryFilter ? allPhotos.filter(p => p.cropName === _galleryFilter) : allPhotos;
+  const displayed = _gardenGalleryFilter ? allPhotos.filter(p => p.cropName === _gardenGalleryFilter) : allPhotos;
 
   const grid = document.getElementById('gallery-grid');
   if (!grid) return;
