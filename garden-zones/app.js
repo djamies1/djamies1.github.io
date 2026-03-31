@@ -76,6 +76,10 @@ function updateSeasonBg() {
   _lastSeasonBg = season;
   const el = document.getElementById('season-bg');
   if (!el) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.style.backgroundImage = SEASON_GRADIENTS[season];
+    return;
+  }
   el.style.transition = 'opacity 0.4s ease';
   el.style.opacity = '0';
   setTimeout(() => {
@@ -1231,7 +1235,11 @@ function renderCustomCropDetail(c, name) {
 // ── Helpers ────────────────────────────────────
 function setLoadingText(msg) {
   const el = document.getElementById('loading-text');
-  if (el) el.textContent = msg;
+  if (!el) return;
+  el.textContent = msg;
+  // Use assertive role for errors so screen readers announce immediately
+  const isError = msg.toLowerCase().startsWith('failed') || msg.toLowerCase().startsWith('error');
+  el.setAttribute('role', isError ? 'alert' : 'status');
 }
 
 // ── URL state ──────────────────────────────────
@@ -4517,6 +4525,7 @@ function importGarden(file) {
 // ── Phase 2: Zone pulse ──────────────────────────
 function pulseZone() {
   if (!selectedLayer) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   let pulseCount = 0;
   const originalStyle = { fillOpacity: 1.0, weight: 3, color: '#fff', opacity: 1 };
   const pulseStyle = { fillOpacity: 0.5, weight: 4, color: '#78c87a', opacity: 1 };
@@ -4528,6 +4537,7 @@ function pulseZone() {
 
 // ── Phase 2: Harvest confetti ────────────────────
 function showHarvestConfetti(el) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const rect = el.getBoundingClientRect();
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;

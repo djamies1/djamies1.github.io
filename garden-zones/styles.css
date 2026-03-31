@@ -245,6 +245,18 @@ button:active, [role="button"]:active {
   transition: transform 0.06s ease;
 }
 
+/* ── Global focus-visible ring ───────────────────────
+   Provides a strong, consistent focus indicator for keyboard users
+   without affecting mouse/touch interactions.                       */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Remove the default outline for mouse/touch — :focus-visible handles keyboard only */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* ── Bottom nav ──────────────────────────────────── */
 #bottom-nav { display: none; }
 
