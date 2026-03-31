@@ -1,4 +1,4 @@
-const CACHE     = 'plant-zone-v115';
+const CACHE     = 'plant-zone-v116';
 const API_CACHE = 'pzf-api-v1'; // separate; survives app-code updates
 
 const CORE = [
@@ -53,7 +53,7 @@ self.addEventListener('fetch', e => {
   if (API_HOSTS.includes(url.hostname)) {
     e.respondWith(
       fetch(e.request).then(res => {
-        if (res.ok) caches.open(API_CACHE).then(c => c.put(e.request, res.clone()));
+        if (res.ok) { const clone = res.clone(); caches.open(API_CACHE).then(c => c.put(e.request, clone)); }
         return res;
       }).catch(async () => {
         const cached = await caches.match(e.request);
@@ -69,7 +69,7 @@ self.addEventListener('fetch', e => {
       caches.match(e.request).then(cached => {
         if (cached) return cached;
         return fetch(e.request).then(res => {
-          if (res.ok) caches.open(CACHE).then(c => c.put(e.request, res.clone()));
+          if (res.ok) { const clone = res.clone(); caches.open(CACHE).then(c => c.put(e.request, clone)); }
           return res;
         }).catch(async () => {
           // Navigation fallback: serve cached shell
