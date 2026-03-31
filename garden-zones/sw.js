@@ -1,4 +1,4 @@
-const CACHE     = 'plant-zone-v121';
+const CACHE     = 'plant-zone-v122';
 const API_CACHE = 'pzf-api-v1'; // separate; survives app-code updates
 
 const CORE = [
@@ -18,6 +18,15 @@ const CORE = [
   '/garden-zones/data/zones.geojson',
   '/garden-zones/data/planting.json',
   '/garden-zones/data/crops.json',
+  '/garden-zones/data/ca_zones.geojson',
+  '/garden-zones/data/au_zones.geojson',
+  '/garden-zones/data/uk_zones.geojson',
+  '/garden-zones/data/nz_zones.geojson',
+  '/garden-zones/data/gardenate_ca.json',
+  '/garden-zones/data/gardenate_au.json',
+  '/garden-zones/data/gardenate_uk.json',
+  '/garden-zones/data/gardenate_nz.json',
+  '/garden-zones/features/weather.js',
   '/garden-zones/data/winter-bg.svg',
   '/garden-zones/data/spring-bg.svg',
   '/garden-zones/data/summer-bg.svg',
