@@ -2,332 +2,36 @@
    Plant Zone Finder — app.js
 ────────────────────────────────────────────── */
 
-// ── WMO weather code → emoji ───────────────────
-const WMO_ICONS = {
-  0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️',
-  45:'🌫️', 48:'🌫️',
-  51:'🌦️', 53:'🌦️', 55:'🌧️',
-  61:'🌧️', 63:'🌧️', 65:'🌧️',
-  71:'🌨️', 73:'🌨️', 75:'❄️', 77:'❄️',
-  80:'🌦️', 81:'🌦️', 82:'🌧️',
-  85:'🌨️', 86:'🌨️',
-  95:'⛈️', 96:'⛈️', 99:'⛈️',
-};
-function getWmoIcon(code) { return WMO_ICONS[code] || '🌡️'; }
+// ── ES module imports ──────────────────────────
+import {
+  WMO_ICONS, CROP_FAMILIES, CROP_VALUES,
+  FROST_SENSITIVE, HEAT_SENSITIVE,
+  COMPANION_REASONS, AVOID_REASONS,
+  PROBLEM_SYMPTOMS, PROBLEM_LOCATIONS, PROBLEM_DIAGNOSES,
+  DEFAULT_FEATURES,
+} from './data/constants.js';
+import {
+  ZONE_COLORS, CLIMATE_ZONE_COLORS, CLIMATE_ZONE_LABELS,
+  SEASON_GRADIENTS, MONTH_NAMES,
+  FROST_DATES, COUNTRY_CONFIG,
+  BED_TYPES, STRUCTURE_TYPES,
+} from './data/config.js';
+import {
+  getSeasonForMonth, frostDateToMonth,
+  gridcodeToZone, getZoneCentroid,
+  formatLocationName, parseHarvestDays, getWmoIcon,
+} from './utils/index.js';
+import { getRecipesForCrop, showHarvestRecipes } from './features/recipes.js';
 
-// ── Phase 54: Crop family → rotation group ─────
-const CROP_FAMILIES = {
-  'Tomatoes':'Solanaceae','Peppers':'Solanaceae','Eggplant':'Solanaceae',
-  'Tomatillos':'Solanaceae','Ground Cherries':'Solanaceae','Potatoes':'Solanaceae',
-  'Cabbage':'Brassicaceae','Broccoli':'Brassicaceae','Cauliflower':'Brassicaceae',
-  'Kale':'Brassicaceae','Brussels Sprouts':'Brassicaceae','Kohlrabi':'Brassicaceae',
-  'Turnips':'Brassicaceae','Radishes':'Brassicaceae','Arugula':'Brassicaceae',
-  'Asian Greens':'Brassicaceae',
-  'Beans':'Legume','Peas':'Legume','Edamame':'Legume','Peanuts':'Legume',
-  'Runner Beans':'Legume','Sugar Snap Peas':'Legume','Snow Peas':'Legume','Lima Beans':'Legume','Fava Beans':'Legume',
-  'Cucumbers':'Cucurbit','Squash':'Cucurbit','Pumpkins':'Cucurbit',
-  'Melons':'Cucurbit','Zucchini':'Cucurbit','Watermelon':'Cucurbit','Butternut Squash':'Cucurbit',
-  'Onions':'Allium','Garlic':'Allium','Leeks':'Allium','Shallots':'Allium','Chives':'Allium',
-  'Carrots':'Apiaceae','Parsnips':'Apiaceae','Celery':'Apiaceae',
-  'Dill':'Apiaceae','Fennel':'Apiaceae','Coriander':'Apiaceae',
-  'Lettuce':'Asteraceae','Endive':'Asteraceae','Artichokes':'Asteraceae',
-  'Corn':'Grass',
-  'Beets':'Chenopodiaceae','Spinach':'Chenopodiaceae','Swiss Chard':'Chenopodiaceae',
-  'Raspberries':'Rosaceae','Blackberries':'Rosaceae','Gooseberries':'Grossulariaceae',
-  'Redcurrants':'Grossulariaceae','Blackcurrants':'Grossulariaceae','Blueberries':'Ericaceae',
-  'Strawberries':'Rosaceae',
-  'Nasturtium':'Tropaeolaceae','Borage':'Boraginaceae','Calendula':'Asteraceae',
-  'Lavender':'Lamiaceae','Sunflowers':'Asteraceae',
-  'Lemon Balm':'Lamiaceae','Tarragon':'Asteraceae','Sorrel':'Polygonaceae','Chervil':'Apiaceae',
-  'Bay Leaf':'Lauraceae',
-  'Broccoli Rabe':'Brassicaceae','Napa Cabbage':'Brassicaceae',
-  'Daikon':'Brassicaceae',
-  'Watermelon':'Cucurbit','Cherry Tomatoes':'Solanaceae','Jalapeño':'Solanaceae',
-  'Sweet Corn':'Grass',
-  // Phase 91: herbs & others
-  'Basil':'Lamiaceae','Mint':'Lamiaceae','Thyme':'Lamiaceae','Rosemary':'Lamiaceae',
-  'Oregano':'Lamiaceae','Sage':'Lamiaceae','Parsley':'Apiaceae','Marjoram':'Lamiaceae',
-  'Sweet Potatoes':'Convolvulaceae','Asparagus':'Asparagaceae','Rhubarb':'Polygonaceae',
-  'Okra':'Malvaceae','Ginger':'Zingiberaceae','Lemongrass':'Poaceae',
-  'Chard':'Chenopodiaceae','Pak Choi':'Brassicaceae','Mizuna':'Brassicaceae',
-  'Mustard Greens':'Brassicaceae','Collard Greens':'Brassicaceae',
-  'Tatsoi':'Brassicaceae','Bok Choy':'Brassicaceae',
-  'Salsify':'Asteraceae','Jerusalem Artichoke':'Asteraceae',
-  'Watercress':'Brassicaceae','Cress':'Brassicaceae',
-  'Savory':'Lamiaceae','Hyssop':'Lamiaceae',
-};
 
-// ── Phase 101: Avg retail price $/kg (organic) ─
-const CROP_VALUES = {
-  'Arugula':10,'Asian Greens':8,'Asparagus':11,'Basil':28,'Bay Leaf':18,
-  'Beans':6,'Beets':4,'Blackberries':11,'Blackcurrants':14,'Blueberries':10,
-  'Borage':15,'Broccoli':5,'Broccoli Rabe':8,'Brussels Sprouts':6,'Butternut Squash':3,
-  'Cabbage':2.5,'Calendula':12,'Carrots':3.5,'Cauliflower':4.5,'Celery':3,
-  'Chervil':20,'Cherry Tomatoes':6,'Chives':18,'Coriander':18,'Corn':2,
-  'Cucumbers':3.5,'Daikon':3,'Dill':16,'Edamame':7,'Eggplant':4.5,
-  'Endive':7,'Fava Beans':7,'Fennel':6,'Garlic':12,'Gooseberries':14,
-  'Ground Cherries':12,'Jalapeño':6,'Kale':6.5,'Kohlrabi':5,'Lavender':20,
-  'Leeks':4.5,'Lemon Balm':20,'Lettuce':7,'Lima Beans':7,'Marjoram':18,
-  'Melons':4,'Mint':24,'Nasturtium':18,'Napa Cabbage':3,'Onions':2.5,
-  'Oregano':16,'Parsley':14,'Parsnips':4,'Peanuts':5,'Peas':7,
-  'Peppers':5,'Potatoes':2,'Pumpkins':2,'Radishes':5,'Raspberries':12,
-  'Redcurrants':14,'Rhubarb':5,'Rosemary':18,'Runner Beans':6,'Sage':18,
-  'Shallots':8,'Snow Peas':8,'Sorrel':14,'Spinach':8,'Squash':3.5,
-  'Strawberries':9,'Sugar Snap Peas':8,'Sunflowers':6,'Sweet Corn':2,
-  'Sweet Potatoes':3,'Swiss Chard':7.5,'Tarragon':22,'Thyme':20,
-  'Tomatillos':6,'Tomatoes':4.5,'Turnips':3,'Watermelon':2,'Zucchini':3,
-};
 
-// ── Frost-sensitive crops ──────────────────────
-const FROST_SENSITIVE = new Set([
-  'Tomatoes','Cherry Tomatoes','Peppers','Jalapeño','Eggplant','Basil','Cucumbers',
-  'Beans','Runner Beans','Lima Beans','Squash','Zucchini','Butternut Squash',
-  'Corn','Sweet Corn','Melons','Watermelon','Pumpkins','Tomatillos','Ground Cherries','Edamame',
-  'Sweet Potatoes','Ginger','Lemongrass','Okra','Peanuts',
-]);
 
-// Phase 135 — crops that bolt or suffer in heat (bolt risk, bitter flavour, wilting)
-const HEAT_SENSITIVE = new Set([
-  'Lettuce','Spinach','Arugula','Cilantro','Peas','Kale','Broccoli','Cauliflower',
-  'Radishes','Parsley','Bok Choy','Cabbage','Brussels Sprouts','Leeks','Swiss Chard',
-]);
 
-// ── Phase 67: Companion reasons ────────────────
-const COMPANION_REASONS = {
-  'Tomatoes|Basil':'Basil repels aphids and thrips; traditionally said to improve tomato flavour.',
-  'Tomatoes|Marigolds':'Marigold root secretions deter nematodes, aphids, and whitefly.',
-  'Tomatoes|Carrots':'Carrots loosen soil around tomato roots; efficient use of vertical space.',
-  'Tomatoes|Garlic':'Garlic deters aphids, spider mites, and other fungal pathogens.',
-  'Basil|Tomatoes':'Tomatoes provide dappled shade; basil deters pests mutually.',
-  'Basil|Peppers':'Repels aphids and spider mites; both thrive in heat.',
-  'Carrots|Onions':'Onion scent deters carrot fly; carrot scent confuses onion fly.',
-  'Carrots|Chives':'Chives repel carrot rust fly and aphids with their scent.',
-  'Corn|Beans':'Three Sisters: beans fix nitrogen that feeds heavy-feeding corn.',
-  'Corn|Squash':'Three Sisters: squash leaves shade weeds and retain soil moisture.',
-  'Beans|Corn':'Beans fix atmospheric nitrogen; corn benefits as a heavy feeder.',
-  'Beans|Squash':'Ground-covering squash shades weeds; all three benefit in Three Sisters.',
-  'Squash|Corn':'Squash leaves mulch the soil; Three Sisters combination.',
-  'Squash|Nasturtiums':'Nasturtiums are a trap crop that lures aphids away from squash.',
-  'Cucumbers|Nasturtiums':'Nasturtiums repel aphids, cucumber beetles, and squash bugs.',
-  'Cucumbers|Beans':'Beans fix nitrogen; cucumbers benefit from improved soil fertility.',
-  'Peppers|Basil':'Basil repels aphids and spider mites; both love warm conditions.',
-  'Peppers|Tomatoes':'Similar nutrient needs; companion planting maximises space use.',
-  'Lettuce|Radishes':'Radishes deter leaf miners; lettuce provides shade that slows radish bolting.',
-  'Onions|Carrots':'Mutual pest deterrence — each confuses the other\'s main fly pest.',
-  'Garlic|Tomatoes':'Garlic sulphur compounds repel aphids, spider mites, and blight.',
-  'Marigolds|Tomatoes':'Root secretions deter soil nematodes; above-ground deters whitefly.',
-  'Nasturtiums|Cucumbers':'Trap crop for aphids and cucumber beetles; edible flowers.',
-  'Spinach|Strawberries':'Spinach shades strawberry roots; ground cover suppresses weeds.',
-  'Radishes|Lettuce':'Acts as a trap crop for flea beetles, protecting lettuce.',
-  'Chives|Carrots':'Chive scent deters carrot rust fly and root aphids.',
-  'Chives|Tomatoes':'Repels aphids; companion studies suggest improved growth rate.',
-  'Marigolds|Beans':'Root secretions deter bean weevils and nematodes in soil.',
-  'Borage|Tomatoes':'Borage deters tomato hornworm and improves overall plant vigour.',
-  'Borage|Strawberries':'Borage repels aphids and attracts pollinators; improves fruit set.',
-  'Nasturtiums|Beans':'Trap crop for aphids and blackfly; also attracts predatory insects.',
-  'Mint|Brassicas':'Mint scent confuses cabbage white butterfly and deters aphids.',
-  'Rosemary|Beans':'Strong scent deters bean beetles and Mexican bean beetle.',
-  'Rosemary|Brassicas':'Deters cabbage moth, carrot fly, and bean beetles.',
-  'Sage|Brassicas':'Deters cabbage moth, cabbage looper, and carrot fly.',
-  'Thyme|Brassicas':'Repels cabbage worm and whitefly; attracts beneficial insects.',
-  'Lavender|Brassicas':'Lavender scent repels cabbage moth; attracts bees for pollination.',
-  'Garlic|Roses':'Sulphur compounds in garlic deter aphids, black spot, and rust.',
-  'Dill|Brassicas':'Attracts parasitic wasps and hoverflies that prey on caterpillars.',
-  'Fennel|Dill':'Fennel cross-pollinates with dill readily — both flavours are altered.',
-  'Calendula|Tomatoes':'Trap crop for aphids; attracts pollinators and predatory hoverflies.',
-  'Sunflowers|Cucumbers':'Cucumbers can climb sunflowers; sunflowers attract pollinators.',
-  'Asparagus|Tomatoes':'Classic companion: tomatoes deter asparagus beetle; asparagus repels nematodes.',
-  'Strawberries|Borage':'Borage repels pests and attracts pollinators; improves berry flavour.',
-  'Peas|Carrots':'Peas fix nitrogen that benefits carrots; both prefer cool weather.',
-  'Lettuce|Tall Crops':'Shade from taller neighbours slows lettuce bolting in summer.',
-  // Beans/peas extended
-  'Beans|Potatoes':'Mutual pest deterrence — beans repel Colorado potato beetle; potatoes repel Mexican bean beetle.',
-  'Beans|Carrots':'Beans fix nitrogen; different root depths avoid competition for moisture.',
-  'Peas|Radishes':'Radishes deter pea aphids and open up soil for pea roots.',
-  'Peas|Mint':'Mint scent repels aphids and pea weevil.',
-  'Peas|Lettuce':'Cool-season companions that share space and season efficiently.',
-  // Brassicas extended
-  'Cabbage|Onions':'Onion scent confuses cabbage white butterfly and repels aphids.',
-  'Broccoli|Celery':'Celery scent repels cabbage white butterfly from nearby brassicas.',
-  'Kale|Chamomile':'Chamomile said to improve brassica vigour and attracts hoverfly predators.',
-  'Cauliflower|Dill':'Dill attracts parasitic wasps that prey on caterpillars attacking brassicas.',
-  // Solanaceae extended
-  'Tomatoes|Parsley':'Parsley attracts hoverflies whose larvae prey on aphids on tomatoes.',
-  'Tomatoes|Borage':'Borage deters tomato hornworm and is said to improve tomato vigour.',
-  'Peppers|Marigolds':'Marigolds deter aphids, spider mites, and soil nematodes near peppers.',
-  // Cucurbitaceae extended
-  'Cucumbers|Marigolds':'Marigolds deter cucumber beetle and aphids; attract pollinating bees.',
-  'Melons|Marigolds':'Marigolds deter cucumber beetles and soil nematodes near melons.',
-  'Watermelon|Marigolds':'Marigolds deter cucumber beetles and squash vine borers.',
-  'Pumpkins|Corn':'Three Sisters companion: corn provides a trellis; pumpkin shades out weeds.',
-  'Zucchini|Beans':'Beans fix nitrogen for heavy-feeding zucchini; different root depths.',
-  'Zucchini|Nasturtiums':'Nasturtiums trap aphids and cucumber beetles away from zucchini.',
-  // Root veg extended
-  'Beets|Onions':'Onion scent deters beet leaf miners and other flying pests.',
-  'Beets|Garlic':'Garlic repels soil pests and aphids that target beet foliage.',
-  'Potatoes|Beans':'Mutual deterrence: bean scent repels Colorado potato beetle.',
-  'Potatoes|Marigolds':'Marigold root secretions deter Colorado potato beetle and nematodes.',
-  'Potatoes|Horseradish':'Horseradish planted at bed corners traditionally deters potato pests.',
-  // Alliums extended
-  'Chives|Roses':'Chives deter aphids and are said to improve rose disease resistance.',
-  // Berries / fruit
-  'Strawberries|Garlic':'Garlic deters aphids and fungal disease; improves strawberry health.',
-  'Strawberries|Thyme':'Thyme repels worm pests and attracts pollinators to improve fruit set.',
-  'Raspberries|Garlic':'Garlic repels aphids, raspberry beetle, and helps prevent fungal issues.',
-  // Flowers/herbs as companions
-  'Yarrow|Vegetables':'Yarrow attracts ladybirds, lacewings, and hoverflies — key aphid predators.',
-  'Chamomile|Brassicas':'Chamomile said to improve brassica health and attract beneficial hoverflies.',
-  'Nasturtiums|Tomatoes':'Acts as a trap crop luring aphids and whitefly away from tomatoes.',
-  'Parsley|Tomatoes':'Attracts hoverflies and parasitic wasps that prey on tomato pests.',
-  'Calendula|Beans':'Attracts pollinators and deters aphids and other bean pests.',
-  'Sunflowers|Beans':'Sunflowers attract pollinators; different root depths avoid competition.',
-  'Lavender|Roses':'Lavender deters aphids, repels deer, and draws pollinators to roses.',
-  'Marigolds|Cucumbers':'Deters cucumber beetle and aphids; attracts pollinating bees.',
-  'Marigolds|Potatoes':'Deters Colorado potato beetle and soil nematodes.',
-  'Marigolds|Peppers':'Deters aphids, spider mites, and nematodes near peppers.',
-  'Comfrey|Fruit trees':'Comfrey deep-mined minerals are released as mulch; feeds tree roots.',
-};
-const AVOID_REASONS = {
-  'Tomatoes|Fennel':'Fennel releases allelopathic chemicals that stunt tomato growth.',
-  'Tomatoes|Brassicas':'Heavy nutrient competitors; may encourage shared fungal pathogens.',
-  'Tomatoes|Corn':'Both attract the same hornworm and earworm pests.',
-  'Peppers|Fennel':'Fennel inhibits growth of most vegetables including peppers.',
-  'Peppers|Brassicas':'Compete for nutrients; brassica roots may inhibit pepper growth.',
-  'Basil|Sage':'Sage produces allelopathic compounds that inhibit basil germination.',
-  'Fennel|Tomatoes':'Fennel is allelopathic — best grown away from all vegetables.',
-  'Onions|Beans':'Allium chemicals suppress legume nitrogen fixation and growth.',
-  'Onions|Peas':'Same as beans — alliums inhibit legume growth and yields.',
-  'Beans|Onions':'Onions inhibit bean growth; keep apart throughout season.',
-  'Peas|Onions':'Allium chemicals stunt pea development; always separate these.',
-  'Carrots|Dill':'Mature dill cross-pollinates with carrots, affecting root flavour.',
-  'Brassicas|Tomatoes':'Tomatoes may inhibit brassica growth; both are heavy feeders.',
-  'Potatoes|Tomatoes':'Same Solanaceae family — share blight and other diseases easily.',
-  'Potatoes|Cucumbers':'Cucumbers can encourage potato blight; keep well apart.',
-  'Corn|Tomatoes':'Both attract hornworms and earworms; double the pest pressure.',
-  'Squash|Potatoes':'Potatoes harbour diseases that can spread to squash.',
-  'Fennel|Basil':'Fennel releases allelopathic compounds that inhibit most nearby plants.',
-  'Fennel|Beans':'Fennel allelopathy inhibits legume growth and nitrogen fixation.',
-  'Fennel|Lettuce':'Fennel chemicals trigger premature bolting in lettuce.',
-  'Garlic|Beans':'Garlic sulphur compounds inhibit nitrogen-fixing bacteria in legume roots.',
-  'Garlic|Peas':'Allium chemicals inhibit pea nodule formation and overall growth.',
-  'Onions|Asparagus':'Allium root exudates stunt asparagus growth; keep apart permanently.',
-  'Potatoes|Pumpkins':'Both susceptible to blight; growing together doubles disease risk.',
-  'Strawberries|Cabbage':'Brassicas may stunt strawberry growth and reduce fruit set.',
-  'Rosemary|Cucumbers':'Rosemary prefers dry conditions; cucumber moisture needs may be inhibited.',
-  'Sorrel|Beans':'Sorrel oxalic acid compounds inhibit nitrogen fixation in bean roots.',
-  'Sorrel|Peas':'Same inhibitory effect on pea nodules as on beans.',
-  'Good King Henry|Beets':'Same Amaranthaceae family — direct competition for identical nutrients.',
-  'Good King Henry|Chard':'Closely related species; heavy nutrient competition in shared beds.',
-};
 
-// ── Phase 64: Problem diagnosis data ───────────
-const PROBLEM_SYMPTOMS = [
-  { id:'yellow', label:'Yellowing leaves', emoji:'💛' },
-  { id:'wilt',   label:'Wilting / drooping', emoji:'😔' },
-  { id:'holes',  label:'Holes in leaves', emoji:'🕳️' },
-  { id:'spots',  label:'Spots or patches', emoji:'🟤' },
-  { id:'slow',   label:'Slow / stunted growth', emoji:'📉' },
-  { id:'pest',   label:'Pest visible', emoji:'🐛' },
-];
-const PROBLEM_LOCATIONS = [
-  { id:'new',   label:'New / top leaves' },
-  { id:'old',   label:'Old / lower leaves' },
-  { id:'whole', label:'Whole plant' },
-  { id:'stems', label:'Stems / base' },
-];
-const PROBLEM_DIAGNOSES = {
-  'yellow|new':[
-    { cause:'Iron or manganese deficiency', desc:'High pH locks out micronutrients — leaves yellow but veins stay green.', organic:'Acidify soil with sulphur; foliar spray with chelated iron or seaweed extract.', conventional:'Apply iron chelate; test and adjust soil pH below 7.0.' },
-    { cause:'Overwatering / root rot', desc:'Waterlogged roots can\'t absorb nutrients, causing yellowing from new growth first.', organic:'Reduce watering; add perlite or grit for drainage; let soil dry out.', conventional:'Allow soil to dry; treat with fungicide drench if roots are brown and mushy.' },
-  ],
-  'yellow|old':[
-    { cause:'Nitrogen deficiency', desc:'N is mobile — plant strips older leaves first. Pale yellow spreading upward from base.', organic:'Apply fish emulsion, blood meal, or compost tea immediately.', conventional:'Side-dress with ammonium nitrate or balanced NPK fertiliser.' },
-    { cause:'Magnesium deficiency', desc:'Interveinal yellowing on old leaves; veins stay green. Common in sandy or acidic soils.', organic:'Drench with Epsom salts (1 tbsp per gallon water); apply weekly.', conventional:'Apply magnesium sulphate; ensure soil pH is 6.0–7.0.' },
-  ],
-  'yellow|whole':[
-    { cause:'Overwatering / waterlogged soil', desc:'Roots suffocate in saturated soil, causing rapid whole-plant yellowing and wilting.', organic:'Stop watering; lift and inspect roots; repot with fresh grit-mixed compost.', conventional:'Improve drainage urgently; apply systemic fungicide if root rot present.' },
-    { cause:'Severe nitrogen deficiency', desc:'Uniform pale yellowing across entire plant — soil is exhausted of nitrogen.', organic:'Urgent: water with fish emulsion or diluted chicken manure liquid.', conventional:'Apply liquid high-nitrogen fertiliser immediately.' },
-  ],
-  'yellow|stems':[
-    { cause:'Fusarium wilt or stem rot', desc:'Yellowing from the base upward with stem discolouration — soil-borne fungal disease.', organic:'Remove affected plants; solarise soil; don\'t replant same family for 3 years.', conventional:'Apply copper fungicide; practice strict 3–4 year crop rotation.' },
-  ],
-  'wilt|new':[
-    { cause:'Heat or drought stress', desc:'Afternoon wilt on young leaves is usually heat stress — check soil moisture first.', organic:'Water deeply at the base; apply 2–3 inches of mulch to retain moisture.', conventional:'Deep, consistent watering; use shade cloth in extreme heat (>35°C/95°F).' },
-  ],
-  'wilt|old':[
-    { cause:'Root rot (overwatering)', desc:'Established plants wilting despite moist soil points to root damage from excess water.', organic:'Reduce watering; check roots (brown/mushy = rot); add grit for drainage.', conventional:'Apply fungicide root drench; add drainage holes to containers.' },
-  ],
-  'wilt|whole':[
-    { cause:'Drought stress', desc:'Soil dry 2+ inches down — most common cause. Plant prioritises roots over leaves.', organic:'Water deeply and slowly at base; apply thick mulch layer 3–4 inches.', conventional:'Deep watering; consider drip irrigation for consistency.' },
-    { cause:'Fusarium or verticillium wilt', desc:'Wilts despite moist soil; brown streaking visible inside stem when cut. Soil-borne.', organic:'Remove and destroy plant; solarise soil; rotate crops 4+ years.', conventional:'No chemical cure — remove plants; use resistant varieties next season.' },
-    { cause:'Root rot (Pythium/Phytophthora)', desc:'Soil stays wet; roots are brown and smell musty. Plant can\'t take up water or nutrients.', organic:'Stop watering; allow soil to dry; repot in fresh grit-mixed compost.', conventional:'Apply systemic fungicide drench; improve bed drainage urgently.' },
-  ],
-  'wilt|stems':[
-    { cause:'Stem borer larvae', desc:'Larvae tunnel inside stems causing sudden collapse — especially squash and corn.', organic:'Slice stem, remove larva; bury exposed stem section to encourage re-rooting.', conventional:'Preventative: pyrethrin on stems early season; use row cover for young plants.' },
-    { cause:'Sclerotinia stem rot', desc:'Fluffy white mould at stem base with wilting above — favours cool, wet, humid conditions.', organic:'Remove affected plants; improve air circulation; avoid overhead watering.', conventional:'Apply iprodione or procymidone fungicide; rotate crops away from this bed.' },
-  ],
-  'holes|new':[
-    { cause:'Flea beetles', desc:'Tiny shot-hole damage on young leaves — small shiny beetles that jump when disturbed.', organic:'Row covers; sticky traps; diatomaceous earth around stem base.', conventional:'Pyrethrin spray; spinosad applied at dusk when bees are inactive.' },
-    { cause:'Caterpillars (young stage)', desc:'Irregular holes from small caterpillars hiding on leaf undersides.', organic:'Hand-pick at night; Bt (Bacillus thuringiensis) spray in morning.', conventional:'Spinosad or pyrethrin spray in evening; check undersides daily.' },
-  ],
-  'holes|old':[
-    { cause:'Slugs or snails', desc:'Irregular holes with slime trails — most active at night or after rain.', organic:'Beer traps; copper tape; crushed eggshells; torch hunt after dark.', conventional:'Iron phosphate bait (Sluggo) — safe around pets and wildlife; reapply after rain.' },
-    { cause:'Caterpillars', desc:'Cabbage worms, hornworms, or armyworms eat large ragged holes in older leaves.', organic:'Hand-pick; Bt spray (Bacillus thuringiensis) in morning.', conventional:'Spinosad or bifenthrin; inspect daily during active feeding months.' },
-  ],
-  'holes|whole':[
-    { cause:'Grasshoppers', desc:'Widespread damage across whole plant — more common during hot, dry summers.', organic:'Row covers; Nosema locustae biological bait applied early in the season.', conventional:'Carbaryl or permethrin spray; best applied in morning when insects are feeding.' },
-    { cause:'Multiple pests', desc:'Different pests feeding at different levels simultaneously — check undersides at night.', organic:'Bt for caterpillars + beer traps for slugs + neem oil for aphids.', conventional:'Broad-spectrum insecticide; hand-pick at night with a torch.' },
-  ],
-  'spots|new':[
-    { cause:'Powdery mildew', desc:'White powdery coating on new leaves — favoured by warm days, cool nights, low humidity.', organic:'Diluted baking soda spray (1 tsp/quart); improve air circulation; prune crowded growth.', conventional:'Myclobutanil or trifloxystrobin fungicide; apply at very first sign.' },
-    { cause:'Downy mildew', desc:'Yellow patches on top surface, grey-purple fuzz underneath — cool wet conditions.', organic:'Copper fungicide; improve air circulation; avoid all overhead watering.', conventional:'Chlorothalonil or mancozeb fungicide; remove severely affected leaves.' },
-  ],
-  'spots|old':[
-    { cause:'Early blight (Alternaria)', desc:'Brown spots with yellow halo and concentric rings — starts on oldest leaves and moves upward.', organic:'Remove affected leaves; copper fungicide; mulch to prevent soil splash onto leaves.', conventional:'Chlorothalonil fungicide every 7–10 days; stake plants to improve airflow.' },
-    { cause:'Septoria leaf spot', desc:'Small circular spots with dark border and tan centre — common on tomatoes mid-season.', organic:'Copper spray; remove affected leaves; mulch around base to stop soil splash.', conventional:'Chlorothalonil or mancozeb; remove lower leaves to improve airflow significantly.' },
-  ],
-  'spots|whole':[
-    { cause:'Bacterial speck or spot', desc:'Water-soaked dark spots, often with yellow halo — spreads rapidly in warm, wet weather.', organic:'Copper-based bactericide; avoid all overhead watering; sanitise tools between plants.', conventional:'Fixed copper spray; remove all affected leaves; improve air circulation.' },
-    { cause:'Anthracnose', desc:'Sunken dark spots on fruit and leaves — most common in warm, wet humid conditions.', organic:'Copper fungicide; improve drainage; avoid wetting foliage when watering.', conventional:'Mancozeb or chlorothalonil fungicide from early in the season.' },
-  ],
-  'spots|stems':[
-    { cause:'Botrytis grey mould', desc:'Grey fuzzy mould on stems — thrives in cool, humid, crowded or damaged plant conditions.', organic:'Remove all affected parts; improve air circulation urgently; reduce overhead watering.', conventional:'Iprodione or fludioxonil fungicide; avoid plant damage that creates entry points.' },
-  ],
-  'slow|whole':[
-    { cause:'Nutrient deficiency', desc:'Poor, compacted, or exhausted soil lacking N, P, or K slows growth at all stages.', organic:'Compost top-dress; fish emulsion; worm castings application this week.', conventional:'Balanced granular fertiliser (10-10-10); soil test to identify specific deficit.' },
-    { cause:'Temperature stress', desc:'Most crops slow dramatically outside their optimal temperature range — be patient.', organic:'Row covers for cold; shade cloth for heat; mulch to moderate soil temperature.', conventional:'Frost blankets; no chemical fix — adjust the growing environment.' },
-    { cause:'Root restriction or compaction', desc:'Roots can\'t expand, so the plant stalls despite adequate water and nutrients.', organic:'Loosen soil around base; repot if container-grown; thin crowded plantings.', conventional:'Aerate soil; consider raised bed with fresh loose compost-rich mix.' },
-  ],
-  'slow|stems':[
-    { cause:'Root-bound container plant', desc:'Circling roots in a too-small container can\'t take up nutrients or water efficiently.', organic:'Transplant to a container 1–2 sizes larger; tease out circling roots gently.', conventional:'Same approach — this is a physical constraint, not a nutritional problem.' },
-  ],
-  'pest|new':[
-    { cause:'Aphids', desc:'Soft-bodied insects in clusters on new growth and buds — green, black, white, or woolly.', organic:'Strong water blast; neem oil spray; insecticidal soap; encourage ladybirds.', conventional:'Imidacloprid systemic drench; pyrethrin spray on colonies.' },
-    { cause:'Thrips', desc:'Tiny slender insects causing silvery streaks and distorted, curled new growth.', organic:'Blue sticky traps; neem oil; spinosad spray applied in early morning.', conventional:'Spinosad or imidacloprid; repeat every 5–7 days until clear.' },
-  ],
-  'pest|old':[
-    { cause:'Whitefly', desc:'Tiny white flies on leaf undersides — a white cloud erupts when plant is shaken.', organic:'Yellow sticky traps; insecticidal soap; neem oil spray on undersides.', conventional:'Imidacloprid systemic drench; bifenthrin spray targeting undersides.' },
-    { cause:'Spider mites', desc:'Fine webbing on leaf undersides; tiny red/yellow dots — worse in hot, dry conditions.', organic:'Predatory mites; strong daily water spray; neem oil; increase humidity around plant.', conventional:'Abamectin or spiromesifen miticide; repeat weekly for 3 weeks.' },
-  ],
-  'pest|whole':[
-    { cause:'Aphids', desc:'Sticky honeydew residue, distorted growth, and trails of ants are tell-tale signs.', organic:'Neem oil; insecticidal soap; attract ladybirds with companion flowers.', conventional:'Pyrethrin or imidacloprid; check undersides thoroughly for active colonies.' },
-    { cause:'Scale insects', desc:'Hard or soft bumps on stems — often overlooked as part of the plant structure.', organic:'Rubbing alcohol on cotton bud; neem oil; horticultural oil spray.', conventional:'Systemic imidacloprid; horticultural oil at the crawler (juvenile) stage.' },
-  ],
-  'pest|stems':[
-    { cause:'Stem borer larvae', desc:'Entry holes at stem base with powdery frass (sawdust-like droppings) — squash and corn most affected.', organic:'Insert wire to kill larva; wrap stems in foil to deter egg-laying.', conventional:'Preventative: bifenthrin spray on stems before main egg-laying period.' },
-    { cause:'Cutworms', desc:'Seedlings cut off at soil level overnight — fat C-shaped larvae hide in soil by day.', organic:'Cardboard collar around stem base; diatomaceous earth; Bt kurstaki in soil.', conventional:'Bifenthrin granules in soil; spinosad drench around base.' },
-  ],
-};
 
 // ── Season helpers ─────────────────────────────
 let _lastSeasonBg = null;
 
-function getSeasonForMonth(m) {
-  if (m >= 3 && m <= 5) return 'spring';
-  if (m >= 6 && m <= 8) return 'summer';
-  if (m >= 9 && m <= 11) return 'autumn';
-  return 'winter';
-}
 
 function updateSeasonBg() {
   const season = getSeasonForMonth(currentMonth);
@@ -343,78 +47,9 @@ function updateSeasonBg() {
   }, 400);
 }
 
-const MONTH_NAMES = [
-  '', 'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-];
 
-// Zone number → hex color  (1=deep blue → 13=deep red)
-const ZONE_COLORS = {
-  1:  '#7ecef4', 2:  '#5bb8f0', 3:  '#3fa3eb',
-  4:  '#7bc67a', 5:  '#5ab35a', 6:  '#39a038',
-  7:  '#c8d955', 8:  '#f0e040', 9:  '#f0b020',
-  10: '#f07020', 11: '#e04010', 12: '#cc2000', 13: '#aa0000'
-};
 
-// ── Location name helpers ──────────────────────
-const US_STATE_ABBR = {
-  'Alabama':'AL','Alaska':'AK','Arizona':'AZ','Arkansas':'AR','California':'CA',
-  'Colorado':'CO','Connecticut':'CT','Delaware':'DE','Florida':'FL','Georgia':'GA',
-  'Hawaii':'HI','Idaho':'ID','Illinois':'IL','Indiana':'IN','Iowa':'IA',
-  'Kansas':'KS','Kentucky':'KY','Louisiana':'LA','Maine':'ME','Maryland':'MD',
-  'Massachusetts':'MA','Michigan':'MI','Minnesota':'MN','Mississippi':'MS',
-  'Missouri':'MO','Montana':'MT','Nebraska':'NE','Nevada':'NV','New Hampshire':'NH',
-  'New Jersey':'NJ','New Mexico':'NM','New York':'NY','North Carolina':'NC',
-  'North Dakota':'ND','Ohio':'OH','Oklahoma':'OK','Oregon':'OR','Pennsylvania':'PA',
-  'Rhode Island':'RI','South Carolina':'SC','South Dakota':'SD','Tennessee':'TN',
-  'Texas':'TX','Utah':'UT','Vermont':'VT','Virginia':'VA','Washington':'WA',
-  'West Virginia':'WV','Wisconsin':'WI','Wyoming':'WY','District of Columbia':'DC',
-};
-const CA_PROV_ABBR = {
-  'Alberta':'AB','British Columbia':'BC','Manitoba':'MB','New Brunswick':'NB',
-  'Newfoundland and Labrador':'NL','Nova Scotia':'NS','Ontario':'ON',
-  'Prince Edward Island':'PE','Quebec':'QC','Saskatchewan':'SK',
-  'Northwest Territories':'NT','Nunavut':'NU','Yukon':'YT',
-};
 
-function formatLocationName(addr) {
-  if (!addr) return null;
-  const city = addr.city || addr.town || addr.village || addr.hamlet || addr.suburb;
-  if (!city) return null;
-  const cc = (addr.country_code || '').toUpperCase();
-  const state = addr.state;
-  if (cc === 'US' && state) return `${city}, ${US_STATE_ABBR[state] || state}`;
-  if (cc === 'CA' && state) return `${city}, ${CA_PROV_ABBR[state] || state}`;
-  return state ? `${city}, ${state}` : city;
-}
-
-// ── Frost dates by zone ────────────────────────
-// Approximate average last/first frost dates (null = frost-free)
-const FROST_DATES = {
-  '1':   { last: 'Jul 15', first: 'Aug 15' },
-  '2':   { last: 'Jun 15', first: 'Sep 1'  },
-  '3a':  { last: 'Jun 1',  first: 'Sep 10' },
-  '3b':  { last: 'May 15', first: 'Sep 20' },
-  '4a':  { last: 'May 15', first: 'Sep 25' },
-  '4b':  { last: 'May 1',  first: 'Oct 1'  },
-  '5a':  { last: 'May 1',  first: 'Oct 7'  },
-  '5b':  { last: 'Apr 15', first: 'Oct 15' },
-  '6a':  { last: 'Apr 15', first: 'Oct 31' },
-  '6b':  { last: 'Apr 1',  first: 'Nov 1'  },
-  '7a':  { last: 'Apr 1',  first: 'Nov 15' },
-  '7b':  { last: 'Mar 15', first: 'Nov 15' },
-  '8a':  { last: 'Mar 1',  first: 'Dec 1'  },
-  '8b':  { last: 'Feb 15', first: 'Dec 15' },
-  '9a':  { last: 'Feb 1',  first: 'Dec 15' },
-  '9b':  { last: 'Jan 15', first: 'Dec 31' },
-  '10a': { last: 'Jan 15', first: null      },
-  '10b': { last: null,     first: null      },
-  '11a': { last: null,     first: null      },
-  '11b': { last: null,     first: null      },
-  '12a': { last: null,     first: null      },
-  '12b': { last: null,     first: null      },
-  '13a': { last: null,     first: null      },
-};
 
 // ── Monthly context messages ───────────────────
 function getMonthContext(zoneStr, month) {
@@ -535,57 +170,8 @@ for (const [cat, crops] of Object.entries(CROP_CATEGORIES)) {
   for (const crop of crops) CROP_CATEGORY_MAP[crop] = cat;
 }
 
-// ── International country config ───────────────
-const COUNTRY_CONFIG = {
-  us: {
-    label: 'United States', geojson: './data/zones.geojson',
-    planting: './data/planting.json',
-    center: [38, -97], zoom: 4, bounds: [[24,-125],[50,-66]],
-    zoneSystem: 'usda', geocodeCodes: 'us',
-  },
-  ca: {
-    label: 'Canada', geojson: './data/ca_zones.geojson',
-    planting: './data/gardenate_ca.json',
-    center: [57, -97], zoom: 4, bounds: [[42,-141],[84,-52]],
-    zoneSystem: 'usda', geocodeCodes: 'ca',
-  },
-  au: {
-    label: 'Australia', geojson: './data/au_zones.geojson',
-    planting: './data/gardenate_au.json',
-    center: [-25, 134], zoom: 4, bounds: [[-44,113],[-10,154]],
-    zoneSystem: 'climate', geocodeCodes: 'au',
-  },
-  gb: {
-    label: 'United Kingdom', geojson: './data/uk_zones.geojson',
-    planting: './data/gardenate_uk.json',
-    center: [54, -2], zoom: 6, bounds: [[49,-11],[61,2]],
-    zoneSystem: 'climate', geocodeCodes: 'gb',
-  },
-  nz: {
-    label: 'New Zealand', geojson: './data/nz_zones.geojson',
-    planting: './data/gardenate_nz.json',
-    center: [-41, 174], zoom: 5, bounds: [[-47,166],[-34,178]],
-    zoneSystem: 'climate', geocodeCodes: 'nz',
-  },
-};
 
-const CLIMATE_ZONE_COLORS = {
-  cool: '#7ecef4', temperate: '#7bc67a', warm: '#f0e040',
-  subtropical: '#f0b020', tropical: '#e04010', arid: '#cc8800',
-};
 
-const CLIMATE_ZONE_LABELS = {
-  cool: 'Cool', temperate: 'Temperate', warm: 'Warm',
-  subtropical: 'Subtropical', tropical: 'Tropical', arid: 'Arid',
-};
-
-// ── Season gradients ───────────────────────────
-const SEASON_GRADIENTS = {
-  winter: 'radial-gradient(ellipse 80% 55% at 20% 80%, rgba(59,130,246,0.45) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 80% 15%, rgba(147,197,253,0.22) 0%, transparent 55%)',
-  spring: 'radial-gradient(ellipse 80% 55% at 15% 65%, rgba(34,197,94,0.4) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 85% 25%, rgba(134,239,172,0.2) 0%, transparent 55%)',
-  summer: 'radial-gradient(ellipse 80% 55% at 50% 90%, rgba(234,179,8,0.4) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 20% 10%, rgba(253,230,138,0.2) 0%, transparent 55%)',
-  autumn: 'radial-gradient(ellipse 80% 55% at 70% 80%, rgba(249,115,22,0.4) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 15% 20%, rgba(253,186,116,0.2) 0%, transparent 55%)',
-};
 
 // ── State ─────────────────────────────────────
 let map, zonesLayer, selectedLayer;
@@ -622,18 +208,6 @@ let _drawDrag          = null;
 let _pendingDrawPos    = null;
 let gardenViewMode     = localStorage.getItem('pzf-garden-view') || 'crop';
 const BED_COLORS = ['#2d5a27','#1a4a6b','#5a2d2d','#5a4a1a','#2d3d5a','#4a2d5a','#1a5a4a','#5a3d1a'];
-const BED_TYPES = {
-  'raised':      { label: 'Raised Bed',  emoji: '🪵' },
-  'in-ground':   { label: 'In-Ground',   emoji: '🌱' },
-  'container':   { label: 'Container',   emoji: '🪣' },
-  'herb-spiral': { label: 'Herb Spiral', emoji: '🌀' },
-};
-const STRUCTURE_TYPES = {
-  'house': { label: 'House', emoji: '🏠', color: '#5a5a5a', cssClass: 'gm-struct-house' },
-  'shed':  { label: 'Shed',  emoji: '🛖', color: '#8b6348', cssClass: 'gm-struct-shed'  },
-  'path':  { label: 'Path',  emoji: '🛤️', color: '#a08c64', cssClass: 'gm-struct-path'  },
-  'fence': { label: 'Fence', emoji: '🚧', color: '#b0845a', cssClass: 'gm-struct-fence' },
-};
 let currentPanelTab = 'calendar';
 let mySeeds = {};
 let cropRotation = [];
@@ -752,13 +326,6 @@ function normalizeZoneProperties() {
   }
 }
 
-function gridcodeToZone(code) {
-  const n = parseInt(code, 10);
-  if (isNaN(n) || n < 1 || n > 28) return String(code);
-  const num  = Math.ceil(n / 2);
-  const half = n % 2 === 1 ? 'a' : 'b';
-  return `${num}${half}`;
-}
 
 // ── Map initialization ─────────────────────────
 function initMap() {
@@ -2348,12 +1915,6 @@ function renderGardenHistory() {
   });
 }
 
-function parseHarvestDays(daysStr) {
-  if (!daysStr) return null;
-  const m = daysStr.match(/(\d+)/);
-  return m ? parseInt(m[1], 10) : null;
-}
-
 // ── Phase 7: Growth stage ────────────────────────
 function getGrowthStage(daysPlanted, harvestMin) {
   if (!harvestMin || daysPlanted < 0) return null;
@@ -3760,13 +3321,6 @@ function checkCompanionConflicts(name) {
   }
 }
 
-// ── Zone centroid helper ────────────────────────
-function getZoneCentroid(feature) {
-  try {
-    const c = turf.centroid(feature);
-    return { lat: c.geometry.coordinates[1], lng: c.geometry.coordinates[0] };
-  } catch { return null; }
-}
 
 // ── Onboarding ──────────────────────────────────
 function initOnboarding() {
@@ -3925,17 +3479,6 @@ function showToast(msg, type) {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
 }
 
-// ── Phase 5: Helper — frost date to month number ─
-const MONTH_NAME_TO_NUM = {
-  january:1,february:2,march:3,april:4,may:5,june:6,
-  july:7,august:8,september:9,october:10,november:11,december:12,
-  jan:1,feb:2,mar:3,apr:4,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12,
-};
-function frostDateToMonth(str) {
-  if (!str) return null;
-  const m = str.match(/^([A-Za-z]+)/);
-  return m ? (MONTH_NAME_TO_NUM[m[1].toLowerCase()] || null) : null;
-}
 
 // ── Phase 5: Zone climate info ───────────────────
 function getZoneClimateInfo(zone) {
@@ -7887,10 +7430,6 @@ function renderBedGrid(bedId, crops) {
 // ════════════════════════════════════════════════
 // Phase 93 — Feature Flags
 // ════════════════════════════════════════════════
-const DEFAULT_FEATURES = {
-  seeds: true, startIndoors: true, beds: true, succession: true,
-  companionPlanting: true, harvestTracking: true, weatherForecast: true,
-};
 let features = { ...DEFAULT_FEATURES };
 
 function loadFeatures() {
@@ -11738,241 +11277,3 @@ function renderActivityHeatmap() {
   </div>`;
 }
 
-// ── Phase 139: Harvest Recipe Suggestions ────────────────────────────────────────────
-const RECIPE_DB = {
-  'Tomatoes':       [{name:'Caprese salad',time:'10 min',tip:'Use at room temp — cold dulls flavour.'},{name:'Slow-roasted tomatoes',time:'2 hr',tip:'Low oven (120 °C) concentrates sweetness.'},{name:'Fresh tomato pasta',time:'20 min',tip:'Salt 15 min before serving to draw out juice — it becomes its own dressing.'},{name:'Passata',time:'45 min',tip:'Simmer uncovered to concentrate flavour; add basil only at the very end — never cook it.'},{name:'Tomato confit',time:'2 hr',tip:'Slow-roast at 120°C submerged in olive oil; the extended time concentrates the sugars and collapses the flesh to silk.'}],
-  'Peppers':        [{name:'Stuffed peppers',time:'45 min',tip:'Par-boil peppers 5 min before filling.'},{name:'Roasted pepper hummus',time:'30 min',tip:'Blacken all over under the grill, seal in a bag 10 min, then the skins slip off cleanly.'},{name:'Stir-fried pepper medley',time:'15 min',tip:'High heat keeps them slightly crisp.'},{name:'Stuffed peppers',time:'50 min',tip:'Par-cook the rice to 80% first; it finishes in the oven without turning to mush.'}],
-  'Cucumbers':      [{name:'Tzatziki',time:'10 min',tip:'Salt and squeeze out excess water first.'},{name:'Cucumber salad',time:'10 min',tip:'Salt slices 10 min then pat dry before dressing — removes bitterness and stops it going watery.'},{name:'Gazpacho',time:'20 min',tip:'Blend with day-old bread soaked in water for 10 min — it emulsifies the soup and adds body.'},{name:'Bread & butter pickles',time:'30 min',tip:'The sweet-sour brine defines this; use yellow mustard seeds, turmeric and celery salt.'},{name:'Cucumber gazpacho',time:'15 min + chill',tip:'Blend with a slice of day-old white bread for body; it thickens the soup and softens the sharp cucumber edge.'}],
-  'Courgette':      [{name:'Courgette fritters',time:'20 min',tip:'Squeeze out moisture — key to crispy fritters.'},{name:'Courgette ribbon pasta',time:'15 min',tip:'Use a peeler to make thin ribbons.'},{name:'Stuffed courgette boats',time:'40 min',tip:'Salt the hollowed flesh, rest 5 min and squeeze dry before mixing back into the filling.'},{name:'Courgette & lemon cake',time:'55 min',tip:'Grate and squeeze out moisture before adding; the cake stays soft and keeps for 3 days.'},{name:'Courgette and ricotta gnocchi',time:'40 min',tip:'Squeeze grated courgette as dry as possible before mixing; excess water makes the dough sticky and the gnocchi dissolve.'}],
-  'Lettuce':        [{name:'Classic green salad',time:'5 min',tip:'Dress just before serving to avoid wilting.'},{name:'Lettuce wraps',time:'15 min',tip:'Double-layer two leaves as a cup — the inner leaf prevents the filling punching through the bottom.'},{name:'Braised little gems',time:'20 min',tip:'Cook cut-side down in butter until golden.'},{name:'Braised gem lettuce',time:'20 min',tip:'Halve gem lettuces and colour cut-side down in butter, then braise with stock — bitterness gives way to sweetness.'}],
-  'Spinach':        [{name:'Saag paneer',time:'30 min',tip:'Add spinach off the heat to keep colour bright.'},{name:'Spinach & feta pastry',time:'40 min',tip:'Brush every filo sheet with melted butter and work fast — it dries and cracks within a minute.'},{name:'Creamed spinach',time:'15 min',tip:'A grating of nutmeg lifts the whole dish.'},{name:'Spanakopita',time:'1 hr',tip:'Squeeze out every single drop of moisture — wet filling steams the pastry and prevents it ever crisping.'},{name:'Saag aloo',time:'30 min',tip:'Fry the spices in oil before adding anything else; blooming the spices in fat transforms the whole flavour.'}],
-  'Kale':           [{name:'Crispy kale chips',time:'15 min',tip:'Dry thoroughly — any moisture makes them soggy.'},{name:'Kale & white bean soup',time:'35 min',tip:'Add day-old bread torn into chunks for the last 5 min; it thickens and completely transforms the texture.'},{name:'Kale Caesar salad',time:'15 min',tip:'Massage the leaves to soften bitterness.'},{name:'Kale with spiced chickpeas',time:'20 min',tip:'A spoonful of harissa in the pan coats both kale and chickpeas evenly in a deep rust-red sauce.'},{name:'Kale chips',time:'20 min',tip:'Massage dry thoroughly with oil; any wet patches steam rather than crisp and give a burnt, bitter flavour.'}],
-  'Carrots':        [{name:'Honey-glazed carrots',time:'20 min',tip:'Finish with a squeeze of lemon to balance.'},{name:'Carrot & ginger soup',time:'30 min',tip:'Roast carrots first for deeper flavour.'},{name:'Carrot cake',time:'1 hr',tip:'Grated, not chopped — finer texture.'},{name:'Moroccan spiced carrots',time:'20 min',tip:'Roast with cumin, coriander and harissa; finish with cold yoghurt and fresh coriander.'},{name:'Carrot and coriander soup',time:'30 min',tip:'Cook the coriander stems with the carrots and add the leaves at the end; stems have more flavour than leaves.'}],
-  'Beans':          [{name:'Green bean almondine',time:'15 min',tip:'Blanch then finish in brown butter with almonds.'},{name:'Bean & tomato stew',time:'30 min',tip:'A sprig of rosemary while simmering adds depth.'},{name:'Pickled green beans',time:'20 min',tip:'Pack upright in jars with dill, garlic and a dried chilli — the classic American dilly bean.'},{name:'Niçoise salad',time:'20 min',tip:'3 min boiling then ice water immediately — they should still snap cleanly when bitten.'}],
-  'Peas':           [{name:'Pea & mint soup',time:'15 min',tip:'Reserve a handful of raw peas to add after blending for fresher flavour and visible green flecks.'},{name:'Mushy peas',time:'10 min',tip:'Marrowfat peas give authentic starchy texture; garden peas make a sweeter, brighter version.'},{name:'Pea & ham risotto',time:'35 min',tip:'Stir peas in off the heat to keep them green.'},{name:'Pea & ricotta toast',time:'10 min',tip:'Crush peas with a fork, not a blender — rough, uneven texture is the whole point of this dish.'}],
-  'Radishes':       [{name:'Radish butter toasts',time:'5 min',tip:'Use unsalted butter with flaky salt separately — the salt should crunch distinctly against the soft butter.'},{name:'Quick pickled radishes',time:'10 min',tip:'Ready in 30 min — great on tacos.'},{name:'Radish salad with miso',time:'10 min',tip:'White miso keeps it mild; whisk with rice vinegar, sesame oil and a pinch of sugar until smooth.'},{name:'Roasted radishes',time:'20 min',tip:'High heat transforms the sharp, peppery bite into a mild sweetness with crisp caramelised edges.'}],
-  'Beetroot':       [{name:'Roasted beet salad',time:'1 hr',tip:'Wrap in foil and roast whole for best results.'},{name:'Borscht',time:'45 min',tip:'Add a splash of red wine vinegar in the last 5 min — it brightens colour and sharpens the flavour.'},{name:'Beetroot hummus',time:'15 min',tip:'Blend roasted beet with standard hummus mix.'},{name:'Beetroot & feta tart',time:'50 min',tip:'Roast beet in wedges first; scatter cold feta after baking — residual heat is all it needs to soften.'}],
-  'Onions':         [{name:'French onion soup',time:'1 hr',tip:'Low, slow caramelisation — at least 40 min.'},{name:'Pickled red onions',time:'10 min',tip:'Ready in 30 min; lasts 2 weeks in the fridge.'},{name:'Caramelised onion tart',time:'50 min',tip:'The filling should be almost jam-like before going in the case; balsamic in the last 5 min deepens it.'},{name:'Onion bhaji',time:'20 min',tip:'Salt and rest the onions 10 min before battering — drawing out moisture makes them significantly crisper.'}],
-  'Garlic':         [{name:'Garlic bread',time:'15 min',tip:'Roast whole for a milder, spreadable paste.'},{name:'Garlic confit',time:'1 hr',tip:'Cover cloves in oil, bake at 120 °C — keeps for weeks.'},{name:'Aioli',time:'10 min',tip:'One raw clove is enough for strong garlic flavour.'},{name:'Forty clove chicken',time:'1.5 hr',tip:'Leave cloves whole and unpeeled; they roast to a sweet, spreadable paste around the bird.'},{name:'Garlic pasta aglio e olio',time:'15 min',tip:'Slice garlic paper-thin on a mandoline; thick slices burn before the pasta water can be added to stop the cooking.'}],
-  'Basil':          [{name:'Classic pesto',time:'10 min',tip:'Blanch briefly to keep it vivid green.'},{name:'Caprese salad',time:'5 min',tip:'Tear, don\'t chop — bruising releases more aroma.'},{name:'Basil oil',time:'10 min',tip:'Blend with neutral oil and strain for drizzling.'},{name:'Thai basil stir-fry',time:'10 min',tip:'Thai or holy basil withstands heat and turns slightly crispy at the edges — Italian basil cannot.'}],
-  'Mint':           [{name:'Mint sauce',time:'5 min',tip:'Fresh mint + sugar + malt vinegar, nothing else.'},{name:'Mint lemonade',time:'10 min',tip:'Muddle with sugar before adding juice and water.'},{name:'Tabbouleh',time:'20 min',tip:'This is a herb dish, not a grain dish — bulgur should be no more than a quarter of the total.'},{name:'Mint & lamb kofta',time:'25 min',tip:'Add fresh mint to yoghurt at the very last moment — acids in the yoghurt darken it within minutes.'}],
-  'Parsley':        [{name:'Gremolata',time:'5 min',tip:'Parsley + lemon zest + garlic — scatter over slow-cooked meat.'},{name:'Chimichurri',time:'10 min',tip:'Let it rest 30 min for flavours to meld.'},{name:'Salsa verde',time:'10 min',tip:'Chop everything by hand for the right rough texture — blending makes it smooth and loses character.'},{name:'Persillade',time:'5 min',tip:'Equal parts flat-leaf parsley and garlic, very finely chopped; add only in the final 30 seconds.'}],
-  'Chives':         [{name:'Chive omelette',time:'5 min',tip:'Add just before folding to keep flavour fresh.'},{name:'Chive cream cheese',time:'5 min',tip:'Fold into softened cream cheese rather than stirring to keep the mixture light and airy.'},{name:'Potato & chive soup',time:'30 min',tip:'Top with a swirl of crème fraîche.'},{name:'Chive and cheese scones',time:'25 min',tip:'Grate frozen butter into the flour; this gives flakier layers than rubbing in by hand.'}],
-  'Coriander':      [{name:'Fresh salsa',time:'10 min',tip:'Add coriander stalks too — full of flavour.'},{name:'Coriander chutney',time:'10 min',tip:'Blend with green chilli, ginger and lemon juice.'},{name:'Pho garnish bowl',time:'5 min',tip:'The root goes in the broth for depth; stalks and leaves go fresh at the table just before eating.'},{name:'Hari chutney',time:'5 min',tip:'Add raw ginger and just a little lime; too much acid makes it bitter — add cautiously and taste as you go.'}],
-  'Dill':           [{name:'Gravlax',time:'48 hr',tip:'Equal weight salt and sugar; weigh down in the fridge, flip every 12 hrs, done in 48.'},{name:'Dill pickles',time:'15 min',tip:'Use whole peppercorns and mustard seeds.'},{name:'Cucumber & dill salad',time:'10 min',tip:'Soured cream or crème fraîche dressing.'},{name:'Dill cream sauce',time:'10 min',tip:'Add dill off the heat and serve immediately — prolonged cooking makes it taste like boiled hay.'}],
-  'Thyme':          [{name:'Roast chicken with thyme',time:'1.5 hr',tip:'Stuff sprigs under the skin with butter.'},{name:'Thyme-infused olive oil',time:'10 min',tip:'Warm oil gently — don\'t boil.'},{name:'Mushroom & thyme toast',time:'15 min',tip:'Deglaze with a splash of white wine.'},{name:'Thyme & lemon roasted veg',time:'40 min',tip:'Lay whole thyme sprigs on the veg and remove before serving, or strip leaves for more intense flavour.'}],
-  'Rosemary':       [{name:'Focaccia',time:'2 hr',tip:'Press rosemary in just before baking.'},{name:'Rosemary roast potatoes',time:'50 min',tip:'Par-boil, rough up edges, roast in goose fat.'},{name:'Lamb chops with rosemary',time:'20 min',tip:'Pound the needles with salt in a pestle first — it releases significantly more of the essential oils.'},{name:'Rosemary shortbread',time:'45 min',tip:'Chop rosemary needles very finely indeed — coarse pieces in shortbread are unpleasant to bite through.'}],
-  'Sage':           [{name:'Brown butter & sage pasta',time:'15 min',tip:'Fry sage in butter until just crisp.'},{name:'Saltimbocca',time:'20 min',tip:'Sage leaf under prosciutto, quick pan-fry.'},{name:'Sage stuffing',time:'40 min',tip:'Fry the onions and sage in butter before mixing — raw stuffing tastes flat no matter how long it bakes.'},{name:'Sage and brown butter pasta',time:'15 min',tip:'Add sage to the butter before it browns; the leaves crisp and infuse the fat simultaneously.'}],
-  'Potatoes':       [{name:'Roast potatoes',time:'1 hr',tip:'Parboil, shake to rough up, roast in hot fat.'},{name:'Potato soup',time:'30 min',tip:'Leave it slightly rough — a completely smooth potato soup loses all its body and interest.'},{name:'Potato gratin',time:'1.5 hr',tip:'Layer thin, season each layer, cream and garlic.'},{name:'Tortilla española',time:'45 min',tip:'Cook potatoes very low and slow in olive oil — confit, not frying; patience makes the dish.'},{name:'Potato rosti',time:'25 min',tip:'Parboil until just tender before grating; raw grated potato stays wet and steams rather than crisping.'}],
-  'Sweet Potatoes': [{name:'Sweet potato soup',time:'30 min',tip:'Coconut milk + lime + ginger is a winning combo.'},{name:'Sweet potato wedges',time:'35 min',tip:'Toss in cornflour first for extra crispiness.'},{name:'Stuffed sweet potato',time:'45 min',tip:'Prick all over and microwave 8 min to cook through, then oven 5 min to crisp and blister the skin.'},{name:'Sweet potato & peanut stew',time:'35 min',tip:'Use natural unsweetened peanut butter; add at the end to prevent the sauce splitting.'}],
-  'Corn':           [{name:'Elote (Mexican street corn)',time:'20 min',tip:'Grill then slather in mayo, cotija, lime, chilli.'},{name:'Sweetcorn chowder',time:'30 min',tip:'Char the cobs first for smoky depth.'},{name:'Corn fritters',time:'20 min',tip:'Replace a third of the flour with fine polenta for extra texture and a deeper corn flavour.'},{name:'Corn ribs',time:'30 min',tip:'Quarter cobs lengthwise; roasted until charred at the edges they curl into dramatic rib shapes.'}],
-  'Broccoli':       [{name:'Tenderstem stir-fry',time:'10 min',tip:'High heat, quick cook — keeps it vivid green.'},{name:'Broccoli & cheddar soup',time:'25 min',tip:'Don\'t boil after adding cheese or it splits.'},{name:'Charred broccoli salad',time:'20 min',tip:'Roast at 220 °C until floret edges are nearly black — the char is the whole point.'},{name:'Orecchiette with broccoli',time:'20 min',tip:'Cook broccoli in the pasta water until very soft — it partially dissolves into a thick, flavourful sauce.'}],
-  'Cauliflower':    [{name:'Roasted cauliflower steaks',time:'30 min',tip:'Slice 2 cm thick and roast at high heat.'},{name:'Aloo gobi',time:'30 min',tip:'Dry fry the cauliflower first for colour.'},{name:'Cauliflower cheese',time:'40 min',tip:'A pinch of mustard powder sharpens the sauce.'},{name:'Whole roasted cauliflower',time:'1 hr',tip:'Blanch the whole head 5 min first, then roast — it cooks through evenly without the outside burning.'}],
-  'Cabbage':        [{name:'Coleslaw',time:'15 min',tip:'Salt cabbage and rest 30 min to draw out moisture.'},{name:'Braised red cabbage',time:'1 hr',tip:'Apple and red wine vinegar are essential.'},{name:'Bubble & squeak',time:'20 min',tip:'Press into a cake and don\'t touch until golden.'},{name:'Sauerkraut',time:'2 weeks',tip:'Salt at exactly 2% by weight and massage hard until the cabbage releases its own brine completely.'}],
-  'Swiss Chard':    [{name:'Sautéed chard with garlic',time:'10 min',tip:'Cook stems first, add leaves for the last 2 min.'},{name:'Chard & ricotta tart',time:'45 min',tip:'Blanch and squeeze out water before using.'},{name:'Chard stalk gratin',time:'35 min',tip:'Stalks work brilliantly in a béchamel.'},{name:'Chard with pine nuts & raisins',time:'15 min',tip:'A Sicilian classic: toast pine nuts dry first, then add chard, raisins and a splash of vinegar.'}],
-  'Leeks':          [{name:'Leek & potato soup',time:'30 min',tip:'Use only the white and pale green parts; dark tops make the broth muddy and slightly bitter.'},{name:'Braised leeks',time:'25 min',tip:'Slow cook in butter, finish with Parmesan.'},{name:'Leek tart',time:'45 min',tip:'Sauté until very soft before adding to the custard.'},{name:'Leek & cheese gratin',time:'40 min',tip:'Blanch leeks 3 min before gratin — raw leeks release water as they cook and thin the sauce badly.'}],
-  'Squash':         [{name:'Roasted squash soup',time:'45 min',tip:'Roast rather than boil for deeper flavour.'},{name:'Squash risotto',time:'40 min',tip:'Stir in a spoonful of mascarpone at the end.'},{name:'Stuffed squash',time:'1 hr',tip:'Halve, roast, then fill with grains and herbs.'},{name:'Squash & sage pasta',time:'30 min',tip:'Roast squash until caramelised; brown butter with crispy sage needs nothing else added to it.'}],
-  'Aubergine':      [{name:'Baba ganoush',time:'40 min',tip:'Char the skin directly on the flame for smokiness.'},{name:'Ratatouille',time:'1 hr',tip:'Slice thin and layer rather than stewing.'},{name:'Moussaka',time:'1.5 hr',tip:'Salt and press aubergine slices before frying.'},{name:'Caponata',time:'45 min',tip:'Fry aubergine in batches in plenty of oil — crowding the pan makes it steam rather than fry.'}],
-  'Celery':         [{name:'Celery soup',time:'25 min',tip:'Add a potato to give body without cream.'},{name:'Waldorf salad',time:'10 min',tip:'Walnut, apple, grapes — classic combo.'},{name:'Braised celery',time:'30 min',tip:'Halve lengthways, braise cut-side down in chicken stock for 25 min; finish with grated Parmesan.'},{name:'Celery Waldorf salad',time:'10 min',tip:'Toast the walnuts first; a few seconds in a dry pan transforms their flavour completely.'}],
-  'Fennel':         [{name:'Fennel & orange salad',time:'10 min',tip:'Slice paper-thin on a mandoline.'},{name:'Roasted fennel',time:'35 min',tip:'Cut into wedges, roast with olive oil and lemon.'},{name:'Fennel gratin',time:'45 min',tip:'Layer with cream and Parmesan.'},{name:'Braised fennel with fish',time:'30 min',tip:'Braise fennel until completely soft first, then lay fish on top for the final 8 min only.'}],
-  'Strawberries':   [{name:'Eton mess',time:'10 min',tip:'Macerate berries with sugar and black pepper.'},{name:'Strawberry jam',time:'45 min',tip:'Equal weight fruit to sugar is the standard ratio.'},{name:'Strawberry shortcake',time:'30 min',tip:'Macerate berries with sugar for 20 min first — the syrup that forms is half the dish.'},{name:'Strawberry sorbet',time:'30 min',tip:'No churn needed: blend macerated berries, freeze flat and fork-stir every 30 min for 2 hours.'},{name:'Strawberry trifle',time:'30 min + chill',tip:'Make the custard thick enough to support the cream layer; a thin custard lets the upper layers sink into it.'}],
-  'Raspberries':    [{name:'Raspberry coulis',time:'10 min',tip:'Push through a sieve to remove seeds.'},{name:'Summer pudding',time:'30 min',tip:'Use stale white bread — it absorbs all the juices.'},{name:'Pavlova topping',time:'10 min',tip:'Pile the fruit on just before serving — sitting on meringue too long makes it weep and collapse.'},{name:'Raspberry vinegar',time:'1 week',tip:'Steep in white wine vinegar for a week; use in dressings or splash over vanilla ice cream.'},{name:'Raspberry curd',time:'20 min',tip:'Strain out the seeds before cooking; if left in they harden in the curd and ruin the silky texture.'}],
-  'Asparagus':         [{name:'Asparagus risotto',time:'35 min',tip:'Use woody ends to make the stock; drop tips in for the last 3 min only.'},{name:'Roasted asparagus',time:'15 min',tip:'220 °C for 8–10 min — any longer and tips turn soggy.'},{name:'Asparagus with hollandaise',time:'20 min',tip:'Blanch in heavily salted water for exactly 2 min; rest in ice water.'},{name:'Asparagus tart',time:'40 min',tip:'Lay spears on a ricotta base with tips pointing inward; they stay moist rather than drying out at the pastry edge.'}],
-  'Artichoke':         [{name:'Steamed globe artichoke',time:'40 min',tip:'Done when an outer leaf pulls free with light resistance.'},{name:'Stuffed artichokes',time:'1 hr',tip:'Rub all cut surfaces with lemon immediately to stop browning.'},{name:'Baked artichoke dip',time:'45 min',tip:'Par-cook first — raw artichoke won\'t fully soften in the oven.'},{name:'Artichoke bruschetta',time:'20 min',tip:'Rub every cut surface with lemon immediately; artichoke hearts oxidise to grey within seconds of cutting.'}],
-  'Jerusalem Artichoke':[{name:'Jerusalem artichoke soup',time:'30 min',tip:'Add cream and a squeeze of lemon only at the very end.'},{name:'Roasted Jerusalem artichokes',time:'35 min',tip:'Skin on is fine — toss with garlic, thyme and olive oil.'},{name:'Jerusalem artichoke gratin',time:'45 min',tip:'Slice to 5 mm; thicker and they won\'t cook through.'},{name:'Jerusalem artichoke gratin',time:'55 min',tip:'Slice 3mm thin on a mandoline; thicker slices stay firm in the centre even after an hour in the oven.'}],
-  'Parsnips':          [{name:'Honey-roasted parsnips',time:'45 min',tip:'Parboil for 5 min first; they caramelise without burning.'},{name:'Parsnip soup',time:'30 min',tip:'Curry powder and a swirl of cream elevate this enormously.'},{name:'Parsnip gratin',time:'50 min',tip:'Layer with Gruyère — the sweetness loves a strong, nutty cheese.'},{name:'Honey-roasted parsnips',time:'40 min',tip:'Parboil 5 min before roasting; this ensures the centre cooks through before the outside burns.'}],
-  'Turnips':           [{name:'Glazed turnips',time:'20 min',tip:'Young, small turnips are sweet; large ones need longer and more butter.'},{name:'Turnip soup',time:'25 min',tip:'Roast them first to remove raw bitterness.'},{name:'Quick turnip pickles',time:'10 min',tip:'Salt, rest 30 min, rinse — serve same day for maximum crunch.'},{name:'Turnip gratin',time:'50 min',tip:'Layer thin-sliced turnips with cream, garlic and gruyere — the starch thickens the cream naturally as it bakes.'}],
-  'Swede':             [{name:'Swede mash',time:'25 min',tip:'Mash with plenty of butter and white pepper; it needs less liquid than potato.'},{name:'Swede & carrot soup',time:'30 min',tip:'Roasting deepens the flavour significantly before blending.'},{name:'Scotch broth',time:'2 hr',tip:'Swede is essential — it slowly dissolves and thickens the broth.'},{name:'Swede and apple soup',time:'35 min',tip:'A sharp cooking apple balances the natural sweetness of swede; Bramley gives the best result.'}],
-  'Celeriac':          [{name:'Celeriac rémoulade',time:'10 min',tip:'Julienne finely, dress with mustard mayo and rest 30 min before serving.'},{name:'Celeriac soup',time:'30 min',tip:'Celeriac + Bramley apple is a classic — add one for brightness.'},{name:'Roasted celeriac steaks',time:'40 min',tip:'Slice 2 cm thick, roast at 200 °C with butter and thyme.'},{name:'Celeriac steak',time:'30 min',tip:'Slice 2cm thick, sear in a hot pan until deeply caramelised on both sides, then finish in the oven.'}],
-  'Kohlrabi':          [{name:'Kohlrabi slaw',time:'10 min',tip:'Julienne raw — sweet, crunchy, nutty; dress with lemon and good olive oil.'},{name:'Roasted kohlrabi',time:'30 min',tip:'Peel, cube, roast — it caramelises more deeply than most roots.'},{name:'Kohlrabi & apple salad',time:'10 min',tip:'Equal parts kohlrabi and apple, toasted walnuts, yoghurt dressing.'},{name:'Kohlrabi slaw',time:'10 min',tip:'Julienne finely and dress with apple cider vinegar, honey and toasted caraway seed.'}],
-  'Pak Choi':          [{name:'Stir-fried pak choi',time:'8 min',tip:'High heat, 2–3 min max — it wilts fast and turns watery if overdone.'},{name:'Pak choi in oyster sauce',time:'10 min',tip:'Blanch then dress — don\'t stir-fry in sauce or it goes slimy.'},{name:'Braised pak choi',time:'15 min',tip:'Cook cut-side down in stock until tender but still glossy green.'},{name:'Pak choi with oyster sauce',time:'10 min',tip:'Halve lengthwise and blister in a very hot dry wok before adding sauce — high heat prevents steaming.'}],
-  'Rocket':            [{name:'Rocket & Parmesan salad',time:'5 min',tip:'Dress only with lemon and good olive oil — rocket needs nothing more.'},{name:'Rocket pesto',time:'10 min',tip:'More peppery than basil pesto; outstanding on pasta or bruschetta.'},{name:'Pizza bianca with rocket',time:'25 min',tip:'Add raw rocket after baking — heat makes it bitter and grey.'},{name:'Rocket and parmesan salad',time:'5 min',tip:'Dress lightly and serve immediately; rocket wilts within minutes of being tossed with acid.'}],
-  'Watercress':        [{name:'Watercress soup',time:'20 min',tip:'Add watercress off the heat and blend immediately to preserve the colour.'},{name:'Watercress, pear & walnut salad',time:'10 min',tip:'Add blue cheese to complete the classic trio.'},{name:'Watercress butter',time:'5 min',tip:'Blend with softened butter and lemon; excellent on fish or steak.'},{name:'Watercress and stilton tart',time:'50 min',tip:'Wilt the watercress first to drive off moisture; raw leaves release water and make the base soggy.'}],
-  'Broad Beans':       [{name:'Broad bean bruschetta',time:'15 min',tip:'Double-pod (remove the grey skin too) for a vivid green, tender result.'},{name:'Broad bean & mint salad',time:'15 min',tip:'The inner skin is worth removing — it dramatically improves texture.'},{name:'Ful medames',time:'30 min',tip:'Use dried fava beans soaked overnight for authentic texture; fresh broad beans give a sweeter result.'},{name:'Broad bean and feta dip',time:'15 min',tip:'Pinch off the grey outer skins from larger beans; the inner bean is tender and a vivid jade green.'}],
-  'Runner Beans':      [{name:'Braised runner beans',time:'25 min',tip:'Slow-cook in olive oil and tomatoes Italian-style — they collapse perfectly.'},{name:'Runner bean salad',time:'10 min',tip:'Blanch and dress with anchovy vinaigrette while still warm.'},{name:'Runner beans with almonds',time:'15 min',tip:'Blanch, toss in brown butter with toasted flaked almonds.'},{name:'Runner bean and tomato stew',time:'35 min',tip:'Slice on a long diagonal to expose more surface; this cut cooks evenly without going stringy.'}],
-  'Mangetout':         [{name:'Stir-fried mangetout',time:'5 min',tip:'30 seconds is enough in a hot wok — they should still snap when bitten.'},{name:'Mangetout with sesame',time:'10 min',tip:'Blanch, cool in ice water, dress with sesame oil, seeds and soy.'},{name:'Spring stir-fry',time:'15 min',tip:'Add mangetout in the final 60 seconds to preserve crunch.'},{name:'Mangetout and sesame noodles',time:'15 min',tip:'Add to the noodles off the heat; residual warmth cooks them through while keeping the crunch.'}],
-  'Edamame':           [{name:'Salted edamame',time:'10 min',tip:'Boil 5 min in heavily salted water; eat directly from the pod.'},{name:'Edamame hummus',time:'10 min',tip:'Blanch from frozen and cool in ice water before blending; the ice bath fixes the vivid green colour that warm blending fades.'},{name:'Edamame & corn salad',time:'10 min',tip:'Dress with lime, sesame and ginger — excellent hot or cold.'},{name:'Edamame fried rice',time:'15 min',tip:'Use day-old rice and a very hot wok; fresh rice steams rather than fries and turns sticky.'}],
-  'Okra':              [{name:'Bhindi masala',time:'25 min',tip:'Dry fry okra in a hot pan first — it dramatically reduces sliminess.'},{name:'Okra gumbo',time:'1.5 hr',tip:'The mucilage thickens the broth naturally — don\'t fight it.'},{name:'Pickled okra',time:'15 min',tip:'Use pods under 8 cm; larger ones become woody and tough.'},{name:'Okra and tomato stew',time:'30 min',tip:'Add a splash of tamarind or vinegar; acidity counteracts the mucilaginous texture as the pods cook.'}],
-  'Horseradish':       [{name:'Horseradish sauce',time:'5 min',tip:'Grate fresh into crème fraîche with lemon — use within an hour before it fades.'},{name:'Horseradish-crusted beef',time:'1.5 hr',tip:'Press the crust on during the last 15 min of roasting; cooking it from the start drives off the volatile compounds that give horseradish its heat.'},{name:'Beetroot & horseradish relish',time:'15 min',tip:'Classic pairing — sharp heat against sweet earthiness.'},{name:'Horseradish mashed potato',time:'15 min',tip:'Stir in fresh-grated horseradish off the heat at the last moment to preserve the volatile heat compounds.'}],
-  'Sorrel':            [{name:'Sorrel soup',time:'20 min',tip:'Add sorrel off the heat; it turns khaki in seconds if overcooked.'},{name:'Sorrel sauce for fish',time:'10 min',tip:'Wilt into cream sauce — its natural acidity replaces lemon perfectly.'},{name:'Sorrel omelette',time:'5 min',tip:'Chop finely and fold into eggs; it melts away with a sharp, lemony flavour.'},{name:'Sorrel and lentil soup',time:'30 min',tip:'Add sorrel in the final 2 min only; prolonged heat destroys the bright flavour and vivid green colour.'}],
-  'Rhubarb':           [{name:'Rhubarb crumble',time:'45 min',tip:'Add orange zest to the filling; the crumble should be sandy, not clumped.'},{name:'Rhubarb jam',time:'40 min',tip:'3:2 rhubarb to sugar ratio; add strawberries for extra flavour and colour.'},{name:'Rhubarb compote',time:'15 min',tip:'Don\'t stir — let it collapse naturally for the best silky texture.'},{name:'Rhubarb and ginger crumble',time:'50 min',tip:'Add stem ginger and its syrup to the rhubarb — it amplifies the tartness and adds a warming back note.'}],
-  'Gooseberries':      [{name:'Gooseberry fool',time:'15 min',tip:'Cook until just popping, cool completely, then fold into lightly whipped cream.'},{name:'Gooseberry jam',time:'45 min',tip:'High in natural pectin — sets reliably without added pectin.'},{name:'Gooseberry sauce',time:'20 min',tip:'Tart gooseberries cut through oily fish (mackerel, herring) perfectly.'},{name:'Gooseberry fool',time:'20 min',tip:'Cook to a thick puree and cool completely before folding into cream; warm puree collapses the whip.'}],
-  'Blackcurrants':     [{name:'Blackcurrant jam',time:'45 min',tip:'Very high pectin content — you\'ll get a firm set easily.'},{name:'Cassis coulis',time:'15 min',tip:'Simmer briefly with sugar; concentrates to an intensely fruity sauce.'},{name:'Summer fruit crumble',time:'45 min',tip:'Mix with redcurrants and raspberries — the contrast of flavours is excellent.'},{name:'Blackcurrant cheesecake',time:'1 hr',tip:'Use a baked rather than set base; the acidity of blackcurrants prevents gelatine-set fillings from firming properly.'}],
-  'Redcurrants':       [{name:'Redcurrant jelly',time:'1 hr',tip:'Strain overnight through a jelly bag — squeezing will cloud it.'},{name:'Cumberland sauce',time:'20 min',tip:'Redcurrant jelly + port + orange zest — classic with game and cold meats.'},{name:'Redcurrant tart',time:'45 min',tip:'Arrange on crème patissière, glaze with warmed jelly for a bakery finish.'},{name:'Redcurrant sauce for game',time:'20 min',tip:'Simmer with port and shallots; the natural pectin sets the sauce to a glaze without added starch.'}],
-  'Blackberries':      [{name:'Blackberry & apple crumble',time:'45 min',tip:'Season the filling with cinnamon and lemon; the pair is a natural classic.'},{name:'Blackberry jam',time:'45 min',tip:'Add cooking apple — its pectin helps compensate for blackberry\'s low level.'},{name:'Blackberry vinegar',time:'1 week',tip:'Steep in white wine vinegar; extraordinary in salad dressings and sauces.'},{name:'Blackberry semifreddo',time:'30 min + freeze',tip:'The seeds are less noticeable when frozen — pass through a sieve only if serving at room temperature.'}],
-  'Blueberries':       [{name:'Blueberry pancakes',time:'20 min',tip:'Fold in from frozen — they hold shape far better than fresh berries.'},{name:'Blueberry muffins',time:'35 min',tip:'Toss berries in a little flour before folding in to stop them sinking.'},{name:'Blueberry compote',time:'10 min',tip:'Add the fresh berries only once the pan is off the heat — they warm through without losing their shape.'}],
-  'Grapes':            [{name:'Roasted grapes',time:'20 min',tip:'Roast at 200 °C for 15–20 min until they burst; save every drop of the caramelised pan syrup.'},{name:'Grape focaccia',time:'2 hr',tip:'Press whole red grapes into dough with rosemary and a scatter of sugar.'},{name:'Grape chutney',time:'45 min',tip:'Add a thumb of fresh ginger and a cinnamon stick; the warmth amplifies the fruity depth and balances the acidity.'},{name:'Grape and walnut focaccia',time:'2 hr',tip:'Press grapes cut-side up into the dough so the juices caramelise on the surface rather than sinking in.'}],
-  'Melon':             [{name:'Melon & prosciutto',time:'5 min',tip:'Serve at room temperature — cold melon loses its perfume entirely.'},{name:'Melon salad with mint',time:'10 min',tip:'A pinch of chilli flakes and a squeeze of lime elevates this completely.'},{name:'Chilled melon soup',time:'15 min',tip:'Blend with a little white wine and serve very cold with a mint oil drizzle.'},{name:'Melon granita',time:'10 min + 3 hr',tip:'Blend ripe melon with lime and a pinch of salt; fork-scrape every 45 min for a coarser, more refreshing texture.'}],
-  'Oregano':           [{name:'Greek salad',time:'5 min',tip:'Use fresh sparingly — it\'s more potent than dried and can dominate.'},{name:'Pizza sauce',time:'15 min',tip:'Add dried oregano into the sauce; scatter fresh on top after baking.'},{name:'Oregano oil',time:'10 min',tip:'Steep in warm olive oil with garlic; use on bread, grilled meat, roasted veg.'},{name:'Oregano-marinated feta',time:'10 min + overnight',tip:'Dried oregano is stronger than fresh here — heat releases more volatile oils than cold infusion alone.'}],
-  'Marjoram':          [{name:'Roasted vegetables with marjoram',time:'35 min',tip:'Add in the final 5 min — it scorches and turns bitter with prolonged heat.'},{name:'Marjoram butter sauce',time:'10 min',tip:'Melt into butter with white wine and lemon — excellent on white fish.'},{name:'Braised chicken with marjoram',time:'45 min',tip:'Subtler sweetness than oregano — add generously and confidently.'},{name:'Marjoram cream sauce',time:'15 min',tip:'Steep fresh marjoram in warm cream for 10 min before reducing; infusion captures the delicate floral notes.'}],
-  'Tarragon':          [{name:'Béarnaise sauce',time:'20 min',tip:'Clarified butter + egg yolks + white wine vinegar reduction + tarragon — precise heat is everything.'},{name:'Poulet à l\'estragon',time:'1 hr',tip:'French bistro classic: chicken in tarragon cream sauce. Use whole sprigs.'},{name:'Tarragon vinegar',time:'2 weeks',tip:'Steep sprigs in white wine vinegar; transforms salad dressings.'},{name:'Bearnaise sauce',time:'20 min',tip:'Reduce white wine vinegar with tarragon and shallots first; this is the acid base and cannot be skipped.'}],
-  'Bay':               [{name:'Bouquet garni',time:'5 min',tip:'Bay + thyme + parsley stalks — the backbone of every stock and braise.'},{name:'Bay-infused custard',time:'30 min',tip:'Warm cream with 2–3 leaves, steep 20 min off heat — remarkable fragrance.'},{name:'Slow-braised beans with bay',time:'2 hr',tip:'Add salt only at the very end of cooking — salting early keeps the skins permanently tough.'},{name:'Bay-spiced poached pears',time:'35 min',tip:'Add 2 fresh bay leaves to the poaching syrup; the subtle eucalyptus note complements sweet poached fruit.'}],
-  'Borage':            [{name:'Summer drink garnish',time:'2 min',tip:'Flowers and young leaves both work — the classic Pimm\'s garnish.'},{name:'Borage flower ice cubes',time:'5 min',tip:'Freeze individual flowers in ice cubes — stunning in cold drinks.'},{name:'Borage fritters',time:'15 min',tip:'Dip flowers in thin tempura batter and fry for 60 seconds only.'},{name:'Borage and cucumber salad',time:'10 min',tip:'Add flowers whole; they taste of fresh cucumber and look spectacular scattered over a simple salad.'}],
-  'Chervil':           [{name:'Fines herbes omelette',time:'5 min',tip:'The classic French four: chervil + chives + parsley + tarragon in equal parts.'},{name:'Chervil soup',time:'20 min',tip:'Gentle anise flavour; blend with potato, cream and plenty of butter.'},{name:'Spring herb sauce',time:'10 min',tip:'Pound the herbs in a mortar before folding into creme fraiche; bruising releases volatile oils that blending destroys.'},{name:'Chervil and leek tart',time:'45 min',tip:'Add chervil off the heat only — it is one of the most heat-sensitive herbs and loses all flavour when cooked.'}],
-  'Lovage':            [{name:'Lovage soup',time:'25 min',tip:'Intense celery-like flavour — one or two stalks is almost always enough.'},{name:'Lovage salt',time:'5 min',tip:'Blend dried lovage with sea salt; excellent seasoning for roast meat.'},{name:'Potato & lovage salad',time:'20 min',tip:'Use leaves wherever you\'d use celery — much more complex flavour.'},{name:'Lovage-infused cream sauce',time:'20 min',tip:'One or two stems are enough; lovage is intensely celery-like and quickly dominates if over-used.'}],
-  'Tomatillos':              [{name:'Green salsa (salsa verde)',time:'10 min',tip:'Husk and rinse well — the sticky coating affects the flavour if left on.'},{name:'Chilli verde',time:'1.5 hr',tip:'Roast tomatillos under the grill until blistered for a richer, smokier sauce base.'},{name:'Tomatillo guacamole',time:'10 min',tip:'Raw tomatillo adds tartness and texture that completely transforms plain guacamole.'},{name:'Tomatillo enchilada sauce',time:'30 min',tip:'Char under the grill until blistered and soft; the slight bitterness from charring balances the bright acidity.'}],
-  'Physalis':                [{name:'Chocolate-dipped physalis',time:'10 min',tip:'Fold the papery husk back as a natural handle; use good dark chocolate, 70% minimum.'},{name:'Physalis jam',time:'30 min',tip:'High pectin content — sets well and needs noticeably less sugar than most soft fruits.'},{name:'Pavlova garnish',time:'5 min',tip:'The husked fruit looks spectacular on cream desserts; use alongside raspberries.'},{name:'Physalis salsa',time:'15 min',tip:'Remove the papery husks and rinse well — they have a slightly sticky, bitter coating that needs washing off.'}],
-  'Nasturtium':              [{name:'Nasturtium pesto',time:'10 min',tip:'Blanch leaves 10 seconds and refresh in ice water to fix the colour; raw nasturtium pesto oxidises to an unappetising brown within an hour.'},{name:'Stuffed nasturtium flowers',time:'15 min',tip:'Pipe cream cheese into flowers and serve within the hour — they wilt quickly.'},{name:'Nasturtium capers',time:'3 days',tip:'Salt green seed pods 24 hrs, then pickle in white wine vinegar — near-identical to capers.'},{name:'Nasturtium and radish salad',time:'5 min',tip:'Use both leaves and flowers; the leaves have a peppery bite while the flowers add a sweeter, milder heat.'}],
-  'Samphire':                [{name:'Samphire with brown butter',time:'5 min',tip:'Blanch 60 seconds only; already salty, so taste before adding any more salt at all.'},{name:'Samphire with seafood',time:'10 min',tip:'A natural pairing — saute in butter alongside fish or prawns in the same pan.'},{name:'Samphire omelette',time:'10 min',tip:'Blanch to reduce saltiness first; pairs brilliantly with a smoked salmon filling.'},{name:'Samphire frittata',time:'20 min',tip:'Blanch samphire for 60 seconds before using in egg dishes to remove the excess salt.'}],
-  'Borlotti Beans':          [{name:'Fresh borlotti bean soup',time:'45 min',tip:'Fresh pods cook in 20 min — far less than dried, and the result is noticeably creamier.'},{name:'Borlotti beans with sage',time:'30 min',tip:'Fry sage leaves in olive oil until crisp, add beans and crush a few lightly.'},{name:'Pasta e fagioli',time:'1 hr',tip:'Cook the pasta directly in the bean broth — it absorbs the starchy, earthy flavour.'},{name:'Borlotti bean and sausage stew',time:'50 min',tip:'Do not add salt until the beans are fully tender; salting early toughens the skins and extends cooking time.'}],
-  'Chicory':                 [{name:'Braised chicory with orange',time:'30 min',tip:'Bitterness mellows dramatically with cooking; add a little sugar and orange juice to balance.'},{name:'Chicory & blue cheese salad',time:'10 min',tip:'Separate leaves as natural cups; bitter chicory and creamy strong cheese are made for each other.'},{name:'Grilled chicory',time:'20 min',tip:'Halve, brush with oil, grill cut-side down — the char reduces bitterness beautifully.'},{name:'Chicory, walnut and gorgonzola salad',time:'10 min',tip:'The bitter leaves, creamy cheese and crunchy nuts are a classic trio — dress with a simple balsamic.'}],
-  'Radicchio':               [{name:'Radicchio risotto',time:'35 min',tip:'Add in two stages: half early for depth, half at the end to keep the colour vivid.'},{name:'Grilled radicchio with balsamic',time:'20 min',tip:'High heat + balsamic caramelisation transforms the bitterness into deep sweetness.'},{name:'Radicchio & walnut salad',time:'10 min',tip:'Toasted walnuts, Parmesan and a strong mustardy dressing balance the bitterness well.'},{name:'Radicchio and blood orange salad',time:'10 min',tip:'Blood oranges cut through the bitterness best; segment rather than slice to catch every drop of juice.'}],
-  'Lemon Balm':              [{name:'Lemon balm tea',time:'5 min',tip:'Steep in just-off-boil water rather than rolling boil — full heat destroys the citrus oils.'},{name:'Lemon balm sorbet',time:'30 min',tip:'Blend leaves into the hot sugar syrup while it\'s still hot for maximum infusion.'},{name:'Herb dressing with lemon balm',time:'5 min',tip:'Use in place of lemon zest in any herb dressing for a softer, rounder citrus note.'},{name:'Lemon balm posset',time:'15 min + 2 hr',tip:'Steep leaves in hot cream for 20 min; strain before adding lemon juice so the setting is clean and clear.'}],
-  'Spring Onions':           [{name:'Charred spring onions',time:'20 min',tip:'Grill whole until blackened outside; peel back the outer layer and serve with romesco sauce.'},{name:'Spring onion pancakes',time:'30 min',tip:'Coil the raw onion into the dough layers — the gaps create flaky, flavour-packed pockets.'},{name:'Spring onion stir-fry',time:'10 min',tip:'Add white parts first; green tips go in the final 30 seconds only to keep their fresh bite.'},{name:'Spring onion kimchi',time:'15 min + 3 days',tip:'Use whole spring onions; the ferment is faster and the texture firmer than with shredded cabbage kimchi.'}],
-  'Shallots':                [{name:'Slow-roasted shallots',time:'45 min',tip:'Roast whole in their skins in butter — they collapse to a sweet, jammy, concentrated centre.'},{name:'Classic shallot vinaigrette',time:'10 min',tip:'Mince very finely and macerate in red wine vinegar 15 min — it mellows the sharpness.'},{name:'Crispy fried shallots',time:'15 min',tip:'Start in cold oil and bring up slowly — they crisp evenly without the outside burning.'},{name:'Shallot and red wine sauce',time:'25 min',tip:'Slow-cook diced shallots in butter until completely golden before adding wine — they become sweet and jammy.'}],
-  'Garlic Scapes':           [{name:'Garlic scape pesto',time:'10 min',tip:'Milder than raw garlic; swap cup for cup with basil in any standard pesto recipe.'},{name:'Stir-fried garlic scapes',time:'8 min',tip:'Treat exactly like green beans: quick high heat, soy, sesame and a little fresh chilli.'},{name:'Pickled garlic scapes',time:'15 min',tip:'Pack with dill and peppercorns in vinegar brine — ready in 3 days, keeps for months.'},{name:'Garlic scape stir-fry',time:'10 min',tip:'Treat exactly like spring onions; cut on the diagonal and add in the final 2 min of cooking.'}],
-  'Chillies':                [{name:'Chilli jam',time:'45 min',tip:'Blend seeds and all for maximum heat; deseed completely for a milder, fruitier result.'},{name:'Fermented hot sauce',time:'2 weeks',tip:'Salt at exactly 2% of total weight, pack into a jar and ferment at room temperature.'},{name:'Dried & smoked chillies',time:'48 hr',tip:'Dry at 60 °C in the oven or cold-smoke over wood chips for a homegrown chipotle effect.'},{name:'Chilli oil',time:'20 min + 24 hr',tip:'Bloom dried chilli flakes in oil at 120°C, not hotter; above 160°C the flavour turns acrid and bitter.'}],
-  'Salsify':                 [{name:'Salsify chips',time:'30 min',tip:'Peel under water and transfer to acidulated water immediately — it oxidises in seconds.'},{name:'Cream of salsify soup',time:'30 min',tip:'Use the starchy cooking water as the soup base; it carries all the mineral, oyster-like flavour of the root.'},{name:'Roasted salsify',time:'35 min',tip:'Wrap in foil with butter and thyme; the skin peels cleanly away once fully cooked.'},{name:'Salsify remoulade',time:'15 min',tip:'Grate directly into acidulated water and dress immediately; salsify oxidises even faster than celeriac.'}],
-  'Purple Sprouting Broccoli':[{name:'PSB with anchovy butter',time:'15 min',tip:'Steam for exactly 3 min; the anchovy butter is the dish — make a generous amount.'},{name:'Roasted PSB with chilli',time:'20 min',tip:'Roast at 200 °C until crispy at the edges — responds better to this than standard broccoli.'},{name:'PSB with hollandaise',time:'20 min',tip:'Have the hollandaise warm and ready before the PSB goes in the steamer — it waits for nothing.'},{name:'PSB with lemon tahini',time:'15 min',tip:'Steam or roast; stir-frying in a crowded pan steams rather than chars, leaving the stems limp.'}],
-
-  'Apples':                  [{name:'Apple crumble',time:'45 min',tip:'Add oats to the topping; it should be rough and clumpy, not like fine breadcrumbs.'},{name:'Tarte Tatin',time:'1 hr',tip:'Use a heavy ovenproof pan; once the caramel starts to colour, don\'t stir it.'},{name:'Apple chutney',time:'1.5 hr',tip:'Use half Bramley (sharp) and half eating apple for the best balance of flavour.'},{name:'Apple sauce',time:'15 min',tip:'Bramley collapses perfectly; add a knob of butter at the very end for gloss.'}],
-  'Pears':                   [{name:'Poached pears in red wine',time:'45 min',tip:'Keep the liquid at a bare simmer — a rolling boil makes pears collapse and turn mushy.'},{name:'Pear & walnut tart',time:'1 hr',tip:'Halve and core onto frangipane; the almond cream is the natural partner for pear.'},{name:'Pear chutney',time:'1 hr',tip:'Slightly underripe pears hold their shape far better than fully ripe ones.'},{name:'Poached pears in red wine',time:'45 min',tip:'Add cinnamon, clove and orange peel; the spices highlight the pear rather than masking it.'}],
-  'Plums':                   [{name:'Plum jam',time:'1 hr',tip:'Plum stones contain pectin; crack a few, tie in muslin and add to the pan.'},{name:'Roasted plums',time:'30 min',tip:'Roast with vanilla and a little sugar — the juice in the pan is as good as the fruit.'},{name:'Plum crumble',time:'45 min',tip:'No need to peel; the skins dissolve during cooking and deepen the colour of the filling.'},{name:'Plum and almond cake',time:'1 hr',tip:'Halve plums cut-side up on the batter; they sink slightly as the cake rises and the juices marble through.'}],
-  'Damsons':                 [{name:'Damson gin',time:'3 months',tip:'Fill a jar with damsons, sugar and gin; shake daily for a week, then leave to steep.'},{name:'Damson jam',time:'1 hr',tip:'Higher pectin than most plums — sets reliably. Remove stones as they float to the surface.'},{name:'Damson cheese',time:'2 hr',tip:'Press through a sieve to remove skins and stones; cook until a wooden spoon leaves a clean trail across the base.'},{name:'Damson jam',time:'1 hr',tip:'Simmer with the stones in; the kernels add a faint marzipan bitterness. Remove once jam reaches setting point.'}],
-  'Cherries':                [{name:'Clafoutis',time:'45 min',tip:'Leave the stones in — they add a subtle almond note and keep the cherries firmer during baking.'},{name:'Cherry jam',time:'45 min',tip:'Jam sugar with added pectin is essential here; without it the mixture stays runny no matter how long you cook it.'},{name:'Brandied cherries',time:'1 week',tip:'Pack into sterilised jars with sugar syrup and brandy; ready in a week, keeps for a year.'},{name:'Cherry jam',time:'1 hr',tip:'A cherry stoner pays for itself in one batch; pitting by hand is possible but slow and juice-staining.'}],
-  'Figs':                    [{name:'Roasted figs with honey',time:'20 min',tip:'Score the top in a cross, push in butter and honey, roast at 200 °C for 12–15 min.'},{name:'Fig jam',time:'45 min',tip:'Low pectin — add lemon juice and cook to 105 °C (use a thermometer) for a reliable set.'},{name:'Fig & blue cheese salad',time:'10 min',tip:'Halve fresh figs, drizzle with aged balsamic; the bitter-sweet contrast is exceptional.'},{name:'Fig and almond tart',time:'50 min',tip:'Halve figs and press cut-side into the frangipane; the juices seep into the almond cream as it bakes.'}],
-  'Quinces':                 [{name:'Quince paste (membrillo)',time:'2 hr',tip:'Cook until deep amber and very stiff — it will set firm when cool; essential with Manchego.'},{name:'Quince jelly',time:'2 hr',tip:'Strain through a jelly bag overnight; squeezing even slightly will make it permanently cloudy.'},{name:'Poached quince',time:'1 hr',tip:'The pink develops only with long, slow cooking; higher heat keeps them stubbornly yellow and undercooked.'},{name:'Quince paste',time:'1.5 hr',tip:'Cook to a very thick paste until it pulls cleanly from the pan; under-reduced paste will not set solid.'}],
-  'Cavolo Nero':             [{name:'Ribollita',time:'1 hr',tip:'Cavolo nero is what makes this Tuscan soup distinctive; reheat the next day — it improves markedly.'},{name:'Cavolo nero with garlic & chilli',time:'10 min',tip:'Blanch 2 min, then finish in very hot oil with lots of garlic and chilli — pure aglio e olio logic.'},{name:'White bean & cavolo nero soup',time:'30 min',tip:'Add a Parmesan rind while simmering; it dissolves slowly and adds extraordinary depth.'},{name:'Cavolo nero and white bean soup',time:'35 min',tip:'Strip the leaves from the woody stems; tear rather than chop for a more rustic texture.'}],
-  'Mizuna':                  [{name:'Mizuna salad',time:'5 min',tip:'Dress very lightly — its peppery bite needs little enhancement; lemon and olive oil is enough.'},{name:'Mizuna stir-fry',time:'5 min',tip:'Add in the final 30 seconds only; it wilts to almost nothing if left any longer.'},{name:'Mizuna & miso soup',time:'10 min',tip:'Stir raw leaves into the hot soup just before serving — they wilt gently without losing freshness.'},{name:'Mizuna and radish salad',time:'5 min',tip:'Pair with a miso-ginger dressing; its mild, mustard-edged bite holds up well to bold Asian flavours.'}],
-  'Mustard Greens':          [{name:'Braised mustard greens',time:'30 min',tip:'Low and slow with smoked bacon or ham hock; the bitterness mellows completely with time.'},{name:'Mustard green stir-fry',time:'8 min',tip:'High heat with garlic and ginger; the spicy bite softens significantly with cooking.'},{name:'Mustard green pesto',time:'10 min',tip:'A fiery, peppery alternative to basil — balance the heat with extra Parmesan and lemon.'},{name:'Mustard greens with garlic',time:'10 min',tip:'Stir-fry on high heat for 2 min only; over-cooked mustard greens become bitter and lose their vibrant colour.'}],
-  'Elderflower':             [{name:'Elderflower cordial',time:'24 hr',tip:'Pick heads away from roads; rinse gently but never soak — you lose the pollen and with it the flavour.'},{name:'Elderflower fritters',time:'15 min',tip:'Dip whole heads in thin batter, fry 60 seconds; dust with icing sugar and eat immediately.'},{name:'Elderflower & gooseberry jam',time:'45 min',tip:'A classic pairing — tie 3–4 heads in muslin and add to the pan while the jam cooks.'},{name:'Elderflower jelly',time:'30 min + setting',tip:'Use 4 heads per 500ml; too many give a musty note — more is emphatically not better with elderflower.'}],
-  'Nettles':                 [{name:'Nettle soup',time:'25 min',tip:'Use only the young top leaves; wear gloves until blanched — the sting vanishes in 30 seconds.'},{name:'Nettle pasta dough',time:'30 min',tip:'Blanch, squeeze completely dry and blend into the dough for vivid green colour and earthy depth.'},{name:'Nettle pesto',time:'10 min',tip:'Blanch 30 seconds, refresh in ice water and treat exactly like basil in any pesto recipe.'},{name:'Nettle and potato soup',time:'30 min',tip:'Handle with rubber gloves until blanched; boiling destroys the sting completely within 30 seconds.'}],
-
-  'Gherkins':               [{name:'Classic dill pickles',time:'1 week',tip:'Use whole small gherkins — cut ones go soft. Add a grape or oak leaf to each jar for crunch.'},{name:'Cornichons',time:'1 week',tip:'Salt overnight, rinse well, then pack with tarragon, pearl onions and peppercorns.'},{name:'Gherkin relish',time:'45 min',tip:'Finely dice with onion, mustard, vinegar and turmeric — brilliant with cheese and cold cuts.'},{name:'Gherkin tartare sauce',time:'10 min',tip:'Squeeze grated gherkins dry before mixing; excess liquid dilutes the sauce and prevents it thickening.'}],
-  'Lavender':               [{name:'Lavender shortbread',time:'45 min',tip:'Use culinary lavender (Hidcote or Munstead); 1 tsp per batch — more and it tastes like soap.'},{name:'Lavender lemonade',time:'10 min',tip:'Make a lavender sugar syrup first; steep 5 min then strain or it becomes overwhelmingly bitter.'},{name:'Lavender honey',time:'10 min',tip:'Warm honey, add dried buds, cool and strain after 24 hrs. Remarkable with cheese or on toast.'},{name:'Lavender creme brulee',time:'1 hr + chill',tip:'Steep 1 tsp dried buds in hot cream for 15 min; more than this and the flavour becomes soapy.'}],
-  'Calendula':              [{name:'Calendula petal salad',time:'5 min',tip:'Use petals only, not the whole head; their mild peppery note adds colour without dominating.'},{name:'Calendula-infused oil',time:'6 weeks',tip:'Dry petals completely before infusing — any moisture will cause mould to grow in the oil.'},{name:'Calendula rice',time:'20 min',tip:'Add dried petals to the cooking water as a saffron substitute — golden colour, mild flavour.'},{name:'Calendula and herb frittata',time:'20 min',tip:'Separate petals from the bitter green calyx before using; only the petals are pleasant to eat.'}],
-  'Lemon Verbena':          [{name:'Lemon verbena tea',time:'5 min',tip:'More intensely lemony than lemon balm; 2–3 fresh leaves per cup is usually enough.'},{name:'Lemon verbena posset',time:'20 min',tip:'Infuse into the cream before adding lemon juice — the flavour is cleaner and more complex than zest alone.'},{name:'Lemon verbena ice cream',time:'30 min',tip:'Steep a generous handful in warm cream for 20 min; strain and churn — the citrus note is extraordinary.'},{name:'Lemon verbena ice cream',time:'30 min + churn',tip:'Steep a large handful in hot milk then cool overnight; the slow infusion extracts a cleaner, more refined flavour.'}],
-  'Hops':                   [{name:'Hop shoot risotto',time:'35 min',tip:'Harvest only the very young tips in spring before they toughen; treat exactly like asparagus.'},{name:'Tempura hop shoots',time:'15 min',tip:'Blanch 2 min first to reduce bitterness without destroying the delicate flavour.'},{name:'Hop shoot omelette',time:'10 min',tip:'Blanch briefly, drain very well and fold into eggs with butter — a classic Flemish spring dish.'},{name:'Hop beer bread',time:'35 min',tip:'Fresh hops give a floral bitterness; dried pellets are more intense — use half the quantity if substituting.'}],
-
-  'Wild Garlic':           [{name:'Wild garlic butter',time:'5 min',tip:'Blend fresh leaves into softened butter with lemon; freeze in a log and slice off rounds as needed all year.'},{name:'Wild garlic soup',time:'25 min',tip:'Use within 2 days of picking; wild garlic loses its flavour faster than almost any other foraged ingredient.'},{name:'Wild garlic pesto',time:'10 min',tip:'Replace basil 1:1 in any pesto recipe; the flavour is intense so start with half the quantity and taste as you go.'}],
-  'Medlar':                [{name:'Medlar jelly',time:'1 hr',tip:'Medlars must be bletted — left to over-ripen until soft and brown inside — before they lose their harsh astringency.'},{name:'Bletted medlar fool',time:'10 min',tip:'Scoop the caramelly flesh from the skin once bletted; the flavour is date-like and utterly unique.'},{name:'Medlar tart',time:'1 hr',tip:'Press bletted flesh through a sieve for a smooth custard filling; it is worth the fiddly preparation.'}],
-  'Mulberries':            [{name:'Mulberry jam',time:'45 min',tip:'Mulberries are low in pectin; add lemon juice and a cooking apple, or simmer longer than you expect for a set.'},{name:'Mulberry crumble',time:'40 min',tip:'They collapse quickly — add to the dish without pre-cooking and let the oven heat do the work.'},{name:'Mulberry cordial',time:'30 min',tip:'Do not boil after adding sugar; a gentle simmer preserves the jewel-red colour and floral, wine-like aroma.'}],
-  'Elderberries':          [{name:'Elderberry syrup',time:'30 min',tip:'Simmer with cloves, ginger and cinnamon then strain; keeps for weeks refrigerated with a small dash of brandy.'},{name:'Elderberry jelly',time:'1 hr',tip:'The juice is deeply tannic; taste before adding sugar and adjust accordingly — wild berries vary greatly.'},{name:'Elderberry chutney',time:'45 min',tip:'Combines beautifully with apple and onion; the dark, wine-like depth pairs well with game and strong cheese.'}],
-};
-
-const RECIPE_ALIASES = {
-  // Herbs & foraged
-  cilantro:'Coriander', melissa:'Lemon Balm', 'lemon melissa':'Lemon Balm',
-  nettle:'Nettles', 'stinging nettle':'Nettles', 'stinging nettles':'Nettles',
-  elderflowers:'Elderflower',
-  verbena:'Lemon Verbena', 'lemon verbena':'Lemon Verbena',
-  lavandula:'Lavender',
-  'pot marigold':'Calendula', marigold:'Calendula',
-  'hop shoot':'Hops', 'hop shoots':'Hops',
-  // Brassicas
-  arugula:'Rocket', rucola:'Rocket',
-  'curly kale':'Kale', 'spring greens':'Kale',
-  'cavolo nero':'Cavolo Nero', lacinato:'Cavolo Nero', 'tuscan kale':'Cavolo Nero', 'black kale':'Cavolo Nero',
-  'purple sprouting':'Purple Sprouting Broccoli', psb:'Purple Sprouting Broccoli', 'sprouting broccoli':'Purple Sprouting Broccoli',
-  // Salad & chicory family
-  endive:'Chicory', witloof:'Chicory', 'belgian endive':'Chicory',
-  treviso:'Radicchio', 'red chicory':'Radicchio',
-  'japanese mustard':'Mizuna', 'japanese salad leaf':'Mizuna',
-  'mustard leaf':'Mustard Greens', 'mustard leaves':'Mustard Greens', 'chinese mustard':'Mustard Greens',
-  // Alliums
-  'spring onion':'Spring Onions', scallion:'Spring Onions', scallions:'Spring Onions',
-  shallot:'Shallots', 'banana shallot':'Shallots', 'echalion shallot':'Shallots',
-  'garlic scape':'Garlic Scapes', 'garlic shoot':'Garlic Scapes', 'garlic curl':'Garlic Scapes',
-  // Cucurbits & nightshade
-  eggplant:'Aubergine', zucchini:'Courgette', courgettes:'Courgette', marrow:'Courgette',
-  butternut:'Squash', pumpkin:'Squash',
-  tomatillo:'Tomatillos',
-  gherkin:'Gherkins', cornichon:'Gherkins', cornichons:'Gherkins', 'dill pickle':'Gherkins',
-  // Peppers (sweet) vs Chillies (hot)
-  capsicum:'Peppers', 'bell pepper':'Peppers', 'sweet pepper':'Peppers',
-  chilli:'Chillies', chili:'Chillies', chile:'Chillies', chilies:'Chillies', 'hot pepper':'Chillies',
-  // Asian greens
-  'bok choy':'Pak Choi', 'bok choi':'Pak Choi', 'pak choy':'Pak Choi', 'chinese cabbage':'Pak Choi',
-  // Roots & tubers
-  rutabaga:'Swede', neep:'Swede',
-  parsnip:'Parsnips', turnip:'Turnips',
-  sunchoke:'Jerusalem Artichoke', topinambur:'Jerusalem Artichoke',
-  'oyster plant':'Salsify', scorzonera:'Salsify', 'black salsify':'Salsify',
-  // Chard & greens
-  silverbeet:'Swiss Chard', 'rainbow chard':'Swiss Chard', 'spinach beet':'Swiss Chard', chard:'Swiss Chard',
-  // Legumes
-  'fava bean':'Broad Beans', 'fava beans':'Broad Beans', 'broad bean':'Broad Beans',
-  'snap pea':'Mangetout', 'snap peas':'Mangetout', 'mange tout':'Mangetout', 'sugar snap':'Mangetout',
-  'runner bean':'Runner Beans',
-  'borlotti bean':'Borlotti Beans', 'cranberry bean':'Borlotti Beans', 'roman bean':'Borlotti Beans',
-  // Artichokes
-  'globe artichoke':'Artichoke', artichokes:'Artichoke',
-  // Edible flowers & specialty
-  nasturtiums:'Nasturtium',
-  'marsh samphire':'Samphire', 'rock samphire':'Samphire', glasswort:'Samphire',
-  'cape gooseberry':'Physalis', 'ground cherry':'Physalis',
-  // Corn & sweet potato
-  'sweet corn':'Corn', 'sweet potato':'Sweet Potatoes',
-  // Tree fruits
-  apple:'Apples', 'cooking apple':'Apples', 'eating apple':'Apples', bramley:'Apples', coxes:'Apples',
-  pear:'Pears', conference:'Pears', 'williams pear':'Pears', 'conference pear':'Pears',
-  plum:'Plums', 'victoria plum':'Plums', greengage:'Plums', mirabelle:'Plums', gage:'Plums',
-  damson:'Damsons', 'damson plum':'Damsons', bullace:'Damsons',
-  cherry:'Cherries', 'morello cherry':'Cherries', 'sour cherry':'Cherries', 'sweet cherry':'Cherries',
-  fig:'Figs', quince:'Quinces',
-  // Soft fruit
-  blueberry:'Blueberries', blueberries:'Blueberries',
-  blackberry:'Blackberries', blackberries:'Blackberries',
-  'black currant':'Blackcurrants', 'black currants':'Blackcurrants', blackcurrant:'Blackcurrants',
-  'red currant':'Redcurrants', 'red currants':'Redcurrants', redcurrant:'Redcurrants',
-  gooseberry:'Gooseberries', grape:'Grapes',
-  watermelon:'Melon', cantaloupe:'Melon', honeydew:'Melon',
-  'wild garlic': 'Wild Garlic',
-  'bear garlic': 'Wild Garlic',
-  'ramsons': 'Wild Garlic',
-  'bear\'s garlic': 'Wild Garlic',
-  'medlar': 'Medlar',
-  'medlars': 'Medlar',
-  'mulberry': 'Mulberries',
-  'mulberries': 'Mulberries',
-  'elderberry': 'Elderberries',
-  'elderberries': 'Elderberries',
-};
-
-function getRecipesForCrop(name) {
-  if (!name) return [];
-  const lower = name.toLowerCase();
-  // 1. Exact key match
-  if (RECIPE_DB[name]) return RECIPE_DB[name];
-  // 2. Case-insensitive exact
-  const exactKey = Object.keys(RECIPE_DB).find(k => k.toLowerCase() === lower);
-  if (exactKey) return RECIPE_DB[exactKey];
-  // 3. Alias map (substring on input)
-  for (const [alias, canonical] of Object.entries(RECIPE_ALIASES)) {
-    if (lower.includes(alias)) return RECIPE_DB[canonical] || [];
-  }
-  // 4. Substring match (e.g. "Cherry Tomatoes" -> "Tomatoes")
-  const subKey = Object.keys(RECIPE_DB).find(k => lower.includes(k.toLowerCase()) || k.toLowerCase().includes(lower));
-  if (subKey) return RECIPE_DB[subKey];
-  return [];
-}
-
-function showHarvestRecipes(name) {
-  const recipes = getRecipesForCrop(name);
-  if (!recipes.length) return;
-  const shown = [...recipes].sort(() => Math.random() - 0.5).slice(0, 3);
-  const overlay = document.createElement('div');
-  overlay.className = 'variety-log-overlay recipe-overlay';
-  overlay.innerHTML = `<div class="variety-log-sheet recipe-sheet">
-    <button class="recipe-close-btn" id="recipe-close">×</button>
-    <div class="recipe-header">
-      <span class="recipe-header-emoji">&#127869;&#65039;</span>
-      <span class="recipe-header-title">What to make with your ${name}</span>
-    </div>
-    <div class="recipe-cards">
-      ${shown.map(r => `<div class="recipe-card">
-        <div class="recipe-card-top">
-          <span class="recipe-card-name">${r.name}</span>
-          <span class="recipe-card-time">⏱ ${r.time}</span>
-        </div>
-        <p class="recipe-card-tip">${r.tip}</p>
-      </div>`).join('')}
-    </div>
-  </div>`;
-  document.body.appendChild(overlay);
-  const remove = () => overlay.isConnected && document.body.removeChild(overlay);
-  overlay.querySelector('#recipe-close').addEventListener('click', remove);
-  overlay.addEventListener('click', e => { if (e.target === overlay) remove(); });
-  const timer = setTimeout(remove, 12000);
-  overlay.querySelector('#recipe-close').addEventListener('click', () => clearTimeout(timer), {once:true});
-}
