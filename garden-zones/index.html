@@ -97,11 +97,11 @@
     <button id="settings-btn" title="Settings" aria-label="Settings">⚙</button>
     <button id="browse-btn" title="Browse all crops">Browse</button>
     <div id="country-selector" title="Select your country">
-      <button class="country-btn active" data-country="us">🇺🇸</button>
-      <button class="country-btn" data-country="ca">🇨🇦</button>
-      <button class="country-btn" data-country="au">🇦🇺</button>
-      <button class="country-btn" data-country="gb">🇬🇧</button>
-      <button class="country-btn" data-country="nz">🇳🇿</button>
+      <button class="country-btn active" data-country="us" aria-label="Select United States">🇺🇸</button>
+      <button class="country-btn" data-country="ca" aria-label="Select Canada">🇨🇦</button>
+      <button class="country-btn" data-country="au" aria-label="Select Australia">🇦🇺</button>
+      <button class="country-btn" data-country="gb" aria-label="Select United Kingdom">🇬🇧</button>
+      <button class="country-btn" data-country="nz" aria-label="Select New Zealand">🇳🇿</button>
     </div>
     <div id="search-bar">
       <input
@@ -110,6 +110,7 @@
         placeholder="Enter address or city..."
         autocomplete="off"
         spellcheck="false"
+        aria-label="Enter your address or location"
       />
       <button id="locate-btn" aria-label="Use my location" title="Find my zone automatically">
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -224,7 +225,7 @@
         <div id="month-context"></div>
         <div id="frost-countdown"></div>
 <div id="calendar-search-wrap">
-          <input id="calendar-search" type="text" placeholder="Filter crops…" autocomplete="off" spellcheck="false">
+          <input id="calendar-search" type="text" placeholder="Filter crops…" autocomplete="off" spellcheck="false" aria-label="Search crops">
         </div>
         <div id="cal-summary"></div>
         <div id="cal-view-toggle"></div>
@@ -295,9 +296,9 @@
           <button id="gallery-open-btn" class="journal-gallery-btn" title="View photo gallery">📷 Gallery</button>
         </div>
         <div id="journal-compose">
-          <textarea id="journal-input" placeholder="Log a note — weather, observations, successes…" rows="3"></textarea>
+          <textarea id="journal-input" placeholder="Log a note — weather, observations, successes…" rows="3" aria-label="Journal entry text"></textarea>
           <div id="journal-compose-footer">
-            <select id="journal-crop-tag"><option value="">🌱 No crop tag</option></select>
+            <select id="journal-crop-tag" aria-label="Tag crop"><option value="">🌱 No crop tag</option></select>
             <button id="journal-photo-btn" type="button" title="Attach photo">📷</button>
             <input type="file" id="journal-photo-input" accept="image/*" style="display:none">
             <button id="journal-add-btn">Add note</button>
@@ -308,7 +309,7 @@
           </div>
         </div>
         <div id="journal-search-bar">
-          <input type="search" id="journal-search-input" placeholder="Search journal…" autocomplete="off">
+          <input type="search" id="journal-search-input" placeholder="Search journal…" autocomplete="off" aria-label="Search journal entries">
           <select id="journal-date-filter" aria-label="Filter by date">
             <option value="all">All time</option>
             <option value="week">Past week</option>
@@ -341,7 +342,7 @@
     </div>
   </dialog>
 
-  <div id="browse-view" class="browse-hidden" role="dialog" aria-label="Browse all crops">
+  <div id="browse-view" class="browse-hidden" role="dialog" aria-modal="true" aria-label="Browse all crops">
     <div id="browse-header">
       <h2 id="browse-title">Browse Crops <span id="browse-count"></span></h2>
       <button id="browse-compare-btn" class="browse-cmp-btn" title="Compare two crops">⚖ Compare</button>
@@ -349,7 +350,7 @@
     </div>
     <div id="browse-recent" hidden></div>
     <div id="browse-filters">
-      <input id="browse-search" type="text" placeholder="Search crops…" autocomplete="off" spellcheck="false" />
+      <input id="browse-search" type="text" placeholder="Search crops…" autocomplete="off" spellcheck="false" aria-label="Search all crops" />
       <div id="browse-cats">
         <button class="cat-chip active" data-cat="">All</button>
         <button class="cat-chip" data-cat="Vegetables">Vegetables</button>
@@ -366,13 +367,13 @@
         <button class="cat-chip" data-cat="Tropical">Tropical</button>
       </div>
       <div id="browse-extra">
-        <select id="browse-difficulty">
+        <select id="browse-difficulty" aria-label="Filter by difficulty">
           <option value="">Any difficulty</option>
           <option value="Easy">Easy</option>
           <option value="Moderate">Moderate</option>
           <option value="Hard">Hard</option>
         </select>
-        <select id="browse-sort">
+        <select id="browse-sort" aria-label="Sort crops">
           <option value="">Sort: Default</option>
           <option value="az">Sort: A → Z</option>
           <option value="za">Sort: Z → A</option>
@@ -380,7 +381,7 @@
           <option value="slowest">Days: Slowest first</option>
           <option value="easy">Difficulty: Easy first</option>
         </select>
-        <select id="browse-family">
+        <select id="browse-family" aria-label="Filter by plant family">
           <option value="">Any family</option>
           <option value="Apiaceae">Apiaceae (Carrot)</option>
           <option value="Asteraceae">Asteraceae (Daisy)</option>
@@ -429,17 +430,17 @@
       <div id="custom-crop-form">
         <div class="cc-row">
           <div class="cc-field" id="cc-emoji-field">
-            <label>Emoji</label>
+            <label for="cc-emoji">Emoji</label>
             <input id="cc-emoji" type="text" placeholder="🌱" maxlength="4">
           </div>
           <div class="cc-field">
-            <label>Crop name *</label>
+            <label for="cc-name">Crop name *</label>
             <input id="cc-name" type="text" placeholder="e.g. Purple Dragon Carrot">
           </div>
         </div>
         <div class="cc-row">
           <div class="cc-field">
-            <label>Category</label>
+            <label for="cc-category">Category</label>
             <select id="cc-category">
               <option value="Vegetables">Vegetables</option>
               <option value="Herbs">Herbs</option>
@@ -455,12 +456,12 @@
             </select>
           </div>
           <div class="cc-field">
-            <label>Days to harvest</label>
+            <label for="cc-days">Days to harvest</label>
             <input id="cc-days" type="number" placeholder="e.g. 70" min="1" max="999">
           </div>
         </div>
         <div class="cc-field">
-          <label>Notes / description</label>
+          <label for="cc-notes">Notes / description</label>
           <textarea id="cc-notes" placeholder="Growing tips, variety notes…"></textarea>
         </div>
         <div id="cc-error">Please enter a crop name.</div>
@@ -559,10 +560,10 @@
   </div>
 
   <!-- Keyboard shortcuts modal -->
-  <dialog id="shortcuts-modal">
+  <dialog id="shortcuts-modal" aria-labelledby="shortcuts-modal-title" aria-modal="true">
     <div id="shortcuts-inner">
       <header class="shortcuts-header">
-        <h3>Keyboard Shortcuts</h3>
+        <h3 id="shortcuts-modal-title">Keyboard Shortcuts</h3>
         <button id="shortcuts-close">&times;</button>
       </header>
       <div class="shortcuts-list">
@@ -737,7 +738,7 @@
   <!-- CDN Libraries -->
   <script src="lib/leaflet.min.js"></script>
   <script src="lib/turf.min.js"></script>
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
   <script>
     // Skip SW in Capacitor native builds (WKWebView doesn't support it reliably)
     if ('serviceWorker' in navigator && !window.Capacitor?.isNativePlatform?.()) {
@@ -815,8 +816,11 @@
     </div>
   </div>
   <div id="bed-crop-picker" hidden>
-    <input id="bed-crop-search" type="text" placeholder="Search crops…" autocomplete="off">
+    <input id="bed-crop-search" type="text" placeholder="Search crops…" autocomplete="off" aria-label="Search crops for bed">
     <div id="bed-crop-list"></div>
   </div>
+  <!-- Screen reader live region for dynamic announcements -->
+  <div id="sr-announcer" aria-live="polite" aria-atomic="true"
+       style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 </body>
 </html>
