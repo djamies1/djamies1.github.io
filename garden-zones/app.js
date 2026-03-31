@@ -31,8 +31,10 @@ import {
   getSeasonForMonth, frostDateToMonth,
   gridcodeToZone, getZoneCentroid,
   formatLocationName, parseHarvestDays, getWmoIcon,
+  debounce, throttle,
 } from './utils/index.js';
 import { getRecipesForCrop, showHarvestRecipes } from './features/recipes.js';
+import { scorePlantingDay, render7DayForecast } from './features/weather.js';
 
 // ── A11y helpers ───────────────────────────────
 function addButtonKeydown(el, handler) {
@@ -1319,10 +1321,10 @@ function initBrowse() {
 
   const search = document.getElementById('browse-search');
   if (search) {
-    search.addEventListener('input', () => {
+    search.addEventListener('input', debounce(() => {
       browseSearch = search.value.toLowerCase().trim();
       renderBrowseGrid();
-    });
+    }, 250));
   }
 
   const cats = document.getElementById('browse-cats');
@@ -2793,31 +2795,12 @@ function renderWeatherStrip() {
     <div class="wx-forecast">${forecast}</div>
     <div class="wx-attribution">${selectedLocationName ? `📍 ${selectedLocationName} · ` : ''}Weather: Open-Meteo.com</div>`;
   el.hidden = false;
+  const forecastEl = document.getElementById('weather-forecast-7day');
+  if (forecastEl && weatherData?.daily) render7DayForecast(weatherData.daily, forecastEl, useMetric);
 }
 
 // ── Phase 21: Planting Day Forecast ──────────────
-function scorePlantingDay(hi, lo, prec, wmo) {
-  let score = 100;
-  // Frost / cold nights
-  if      (lo < 32) score -= 70;
-  else if (lo < 38) score -= 45;
-  else if (lo < 45) score -= 15;
-  // Cold days
-  if      (hi < 45) score -= 30;
-  else if (hi < 55) score -= 10;
-  // Heat
-  if      (hi > 95) score -= 25;
-  else if (hi > 88) score -= 10;
-  // Rain / precip
-  if      (prec > 0.5)  score -= 40;
-  else if (prec > 0.2)  score -= 18;
-  else if (prec > 0.05) score -= 5;
-  // Severe weather via WMO code
-  if      (wmo >= 95)                  score -= 45; // thunderstorm
-  else if (wmo >= 71 && wmo <= 77)    score -= 55; // snow
-  else if (wmo >= 65 && wmo <= 67)    score -= 25; // heavy rain
-  return Math.max(0, Math.round(score));
-}
+// scorePlantingDay moved to features/weather.js
 
 function renderPlantingForecast() {
   const el = document.getElementById('planting-forecast');
@@ -3434,23 +3417,33 @@ function initKeyboardShortcuts() {
   document.getElementById('help-btn')?.addEventListener('click', openShortcutsModal);
 }
 
-let toastTimer = null;
+const toastQueue = [];
 function showToast(msg, type) {
-  let toast = document.getElementById('toast');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'toast';
-    toast.setAttribute('role', 'status');
-    toast.setAttribute('aria-live', 'polite');
-    toast.setAttribute('aria-atomic', 'true');
-    document.body.appendChild(toast);
-  }
-  toast.textContent = msg;
-  toast.className = 'show';
+  toastQueue.push({ msg, type });
+  _flushToastQueue();
+}
+function _flushToastQueue() {
+  // Remove toasts beyond cap of 3
+  const existing = [...document.querySelectorAll('.toast-item')];
+  if (existing.length >= 3) return;
+  if (!toastQueue.length) return;
+  const { msg, type } = toastQueue.shift();
+  const toast = document.createElement('div');
+  toast.className = 'toast-item show';
   if (type) toast.classList.add(`toast--${type}`);
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  toast.setAttribute('aria-atomic', 'true');
+  toast.textContent = msg;
+  // Stack above bottom nav: offset by existing count
+  const idx = document.querySelectorAll('.toast-item').length;
+  toast.style.bottom = `calc(70px + ${idx} * 56px)`;
+  document.body.appendChild(toast);
   announce(msg);
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => { toast.remove(); _flushToastQueue(); }, 300);
+  }, 3500);
 }
 
 
@@ -4984,10 +4977,10 @@ function initJournal() {
   });
 
   // Phase 57: search input + date filter
-  document.getElementById('journal-search-input')?.addEventListener('input', e => {
+  document.getElementById('journal-search-input')?.addEventListener('input', debounce(e => {
     journalSearchQuery = e.target.value;
     renderJournalTab();
-  });
+  }, 250));
   document.getElementById('journal-date-filter')?.addEventListener('change', () => renderJournalTab());
 }
 
@@ -5180,6 +5173,8 @@ function showUpdateBar() {
   if (document.getElementById('update-bar')) return;
   const bar = document.createElement('div');
   bar.id = 'update-bar';
+  bar.setAttribute('role', 'alert');
+  bar.setAttribute('aria-live', 'assertive');
   bar.innerHTML = `<span>🆕 New version available</span>
     <button id="update-reload-btn">Reload</button>
     <button id="update-dismiss-btn" aria-label="Dismiss">✕</button>`;
@@ -5259,7 +5254,7 @@ function initQuickSearch() {
   const results = document.getElementById('quick-search-results');
   if (!overlay || !input || !results) return;
 
-  input.addEventListener('input', () => renderQSResults(input.value));
+  input.addEventListener('input', debounce(() => renderQSResults(input.value), 200));
 
   input.addEventListener('keydown', e => {
     if (e.key === 'Escape') { closeQuickSearch(); return; }
@@ -6215,7 +6210,7 @@ function renderGardenMapDetail() {
   renderBedDetailCrops();
 
   const searchEl = document.getElementById('gm-crop-search');
-  searchEl?.addEventListener('input', e => renderBedCropSuggestions(e.target.value));
+  searchEl?.addEventListener('input', debounce(e => renderBedCropSuggestions(e.target.value), 200));
   searchEl?.addEventListener('focus', e => renderBedCropSuggestions(e.target.value));
   document.addEventListener('pointerdown', function hideSugg(e) {
     if (!e.target.closest('.gm-crop-add')) {
@@ -6472,7 +6467,7 @@ function wireGardenMap() {
       sc.scrollTop  = my*gardenCanvas.rows*TILE_SIZE*_mapZoom - sc.clientHeight/2;
     }
   });
-  document.getElementById('gm-canvas-scroll')?.addEventListener('scroll', renderMinimap, { passive: true });
+  document.getElementById('gm-canvas-scroll')?.addEventListener('scroll', throttle(renderMinimap, 80), { passive: true });
   // Draw-to-add & print (guarded against re-attachment)
   const _drawBtn = document.getElementById('gm-draw-btn');
   if (_drawBtn && !_drawBtn._attached) { _drawBtn._attached = true; _drawBtn.addEventListener('click', _toggleDrawMode); }
