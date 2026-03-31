@@ -23,8 +23,34 @@ import {
 } from './utils/index.js';
 import { getRecipesForCrop, showHarvestRecipes } from './features/recipes.js';
 
+// ── A11y helpers ───────────────────────────────
+function addButtonKeydown(el, handler) {
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(e); }
+  });
+}
 
+function trapFocus(modal) {
+  const focusable = modal.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  modal.addEventListener('keydown', function trap(e) {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+      e.preventDefault();
+      (e.shiftKey ? last : first).focus();
+    }
+  });
+  first?.focus();
+}
 
+function announce(msg) {
+  const el = document.getElementById('sr-announcer');
+  if (!el) return;
+  el.textContent = '';
+  requestAnimationFrame(() => { el.textContent = msg; });
+}
 
 
 
@@ -338,6 +364,7 @@ function initMap() {
   }).addTo(map);
   if (cfg.bounds) map.fitBounds(cfg.bounds);
   document.getElementById('loading-overlay').classList.add('hidden');
+  announce('Zone data loaded');
 }
 
 function styleFeature(feature) {
@@ -1123,6 +1150,7 @@ function openCropDetail(name) {
   const c = cropData && cropData[name];
   if (!c) return;
   const modal = document.getElementById('crop-modal');
+  const _prev = document.activeElement;
   document.getElementById('modal-emoji').textContent       = c.emoji || '🌱';
   document.getElementById('modal-crop-name').textContent   = name;
   const badge = document.getElementById('modal-difficulty');
@@ -1153,7 +1181,11 @@ function openCropDetail(name) {
   const shareBtn = document.getElementById('modal-share-crop-btn');
   if (shareBtn) { shareBtn.onclick = () => shareCropCard(name); }
   trackRecentlyViewed(name);
-  if (!modal.open) modal.showModal();
+  if (!modal.open) {
+    modal.showModal();
+    trapFocus(modal);
+    modal.addEventListener('close', () => _prev?.focus(), { once: true });
+  }
 }
 
 function renderCropDetail(c) {
@@ -1640,6 +1672,7 @@ function gardenAdd(name) {
   myGarden[name] = { added: new Date().toISOString().slice(0,10), planted: null };
   saveGarden(); refreshGardenUI(name);
   checkCompanionConflicts(name);
+  announce(`${name} added to your garden`);
   haptic([10, 40, 5]);
   maybeRequestReview();
   earnXP(20, `Added ${name} to garden`);
@@ -3416,6 +3449,16 @@ function initOnboarding() {
 }
 
 // ── Keyboard shortcuts ──────────────────────────
+let _shortcutsPrev = null;
+function openShortcutsModal() {
+  _shortcutsPrev = document.activeElement;
+  const sm = document.getElementById('shortcuts-modal');
+  if (!sm) return;
+  sm.showModal();
+  trapFocus(sm);
+  sm.addEventListener('close', () => { _shortcutsPrev?.focus(); _shortcutsPrev = null; }, { once: true });
+}
+
 function initKeyboardShortcuts() {
   document.addEventListener('keydown', e => {
     const tag = document.activeElement?.tagName;
@@ -3448,7 +3491,7 @@ function initKeyboardShortcuts() {
         setLayoutMode(layoutMode === 'garden' ? 'map' : 'garden');
         break;
       case '?':
-        document.getElementById('shortcuts-modal')?.showModal();
+        openShortcutsModal();
         break;
     }
   });
@@ -3457,8 +3500,7 @@ function initKeyboardShortcuts() {
     document.getElementById('shortcuts-close')?.addEventListener('click', () => sm.close());
     sm.addEventListener('click', e => { if (e.target === sm) sm.close(); });
   }
-  document.getElementById('help-btn')?.addEventListener('click', () =>
-    document.getElementById('shortcuts-modal')?.showModal());
+  document.getElementById('help-btn')?.addEventListener('click', openShortcutsModal);
 }
 
 let toastTimer = null;
@@ -3475,6 +3517,7 @@ function showToast(msg, type) {
   toast.textContent = msg;
   toast.className = 'show';
   if (type) toast.classList.add(`toast--${type}`);
+  announce(msg);
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
 }
@@ -3933,7 +3976,8 @@ function renderGardenGantt() {
     </div>`;
 
   // Click-to-jump: clicking a gantt cell switches to calendar tab at that month
-  el.querySelector('#gantt-grid-inner')?.addEventListener('click', e => {
+  const ganttInner = el.querySelector('#gantt-grid-inner');
+  const jumpToGanttMonth = e => {
     const cell = e.target.closest('.gantt-cell[data-month]');
     if (!cell) return;
     const m = parseInt(cell.dataset.month, 10);
@@ -3951,6 +3995,10 @@ function renderGardenGantt() {
     document.getElementById('tab-journal').hidden  = true;
     renderPanel();
     updateURL();
+  };
+  ganttInner?.addEventListener('click', jumpToGanttMonth);
+  ganttInner?.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jumpToGanttMonth(e); }
   });
 }
 
@@ -4108,7 +4156,13 @@ function shareZone() {
     }).catch(() => {});
     return;
   }
-  document.getElementById('share-modal')?.showModal();
+  const sm = document.getElementById('share-modal');
+  if (sm) {
+    const _prev = document.activeElement;
+    sm.showModal();
+    trapFocus(sm);
+    sm.addEventListener('close', () => _prev?.focus(), { once: true });
+  }
 }
 
 // ── Phase 14: Share & Print ──────────────────────
@@ -5784,13 +5838,19 @@ function autoPlaceBeds() {
   }
 }
 
+let _gardenMapPrev = null;
 function openGardenMap() {
+  _gardenMapPrev = document.activeElement;
   renderGardenMapCanvas();
-  document.getElementById('garden-map-overlay').hidden = false;
+  const overlay = document.getElementById('garden-map-overlay');
+  overlay.hidden = false;
+  trapFocus(overlay);
 }
 
 function closeGardenMap() {
   document.getElementById('garden-map-overlay').hidden = true;
+  _gardenMapPrev?.focus();
+  _gardenMapPrev = null;
   _mapSelectedBed = null; _mapSelectedStruct = null;
   _drag = null; _structureDrag = null; _resizeDrag = null;
   _undoStack = []; _redoStack = [];
@@ -6852,6 +6912,7 @@ async function requestNotifPermission() {
 
 async function fireNotif(title, body, tag) {
   if (!notifGranted()) return;
+  announce(`${title}: ${body}`);
   const ln = _capNotifs();
   if (ln) {
     try {
@@ -7098,7 +7159,8 @@ function initSavedLocations() {
 
   document.getElementById('save-location-btn')?.addEventListener('click', saveCurrentLocation);
 
-  document.getElementById('saved-locations-bar')?.addEventListener('click', e => {
+  const bar = document.getElementById('saved-locations-bar');
+  const activateSavedChip = e => {
     const removeBtn = e.target.closest('.saved-loc-remove');
     if (removeBtn) { removeSavedLocation(parseInt(removeBtn.dataset.id, 10)); return; }
     const chip = e.target.closest('.saved-loc-chip');
@@ -7106,6 +7168,10 @@ function initSavedLocations() {
       const loc = savedLocations.find(l => l.id === parseInt(chip.dataset.id, 10));
       if (loc) restoreLocation(loc);
     }
+  };
+  bar?.addEventListener('click', activateSavedChip);
+  bar?.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateSavedChip(e); }
   });
 }
 
@@ -7441,10 +7507,18 @@ function saveFeatures() { localStorage.setItem('pzf-features', JSON.stringify(fe
 // ════════════════════════════════════════════════
 // Phase 53 — Settings Panel
 // ════════════════════════════════════════════════
+let _settingsPrev = null;
 function openSettings() {
+  _settingsPrev = document.activeElement;
   renderSettingsSheet();
   const sheet = document.getElementById('settings-overlay');
-  if (sheet) { sheet.hidden = false; requestAnimationFrame(() => sheet.classList.add('open')); }
+  if (sheet) {
+    sheet.hidden = false;
+    requestAnimationFrame(() => {
+      sheet.classList.add('open');
+      trapFocus(sheet);
+    });
+  }
   haptic(5);
 }
 function closeSettings() {
@@ -7453,6 +7527,8 @@ function closeSettings() {
     sheet.classList.remove('open');
     setTimeout(() => { sheet.hidden = true; }, 280);
   }
+  _settingsPrev?.focus();
+  _settingsPrev = null;
 }
 function renderSettingsSheet() {
   const body = document.getElementById('settings-body');
@@ -7635,10 +7711,19 @@ function renderRotationHistory(bedId) {
 // ════════════════════════════════════════════════
 // Phase 55 — Quick-Action FAB
 // ════════════════════════════════════════════════
+let _fabPrev = null;
 function openFAB() {
+  _fabPrev = document.activeElement;
   renderFABSheet();
   const overlay = document.getElementById('fab-sheet-overlay');
-  if (overlay) { overlay.hidden = false; requestAnimationFrame(() => overlay.classList.add('open')); }
+  if (overlay) {
+    overlay.hidden = false;
+    requestAnimationFrame(() => {
+      overlay.classList.add('open');
+      const sheet = overlay.querySelector('.fab-sheet');
+      if (sheet) trapFocus(sheet);
+    });
+  }
   haptic([5, 30, 5]);
 }
 function closeFAB() {
@@ -7647,6 +7732,8 @@ function closeFAB() {
     overlay.classList.remove('open');
     setTimeout(() => { overlay.hidden = true; }, 280);
   }
+  _fabPrev?.focus();
+  _fabPrev = null;
 }
 function renderFABSheet() {
   const el = document.getElementById('fab-actions');
@@ -8734,6 +8821,7 @@ function openCropComparison(nameA, nameB) {
   });
   overlay.querySelectorAll('.compare-head[role="button"]').forEach(head => {
     head.addEventListener('click', () => { overlay.hidden = true; openCropDetail(head.dataset.name); });
+    addButtonKeydown(head, () => { overlay.hidden = true; openCropDetail(head.dataset.name); });
   });
 }
 
@@ -10934,7 +11022,9 @@ const PROBLEM_DATABASE = [
 let _psCropName  = null;
 let _psSymptomId = null;
 
+let _problemSolverPrev = null;
 function openProblemSolver(cropName) {
+  _problemSolverPrev = document.activeElement;
   _psCropName  = cropName || null;
   _psSymptomId = null;
   const overlay = document.getElementById('problem-solver-overlay');
@@ -10969,12 +11059,15 @@ function openProblemSolver(cropName) {
 
   overlay.hidden = false;
   document.body.style.overflow = 'hidden';
+  trapFocus(overlay);
 }
 
 function closeProblemSolver() {
   const overlay = document.getElementById('problem-solver-overlay');
   if (overlay) overlay.hidden = true;
   document.body.style.overflow = '';
+  _problemSolverPrev?.focus();
+  _problemSolverPrev = null;
 }
 
 function renderPsResults() {
