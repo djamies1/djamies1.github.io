@@ -5840,3 +5840,22 @@ body.garden-mode .plant-section ul {
 .recipe-card-name { color: var(--text); font-size: var(--text-sm); font-weight: var(--weight-bold); }
 .recipe-card-time { color: var(--text-muted); font-size: var(--text-xs); flex-shrink: 0; white-space: nowrap; }
 .recipe-card-tip { color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-relaxed); margin: 0; }
+
+/* ── Window Controls Overlay (desktop PWA title bar) ─────── */
+@supports (app-region: drag) {
+  @media (display-mode: window-controls-overlay) {
+    body { padding-top: env(titlebar-area-height, 0); }
+    .app-header {
+      -webkit-app-region: drag;
+      app-region: drag;
+      padding-top: env(titlebar-area-height, 0);
+    }
+    .app-header button,
+    .app-header a,
+    .app-header input,
+    .app-header select {
+      -webkit-app-region: no-drag;
+      app-region: no-drag;
+    }
+  }
+}

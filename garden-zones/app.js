@@ -1290,6 +1290,13 @@ function restoreFromURL() {
     document.getElementById('tab-garden').hidden   = false;
     document.getElementById('tab-journal').hidden  = true;
   }
+  if (tabParam === 'journal') {
+    currentPanelTab = 'journal';
+    document.querySelectorAll('.ptab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'journal'));
+    document.getElementById('tab-calendar').hidden = true;
+    document.getElementById('tab-garden').hidden   = true;
+    document.getElementById('tab-journal').hidden  = false;
+  }
   if (params.get('browse') === '1') {
     requestAnimationFrame(() => document.getElementById('browse-btn')?.click());
   }

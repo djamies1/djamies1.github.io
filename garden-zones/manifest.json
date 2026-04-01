@@ -5,6 +5,7 @@
   "start_url": "/garden-zones/",
   "scope": "/garden-zones/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
   "orientation": "portrait-primary",
   "background_color": "#0a0f1a",
   "theme_color": "#4ade80",
@@ -110,6 +111,13 @@
       "short_name": "Browse",
       "description": "Browse all 69 crops with growing details",
       "url": "/garden-zones/?browse=1",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Garden Journal",
+      "short_name": "Journal",
+      "description": "Log garden notes, harvests, and observations",
+      "url": "/garden-zones/?tab=journal",
       "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
     }
   ]
