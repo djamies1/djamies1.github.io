@@ -202,6 +202,7 @@ let browseInGarden = false;
 let browseFamily = '';
 let browseFrostHardy = false;
 let browseDirectSow  = false;
+let browseSowNow     = false;
 let compareMode = false;
 let compareSet  = []; // max 2 crop names
 let yearViewMode = 'garden'; // 'garden' | 'zone'
@@ -1213,9 +1214,32 @@ function renderCropDetail(c) {
       if (c.min_soil_temp_f) {
         items.push(`<div class="sg-item"><span class="sg-icon">🌡</span><span><strong>Min soil temperature: ${c.min_soil_temp_f}°F</strong> — soil must reach this before outdoor sowing is reliable.</span></div>`);
       }
+      // Bullet 4 — succession schedule
+      if (c.succession_weeks) {
+        const today = new Date(); today.setHours(0, 0, 0, 0);
+        const firstFrost = (() => {
+          if (!selectedZone) return null;
+          const frost = FROST_DATES[selectedZone.toLowerCase()];
+          if (!frost?.first) return null;
+          let d = new Date(`${frost.first} ${today.getFullYear()}`);
+          if (isNaN(d)) return null;
+          if ((d - today) / 86400000 < -14) d.setFullYear(d.getFullYear() + 1);
+          return d;
+        })();
+        const dates = [];
+        let next = new Date(today.getTime() + c.succession_weeks * 7 * 86400000);
+        while (dates.length < 5) {
+          if (firstFrost && next > firstFrost) break;
+          dates.push(next.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+          next = new Date(next.getTime() + c.succession_weeks * 7 * 86400000);
+        }
+        const dateStr = dates.length ? ` — next sowings: ${dates.join(', ')}` : '';
+        items.push(`<div class="sg-item sg-item--succession"><span class="sg-icon">🔄</span><span><strong>Sow every ${c.succession_weeks} weeks</strong> for a continuous harvest${dateStr}.</span></div>`);
+      }
       if (!items.length) return '';
       return `<div class="modal-section"><div class="modal-section-title">Sowing Guide</div><div class="sow-guide">${items.join('')}</div></div>`;
     })()}
+    ${renderCropPlantingStrip(c._name)}
     ${features.companionPlanting ? `<div class="modal-section">
       <div class="modal-section-title">Companions &amp; Enemies</div>
       <div class="companion-guide">
@@ -1300,6 +1324,43 @@ function renderCustomCropDetail(c, name) {
     });
   }, 0);
   return html;
+}
+
+function renderCropPlantingStrip(name) {
+  if (!selectedZone || !plantingData || !name) return '';
+  const ABBR = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+  let hasAnyData = false;
+  const cells = ABBR.map((abbr, i) => {
+    const m = i + 1;
+    const d = getPlantingData(selectedZone, m);
+    const indoor  = (d?.startIndoors || []).includes(name);
+    const direct  = (d?.directSow    || []).includes(name);
+    const xplant  = (d?.transplant   || []).includes(name);
+    const harvest = (d?.harvest      || []).includes(name);
+    if (indoor || direct || xplant || harvest) hasAnyData = true;
+    const isCur   = m === currentMonth;
+    const dots = [
+      indoor  ? '<span class="pcs-dot pcs-dot--indoor"  title="Start indoors"></span>'  : '',
+      direct  ? '<span class="pcs-dot pcs-dot--direct"  title="Direct sow"></span>'     : '',
+      xplant  ? '<span class="pcs-dot pcs-dot--xplant"  title="Transplant"></span>'     : '',
+      harvest ? '<span class="pcs-dot pcs-dot--harvest" title="Harvest"></span>'         : '',
+    ].filter(Boolean).join('');
+    return `<div class="pcs-cell${isCur ? ' pcs-cell--current' : ''}">
+      <span class="pcs-abbr">${abbr}</span>
+      <div class="pcs-dots">${dots}</div>
+    </div>`;
+  });
+  if (!hasAnyData) return '';
+  return `<div class="modal-section">
+    <div class="modal-section-title">Planting Calendar <span class="pcs-zone-label">Zone ${selectedZone}</span></div>
+    <div class="planting-cal-strip">${cells.join('')}</div>
+    <div class="pcs-legend">
+      <span><span class="pcs-leg-dot pcs-leg-dot--indoor"></span>Start indoors</span>
+      <span><span class="pcs-leg-dot pcs-leg-dot--direct"></span>Direct sow</span>
+      <span><span class="pcs-leg-dot pcs-leg-dot--xplant"></span>Transplant</span>
+      <span><span class="pcs-leg-dot pcs-leg-dot--harvest"></span>Harvest</span>
+    </div>
+  </div>`;
 }
 
 // ── Helpers ────────────────────────────────────
@@ -1474,6 +1535,9 @@ function initBrowse() {
     } else if (filter === 'directsow') {
       browseDirectSow = !browseDirectSow;
       chip.classList.toggle('active', browseDirectSow);
+    } else if (filter === 'sownow') {
+      browseSowNow = !browseSowNow;
+      chip.classList.toggle('active', browseSowNow);
     }
     renderBrowseGrid();
   });
@@ -1528,11 +1592,13 @@ function renderBrowseGrid() {
   const grid = document.getElementById('browse-grid');
   if (!grid || !cropData) return;
 
-  // Build active set for current zone+month
+  // Build active set + sow-now set for current zone+month
   let activeSet = new Set();
+  const sowNowSet = new Set();
   if (selectedZone) {
     const d = getPlantingData(selectedZone, currentMonth);
-    ['startIndoors','directSow','transplant','harvest'].forEach(k => (d[k] || []).forEach(c => activeSet.add(c)));
+    ['startIndoors','directSow','transplant','harvest'].forEach(k => (d[k] || []).forEach(n => activeSet.add(n)));
+    [...(d?.startIndoors || []), ...(d?.directSow || [])].forEach(n => sowNowSet.add(n));
   }
 
   // Filter
@@ -1574,6 +1640,9 @@ function renderBrowseGrid() {
   if (browseDirectSow) {
     crops = crops.filter(([, c]) => c.transplant_tolerance === 'poor');
   }
+  if (browseSowNow) {
+    crops = crops.filter(([name]) => sowNowSet.has(name));
+  }
 
   // Companion filter: crops that are companions to anything in my garden
   const gardenCompanionSet = new Set();
@@ -1591,6 +1660,9 @@ function renderBrowseGrid() {
   if (cb) cb.disabled = !selectedZone;
   const cbC = document.getElementById('browse-companions');
   if (cbC) cbC.disabled = Object.keys(myGarden).length === 0;
+  // Disable "Sow now" chip when no zone
+  const sowNowChip = document.querySelector('.browse-adv-chip[data-filter="sownow"]');
+  if (sowNowChip) sowNowChip.disabled = !selectedZone;
 
   // Sort
   const DIFF_ORDER = { Easy: 0, Moderate: 1, Hard: 2 };
@@ -1626,6 +1698,42 @@ function renderBrowseGrid() {
   const countEl = document.getElementById('browse-count');
   if (countEl) countEl.textContent = `(${crops.length})`;
 
+  // Frost countdown pill
+  const frostPill = document.getElementById('browse-frost-pill');
+  if (frostPill) {
+    if (selectedZone) {
+      const frost = FROST_DATES[selectedZone.toLowerCase()];
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const calcDays = str => {
+        if (!str) return null;
+        let d = new Date(`${str} ${today.getFullYear()}`);
+        if (isNaN(d)) return null;
+        let diff = Math.round((d - today) / 86400000);
+        if (diff < -180) { d.setFullYear(d.getFullYear() + 1); diff = Math.round((d - today) / 86400000); }
+        return diff;
+      };
+      const pills = [];
+      if (frost?.last) {
+        const days = calcDays(frost.last);
+        if (days !== null) {
+          const txt = days > 0 ? `in ${days}d` : days === 0 ? 'today' : `${-days}d ago`;
+          pills.push(`<span class="bfp-item bfp-item--last">❄️ Last frost: ${frost.last} <em>(${txt})</em></span>`);
+        }
+      }
+      if (frost?.first) {
+        const days = calcDays(frost.first);
+        if (days !== null && days > 0) {
+          pills.push(`<span class="bfp-item bfp-item--first">🍂 First frost: ${frost.first} <em>(in ${days}d)</em></span>`);
+        }
+      }
+      frostPill.innerHTML = pills.join('');
+      frostPill.hidden = pills.length === 0;
+    } else {
+      frostPill.innerHTML = '';
+      frostPill.hidden = true;
+    }
+  }
+
   if (!crops.length) {
     grid.innerHTML = '<p class="browse-empty">No crops match your filters.</p>';
     return;
@@ -1642,6 +1750,7 @@ function renderBrowseGrid() {
       : c.frost_tolerance === 'hard_frost'
         ? '<div class="browse-card-frost browse-card-frost--hardy" title="Hard frost tolerant">❄️❄️</div>'
         : '';
+    const isSowNow = sowNowSet.has(name);
     return `<div class="browse-card${isActive ? ' browse-card--active' : ''}${isSelected ? ' browse-card--selected' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.025}s">
       <div class="browse-card-emoji">${c.emoji || '🌱'}</div>
       <div class="browse-card-name">${name}</div>
@@ -1650,7 +1759,7 @@ function renderBrowseGrid() {
         ${diff ? `<span class="diff-dot diff-dot--${diff}" title="${c.difficulty}"></span>` : ''}
       </div>
       ${frostBadge}
-      ${isActive     ? '<div class="browse-card-season">In season</div>'   : ''}
+      ${isSowNow ? '<div class="browse-card-sownow">🗓 Sow now</div>' : isActive ? '<div class="browse-card-season">In season</div>' : ''}
       ${isCompanion  ? '<div class="browse-card-companion">🤝 Companion</div>' : ''}
       ${isInGarden(name) ? '<div class="browse-card-saved">★ Saved</div>' : ''}
       ${c.custom ? '<div class="browse-card-custom">Custom</div>' : ''}
