@@ -5567,7 +5567,7 @@
     "frost_tolerance": "light_frost",
     "direct_sow_ok": true,
     "min_soil_temp_f": 55,
-    "category": "vegetable"
+    "category": "flower"
   },
   "New Zealand Spinach": {
     "aliases": [

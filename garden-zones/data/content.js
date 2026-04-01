@@ -11,10 +11,11 @@ export const CROP_CATEGORIES = {
   'Legumes':     ['Beans','Edamame','Fava Beans','Lima Beans','Peanuts','Peas','Runner Beans','Snow Peas','Sugar Snap Peas'],
   'Cucurbits':   ['Butternut Squash','Cucumbers','Melons','Pumpkins','Squash','Watermelon','Zucchini'],
   'Herbs':       ['Basil','Bay Leaf','Chervil','Cilantro','Dill','Fennel','Lemon Balm','Mint','Oregano','Parsley','Rosemary','Sage','Sorrel','Tarragon','Thyme'],
-  'Flowers':     ['Borage','Calendula','Lavender','Nasturtium','Sunflowers'],
+  'Flowers':     ['Borage','Calendula','Chamomile','Echinacea','Lavender','Marigolds','Nasturtium','Sunflowers','Valerian','Viola','Yarrow'],
   'Fruits':      ['Blackberries','Blackcurrants','Blueberries','Gooseberries','Raspberries','Redcurrants'],
   'Perennials':  ['Asparagus','Globe Artichoke','Rhubarb','Strawberries'],
   'Tropical':    ['Avocados','Ginger','Lemongrass','Mangoes','Turmeric'],
+  'Grains':      ['Amaranth','Corn','Quinoa','Sweet Corn'],
 };
 
 export const CROP_CATEGORY_MAP = Object.fromEntries(
