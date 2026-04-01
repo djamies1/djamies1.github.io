@@ -227,6 +227,19 @@ function getZoneFullLabel(zone) {
   return (CLIMATE_ZONE_LABELS[zone] || zone) + ' Climate Zone';
 }
 
+// ── Topbar height sync ────────────────────────
+// Keeps --topbar-height in sync with the actual rendered top-bar height so the
+// slider bar always sits exactly below it regardless of device/wrapping.
+(function syncTopbarHeight() {
+  const bar = document.getElementById('top-bar');
+  if (!bar) return;
+  const update = () =>
+    document.documentElement.style.setProperty('--topbar-height', bar.getBoundingClientRect().height + 'px');
+  update();
+  new ResizeObserver(update).observe(bar);
+  window.addEventListener('resize', update, { passive: true });
+})();
+
 // ── Entry point ───────────────────────────────
 document.addEventListener('DOMContentLoaded', loadData);
 
