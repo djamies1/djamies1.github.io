@@ -200,9 +200,12 @@ let browseSun = '';
 let browseShortSeason = false;
 let browseInGarden = false;
 let browseFamily = '';
-let browseFrostHardy = false;
-let browseDirectSow  = false;
-let browseSowNow     = false;
+let browseFrostHardy   = false;
+let browseDirectSow    = false;
+let browseSowNow       = false;
+let browseContainer    = false;
+let browseHeatSensitive= false;
+let browseListView     = loadBool(KEYS.BROWSE_LIST, false);
 let compareMode = false;
 let compareSet  = []; // max 2 crop names
 let yearViewMode = 'garden'; // 'garden' | 'zone'
@@ -1129,7 +1132,7 @@ function openCropDetail(name) {
   if (!c.custom) renderVarietyHistory(name);
   if (!c.custom) renderSeedStartSection(name);
   if (!c.custom) renderFertilizerSection(name);
-  if (!c.custom) renderSeasonSuitabilityBar(name);
+  if (!c.custom && !selectedZone) renderSeasonSuitabilityBar(name); // planting strip covers this when zone set
   if (!c.custom) renderCropPestGuide(name);
   if (!c.custom) renderSpacingCalculator(name);
   // Phase 85: share button in modal header
@@ -1186,6 +1189,36 @@ function renderCropDetail(c) {
       ${row('Soil pH', c.soil_ph)}
       ${row('Fertilizer', c.fertilizer)}
     </div>
+    ${(() => {
+      const price = CROP_VALUES[c._name];
+      if (!price) return '';
+      // Yield model: estimate seasonal yield for a ~2m² plot by crop category
+      const cat = CROP_CATEGORY_MAP[c._name] || c.category || '';
+      const yieldLow  = cat === 'Herbs'     ? 0.3
+                      : cat === 'Fruits'    ? 2.0
+                      : cat === 'Legumes'   ? 1.0
+                      : cat === 'Cucurbits' ? 4.0
+                      : cat === 'Root Veg'  ? 2.5
+                      : cat === 'Greens' || cat === 'Brassicas' ? 1.5
+                      : 1.5; // default
+      const yieldHigh = yieldLow * 2.5;
+      const valueLow  = Math.round(price * yieldLow);
+      const valueHigh = Math.round(price * yieldHigh);
+      return `<div class="modal-section gyo-section">
+        <div class="modal-section-title">Grow-Your-Own Value</div>
+        <div class="gyo-card">
+          <div class="gyo-price-row">
+            <span class="gyo-price-label">Organic retail</span>
+            <span class="gyo-price">~$${price.toFixed(2)}<span class="gyo-unit">/kg</span></span>
+          </div>
+          <div class="gyo-savings">
+            <span class="gyo-savings-icon">💰</span>
+            <span>A 2m² plot can save <strong>$${valueLow}–$${valueHigh}</strong> per season vs buying organic</span>
+          </div>
+          ${price >= 15 ? '<div class="gyo-high-value">⭐ High-value crop — great return on effort</div>' : ''}
+        </div>
+      </div>`;
+    })()}
     ${(() => {
       const items = [];
       // Bullet 1 — transplant method
@@ -1448,6 +1481,17 @@ function initBrowse() {
   const closeBtn = document.getElementById('browse-close');
   if (closeBtn) closeBtn.addEventListener('click', () => toggleBrowse(false));
 
+  const listToggle = document.getElementById('browse-list-toggle');
+  if (listToggle) {
+    listToggle.classList.toggle('browse-view-btn--active', browseListView);
+    listToggle.addEventListener('click', () => {
+      browseListView = !browseListView;
+      saveBool(KEYS.BROWSE_LIST, browseListView);
+      listToggle.classList.toggle('browse-view-btn--active', browseListView);
+      renderBrowseGrid();
+    });
+  }
+
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       const view = document.getElementById('browse-view');
@@ -1538,6 +1582,12 @@ function initBrowse() {
     } else if (filter === 'sownow') {
       browseSowNow = !browseSowNow;
       chip.classList.toggle('active', browseSowNow);
+    } else if (filter === 'container') {
+      browseContainer = !browseContainer;
+      chip.classList.toggle('active', browseContainer);
+    } else if (filter === 'heat') {
+      browseHeatSensitive = !browseHeatSensitive;
+      chip.classList.toggle('active', browseHeatSensitive);
     }
     renderBrowseGrid();
   });
@@ -1643,6 +1693,12 @@ function renderBrowseGrid() {
   if (browseSowNow) {
     crops = crops.filter(([name]) => sowNowSet.has(name));
   }
+  if (browseContainer) {
+    crops = crops.filter(([, c]) => c.container_ok === true);
+  }
+  if (browseHeatSensitive) {
+    crops = crops.filter(([name]) => HEAT_SENSITIVE.has(name));
+  }
 
   // Companion filter: crops that are companions to anything in my garden
   const gardenCompanionSet = new Set();
@@ -1680,6 +1736,8 @@ function renderBrowseGrid() {
     crops.sort(([, a], [, b]) => (a.min_soil_temp_f ?? 999) - (b.min_soil_temp_f ?? 999));
   } else if (browseSort === 'warmsoil') {
     crops.sort(([, a], [, b]) => (b.min_soil_temp_f ?? 0) - (a.min_soil_temp_f ?? 0));
+  } else if (browseSort === 'value') {
+    crops.sort(([a], [b]) => (CROP_VALUES[b] || 0) - (CROP_VALUES[a] || 0));
   } else if (selectedZone && !browseInSeason) {
     // Default: in-season first, then companions, then alphabetical
     crops.sort(([a], [b]) => {
@@ -1739,24 +1797,48 @@ function renderBrowseGrid() {
     return;
   }
 
+  grid.classList.toggle('browse-grid--list', browseListView);
+
   grid.innerHTML = crops.map(([name, c], i) => {
     const cat          = c.custom ? (c.category || '') : (CROP_CATEGORY_MAP[name] || '');
     const isActive     = activeSet.has(name);
     const isCompanion  = gardenCompanionSet.has(name) && !isInGarden(name);
     const diff         = c.difficulty ? c.difficulty.toLowerCase() : '';
     const isSelected   = compareMode && compareSet.includes(name);
+    const isSowNow     = sowNowSet.has(name);
+    const daysRange    = (c.days_min && c.days_max) ? `${c.days_min}–${c.days_max}d` : c.days_min ? `${c.days_min}d` : '';
     const frostBadge   = c.frost_tolerance === 'tender'
-      ? '<div class="browse-card-frost browse-card-frost--tender" title="Frost tender">🔥</div>'
+      ? '<span class="browse-card-frost browse-card-frost--tender" title="Frost tender">🔥</span>'
       : c.frost_tolerance === 'hard_frost'
-        ? '<div class="browse-card-frost browse-card-frost--hardy" title="Hard frost tolerant">❄️❄️</div>'
+        ? '<span class="browse-card-frost browse-card-frost--hardy" title="Hard frost tolerant">❄️❄️</span>'
         : '';
-    const isSowNow = sowNowSet.has(name);
+    const containerBadge = c.container_ok ? '<span class="browse-card-container" title="Container OK">🪣</span>' : '';
+
+    if (browseListView) {
+      const statusBadge = isSowNow
+        ? '<span class="bcl-badge bcl-badge--sow">🗓 Sow now</span>'
+        : isActive ? '<span class="bcl-badge bcl-badge--season">In season</span>' : '';
+      const savedBadge   = isInGarden(name)  ? '<span class="bcl-badge bcl-badge--saved">★ Saved</span>'    : '';
+      const companionBadge = isCompanion     ? '<span class="bcl-badge bcl-badge--companion">🤝</span>'     : '';
+      const customBadge  = c.custom          ? '<span class="bcl-badge bcl-badge--custom">Custom</span>'   : '';
+      return `<div class="browse-card-list${isSelected ? ' browse-card--selected' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.015}s">
+        <span class="bcl-emoji">${c.emoji || '🌱'}</span>
+        <span class="bcl-name">${name}</span>
+        <span class="bcl-cat">${cat}</span>
+        <span class="bcl-days">${daysRange}</span>
+        <span class="bcl-icons">${containerBadge}${frostBadge}</span>
+        <span class="bcl-badges">${statusBadge}${savedBadge}${companionBadge}${customBadge}</span>
+        ${diff ? `<span class="diff-dot diff-dot--${diff} bcl-diff" title="${c.difficulty}"></span>` : ''}
+      </div>`;
+    }
+
     return `<div class="browse-card${isActive ? ' browse-card--active' : ''}${isSelected ? ' browse-card--selected' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.025}s">
-      <div class="browse-card-emoji">${c.emoji || '🌱'}</div>
+      <div class="browse-card-emoji">${c.emoji || '🌱'}${containerBadge}</div>
       <div class="browse-card-name">${name}</div>
       <div class="browse-card-meta">
-        ${cat  ? `<span class="browse-card-cat">${cat}</span>` : ''}
-        ${diff ? `<span class="diff-dot diff-dot--${diff}" title="${c.difficulty}"></span>` : ''}
+        ${cat       ? `<span class="browse-card-cat">${cat}</span>` : ''}
+        ${daysRange ? `<span class="browse-card-days">${daysRange}</span>` : ''}
+        ${diff      ? `<span class="diff-dot diff-dot--${diff}" title="${c.difficulty}"></span>` : ''}
       </div>
       ${frostBadge}
       ${isSowNow ? '<div class="browse-card-sownow">🗓 Sow now</div>' : isActive ? '<div class="browse-card-season">In season</div>' : ''}

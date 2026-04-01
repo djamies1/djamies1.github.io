@@ -44,6 +44,7 @@ export const KEYS = {
   NOTIF_FROST:      'pzf-notif-frost',
   SAVED_LOCS:       'pzf-saved-locs',
   CAL_COMPACT:      'pzf-cal-compact',
+  BROWSE_LIST:      'pzf-browse-list',
 };
 
 /** Read a JSON value; returns fallback if missing or parse error. */
