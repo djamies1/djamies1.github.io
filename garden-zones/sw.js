@@ -1,4 +1,4 @@
-const CACHE     = 'plant-zone-v122';
+const CACHE     = 'plant-zone-v123';
 const API_CACHE = 'pzf-api-v1'; // separate; survives app-code updates
 
 const CORE = [
@@ -27,6 +27,7 @@ const CORE = [
   '/garden-zones/data/gardenate_uk.json',
   '/garden-zones/data/gardenate_nz.json',
   '/garden-zones/features/weather.js',
+  '/garden-zones/utils/storage.js',
   '/garden-zones/data/winter-bg.svg',
   '/garden-zones/data/spring-bg.svg',
   '/garden-zones/data/summer-bg.svg',
