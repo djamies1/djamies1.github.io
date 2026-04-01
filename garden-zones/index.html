@@ -351,6 +351,7 @@
   <div id="browse-view" class="browse-hidden" role="dialog" aria-modal="true" aria-label="Browse all crops">
     <div id="browse-header">
       <h2 id="browse-title">Browse Crops <span id="browse-count"></span></h2>
+      <button id="browse-list-toggle" class="browse-view-btn" title="Toggle list/grid view" aria-label="Toggle list view">▤</button>
       <button id="browse-compare-btn" class="browse-cmp-btn" title="Compare two crops">⚖ Compare</button>
       <button id="browse-close" aria-label="Close">&times;</button>
     </div>
@@ -389,6 +390,7 @@
           <option value="easy">Difficulty: Easy first</option>
           <option value="coldsoil">🌡 Soil temp: coldest first</option>
           <option value="warmsoil">🌡 Soil temp: warmest first</option>
+          <option value="value">💰 Value: highest first</option>
         </select>
         <select id="browse-family" aria-label="Filter by plant family">
           <option value="">Any family</option>
@@ -425,6 +427,8 @@
           <button class="browse-adv-chip" data-filter="frost" data-val="1">❄️ Frost hardy</button>
           <button class="browse-adv-chip" data-filter="directsow" data-val="1">🌱 Direct sow</button>
           <button class="browse-adv-chip" data-filter="sownow" data-val="1">🗓 Sow now</button>
+          <button class="browse-adv-chip" data-filter="container" data-val="1">🪣 Container OK</button>
+          <button class="browse-adv-chip" data-filter="heat" data-val="1">🌡 Heat sensitive</button>
         </div>
         <div id="browse-frost-pill" hidden></div>
       </div>

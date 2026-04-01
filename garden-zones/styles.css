@@ -5915,3 +5915,55 @@ body.garden-mode .plant-section ul {
 
 /* ── Sowing Guide succession bullet ────────────── */
 .sg-item--succession { border-left: 3px solid #fb923c; }
+
+/* ── Browse list/grid toggle button ────────────── */
+.browse-view-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-muted); cursor: pointer; font-size: 1rem; padding: 4px 8px; transition: background 0.15s, color 0.15s; }
+.browse-view-btn--active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+/* ── Browse card days pill ──────────────────────── */
+.browse-card-days { font-size: var(--text-2xs); color: var(--text-faint); background: var(--surface); border-radius: var(--radius-full); padding: 1px 5px; border: 1px solid var(--border); white-space: nowrap; }
+
+/* ── Browse card container badge ───────────────── */
+.browse-card-container { font-size: 0.7rem; vertical-align: super; line-height: 1; }
+
+/* ── Browse list view layout ────────────────────── */
+.browse-grid--list { display: flex; flex-direction: column; gap: 2px; }
+.browse-card-list {
+  display: grid;
+  grid-template-columns: 28px 1fr auto auto auto auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+  animation: fadeUp 0.2s ease both;
+}
+.browse-card-list:hover { background: var(--surface2); }
+.bcl-emoji { font-size: 1.2rem; text-align: center; }
+.bcl-name  { font-size: var(--text-sm); font-weight: 600; color: var(--text); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bcl-cat   { font-size: var(--text-xs); color: var(--text-muted); white-space: nowrap; }
+.bcl-days  { font-size: var(--text-xs); color: var(--text-faint); white-space: nowrap; min-width: 46px; text-align: right; }
+.bcl-icons { display: flex; gap: 3px; align-items: center; font-size: 0.75rem; }
+.bcl-badges{ display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.bcl-diff  { flex-shrink: 0; }
+.bcl-badge { font-size: var(--text-2xs); font-weight: 600; border-radius: var(--radius-full); padding: 1px 6px; white-space: nowrap; }
+.bcl-badge--sow      { color: #86efac; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); }
+.bcl-badge--season   { color: var(--accent); background: rgba(120,200,122,0.1); border: 1px solid rgba(120,200,122,0.25); }
+.bcl-badge--saved    { color: #fbbf24; background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.25); }
+.bcl-badge--companion{ color: #93c5fd; background: rgba(147,197,253,0.1); border: 1px solid rgba(147,197,253,0.25); }
+.bcl-badge--custom   { color: #c084fc; background: rgba(192,132,252,0.1); border: 1px solid rgba(192,132,252,0.25); }
+
+/* ── Grow-Your-Own Value section ────────────────── */
+.gyo-section .modal-section-title { color: #fbbf24; }
+.gyo-card { background: var(--surface2); border-radius: var(--radius-sm); padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; border: 1px solid rgba(251,191,36,0.15); }
+.gyo-price-row { display: flex; justify-content: space-between; align-items: baseline; }
+.gyo-price-label { font-size: var(--text-xs); color: var(--text-muted); }
+.gyo-price { font-size: var(--text-lg); font-weight: 700; color: #fbbf24; }
+.gyo-unit  { font-size: var(--text-xs); font-weight: 400; color: var(--text-muted); margin-left: 2px; }
+.gyo-savings { display: flex; gap: 8px; align-items: flex-start; font-size: var(--text-sm); color: var(--text-muted); line-height: var(--leading-relaxed); }
+.gyo-savings strong { color: var(--text); }
+.gyo-savings-icon { font-size: 1.1em; flex-shrink: 0; }
+.gyo-high-value { font-size: var(--text-xs); color: #fbbf24; background: rgba(251,191,36,0.08); border-radius: var(--radius-xs); padding: 4px 8px; }
