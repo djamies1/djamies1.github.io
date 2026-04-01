@@ -42,7 +42,12 @@
     "aliases": [
       "Table Squash"
     ],
-    "tip": "Unlike larger squash, best harvested small (under 2 lb) for sweetest flesh."
+    "tip": "Unlike larger squash, best harvested small (under 2 lb) for sweetest flesh.",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Amaranth": {
     "emoji": "🌾",
@@ -87,7 +92,12 @@
       "Grain Amaranth",
       "Callaloo",
       "Pigweed"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "grain"
   },
   "Aronia": {
     "aliases": [
@@ -129,7 +139,12 @@
       "Nero",
       "McKenzie"
     ],
-    "water": "Moderate; drought-tolerant once established"
+    "water": "Moderate; drought-tolerant once established",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "fruit"
   },
   "Arugula": {
     "emoji": "🥬",
@@ -173,7 +188,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": true,
-    "family": "Brassicaceae"
+    "family": "Brassicaceae",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 40,
+    "category": "vegetable"
   },
   "Asparagus": {
     "emoji": "🌿",
@@ -219,7 +239,12 @@
     "aliases": [
       "Garden Asparagus",
       "Sparrowgrass"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Avocados": {
     "emoji": "🥑",
@@ -261,7 +286,12 @@
       "Avocado",
       "Alligator Pear",
       "Butter Fruit"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Basil": {
     "emoji": "🌿",
@@ -308,7 +338,12 @@
       "Genovese Basil",
       "Thai Basil",
       "Tulsi"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "herb"
   },
   "Bay Leaf": {
     "emoji": "🌿",
@@ -350,7 +385,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Lauraceae"
+    "family": "Lauraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Beans": {
     "emoji": "🫘",
@@ -398,7 +438,12 @@
       "String Beans",
       "Snap Beans",
       "Bush Beans"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "vegetable"
   },
   "Beets": {
     "emoji": "🫀",
@@ -443,7 +488,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Amaranthaceae"
+    "family": "Amaranthaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Bitter Melon": {
     "emoji": "🥒",
@@ -485,7 +535,12 @@
     "transplant_weeks": 4,
     "seed_life_years": 4,
     "container_ok": true,
-    "family": "Cucurbitaceae"
+    "family": "Cucurbitaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 75,
+    "category": "vegetable"
   },
   "Black-eyed Peas": {
     "emoji": "🫘",
@@ -533,7 +588,12 @@
       "Southern Peas",
       "Field Peas"
     ],
-    "tip": "Thrives in heat and poor soil where other legumes struggle. Perfect for summer gaps."
+    "tip": "Thrives in heat and poor soil where other legumes struggle. Perfect for summer gaps.",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Blackberries": {
     "emoji": "🫐",
@@ -578,7 +638,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Rosaceae"
+    "family": "Rosaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "fruit"
   },
   "Blackcurrants": {
     "emoji": "🫐",
@@ -621,7 +686,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Grossulariaceae"
+    "family": "Grossulariaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Blueberries": {
     "emoji": "🫐",
@@ -667,7 +737,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Ericaceae"
+    "family": "Ericaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "fruit"
   },
   "Bok Choy": {
     "emoji": "🥬",
@@ -712,7 +787,12 @@
     "aliases": [
       "Chinese White Cabbage",
       "White Stem Bok Choy"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Borage": {
     "emoji": "💙",
@@ -752,7 +832,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Boraginaceae"
+    "family": "Boraginaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "flower"
   },
   "Borlotti Beans": {
     "emoji": "🫘",
@@ -796,7 +881,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Fabaceae"
+    "family": "Fabaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "vegetable"
   },
   "Boysenberry": {
     "aliases": [
@@ -836,7 +926,12 @@
       "Standard",
       "Thornless Boysenberry"
     ],
-    "water": "1-1.5 in/week"
+    "water": "1-1.5 in/week",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "fruit"
   },
   "Broad Beans": {
     "emoji": "🫘",
@@ -883,7 +978,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Fabaceae"
+    "family": "Fabaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Broccoli": {
     "emoji": "🥦",
@@ -930,7 +1030,12 @@
       "Calabrese",
       "Heading Broccoli",
       "Italian Broccoli"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Broccoli Rabe": {
     "emoji": "🥦",
@@ -978,7 +1083,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": false,
-    "family": "Brassicaceae"
+    "family": "Brassicaceae",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Brussels Sprouts": {
     "emoji": "🥦",
@@ -1024,7 +1134,12 @@
     "aliases": [
       "Sprouts",
       "Mini Cabbages"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Butternut Squash": {
     "emoji": "🎃",
@@ -1068,7 +1183,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": false,
-    "family": "Cucurbitaceae"
+    "family": "Cucurbitaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Cabbage": {
     "emoji": "🥬",
@@ -1114,7 +1234,12 @@
       "White Cabbage",
       "Red Cabbage",
       "Savoy Cabbage"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Calendula": {
     "emoji": "🌼",
@@ -1157,7 +1282,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Asteraceae"
+    "family": "Asteraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "flower"
   },
   "Cardoon": {
     "aliases": [
@@ -1200,7 +1330,12 @@
       "Plein Blanc Inerme",
       "Gigante di Romagna"
     ],
-    "water": "High; 2 in/week"
+    "water": "High; 2 in/week",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "vegetable"
   },
   "Carrots": {
     "emoji": "🥕",
@@ -1245,7 +1380,12 @@
     "aliases": [
       "Garden Carrot",
       "Daucus carota"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Cauliflower": {
     "emoji": "⚪",
@@ -1290,7 +1430,12 @@
     "aliases": [
       "White Cauliflower",
       "Romanesco"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Cavolo Nero": {
     "aliases": [
@@ -1339,7 +1484,12 @@
       "Cavolo Nero di Toscana",
       "Black Magic"
     ],
-    "water": "1 in/week"
+    "water": "1 in/week",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Celeriac": {
     "emoji": "🌿",
@@ -1385,7 +1535,12 @@
       "Celery Root",
       "Turnip-Rooted Celery",
       "Knob Celery"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": false,
+    "min_soil_temp_f": 60,
+    "category": "vegetable"
   },
   "Celery": {
     "emoji": "🌿",
@@ -1430,7 +1585,12 @@
     "aliases": [
       "Garden Celery",
       "Pascal Celery"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": false,
+    "min_soil_temp_f": 60,
+    "category": "vegetable"
   },
   "Celtuce": {
     "aliases": [
@@ -1473,7 +1633,12 @@
       "Green Stem",
       "Red Stem"
     ],
-    "water": "Moderate; even moisture prevents bolting"
+    "water": "Moderate; even moisture prevents bolting",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Chamomile": {
     "emoji": "🌼",
@@ -1515,7 +1680,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 2,
     "container_ok": true,
-    "family": "Asteraceae"
+    "family": "Asteraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "flower"
   },
   "Chard": {
     "emoji": "🌈",
@@ -1560,7 +1730,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": true,
-    "family": "Amaranthaceae"
+    "family": "Amaranthaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Cherry Tomatoes": {
     "emoji": "🍅",
@@ -1607,7 +1782,12 @@
     "transplant_weeks": 6,
     "seed_life_years": 4,
     "container_ok": true,
-    "family": "Solanaceae"
+    "family": "Solanaceae",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Chervil": {
     "emoji": "🌿",
@@ -1651,7 +1831,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Apiaceae"
+    "family": "Apiaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "herb"
   },
   "Chia": {
     "emoji": "🌱",
@@ -1690,7 +1875,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 4,
     "container_ok": true,
-    "family": "Lamiaceae"
+    "family": "Lamiaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "herb"
   },
   "Chickpeas": {
     "aliases": [
@@ -1736,7 +1926,12 @@
       "Desi",
       "Black Chickpea"
     ],
-    "water": "1 in/week; reduce as pods form"
+    "water": "1 in/week; reduce as pods form",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Chicory": {
     "emoji": "🌿",
@@ -1778,7 +1973,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 4,
     "container_ok": false,
-    "family": "Asteraceae"
+    "family": "Asteraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "vegetable"
   },
   "Chives": {
     "emoji": "🌿",
@@ -1820,7 +2020,12 @@
     "aliases": [
       "Garden Chives",
       "Onion Chives"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "vegetable"
   },
   "Chrysanthemum Greens": {
     "emoji": "🌼",
@@ -1864,7 +2069,12 @@
       "Tong Ho",
       "Crown Daisy"
     ],
-    "tip": "Cool-season crop that bolts in heat; direct sow in spring and again in late summer."
+    "tip": "Cool-season crop that bolts in heat; direct sow in spring and again in late summer.",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Cilantro": {
     "emoji": "🌿",
@@ -1907,7 +2117,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": true,
-    "family": "Apiaceae"
+    "family": "Apiaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "Citrus": {
     "emoji": "🍋",
@@ -1955,7 +2170,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 1,
     "container_ok": true,
-    "family": "Rutaceae"
+    "family": "Rutaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Collard Greens": {
     "emoji": "🥬",
@@ -2000,7 +2220,12 @@
     "aliases": [
       "Collards",
       "Tree Cabbage"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Comfrey": {
     "emoji": "🌿",
@@ -2040,7 +2265,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Boraginaceae"
+    "family": "Boraginaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Corn": {
     "emoji": "🌽",
@@ -2085,7 +2315,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 2,
     "container_ok": false,
-    "family": "Poaceae"
+    "family": "Poaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "grain"
   },
   "Cress": {
     "emoji": "🌱",
@@ -2125,7 +2360,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": true,
-    "family": "Brassicaceae"
+    "family": "Brassicaceae",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Cucumbers": {
     "emoji": "🥒",
@@ -2170,7 +2410,12 @@
     "aliases": [
       "Cuke",
       "Garden Cucumber"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Daikon": {
     "emoji": "🌿",
@@ -2220,7 +2465,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": false,
-    "family": "Brassicaceae"
+    "family": "Brassicaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Delicata Squash": {
     "emoji": "🟡",
@@ -2264,7 +2514,12 @@
     "aliases": [
       "Sweet Potato Squash"
     ],
-    "tip": "Skin is tender enough to eat; no need to peel. One of the sweetest winter squashes."
+    "tip": "Skin is tender enough to eat; no need to peel. One of the sweetest winter squashes.",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Dill": {
     "emoji": "🌿",
@@ -2309,7 +2564,12 @@
     "aliases": [
       "Garden Dill",
       "Dillweed"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "herb"
   },
   "Echinacea": {
     "emoji": "🌸",
@@ -2351,7 +2611,12 @@
     "transplant_weeks": 8,
     "seed_life_years": 2,
     "container_ok": true,
-    "family": "Asteraceae"
+    "family": "Asteraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "flower"
   },
   "Edamame": {
     "emoji": "🫛",
@@ -2396,7 +2661,12 @@
     "aliases": [
       "Green Soybeans",
       "Vegetable Soybean"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "vegetable"
   },
   "Eggplant": {
     "emoji": "🍆",
@@ -2440,7 +2710,12 @@
     "transplant_weeks": 8,
     "seed_life_years": 4,
     "container_ok": false,
-    "family": "Solanaceae"
+    "family": "Solanaceae",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 75,
+    "category": "vegetable"
   },
   "Elderberries": {
     "emoji": "🫐",
@@ -2485,7 +2760,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 1,
     "container_ok": false,
-    "family": "Adoxaceae"
+    "family": "Adoxaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "Endive": {
     "emoji": "🥬",
@@ -2530,7 +2810,12 @@
       "Curly Endive",
       "Frisée",
       "Chicory Endive"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Epazote": {
     "emoji": "🌿",
@@ -2570,7 +2855,12 @@
       "Wormseed",
       "Dysphania ambrosioides"
     ],
-    "tip": "Essential in Mexican black bean cooking — reduces flatulence and adds distinctive flavour. Self-seeds prolifically."
+    "tip": "Essential in Mexican black bean cooking — reduces flatulence and adds distinctive flavour. Self-seeds prolifically.",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Fava Beans": {
     "emoji": "🫘",
@@ -2616,7 +2906,12 @@
       "Horse Beans",
       "Windsor Beans",
       "Tick Beans"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 40,
+    "category": "vegetable"
   },
   "Fennel": {
     "emoji": "🌿",
@@ -2664,7 +2959,12 @@
       "Florence Fennel",
       "Bulb Fennel",
       "Finocchio"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "herb"
   },
   "Figs": {
     "emoji": "🍑",
@@ -2707,7 +3007,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 1,
     "container_ok": true,
-    "family": "Moraceae"
+    "family": "Moraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Flaxseed": {
     "emoji": "🌾",
@@ -2748,7 +3053,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 4,
     "container_ok": false,
-    "family": "Linaceae"
+    "family": "Linaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Gai Lan": {
     "emoji": "🥬",
@@ -2796,7 +3106,12 @@
       "Chinese Kale",
       "Jie Lan"
     ],
-    "tip": "More heat tolerant than Western broccoli; succession-sow every 3 weeks for continuous harvest."
+    "tip": "More heat tolerant than Western broccoli; succession-sow every 3 weeks for continuous harvest.",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Galangal": {
     "aliases": [
@@ -2838,7 +3153,12 @@
       "Greater Galangal",
       "Lesser Galangal"
     ],
-    "water": "High; consistently moist but well-drained"
+    "water": "High; consistently moist but well-drained",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": false,
+    "min_soil_temp_f": 65,
+    "category": "herb"
   },
   "Garlic": {
     "emoji": "🧄",
@@ -2883,7 +3203,12 @@
     "aliases": [
       "Hardneck Garlic",
       "Softneck Garlic"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 32,
+    "category": "vegetable"
   },
   "Ginger": {
     "emoji": "🫚",
@@ -2927,7 +3252,12 @@
     "aliases": [
       "Root Ginger",
       "Cooking Ginger"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "herb"
   },
   "Globe Artichoke": {
     "emoji": "🌿",
@@ -2972,7 +3302,12 @@
     "aliases": [
       "Artichoke",
       "French Artichoke"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Goji Berries": {
     "aliases": [
@@ -3015,7 +3350,12 @@
       "Big Lifeberry",
       "Sweet Lifeberry"
     ],
-    "water": "Moderate; drought tolerant once established"
+    "water": "Moderate; drought tolerant once established",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Good King Henry": {
     "emoji": "🌿",
@@ -3058,7 +3398,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Amaranthaceae"
+    "family": "Amaranthaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "Gooseberries": {
     "emoji": "🍈",
@@ -3104,7 +3449,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Grossulariaceae"
+    "family": "Grossulariaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "fruit"
   },
   "Grapes": {
     "emoji": "🍇",
@@ -3151,7 +3501,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 1,
     "container_ok": true,
-    "family": "Vitaceae"
+    "family": "Vitaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "fruit"
   },
   "Green Onions": {
     "emoji": "🌿",
@@ -3197,7 +3552,12 @@
       "Scallions",
       "Spring Onions",
       "Bunching Onions"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Ground Cherries": {
     "emoji": "🫑",
@@ -3243,7 +3603,12 @@
       "Physalis",
       "Husk Cherry",
       "Cape Gooseberry"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Hamburg Parsley": {
     "emoji": "🌿",
@@ -3286,7 +3651,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 1,
     "container_ok": false,
-    "family": "Apiaceae"
+    "family": "Apiaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Honeyberry": {
     "emoji": "🫐",
@@ -3330,7 +3700,12 @@
       "Lonicera caerulea",
       "Blue Honeysuckle"
     ],
-    "tip": "Needs 2 different varieties for pollination. Extremely cold-hardy — survives -40°F / -40°C."
+    "tip": "Needs 2 different varieties for pollination. Extremely cold-hardy — survives -40°F / -40°C.",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Hops": {
     "emoji": "🍺",
@@ -3373,7 +3748,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 1,
     "container_ok": false,
-    "family": "Cannabaceae"
+    "family": "Cannabaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "Horseradish": {
     "emoji": "🌿",
@@ -3414,7 +3794,12 @@
     "aliases": [
       "Mountain Radish",
       "Red Cole"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "herb"
   },
   "Hyacinth Beans": {
     "aliases": [
@@ -3458,7 +3843,12 @@
       "Ruby Moon",
       "Alba"
     ],
-    "water": "Moderate; drought-tolerant once established"
+    "water": "Moderate; drought-tolerant once established",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Jalapeño": {
     "emoji": "🌶️",
@@ -3504,7 +3894,12 @@
     "transplant_weeks": 8,
     "seed_life_years": 4,
     "container_ok": true,
-    "family": "Solanaceae"
+    "family": "Solanaceae",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 75,
+    "category": "vegetable"
   },
   "Jerusalem Artichoke": {
     "emoji": "🌻",
@@ -3548,7 +3943,12 @@
       "Sunchoke",
       "Earth Apple",
       "Topinambur"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Kabocha Squash": {
     "emoji": "🎃",
@@ -3593,7 +3993,12 @@
       "Japanese Pumpkin",
       "Japanese Squash"
     ],
-    "tip": "Cures better than most squash — leave 2 weeks at room temperature after harvest to improve flavour."
+    "tip": "Cures better than most squash — leave 2 weeks at room temperature after harvest to improve flavour.",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Kale": {
     "emoji": "🥦",
@@ -3640,7 +4045,12 @@
       "Borecole",
       "Lacinato Kale",
       "Dinosaur Kale"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Kiwi": {
     "emoji": "🥝",
@@ -3682,7 +4092,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 1,
     "container_ok": false,
-    "family": "Actinidiaceae"
+    "family": "Actinidiaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Kohlrabi": {
     "emoji": "🌿",
@@ -3728,7 +4143,12 @@
     "aliases": [
       "German Turnip",
       "Turnip Cabbage"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Komatsuna": {
     "emoji": "🥬",
@@ -3772,7 +4192,12 @@
       "Japanese Mustard Spinach",
       "Spinach Mustard"
     ],
-    "tip": "Extremely cold-hardy — survives light frost and even mild snow. Great for winter growing."
+    "tip": "Extremely cold-hardy — survives light frost and even mild snow. Great for winter growing.",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Lavender": {
     "emoji": "💜",
@@ -3819,7 +4244,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Lamiaceae"
+    "family": "Lamiaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "herb"
   },
   "Leeks": {
     "emoji": "🌿",
@@ -3864,7 +4294,12 @@
     "aliases": [
       "Garden Leek",
       "Allium porrum"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": false,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "Lemon Balm": {
     "emoji": "🍋",
@@ -3906,7 +4341,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Lamiaceae"
+    "family": "Lamiaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "herb"
   },
   "Lemon Verbena": {
     "emoji": "🌿",
@@ -3948,7 +4388,12 @@
     "aliases": [
       "Lemon Beebrush",
       "Aloysia citrodora"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Lemongrass": {
     "emoji": "🌾",
@@ -3989,7 +4434,12 @@
     "aliases": [
       "Barbed Wire Grass",
       "Cymbopogon"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "herb"
   },
   "Lentils": {
     "aliases": [
@@ -4035,7 +4485,12 @@
       "French Puy",
       "Beluga Black"
     ],
-    "water": "1 in/week"
+    "water": "1 in/week",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Lettuce": {
     "emoji": "🥬",
@@ -4082,7 +4537,12 @@
       "Romaine",
       "Iceberg",
       "Loose-leaf Lettuce"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 40,
+    "category": "vegetable"
   },
   "Lima Beans": {
     "emoji": "🫘",
@@ -4130,7 +4590,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Fabaceae"
+    "family": "Fabaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Loganberry": {
     "aliases": [
@@ -4170,7 +4635,12 @@
       "Standard",
       "Thornless Loganberry"
     ],
-    "water": "1-1.5 in/week"
+    "water": "1-1.5 in/week",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "fruit"
   },
   "Lovage": {
     "emoji": "🌿",
@@ -4211,7 +4681,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Apiaceae"
+    "family": "Apiaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "herb"
   },
   "Luffa": {
     "emoji": "🌿",
@@ -4253,7 +4728,12 @@
     "transplant_weeks": 5,
     "seed_life_years": 4,
     "container_ok": false,
-    "family": "Cucurbitaceae"
+    "family": "Cucurbitaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Malabar Spinach": {
     "aliases": [
@@ -4295,7 +4775,12 @@
       "Red Stem",
       "Green Stem"
     ],
-    "water": "High; keep consistently moist"
+    "water": "High; keep consistently moist",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Mangetout": {
     "emoji": "🫛",
@@ -4342,7 +4827,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Fabaceae"
+    "family": "Fabaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Mangoes": {
     "emoji": "🥭",
@@ -4383,7 +4873,12 @@
     "aliases": [
       "Mango",
       "Mangifera indica"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Marigolds": {
     "emoji": "🌻",
@@ -4428,7 +4923,12 @@
     "transplant_weeks": 6,
     "seed_life_years": 4,
     "container_ok": true,
-    "family": "Asteraceae"
+    "family": "Asteraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "flower"
   },
   "Marjoram": {
     "emoji": "🌿",
@@ -4471,7 +4971,12 @@
     "aliases": [
       "Sweet Marjoram",
       "Pot Marjoram"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "herb"
   },
   "Medlar": {
     "emoji": "🍎",
@@ -4512,7 +5017,12 @@
     "aliases": [
       "Mespilus germanica"
     ],
-    "tip": "Must 'blet' (partially rot) before eating — traditional British autumn fruit. Ornamental year-round. Self-fertile."
+    "tip": "Must 'blet' (partially rot) before eating — traditional British autumn fruit. Ornamental year-round. Self-fertile.",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "fruit"
   },
   "Melons": {
     "emoji": "🍈",
@@ -4557,7 +5067,12 @@
       "Cantaloupe",
       "Honeydew",
       "Muskmelon"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 75,
+    "category": "fruit"
   },
   "Microgreens": {
     "emoji": "🌱",
@@ -4597,7 +5112,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Various"
+    "family": "Various",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "vegetable"
   },
   "Mint": {
     "emoji": "🌿",
@@ -4643,7 +5163,12 @@
       "Spearmint",
       "Peppermint",
       "Apple Mint"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "herb"
   },
   "Mitsuba": {
     "emoji": "🌿",
@@ -4686,7 +5211,12 @@
       "Japanese Honewort",
       "Trefoil"
     ],
-    "tip": "One of few vegetables that prefers shade — ideal for underplanting taller crops. Slightly celery-like flavour."
+    "tip": "One of few vegetables that prefers shade — ideal for underplanting taller crops. Slightly celery-like flavour.",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "Mizuna": {
     "emoji": "🥬",
@@ -4732,7 +5262,12 @@
       "Japanese Mustard",
       "Spider Mustard",
       "Kyona"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Mulberry": {
     "emoji": "🍇",
@@ -4774,7 +5309,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 1,
     "container_ok": true,
-    "family": "Moraceae"
+    "family": "Moraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Mung Beans": {
     "emoji": "🫘",
@@ -4820,7 +5360,12 @@
       "Green Gram",
       "Golden Gram"
     ],
-    "tip": "Can also be sprouted indoors year-round in a jar — no garden space needed for sprouts."
+    "tip": "Can also be sprouted indoors year-round in a jar — no garden space needed for sprouts.",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Mustard Greens": {
     "emoji": "🌿",
@@ -4864,7 +5409,12 @@
       "Brown Mustard",
       "Chinese Mustard",
       "Leaf Mustard"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 40,
+    "category": "vegetable"
   },
   "Mâche": {
     "emoji": "🌿",
@@ -4907,7 +5457,12 @@
     "aliases": [
       "Lamb's Lettuce",
       "Corn Salad"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Napa Cabbage": {
     "emoji": "🥬",
@@ -4958,7 +5513,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": false,
-    "family": "Brassicaceae"
+    "family": "Brassicaceae",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Nasturtium": {
     "emoji": "🌸",
@@ -5002,7 +5562,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Tropaeolaceae"
+    "family": "Tropaeolaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "New Zealand Spinach": {
     "aliases": [
@@ -5041,7 +5606,12 @@
     "varieties": [
       "Standard"
     ],
-    "water": "Moderate; more drought-tolerant than true spinach"
+    "water": "Moderate; more drought-tolerant than true spinach",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "Okra": {
     "emoji": "🫛",
@@ -5087,7 +5657,12 @@
       "Lady's Fingers",
       "Gumbo",
       "Bhindi"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 75,
+    "category": "vegetable"
   },
   "Onions": {
     "emoji": "🧅",
@@ -5132,7 +5707,12 @@
     "aliases": [
       "Bulb Onion",
       "Garden Onion"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": false,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Orach": {
     "aliases": [
@@ -5174,7 +5754,12 @@
       "Golden Orach",
       "Green Orach"
     ],
-    "water": "Moderate"
+    "water": "Moderate",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Oregano": {
     "emoji": "🌿",
@@ -5215,7 +5800,12 @@
     "aliases": [
       "Wild Marjoram",
       "Greek Oregano"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "herb"
   },
   "Padron Peppers": {
     "aliases": [
@@ -5258,7 +5848,12 @@
     "varieties": [
       "Padron"
     ],
-    "water": "1 in/week; consistent moisture"
+    "water": "1 in/week; consistent moisture",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Pak Choi": {
     "emoji": "🥬",
@@ -5302,7 +5897,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": true,
-    "family": "Brassicaceae"
+    "family": "Brassicaceae",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Parsley": {
     "emoji": "🌿",
@@ -5348,7 +5948,12 @@
       "Flat-leaf Parsley",
       "Curly Parsley",
       "Italian Parsley"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "herb"
   },
   "Parsnips": {
     "emoji": "🌿",
@@ -5393,7 +5998,12 @@
     "aliases": [
       "Garden Parsnip",
       "White Carrot"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Passionfruit": {
     "emoji": "🌺",
@@ -5433,7 +6043,12 @@
     "transplant_weeks": 10,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Passifloraceae"
+    "family": "Passifloraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": false,
+    "min_soil_temp_f": 65,
+    "category": "fruit"
   },
   "Pattypan Squash": {
     "aliases": [
@@ -5481,7 +6096,12 @@
       "Benning's Green Tint",
       "Starship"
     ],
-    "water": "1.5 in/week"
+    "water": "1.5 in/week",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Peanuts": {
     "emoji": "🥜",
@@ -5526,7 +6146,12 @@
     "aliases": [
       "Groundnuts",
       "Monkey Nuts"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Peas": {
     "emoji": "🫛",
@@ -5572,7 +6197,12 @@
       "Garden Peas",
       "Green Peas",
       "Shelling Peas"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 40,
+    "category": "vegetable"
   },
   "Peppers": {
     "emoji": "🌶️",
@@ -5619,7 +6249,12 @@
     "transplant_weeks": 8,
     "seed_life_years": 2,
     "container_ok": true,
-    "family": "Solanaceae"
+    "family": "Solanaceae",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 75,
+    "category": "vegetable"
   },
   "Potatoes": {
     "emoji": "🥔",
@@ -5666,7 +6301,12 @@
       "Garden Potato",
       "Spud",
       "Tatties"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Pumpkins": {
     "emoji": "🎃",
@@ -5710,7 +6350,12 @@
     "aliases": [
       "Field Pumpkin",
       "Winter Squash"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Purple Sprouting Broccoli": {
     "emoji": "🥦",
@@ -5758,7 +6403,12 @@
       "PSB",
       "Sprouting Broccoli"
     ],
-    "tip": "Sow May–June for late-winter harvest. One of the few crops that bridges the hungry gap."
+    "tip": "Sow May–June for late-winter harvest. One of the few crops that bridges the hungry gap.",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Purslane": {
     "emoji": "🌿",
@@ -5797,7 +6447,12 @@
     "aliases": [
       "Common Purslane",
       "Verdolaga"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Quince": {
     "emoji": "🍐",
@@ -5840,7 +6495,12 @@
     "aliases": [
       "Cydonia oblonga"
     ],
-    "tip": "Too astringent to eat raw but outstanding cooked. Self-fertile; plant in a sheltered spot."
+    "tip": "Too astringent to eat raw but outstanding cooked. Self-fertile; plant in a sheltered spot.",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "fruit"
   },
   "Quinoa": {
     "emoji": "🌾",
@@ -5884,7 +6544,12 @@
     "aliases": [
       "Goosefoot",
       "Inca Wheat"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "grain"
   },
   "Radicchio": {
     "emoji": "🥬",
@@ -5925,7 +6590,12 @@
     "transplant_weeks": 4,
     "seed_life_years": 4,
     "container_ok": true,
-    "family": "Asteraceae"
+    "family": "Asteraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "Radishes": {
     "emoji": "🔴",
@@ -5969,7 +6639,12 @@
     "aliases": [
       "Garden Radish",
       "Spring Radish"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Raspberries": {
     "emoji": "🫐",
@@ -6017,7 +6692,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Rosaceae"
+    "family": "Rosaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "fruit"
   },
   "Redcurrants": {
     "emoji": "🍒",
@@ -6061,7 +6741,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Grossulariaceae"
+    "family": "Grossulariaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Rhubarb": {
     "emoji": "🌿",
@@ -6105,7 +6790,12 @@
     "aliases": [
       "Pie Plant",
       "Garden Rhubarb"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Romanesco": {
     "emoji": "🥦",
@@ -6154,7 +6844,12 @@
       "Roman Cauliflower",
       "Broccoflower"
     ],
-    "tip": "Needs very consistent moisture — any stress causes loose, irregular heads."
+    "tip": "Needs very consistent moisture — any stress causes loose, irregular heads.",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Rosemary": {
     "emoji": "🌿",
@@ -6198,7 +6893,12 @@
     "aliases": [
       "Garden Rosemary",
       "Salvia rosmarinus"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "herb"
   },
   "Runner Beans": {
     "emoji": "🫘",
@@ -6246,7 +6946,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Fabaceae"
+    "family": "Fabaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "vegetable"
   },
   "Rutabaga": {
     "emoji": "🌿",
@@ -6292,7 +6997,12 @@
       "Yellow Turnip",
       "Swedish Turnip",
       "Neep"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Saffron": {
     "emoji": "🌸",
@@ -6331,7 +7041,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 1,
     "container_ok": true,
-    "family": "Iridaceae"
+    "family": "Iridaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "Sage": {
     "emoji": "🌿",
@@ -6376,7 +7091,12 @@
     "aliases": [
       "Garden Sage",
       "Common Sage"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "herb"
   },
   "Salsify": {
     "emoji": "🌱",
@@ -6418,7 +7138,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Asteraceae"
+    "family": "Asteraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "Savory": {
     "emoji": "🌿",
@@ -6460,7 +7185,12 @@
     "aliases": [
       "Summer Savory",
       "Winter Savory"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "herb"
   },
   "Scorzonera": {
     "aliases": [
@@ -6501,7 +7231,12 @@
       "Duplex",
       "Gigantia"
     ],
-    "water": "Moderate; even moisture prevents bolting"
+    "water": "Moderate; even moisture prevents bolting",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Sea Buckthorn": {
     "aliases": [
@@ -6542,7 +7277,12 @@
       "Leikora",
       "Pollmix"
     ],
-    "water": "Low; very drought-tolerant"
+    "water": "Low; very drought-tolerant",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Shallots": {
     "emoji": "🧅",
@@ -6587,7 +7327,12 @@
     "aliases": [
       "Eschalot",
       "French Shallot"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 35,
+    "category": "vegetable"
   },
   "Shishito Peppers": {
     "aliases": [
@@ -6631,7 +7376,12 @@
     "varieties": [
       "Standard"
     ],
-    "water": "1 in/week; consistent moisture"
+    "water": "1 in/week; consistent moisture",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Shiso": {
     "emoji": "🌿",
@@ -6674,7 +7424,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Lamiaceae"
+    "family": "Lamiaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "herb"
   },
   "Snow Peas": {
     "emoji": "🫛",
@@ -6721,7 +7476,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Fabaceae"
+    "family": "Fabaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Sorrel": {
     "emoji": "🌱",
@@ -6765,7 +7525,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Polygonaceae"
+    "family": "Polygonaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Spaghetti Squash": {
     "aliases": [
@@ -6811,7 +7576,12 @@
       "Hasta La Pasta",
       "Primavera"
     ],
-    "water": "1.5 in/week"
+    "water": "1.5 in/week",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Spinach": {
     "emoji": "🌿",
@@ -6855,7 +7625,12 @@
     "aliases": [
       "Garden Spinach",
       "Baby Spinach"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 35,
+    "category": "vegetable"
   },
   "Squash": {
     "emoji": "🎃",
@@ -6900,7 +7675,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": false,
-    "family": "Cucurbitaceae"
+    "family": "Cucurbitaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Stevia": {
     "emoji": "🌿",
@@ -6942,7 +7722,12 @@
     "aliases": [
       "Sweetleaf",
       "Sugar Leaf"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 68,
+    "category": "vegetable"
   },
   "Strawberries": {
     "emoji": "🍓",
@@ -6988,7 +7773,12 @@
     "aliases": [
       "Garden Strawberry",
       "Wild Strawberry"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "fruit"
   },
   "Sugar Snap Peas": {
     "emoji": "🫛",
@@ -7035,7 +7825,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Fabaceae"
+    "family": "Fabaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Sunflowers": {
     "emoji": "🌻",
@@ -7081,7 +7876,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Asteraceae"
+    "family": "Asteraceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "flower"
   },
   "Sweet Cicely": {
     "emoji": "🌿",
@@ -7121,7 +7921,12 @@
       "Sweet Chervil",
       "Anise Chervil"
     ],
-    "tip": "Perennial herb that dies back in winter. Seed needs cold stratification — sow in autumn outdoors. Sweetens tart fruits naturally."
+    "tip": "Perennial herb that dies back in winter. Seed needs cold stratification — sow in autumn outdoors. Sweetens tart fruits naturally.",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Sweet Corn": {
     "emoji": "🌽",
@@ -7166,7 +7971,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 2,
     "container_ok": false,
-    "family": "Poaceae"
+    "family": "Poaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "grain"
   },
   "Sweet Peas": {
     "emoji": "🌸",
@@ -7212,7 +8022,12 @@
     "aliases": [
       "Climbing Sweet Pea",
       "Lathyrus odoratus"
-    ]
+    ],
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 50,
+    "category": "vegetable"
   },
   "Sweet Potatoes": {
     "emoji": "🍠",
@@ -7257,7 +8072,12 @@
       "Yam",
       "Kumara",
       "Ipomoea batatas"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 75,
+    "category": "vegetable"
   },
   "Taro": {
     "emoji": "🌿",
@@ -7301,7 +8121,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 1,
     "container_ok": true,
-    "family": "Araceae"
+    "family": "Araceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Tarragon": {
     "emoji": "🌿",
@@ -7341,7 +8166,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Asteraceae"
+    "family": "Asteraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Tatsoi": {
     "emoji": "🥬",
@@ -7386,7 +8216,12 @@
       "Spoon Mustard",
       "Rosette Bok Choy",
       "Flat Cabbage"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Thai Basil": {
     "aliases": [
@@ -7433,7 +8268,12 @@
       "Spicy Globe",
       "Cardinal"
     ],
-    "water": "Moderate; consistent moisture"
+    "water": "Moderate; consistent moisture",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "herb"
   },
   "Thyme": {
     "emoji": "🌿",
@@ -7473,7 +8313,12 @@
     "aliases": [
       "Garden Thyme",
       "Common Thyme"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "hard_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "herb"
   },
   "Tiger Nuts": {
     "emoji": "🌾",
@@ -7517,7 +8362,12 @@
       "Earth Almond",
       "Yellow Nutsedge"
     ],
-    "tip": "Technically a sedge grass. Nutty, sweet tubers — base of Spanish horchata. Invasive if allowed to spread."
+    "tip": "Technically a sedge grass. Nutty, sweet tubers — base of Spanish horchata. Invasive if allowed to spread.",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Tomatillos": {
     "emoji": "🫑",
@@ -7562,7 +8412,12 @@
     "aliases": [
       "Husk Tomato",
       "Mexican Ground Cherry"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Tomatoes": {
     "emoji": "🍅",
@@ -7607,7 +8462,12 @@
     "transplant_weeks": 6,
     "seed_life_years": 4,
     "container_ok": false,
-    "family": "Solanaceae"
+    "family": "Solanaceae",
+    "transplant_tolerance": "good",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   },
   "Turmeric": {
     "emoji": "🟡",
@@ -7647,7 +8507,12 @@
     "aliases": [
       "Indian Saffron",
       "Yellow Root"
-    ]
+    ],
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "herb"
   },
   "Turnips": {
     "emoji": "🌿",
@@ -7691,7 +8556,12 @@
     "aliases": [
       "White Turnip",
       "Garden Turnip"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 45,
+    "category": "vegetable"
   },
   "Valerian": {
     "emoji": "💜",
@@ -7729,7 +8599,12 @@
     "transplant_weeks": 8,
     "seed_life_years": 2,
     "container_ok": true,
-    "family": "Caprifoliaceae"
+    "family": "Caprifoliaceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "flower"
   },
   "Vietnamese Coriander": {
     "emoji": "🌿",
@@ -7773,7 +8648,12 @@
       "Vietnamese Mint",
       "Laksa Leaf"
     ],
-    "tip": "Unlike cilantro, doesn't bolt in heat — use as a warm-season coriander substitute. Frost tender; bring indoors in winter."
+    "tip": "Unlike cilantro, doesn't bolt in heat — use as a warm-season coriander substitute. Frost tender; bring indoors in winter.",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Viola": {
     "emoji": "🌸",
@@ -7817,7 +8697,12 @@
       "Heartsease",
       "Johnny Jump-Up"
     ],
-    "tip": "All parts above ground are edible. Cool-season; flowers prolifically in spring and autumn."
+    "tip": "All parts above ground are edible. Cool-season; flowers prolifically in spring and autumn.",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "flower"
   },
   "Water Chestnut": {
     "aliases": [
@@ -7855,7 +8740,12 @@
     "varieties": [
       "Standard"
     ],
-    "water": "Aquatic; keep in 2-4 in of standing water"
+    "water": "Aquatic; keep in 2-4 in of standing water",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Watercress": {
     "emoji": "🌿",
@@ -7894,7 +8784,12 @@
     "aliases": [
       "Water Cress",
       "Nasturtium officinale"
-    ]
+    ],
+    "transplant_tolerance": "good",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 55,
+    "category": "vegetable"
   },
   "Watermelon": {
     "emoji": "🍉",
@@ -7939,7 +8834,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": false,
-    "family": "Cucurbitaceae"
+    "family": "Cucurbitaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "fruit"
   },
   "Yacon": {
     "emoji": "🌿",
@@ -7983,7 +8883,12 @@
       "Peruvian Ground Apple",
       "Smallanthus sonchifolius"
     ],
-    "tip": "Tubers taste like sweet apple-pear when cured. Leaves make a sweet herbal tea. Frost tender."
+    "tip": "Tubers taste like sweet apple-pear when cured. Leaves make a sweet herbal tea. Frost tender.",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": null,
+    "category": "vegetable"
   },
   "Yardlong Beans": {
     "emoji": "🫘",
@@ -8029,7 +8934,12 @@
     "transplant_weeks": 0,
     "seed_life_years": 3,
     "container_ok": false,
-    "family": "Fabaceae"
+    "family": "Fabaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 65,
+    "category": "vegetable"
   },
   "Yarrow": {
     "emoji": "🌾",
@@ -8071,7 +8981,12 @@
     "transplant_weeks": 8,
     "seed_life_years": 3,
     "container_ok": true,
-    "family": "Asteraceae"
+    "family": "Asteraceae",
+    "transplant_tolerance": "moderate",
+    "frost_tolerance": "light_frost",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 60,
+    "category": "flower"
   },
   "Zucchini": {
     "emoji": "🥒",
@@ -8116,6 +9031,11 @@
     "transplant_weeks": 0,
     "seed_life_years": 5,
     "container_ok": false,
-    "family": "Cucurbitaceae"
+    "family": "Cucurbitaceae",
+    "transplant_tolerance": "poor",
+    "frost_tolerance": "tender",
+    "direct_sow_ok": true,
+    "min_soil_temp_f": 70,
+    "category": "vegetable"
   }
 }
