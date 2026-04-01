@@ -1007,15 +1007,17 @@ button:active, [role="button"]:active {
 ────────────────────────────────────────────── */
 @media (max-width: 640px) {
   :root {
-    --topbar-height: 100px;
+    --topbar-height: 112px;
     --bottom-nav-height: 56px;
   }
 
   #top-bar {
     flex-wrap: wrap;
-    height: var(--topbar-height);
+    height: auto;
+    min-height: var(--topbar-height);
     padding: 8px 12px;
     gap: var(--space-2);
+    overflow: visible;
   }
 
   #title {
@@ -1147,7 +1149,7 @@ button:active, [role="button"]:active {
 #modal-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: var(--space-4);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
@@ -4489,7 +4491,13 @@ body.garden-mode .plant-section ul {
 .htt-ideas li { color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-loose); }
 
 /* ── Phase 71: Crop Comparison ─────────────────── */
-.modal-compare-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-2xs); font-weight: var(--weight-semibold); margin-top: 6px; padding: 5px 10px; transition: color var(--transition-snap), border-color var(--transition-snap); width: 100%; }
+.modal-compare-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); cursor: pointer; font-size: var(--text-2xs); font-weight: var(--weight-semibold); padding: 5px 10px; transition: color var(--transition-snap), border-color var(--transition-snap); }
+/* In add-to-garden row: push compare to the right, natural width */
+#modal-garden-bar.bar-add .modal-compare-btn { margin-left: auto; }
+/* Add button takes its own full row so Plan + Compare share the row below */
+#modal-garden-bar.bar-add > .modal-garden-btn { width: 100%; }
+/* In saved-to-garden column: compare stretches full width (flex column default) */
+#modal-garden-bar.bar-saved .modal-compare-btn { width: 100%; }
 .modal-compare-btn:hover { border-color: var(--accent-dark); color: var(--text); }
 .modal-compare-btn--ready { background: color-mix(in srgb, var(--color-warning) 10%, transparent); border-color: color-mix(in srgb, var(--color-warning) 40%, transparent); color: var(--color-warning); }
 .compare-overlay { align-items: center; background: var(--overlay-xl); backdrop-filter: var(--blur-lg); bottom: 0; display: flex; justify-content: center; left: 0; position: fixed; right: 0; top: 0; z-index: var(--z-compare); }
@@ -4726,7 +4734,7 @@ body.garden-mode .plant-section ul {
 .sc-count { color: var(--accent); font-size: var(--text-icon); font-weight: var(--weight-bold); margin-right: 6px; }
 
 /* ── Phase 83: Safe-to-Sow Badge ─────────────── */
-.modal-safe-sow { align-items: flex-start; border-radius: var(--radius-md); display: flex; flex-direction: column; gap: 2px; margin: 0 0 0; padding: 8px 14px; }
+.modal-safe-sow { align-items: flex-start; display: flex; flex-direction: column; flex-shrink: 0; gap: 2px; padding: 8px 14px; border-bottom: 1px solid var(--border); }
 .modal-safe-sow--safe   { background: color-mix(in srgb, var(--accent) 10%, transparent);  border-left: 3px solid var(--accent); }
 .modal-safe-sow--wait   { background: color-mix(in srgb, var(--color-danger) 7%, transparent);  border-left: 3px solid var(--color-danger); }
 .modal-safe-sow--soon   { background: color-mix(in srgb, var(--color-warning) 8%, transparent); border-left: 3px solid var(--color-warning); }
