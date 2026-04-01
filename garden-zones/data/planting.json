@@ -3177,9 +3177,7 @@
         "Celery",
         "Shallots",
         "Chives",
-        "Parsley",
         "Lavender",
-        "Lovage",
         "Peppers",
         "Cherry Tomatoes",
         "Jalapeño",
@@ -3193,7 +3191,6 @@
         "Cardoon",
         "Shishito Peppers",
         "Padron Peppers",
-        "Mitsuba",
         "Yacon"
       ],
       "directSow": [
@@ -3228,8 +3225,6 @@
         "Savory",
         "Lemon Balm",
         "Shiso",
-        "Hamburg Parsley",
-        "Lovage",
         "Marigolds",
         "Echinacea",
         "Yarrow",
@@ -3292,32 +3287,21 @@
     },
     "4": {
       "startIndoors": [
-        "Squash",
-        "Cucumbers",
-        "Melons",
         "Basil",
         "Kohlrabi",
         "Bok Choy",
         "Globe Artichoke",
         "Endive",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
         "Pak Choi",
         "Napa Cabbage",
         "Savory",
         "Shiso",
-        "Sunflowers",
         "Lemon Verbena",
         "Marigolds",
         "Valerian",
         "Malabar Spinach",
         "Cavolo Nero",
         "Thai Basil",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Komatsuna",
         "Yacon",
         "Epazote"
@@ -3437,7 +3421,6 @@
     },
     "5": {
       "startIndoors": [
-        "Watermelon",
         "Cavolo Nero"
       ],
       "directSow": [
@@ -4128,7 +4111,6 @@
         "Peppers",
         "Shallots",
         "Chives",
-        "Parsley",
         "Cherry Tomatoes",
         "Jalapeño",
         "Broccoli Rabe",
@@ -4136,14 +4118,12 @@
         "Marjoram",
         "Tarragon",
         "Lemon Balm",
-        "Lovage",
         "Echinacea",
         "Yarrow",
         "Goji Berries",
         "Cardoon",
         "Shishito Peppers",
         "Padron Peppers",
-        "Mitsuba",
         "Yacon"
       ],
       "directSow": [
@@ -4239,21 +4219,10 @@
     },
     "4": {
       "startIndoors": [
-        "Squash",
-        "Cucumbers",
-        "Melons",
         "Kohlrabi",
         "Bok Choy",
         "Endive",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
-        "Sunflowers",
         "Malabar Spinach",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon",
         "Epazote"
       ],
@@ -4949,7 +4918,6 @@
         "Peppers",
         "Shallots",
         "Chives",
-        "Parsley",
         "Cherry Tomatoes",
         "Jalapeño",
         "Broccoli Rabe",
@@ -4957,7 +4925,6 @@
         "Marjoram",
         "Tarragon",
         "Lemon Balm",
-        "Lovage",
         "Echinacea",
         "Yarrow",
         "Broccoli",
@@ -4980,7 +4947,6 @@
         "Romanesco",
         "Gai Lan",
         "Komatsuna",
-        "Mitsuba",
         "Yacon"
       ],
       "directSow": [
@@ -5032,20 +4998,12 @@
         "Echinacea",
         "Yarrow",
         "Valerian",
-        "Squash",
         "Kohlrabi",
         "Bok Choy",
         "Endive",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
         "Goji Berries",
         "Malabar Spinach",
         "Thai Basil",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Purple Sprouting Broccoli",
         "Romanesco",
         "Gai Lan",
@@ -5146,20 +5104,9 @@
     },
     "4": {
       "startIndoors": [
-        "Squash",
-        "Cucumbers",
-        "Melons",
         "Kohlrabi",
         "Bok Choy",
         "Endive",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
-        "Sunflowers",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon",
         "Epazote"
       ],
@@ -6045,7 +5992,6 @@
         "Cauliflower",
         "Brussels Sprouts",
         "Globe Artichoke",
-        "Parsley",
         "Celeriac",
         "Collard Greens",
         "Cherry Tomatoes",
@@ -6057,7 +6003,6 @@
         "Tarragon",
         "Lemon Balm",
         "Lemon Verbena",
-        "Lovage",
         "Marigolds",
         "Echinacea",
         "Yarrow",
@@ -6070,7 +6015,6 @@
         "Romanesco",
         "Gai Lan",
         "Komatsuna",
-        "Mitsuba",
         "Yacon"
       ],
       "directSow": [
@@ -6099,15 +6043,11 @@
         "Tomatoes",
         "Eggplant",
         "Basil",
-        "Squash",
         "Tomatillos",
         "Ground Cherries",
         "Kohlrabi",
         "Bok Choy",
         "Endive",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
         "Cherry Tomatoes",
         "Pak Choi",
         "Shiso",
@@ -6118,10 +6058,6 @@
         "Goji Berries",
         "Malabar Spinach",
         "Thai Basil",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Komatsuna",
         "Yacon",
         "Epazote"
@@ -6217,13 +6153,6 @@
     },
     "4": {
       "startIndoors": [
-        "Cucumbers",
-        "Melons",
-        "Butternut Squash",
-        "Watermelon",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon",
         "Epazote"
       ],
@@ -6927,21 +6856,18 @@
         "Broccoli",
         "Cabbage",
         "Cauliflower",
-        "Parsley",
         "Celeriac",
         "Pak Choi",
         "Napa Cabbage",
         "Lavender",
         "Tarragon",
-        "Lovage",
         "Yarrow",
         "Goji Berries",
         "Cardoon",
         "Purple Sprouting Broccoli",
         "Romanesco",
         "Gai Lan",
-        "Komatsuna",
-        "Mitsuba"
+        "Komatsuna"
       ],
       "directSow": [
         "Microgreens",
@@ -6970,7 +6896,6 @@
         "Cauliflower",
         "Brussels Sprouts",
         "Globe Artichoke",
-        "Parsley",
         "Celeriac",
         "Collard Greens",
         "Cherry Tomatoes",
@@ -6982,7 +6907,6 @@
         "Tarragon",
         "Lemon Balm",
         "Lemon Verbena",
-        "Lovage",
         "Marigolds",
         "Echinacea",
         "Yarrow",
@@ -7001,7 +6925,6 @@
         "Romanesco",
         "Gai Lan",
         "Komatsuna",
-        "Mitsuba",
         "Yacon"
       ],
       "directSow": [
@@ -7076,15 +6999,11 @@
         "Tomatoes",
         "Eggplant",
         "Basil",
-        "Squash",
         "Tomatillos",
         "Ground Cherries",
         "Kohlrabi",
         "Bok Choy",
         "Endive",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
         "Cherry Tomatoes",
         "Pak Choi",
         "Shiso",
@@ -7092,14 +7011,8 @@
         "Marigolds",
         "Echinacea",
         "Valerian",
-        "Cucumbers",
-        "Melons",
         "Malabar Spinach",
         "Thai Basil",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Komatsuna",
         "Yacon",
         "Epazote"
@@ -7252,13 +7165,6 @@
     },
     "4": {
       "startIndoors": [
-        "Cucumbers",
-        "Melons",
-        "Butternut Squash",
-        "Watermelon",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon",
         "Epazote"
       ],
@@ -8131,21 +8037,18 @@
         "Cabbage",
         "Cauliflower",
         "Shallots",
-        "Parsley",
         "Celeriac",
         "Pak Choi",
         "Napa Cabbage",
         "Lavender",
         "Tarragon",
-        "Lovage",
         "Yarrow",
         "Goji Berries",
         "Cardoon",
         "Purple Sprouting Broccoli",
         "Romanesco",
         "Gai Lan",
-        "Komatsuna",
-        "Mitsuba"
+        "Komatsuna"
       ],
       "directSow": [
         "Spinach",
@@ -8267,22 +8170,12 @@
     "3": {
       "startIndoors": [
         "Basil",
-        "Squash",
-        "Cucumbers",
-        "Melons",
         "Kohlrabi",
         "Bok Choy",
         "Endive",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
         "Marigolds",
         "Malabar Spinach",
         "Thai Basil",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon",
         "Epazote"
       ],
@@ -9150,13 +9043,11 @@
         "Cabbage",
         "Cauliflower",
         "Shallots",
-        "Parsley",
         "Celeriac",
         "Pak Choi",
         "Napa Cabbage",
         "Lavender",
         "Tarragon",
-        "Lovage",
         "Yarrow",
         "Tomatoes",
         "Peppers",
@@ -9175,8 +9066,7 @@
         "Purple Sprouting Broccoli",
         "Romanesco",
         "Gai Lan",
-        "Komatsuna",
-        "Mitsuba"
+        "Komatsuna"
       ],
       "directSow": [
         "Spinach",
@@ -9254,18 +9144,11 @@
         "Ginger",
         "Turmeric",
         "Lemongrass",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
         "Malabar Spinach",
         "Thai Basil",
         "Galangal",
         "Shishito Peppers",
         "Padron Peppers",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Komatsuna",
         "Yacon"
       ],
@@ -9383,23 +9266,11 @@
     "3": {
       "startIndoors": [
         "Basil",
-        "Squash",
-        "Cucumbers",
-        "Melons",
         "Kohlrabi",
         "Bok Choy",
         "Endive",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
         "Marigolds",
-        "Luffa",
-        "Bitter Melon",
         "Thai Basil",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon",
         "Epazote"
       ],
@@ -9560,8 +9431,6 @@
     },
     "4": {
       "startIndoors": [
-        "Luffa",
-        "Bitter Melon",
         "Yacon",
         "Epazote"
       ],
@@ -10468,7 +10337,6 @@
         "Cauliflower",
         "Tomatillos",
         "Shallots",
-        "Parsley",
         "Celeriac",
         "Cherry Tomatoes",
         "Jalapeño",
@@ -10476,7 +10344,6 @@
         "Marjoram",
         "Tarragon",
         "Lemon Verbena",
-        "Lovage",
         "Echinacea",
         "Yarrow",
         "Valerian",
@@ -10486,8 +10353,7 @@
         "Padron Peppers",
         "Purple Sprouting Broccoli",
         "Romanesco",
-        "Gai Lan",
-        "Mitsuba"
+        "Gai Lan"
       ],
       "directSow": [
         "Spinach",
@@ -10551,9 +10417,6 @@
         "Turmeric",
         "Lemongrass",
         "Collard Greens",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
         "Cherry Tomatoes",
         "Jalapeño",
         "Lavender",
@@ -10566,10 +10429,6 @@
         "Malabar Spinach",
         "Thai Basil",
         "Galangal",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon"
       ],
       "directSow": [
@@ -10675,20 +10534,8 @@
     },
     "3": {
       "startIndoors": [
-        "Squash",
-        "Cucumbers",
-        "Melons",
         "Kohlrabi",
         "Bok Choy",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
-        "Luffa",
-        "Bitter Melon",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon",
         "Epazote"
       ],
@@ -10829,8 +10676,6 @@
     },
     "4": {
       "startIndoors": [
-        "Luffa",
-        "Bitter Melon",
         "Yacon",
         "Epazote"
       ],
@@ -11597,7 +11442,6 @@
         "Cauliflower",
         "Tomatillos",
         "Shallots",
-        "Parsley",
         "Celeriac",
         "Cherry Tomatoes",
         "Jalapeño",
@@ -11605,7 +11449,6 @@
         "Marjoram",
         "Tarragon",
         "Lemon Verbena",
-        "Lovage",
         "Echinacea",
         "Yarrow",
         "Valerian",
@@ -11618,8 +11461,7 @@
         "Padron Peppers",
         "Purple Sprouting Broccoli",
         "Romanesco",
-        "Gai Lan",
-        "Mitsuba"
+        "Gai Lan"
       ],
       "directSow": [
         "Spinach",
@@ -11712,9 +11554,6 @@
         "Turmeric",
         "Lemongrass",
         "Collard Greens",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
         "Cherry Tomatoes",
         "Jalapeño",
         "Lavender",
@@ -11724,18 +11563,9 @@
         "Marigolds",
         "Echinacea",
         "Valerian",
-        "Squash",
-        "Cucumbers",
-        "Melons",
         "Passionfruit",
-        "Luffa",
-        "Bitter Melon",
         "Thai Basil",
         "Galangal",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon"
       ],
       "directSow": [
@@ -11884,21 +11714,9 @@
     },
     "3": {
       "startIndoors": [
-        "Squash",
-        "Cucumbers",
-        "Melons",
         "Kohlrabi",
         "Bok Choy",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
-        "Luffa",
-        "Bitter Melon",
         "Passionfruit",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon",
         "Epazote"
       ],
@@ -12071,8 +11889,6 @@
     },
     "4": {
       "startIndoors": [
-        "Luffa",
-        "Bitter Melon",
         "Yacon",
         "Epazote"
       ],
@@ -12939,7 +12755,6 @@
         "Lavender",
         "Tarragon",
         "Lemon Verbena",
-        "Lovage",
         "Cardoon",
         "Shishito Peppers",
         "Padron Peppers"
@@ -13110,25 +12925,13 @@
     },
     "2": {
       "startIndoors": [
-        "Squash",
-        "Cucumbers",
-        "Melons",
         "Ginger",
         "Turmeric",
         "Lemongrass",
         "Collard Greens",
-        "Zucchini",
-        "Butternut Squash",
-        "Watermelon",
         "Shiso",
         "Passionfruit",
-        "Luffa",
-        "Bitter Melon",
         "Galangal",
-        "Pattypan Squash",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon"
       ],
       "directSow": [
@@ -13256,13 +13059,7 @@
     },
     "3": {
       "startIndoors": [
-        "Butternut Squash",
         "Passionfruit",
-        "Luffa",
-        "Bitter Melon",
-        "Spaghetti Squash",
-        "Acorn Squash",
-        "Delicata Squash",
         "Yacon",
         "Epazote"
       ],
@@ -14099,7 +13896,6 @@
         "Lavender",
         "Tarragon",
         "Lemon Verbena",
-        "Lovage",
         "Shishito Peppers",
         "Padron Peppers"
       ],
@@ -14295,8 +14091,6 @@
         "Turmeric",
         "Lemongrass",
         "Passionfruit",
-        "Luffa",
-        "Bitter Melon",
         "Galangal",
         "Yacon"
       ],
@@ -15177,7 +14971,6 @@
       "startIndoors": [
         "Lavender",
         "Tarragon",
-        "Lovage",
         "Cardoon"
       ],
       "directSow": [
@@ -15281,8 +15074,7 @@
     },
     "12": {
       "startIndoors": [
-        "Tarragon",
-        "Lovage"
+        "Tarragon"
       ],
       "directSow": [
         "Tomatoes",
@@ -15374,9 +15166,7 @@
     "1": {
       "startIndoors": [
         "Echinacea",
-        "Passionfruit",
-        "Luffa",
-        "Bitter Melon"
+        "Passionfruit"
       ],
       "directSow": [
         "Tomatoes",
@@ -16182,7 +15972,6 @@
     "10": {
       "startIndoors": [
         "Lavender",
-        "Lovage",
         "Cardoon"
       ],
       "directSow": [
@@ -16293,9 +16082,7 @@
       ]
     },
     "11": {
-      "startIndoors": [
-        "Lovage"
-      ],
+      "startIndoors": [],
       "directSow": [
         "Tomatoes",
         "Peppers",
