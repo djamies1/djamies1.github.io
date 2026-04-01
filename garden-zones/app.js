@@ -171,6 +171,7 @@ let myPlan = {};
 let myVarieties = {};
 let journalSearchQuery = '';
 let calPersonal = loadBool(KEYS.CAL_PERSONAL);
+let calCompact  = loadBool(KEYS.CAL_COMPACT);
 let layoutMode = loadString(KEYS.LAYOUT, 'map');
 let journalEntries = [];
 let _photoDB = null;
@@ -517,7 +518,7 @@ function renderPanel() {
     const list    = document.getElementById(`list-${key}`);
     if (items.length > 0) {
       hasAny         = true;
-      list.innerHTML = items.map(name => renderCropItem(name, key)).join('');
+      list.innerHTML = items.map(name => renderCropItem(name, key, calCompact)).join('');
       section.classList.remove('hidden');
     } else {
       section.classList.add('hidden');
@@ -992,7 +993,16 @@ function zoomToPoint(lat, lng) {
 
 // ── Crop card rendering ────────────────────────
 // section: 'startIndoors' | 'directSow' | 'transplant' | 'harvest' | null (generic)
-function renderCropItem(name, section = null) {
+function renderCropItem(name, section = null, compact = false) {
+  if (compact) {
+    const c = cropData && cropData[name];
+    const inG = isInGarden(name);
+    return `<li class="crop-card crop-card--compact" data-crop="${name}" role="button" tabindex="0" aria-label="${name} — tap for details">
+      <span class="crop-compact-emoji" aria-hidden="true">${c?.emoji || '🌱'}</span>
+      <span class="crop-compact-name">${name}${inG ? '<span class="crop-garden-star" aria-hidden="true">★</span>' : ''}</span>
+      <button class="crop-quick-add${inG ? ' in-garden' : ''}" data-crop="${name}" aria-label="${inG ? 'Remove from' : 'Add to'} My Garden" title="${inG ? 'Remove from My Garden' : 'Add to My Garden'}">${inG ? '★' : '☆'}</button>
+    </li>`;
+  }
   const c = cropData && cropData[name];
   if (!c) return `<li class="crop-plain">${name}</li>`;
   const inG = isInGarden(name);
@@ -10853,16 +10863,34 @@ function renderCalViewToggle() {
   const el = document.getElementById('cal-view-toggle');
   if (!el) return;
   const hasPersonal = buildPersonalCropSet().size > 0;
-  if (!hasPersonal) { el.innerHTML = ''; return; }
-  el.innerHTML = `<div class="cal-toggle">
-    <button class="cal-toggle-btn${!calPersonal ? ' cal-toggle-btn--active' : ''}" id="cal-toggle-all">All crops</button>
-    <button class="cal-toggle-btn${calPersonal  ? ' cal-toggle-btn--active' : ''}" id="cal-toggle-mine">My plants</button>
-  </div>`;
-  el.querySelector('#cal-toggle-all').addEventListener('click', () => {
-    if (calPersonal) { calPersonal = false; saveBool(KEYS.CAL_PERSONAL, false); renderPanel(); }
+
+  el.innerHTML = `
+    <div class="cal-toggle-row">
+      ${hasPersonal ? `<div class="cal-toggle">
+        <button class="cal-toggle-btn${!calPersonal ? ' cal-toggle-btn--active' : ''}" id="cal-toggle-all">All crops</button>
+        <button class="cal-toggle-btn${calPersonal  ? ' cal-toggle-btn--active' : ''}" id="cal-toggle-mine">My plants</button>
+      </div>` : ''}
+      <div class="cal-compact-toggle">
+        <button class="cal-compact-btn${!calCompact ? ' cal-compact-btn--active' : ''}"
+                id="cal-compact-off" aria-pressed="${!calCompact}" aria-label="Card view" title="Card view">⊞</button>
+        <button class="cal-compact-btn${calCompact  ? ' cal-compact-btn--active' : ''}"
+                id="cal-compact-on"  aria-pressed="${calCompact}"  aria-label="Compact list" title="Compact list">≡</button>
+      </div>
+    </div>`;
+
+  if (hasPersonal) {
+    el.querySelector('#cal-toggle-all')?.addEventListener('click', () => {
+      if (calPersonal) { calPersonal = false; saveBool(KEYS.CAL_PERSONAL, false); renderPanel(); }
+    });
+    el.querySelector('#cal-toggle-mine')?.addEventListener('click', () => {
+      if (!calPersonal) { calPersonal = true; saveBool(KEYS.CAL_PERSONAL, true); renderPanel(); }
+    });
+  }
+  el.querySelector('#cal-compact-off')?.addEventListener('click', () => {
+    if (calCompact) { calCompact = false; saveBool(KEYS.CAL_COMPACT, false); renderPanel(); }
   });
-  el.querySelector('#cal-toggle-mine').addEventListener('click', () => {
-    if (!calPersonal) { calPersonal = true; saveBool(KEYS.CAL_PERSONAL, true); renderPanel(); }
+  el.querySelector('#cal-compact-on')?.addEventListener('click', () => {
+    if (!calCompact) { calCompact = true; saveBool(KEYS.CAL_COMPACT, true); renderPanel(); }
   });
 }
 
