@@ -4969,18 +4969,23 @@ function initJournal() {
     if (e.target === document.getElementById('photo-gallery-overlay')) e.target.hidden = true;
   });
 
-  // Phase 77-78: overlay close buttons
-  document.getElementById('season-wrap-close')?.addEventListener('click', () => {
-    document.getElementById('season-wrap-overlay').hidden = true;
-  });
+  // Phase 77-78: overlay close buttons (named fns for focus restore)
+  document.getElementById('season-wrap-close')?.addEventListener('click', closeSeasonWrapUp);
   document.getElementById('season-wrap-overlay')?.addEventListener('click', e => {
-    if (e.target === document.getElementById('season-wrap-overlay')) e.target.hidden = true;
+    if (e.target === document.getElementById('season-wrap-overlay')) closeSeasonWrapUp();
   });
-  document.getElementById('recipe-browse-close')?.addEventListener('click', () => {
-    document.getElementById('recipe-browse-overlay').hidden = true;
-  });
+  document.getElementById('recipe-browse-close')?.addEventListener('click', closeGrowByRecipe);
   document.getElementById('recipe-browse-overlay')?.addEventListener('click', e => {
-    if (e.target === document.getElementById('recipe-browse-overlay')) e.target.hidden = true;
+    if (e.target === document.getElementById('recipe-browse-overlay')) closeGrowByRecipe();
+  });
+  document.getElementById('garden-gallery-overlay')?.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeGardenGallery();
+  });
+  document.getElementById('season-wrap-overlay')?.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeSeasonWrapUp();
+  });
+  document.getElementById('recipe-browse-overlay')?.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeGrowByRecipe();
   });
 
   // Phase 79: browse recently viewed
@@ -8913,11 +8918,21 @@ function renderSmartShoppingList() {
 // PHASE 77 — Season Wrap-Up
 // ═══════════════════════════════════════════════════════════════════
 
+let _seasonWrapPrev = null;
+
 function openSeasonWrapUp() {
   const overlay = document.getElementById('season-wrap-overlay');
   if (!overlay) return;
+  _seasonWrapPrev = document.activeElement;
   renderSeasonWrapUp();
   overlay.hidden = false;
+  trapFocus(overlay);
+}
+
+function closeSeasonWrapUp() {
+  document.getElementById('season-wrap-overlay').hidden = true;
+  _seasonWrapPrev?.focus();
+  _seasonWrapPrev = null;
 }
 
 function renderSeasonWrapUp() {
@@ -9004,20 +9019,28 @@ function renderSeasonWrapUp() {
     </div>
     <button class="sw-close-btn" id="sw-close">Done</button>`;
 
-  document.getElementById('sw-close')?.addEventListener('click', () => {
-    document.getElementById('season-wrap-overlay').hidden = true;
-  });
+  document.getElementById('sw-close')?.addEventListener('click', closeSeasonWrapUp);
 }
 
 // ═══════════════════════════════════════════════════════════════════
 // PHASE 78 — Grow What You Eat (Recipe-to-Garden Discovery)
 // ═══════════════════════════════════════════════════════════════════
 
+let _recipeBrowsePrev = null;
+
 function openGrowByRecipe() {
   const overlay = document.getElementById('recipe-browse-overlay');
   if (!overlay) return;
+  _recipeBrowsePrev = document.activeElement;
   renderGrowByRecipe(null);
   overlay.hidden = false;
+  trapFocus(overlay);
+}
+
+function closeGrowByRecipe() {
+  document.getElementById('recipe-browse-overlay').hidden = true;
+  _recipeBrowsePrev?.focus();
+  _recipeBrowsePrev = null;
 }
 
 function renderGrowByRecipe(selectedRecipe) {
@@ -10904,17 +10927,23 @@ function renderCalViewToggle() {
 // ── Phase 137: Garden Photo Gallery ─────────────────────────────────────────
 
 let _gardenGalleryFilter = null;
+let _galleryPrev = null;
 
 function openGardenGallery() {
   _gardenGalleryFilter = null;
+  _galleryPrev = document.activeElement;
   renderGardenGallery();
-  document.getElementById('garden-gallery-overlay').hidden = false;
+  const overlay = document.getElementById('garden-gallery-overlay');
+  overlay.hidden = false;
   document.body.style.overflow = 'hidden';
+  trapFocus(overlay);
 }
 
 function closeGardenGallery() {
   document.getElementById('garden-gallery-overlay').hidden = true;
   document.body.style.overflow = '';
+  _galleryPrev?.focus();
+  _galleryPrev = null;
 }
 
 function renderGardenGallery() {
