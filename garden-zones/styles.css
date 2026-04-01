@@ -1574,10 +1574,17 @@ button:active, [role="button"]:active {
   grid-column: 1 / -1;
   color: var(--text-muted);
   font-size: var(--text-base);
-  padding: 40px 16px;
+  padding: 48px 24px;
   text-align: center;
   line-height: var(--leading-loose);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
+.browse-empty-icon { font-size: 2.5rem; opacity: 0.4; }
+.browse-empty-title { font-size: var(--text-sm); font-weight: 600; color: var(--text-faint); }
+.browse-empty-hint  { font-size: var(--text-xs); color: var(--text-faint); }
 
 /* ──────────────────────────────────────────────
    Year calendar strip
@@ -5896,8 +5903,13 @@ body.garden-mode .plant-section ul {
 
 /* ── Planting Calendar Strip ────────────────────── */
 .planting-cal-strip { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; margin: 8px 0 4px; }
-.pcs-cell { display: flex; flex-direction: column; align-items: center; padding: 5px 2px 4px; border-radius: var(--radius-xs); background: var(--surface2); min-height: 44px; gap: 3px; }
+.pcs-cell { display: flex; flex-direction: column; align-items: center; padding: 5px 2px 4px; border-radius: var(--radius-xs); background: var(--surface2); min-height: 44px; gap: 3px; transition: background 0.15s; }
 .pcs-cell--current { outline: 2px solid var(--accent); outline-offset: -1px; }
+/* Tint active cells by primary activity */
+.pcs-cell--has-indoor  { background: rgba(167,139,250,0.08); }
+.pcs-cell--has-direct  { background: rgba(34,197,94,0.08); }
+.pcs-cell--has-xplant  { background: rgba(96,165,250,0.08); }
+.pcs-cell--has-harvest { background: rgba(251,146,60,0.08); }
 .pcs-abbr { font-size: 9px; color: var(--text-muted); font-weight: 700; letter-spacing: 0.02em; }
 .pcs-dots { display: flex; flex-direction: column; gap: 2px; align-items: center; }
 .pcs-dot { width: 6px; height: 6px; border-radius: 50%; }
@@ -5924,13 +5936,26 @@ body.garden-mode .plant-section ul {
 .browse-card-days { font-size: var(--text-2xs); color: var(--text-faint); background: var(--surface); border-radius: var(--radius-full); padding: 1px 5px; border: 1px solid var(--border); white-space: nowrap; }
 
 /* ── Browse card container badge ───────────────── */
-.browse-card-container { font-size: 0.7rem; vertical-align: super; line-height: 1; }
+/* Grid card: absolute top-left, mirroring the frost badge on the right */
+.browse-card-container {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 0.65rem;
+  line-height: 1;
+  pointer-events: none;
+}
+/* List view: reset absolute so it flows inline inside .bcl-icons */
+.browse-card-list .browse-card-container {
+  position: static;
+  font-size: 0.75rem;
+}
 
 /* ── Browse list view layout ────────────────────── */
 .browse-grid--list { display: flex; flex-direction: column; gap: 2px; }
 .browse-card-list {
   display: grid;
-  grid-template-columns: 28px 1fr auto auto auto auto auto;
+  grid-template-columns: 28px minmax(0,1fr) auto auto auto auto auto;
   align-items: center;
   gap: 8px;
   padding: 8px 10px;
@@ -5940,8 +5965,13 @@ body.garden-mode .plant-section ul {
   cursor: pointer;
   transition: background 0.15s;
   animation: fadeUp 0.2s ease both;
+  overflow: hidden;
 }
 .browse-card-list:hover { background: var(--surface2); }
+@media (max-width: 520px) {
+  .browse-card-list { grid-template-columns: 24px minmax(0,1fr) auto auto; }
+  .bcl-cat, .bcl-days, .bcl-icons { display: none; }
+}
 .bcl-emoji { font-size: 1.2rem; text-align: center; }
 .bcl-name  { font-size: var(--text-sm); font-weight: 600; color: var(--text); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bcl-cat   { font-size: var(--text-xs); color: var(--text-muted); white-space: nowrap; }

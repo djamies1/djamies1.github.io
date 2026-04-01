@@ -1372,13 +1372,15 @@ function renderCropPlantingStrip(name) {
     const harvest = (d?.harvest      || []).includes(name);
     if (indoor || direct || xplant || harvest) hasAnyData = true;
     const isCur   = m === currentMonth;
+    // Tint cell by primary activity (priority: indoor > direct > xplant > harvest)
+    const tintCls = indoor ? ' pcs-cell--has-indoor' : direct ? ' pcs-cell--has-direct' : xplant ? ' pcs-cell--has-xplant' : harvest ? ' pcs-cell--has-harvest' : '';
     const dots = [
       indoor  ? '<span class="pcs-dot pcs-dot--indoor"  title="Start indoors"></span>'  : '',
       direct  ? '<span class="pcs-dot pcs-dot--direct"  title="Direct sow"></span>'     : '',
       xplant  ? '<span class="pcs-dot pcs-dot--xplant"  title="Transplant"></span>'     : '',
       harvest ? '<span class="pcs-dot pcs-dot--harvest" title="Harvest"></span>'         : '',
     ].filter(Boolean).join('');
-    return `<div class="pcs-cell${isCur ? ' pcs-cell--current' : ''}">
+    return `<div class="pcs-cell${isCur ? ' pcs-cell--current' : ''}${tintCls}">
       <span class="pcs-abbr">${abbr}</span>
       <div class="pcs-dots">${dots}</div>
     </div>`;
@@ -1566,28 +1568,39 @@ function initBrowse() {
     const val = chip.dataset.val;
     if (filter === 'sun') {
       browseSun = browseSun === val ? '' : val;
-      document.querySelectorAll('.browse-adv-chip[data-filter="sun"]').forEach(c => c.classList.toggle('active', c.dataset.val === browseSun));
+      document.querySelectorAll('.browse-adv-chip[data-filter="sun"]').forEach(c => {
+        const on = c.dataset.val === browseSun;
+        c.classList.toggle('active', on);
+        c.setAttribute('aria-pressed', on);
+      });
     } else if (filter === 'short') {
       browseShortSeason = !browseShortSeason;
       chip.classList.toggle('active', browseShortSeason);
+      chip.setAttribute('aria-pressed', browseShortSeason);
     } else if (filter === 'ingarden') {
       browseInGarden = !browseInGarden;
       chip.classList.toggle('active', browseInGarden);
+      chip.setAttribute('aria-pressed', browseInGarden);
     } else if (filter === 'frost') {
       browseFrostHardy = !browseFrostHardy;
       chip.classList.toggle('active', browseFrostHardy);
+      chip.setAttribute('aria-pressed', browseFrostHardy);
     } else if (filter === 'directsow') {
       browseDirectSow = !browseDirectSow;
       chip.classList.toggle('active', browseDirectSow);
+      chip.setAttribute('aria-pressed', browseDirectSow);
     } else if (filter === 'sownow') {
       browseSowNow = !browseSowNow;
       chip.classList.toggle('active', browseSowNow);
+      chip.setAttribute('aria-pressed', browseSowNow);
     } else if (filter === 'container') {
       browseContainer = !browseContainer;
       chip.classList.toggle('active', browseContainer);
+      chip.setAttribute('aria-pressed', browseContainer);
     } else if (filter === 'heat') {
       browseHeatSensitive = !browseHeatSensitive;
       chip.classList.toggle('active', browseHeatSensitive);
+      chip.setAttribute('aria-pressed', browseHeatSensitive);
     }
     renderBrowseGrid();
   });
@@ -1793,7 +1806,7 @@ function renderBrowseGrid() {
   }
 
   if (!crops.length) {
-    grid.innerHTML = '<p class="browse-empty">No crops match your filters.</p>';
+    grid.innerHTML = '<div class="browse-empty"><div class="browse-empty-icon">🔍</div><div class="browse-empty-title">No crops match your filters</div><div class="browse-empty-hint">Try removing a filter or broadening your search</div></div>';
     return;
   }
 
@@ -1833,7 +1846,7 @@ function renderBrowseGrid() {
     }
 
     return `<div class="browse-card${isActive ? ' browse-card--active' : ''}${isSelected ? ' browse-card--selected' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.025}s">
-      <div class="browse-card-emoji">${c.emoji || '🌱'}${containerBadge}</div>
+      ${containerBadge}<div class="browse-card-emoji">${c.emoji || '🌱'}</div>
       <div class="browse-card-name">${name}</div>
       <div class="browse-card-meta">
         ${cat       ? `<span class="browse-card-cat">${cat}</span>` : ''}
