@@ -5866,3 +5866,17 @@ body.garden-mode .plant-section ul {
     }
   }
 }
+
+/* ── Sowing Guide ───────────────────────────────── */
+.sow-guide { display: flex; flex-direction: column; gap: 8px; }
+.sg-item { display: flex; gap: 10px; align-items: flex-start; font-size: var(--text-sm); line-height: var(--leading-relaxed); padding: 8px 10px; border-radius: var(--radius-sm); background: var(--surface2); }
+.sg-icon { font-size: 1.1em; flex-shrink: 0; margin-top: 1px; }
+.sg-item--direct     { border-left: 3px solid #22c55e; }
+.sg-item--indoor     { border-left: 3px solid #a78bfa; }
+.sg-item--tender     { border-left: 3px solid #ef4444; }
+.sg-item--hardy      { border-left: 3px solid #818cf8; }
+.sg-item--light-frost{ border-left: 3px solid #60a5fa; }
+
+/* ── Browse card frost badge ───────────────────── */
+.browse-card { position: relative; }
+.browse-card-frost { position: absolute; top: 5px; right: 5px; font-size: 0.65rem; line-height: 1; pointer-events: none; }
