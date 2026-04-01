@@ -74,6 +74,12 @@ export const CROP_VALUES = {
   'Strawberries':9,'Sugar Snap Peas':8,'Sunflowers':6,'Sweet Corn':2,
   'Sweet Potatoes':3,'Swiss Chard':7.5,'Tarragon':22,'Thyme':20,
   'Tomatillos':6,'Tomatoes':4.5,'Turnips':3,'Watermelon':2,'Zucchini':3,
+  // Additional crops
+  'Amaranth':8,'Bok Choy':4.5,'Chamomile':20,'Chard':7,'Cilantro':12,
+  'Collard Greens':4,'Echinacea':18,'Ginger':12,'Globe Artichoke':7,
+  'Green Onions':6,'Lemongrass':10,'Microgreens':35,'Mustard Greens':4.5,
+  'Okra':6,'Quinoa':12,'Turmeric':18,'Valerian':15,'Viola':22,
+  'Watercress':14,'Yarrow':12,
 };
 
 // ── Frost-sensitive crops ──────────────────────
