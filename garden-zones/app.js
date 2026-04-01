@@ -35,6 +35,7 @@ import {
 } from './utils/index.js';
 import { getRecipesForCrop, showHarvestRecipes } from './features/recipes.js';
 import { scorePlantingDay, render7DayForecast } from './features/weather.js';
+import { KEYS, loadJSON, saveJSON, loadBool, loadString } from './utils/storage.js';
 
 // ── A11y helpers ───────────────────────────────
 function addButtonKeydown(el, handler) {
@@ -138,7 +139,7 @@ let cropData = null;
 
 let selectedFeature = null;
 let selectedZone = null;
-let selectedCountry = localStorage.getItem('pzf-country') || 'us';
+let selectedCountry = loadString(KEYS.COUNTRY, 'us');
 let currentMonth = new Date().getMonth() + 1;
 
 let myGarden = {};
@@ -162,15 +163,15 @@ let _cropDrag          = null;
 let _drawMode          = false;
 let _drawDrag          = null;
 let _pendingDrawPos    = null;
-let gardenViewMode     = localStorage.getItem('pzf-garden-view') || 'crop';
+let gardenViewMode     = loadString(KEYS.GARDEN_VIEW, 'crop');
 let currentPanelTab = 'calendar';
 let mySeeds = {};
 let cropRotation = [];
 let myPlan = {};
 let myVarieties = {};
 let journalSearchQuery = '';
-let calPersonal = (() => { try { return localStorage.getItem('pzf-cal-personal') === '1'; } catch { return false; } })();
-let layoutMode = localStorage.getItem('pzf-layout') || 'map';
+let calPersonal = loadBool(KEYS.CAL_PERSONAL);
+let layoutMode = loadString(KEYS.LAYOUT, 'map');
 let journalEntries = [];
 let _photoDB = null;
 let selectedLocationName = null;
@@ -498,6 +499,7 @@ function renderPanel() {
   ctxEl.textContent = ctx;
   ctxEl.hidden = !ctx;
   renderFrostCountdown();
+  renderSeasonProgress();
 
   // Plant sections
   const data     = getPlantingData(zone, month);
@@ -715,7 +717,7 @@ function updateBnavGardenBadge() {
 
 // ── Theme ───────────────────────────────────────
 function initTheme() {
-  const saved = localStorage.getItem('pzf-theme');
+  const saved = loadString(KEYS.THEME);
   if (saved) document.documentElement.setAttribute('data-theme', saved);
   updateThemeBtn();
   document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
@@ -749,7 +751,7 @@ function initUI() {
   initCapacitor();
   loadPersistedWeather();
   // Load persisted preferences
-  useMetric = localStorage.getItem('pzf-metric') === '1';
+  useMetric = loadBool(KEYS.METRIC);
   const mtBtn = document.getElementById('metric-toggle');
   if (mtBtn) { mtBtn.textContent = useMetric ? '°C' : '°F'; mtBtn.classList.toggle('active', useMetric); }
   document.getElementById('metric-toggle')?.addEventListener('click', toggleMetric);
@@ -782,6 +784,10 @@ function initUI() {
   initLongPress();
   loadRecentlyViewed();
   initSettings();
+  // Inline onclick replacements (a11y: no global handlers)
+  document.getElementById('loading-retry')?.addEventListener('click', () => location.reload());
+  document.querySelector('.gallery-close-btn')?.addEventListener('click', closeGardenGallery);
+  document.querySelector('.ps-close-btn')?.addEventListener('click', closeProblemSolver);
   // Share button
   document.getElementById('share-btn')?.addEventListener('click', shareZone);
   // Calendar crop search
@@ -5145,16 +5151,29 @@ function maybeShowInstallBanner() {
 }
 
 // ── Phase 9: Offline indicator ────────────────────
+function _updateOnlineBar() {
+  const bar = document.getElementById('offline-bar');
+  if (!bar) return;
+  if (!navigator.onLine) {
+    bar.hidden = false;
+  } else if (!bar.hidden) {
+    bar.hidden = true;
+    showToast('✅ Back online', 'success');
+  }
+}
+
 function initOfflineIndicator() {
   const banner = document.getElementById('offline-banner');
   const update = () => { if (banner) banner.hidden = navigator.onLine; };
   update();
   window.addEventListener('online', () => {
     update();
+    _updateOnlineBar();
     // Re-fetch fresh weather/data when connection is restored
     if (selectedLat && selectedLng) fetchWeatherAndUpdate();
   });
-  window.addEventListener('offline', update);
+  window.addEventListener('offline', () => { update(); _updateOnlineBar(); });
+  _updateOnlineBar();
 
   // ── SW update notification ────────────────────────
   if ('serviceWorker' in navigator) {
@@ -9764,6 +9783,49 @@ function renderFrostCountdown() {
       <span class="fcd-detail">${detail}</span>
     </div>
   </div>`;
+}
+
+function renderSeasonProgress() {
+  const el = document.getElementById('season-progress');
+  if (!el || !selectedZone) { if (el) el.innerHTML = ''; return; }
+  const frost = FROST_DATES[selectedZone.toLowerCase()];
+  if (!frost?.last || !frost?.first) { el.innerHTML = ''; return; }
+
+  const MON_IDX = {jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+  function parseFrost(str, yr) {
+    const m = str?.match(/([a-zA-Z]+)\s+(\d+)/);
+    if (!m) return null;
+    const mi = MON_IDX[m[1].toLowerCase().slice(0,3)];
+    return (mi !== undefined) ? new Date(yr, mi, parseInt(m[2])) : null;
+  }
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const yr = today.getFullYear();
+  const last  = parseFrost(frost.last,  yr);
+  const first = parseFrost(frost.first, yr);
+  if (!last || !first || first <= last) { el.innerHTML = ''; return; }
+
+  const seasonLen = first - last;
+  const elapsed   = Math.max(0, today - last);
+  const pct       = Math.min(100, Math.round((elapsed / seasonLen) * 100));
+  const weeksIn   = Math.max(0, Math.round(elapsed / 604800000));
+  const weeksTotal = Math.round(seasonLen / 604800000);
+
+  const fmt = d => `${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]} ${d.getDate()}`;
+  const inSeason = today >= last && today < first;
+
+  el.innerHTML = `
+    <div class="sp-wrap">
+      <div class="sp-labels">
+        <span class="sp-date">❄️ ${fmt(last)}</span>
+        <span class="sp-week">${inSeason ? `Week ${weeksIn} of ${weeksTotal}` : pct === 0 ? 'Season not started' : 'Season ended'}</span>
+        <span class="sp-date">${fmt(first)} ❄️</span>
+      </div>
+      <div class="sp-track" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Growing season progress: ${pct}%">
+        <div class="sp-fill" style="width:${pct}%"></div>
+        <div class="sp-today" style="left:${pct}%" title="Today"></div>
+      </div>
+    </div>`;
 }
 
 function toggleCompareMode() {

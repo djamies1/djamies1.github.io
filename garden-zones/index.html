@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
   <!-- Phase 49: performance hints -->
   <link rel="preconnect" href="https://api.open-meteo.com">
   <link rel="dns-prefetch" href="https://nominatim.openstreetmap.org">
@@ -82,13 +83,16 @@
 <body>
   <!-- Phase 49: skip link for keyboard/screen reader users -->
   <a href="#panel-content" class="skip-link">Skip to content</a>
+  <div id="offline-bar" hidden aria-live="assertive" role="status">
+    📡 You're offline — the app still works, changes are saved locally
+  </div>
 
   <header id="top-bar">
     <div id="title">
       <img src="icons/icon.svg" alt="" width="22" height="22" style="vertical-align:middle;border-radius:4px">
       <span>Organized Abundance</span>
     </div>
-    <button id="layout-toggle" title="Switch to garden view">🌱 Garden</button>
+    <button id="layout-toggle" title="Switch to garden view" aria-label="Switch layout">🌱 Garden</button>
     <button id="metric-toggle" title="Switch to metric units" aria-label="Switch units">°F</button>
     <button id="share-btn" title="Share this zone" aria-label="Share this zone">⎘</button>
     <button id="notif-btn" title="Enable garden notifications" aria-label="Enable garden notifications">🔕</button>
@@ -170,13 +174,13 @@
       <div class="loading-brand">🌱</div>
       <div class="spinner"></div>
       <p id="loading-text" role="status" aria-live="polite">Loading zone data…</p>
-      <button id="loading-retry" hidden onclick="location.reload()">Retry</button>
+      <button id="loading-retry" hidden>Retry</button>
     </div>
   </main>
 
   <main id="info-panel" class="panel-hidden">
     <div id="panel-drag-handle"></div>
-    <button id="panel-close">&times;</button>
+    <button id="panel-close" aria-label="Close panel">&times;</button>
     <div id="panel-content">
       <div id="panel-skeleton" hidden>
         <div class="skeleton-card">
@@ -225,6 +229,7 @@
         <div id="month-display"></div>
         <div id="month-context"></div>
         <div id="frost-countdown"></div>
+        <div id="season-progress"></div>
 <div id="calendar-search-wrap">
           <input id="calendar-search" type="text" placeholder="Filter crops…" autocomplete="off" spellcheck="false" aria-label="Search crops">
         </div>
@@ -708,7 +713,7 @@
   <!-- Phase 137: Garden Photo Gallery -->
   <div id="garden-gallery-overlay" class="gallery-overlay" hidden role="dialog" aria-modal="true" aria-label="Garden photos">
     <div class="gallery-header">
-      <button class="gallery-close-btn" onclick="closeGardenGallery()">✕</button>
+      <button class="gallery-close-btn" aria-label="Close gallery">✕</button>
       <span class="gallery-title">📸 Garden Photos</span>
       <span id="gallery-count" class="gallery-count"></span>
     </div>
@@ -721,7 +726,7 @@
     <div class="ps-sheet">
       <div class="ps-header">
         <span class="ps-header-title">🔍 Diagnose a Problem</span>
-        <button class="ps-close-btn" onclick="closeProblemSolver()">✕</button>
+        <button class="ps-close-btn" aria-label="Close problem solver">✕</button>
       </div>
       <div id="ps-crop-label"></div>
       <p class="ps-symptom-prompt">What do you see on your plant?</p>
