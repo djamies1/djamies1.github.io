@@ -1039,6 +1039,13 @@ function renderCropItem(name, section = null, compact = false) {
       timingStr = `📅 ${weeks} wks before last frost`;
     }
     detail = [c.germ_temp ? `🌡 ${c.germ_temp}` : '', timingStr].filter(Boolean).join(' · ');
+    if (c.transplant_tolerance === 'poor') {
+      const zoneNum = parseFloat(selectedZone);
+      if (!selectedZone || zoneNum >= 5) {
+        detail = (detail ? detail + ' · ' : '') +
+          '<span class="transplant-warn">⚠️ Direct sow preferred</span>';
+      }
+    }
 
   } else if (section === 'directSow') {
     detail = [
@@ -1143,12 +1150,23 @@ function renderCropDetail(c) {
     return arr.map(t => `<span class="detail-tag${extraClass ? ' ' + extraClass : ''}">${t}</span>`).join('');
   }
 
+  const frostMeta = {
+    tender:      { label: '🔥 Frost-tender',     cls: 'cd-fact--tender' },
+    light_frost: { label: '❄️ Light frost OK',   cls: 'cd-fact--light-frost' },
+    hard_frost:  { label: '❄️❄️ Hard frost OK',  cls: 'cd-fact--hard-frost' },
+  };
   const quickFacts = [
     c.days_min ? `<span class="cd-fact">⏱ ${c.days_min}–${c.days_max || c.days_min}d</span>` : '',
     (features.startIndoors && c.transplant_weeks) ? `<span class="cd-fact">🪴 Start ${c.transplant_weeks}w indoors</span>` : '',
     c.succession_weeks ? `<span class="cd-fact">🔄 Sow every ${c.succession_weeks}w</span>` : '',
     c.seed_life_years ? `<span class="cd-fact">🌰 Seeds viable ${c.seed_life_years}yr</span>` : '',
     c.container_ok ? `<span class="cd-fact cd-fact--ok">🪣 Container OK</span>` : '',
+    c.frost_tolerance && frostMeta[c.frost_tolerance]
+      ? `<span class="cd-fact ${frostMeta[c.frost_tolerance].cls}">${frostMeta[c.frost_tolerance].label}</span>`
+      : '',
+    c.transplant_tolerance === 'poor'
+      ? `<span class="cd-fact cd-fact--transp-poor">⚠️ Transplants poorly</span>`
+      : '',
   ].filter(Boolean).join('');
 
   return `
@@ -1161,6 +1179,7 @@ function renderCropDetail(c) {
       ${row('Sun', c.sun)}
       ${row('Days to harvest', c.days)}
       ${row('Germination temp', c.germ_temp)}
+      ${c.min_soil_temp_f ? row('Min soil temp', `${c.min_soil_temp_f}°F`) : ''}
       ${row('Soil pH', c.soil_ph)}
       ${row('Fertilizer', c.fertilizer)}
     </div>
