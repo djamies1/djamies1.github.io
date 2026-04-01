@@ -84,6 +84,12 @@ export const FROST_SENSITIVE = new Set([
   'Sweet Potatoes','Ginger','Lemongrass','Okra','Peanuts',
 ]);
 
+/** Crops that should never be started indoors — direct sow only. */
+export const DIRECT_SOW_ONLY = new Set([
+  'Beans', 'Carrots', 'Corn', 'Radishes', 'Turnips', 'Parsnips', 'Beets',
+  'Dill', 'Fennel', 'Coriander',
+]);
+
 // Phase 135 — crops that bolt or suffer in heat
 export const HEAT_SENSITIVE = new Set([
   'Lettuce','Spinach','Arugula','Cilantro','Peas','Kale','Broccoli','Cauliflower',

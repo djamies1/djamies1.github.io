@@ -109,7 +109,7 @@
     {
       "name": "Browse Crops",
       "short_name": "Browse",
-      "description": "Browse all 69 crops with growing details",
+      "description": "Browse all crops with growing details",
       "url": "/garden-zones/?browse=1",
       "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
     },
