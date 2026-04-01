@@ -35,6 +35,15 @@ export const KEYS = {
   SW_CACHE:         'pzf-sw-cache',
   MAP_WIDTH:        'pzf-map-width',
   SETUP_DONE:       'pzf-setup-done',
+  FEATURES:         'pzf-features',
+  NOTIF_ENABLED:    'pzf-notif-enabled',
+  AUTO_ARCHIVE:     'pzf-auto-archive',
+  REVIEW_REQUESTED: 'pzf-review-requested',
+  NOTIF_REMINDER:   'pzf-notif-reminder',
+  NOTIF_HARVEST:    'pzf-notif-harvest',
+  NOTIF_FROST:      'pzf-notif-frost',
+  SAVED_LOCS:       'pzf-saved-locs',
+  CAL_COMPACT:      'pzf-cal-compact',
 };
 
 /** Read a JSON value; returns fallback if missing or parse error. */

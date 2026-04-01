@@ -35,7 +35,7 @@ import {
 } from './utils/index.js';
 import { getRecipesForCrop, showHarvestRecipes } from './features/recipes.js';
 import { scorePlantingDay, render7DayForecast } from './features/weather.js';
-import { KEYS, loadJSON, saveJSON, loadBool, loadString } from './utils/storage.js';
+import { KEYS, loadJSON, saveJSON, loadBool, saveBool, loadString } from './utils/storage.js';
 
 // ── A11y helpers ───────────────────────────────
 function addButtonKeydown(el, handler) {
@@ -334,10 +334,10 @@ function onZoneClick(feature, layer, lat, lng) {
   }
   highlightZone();
   pulseZone();
-  localStorage.setItem('pzf-last-zone', selectedZone);
-  localStorage.setItem('pzf-last-location', selectedLocationName || '');
-  localStorage.setItem('pzf-last-lat', selectedLat != null ? String(selectedLat) : '');
-  localStorage.setItem('pzf-last-lng', selectedLng != null ? String(selectedLng) : '');
+  localStorage.setItem(KEYS.LAST_ZONE, selectedZone);
+  localStorage.setItem(KEYS.LAST_LOCATION, selectedLocationName || '');
+  localStorage.setItem(KEYS.LAST_LAT, selectedLat != null ? String(selectedLat) : '');
+  localStorage.setItem(KEYS.LAST_LNG, selectedLng != null ? String(selectedLng) : '');
   renderPanel();
   showPanel();
   updateURL();
@@ -730,7 +730,7 @@ function toggleTheme() {
   const isDark = current === 'dark' || (current !== 'light' && prefersDark) || (current !== 'light' && !window.matchMedia('(prefers-color-scheme: light)').matches);
   const next = isDark ? 'light' : 'dark';
   el.setAttribute('data-theme', next);
-  localStorage.setItem('pzf-theme', next);
+  localStorage.setItem(KEYS.THEME, next);
   updateThemeBtn();
   initCapacitor(); // re-sync native status bar colour
 }
@@ -1284,10 +1284,10 @@ function restoreFromURL() {
     requestAnimationFrame(() => document.getElementById('browse-btn')?.click());
   }
 
-  selectedLocationName = localStorage.getItem('pzf-last-location') || null;
-  const zoneToRestore = z || localStorage.getItem('pzf-last-zone');
-  const lastLat = parseFloat(localStorage.getItem('pzf-last-lat'));
-  const lastLng = parseFloat(localStorage.getItem('pzf-last-lng'));
+  selectedLocationName = localStorage.getItem(KEYS.LAST_LOCATION) || null;
+  const zoneToRestore = z || localStorage.getItem(KEYS.LAST_ZONE);
+  const lastLat = parseFloat(localStorage.getItem(KEYS.LAST_LAT));
+  const lastLng = parseFloat(localStorage.getItem(KEYS.LAST_LNG));
   if (!isNaN(lastLat) && !isNaN(lastLng) && zonesLayer) {
     // Restore with actual coordinates — correct zone sub-type + correct weather location
     selectZoneByPoint(lastLat, lastLng);
@@ -1569,14 +1569,13 @@ function renderBrowseGrid() {
 
 // ── Garden storage helpers ──────────────────────
 function loadGarden() {
-  try { myGarden = JSON.parse(localStorage.getItem('pzf-garden') || '{}'); }
-  catch { myGarden = {}; }
+  myGarden = loadJSON(KEYS.GARDEN, {});
   // Migrate legacy single bedId → bedIds array
   for (const entry of Object.values(myGarden)) {
     if (!entry.bedIds) entry.bedIds = entry.bedId ? [entry.bedId] : [];
   }
 }
-function saveGarden() { localStorage.setItem('pzf-garden', JSON.stringify(myGarden)); }
+function saveGarden() { saveJSON(KEYS.GARDEN, myGarden); }
 function isInGarden(name) { return !!myGarden[name]; }
 
 function getCropsInBed(bedId) {
@@ -1785,10 +1784,9 @@ function updateGardenBadge() {
 let gardenHistory = [];
 
 function loadHistory() {
-  try { gardenHistory = JSON.parse(localStorage.getItem('pzf-history') || '[]'); }
-  catch { gardenHistory = []; }
+  gardenHistory = loadJSON(KEYS.HISTORY, []);
 }
-function saveHistory() { localStorage.setItem('pzf-history', JSON.stringify(gardenHistory)); }
+function saveHistory() { saveJSON(KEYS.HISTORY, gardenHistory); }
 
 function archiveGardenEntry(name) {
   const entry = myGarden[name];
@@ -2155,10 +2153,10 @@ function renderGardenByBed() {
 
 function wireGardenViewToggle() {
   document.getElementById('gvt-crop')?.addEventListener('click', () => {
-    gardenViewMode = 'crop'; localStorage.setItem('pzf-garden-view', 'crop'); renderGardenTab();
+    gardenViewMode = 'crop'; localStorage.setItem(KEYS.GARDEN_VIEW, 'crop'); renderGardenTab();
   });
   document.getElementById('gvt-bed')?.addEventListener('click', () => {
-    gardenViewMode = 'bed'; localStorage.setItem('pzf-garden-view', 'bed'); renderGardenTab();
+    gardenViewMode = 'bed'; localStorage.setItem(KEYS.GARDEN_VIEW, 'bed'); renderGardenTab();
   });
   document.getElementById('gvb-open-map')?.addEventListener('click', openGardenMap);
   document.querySelectorAll('.gvb-map-btn[data-bed]').forEach(btn => {
@@ -2723,16 +2721,14 @@ async function fetchWeather(lat, lng) {
 // ── Weather persistence (survives page reload) ────
 function persistWeatherCache(key) {
   if (!key || !weatherData) return;
-  try { localStorage.setItem('pzf-weather', JSON.stringify({ key, data: weatherData, ts: Date.now() })); } catch {}
+  saveJSON(KEYS.WEATHER, { key, data: weatherData, ts: Date.now() });
 }
 
 function loadPersistedWeather() {
-  try {
-    const s = JSON.parse(localStorage.getItem('pzf-weather') || 'null');
-    if (s?.key && s?.data && Date.now() - s.ts < 7200000) { // 2h max age
-      weatherCache[s.key] = { data: s.data, ts: s.ts };
-    }
-  } catch {}
+  const s = loadJSON(KEYS.WEATHER, null);
+  if (s?.key && s?.data && Date.now() - s.ts < 7200000) { // 2h max age
+    weatherCache[s.key] = { data: s.data, ts: s.ts };
+  }
 }
 
 async function fetchWeatherAndUpdate() {
@@ -3007,7 +3003,7 @@ function convertMeasurement(str) {
 
 function toggleMetric() {
   useMetric = !useMetric;
-  localStorage.setItem('pzf-metric', useMetric ? '1' : '0');
+  saveBool(KEYS.METRIC, useMetric);
   const btn = document.getElementById('metric-toggle');
   if (btn) { btn.textContent = useMetric ? '°C' : '°F'; btn.classList.toggle('active', useMetric); }
   // Re-render open modal
@@ -3277,7 +3273,7 @@ function checkCompanionConflicts(name) {
 
 // ── Onboarding ──────────────────────────────────
 function initOnboarding() {
-  if (localStorage.getItem('pzf-onboarded')) return;
+  if (loadBool(KEYS.ONBOARDED)) return;
   const overlay = document.getElementById('onboarding');
   if (!overlay) return;
   overlay.hidden = false;
@@ -3292,7 +3288,7 @@ function initOnboarding() {
       if (currentPanelTab === 'garden') renderGardenTab();
     }
     overlay.hidden = true;
-    localStorage.setItem('pzf-onboarded', '1');
+    saveBool(KEYS.ONBOARDED, true);
     if (selectedStarterCrops.size) {
       showToast(`${selectedStarterCrops.size} crops added to My Garden 🌿`, 'success');
     }
@@ -4435,7 +4431,7 @@ function renderPlantingScheduleHTML(name) {
 
 // ── Phase 2: Garden export / import ─────────────
 // ── Phase 33: Full garden backup export ──────────
-const BACKUP_KEYS = ['pzf-garden','pzf-journal','pzf-beds','pzf-custom-crops','pzf-history','pzf-achievements','pzf-seeds','pzf-rotation','pzf-plan','pzf-varieties','pzf-structures'];
+const BACKUP_KEYS = [KEYS.GARDEN,KEYS.JOURNAL,KEYS.BEDS,KEYS.CUSTOM_CROPS,KEYS.HISTORY,KEYS.ACHIEVEMENTS,KEYS.SEEDS,KEYS.ROTATION,KEYS.PLAN,KEYS.VARIETIES,KEYS.STRUCTURES];
 
 async function exportGarden() {
   const backup = {
@@ -4497,7 +4493,7 @@ function importGarden(file) {
         loadHistory();
         loadCanvas();
         loadBeds();
-        journalEntries = JSON.parse(localStorage.getItem('pzf-journal') || '[]');
+        journalEntries = loadJSON(KEYS.JOURNAL, []);
         refreshGardenUI('');
         const total = Object.values(counts).reduce((s, n) => s + n, 0);
         showToast(`Backup restored — ${total} items ✓`, 'success');
@@ -4561,7 +4557,7 @@ function showHarvestConfetti(el) {
 function setLayoutMode(mode) {
   layoutMode = mode;
   document.body.classList.toggle('garden-mode', mode === 'garden');
-  localStorage.setItem('pzf-layout', mode);
+  localStorage.setItem(KEYS.LAYOUT, mode);
   const btn = document.getElementById('layout-toggle');
   if (btn) {
     btn.textContent = mode === 'garden' ? '🗺 Map' : '🌱 Garden';
@@ -4593,10 +4589,9 @@ function initLayoutToggle() {
 
 // ── Custom crops ──────────────────────────────────
 function loadCustomCrops() {
-  try { return JSON.parse(localStorage.getItem('pzf-custom-crops') || '{}'); }
-  catch { return {}; }
+  return loadJSON(KEYS.CUSTOM_CROPS, {});
 }
-function saveCustomCrops(obj) { localStorage.setItem('pzf-custom-crops', JSON.stringify(obj)); }
+function saveCustomCrops(obj) { saveJSON(KEYS.CUSTOM_CROPS, obj); }
 
 function mergeCustomCrops() {
   const custom = loadCustomCrops();
@@ -4689,11 +4684,11 @@ function initResizeHandle() {
     const clamped = Math.max(MIN_W, Math.min(MAX_W, px));
     document.documentElement.style.setProperty('--map-mini-width', clamped + 'px');
     handle.style.left = clamped + 'px';
-    localStorage.setItem('pzf-map-width', clamped);
+    localStorage.setItem(KEYS.MAP_WIDTH, clamped);
   }
 
   // Restore persisted width
-  const saved = parseInt(localStorage.getItem('pzf-map-width'), 10);
+  const saved = parseInt(localStorage.getItem(KEYS.MAP_WIDTH), 10);
   if (saved && saved >= MIN_W && saved <= MAX_W) setMapWidth(saved);
 
   handle.addEventListener('mousedown', e => {
@@ -4757,10 +4752,9 @@ function renderHarvestReadyBanner() {
 let journalFilterCrop = '';  // '' = all
 
 function loadJournal() {
-  try { journalEntries = JSON.parse(localStorage.getItem('pzf-journal') || '[]'); }
-  catch { journalEntries = []; }
+  journalEntries = loadJSON(KEYS.JOURNAL, []);
 }
-function saveJournal() { localStorage.setItem('pzf-journal', JSON.stringify(journalEntries)); }
+function saveJournal() { saveJSON(KEYS.JOURNAL, journalEntries); }
 
 async function addJournalEntry(text, cropTag) {
   const trimmed = text.trim();
@@ -4992,10 +4986,9 @@ function initJournal() {
 
 // ── Phase 9: Achievements ─────────────────────────
 function loadAchievements() {
-  try { return new Set(JSON.parse(localStorage.getItem('pzf-achievements') || '[]')); }
-  catch { return new Set(); }
+  return new Set(loadJSON(KEYS.ACHIEVEMENTS, []));
 }
-function saveAchievements(set) { localStorage.setItem('pzf-achievements', JSON.stringify([...set])); }
+function saveAchievements(set) { saveJSON(KEYS.ACHIEVEMENTS, [...set]); }
 
 let _earnedAchievements = null;
 function getEarned() {
@@ -5139,13 +5132,13 @@ function initInstallPrompt() {
 
   dismissBtn?.addEventListener('click', () => {
     banner.hidden = true;
-    localStorage.setItem('pzf-install-dismissed', '1');
+    saveBool(KEYS.INSTALL_DISMISSED, true);
   });
 }
 
 function maybeShowInstallBanner() {
   if (!_installPromptEvent) return;
-  if (localStorage.getItem('pzf-install-dismissed')) return;
+  if (loadBool(KEYS.INSTALL_DISMISSED)) return;
   const banner = document.getElementById('install-banner');
   if (banner) banner.hidden = false;
 }
@@ -5180,8 +5173,8 @@ function initOfflineIndicator() {
     navigator.serviceWorker.addEventListener('message', e => {
       if (e.data?.type !== 'SW_UPDATED') return;
       const newCache = e.data.cache || '';
-      const prevCache = localStorage.getItem('pzf-sw-cache');
-      localStorage.setItem('pzf-sw-cache', newCache);
+      const prevCache = localStorage.getItem(KEYS.SW_CACHE);
+      localStorage.setItem(KEYS.SW_CACHE, newCache);
       // Only show toast when upgrading from a known previous version (not first install)
       if (prevCache && prevCache !== newCache) showUpdateBar();
     });
@@ -5313,11 +5306,10 @@ function initQuickSearch() {
 let gardenChecklist = [];
 
 function loadChecklist() {
-  try { gardenChecklist = JSON.parse(localStorage.getItem('pzf-checklist') || '[]'); }
-  catch { gardenChecklist = []; }
+  gardenChecklist = loadJSON(KEYS.CHECKLIST, []);
 }
 
-function saveChecklist() { localStorage.setItem('pzf-checklist', JSON.stringify(gardenChecklist)); }
+function saveChecklist() { saveJSON(KEYS.CHECKLIST, gardenChecklist); }
 
 function addChecklistItem(text, dueDate) {
   const trimmed = text.trim();
@@ -5492,8 +5484,7 @@ function renderCompanionMatrix() {
 
 // ── Phase 12: Garden Beds ─────────────────────────
 function loadBeds() {
-  try { gardenBeds = JSON.parse(localStorage.getItem('pzf-beds') || '{}'); }
-  catch { gardenBeds = {}; }
+  gardenBeds = loadJSON(KEYS.BEDS, {});
   // Phase 86: migrate — ensure every bed has color + cells
   const ids = Object.keys(gardenBeds);
   for (let i = 0; i < ids.length; i++) {
@@ -5508,10 +5499,9 @@ function loadBeds() {
   }
   autoPlaceBeds();
 }
-function saveBeds() { localStorage.setItem('pzf-beds', JSON.stringify(gardenBeds)); }
+function saveBeds() { saveJSON(KEYS.BEDS, gardenBeds); }
 function loadStructures() {
-  try { gardenStructures = JSON.parse(localStorage.getItem('pzf-structures') || '{}'); }
-  catch { gardenStructures = {}; }
+  gardenStructures = loadJSON(KEYS.STRUCTURES, {});
   for (const s of Object.values(gardenStructures)) {
     s.cols  ??= 2;
     s.rows  ??= 2;
@@ -5519,7 +5509,7 @@ function loadStructures() {
   }
 }
 function saveStructures() {
-  localStorage.setItem('pzf-structures', JSON.stringify(gardenStructures));
+  saveJSON(KEYS.STRUCTURES, gardenStructures);
 }
 
 function addBed(name, type) {
@@ -5756,10 +5746,9 @@ function initBeds() { loadCanvas(); loadBeds(); loadStructures(); }
 
 // ── Phase 87: Garden Map ───────────────────────────
 function loadCanvas() {
-  try { gardenCanvas = { cols: 20, rows: 15, ...JSON.parse(localStorage.getItem('pzf-canvas') || '{}') }; }
-  catch { gardenCanvas = { cols: 20, rows: 15 }; }
+  gardenCanvas = { cols: 20, rows: 15, ...loadJSON(KEYS.CANVAS, {}) };
 }
-function saveCanvas() { localStorage.setItem('pzf-canvas', JSON.stringify(gardenCanvas)); }
+function saveCanvas() { saveJSON(KEYS.CANVAS, gardenCanvas); }
 
 function autoPlaceBeds() {
   let cx = 0, cy = 0, rowH = 0;
@@ -6680,7 +6669,7 @@ function selectMapStruct(structId) {
 async function reloadCountry(country) {
   if (country === selectedCountry) return;
   selectedCountry = country;
-  localStorage.setItem('pzf-country', country);
+  localStorage.setItem(KEYS.COUNTRY, country);
 
   // Reset selection and go back to map view
   selectedZone = null;
@@ -6887,7 +6876,7 @@ async function scheduleNotif(title, body, tag, atDate) {
 // ── Phase 37: In-app review prompt ───────────────
 async function maybeRequestReview() {
   if (!window.Capacitor?.isNativePlatform?.()) return;
-  if (localStorage.getItem('pzf-review-requested')) return;
+  if (loadBool(KEYS.REVIEW_REQUESTED)) return;
   const count    = Object.keys(myGarden).length;
   const harvests = Object.values(myGarden).some(e => e.harvestLog?.length > 0);
   const journal5 = journalEntries.length >= 5;
@@ -6896,7 +6885,7 @@ async function maybeRequestReview() {
     const InAppReview = window.Capacitor?.Plugins?.InAppReview;
     if (InAppReview) {
       await InAppReview.requestReview();
-      localStorage.setItem('pzf-review-requested', '1');
+      saveBool(KEYS.REVIEW_REQUESTED, true);
     }
   } catch {}
 }
@@ -6922,25 +6911,25 @@ function checkAndFireNotifications() {
   const today = new Date().toISOString().slice(0, 10);
 
   // Due reminders (once per day)
-  if (localStorage.getItem('pzf-notif-reminder') !== today) {
+  if (localStorage.getItem(KEYS.NOTIF_REMINDER) !== today) {
     let fired = false;
     for (const [name, entry] of Object.entries(myGarden)) {
       if (!entry.reminder || entry.reminder > today) continue;
       fireNotif(`🔔 ${name} reminder`, `Your garden reminder for ${name} is due`, `reminder-${name}`);
       fired = true;
     }
-    if (fired) localStorage.setItem('pzf-notif-reminder', today);
+    if (fired) localStorage.setItem(KEYS.NOTIF_REMINDER, today);
   }
 
   // Harvest ready (once per day)
-  if (localStorage.getItem('pzf-notif-harvest') !== today) {
+  if (localStorage.getItem(KEYS.NOTIF_HARVEST) !== today) {
     const ready = Object.keys(myGarden).filter(n => getGardenStatus(n)?.type === 'ready');
     if (ready.length === 1) {
       fireNotif(`🌾 ${ready[0]} ready to harvest!`, 'Harvest countdown complete — time to pick!', 'harvest-ready');
-      localStorage.setItem('pzf-notif-harvest', today);
+      localStorage.setItem(KEYS.NOTIF_HARVEST, today);
     } else if (ready.length > 1) {
       fireNotif(`🌾 ${ready.length} crops ready to harvest`, ready.slice(0, 3).join(', '), 'harvest-ready');
-      localStorage.setItem('pzf-notif-harvest', today);
+      localStorage.setItem(KEYS.NOTIF_HARVEST, today);
     }
   }
 }
@@ -6949,7 +6938,7 @@ function checkFrostNotification() {
   if (!notifGranted()) return;
   if (!weatherData?.daily?.temperature_2m_min) return;
   const today = new Date().toISOString().slice(0, 10);
-  if (localStorage.getItem('pzf-notif-frost') === today) return;
+  if (localStorage.getItem(KEYS.NOTIF_FROST) === today) return;
   const frostIdx = weatherData.daily.temperature_2m_min.slice(0, 2).findIndex(t => t < 35);
   if (frostIdx === -1) return;
   const atrisk = Object.keys(myGarden).filter(n => FROST_SENSITIVE.has(n) && myGarden[n]?.planted);
@@ -6968,7 +6957,7 @@ function checkFrostNotification() {
     // Also fire immediately as a heads-up
     fireNotif(`❄️ Frost tomorrow`, `Reminder set for 7am. Cover or bring in: ${ns}`, 'frost-risk');
   }
-  localStorage.setItem('pzf-notif-frost', today);
+  localStorage.setItem(KEYS.NOTIF_FROST, today);
 }
 
 function initNotifBtn() {
@@ -7017,10 +7006,9 @@ function checkSeasonalNudges() {
 
 // ── Phase 17: Saved Locations ────────────────────
 function loadSavedLocations() {
-  try { savedLocations = JSON.parse(localStorage.getItem('pzf-saved-locs') || '[]'); }
-  catch { savedLocations = []; }
+  savedLocations = loadJSON(KEYS.SAVED_LOCS, []);
 }
-function saveSavedLocationsStore() { localStorage.setItem('pzf-saved-locs', JSON.stringify(savedLocations)); }
+function saveSavedLocationsStore() { saveJSON(KEYS.SAVED_LOCS, savedLocations); }
 
 function saveCurrentLocation() {
   if (!selectedZone) return;
@@ -7256,10 +7244,9 @@ function getWaterStatus(name) {
 // Phase 51 — Seed Inventory
 // ════════════════════════════════════════════════
 function loadSeeds() {
-  try { mySeeds = JSON.parse(localStorage.getItem('pzf-seeds') || '{}'); }
-  catch { mySeeds = {}; }
+  mySeeds = loadJSON(KEYS.SEEDS, {});
 }
-function saveSeeds() { localStorage.setItem('pzf-seeds', JSON.stringify(mySeeds)); }
+function saveSeeds() { saveJSON(KEYS.SEEDS, mySeeds); }
 
 function renderSeedInventory() {
   const el = document.getElementById('subtab-seeds');
@@ -7413,10 +7400,9 @@ function renderBedGrid(bedId, crops) {
 let features = { ...DEFAULT_FEATURES };
 
 function loadFeatures() {
-  try { features = { ...DEFAULT_FEATURES, ...JSON.parse(localStorage.getItem('pzf-features') || '{}') }; }
-  catch { features = { ...DEFAULT_FEATURES }; }
+  features = { ...DEFAULT_FEATURES, ...loadJSON(KEYS.FEATURES, {}) };
 }
-function saveFeatures() { localStorage.setItem('pzf-features', JSON.stringify(features)); }
+function saveFeatures() { saveJSON(KEYS.FEATURES, features); }
 
 // ════════════════════════════════════════════════
 // Phase 53 — Settings Panel
@@ -7450,8 +7436,8 @@ function renderSettingsSheet() {
 
   const isMetric   = !!useMetric;
   const isDark     = document.documentElement.getAttribute('data-theme') !== 'light';
-  const notifsOn   = localStorage.getItem('pzf-notif-enabled') === '1';
-  const autoArchive = localStorage.getItem('pzf-auto-archive') !== '0';
+  const notifsOn   = loadBool(KEYS.NOTIF_ENABLED);
+  const autoArchive = localStorage.getItem(KEYS.AUTO_ARCHIVE) !== '0';
 
   body.innerHTML = `
     <div class="settings-section">
@@ -7527,32 +7513,32 @@ function renderSettingsSheet() {
 
   body.querySelector('#s-theme-light')?.addEventListener('click', () => {
     document.documentElement.setAttribute('data-theme','light');
-    localStorage.setItem('pzf-theme','light');
+    localStorage.setItem(KEYS.THEME,'light');
     updateThemeBtn(); renderSettingsSheet();
   });
   body.querySelector('#s-theme-dark')?.addEventListener('click', () => {
     document.documentElement.removeAttribute('data-theme');
-    localStorage.setItem('pzf-theme','dark');
+    localStorage.setItem(KEYS.THEME,'dark');
     updateThemeBtn(); renderSettingsSheet();
   });
   body.querySelector('#s-unit-imperial')?.addEventListener('click', () => {
-    useMetric = false; localStorage.setItem('pzf-metric','0');
+    useMetric = false; saveBool(KEYS.METRIC, false);
     const btn = document.getElementById('metric-toggle');
     if (btn) { btn.textContent = '°F'; btn.classList.remove('active'); }
     renderSettingsSheet();
   });
   body.querySelector('#s-unit-metric')?.addEventListener('click', () => {
-    useMetric = true; localStorage.setItem('pzf-metric','1');
+    useMetric = true; saveBool(KEYS.METRIC, true);
     const btn = document.getElementById('metric-toggle');
     if (btn) { btn.textContent = '°C'; btn.classList.add('active'); }
     renderSettingsSheet();
   });
   body.querySelector('#s-notif-toggle')?.addEventListener('change', e => {
     if (e.target.checked) requestNotifPermission();
-    else localStorage.removeItem('pzf-notif-enabled');
+    else localStorage.removeItem(KEYS.NOTIF_ENABLED);
   });
   body.querySelector('#s-autoarchive')?.addEventListener('change', e => {
-    localStorage.setItem('pzf-auto-archive', e.target.checked ? '1' : '0');
+    saveBool(KEYS.AUTO_ARCHIVE, e.target.checked);
   });
   body.querySelectorAll('.s-feature-toggle').forEach(cb => {
     cb.addEventListener('change', e => {
@@ -7569,7 +7555,7 @@ function renderSettingsSheet() {
   body.querySelector('#s-import-input')?.addEventListener('change', e => { importGarden(e.target.files[0]); e.target.value = ''; });
   body.querySelector('#s-clear-btn')?.addEventListener('click', () => {
     if (!confirm('Delete ALL garden data? This cannot be undone.')) return;
-    [...BACKUP_KEYS, 'pzf-rotation'].forEach(k => localStorage.removeItem(k));
+    [...BACKUP_KEYS, KEYS.ROTATION].forEach(k => localStorage.removeItem(k));
     location.reload();
   });
 }
@@ -7585,10 +7571,9 @@ function initSettings() {
 // Phase 54 — Crop Rotation Planner
 // ════════════════════════════════════════════════
 function loadRotation() {
-  try { cropRotation = JSON.parse(localStorage.getItem('pzf-rotation') || '[]'); }
-  catch { cropRotation = []; }
+  cropRotation = loadJSON(KEYS.ROTATION, []);
 }
-function saveRotation() { localStorage.setItem('pzf-rotation', JSON.stringify(cropRotation)); }
+function saveRotation() { saveJSON(KEYS.ROTATION, cropRotation); }
 
 function checkRotationConflict(name, bedId) {
   const family = CROP_FAMILIES[name] || cropData[name]?.family;
@@ -7858,10 +7843,9 @@ function renderHardeningSection(name) {
 // Phase 59 — Year planner
 // ════════════════════════════════════════════════
 function loadPlan() {
-  try { myPlan = JSON.parse(localStorage.getItem('pzf-plan') || '{}'); }
-  catch { myPlan = {}; }
+  myPlan = loadJSON(KEYS.PLAN, {});
 }
-function savePlan() { localStorage.setItem('pzf-plan', JSON.stringify(myPlan)); }
+function savePlan() { saveJSON(KEYS.PLAN, myPlan); }
 
 function addToPlan(name, year, targetMonths, notes) {
   if (!myPlan[year]) myPlan[year] = {};
@@ -7959,10 +7943,9 @@ function getBedCompatibility(bedId, name) {
 // Phase 61 — Variety performance tracker
 // ════════════════════════════════════════════════
 function loadVarieties() {
-  try { myVarieties = JSON.parse(localStorage.getItem('pzf-varieties') || '{}'); }
-  catch { myVarieties = {}; }
+  myVarieties = loadJSON(KEYS.VARIETIES, {});
 }
-function saveVarieties() { localStorage.setItem('pzf-varieties', JSON.stringify(myVarieties)); }
+function saveVarieties() { saveJSON(KEYS.VARIETIES, myVarieties); }
 
 function logVariety(name, variety, rating, notes) {
   if (!myVarieties[name]) myVarieties[name] = [];
@@ -8726,7 +8709,7 @@ function computeGardenHealthScore() {
 
   // 3. Journal activity (20 pts — 4 per entry in last 30 days, max 20)
   let journal = [];
-  try { journal = JSON.parse(localStorage.getItem('pzf-journal') || '[]'); } catch {}
+  journal = loadJSON(KEYS.JOURNAL, []);
   const since30 = new Date(); since30.setDate(since30.getDate() - 30);
   const recentEntries = journal.filter(e => new Date(e.date) >= since30).length;
   const jPts = Math.min(20, recentEntries * 4);
@@ -8755,7 +8738,7 @@ function computeGardenHealthScore() {
 function renderSetupCard() {
   const el = document.getElementById('setup-card');
   if (!el) return;
-  if (localStorage.getItem('pzf-setup-done')) { el.innerHTML = ''; return; }
+  if (loadBool(KEYS.SETUP_DONE)) { el.innerHTML = ''; return; }
 
   const steps = [
     { label: 'Set your growing zone',  done: !!(selectedZone) },
@@ -8768,7 +8751,7 @@ function renderSetupCard() {
   const pct  = Math.round(done / steps.length * 100);
 
   if (done === steps.length) {
-    localStorage.setItem('pzf-setup-done', '1');
+    saveBool(KEYS.SETUP_DONE, true);
     el.innerHTML = '<div class="setup-card setup-card--complete">🎉 You\'re all set up — your garden is ready to grow!</div>';
     setTimeout(() => { el.innerHTML = ''; }, 3500);
     return;
@@ -8792,7 +8775,7 @@ function renderSetupCard() {
   </div>`;
 
   document.getElementById('sc-dismiss-btn')?.addEventListener('click', () => {
-    localStorage.setItem('pzf-setup-done', '1');
+    saveBool(KEYS.SETUP_DONE, true);
     el.innerHTML = '';
   });
 }
@@ -8846,8 +8829,8 @@ function renderSmartShoppingList() {
   const names = Object.keys(myGarden);
   if (!names.length) { el.innerHTML = ''; return; }
 
-  const bought = (() => { try { return new Set(JSON.parse(localStorage.getItem('pzf-shopping-bought') || '[]')); } catch { return new Set(); } })();
-  const saveBought = () => localStorage.setItem('pzf-shopping-bought', JSON.stringify([...bought]));
+  const bought = new Set(loadJSON(KEYS.SHOPPING_BOUGHT, []));
+  const saveBought = () => saveJSON(KEYS.SHOPPING_BOUGHT, [...bought]);
   const thisYear = new Date().getFullYear();
 
   const needSeeds   = names.filter(n => !myGarden[n].hasSeeds);
@@ -8930,8 +8913,7 @@ function renderSeasonWrapUp() {
   const withDates     = names.filter(n => myGarden[n]?.planted).length;
   const totalHarvests = names.reduce((s, n) => s + (myGarden[n]?.harvestLog?.length || 0), 0);
   const totalPhotos   = names.reduce((s, n) => s + (myGarden[n]?.photos?.length || 0), 0);
-  let journal = [];
-  try { journal = JSON.parse(localStorage.getItem('pzf-journal') || '[]'); } catch {}
+  const journal = loadJSON(KEYS.JOURNAL, []);
 
   // Yield & value (Phase 127 helpers)
   const totalKg = names.reduce((s, n) => s + getYieldKg(n), 0);
@@ -9099,12 +9081,12 @@ let _recentlyViewed = [];
 
 function trackRecentlyViewed(name) {
   _recentlyViewed = [name, ..._recentlyViewed.filter(n => n !== name)].slice(0, 6);
-  try { localStorage.setItem('pzf-recently-viewed', JSON.stringify(_recentlyViewed)); } catch {}
+  saveJSON(KEYS.RECENTLY_VIEWED, _recentlyViewed);
   renderRecentlyViewed();
 }
 
 function loadRecentlyViewed() {
-  try { _recentlyViewed = JSON.parse(localStorage.getItem('pzf-recently-viewed') || '[]'); } catch { _recentlyViewed = []; }
+  _recentlyViewed = loadJSON(KEYS.RECENTLY_VIEWED, []);
 }
 
 function renderRecentlyViewed() {
@@ -10544,14 +10526,12 @@ function getGardenLevel(xp) {
 }
 
 function loadXP() {
-  try {
-    const raw = JSON.parse(localStorage.getItem('pzf-xp') || '{}');
-    gardenXP     = raw.xp     || 0;
-    gardenStreak = raw.streak || { count: 0, lastDate: null };
-  } catch { gardenXP = 0; gardenStreak = { count: 0, lastDate: null }; }
+  const raw = loadJSON(KEYS.XP, {});
+  gardenXP     = raw.xp     || 0;
+  gardenStreak = raw.streak || { count: 0, lastDate: null };
 }
 function saveXP() {
-  localStorage.setItem('pzf-xp', JSON.stringify({ xp: gardenXP, streak: gardenStreak }));
+  saveJSON(KEYS.XP, { xp: gardenXP, streak: gardenStreak });
 }
 
 function earnXP(amount, reason) {
@@ -10879,10 +10859,10 @@ function renderCalViewToggle() {
     <button class="cal-toggle-btn${calPersonal  ? ' cal-toggle-btn--active' : ''}" id="cal-toggle-mine">My plants</button>
   </div>`;
   el.querySelector('#cal-toggle-all').addEventListener('click', () => {
-    if (calPersonal) { calPersonal = false; try { localStorage.setItem('pzf-cal-personal','0'); } catch {} renderPanel(); }
+    if (calPersonal) { calPersonal = false; saveBool(KEYS.CAL_PERSONAL, false); renderPanel(); }
   });
   el.querySelector('#cal-toggle-mine').addEventListener('click', () => {
-    if (!calPersonal) { calPersonal = true; try { localStorage.setItem('pzf-cal-personal','1'); } catch {} renderPanel(); }
+    if (!calPersonal) { calPersonal = true; saveBool(KEYS.CAL_PERSONAL, true); renderPanel(); }
   });
 }
 
