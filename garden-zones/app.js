@@ -200,6 +200,8 @@ let browseSun = '';
 let browseShortSeason = false;
 let browseInGarden = false;
 let browseFamily = '';
+let browseFrostHardy = false;
+let browseDirectSow  = false;
 let compareMode = false;
 let compareSet  = []; // max 2 crop names
 let yearViewMode = 'garden'; // 'garden' | 'zone'
@@ -1183,6 +1185,37 @@ function renderCropDetail(c) {
       ${row('Soil pH', c.soil_ph)}
       ${row('Fertilizer', c.fertilizer)}
     </div>
+    ${(() => {
+      const items = [];
+      // Bullet 1 — transplant method
+      if (c.transplant_tolerance === 'poor') {
+        items.push('<div class="sg-item sg-item--direct"><span class="sg-icon">🌱</span><span><strong>Direct sow only</strong> — transplants poorly. Sow seed directly in the ground; do not start indoors.</span></div>');
+      } else if (c.transplant_tolerance === 'good') {
+        const wks = c.transplant_weeks ? ` ${c.transplant_weeks} weeks before last frost or` : '';
+        items.push(`<div class="sg-item sg-item--indoor"><span class="sg-icon">🪴</span><span><strong>Transplants well</strong> — start indoors${wks} direct sow once conditions are right.</span></div>`);
+      } else if (c.transplant_tolerance === 'moderate') {
+        items.push('<div class="sg-item sg-item--indoor"><span class="sg-icon">🔄</span><span><strong>Either method</strong> — can be direct sown or started indoors; transplants reasonably well.</span></div>');
+      }
+      // Bullet 2 — frost risk
+      if (c.frost_tolerance === 'tender') {
+        const zoneHint = (() => {
+          if (!selectedZone) return '';
+          const frost = FROST_DATES[selectedZone.toLowerCase()];
+          return frost?.last ? ` (after ${frost.last} for zone ${selectedZone})` : '';
+        })();
+        items.push(`<div class="sg-item sg-item--tender"><span class="sg-icon">⚠️</span><span><strong>Frost tender</strong> — sow or transplant outdoors only after all frost risk has passed${zoneHint}.</span></div>`);
+      } else if (c.frost_tolerance === 'hard_frost') {
+        items.push('<div class="sg-item sg-item--hardy"><span class="sg-icon">✅</span><span><strong>Hard frost tolerant</strong> — can be sown weeks before last frost in spring; survives heavy autumn frosts.</span></div>');
+      } else if (c.frost_tolerance === 'light_frost') {
+        items.push('<div class="sg-item sg-item--light-frost"><span class="sg-icon">❄️</span><span><strong>Light frost tolerant</strong> — handles brief light frosts, but protect from hard freezes.</span></div>');
+      }
+      // Bullet 3 — soil temp
+      if (c.min_soil_temp_f) {
+        items.push(`<div class="sg-item"><span class="sg-icon">🌡</span><span><strong>Min soil temperature: ${c.min_soil_temp_f}°F</strong> — soil must reach this before outdoor sowing is reliable.</span></div>`);
+      }
+      if (!items.length) return '';
+      return `<div class="modal-section"><div class="modal-section-title">Sowing Guide</div><div class="sow-guide">${items.join('')}</div></div>`;
+    })()}
     ${features.companionPlanting ? `<div class="modal-section">
       <div class="modal-section-title">Companions &amp; Enemies</div>
       <div class="companion-guide">
@@ -1435,6 +1468,12 @@ function initBrowse() {
     } else if (filter === 'ingarden') {
       browseInGarden = !browseInGarden;
       chip.classList.toggle('active', browseInGarden);
+    } else if (filter === 'frost') {
+      browseFrostHardy = !browseFrostHardy;
+      chip.classList.toggle('active', browseFrostHardy);
+    } else if (filter === 'directsow') {
+      browseDirectSow = !browseDirectSow;
+      chip.classList.toggle('active', browseDirectSow);
     }
     renderBrowseGrid();
   });
@@ -1529,6 +1568,12 @@ function renderBrowseGrid() {
   if (browseFamily) {
     crops = crops.filter(([name, c]) => (c.family || CROP_FAMILIES[name]) === browseFamily);
   }
+  if (browseFrostHardy) {
+    crops = crops.filter(([, c]) => c.frost_tolerance !== 'tender');
+  }
+  if (browseDirectSow) {
+    crops = crops.filter(([, c]) => c.transplant_tolerance === 'poor');
+  }
 
   // Companion filter: crops that are companions to anything in my garden
   const gardenCompanionSet = new Set();
@@ -1559,6 +1604,10 @@ function renderBrowseGrid() {
     crops.sort(([, a], [, b]) => (parseHarvestDays(b.days) || 0) - (parseHarvestDays(a.days) || 0));
   } else if (browseSort === 'easy') {
     crops.sort(([, a], [, b]) => (DIFF_ORDER[a.difficulty] ?? 9) - (DIFF_ORDER[b.difficulty] ?? 9));
+  } else if (browseSort === 'coldsoil') {
+    crops.sort(([, a], [, b]) => (a.min_soil_temp_f ?? 999) - (b.min_soil_temp_f ?? 999));
+  } else if (browseSort === 'warmsoil') {
+    crops.sort(([, a], [, b]) => (b.min_soil_temp_f ?? 0) - (a.min_soil_temp_f ?? 0));
   } else if (selectedZone && !browseInSeason) {
     // Default: in-season first, then companions, then alphabetical
     crops.sort(([a], [b]) => {
@@ -1588,6 +1637,11 @@ function renderBrowseGrid() {
     const isCompanion  = gardenCompanionSet.has(name) && !isInGarden(name);
     const diff         = c.difficulty ? c.difficulty.toLowerCase() : '';
     const isSelected   = compareMode && compareSet.includes(name);
+    const frostBadge   = c.frost_tolerance === 'tender'
+      ? '<div class="browse-card-frost browse-card-frost--tender" title="Frost tender">🔥</div>'
+      : c.frost_tolerance === 'hard_frost'
+        ? '<div class="browse-card-frost browse-card-frost--hardy" title="Hard frost tolerant">❄️❄️</div>'
+        : '';
     return `<div class="browse-card${isActive ? ' browse-card--active' : ''}${isSelected ? ' browse-card--selected' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.025}s">
       <div class="browse-card-emoji">${c.emoji || '🌱'}</div>
       <div class="browse-card-name">${name}</div>
@@ -1595,6 +1649,7 @@ function renderBrowseGrid() {
         ${cat  ? `<span class="browse-card-cat">${cat}</span>` : ''}
         ${diff ? `<span class="diff-dot diff-dot--${diff}" title="${c.difficulty}"></span>` : ''}
       </div>
+      ${frostBadge}
       ${isActive     ? '<div class="browse-card-season">In season</div>'   : ''}
       ${isCompanion  ? '<div class="browse-card-companion">🤝 Companion</div>' : ''}
       ${isInGarden(name) ? '<div class="browse-card-saved">★ Saved</div>' : ''}
