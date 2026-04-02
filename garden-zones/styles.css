@@ -1485,10 +1485,28 @@ button:active, [role="button"]:active {
 }
 
 @media (max-width: 640px) {
+  #browse-filters {
+    flex-shrink: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    max-height: 45vh;
+  }
+  .cat-chip {
+    font-size: var(--text-xs);
+    padding: 5px 10px;
+    min-height: 30px;
+  }
+  #browse-extra {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    padding-bottom: 2px;
+  }
   #browse-grid {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     padding: 10px 12px;
+    min-height: 200px;
   }
 }
 

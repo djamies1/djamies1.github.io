@@ -1621,13 +1621,13 @@ function initBrowse() {
   const grid = document.getElementById('browse-grid');
   if (grid) {
     grid.addEventListener('click', e => {
-      const card = e.target.closest('.browse-card');
+      const card = e.target.closest('.browse-card, .browse-card-list');
       if (!card?.dataset.crop) return;
       if (compareMode) { addToCompare(card.dataset.crop); } else { openCropDetail(card.dataset.crop); }
     });
     grid.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
-        const card = e.target.closest('.browse-card');
+        const card = e.target.closest('.browse-card, .browse-card-list');
         if (!card?.dataset.crop) return;
         e.preventDefault();
         if (compareMode) { addToCompare(card.dataset.crop); } else { openCropDetail(card.dataset.crop); }
