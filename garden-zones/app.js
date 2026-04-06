@@ -127,6 +127,55 @@ function renderDifficultyStars(difficulty) {
 // ── Season helpers ─────────────────────────────
 let _lastSeasonBg = null;
 
+// Phase 139: Seasonal particle animations
+function updateSeasonParticles() {
+  const season = getSeasonForMonth(currentMonth);
+  const container = document.getElementById('globe-container');
+  if (!container) return;
+
+  // Remove old particles
+  const oldParticles = container.querySelector('.season-particles-container');
+  if (oldParticles) oldParticles.remove();
+
+  // Check for reduced-motion preference
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Create new particle container
+  const particlesDiv = document.createElement('div');
+  particlesDiv.className = 'season-particles-container';
+  particlesDiv.setAttribute('aria-hidden', 'true');
+
+  let particleCount = 0;
+  let particleClass = '';
+  let particleChar = '';
+
+  if (season === 'winter') {
+    particleCount = 20;
+    particleClass = 'particle-snowflake';
+    particleChar = '❄️';
+  } else if (season === 'spring') {
+    particleCount = 15;
+    particleClass = 'particle-petal';
+    particleChar = '🌸';
+  } else if (season === 'autumn') {
+    particleCount = 18;
+    particleClass = 'particle-leaf';
+    particleChar = '🍂';
+  }
+
+  // Create particles
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('span');
+    particle.className = `particle ${particleClass}`;
+    particle.textContent = particleChar;
+    particle.style.setProperty('--delay', `${Math.random() * 2}s`);
+    particle.style.setProperty('--duration', `${8 + Math.random() * 4}s`);
+    particle.style.setProperty('--left', `${Math.random() * 100}%`);
+    particlesDiv.appendChild(particle);
+  }
+
+  container.appendChild(particlesDiv);
+}
 
 function updateSeasonBg() {
   const season = getSeasonForMonth(currentMonth);
@@ -134,6 +183,10 @@ function updateSeasonBg() {
   _lastSeasonBg = season;
   const el = document.getElementById('season-bg');
   if (!el) return;
+
+  // Update particles when season changes
+  updateSeasonParticles();
+
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     el.style.backgroundImage = SEASON_GRADIENTS[season];
     return;
