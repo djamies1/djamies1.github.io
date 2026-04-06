@@ -3078,8 +3078,11 @@ function renderWeatherStrip() {
   const todayIdx = Math.max(0, d.time.findIndex(t => t === todayStr));
 
   // Soil temp estimate at ~4" depth ≈ 0.85 × mean air temp
+  // Phase 139: Correct formula — convert to C, apply factor, convert back to F
   const meanAirToday = (d.temperature_2m_max[todayIdx] + d.temperature_2m_min[todayIdx]) / 2;
-  const soilF = Math.round(0.85 * meanAirToday);
+  const meanAirC = (meanAirToday - 32) * 5 / 9;
+  const soilC = Math.round(0.85 * meanAirC);
+  const soilF = Math.round(soilC * 9 / 5 + 32);
   const soilTemp = fmt(soilF);
   const soilClass = soilF < 45 ? 'wx-soil--cold' : soilF >= 60 ? 'wx-soil--warm' : '';
 
@@ -4698,8 +4701,10 @@ function renderPlantingScheduleHTML(name) {
       const todayStr = today.toISOString().slice(0, 10);
       const todayIdx = Math.max(0, d.time.findIndex(t => t === todayStr));
       const meanAir  = (d.temperature_2m_max[todayIdx] + d.temperature_2m_min[todayIdx]) / 2;
-      const soilF    = Math.round(0.85 * meanAir);
-      const soilC    = Math.round((soilF - 32) * 5 / 9);
+      // Phase 139: Correct soil temp formula
+      const meanAirC = (meanAir - 32) * 5 / 9;
+      const soilC    = Math.round(0.85 * meanAirC);
+      const soilF    = Math.round(soilC * 9 / 5 + 32);
       const minGermC = Math.round((minGerm - 32) * 5 / 9);
       const soilStr  = useMetric ? `${soilC}°C` : `${soilF}°F`;
       const minStr   = useMetric ? `${minGermC}°C` : `${minGerm}°F`;
