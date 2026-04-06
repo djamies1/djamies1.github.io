@@ -88,6 +88,39 @@ function normalizeCropName(name) {
   return GARDENATE_NAME_MAP[name] || name;
 }
 
+// Phase 139: Visual rating helpers for water, sun, difficulty
+function renderWaterDots(waterStr) {
+  // Map water descriptions to 1-5 dots: Dry/Low = 1, Moderate = 2-3, Moist/High = 4-5
+  if (!waterStr) return '';
+  const w = waterStr.toLowerCase();
+  const dots = w.includes('low') || w.includes('dry') ? 1
+             : w.includes('moderate') ? 3
+             : w.includes('moist') ? 4
+             : w.includes('high') || w.includes('wet') ? 5
+             : 3; // default
+  return '💧'.repeat(dots) + '💧'.repeat(5 - dots).replace(/💧/g, '◯');  // filled + empty
+}
+
+function renderSunDots(sunStr) {
+  // Map sun descriptions to 1-3 sun icons: Shade = 1, Partial = 2, Full = 3
+  if (!sunStr) return '';
+  const s = sunStr.toLowerCase();
+  const suns = s.includes('full') ? 3
+             : s.includes('partial') || s.includes('part') ? 2
+             : 1; // shade
+  return '☀️'.repeat(suns);
+}
+
+function renderDifficultyStars(difficulty) {
+  // Map difficulty to star rating: Easy = 1, Moderate = 2, Hard = 3
+  if (!difficulty) return '';
+  const d = difficulty.toLowerCase();
+  const stars = d.includes('easy') ? 1
+              : d.includes('hard') ? 3
+              : 2; // moderate
+  return '★'.repeat(stars) + '☆'.repeat(3 - stars);  // filled + empty
+}
+
 
 
 
@@ -1208,7 +1241,7 @@ function openCropDetail(name) {
   document.getElementById('modal-emoji').textContent       = c.emoji || '🌱';
   document.getElementById('modal-crop-name').textContent   = name;
   const badge = document.getElementById('modal-difficulty');
-  badge.textContent = c.difficulty || '';
+  badge.textContent = (c.difficulty ? renderDifficultyStars(c.difficulty) + ' ' + c.difficulty : '');
   badge.className   = 'difficulty-badge' + (c.difficulty ? ' difficulty-' + c.difficulty.toLowerCase() : '');
   c._name = name; // allow renderCropDetail to access the name for companion lookups
   document.getElementById('modal-body').innerHTML    = c.custom ? renderCustomCropDetail(c, name) : renderCropDetail(c);
@@ -1277,8 +1310,8 @@ function renderCropDetail(c) {
       <div class="modal-section-title">Growing Basics</div>
       ${row('Depth', c.depth)}
       ${row('Spacing', c.spacing)}
-      ${row('Water', c.water)}
-      ${row('Sun', c.sun)}
+      ${c.water ? `<div class="detail-row"><span class="detail-label">Water</span><span><span class="rating-dots">${renderWaterDots(c.water)}</span> ${convertMeasurement(c.water)}</span></div>` : ''}
+      ${c.sun ? `<div class="detail-row"><span class="detail-label">Sun</span><span><span class="rating-dots">${renderSunDots(c.sun)}</span> ${convertMeasurement(c.sun)}</span></div>` : ''}
       ${row('Days to harvest', c.days)}
       ${row('Germination temp', c.germ_temp)}
       ${c.min_soil_temp_f ? row('Min soil temp', `${c.min_soil_temp_f}°F`) : ''}

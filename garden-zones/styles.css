@@ -1244,6 +1244,14 @@ button:active, [role="button"]:active {
   flex-shrink: 0;
 }
 
+/* Phase 139: Visual rating indicators */
+.rating-dots {
+  display: inline-block;
+  margin-right: 6px;
+  letter-spacing: 1px;
+  font-size: var(--text-sm);
+}
+
 .detail-tags {
   display: flex;
   flex-wrap: wrap;
