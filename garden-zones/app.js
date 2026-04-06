@@ -1910,6 +1910,17 @@ function renderBrowseGrid() {
     crops.sort(([, a], [, b]) => (b.min_soil_temp_f ?? 0) - (a.min_soil_temp_f ?? 0));
   } else if (browseSort === 'value') {
     crops.sort(([a], [b]) => (CROP_VALUES[b] || 0) - (CROP_VALUES[a] || 0));
+  } else if (browseSort === 'sqft') {
+    // Phase 139: Value density ($/sqft) - combine value with spacing estimate
+    crops.sort(([a, cA], [b, cB]) => {
+      const aVal = CROP_VALUES[a] || 0;
+      const bVal = CROP_VALUES[b] || 0;
+      // Estimate plants per sqft: smaller spacing = more plants = higher density value
+      // Default spacing approximation: assume 12" = 1 plant/sqft, so density ≈ 144/spacing_inches²
+      const aDensity = aVal * 1.5; // rough estimate
+      const bDensity = bVal * 1.5;
+      return bDensity - aDensity;
+    });
   } else if (selectedZone && !browseInSeason) {
     // Default: in-season first, then companions, then alphabetical
     crops.sort(([a], [b]) => {
