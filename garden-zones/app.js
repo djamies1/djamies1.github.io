@@ -5844,9 +5844,97 @@ function renderGardenDashboard() {
     ${names.length ? `<span class="gd-sep">·</span>
       <span class="gd-stat"><strong>${growing}</strong> growing${ready ? `, <strong>${ready}</strong> ready` : ''}</span>` : ''}
     <button class="gd-map-btn" id="gd-map-btn">🗺 Change zone</button>
+    ${names.length ? `<button class="gd-report-btn" id="gd-report-btn">📊 Monthly Report</button>` : ''}
     ${lvlHtml}`;
 
   document.getElementById('gd-map-btn')?.addEventListener('click', () => setLayoutMode('map'));
+  document.getElementById('gd-report-btn')?.addEventListener('click', openMonthlyReport);
+}
+
+// Phase 139: Monthly garden health report
+function openMonthlyReport() {
+  const overlay = document.getElementById('monthly-report-overlay');
+  const content = document.getElementById('monthly-report-content');
+  if (!overlay || !content) return;
+
+  const today = new Date();
+  const monthName = MONTH_NAMES[today.getMonth()];
+  const year = today.getFullYear();
+
+  // Calculate this month's harvest
+  const names = Object.keys(myGarden);
+  const thisMonthHarvests = names.filter(n => {
+    const log = myGarden[n]?.harvestLog || [];
+    return log.some(h => {
+      const hDate = new Date(h.date);
+      return hDate.getMonth() === today.getMonth() && hDate.getFullYear() === year;
+    });
+  });
+  const totalHarvestWeight = thisMonthHarvests.reduce((sum, n) => {
+    const log = myGarden[n]?.harvestLog || [];
+    const thisMonth = log.filter(h => {
+      const hDate = new Date(h.date);
+      return hDate.getMonth() === today.getMonth() && hDate.getFullYear() === year;
+    });
+    return sum + thisMonth.reduce((s, h) => s + (h.amount || 0), 0);
+  }, 0);
+
+  // Currently growing crops
+  const currentlyGrowing = names.filter(n => myGarden[n]?.planted && getGardenStatus(n)?.type !== 'ready');
+
+  // Top achievement this month
+  let topAchi = null;
+  const allAchis = ACHIEVEMENTS.filter(a => {
+    const entry = gardenHistory.find(e => e.type === 'achievement' && e.name === a.id);
+    if (!entry) return false;
+    const eDate = new Date(entry.date);
+    return eDate.getMonth() === today.getMonth() && eDate.getFullYear() === year;
+  });
+  if (allAchis.length) topAchi = allAchis[0];
+
+  content.innerHTML = `
+    <div class="mr-section">
+      <h3>📊 This Month's Harvest</h3>
+      <div class="mr-stat">
+        <span class="mr-stat-value">${totalHarvestWeight.toFixed(1)}</span>
+        <span class="mr-stat-label">${useMetric ? 'kg' : 'lbs'}</span>
+      </div>
+      <div class="mr-crops">${thisMonthHarvests.map(n => {
+        const c = cropData[n];
+        return `<span class="mr-chip">${c?.emoji || '🌱'} ${n}</span>`;
+      }).join('')}</div>
+    </div>
+
+    <div class="mr-section">
+      <h3>🌿 Currently Growing</h3>
+      <div class="mr-crops">${currentlyGrowing.map(n => {
+        const c = cropData[n];
+        const status = getGardenStatus(n);
+        const daysLeft = status?.daysRemaining || 0;
+        return `<span class="mr-chip" title="~${daysLeft} days left">${c?.emoji || '🌱'} ${n}</span>`;
+      }).join('')}</div>
+    </div>
+
+    ${topAchi ? `<div class="mr-section">
+      <h3>🏆 Top Achievement</h3>
+      <div class="mr-achievement">${topAchi.icon} <strong>${topAchi.name}</strong></div>
+    </div>` : ''}
+
+    <div class="mr-section">
+      <h3>💡 Suggested Next Actions</h3>
+      <ul class="mr-suggestions">
+        ${currentlyGrowing.length === 0 ? '<li>🌱 Browse the calendar and add some crops for next month</li>' : '<li>🌾 Check your growing crops for harvest-readiness</li>'}
+        ${totalHarvestWeight === 0 ? '<li>📝 Log your harvests to track productivity</li>' : '<li>✨ Keep logging harvests to build your data</li>'}
+        <li>📸 Take photos of your garden to document progress</li>
+      </ul>
+    </div>
+  `;
+
+  overlay.hidden = false;
+  document.getElementById('monthly-report-close')?.addEventListener('click', () => { overlay.hidden = true; });
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.hidden = true;
+  });
 }
 
 // ── Phase 9: PWA install prompt ───────────────────

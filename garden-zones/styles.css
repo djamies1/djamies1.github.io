@@ -3177,7 +3177,7 @@ body.garden-mode .plant-section ul {
 .gd-weather { font-size: var(--text-xs); color: var(--text-muted); display: flex; align-items: center; gap: var(--space-1); }
 .gd-stat { font-size: var(--text-xs); color: var(--text-muted); }
 .gd-stat strong { color: var(--text); font-weight: var(--weight-semibold); }
-.gd-map-btn {
+.gd-map-btn, .gd-report-btn {
   margin-left: auto;
   background: none;
   border: 1px solid var(--border);
@@ -3189,7 +3189,7 @@ body.garden-mode .plant-section ul {
   transition: color var(--transition-base), border-color var(--transition-base);
   white-space: nowrap;
 }
-.gd-map-btn:hover { color: var(--accent); border-color: var(--accent); }
+.gd-map-btn:hover, .gd-report-btn:hover { color: var(--accent); border-color: var(--accent); }
 
 /* ──────────────────────────────────────────────
    Phase 9 — Achievements
@@ -4785,6 +4785,19 @@ body.garden-mode .plant-section ul {
 .sw-prev { color: var(--text-muted); font-size: var(--text-2xs); margin-bottom: 10px; opacity: 0.7; }
 .sw-close-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); color: var(--text); cursor: pointer; font-size: var(--text-sm); font-weight: var(--weight-semibold); padding: 9px; transition: border-color var(--transition-snap); width: 100%; }
 .sw-close-btn:hover { border-color: var(--accent-dark); }
+
+/* Phase 139: Monthly Garden Report */
+#monthly-report-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); max-width: 420px; padding: 20px 18px; position: relative; width: 100%; }
+#monthly-report-content h3 { color: var(--text); font-size: var(--text-sm); font-weight: var(--weight-bold); margin: 0 0 10px; }
+.mr-section { margin-bottom: 18px; }
+.mr-stat { align-items: baseline; display: flex; gap: 6px; margin-bottom: 8px; }
+.mr-stat-value { color: var(--accent); font-size: var(--text-2xl); font-weight: var(--weight-bold); }
+.mr-stat-label { color: var(--text-muted); font-size: var(--text-xs); }
+.mr-chips, .mr-crops { display: flex; flex-wrap: wrap; gap: 6px; }
+.mr-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-full); color: var(--text); font-size: var(--text-xs); padding: 4px 8px; }
+.mr-achievement { align-items: center; background: color-mix(in srgb, var(--color-success) 8%, transparent); border: 1px solid color-mix(in srgb, var(--color-success) 20%, transparent); border-radius: var(--radius-lg); color: var(--color-success); font-size: var(--text-sm); padding: 8px 12px; }
+.mr-suggestions { color: var(--text-muted); font-size: var(--text-xs); list-style: none; margin: 0; padding: 0; }
+.mr-suggestions li { padding: 4px 0; }
 
 /* ── Phase 78: Grow What You Eat ────────────────── */
 #recipe-browse-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); display: flex; flex-direction: column; max-height: 88vh; max-width: 400px; position: relative; width: 100%; }
