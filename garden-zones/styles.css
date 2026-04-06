@@ -4057,6 +4057,21 @@ body.garden-mode .plant-section ul {
   text-align: center;
   padding: 8px 0 4px;
 }
+/* Phase 139: Browse grid skeleton cards */
+#browse-skeleton {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  padding: 12px;
+}
+.skeleton-browse-card {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  height: 140px;
+}
 
 /* ── Phase 27: Update bar ────────────────────────── */
 #update-bar {

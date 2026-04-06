@@ -702,6 +702,25 @@ function showPanelSkeleton() {
 function hidePanelSkeleton() {
   document.getElementById('panel-skeleton')?.setAttribute('hidden', '');
 }
+// Phase 139: Browse, weather, and garden skeletons
+function showBrowseSkeleton() {
+  document.getElementById('browse-skeleton')?.removeAttribute('hidden');
+}
+function hideBrowseSkeleton() {
+  document.getElementById('browse-skeleton')?.setAttribute('hidden', '');
+}
+function showWeatherSkeleton() {
+  document.getElementById('weather-skeleton')?.removeAttribute('hidden');
+}
+function hideWeatherSkeleton() {
+  document.getElementById('weather-skeleton')?.setAttribute('hidden', '');
+}
+function showGardenSkeleton() {
+  document.getElementById('garden-skeleton')?.removeAttribute('hidden');
+}
+function hideGardenSkeleton() {
+  document.getElementById('garden-skeleton')?.setAttribute('hidden', '');
+}
 
 // ── Phase 26: Bottom nav ────────────────────────
 function initBottomNav() {
@@ -1855,6 +1874,7 @@ function renderBrowseRecentRow() {
 function renderBrowseGrid() {
   const grid = document.getElementById('browse-grid');
   if (!grid || !cropData) return;
+  showBrowseSkeleton();  // Phase 139: show skeleton while rendering
   renderBrowseRecentRow();  // Phase 139
 
   // Build active set + sow-now set for current zone+month
@@ -2031,6 +2051,7 @@ function renderBrowseGrid() {
       <div class="browse-empty-hint">Try removing a filter or broadening your search</div>
       ${clearBtn}
     </div>`;
+    hideBrowseSkeleton();  // Phase 139
     return;
   }
 
@@ -2084,6 +2105,7 @@ function renderBrowseGrid() {
       ${c.custom ? '<div class="browse-card-custom">Custom</div>' : ''}
     </div>`;
   }).join('');
+  hideBrowseSkeleton();  // Phase 139: hide skeleton after rendering
 }
 
 // ── Garden storage helpers ──────────────────────
@@ -2709,6 +2731,7 @@ function renderGardenTab() {
   const list = document.getElementById('garden-list');
   const emptyMsg = document.getElementById('garden-empty-msg');
   if (!list) return;
+  showGardenSkeleton();  // Phase 139: show skeleton while rendering
   const names = Object.keys(myGarden);
 
   if (!features.beds && gardenViewMode === 'bed') gardenViewMode = 'crop';
@@ -2730,6 +2753,7 @@ function renderGardenTab() {
     renderHarvestValue(); renderYieldLogger();
     renderWateringSchedule(); renderWateringIntelligence(); renderHarvestToTable(); renderGardenHealthScore();
     renderSmartShoppingList(); checkAchievements();
+    hideGardenSkeleton();  // Phase 139
     return;
   }
 
@@ -2750,7 +2774,8 @@ function renderGardenTab() {
         document.querySelector('.ptab[data-tab="calendar"]')?.click()
       );
     }
-    wireGardenViewToggle(); renderSetupCard(); renderGardenBeds(); renderCompanionMatrix(); renderGardenHistory(); renderPlanSection(); renderGardenHealthScore(); return;
+    wireGardenViewToggle(); renderSetupCard(); renderGardenBeds(); renderCompanionMatrix(); renderGardenHistory(); renderPlanSection(); renderGardenHealthScore(); hideGardenSkeleton();  // Phase 139
+    return;
   }
   if (emptyMsg) emptyMsg.hidden = true;
 
@@ -2836,6 +2861,7 @@ function renderGardenTab() {
   renderGardenHealthScore();
   renderSmartShoppingList();
   checkAchievements();
+  hideGardenSkeleton();  // Phase 139
   // Feature-flag: hide seeds subtab button
   const seedsTabBtn = document.querySelector('[data-subtab="seeds"]');
   if (seedsTabBtn) seedsTabBtn.hidden = !features.seeds;
@@ -3281,7 +3307,8 @@ async function fetchWeatherAndUpdate() {
 function renderWeatherStrip() {
   const el = document.getElementById('weather-strip');
   if (!el) return;
-  if (!weatherData?.current || !selectedZone) { el.hidden = true; return; }
+  if (!weatherData?.current || !selectedZone) { el.hidden = true; hideWeatherSkeleton(); return; }
+  showWeatherSkeleton();  // Phase 139: show skeleton while rendering
   const c = weatherData.current;
   const d = weatherData.daily;
   const toC = f => Math.round((f - 32) * 5 / 9);
@@ -3333,6 +3360,7 @@ function renderWeatherStrip() {
     <div class="wx-forecast">${forecast}</div>
     <div class="wx-attribution">${selectedLocationName ? `📍 ${selectedLocationName} · ` : ''}Weather: Open-Meteo.com</div>`;
   el.hidden = false;
+  hideWeatherSkeleton();  // Phase 139: hide skeleton after rendering
   const forecastEl = document.getElementById('weather-forecast-7day');
   if (forecastEl && weatherData?.daily) render7DayForecast(weatherData.daily, forecastEl, useMetric);
 }
