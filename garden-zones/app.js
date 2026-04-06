@@ -38,7 +38,22 @@ import { getRecipesForCrop, showHarvestRecipes } from './features/recipes.js';
 import { scorePlantingDay, render7DayForecast } from './features/weather.js';
 import { KEYS, loadJSON, saveJSON, loadBool, saveBool, loadString } from './utils/storage.js';
 
-// ── A11y helpers ───────────────────────────────
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ TABLE OF CONTENTS — Major sections below:                               ║
+// ║ • A11y helpers                  • Month slider & season context          ║
+// ║ • State & initialization        • Zone selection & map                   ║
+// ║ • Panel rendering               • Browse grid & filtering                ║
+// ║ • Calendar & planting data      • Crop detail modal                      ║
+// ║ • Garden tracker                • Bed management & map                   ║
+// ║ • Harvest & journal             • Achievements & gamification            ║
+// ║ • Weather & forecast            • Settings & themes                      ║
+// ║ • Export/import & backups       • Service worker & offline               ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+// ╔═══════════════════════════════════════════════╗
+// ║ A11Y HELPERS & UTILITIES                      ║
+// ╚═══════════════════════════════════════════════╝
+
 function addButtonKeydown(el, handler) {
   el.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(e); }
@@ -140,6 +155,10 @@ let currentTip = '';
 
 // ── State ─────────────────────────────────────
 let map, zonesLayer, selectedLayer;
+// ╔═══════════════════════════════════════════════╗
+// ║ STATE & DATA VARIABLES                        ║
+// ╚═══════════════════════════════════════════════╝
+
 let zonesData = null;
 let plantingData = null;
 let cropData = null;
@@ -149,6 +168,7 @@ let selectedZone = null;
 let selectedCountry = loadString(KEYS.COUNTRY, 'us');
 let currentMonth = new Date().getMonth() + 1;
 
+// ── Garden state ────────────────────────────────
 let myGarden = {};
 let gardenBeds = {};
 let activeBedId = null;
