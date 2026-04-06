@@ -1,5 +1,5 @@
 // Phase 139: Service worker version bump for feature release
-const CACHE     = 'plant-zone-v133';
+const CACHE     = 'plant-zone-v134';
 const API_CACHE = 'pzf-api-v1'; // separate; survives app-code updates
 
 const CORE = [
