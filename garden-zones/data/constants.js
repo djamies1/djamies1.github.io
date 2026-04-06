@@ -80,6 +80,19 @@ export const CROP_VALUES = {
   'Green Onions':6,'Lemongrass':10,'Microgreens':35,'Mustard Greens':4.5,
   'Okra':6,'Quinoa':12,'Turmeric':18,'Valerian':15,'Viola':22,
   'Watercress':14,'Yarrow':12,
+  // Phase 139: Expansion for new crops
+  'Tatsoi':5,'Mizuna':4.5,'Pak Choi':4.5,'Endive':7,'Radicchio':8,'Mâche':6,
+  'Purslane':8,'Borage':15,'Calendula':12,'Shiso':14,'Lovage':10,'Sweet Cicely':12,
+  'Jerusalem Artichoke':8,'Celeriac':6,'Cardoon':7,'Scorzonera':9,'Good King Henry':10,
+  'Nigella':10,'Fenugreek':12,'Perilla':14,'Bay Leaf':18,'Hot Peppers':5.5,
+  'Lemons':5,'Limes':5,'Apricots':6,'Peaches':6,'Plums':5,'Grapes':8,'Kiwi':10,
+  'Passion Fruit':12,'Dragon Fruit':15,'Guava':8,'Avocado':10,'Olives':8,
+  'Almonds':16,'Walnuts':14,'Hazelnuts':16,'Chestnuts':12,'Pine Nuts':20,
+  'Barley':2,'Rye':2,'Oats':2,'Wheat':2,'Millet':3,'Sorghum':3,
+  'Soybean':4,'Mung Beans':8,'Lentils':10,'Chickpeas':8,'Black Beans':6,
+  'Pinto Beans':5,'Kidney Beans':6,'Adzuki Beans':7,'Anise':12,'Caraway':10,
+  'Cumin':12,'Fenugreek':12,'Mustard Seeds':8,'Poppy Seeds':14,'Sesame':14,
+  'Safflower':8,'Sunflower Seeds':6,'Pumpkin Seeds':8,'Flax':10,
 };
 
 // ── Phase 139: International crop name normalization ─
