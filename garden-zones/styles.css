@@ -1590,6 +1590,18 @@ button:active, [role="button"]:active {
   letter-spacing: var(--tracking-lg);
 }
 
+/* Phase 139: Companion card variant — green left border tint */
+.browse-card-companion {
+  border-left: 3px solid var(--color-success, #22c55e);
+  background: color-mix(in srgb, var(--color-success, #22c55e) 5%, transparent);
+}
+
+/* Phase 139: Custom crop card variant — purple left border tint */
+.browse-card-custom {
+  border-left: 3px solid var(--color-custom, #d946ef);
+  background: color-mix(in srgb, var(--color-custom, #d946ef) 5%, transparent);
+}
+
 .browse-empty {
   grid-column: 1 / -1;
   color: var(--text-muted);
@@ -1605,6 +1617,20 @@ button:active, [role="button"]:active {
 .browse-empty-icon { font-size: 2.5rem; opacity: 0.4; }
 .browse-empty-title { font-size: var(--text-sm); font-weight: 600; color: var(--text-faint); }
 .browse-empty-hint  { font-size: var(--text-xs); color: var(--text-faint); }
+.browse-empty-cta {
+  margin-top: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: white;
+  border: none;
+  font-weight: var(--weight-600);
+  cursor: pointer;
+  font-size: var(--text-sm);
+}
+.browse-empty-cta:hover {
+  opacity: 0.9;
+}
 
 /* ──────────────────────────────────────────────
    Year calendar strip

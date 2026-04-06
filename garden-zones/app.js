@@ -152,6 +152,7 @@ let currentMonth = new Date().getMonth() + 1;
 let myGarden = {};
 let gardenBeds = {};
 let activeBedId = null;
+let _lastRemoved = null;  // Phase 139: undo stack for removed crops
 // Phase 87: Garden Map
 const TILE_SIZE = 44;
 let gardenCanvas = { cols: 20, rows: 15 };
@@ -1492,6 +1493,72 @@ function restoreFromURL() {
   }
 }
 
+// ── Phase 139: Browse filter persistence ───────
+function saveBrowseFilters() {
+  const state = {
+    search: browseSearch,
+    category: browseCategory,
+    difficulty: browseDifficulty,
+    inSeason: browseInSeason,
+    sort: browseSort,
+    companions: browseCompanions,
+    sun: browseSun,
+    shortSeason: browseShortSeason,
+    inGarden: browseInGarden,
+    family: browseFamily,
+    frostHardy: browseFrostHardy,
+    directSow: browseDirectSow,
+    sowNow: browseSowNow,
+    container: browseContainer,
+    heatSensitive: browseHeatSensitive,
+  };
+  sessionStorage.setItem('pzf-browse-filters', JSON.stringify(state));
+}
+
+function restoreBrowseFilters() {
+  try {
+    const state = JSON.parse(sessionStorage.getItem('pzf-browse-filters') || '{}');
+    browseSearch = state.search || '';
+    browseCategory = state.category || '';
+    browseDifficulty = state.difficulty || '';
+    browseInSeason = state.inSeason || false;
+    browseSort = state.sort || '';
+    browseCompanions = state.companions || false;
+    browseSun = state.sun || '';
+    browseShortSeason = state.shortSeason || false;
+    browseInGarden = state.inGarden || false;
+    browseFamily = state.family || '';
+    browseFrostHardy = state.frostHardy || false;
+    browseDirectSow = state.directSow || false;
+    browseSowNow = state.sowNow || false;
+    browseContainer = state.container || false;
+    browseHeatSensitive = state.heatSensitive || false;
+  } catch (e) {
+    // Invalid JSON, ignore
+  }
+}
+
+function resetBrowseFilters() {
+  browseSearch = '';
+  browseCategory = '';
+  browseDifficulty = '';
+  browseInSeason = false;
+  browseSort = '';
+  browseCompanions = false;
+  browseSun = '';
+  browseShortSeason = false;
+  browseInGarden = false;
+  browseFamily = '';
+  browseFrostHardy = false;
+  browseDirectSow = false;
+  browseSowNow = false;
+  browseContainer = false;
+  browseHeatSensitive = false;
+  sessionStorage.removeItem('pzf-browse-filters');
+  renderBrowseGrid();
+  initBrowse();
+}
+
 // ── Browse view ────────────────────────────────
 function initBrowse() {
   // Update crop count in search placeholder dynamically
@@ -1526,6 +1593,7 @@ function initBrowse() {
   if (search) {
     search.addEventListener('input', debounce(() => {
       browseSearch = search.value.toLowerCase().trim();
+      saveBrowseFilters();  // Phase 139
       renderBrowseGrid();
     }, 250));
   }
@@ -1537,6 +1605,7 @@ function initBrowse() {
       if (!chip) return;
       browseCategory = chip.dataset.cat || '';
       cats.querySelectorAll('.cat-chip').forEach(c => c.classList.toggle('active', c === chip));
+      saveBrowseFilters();  // Phase 139
       renderBrowseGrid();
     });
   }
@@ -1545,6 +1614,7 @@ function initBrowse() {
   if (diff) {
     diff.addEventListener('change', () => {
       browseDifficulty = diff.value;
+      saveBrowseFilters();  // Phase 139
       renderBrowseGrid();
     });
   }
@@ -1553,6 +1623,7 @@ function initBrowse() {
   if (inSeason) {
     inSeason.addEventListener('change', () => {
       browseInSeason = inSeason.checked;
+      saveBrowseFilters();  // Phase 139
       renderBrowseGrid();
     });
   }
@@ -1561,6 +1632,7 @@ function initBrowse() {
   if (sortSel) {
     sortSel.addEventListener('change', () => {
       browseSort = sortSel.value;
+      saveBrowseFilters();  // Phase 139
       renderBrowseGrid();
     });
   }
@@ -1569,6 +1641,7 @@ function initBrowse() {
   if (companions) {
     companions.addEventListener('change', () => {
       browseCompanions = companions.checked;
+      saveBrowseFilters();  // Phase 139
       renderBrowseGrid();
     });
   }
@@ -1577,6 +1650,7 @@ function initBrowse() {
   if (familySel) {
     familySel.addEventListener('change', () => {
       browseFamily = familySel.value;
+      saveBrowseFilters();  // Phase 139
       renderBrowseGrid();
     });
   }
@@ -1623,6 +1697,7 @@ function initBrowse() {
       chip.classList.toggle('active', browseHeatSensitive);
       chip.setAttribute('aria-pressed', browseHeatSensitive);
     }
+    saveBrowseFilters();  // Phase 139
     renderBrowseGrid();
   });
 
@@ -1654,6 +1729,7 @@ function toggleBrowse(show) {
   view.classList.toggle('browse-hidden', !show);
   if (btn) btn.classList.toggle('active', show);
   if (show) {
+    restoreBrowseFilters();  // Phase 139: restore filter state
     renderBrowseGrid();
     const search = document.getElementById('browse-search');
     if (search) search.focus();
@@ -1722,7 +1798,7 @@ function renderBrowseGrid() {
     crops = crops.filter(([, c]) => c.frost_tolerance !== 'tender');
   }
   if (browseDirectSow) {
-    crops = crops.filter(([, c]) => c.transplant_tolerance === 'poor');
+    crops = crops.filter(([, c]) => c.direct_sow_ok === true);  // Phase 139: correct filter
   }
   if (browseSowNow) {
     crops = crops.filter(([name]) => sowNowSet.has(name));
@@ -1827,7 +1903,18 @@ function renderBrowseGrid() {
   }
 
   if (!crops.length) {
-    grid.innerHTML = '<div class="browse-empty"><div class="browse-empty-icon">🔍</div><div class="browse-empty-title">No crops match your filters</div><div class="browse-empty-hint">Try removing a filter or broadening your search</div></div>';
+    // Phase 139: add "Clear all" CTA if any filters are active
+    const hasFilters = browseSearch || browseCategory || browseDifficulty || browseInSeason ||
+                       browseSun || browseShortSeason || browseInGarden || browseFamily ||
+                       browseFrostHardy || browseDirectSow || browseSowNow || browseContainer ||
+                       browseHeatSensitive || browseCompanions;
+    const clearBtn = hasFilters ? '<button class="browse-empty-cta" onclick="resetBrowseFilters()">Clear all filters →</button>' : '';
+    grid.innerHTML = `<div class="browse-empty">
+      <div class="browse-empty-icon">🔍</div>
+      <div class="browse-empty-title">No crops match your filters</div>
+      <div class="browse-empty-hint">Try removing a filter or broadening your search</div>
+      ${clearBtn}
+    </div>`;
     return;
   }
 
@@ -1934,8 +2021,22 @@ function gardenAdd(name) {
 function gardenRemove(name) {
   const hadPlanted = !!myGarden[name]?.planted;
   if (hadPlanted) autoMilestone(`Removed ${name} from the garden.`, name, 'removed');
+  // Phase 139: Store for undo
+  _lastRemoved = { name, data: { ...myGarden[name] } };
   archiveGardenEntry(name); delete myGarden[name]; saveGarden(); refreshGardenUI(name); haptic(5);
   if (hadPlanted) promptVarietyLog(name);
+  // Show undo toast
+  showToast(`${name} removed`, {
+    action: () => {
+      myGarden[name] = _lastRemoved.data;
+      saveGarden();
+      refreshGardenUI(name);
+      showToast(`${name} restored`);
+      _lastRemoved = null;
+    },
+    actionLabel: 'Undo',
+    duration: 5000,
+  });
 }
 
 // ── Phase 22: Pest & Problem log ─────────────────
@@ -10172,6 +10273,10 @@ function addToCompare(name) {
     compareSet.splice(idx, 1); // deselect
   } else if (compareSet.length < 2) {
     compareSet.push(name);
+  } else {
+    // Phase 139: Show toast when trying to add a 3rd crop
+    showToast('Remove a crop first to add another');
+    return;
   }
   renderBrowseGrid();
   renderCompareDrawer();
