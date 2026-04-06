@@ -1744,8 +1744,31 @@ function initBrowse() {
       if (compareMode) { addToCompare(card.dataset.crop); } else { openCropDetail(card.dataset.crop); }
     });
     grid.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        const card = e.target.closest('.browse-card, .browse-card-list');
+      const card = e.target.closest('.browse-card, .browse-card-list');
+      if (!card) return;
+
+      // Phase 139: Arrow key navigation
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const cards = Array.from(grid.querySelectorAll('.browse-card, .browse-card-list'));
+        const idx = cards.indexOf(card);
+        if (idx === -1) return;
+
+        // Calculate grid columns
+        const cardWidth = cards[0]?.offsetWidth || 120;
+        const gridWidth = grid.offsetWidth || 400;
+        const cols = Math.max(1, Math.floor(gridWidth / cardWidth));
+
+        let newIdx = idx;
+        if (e.key === 'ArrowRight') newIdx = (idx + 1) % cards.length;
+        else if (e.key === 'ArrowLeft') newIdx = (idx - 1 + cards.length) % cards.length;
+        else if (e.key === 'ArrowDown') newIdx = Math.min(idx + cols, cards.length - 1);
+        else if (e.key === 'ArrowUp') newIdx = Math.max(idx - cols, 0);
+
+        if (newIdx !== idx) cards[newIdx]?.focus();
+      }
+      // Phase 139: Enter/Space to activate
+      else if (e.key === 'Enter' || e.key === ' ') {
         if (!card?.dataset.crop) return;
         e.preventDefault();
         if (compareMode) { addToCompare(card.dataset.crop); } else { openCropDetail(card.dataset.crop); }
