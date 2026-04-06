@@ -5637,8 +5637,9 @@ function showUpdateBar() {
   bar.id = 'update-bar';
   bar.setAttribute('role', 'alert');
   bar.setAttribute('aria-live', 'assertive');
-  bar.innerHTML = `<span>🆕 New version available</span>
-    <button id="update-reload-btn">Reload</button>
+  // Phase 139: Enhanced update message with tap-to-refresh
+  bar.innerHTML = `<span>✨ Update available — tap to refresh</span>
+    <button id="update-reload-btn" aria-label="Refresh to update">Refresh</button>
     <button id="update-dismiss-btn" aria-label="Dismiss">✕</button>`;
   document.body.appendChild(bar);
   document.getElementById('update-reload-btn')?.addEventListener('click', () => window.location.reload());
