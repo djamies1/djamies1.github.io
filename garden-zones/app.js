@@ -2759,6 +2759,13 @@ function renderGardenByBed() {
     const filledCount = Object.keys(cells).length;
     const t = BED_TYPES[bed.type || 'raised'];
 
+    // Phase 139: Get crops assigned to this bed via bedIds
+    const cropsInBed = getCropsInBed(bedId);
+    const cropPills = cropsInBed.map(cropName => {
+      const c = cropData[cropName];
+      return `<span class="gvb-crop-pill" title="${cropName}">${c?.emoji || '🌱'} ${cropName}</span>`;
+    }).join('');
+
     // Build inline cell grid
     let gridCells = '';
     for (let r = 0; r < rows; r++) {
@@ -2796,6 +2803,7 @@ function renderGardenByBed() {
         </div>
         <button class="gvb-map-btn" data-bed="${bedId}" title="Open in map">📐</button>
       </div>
+      ${cropPills ? `<div class="gvb-crops-row">${cropPills}</div>` : ''}
       <div class="bgv-grid-wrap">
         <div class="bgv-grid" style="--bgv-cols:${cols}">${gridCells}</div>
       </div>
@@ -3119,17 +3127,49 @@ function renderModalGardenBar(name) {
   const today = new Date().toISOString().slice(0,10);
   if (!inG) {
     const inPlan = Object.values(myPlan).some(yr => yr[name]);
+    // Phase 139: Show bed selector if beds exist
+    const bedIds = Object.keys(gardenBeds);
+    const hasBeds = bedIds.length > 0;
+    const bedChips = hasBeds ? `<div class="modal-bed-selector">
+      <span class="modal-bed-label">Assign to bed:</span>
+      <div class="modal-bed-chips">
+        ${bedIds.map(bid => {
+          const bed = gardenBeds[bid];
+          return `<button class="modal-bed-chip" data-bed-id="${bid}" title="Assign to ${bed.name}">
+            ${bed.emoji || '🛏'} ${bed.name}
+          </button>`;
+        }).join('')}
+      </div>
+    </div>` : '';
+
     bar.className = 'bar-add';
     bar.innerHTML = `<button class="modal-garden-btn" id="modal-garden-add">☆ Add to My Garden</button>
-      <button class="modal-plan-btn${inPlan ? ' modal-plan-btn--active' : ''}" id="modal-plan-btn">${inPlan ? '📋 Planned' : '📋 Plan'}</button>`;
+      <button class="modal-plan-btn${inPlan ? ' modal-plan-btn--active' : ''}" id="modal-plan-btn">${inPlan ? '📋 Planned' : '📋 Plan'}</button>
+      ${bedChips}`;
+
     bar.querySelector('#modal-garden-add').addEventListener('click', () => {
       gardenAdd(name);
-      if (_mapPendingBed) {
+      const selectedBed = bar.querySelector('.modal-bed-chip.active');
+      if (selectedBed) {
+        const bedId = selectedBed.dataset.bedId;
+        addCropToBed(name, bedId);
+      } else if (_mapPendingBed) {
         addCropToBed(name, _mapPendingBed);
         _mapPendingBed = null;
       }
       renderModalGardenBar(name);
     });
+
+    // Phase 139: Wire bed selector
+    if (hasBeds) {
+      bar.querySelectorAll('.modal-bed-chip').forEach(chip => {
+        chip.addEventListener('click', (e) => {
+          e.preventDefault();
+          bar.querySelectorAll('.modal-bed-chip').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+        });
+      });
+    }
     bar.querySelector('#modal-plan-btn').addEventListener('click', () => {
       if (inPlan) { removeFromPlan(name, new Date().getFullYear()+1); renderModalGardenBar(name); }
       else { addToPlan(name, new Date().getFullYear()+1, [], ''); renderModalGardenBar(name); }
