@@ -8146,10 +8146,22 @@ function renderSeedInventory() {
 
   const needToBuy = inSeason.filter(n => !mySeeds[n]);
 
+  // Phase 140: Calculate seed inventory stats
+  const totalCost = Object.values(mySeeds).reduce((sum, s) => sum + (s.cost || 0), 0);
+  const avgGermination = (() => {
+    const withGerm = Object.values(mySeeds).filter(s => s.germinationRate);
+    return withGerm.length ? Math.round(withGerm.reduce((sum, s) => sum + s.germinationRate, 0) / withGerm.length) : null;
+  })();
+  const statsHtml = totalCost || avgGermination ? `<div class="seeds-stats">
+    ${totalCost ? `<span class="seeds-stat-item">💰 Total investment: $${totalCost.toFixed(2)}</span>` : ''}
+    ${avgGermination ? `<span class="seeds-stat-item">📊 Avg germination: ${avgGermination}%</span>` : ''}
+  </div>` : '';
+
   let html = `<div class="seeds-header">
     <span class="seeds-title">🌰 Seed Inventory</span>
     <button class="seeds-add-open-btn" id="seeds-add-open-btn">+ Add seeds</button>
   </div>
+  ${statsHtml}
   <div class="seeds-add-form" id="seeds-add-form" hidden>
     <div class="seeds-form-row">
       <input type="text" id="seeds-crop-input" placeholder="Crop name…" autocomplete="off" list="seeds-crop-list">
@@ -8161,6 +8173,12 @@ function renderSeedInventory() {
       <input type="number" id="seeds-expiry-input" placeholder="Expiry year" min="2020" max="2040">
       <button id="seeds-save-btn">Add</button>
       <button id="seeds-cancel-btn" class="seeds-cancel-btn">✕</button>
+    </div>
+    <!-- Phase 140: Enhanced seed tracking -->
+    <div class="seeds-form-row" style="margin-top:8px; padding-top:8px; border-top:1px solid var(--border); font-size:var(--text-xs); color:var(--text-muted);">
+      <label><input type="number" id="seeds-germ-input" placeholder="Germination %" min="0" max="100"> Germination %</label>
+      <label><input type="text" id="seeds-location-input" placeholder="Storage (e.g. fridge, shelf)" style="flex:1"> Location</label>
+      <label><input type="number" id="seeds-cost-input" placeholder="Cost" min="0" step="0.01"> $</label>
     </div>
   </div>`;
 
@@ -8189,7 +8207,11 @@ function renderSeedInventory() {
           <span class="seed-card-meta">${[
             s.variety,
             s.qty ? `${s.qty} seeds` : '',
-            s.expiryYear ? `${isExp ? '⚠️ expired' : isWarn ? '⚠️ expiring' : 'exp.'} ${s.expiryYear}` : ''
+            s.expiryYear ? `${isExp ? '⚠️ expired' : isWarn ? '⚠️ expiring' : 'exp.'} ${s.expiryYear}` : '',
+            // Phase 140: Show enhanced tracking info
+            s.germinationRate ? `📊 ${s.germinationRate}%` : '',
+            s.storageLocation ? `📍 ${s.storageLocation}` : '',
+            s.cost ? `💰 $${s.cost.toFixed(2)}` : ''
           ].filter(Boolean).join(' · ')}</span>
         </div>
         <button class="seed-remove-btn" data-seed="${name}" aria-label="Remove ${name}">×</button>
@@ -8240,6 +8262,10 @@ function renderSeedInventory() {
       qty: parseInt(el.querySelector('#seeds-qty-input')?.value) || 0,
       expiryYear: expiryRaw || autoExpiry,
       added: new Date().toISOString().slice(0,10),
+      // Phase 140: Enhanced tracking
+      germinationRate: parseInt(el.querySelector('#seeds-germ-input')?.value) || null,
+      storageLocation: el.querySelector('#seeds-location-input')?.value.trim() || '',
+      cost: parseFloat(el.querySelector('#seeds-cost-input')?.value) || null,
     };
     saveSeeds();
     renderSeedInventory();
