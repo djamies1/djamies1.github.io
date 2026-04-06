@@ -855,12 +855,35 @@ function initMonthSlider() {
     if (selectedZone) renderPanel();
     updateURL();
   });
+
+  // Phase 139: Jump-to-now button
+  const nowBtn = document.getElementById('month-now-btn');
+  if (nowBtn) {
+    nowBtn.addEventListener('click', () => {
+      const realMonth = new Date().getMonth() + 1;
+      currentMonth = realMonth;
+      slider.value = realMonth;
+      updateMonthLabels();
+      updateSeasonBg();
+      if (selectedZone) renderPanel();
+      updateURL();
+    });
+  }
 }
 
 function updateMonthLabels() {
+  const realMonth = new Date().getMonth() + 1;
   document.querySelectorAll('#month-labels span').forEach(span => {
-    span.classList.toggle('active', parseInt(span.dataset.month, 10) === currentMonth);
+    const m = parseInt(span.dataset.month, 10);
+    span.classList.toggle('active', m === currentMonth);
+    // Phase 139: Show indicator dot for current real month
+    span.classList.toggle('month-indicator', m === realMonth);
   });
+  // Phase 139: Show "Now" button if not on current month
+  const nowBtn = document.getElementById('month-now-btn');
+  if (nowBtn) {
+    nowBtn.hidden = (currentMonth === realMonth);
+  }
   updateThumbLabel();
   // Phase 49: keep slider accessible
   const slider = document.getElementById('month-slider');
