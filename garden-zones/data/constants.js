@@ -455,6 +455,22 @@ export const ACHIEVEMENTS = [
   { id: 'critic',        icon: '⭐', name: 'Critic',          desc: 'Rate a crop after growing it' },
   { id: 'companion',     icon: '🤝', name: 'Good Neighbours', desc: 'Add a companion crop recommendation' },
   { id: 'custom-crop',   icon: '🔬', name: 'Experimenter',    desc: 'Add a custom crop of your own' },
+  // Phase 139: 15 new achievements
+  { id: 'intl_grower',   icon: '🌍', name: 'World Gardener',  desc: 'Select a non-US zone' },
+  { id: 'herb_lover',    icon: '🌿', name: 'Herb Enthusiast', desc: 'Grow 5+ herbs simultaneously' },
+  { id: 'rainbow_garden',icon: '🌈', name: 'Rainbow Garden',  desc: 'Grow 6+ different crop families' },
+  { id: 'succession_master', icon: '📅', name: 'Succession Master', desc: 'Log 3+ succession sowings' },
+  { id: 'companion_planter', icon: '🤝', name: 'Companion Planter', desc: 'Add 3+ companion pairs to garden' },
+  { id: 'winter_warrior', icon: '❄️', name: 'Winter Warrior', desc: 'Grow a frost-hardy crop during winter' },
+  { id: 'seed_saver',    icon: '🌱', name: 'Seed Saver',      desc: 'Reach 10+ crops in seed inventory' },
+  { id: 'big_harvest',   icon: '⚖️', name: 'Big Harvest',     desc: 'Log a single harvest over 1kg' },
+  { id: 'photo_journalist', icon: '📸', name: 'Garden Journalist', desc: 'Attach 10+ photos to journal' },
+  { id: 'year_round',    icon: '🗓️', name: 'Year-Round Grower', desc: 'Have crops in garden across all seasons' },
+  { id: 'variety_hunter', icon: '🔬', name: 'Variety Hunter', desc: 'Log 5+ different variety trials' },
+  { id: 'organizer',     icon: '🗺️', name: 'Bed Master',      desc: 'Create 3+ named garden beds' },
+  { id: 'problem_solver',icon: '🔍', name: 'Problem Solver',  desc: 'Use the problem solver 3+ times' },
+  { id: 'recipe_chef',   icon: '👨‍🍳', name: 'Farm-to-Fork',     desc: 'Open a recipe for a just-harvested crop' },
+  { id: 'export_expert', icon: '💾', name: 'Data Keeper',     desc: 'Export garden data to JSON' },
 ];
 
 // ── Phase 129: XP level titles ─────────────────

@@ -4973,6 +4973,7 @@ async function exportGarden() {
     try {
       const file = new File([json], filename, { type: 'application/json' });
       await navigator.share({ title: 'Plant Zone Finder Backup', files: [file] });
+      unlockAchievement('export_expert');  // Phase 139
       return;
     } catch (err) {
       if (err.name !== 'AbortError') showToast('Share failed — trying download', 'info');
@@ -4987,6 +4988,7 @@ async function exportGarden() {
   a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
+  unlockAchievement('export_expert');  // Phase 139
   showToast('Backup exported ✓', 'success');
 }
 
@@ -5576,6 +5578,89 @@ function checkAchievements() {
       unlockAchievement('companion'); break;
     }
   }
+
+  // Phase 139: New achievements
+  // International grower: non-US zone selected
+  if (selectedZone && !isUSDASys()) unlockAchievement('intl_grower');
+
+  // Herb lover: 5+ herbs growing
+  const herbs = names.filter(n => (CROP_CATEGORY_MAP[n] || cropData[n]?.category) === 'Herbs');
+  if (herbs.length >= 5) unlockAchievement('herb_lover');
+
+  // Rainbow garden: 6+ crop families
+  const families = new Set(names.map(n => cropData[n]?.family || CROP_FAMILIES[n]));
+  if (families.size >= 6) unlockAchievement('rainbow_garden');
+
+  // Succession master: 3+ succession sowings logged
+  const successionCount = names.reduce((s, n) => s + (myGarden[n]?.successionLog?.length || 0), 0);
+  if (successionCount >= 3) unlockAchievement('succession_master');
+
+  // Companion planter: 3+ companion pairs in garden
+  let companionPairs = 0;
+  for (const name of names) {
+    const companions = cropData[name]?.companions || [];
+    for (const comp of companions) {
+      if (names.includes(comp)) companionPairs++;
+    }
+  }
+  if (companionPairs >= 3) unlockAchievement('companion_planter');
+
+  // Winter warrior: frost-hardy crop growing during winter (months 12,1,2)
+  const winterMonth = [12, 1, 2].includes(new Date().getMonth() + 1);
+  const frostHardy = names.filter(n => {
+    const tol = cropData[n]?.frost_tolerance;
+    return tol === 'light_frost' || tol === 'hard_frost';
+  });
+  if (winterMonth && frostHardy.length > 0) unlockAchievement('winter_warrior');
+
+  // Seed saver: 10+ crops in seed inventory
+  const seedCount = Object.keys(mySeeds || {}).length;
+  if (seedCount >= 10) unlockAchievement('seed_saver');
+
+  // Big harvest: single harvest over 1kg
+  let bigHarvest = false;
+  for (const name of names) {
+    const log = myGarden[name]?.harvestLog || [];
+    for (const h of log) {
+      if (h.qty && h.unit && (h.unit === 'kg' && h.qty > 1 || h.unit === 'lb' && h.qty > 2.2)) {
+        bigHarvest = true;
+        break;
+      }
+    }
+    if (bigHarvest) break;
+  }
+  if (bigHarvest) unlockAchievement('big_harvest');
+
+  // Photo journalist: 10+ photos in journal
+  const photoCount = journalEntries.reduce((s, e) => s + (e.photos?.length || 0), 0);
+  if (photoCount >= 10) unlockAchievement('photo_journalist');
+
+  // Year-round grower: crops in all 4 seasons
+  const cropsByMonth = {};
+  for (const name of names) {
+    if (!myGarden[name]?.planted) continue;
+    const plantedDate = myGarden[name]?.plantedDate;
+    if (plantedDate) {
+      const month = new Date(plantedDate + 'T00:00:00').getMonth();
+      cropsByMonth[month] = true;
+    }
+  }
+  if (Object.keys(cropsByMonth).length >= 4) unlockAchievement('year_round');
+
+  // Variety hunter: 5+ variety trials logged
+  const varietyCount = Object.keys(myVarieties || {}).length;
+  if (varietyCount >= 5) unlockAchievement('variety_hunter');
+
+  // Bed master: 3+ named beds
+  const bedCount = Object.keys(gardenBeds || {}).length;
+  if (bedCount >= 3) unlockAchievement('organizer');
+
+  // Problem solver: 3+ problem entries
+  const problemCount = names.reduce((s, n) => s + (myGarden[n]?.problems?.length || 0), 0);
+  if (problemCount >= 3) unlockAchievement('problem_solver');
+
+  // Recipe chef: unlock when opening recipe (handled in showHarvestRecipes)
+  // Export expert: unlock when exporting (handled in exportGarden)
 }
 
 function renderAchievementShelf() {
