@@ -82,6 +82,51 @@ export const CROP_VALUES = {
   'Watercress':14,'Yarrow':12,
 };
 
+// ── Phase 139: International crop name normalization ─
+// Maps gardenate_au/ca/nz/uk singular/variant names → canonical crops.json names
+export const GARDENATE_NAME_MAP = {
+  // Singular → plural basics
+  'Carrot': 'Carrots',
+  'Onion': 'Onions',
+  'Potato': 'Potatoes',
+  'Radish': 'Radishes',
+  'Cucumber': 'Cucumbers',
+  'Pumpkin': 'Pumpkins',
+  'Shallot': 'Shallots',
+  // Bean varieties
+  'Beans (Bush)': 'Beans',
+  'Beans (Pole)': 'Beans',
+  'Bean': 'Beans',
+  'Broad Bean': 'Fava Beans',
+  'Broad Beans': 'Fava Beans',
+  'French Bean': 'Beans',
+  'Runner Bean': 'Runner Beans',
+  'Cowpeas': 'Peas',
+  'Asparagus Pea': 'Peas',
+  // Regional names
+  'Beetroot': 'Beets',
+  'Capsicum': 'Peppers',
+  'Chilli': 'Hot Peppers',
+  'Silverbeet': 'Swiss Chard',
+  'Brussel Sprouts': 'Brussels Sprouts',
+  'Sweetcorn': 'Corn',
+  'Sweet Corn': 'Corn',
+  'Sweet Potato': 'Sweet Potatoes',
+  'Spring Onion': 'Green Onions',
+  'Rocket': 'Arugula',
+  'Coriander': 'Cilantro',
+  'Swede': 'Turnips',
+  'Turnip': 'Turnips',
+  // Already correct (identity mappings for consistency)
+  'Eggplant': 'Eggplant',
+  'Zucchini': 'Zucchini',
+  'Green Onions': 'Green Onions',
+  'Hot Peppers': 'Hot Peppers',
+  'Peas': 'Peas',
+  'Peppers': 'Peppers',
+  'Fava Beans': 'Fava Beans',
+};
+
 // ── Frost-sensitive crops ──────────────────────
 export const FROST_SENSITIVE = new Set([
   'Tomatoes','Cherry Tomatoes','Peppers','Jalapeño','Eggplant','Basil','Cucumbers',

@@ -1,0 +1,9 @@
+  aliases: ['Green Beans', 'French Beans', 'String Beans', 'Snap Beans', 'Bush Beans']
+  avoid: ['Onions', 'Fennel']
+  companions: ['Corn', 'Squash', 'Cucumbers']
+  container_ok: True
+  days: '50-60 days'
+  days_max: 60
+  days_min: 50
+  depth: '1 in'
+  difficulty: 'Easy'

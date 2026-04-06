@@ -13,6 +13,7 @@ import {
   HARDENING_STEPS, NUDGE_TRIGGERS,
   ROTATION_RULES, ROTATION_SAFE, FAMILY_EMOJI,
   CARE_TYPES,
+  GARDENATE_NAME_MAP,
 } from './data/constants.js';
 import {
   ZONE_COLORS, CLIMATE_ZONE_COLORS, CLIMATE_ZONE_LABELS,
@@ -64,6 +65,12 @@ function announce(msg) {
   if (!el) return;
   el.textContent = '';
   requestAnimationFrame(() => { el.textContent = msg; });
+}
+
+// ── Phase 139: Normalize gardenate crop names ──
+function normalizeCropName(name) {
+  if (!name) return name;
+  return GARDENATE_NAME_MAP[name] || name;
 }
 
 
@@ -532,6 +539,7 @@ function renderPanel() {
 
   for (const key of sections) {
     let items = data[key] || [];
+    items = items.map(normalizeCropName);  // Phase 139: normalize intl crop names
     if (myPersonalSet) items = items.filter(n => myPersonalSet.has(n));
     const section = document.getElementById(`section-${key}`);
     const list    = document.getElementById(`list-${key}`);
@@ -1673,8 +1681,8 @@ function renderBrowseGrid() {
   const sowNowSet = new Set();
   if (selectedZone) {
     const d = getPlantingData(selectedZone, currentMonth);
-    ['startIndoors','directSow','transplant','harvest'].forEach(k => (d[k] || []).forEach(n => activeSet.add(n)));
-    [...(d?.startIndoors || []), ...(d?.directSow || [])].forEach(n => sowNowSet.add(n));
+    ['startIndoors','directSow','transplant','harvest'].forEach(k => (d[k] || []).forEach(n => activeSet.add(normalizeCropName(n))));
+    [...(d?.startIndoors || []), ...(d?.directSow || [])].forEach(n => sowNowSet.add(normalizeCropName(n)));
   }
 
   // Filter
@@ -2071,7 +2079,7 @@ function refreshGardenUI(name) {
     for (const key of ['startIndoors','directSow','transplant','harvest']) {
       const sec = document.getElementById(`section-${key}`);
       if (sec && !sec.classList.contains('hidden'))
-        document.getElementById(`list-${key}`).innerHTML = (data[key]||[]).map(renderCropItem).join('');
+        document.getElementById(`list-${key}`).innerHTML = (data[key]||[]).map(n => normalizeCropName(n)).map(renderCropItem).join('');
     }
   }
   // Re-apply calendar search filter after list re-render (so hidden items stay hidden)
@@ -3332,7 +3340,7 @@ function toggleMetric() {
     for (const key of ['startIndoors','directSow','transplant','harvest']) {
       const sec = document.getElementById(`section-${key}`);
       if (sec && !sec.classList.contains('hidden'))
-        document.getElementById(`list-${key}`).innerHTML = (data[key]||[]).map(renderCropItem).join('');
+        document.getElementById(`list-${key}`).innerHTML = (data[key]||[]).map(n => normalizeCropName(n)).map(renderCropItem).join('');
     }
   }
   renderWeatherStrip();
