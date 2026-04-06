@@ -1149,9 +1149,21 @@ function initCropModal() {
   modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
 }
 
+// Phase 139: Recently viewed crops tracking
+function trackRecentlyCropViewed(name) {
+  try {
+    let recent = JSON.parse(sessionStorage.getItem('pzf-recent-crops') || '[]');
+    recent = recent.filter(c => c !== name); // remove if exists
+    recent.unshift(name); // add to front
+    recent = recent.slice(0, 8); // keep last 8
+    sessionStorage.setItem('pzf-recent-crops', JSON.stringify(recent));
+  } catch (e) {}
+}
+
 function openCropDetail(name) {
   const c = cropData && cropData[name];
   if (!c) return;
+  trackRecentlyCropViewed(name);  // Phase 139: track recently viewed
   const modal = document.getElementById('crop-modal');
   const _prev = document.activeElement;
   document.getElementById('modal-emoji').textContent       = c.emoji || '🌱';
@@ -1771,9 +1783,36 @@ function toggleBrowse(show) {
   }
 }
 
+// Phase 139: Render recently viewed crops row
+function renderBrowseRecentRow() {
+  const recent = document.getElementById('browse-recent');
+  if (!recent) return;
+  try {
+    const recentCrops = JSON.parse(sessionStorage.getItem('pzf-recent-crops') || '[]');
+    if (!recentCrops.length) {
+      recent.hidden = true;
+      return;
+    }
+    recent.hidden = false;
+    recent.innerHTML = '<div class="browse-recent-label">Recently viewed</div>'
+      + '<div class="browse-recent-row">'
+      + recentCrops.map(name => {
+        const c = cropData[name];
+        if (!c) return '';
+        return `<button class="browse-recent-chip" onclick="openCropDetail('${name.replace(/'/g, "\\'")}')" title="${name}">
+          ${c.emoji || '🌱'} <span>${name}</span>
+        </button>`;
+      }).join('')
+      + '</div>';
+  } catch (e) {
+    recent.hidden = true;
+  }
+}
+
 function renderBrowseGrid() {
   const grid = document.getElementById('browse-grid');
   if (!grid || !cropData) return;
+  renderBrowseRecentRow();  // Phase 139
 
   // Build active set + sow-now set for current zone+month
   let activeSet = new Set();
