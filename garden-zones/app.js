@@ -1902,6 +1902,17 @@ function initBrowse() {
   }
 
   document.getElementById('browse-compare-btn')?.addEventListener('click', toggleCompareMode);
+
+  // Phase 139: Mobile filter toggle
+  const filterToggle = document.getElementById('browse-filter-toggle');
+  const browseExtra = document.getElementById('browse-extra');
+  if (filterToggle && browseExtra) {
+    filterToggle.addEventListener('click', () => {
+      const isCollapsed = browseExtra.classList.toggle('browse-extra-collapsed');
+      filterToggle.classList.toggle('browse-filter-btn--active', !isCollapsed);
+      filterToggle.setAttribute('aria-expanded', !isCollapsed);
+    });
+  }
 }
 
 function toggleBrowse(show) {

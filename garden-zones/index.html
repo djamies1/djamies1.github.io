@@ -380,7 +380,10 @@
     </div>
     <div id="browse-recent" hidden></div>
     <div id="browse-filters">
-      <input id="browse-search" type="text" placeholder="Search crops…" autocomplete="off" spellcheck="false" aria-label="Search all crops" />
+      <div id="browse-compact-bar">
+        <input id="browse-search" type="text" placeholder="Search crops…" autocomplete="off" spellcheck="false" aria-label="Search all crops" />
+        <button id="browse-filter-toggle" class="browse-filter-btn" title="Toggle advanced filters" aria-label="Advanced filters">⚙ Filters</button>
+      </div>
       <div id="browse-cats">
         <button class="cat-chip active" data-cat="">All</button>
         <button class="cat-chip" data-cat="Vegetables">Vegetables</button>
@@ -397,7 +400,8 @@
         <button class="cat-chip" data-cat="Tropical">Tropical</button>
         <button class="cat-chip" data-cat="Grains">🌾 Grains</button>
       </div>
-      <div id="browse-extra">
+      <!-- Phase 139: Collapsible advanced filters -->
+      <div id="browse-extra" class="browse-extra-collapsed">
         <select id="browse-difficulty" aria-label="Filter by difficulty">
           <option value="">Any difficulty</option>
           <option value="Easy">Easy</option>

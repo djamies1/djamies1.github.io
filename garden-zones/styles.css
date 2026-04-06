@@ -1403,8 +1403,40 @@ button:active, [role="button"]:active {
   flex-shrink: 0;
 }
 
+/* Phase 139: Mobile filter toggle */
+#browse-compact-bar {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.browse-filter-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: var(--text-xs);
+  padding: 7px 10px;
+  min-height: 36px;
+  white-space: nowrap;
+  transition: border-color var(--transition-base), background var(--transition-base), color var(--transition-base);
+  flex-shrink: 0;
+}
+
+.browse-filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.browse-filter-btn--active {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 #browse-search {
-  width: 100%;
+  flex: 1;
   background: var(--surface2);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -1413,6 +1445,7 @@ button:active, [role="button"]:active {
   font-size: var(--text-sm);
   outline: none;
   transition: border-color var(--transition-medium);
+  min-height: 36px;
 }
 
 #browse-search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
@@ -1451,8 +1484,19 @@ button:active, [role="button"]:active {
 
 #browse-extra {
   display: flex;
-  align-items: center;
-  gap: var(--space-3);
+  flex-direction: column;
+  gap: var(--space-2);
+  max-height: 500px;
+  overflow-y: auto;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+#browse-extra.browse-extra-collapsed {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
 }
 
 #browse-difficulty {
@@ -1505,10 +1549,16 @@ button:active, [role="button"]:active {
     min-height: 30px;
   }
   #browse-extra {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    flex-direction: column;
+    overflow-x: visible;
+    overflow-y: visible;
     flex-wrap: nowrap;
     padding-bottom: 2px;
+    max-height: none;
+  }
+  #browse-extra.browse-extra-collapsed {
+    max-height: 0;
+    padding-bottom: 0;
   }
   #browse-grid {
     grid-template-columns: 1fr 1fr;
