@@ -2305,8 +2305,15 @@ function renderBrowseGrid() {
   // Add seasonal spotlights at the top (phase 149: visual discovery)
   const spotlightsHTML = renderBrowseSpotlights();
 
-  grid.innerHTML = spotlightsHTML + crops.map(([name, c], i) => {
-    const cat          = c.custom ? (c.category || '') : (CROP_CATEGORY_MAP[name] || '');
+  // Track categories for visual separators (phase 149: visual grouping)
+  let lastCategory = '';
+  const cropsWithCategory = crops.map(([name, c]) => ({
+    name, c,
+    category: c.custom ? (c.category || '') : (CROP_CATEGORY_MAP[name] || ''),
+  }));
+
+  grid.innerHTML = spotlightsHTML + cropsWithCategory.map(({name, c, category}, i) => {
+    const cat          = category;
     const isActive     = activeSet.has(name);
     const isCompanion  = gardenCompanionSet.has(name) && !isInGarden(name);
     const diff         = c.difficulty ? c.difficulty.toLowerCase() : '';
@@ -2319,6 +2326,19 @@ function renderBrowseGrid() {
         ? '<span class="browse-card-frost browse-card-frost--hardy" title="Hard frost tolerant">❄️❄️</span>'
         : '';
     const containerBadge = c.container_ok ? '<span class="browse-card-container" title="Container OK">🪣</span>' : '';
+
+    // Phase 149: Add category separator when category changes
+    let catSeparator = '';
+    if (!browseListView && cat && cat !== lastCategory) {
+      lastCategory = cat;
+      catSeparator = `<div class="browse-category-divider" style="animation-delay:${i * 0.015}s">
+        <span class="browse-category-label">${cat}</span>
+      </div>`;
+    }
+
+    // Phase 149: Featured cards (larger) every 8th card for visual rhythm
+    const isFeatured = !browseListView && (i % 8 === 5);
+    const featuredClass = isFeatured ? ' browse-card--featured' : '';
 
     if (browseListView) {
       const statusBadge = isSowNow
@@ -2339,7 +2359,7 @@ function renderBrowseGrid() {
     }
 
     const indicators = renderVisualIndicators(c);
-    return `<div class="browse-card${isActive ? ' browse-card--active' : ''}${isSelected ? ' browse-card--selected' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.025}s">
+    return `${catSeparator}<div class="browse-card${featuredClass}${isActive ? ' browse-card--active' : ''}${isSelected ? ' browse-card--selected' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.025}s">
       ${containerBadge}<div class="browse-card-emoji">${c.emoji || '🌱'}</div>
       <div class="browse-card-name">${name}</div>
       <div class="browse-card-meta">

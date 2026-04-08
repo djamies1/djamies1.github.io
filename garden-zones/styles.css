@@ -1792,6 +1792,58 @@ button:active, [role="button"]:active {
   letter-spacing: -2px;
 }
 
+/* Phase 149: Category separators for visual grouping */
+.browse-category-divider {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0 8px;
+  animation: fadeInDown 0.4s ease-out both;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.browse-category-label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-2xl);
+  color: var(--text-muted);
+}
+
+.browse-category-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+
+/* Phase 149: Featured cards for visual rhythm */
+.browse-card--featured {
+  grid-column: span 2;
+  min-height: 140px;
+}
+
+.browse-card--featured .browse-card-emoji {
+  font-size: var(--text-hero);
+}
+
+.browse-card--featured .browse-card-name {
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+}
+
+/* Responsive: featured cards stack on small screens */
+@media (max-width: 900px) {
+  .browse-card--featured {
+    grid-column: span 1;
+  }
+}
+
 /* ──────────────────────────────────────────────
    Year calendar strip
 ────────────────────────────────────────────── */
