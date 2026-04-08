@@ -4372,7 +4372,15 @@ function openShortcutsModal() {
 function initKeyboardShortcuts() {
   document.addEventListener('keydown', e => {
     const tag = document.activeElement?.tagName;
-    if (['INPUT','TEXTAREA','SELECT'].includes(tag)) return;
+    if (['INPUT','TEXTAREA','SELECT'].includes(tag)) {
+      // Allow Ctrl/Cmd+K even in input fields (Phase 150: power user shortcuts)
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        document.getElementById('address-input')?.focus();
+        document.getElementById('address-input')?.select();
+      }
+      return;
+    }
     const modal = document.getElementById('crop-modal');
     if (modal?.open && e.key !== 'Escape') return;
     switch (e.key) {
@@ -4403,6 +4411,20 @@ function initKeyboardShortcuts() {
       case '?':
         openShortcutsModal();
         break;
+    }
+    // Phase 150: Ctrl/Cmd+K for search
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      document.getElementById('address-input')?.focus();
+      document.getElementById('address-input')?.select();
+    }
+    // Phase 150: Ctrl/Cmd+A for quick add crop (in browse mode)
+    if ((e.ctrlKey || e.metaKey) && e.key === 'a' && !modal?.open) {
+      const browse = document.getElementById('browse-view');
+      if (browse && !browse.classList.contains('browse-hidden')) {
+        e.preventDefault();
+        document.getElementById('browse-search')?.focus();
+      }
     }
   });
   const sm = document.getElementById('shortcuts-modal');

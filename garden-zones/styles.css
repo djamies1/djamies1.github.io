@@ -2306,6 +2306,18 @@ button:active, [role="button"]:active {
 #shortcuts-close { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-muted); cursor: pointer; font-size: var(--text-xl); line-height: var(--leading-none); padding: 2px 7px; transition: color var(--transition-base); }
 #shortcuts-close:hover { color: var(--text); }
 .shortcuts-list { padding: 8px 16px 14px; }
+.shortcut-section-title {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-md);
+  color: var(--text-muted);
+  margin-top: 12px;
+  margin-bottom: 6px;
+  padding-top: 8px;
+  border-top: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+}
+.shortcut-section-title:first-child { margin-top: 0; border-top: none; }
 .shortcut-row { display: flex; align-items: center; gap: var(--space-3); padding: 7px 0; border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent); font-size: var(--text-sm); color: var(--text-muted); }
 .shortcut-row:last-child { border-bottom: none; }
 .shortcut-keys { display: flex; gap: var(--space-1); min-width: 72px; }
