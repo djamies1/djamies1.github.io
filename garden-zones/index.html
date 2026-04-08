@@ -375,9 +375,46 @@
     <div id="browse-header">
       <h2 id="browse-title">Browse Crops <span id="browse-count"></span></h2>
       <button id="browse-list-toggle" class="browse-view-btn" title="Toggle list/grid view" aria-label="Toggle list view">▤</button>
-      <button id="browse-companion-btn" class="browse-feature-btn" title="Companion matrix">🌿 Matrix</button>
+      <button id="browse-tools-toggle" class="browse-feature-btn" title="Advanced tools & features" aria-label="Advanced tools">✨ Tools</button>
       <button id="browse-compare-btn" class="browse-cmp-btn" title="Compare two crops">⚖ Compare</button>
       <button id="browse-close" aria-label="Close">&times;</button>
+    </div>
+    <!-- Phase 150: Advanced Tools panel for discovering hidden features -->
+    <div id="browse-tools-panel" class="browse-tools-panel" hidden>
+      <div class="tools-section">
+        <h3>Power Features</h3>
+        <button id="browse-advanced-matrix" class="tool-item">
+          <span class="tool-icon">🌿</span>
+          <span class="tool-info">
+            <strong>Companion Matrix</strong>
+            <span>Visualize which crops grow well together</span>
+          </span>
+        </button>
+        <button class="tool-item" title="Sort by $/sqft for high-value space-efficient crops">
+          <span class="tool-icon">📊</span>
+          <span class="tool-info">
+            <strong>Value Density Sort</strong>
+            <span>Find high-value crops per square foot</span>
+          </span>
+        </button>
+      </div>
+      <div class="tools-section">
+        <h3>Learning</h3>
+        <div class="tool-item">
+          <span class="tool-icon">📖</span>
+          <span class="tool-info">
+            <strong>Keyboard Shortcuts</strong>
+            <span>← → arrow keys to navigate • B to browse • / to search</span>
+          </span>
+        </div>
+      </div>
+      <div class="tools-section">
+        <h3>Tips</h3>
+        <div id="browse-tip-of-day" class="tool-item tool-tip">
+          <span class="tool-tip-icon">💡</span>
+          <span id="browse-tip-text">Tip of the day will appear here</span>
+        </div>
+      </div>
     </div>
     <div id="browse-recent" hidden></div>
     <div id="browse-filters">

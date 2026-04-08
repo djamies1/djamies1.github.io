@@ -1820,6 +1820,39 @@ function initBrowse() {
     });
   }
 
+  // Phase 150: Advanced Tools panel
+  const toolsToggle = document.getElementById('browse-tools-toggle');
+  const toolsPanel = document.getElementById('browse-tools-panel');
+  if (toolsToggle && toolsPanel) {
+    toolsToggle.addEventListener('click', () => {
+      const isHidden = toolsPanel.hidden;
+      toolsPanel.hidden = !isHidden;
+      toolsToggle.classList.toggle('browse-feature-btn--active', !isHidden);
+      if (!isHidden) { initBrowseTipOfDay(); }
+    });
+  }
+
+  // Phase 150: Companion Matrix button in tools
+  const matrixBtn = document.getElementById('browse-advanced-matrix');
+  if (matrixBtn) {
+    matrixBtn.addEventListener('click', () => {
+      toolsPanel.hidden = true;
+      if (toolsToggle) toolsToggle.classList.remove('browse-feature-btn--active');
+      openCompanionMatrix();
+    });
+  }
+
+  // Phase 150: Populate Tip of the Day on first open
+  if (toolsPanel) {
+    const observer = new MutationObserver(() => {
+      if (!toolsPanel.hidden) {
+        initBrowseTipOfDay();
+        observer.disconnect();
+      }
+    });
+    observer.observe(toolsPanel, { attributes: true, attributeFilter: ['hidden'] });
+  }
+
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       const view = document.getElementById('browse-view');
@@ -2075,6 +2108,25 @@ function renderVisualIndicators(crop) {
   }
 
   return html;
+}
+
+function initBrowseTipOfDay() {
+  // Phase 150: Show random "Tip of the Day" to discover hidden features
+  const tips = [
+    '🔍 Use arrow keys to navigate the browse grid — no clicking required!',
+    '🌿 Check the Companion Matrix to see which crops grow best together.',
+    '📊 Try the "Value density $/sqft" sort to find space-efficient high-value crops.',
+    '🗓 "Sow now" badge shows crops ready to plant this month.',
+    '🤝 Companion badge highlights crops that work well with what you\'re growing.',
+    '⌨️ Press "/" to instantly jump to the search bar.',
+    '📅 Switch between grid and list views with the grid/list toggle button.',
+    '❄️ Check the frost indicator for frost-tender vs frost-hardy crops.',
+    '💧 Water and sun indicators show at a glance what each crop needs.',
+    '★ Difficulty stars show how easy/hard each crop is to grow.',
+  ];
+  const randomTip = tips[Math.floor(Math.random() * tips.length)];
+  const tipText = document.getElementById('browse-tip-text');
+  if (tipText) tipText.textContent = randomTip;
 }
 
 function renderBrowseSpotlights() {
