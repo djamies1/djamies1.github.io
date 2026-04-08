@@ -1942,18 +1942,18 @@ function initBrowse() {
   const grid = document.getElementById('browse-grid');
   if (grid) {
     grid.addEventListener('click', e => {
-      const card = e.target.closest('.browse-card, .browse-card-list');
+      const card = e.target.closest('.browse-card, .browse-card-list, .spotlight-card');  // Phase 149: include spotlights
       if (!card?.dataset.crop) return;
       if (compareMode) { addToCompare(card.dataset.crop); } else { openCropDetail(card.dataset.crop); }
     });
     grid.addEventListener('keydown', e => {
-      const card = e.target.closest('.browse-card, .browse-card-list');
+      const card = e.target.closest('.browse-card, .browse-card-list, .spotlight-card');  // Phase 149: include spotlights
       if (!card) return;
 
       // Phase 139: Arrow key navigation
       if (e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
-        const cards = Array.from(grid.querySelectorAll('.browse-card, .browse-card-list'));
+        const cards = Array.from(grid.querySelectorAll('.browse-card, .browse-card-list, .spotlight-card'));  // Phase 149: include spotlights
         const idx = cards.indexOf(card);
         if (idx === -1) return;
 
@@ -2047,6 +2047,73 @@ function renderBrowseRecentRow() {
   } catch (e) {
     recent.hidden = true;
   }
+}
+
+function renderVisualIndicators(crop) {
+  // Render water, sun, and difficulty as visual icons (phase 149: visual discovery)
+  let html = '';
+
+  // Water indicator: 💧 based on water requirement
+  if (crop.water) {
+    const waterLevel = crop.water.toLowerCase().includes('high') ? 3 : crop.water.toLowerCase().includes('moderate') ? 2 : 1;
+    html += '<span class="browse-water-indicator" title="Water: ' + crop.water + '">' + '💧'.repeat(waterLevel) + '</span>';
+  }
+
+  // Sun indicator: ☀️ based on sun requirement
+  if (crop.sun) {
+    const sunLevel = crop.sun.toLowerCase().includes('full') ? 3 : crop.sun.toLowerCase().includes('partial') ? 2 : 1;
+    html += '<span class="browse-sun-indicator" title="Sun: ' + crop.sun + '">' + '☀️'.repeat(sunLevel) + '</span>';
+  }
+
+  // Difficulty: ★ rating
+  const diffMap = { Easy: 1, Moderate: 2, Hard: 3 };
+  const diffLevel = diffMap[crop.difficulty] || 0;
+  if (diffLevel) {
+    const filled = '★'.repeat(diffLevel);
+    const empty = '☆'.repeat(3 - diffLevel);
+    html += '<span class="browse-difficulty-indicator" title="Difficulty: ' + crop.difficulty + '">' + filled + empty + '</span>';
+  }
+
+  return html;
+}
+
+function renderBrowseSpotlights() {
+  // Render featured "seasonal spotlights" — visual discovery cards for current month
+  if (!selectedZone) return '';
+  const d = getPlantingData(selectedZone, currentMonth);
+  const season = getSeasonForMonth(currentMonth);
+  const seasonEmojiMap = { spring: '🌸', summer: '☀️', autumn: '🍂', winter: '❄️' };
+  const seasonEmoji = seasonEmojiMap[season] || '🌱';
+
+  // Pick trending crops for spotlights: what's sowing right now + what's coming in harvest
+  const spotlightCrops = [];
+  const sowNow = (d?.startIndoors || []).concat(d?.directSow || []).slice(0, 2);
+  const harvestNow = (d?.harvest || []).slice(0, 1);
+  const candidates = [...new Set([...sowNow, ...harvestNow])].map(n => normalizeCropName(n)).filter(n => cropData[n]);
+
+  for (const cropName of candidates.slice(0, 3)) {
+    const c = cropData[cropName];
+    if (!c) continue;
+    const isHarvesting = (d?.harvest || []).map(normalizeCropName).includes(cropName);
+    const isSowing = sowNow.map(normalizeCropName).includes(cropName);
+    let title = `${seasonEmoji} ${cropName} in ${season.charAt(0).toUpperCase() + season.slice(1)}`;
+    let hint = '';
+    if (isSowing) { hint = 'Sow now for harvest this season'; }
+    if (isHarvesting) { hint = 'Ready to harvest this month'; }
+    spotlightCrops.push({ name: cropName, crop: c, title, hint, emoji: c.emoji || '🌱' });
+  }
+
+  if (spotlightCrops.length === 0) return '';
+
+  return `<div class="browse-spotlights">
+    ${spotlightCrops.map((s, i) => `<div class="spotlight-card" style="animation-delay:${i * 0.1}s" data-crop="${s.name}" role="button" tabindex="0">
+      <div class="spotlight-emoji">${s.emoji}</div>
+      <div class="spotlight-text">
+        <div class="spotlight-title">${s.title}</div>
+        <div class="spotlight-hint">${s.hint}</div>
+      </div>
+    </div>`).join('')}
+  </div>`;
 }
 
 function renderBrowseGrid() {
@@ -2235,7 +2302,10 @@ function renderBrowseGrid() {
 
   grid.classList.toggle('browse-grid--list', browseListView);
 
-  grid.innerHTML = crops.map(([name, c], i) => {
+  // Add seasonal spotlights at the top (phase 149: visual discovery)
+  const spotlightsHTML = renderBrowseSpotlights();
+
+  grid.innerHTML = spotlightsHTML + crops.map(([name, c], i) => {
     const cat          = c.custom ? (c.category || '') : (CROP_CATEGORY_MAP[name] || '');
     const isActive     = activeSet.has(name);
     const isCompanion  = gardenCompanionSet.has(name) && !isInGarden(name);
@@ -2268,6 +2338,7 @@ function renderBrowseGrid() {
       </div>`;
     }
 
+    const indicators = renderVisualIndicators(c);
     return `<div class="browse-card${isActive ? ' browse-card--active' : ''}${isSelected ? ' browse-card--selected' : ''}" data-crop="${name}" role="button" tabindex="0" style="animation-delay:${i * 0.025}s">
       ${containerBadge}<div class="browse-card-emoji">${c.emoji || '🌱'}</div>
       <div class="browse-card-name">${name}</div>
@@ -2276,6 +2347,7 @@ function renderBrowseGrid() {
         ${daysRange ? `<span class="browse-card-days">${daysRange}</span>` : ''}
         ${diff      ? `<span class="diff-dot diff-dot--${diff}" title="${c.difficulty}"></span>` : ''}
       </div>
+      ${indicators ? `<div class="browse-card-indicators">${indicators}</div>` : ''}
       ${frostBadge}
       ${isSowNow ? '<div class="browse-card-sownow">🗓 Sow now</div>' : isActive ? '<div class="browse-card-season">In season</div>' : ''}
       ${isCompanion  ? '<div class="browse-card-companion">🤝 Companion</div>' : ''}
