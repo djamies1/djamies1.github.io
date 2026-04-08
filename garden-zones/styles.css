@@ -1203,11 +1203,38 @@ button:active, [role="button"]:active {
   min-width: 36px;
   padding: 6px 10px;
   flex-shrink: 0;
-  transition: color var(--transition-medium);
+  transition: all var(--transition-medium);
 }
 
 #modal-close:hover {
   color: var(--text);
+  background: color-mix(in srgb, var(--color-danger) 15%, var(--surface2));
+  border-color: var(--color-danger);
+}
+
+#modal-close:active {
+  transform: scale(0.95);
+}
+
+/* Phase 150: Swipe hint on mobile */
+@media (max-width: 640px) {
+  #modal-inner::after {
+    content: '⬇ Swipe to close';
+    display: block;
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--text-xs);
+    color: var(--text-faint);
+    opacity: 0;
+    animation: fadeInUp 0.4s ease 1s both;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
 }
 
 #modal-body {

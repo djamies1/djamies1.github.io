@@ -1342,6 +1342,21 @@ function initCropModal() {
   const modal = document.getElementById('crop-modal');
   document.getElementById('modal-close').addEventListener('click', () => modal.close());
   modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
+
+  // Phase 150: Swipe-to-dismiss on mobile
+  const modalInner = document.getElementById('modal-inner');
+  if (modalInner && /mobile|tablet|android/i.test(navigator.userAgent)) {
+    let touchStartY = 0;
+    modalInner.addEventListener('touchstart', e => {
+      touchStartY = e.touches[0]?.clientY || 0;
+    }, { passive: true });
+    modalInner.addEventListener('touchend', e => {
+      const touchEndY = e.changedTouches[0]?.clientY || 0;
+      const delta = touchEndY - touchStartY;
+      // Swipe down > 50px closes modal
+      if (delta > 50) modal.close();
+    }, { passive: true });
+  }
 }
 
 // Phase 139: Recently viewed crops tracking
