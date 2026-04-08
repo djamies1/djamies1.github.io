@@ -11180,7 +11180,7 @@ function openCompanionMatrix() {
   }
 
   document.getElementById('companion-matrix-close')?.addEventListener('click', closeCompanionMatrix);
-  renderCompanionMatrix();
+  renderCompanionMatrixOverlay();
 }
 
 function closeCompanionMatrix() {
@@ -11188,7 +11188,7 @@ function closeCompanionMatrix() {
   if (overlay) overlay.hidden = true;
 }
 
-function renderCompanionMatrix() {
+function renderCompanionMatrixOverlay() {
   const grid = document.getElementById('companion-matrix-grid');
   if (!grid || !cropData) return;
 
