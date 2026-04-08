@@ -860,9 +860,11 @@ function hidePanelSkeleton() {
 }
 // Phase 139: Browse, weather, and garden skeletons
 function showBrowseSkeleton() {
+  console.log('[showBrowseSkeleton] Showing skeleton');
   document.getElementById('browse-skeleton')?.removeAttribute('hidden');
 }
 function hideBrowseSkeleton() {
+  console.log('[hideBrowseSkeleton] Hiding skeleton');
   document.getElementById('browse-skeleton')?.setAttribute('hidden', '');
 }
 function showWeatherSkeleton() {
@@ -2185,10 +2187,15 @@ function renderBrowseSpotlights() {
 
 function renderBrowseGrid() {
   const grid = document.getElementById('browse-grid');
-  if (!grid || !cropData) return;
+  console.log('[renderBrowseGrid] Starting - grid exists:', !!grid, 'cropData loaded:', !!cropData, 'cropCount:', cropData ? Object.keys(cropData).length : 0);
+  if (!grid || !cropData) {
+    console.log('[renderBrowseGrid] Early return: grid=', !!grid, 'cropData=', !!cropData);
+    return;
+  }
   showBrowseSkeleton();  // Phase 139: show skeleton while rendering
 
   try {
+    console.log('[renderBrowseGrid] In try block, starting render');
     renderBrowseRecentRow();  // Phase 139
 
     // Build active set + sow-now set for current zone+month
@@ -2444,14 +2451,17 @@ function renderBrowseGrid() {
       ${c.custom ? '<div class="browse-card-custom">Custom</div>' : ''}
     </div>`;
   }).join('');
+    console.log('[renderBrowseGrid] Grid HTML set successfully');
   } catch (err) {
-    console.error('Error rendering browse grid:', err);
+    console.error('[renderBrowseGrid] ERROR:', err);
+    console.error('Error stack:', err.stack);
     grid.innerHTML = `<div class="browse-empty">
       <div class="browse-empty-icon">⚠️</div>
       <div class="browse-empty-title">Error loading crops</div>
-      <div class="browse-empty-hint">Please try again or refresh the page</div>
+      <div class="browse-empty-hint">Error: ${err.message}</div>
     </div>`;
   } finally {
+    console.log('[renderBrowseGrid] Finally block - hiding skeleton');
     hideBrowseSkeleton();  // Phase 139: hide skeleton after rendering (always)
   }
 }
