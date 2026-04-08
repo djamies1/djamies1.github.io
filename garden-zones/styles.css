@@ -4843,6 +4843,44 @@ body.garden-mode .plant-section ul {
 .ob-feature span:last-child strong { color: var(--text); }
 .ob-feature kbd { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-xs); font-size: var(--text-2xs); padding: 1px 4px; }
 
+/* Welcome screen (warm, inviting entry point) */
+.ob-welcome-container { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); padding: var(--space-2) 0; }
+.ob-welcome-icon { font-size: 64px; animation: gentle-bounce 3s ease-in-out infinite; }
+@keyframes gentle-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.ob-welcome-container h2 { font-size: var(--text-2xl); color: var(--accent); font-weight: var(--weight-extrabold); margin: 0; }
+.ob-welcome-container > p { font-size: var(--text-md); color: var(--text); margin: 0; }
+.ob-welcome-subtitle { font-size: var(--text-sm); color: var(--text-muted); font-style: italic; }
+
+/* Quick-action buttons */
+.ob-quick-actions { display: flex; flex-direction: column; gap: var(--space-4); width: 100%; margin: var(--space-4) 0; }
+.ob-quick-start, .ob-custom-zone {
+  align-items: center;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  display: flex;
+  gap: var(--space-3);
+  padding: 20px 24px;
+  transition: all var(--transition-medium);
+  text-align: left;
+  font-size: 1em;
+  color: var(--text);
+}
+.ob-quick-start:hover, .ob-custom-zone:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+  transform: translateY(-2px);
+}
+.ob-quick-start:active, .ob-custom-zone:active { transform: translateY(0); }
+.ob-quick-icon { font-size: 32px; flex-shrink: 0; }
+.ob-quick-text { display: flex; flex-direction: column; gap: 2px; }
+.ob-quick-text strong { font-size: var(--text-md); font-weight: var(--weight-bold); color: var(--accent); }
+.ob-quick-text span { font-size: var(--text-xs); color: var(--text-muted); }
+
+/* Welcome hints */
+.ob-welcome-hint { font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-2); }
+
 /* ── Phase 76: Smart Shopping List ─────────────── */
 .sl-header { align-items: center; display: flex; gap: var(--space-2); margin-bottom: var(--space-2); }
 .sl-title { flex: 1; font-size: var(--text-2xs); font-weight: var(--weight-bold); letter-spacing: var(--tracking-2xl); text-transform: uppercase; color: var(--text-muted); }

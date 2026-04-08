@@ -4087,11 +4087,12 @@ function initOnboarding() {
   function goTo(n) {
     const steps = overlay.querySelectorAll('.ob-step');
     if (n >= steps.length) { finish(); return; }
+    if (n < 0) return;
     step = n;
     steps.forEach((s, i) => s.classList.toggle('active', i === n));
     overlay.querySelectorAll('.ob-dot').forEach((d, i) => d.classList.toggle('active', i === n));
-    // Populate crop grid when entering step 2
-    if (n === 2) populateObCropGrid();
+    // Populate crop grid when entering step 3 (formerly step 2)
+    if (n === 3) populateObCropGrid();
   }
 
   function populateObCropGrid() {
@@ -4134,6 +4135,50 @@ function initOnboarding() {
       });
     });
   }
+
+  // Quick-start button: auto-detect location
+  const quickStartBtn = overlay.querySelector('.ob-quick-start');
+  if (quickStartBtn) {
+    quickStartBtn.addEventListener('click', () => {
+      if ('geolocation' in navigator) {
+        quickStartBtn.textContent = '⏳ Detecting...';
+        quickStartBtn.disabled = true;
+        navigator.geolocation.getCurrentPosition(
+          async (pos) => {
+            const { latitude, longitude } = pos.coords;
+            const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
+            try {
+              const resp = await fetch(url);
+              const data = await resp.json();
+              const addr = data.address?.city || data.address?.town || data.address?.county || `${latitude.toFixed(2)}, ${longitude.toFixed(2)}`;
+              document.getElementById('address-input').value = addr;
+              selectedLat = latitude;
+              selectedLng = longitude;
+              goTo(1); // Go to zone selection step
+            } catch (e) {
+              showToast('Could not reverse-geocode location', 'error');
+              quickStartBtn.textContent = '📍 Quick Start';
+              quickStartBtn.disabled = false;
+            }
+          },
+          (err) => {
+            showToast('Location access denied', 'error');
+            quickStartBtn.textContent = '📍 Quick Start';
+            quickStartBtn.disabled = false;
+          }
+        );
+      }
+    });
+  }
+
+  // Custom-zone button: go to zone selection step
+  const customZoneBtn = overlay.querySelector('.ob-custom-zone');
+  if (customZoneBtn) {
+    customZoneBtn.addEventListener('click', () => goTo(1));
+  }
+
+  // Back button
+  overlay.querySelectorAll('.ob-back').forEach(btn => btn.addEventListener('click', () => goTo(step - 1)));
 
   // Level picker
   overlay.querySelectorAll('.ob-level-btn').forEach(btn => {

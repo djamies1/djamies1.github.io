@@ -535,14 +535,43 @@
   <div id="onboarding" hidden>
     <div id="onboarding-card">
       <div class="ob-steps">
-        <!-- Step 0: Welcome + zone -->
+        <!-- Step 0: Warm welcome + quick start options -->
         <div class="ob-step active" data-step="0">
+          <div class="ob-welcome-container">
+            <div class="ob-welcome-icon">🌱</div>
+            <h2>Welcome to Organized Abundance</h2>
+            <p>Your personalized garden planner for any climate, anywhere in the world.</p>
+            <div class="ob-welcome-subtitle">Let's find out what you can grow in your zone.</div>
+          </div>
+          <div class="ob-quick-actions">
+            <button class="ob-quick-start ob-primary">
+              <span class="ob-quick-icon">📍</span>
+              <span class="ob-quick-text">
+                <strong>Quick Start</strong>
+                <span>Auto-detect my location</span>
+              </span>
+            </button>
+            <button class="ob-custom-zone">
+              <span class="ob-quick-icon">🗺️</span>
+              <span class="ob-quick-text">
+                <strong>Custom Zone</strong>
+                <span>Choose my hardiness zone</span>
+              </span>
+            </button>
+          </div>
+          <div class="ob-welcome-hint">🌍 Works in 150+ countries • <strong>Offline</strong> • Free forever</div>
+          <div class="ob-actions">
+            <button class="ob-skip">Skip for now</button>
+          </div>
+        </div>
+        <!-- Step 1: Find your growing zone -->
+        <div class="ob-step" data-step="1">
           <div class="ob-step-icon">🗺️</div>
           <h2>Find your growing zone</h2>
           <p>Search your address or tap <strong>Locate me</strong> to find your hardiness zone and get a personalised planting calendar for every month of the year.</p>
           <div class="ob-zone-tip">💡 Tip: tap the <strong>📍 Locate me</strong> button in the top bar for instant zone detection.</div>
           <div class="ob-actions">
-            <button class="ob-skip">Skip intro</button>
+            <button class="ob-back">← Back</button>
             <button class="ob-next ob-primary">Next →</button>
           </div>
         </div>
@@ -612,6 +641,7 @@
       </div>
       <div class="ob-dots">
         <span class="ob-dot active"></span>
+        <span class="ob-dot"></span>
         <span class="ob-dot"></span>
         <span class="ob-dot"></span>
         <span class="ob-dot"></span>
