@@ -375,6 +375,7 @@
     <div id="browse-header">
       <h2 id="browse-title">Browse Crops <span id="browse-count"></span></h2>
       <button id="browse-list-toggle" class="browse-view-btn" title="Toggle list/grid view" aria-label="Toggle list view">▤</button>
+      <button id="browse-companion-btn" class="browse-feature-btn" title="Companion matrix">🌿 Matrix</button>
       <button id="browse-compare-btn" class="browse-cmp-btn" title="Compare two crops">⚖ Compare</button>
       <button id="browse-close" aria-label="Close">&times;</button>
     </div>
@@ -646,6 +647,20 @@
 
   <!-- Crop Comparison overlay (Phase 71) -->
   <div id="crop-compare-overlay" class="compare-overlay" hidden role="dialog" aria-modal="true" aria-label="Crop comparison"></div>
+
+  <!-- Phase 141: Companion Matrix overlay -->
+  <div id="companion-matrix-overlay" class="full-overlay" hidden role="dialog" aria-modal="true" aria-label="Companion planting matrix">
+    <div class="overlay-content compact">
+      <header class="overlay-header">
+        <h2>🌿 Companion Matrix</h2>
+        <button id="companion-matrix-close" aria-label="Close">&times;</button>
+      </header>
+      <div class="companion-matrix-controls">
+        <label><input type="checkbox" id="companion-my-garden"> My Garden crops only</label>
+      </div>
+      <div id="companion-matrix-grid" class="companion-matrix-grid"></div>
+    </div>
+  </div>
 
   <!-- Photo Gallery overlay (Phase 72) -->
   <div id="photo-gallery-overlay" class="photo-gallery-overlay" hidden role="dialog" aria-modal="true" aria-label="Photo gallery">

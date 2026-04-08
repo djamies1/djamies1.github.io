@@ -39,19 +39,79 @@ import { scorePlantingDay, render7DayForecast } from './features/weather.js';
 import { KEYS, loadJSON, saveJSON, loadBool, saveBool, loadString } from './utils/storage.js';
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ TABLE OF CONTENTS — Major sections below:                               ║
-// ║ • A11y helpers                  • Month slider & season context          ║
-// ║ • State & initialization        • Zone selection & map                   ║
-// ║ • Panel rendering               • Browse grid & filtering                ║
-// ║ • Calendar & planting data      • Crop detail modal                      ║
-// ║ • Garden tracker                • Bed management & map                   ║
-// ║ • Harvest & journal             • Achievements & gamification            ║
-// ║ • Weather & forecast            • Settings & themes                      ║
-// ║ • Export/import & backups       • Service worker & offline               ║
+// ║ TABLE OF CONTENTS — App.js major sections (11,900+ lines):              ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION A: UTILITIES & INITIALIZATION                                    ║
+// ║  • A11y helpers (accessibility)      • Visual helpers (rating dots)      ║
+// ║  • Skeleton loaders                  • Theme & UI initialization         ║
+// ║  • State variables                   • Feature flags & storage            ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION B: MAP, ZONES & LOCATION                                         ║
+// ║  • Map initialization & styling      • Zone selection & highlighting      ║
+// ║  • Location name rendering           • Zone lookup & utilities             ║
+// ║  • Zone color & display labels       • Zone legend                        ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION C: CALENDAR & PLANTING DATA                                      ║
+// ║  • Month slider & selection          • Season particles & backgrounds    ║
+// ║  • Planting data lookup              • Crop timing calculations          ║
+// ║  • Month context (frost dates)       • Season wrap-up tracking           ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION D: PANEL LAYOUT & RENDERING                                      ║
+// ║  • Panel show/hide & layout          • Location name display             ║
+// ║  • Panel content rendering           • Crop calendar view                ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION E: BROWSE & DISCOVERY                                            ║
+// ║  • Browse grid rendering & filtering • Crop search & categories          ║
+// ║  • Browse filters (advanced)         • Recently viewed crops             ║
+// ║  • Compare mode (2 crops)            • Companion matrix overlay          ║
+// ║  • Browse view toggle (list/grid)    • Keyboard navigation in grid       ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION F: CROP DETAIL MODAL                                             ║
+// ║  • Modal opening & closing           • Modal content rendering           ║
+// ║  • Planting strip & timing           • Companion/avoid lists             ║
+// ║  • Garden add/remove                 • Crop tips & notes                 ║
+// ║  • Photo gallery & sharing           • Recipe integration                ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION G: GARDEN TRACKER                                                ║
+// ║  • Garden state management           • Garden tab rendering              ║
+// ║  • Today dashboard & tasks           • Planting & harvesting logs        ║
+// ║  • Bed management & visualization    • Garden gallery                    ║
+// ║  • Garden diversity & rotation       • Yield logging                     ║
+// ║  • Seed inventory tracking           • Activity heatmap                  ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION H: HARVEST & JOURNAL                                             ║
+// ║  • Harvest logging & recipes         • Journal entries & memories        ║
+// ║  • Food output tracking              • Seasonal summaries                ║
+// ║  • Cumulative charts                 • Harvest timeline                  ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION I: WEATHER & FORECAST                                            ║
+// ║  • Weather API integration           • 7-day forecast rendering          ║
+// ║  • Soil temperature calculation      • Planting day scoring              ║
+// ║  • Weather alerts                    • Watering schedule                 ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION J: ACHIEVEMENTS & GAMIFICATION                                   ║
+// ║  • Achievement tracking & unlock     • Level system & XP                 ║
+// ║  • Milestone notifications           • Streak tracking                   ║
+// ║  • Monthly report overlay            • Gamification display              ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION K: CARE & PROBLEM SOLVING                                        ║
+// ║  • Care type logging                 • Problem solver overlay            ║
+// ║  • Pest & disease detection          • Care recommendations              ║
+// ║  • Plant health monitoring           • Issue diagnosis                   ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION L: SETTINGS & PREFERENCES                                        ║
+// ║  • Settings overlay                  • Theme & units preferences         ║
+// ║  • Feature toggles                   • Data export/import                ║
+// ║  • Backup & restore                  • Help & onboarding                 ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ SECTION M: SERVICE WORKER & OFFLINE                                      ║
+// ║  • SW registration & messaging       • Cache management                  ║
+// ║  • Offline detection                 • Update notifications              ║
+// ║  • Network resilience                • API cache persistence             ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 // ╔═══════════════════════════════════════════════╗
-// ║ A11Y HELPERS & UTILITIES                      ║
+// ║ SECTION A: UTILITIES & INITIALIZATION         ║
 // ╚═══════════════════════════════════════════════╝
 
 function addButtonKeydown(el, handler) {
@@ -123,6 +183,9 @@ function renderDifficultyStars(difficulty) {
 
 
 
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION C: CALENDAR & PLANTING DATA            ║
+// ╚═══════════════════════════════════════════════╝
 
 // ── Season helpers ─────────────────────────────
 let _lastSeasonBg = null;
@@ -416,6 +479,9 @@ function normalizeZoneProperties() {
   }
 }
 
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION B: MAP, ZONES & LOCATION              ║
+// ╚═══════════════════════════════════════════════╝
 
 // ── Map initialization ─────────────────────────
 function initMap() {
@@ -504,6 +570,10 @@ function selectZoneByPoint(lat, lng) {
   });
   return found;
 }
+
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION D: PANEL LAYOUT & RENDERING            ║
+// ╚═══════════════════════════════════════════════╝
 
 // ── Info panel ─────────────────────────────────
 function showPanel() {
@@ -1285,6 +1355,10 @@ function trackRecentlyCropViewed(name) {
   } catch (e) {}
 }
 
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION F: CROP DETAIL MODAL                   ║
+// ╚═══════════════════════════════════════════════╝
+
 function openCropDetail(name) {
   const c = cropData && cropData[name];
   if (!c) return;
@@ -1719,6 +1793,10 @@ function resetBrowseFilters() {
   initBrowse();
 }
 
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION E: BROWSE & DISCOVERY                  ║
+// ╚═══════════════════════════════════════════════╝
+
 // ── Browse view ────────────────────────────────
 function initBrowse() {
   // Update crop count in search placeholder dynamically
@@ -1902,6 +1980,9 @@ function initBrowse() {
   }
 
   document.getElementById('browse-compare-btn')?.addEventListener('click', toggleCompareMode);
+
+  // Phase 141: Companion Matrix button
+  document.getElementById('browse-companion-btn')?.addEventListener('click', openCompanionMatrix);
 
   // Phase 139: Mobile filter toggle
   const filterToggle = document.getElementById('browse-filter-toggle');
@@ -2204,6 +2285,10 @@ function renderBrowseGrid() {
   }).join('');
   hideBrowseSkeleton();  // Phase 139: hide skeleton after rendering
 }
+
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION G: GARDEN TRACKER                      ║
+// ╚═══════════════════════════════════════════════╝
 
 // ── Garden storage helpers ──────────────────────
 function loadGarden() {
@@ -3393,6 +3478,10 @@ function updateThumbLabel() {
   output.textContent = MONTH_NAMES[currentMonth].slice(0, 3).toUpperCase();
 }
 
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION I: WEATHER & FORECAST                  ║
+// ╚═══════════════════════════════════════════════╝
+
 // ── Weather ─────────────────────────────────────
 async function fetchWeather(lat, lng) {
   const key = `${lat.toFixed(2)},${lng.toFixed(2)}`;
@@ -4497,6 +4586,10 @@ function renderGardenStats() {
   const chart = renderHarvestChart();
   if (chart) el.insertAdjacentHTML('beforeend', chart);
 }
+
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION H: HARVEST & JOURNAL                   ║
+// ╚═══════════════════════════════════════════════╝
 
 // ── Phase 45: Harvest bar chart ──────────────────
 function renderHarvestChart() {
@@ -5694,6 +5787,10 @@ function initJournal() {
   document.getElementById('journal-date-filter')?.addEventListener('change', () => renderJournalTab());
 }
 
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION J: ACHIEVEMENTS & GAMIFICATION         ║
+// ╚═══════════════════════════════════════════════╝
+
 // ── Phase 9: Achievements ─────────────────────────
 function loadAchievements() {
   return new Set(loadJSON(KEYS.ACHIEVEMENTS, []));
@@ -5987,6 +6084,10 @@ function openMonthlyReport() {
     if (e.target === overlay) overlay.hidden = true;
   });
 }
+
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION M: SERVICE WORKER & OFFLINE            ║
+// ╚═══════════════════════════════════════════════╝
 
 // ── Phase 9: PWA install prompt ───────────────────
 let _installPromptEvent = null;
@@ -8311,6 +8412,10 @@ function loadFeatures() {
   features = { ...DEFAULT_FEATURES, ...loadJSON(KEYS.FEATURES, {}) };
 }
 function saveFeatures() { saveJSON(KEYS.FEATURES, features); }
+
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION L: SETTINGS & PREFERENCES              ║
+// ╚═══════════════════════════════════════════════╝
 
 // ════════════════════════════════════════════════
 // Phase 53 — Settings Panel
@@ -10835,6 +10940,108 @@ function renderCompareDrawer() {
   </div>`;
 }
 
+// Phase 141: Companion Matrix overlay
+function openCompanionMatrix() {
+  const overlay = document.getElementById('companion-matrix-overlay');
+  if (!overlay) return;
+  overlay.hidden = false;
+  trapFocus(overlay);
+
+  const myGardenOnly = document.getElementById('companion-my-garden');
+  if (myGardenOnly) {
+    myGardenOnly.checked = false;
+    myGardenOnly.addEventListener('change', renderCompanionMatrix);
+  }
+
+  document.getElementById('companion-matrix-close')?.addEventListener('click', closeCompanionMatrix);
+  renderCompanionMatrix();
+}
+
+function closeCompanionMatrix() {
+  const overlay = document.getElementById('companion-matrix-overlay');
+  if (overlay) overlay.hidden = true;
+}
+
+function renderCompanionMatrix() {
+  const grid = document.getElementById('companion-matrix-grid');
+  if (!grid || !cropData) return;
+
+  const myGardenOnly = document.getElementById('companion-my-garden')?.checked || false;
+  const crops = myGardenOnly
+    ? Object.keys(myGarden).filter(n => myGarden[n]?.planted)
+    : Object.keys(cropData).sort();
+
+  if (!crops.length) {
+    grid.innerHTML = '<p style="grid-column:1/-1; padding:16px; text-align:center; color:var(--text-muted);">No crops available</p>';
+    return;
+  }
+
+  // Build grid HTML: header row + crop rows
+  let html = '';
+
+  // Top-left corner spacer
+  html += '<div class="companion-matrix-cell companion-matrix-cell--header" style="border:none;"></div>';
+
+  // Header row (crop Y-axis)
+  crops.forEach(name => {
+    const c = cropData[name];
+    const emoji = c?.emoji || '🌱';
+    const abbr = name.slice(0, 3);
+    html += `<div class="companion-matrix-cell companion-matrix-cell--header" title="${name}">${emoji}</div>`;
+  });
+
+  // Data rows (crop X-axis)
+  crops.forEach((nameX, xIdx) => {
+    const cX = cropData[nameX];
+    const emojiX = cX?.emoji || '🌱';
+
+    // Row header
+    html += `<div class="companion-matrix-cell companion-matrix-cell--header" title="${nameX}">${emojiX}</div>`;
+
+    // Companion cells
+    crops.forEach((nameY, yIdx) => {
+      if (nameX === nameY) {
+        // Diagonal: same crop
+        html += `<div class="companion-matrix-cell companion-matrix-cell--neutral" title="${nameX}">•</div>`;
+      } else {
+        const key1 = `${nameX}|${nameY}`;
+        const key2 = `${nameY}|${nameX}`;
+        const compReason = COMPANION_REASONS[key1] || COMPANION_REASONS[key2];
+        const avoidReason = AVOID_REASONS[key1] || AVOID_REASONS[key2];
+
+        let cellClass = 'companion-matrix-cell--neutral';
+        let reason = '';
+
+        if (compReason) {
+          cellClass = 'companion-matrix-cell--companion';
+          reason = `✓ ${compReason}`;
+        } else if (avoidReason) {
+          cellClass = 'companion-matrix-cell--avoid';
+          reason = `✗ ${avoidReason}`;
+        }
+
+        const title = reason || `${nameX} × ${nameY}`;
+        html += `<div class="companion-matrix-cell ${cellClass}" title="${title}" data-x="${nameX}" data-y="${nameY}">
+          ${compReason ? '✓' : avoidReason ? '✗' : ''}
+        </div>`;
+      }
+    });
+  });
+
+  grid.innerHTML = html;
+
+  // Add click handlers to open both crops
+  grid.querySelectorAll('[data-x][data-y]').forEach(cell => {
+    cell.addEventListener('click', () => {
+      const x = cell.dataset.x;
+      const y = cell.dataset.y;
+      closeCompanionMatrix();
+      // Close browse and open the first crop detail
+      openCropDetail(x);
+    });
+  });
+}
+
 function renderWateringSchedule() {
   const el = document.getElementById('watering-schedule');
   if (!el) return;
@@ -11521,6 +11728,10 @@ function renderSeasonSummaryPrompt() {
     <button class="sspr-btn" onclick="openSeasonWrapUp()">View summary</button>
   </div>`;
 }
+
+// ╔═══════════════════════════════════════════════╗
+// ║ SECTION K: CARE & PROBLEM SOLVING              ║
+// ╚═══════════════════════════════════════════════╝
 
 // ── Phase 133: Plant Problem Solver ─────────────────────────────────────────
 

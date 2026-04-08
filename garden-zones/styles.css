@@ -4398,6 +4398,20 @@ body.garden-mode .plant-section ul {
 .seeds-stat-item { color: var(--text-muted); font-size: var(--text-xs); line-height: var(--leading-snug); }
 .seeds-stat-item strong { color: var(--text); font-weight: var(--weight-semibold); }
 
+/* Phase 141: Companion Matrix */
+.companion-matrix-controls { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: var(--space-3); padding: var(--space-2); }
+.companion-matrix-controls label { align-items: center; cursor: pointer; display: flex; gap: 8px; font-size: var(--text-xs); }
+.companion-matrix-controls input[type="checkbox"] { cursor: pointer; }
+.companion-matrix-grid { display: grid; gap: 1px; grid-auto-flow: row; grid-template-columns: 20px repeat(auto-fit, minmax(32px, 1fr)); max-height: 60vh; overflow: auto; background: var(--border); padding: 1px; }
+.companion-matrix-cell { align-items: center; background: var(--surface); border: none; cursor: pointer; display: flex; font-size: var(--text-2xs); height: 32px; justify-content: center; padding: 2px; transition: background var(--transition-base), transform var(--transition-base); }
+.companion-matrix-cell:hover { transform: scale(1.1); z-index: 10; }
+.companion-matrix-cell--header { background: var(--surface2); color: var(--text-muted); cursor: default; font-weight: var(--weight-semibold); }
+.companion-matrix-cell--header:hover { transform: none; }
+.companion-matrix-cell--companion { background: color-mix(in srgb, var(--accent) 25%, transparent); color: var(--text); }
+.companion-matrix-cell--avoid { background: color-mix(in srgb, var(--color-danger) 25%, transparent); color: var(--text); }
+.companion-matrix-cell--neutral { background: var(--surface2); color: var(--text-muted); }
+.companion-matrix-tooltip { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); font-size: var(--text-2xs); max-width: 200px; padding: 4px 6px; position: absolute; white-space: normal; z-index: 100; }
+
 /* ── Phase 52: Bed grid (legacy, kept for reference) ── */
 .bed-grid-wrap { margin: 8px 0 6px; }
 .bed-grid-visual { display: grid; gap: var(--space-1); grid-template-columns: repeat(var(--bed-cols, 4), 1fr); position: relative; }
