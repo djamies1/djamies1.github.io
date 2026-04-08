@@ -2187,16 +2187,18 @@ function renderBrowseGrid() {
   const grid = document.getElementById('browse-grid');
   if (!grid || !cropData) return;
   showBrowseSkeleton();  // Phase 139: show skeleton while rendering
-  renderBrowseRecentRow();  // Phase 139
 
-  // Build active set + sow-now set for current zone+month
-  let activeSet = new Set();
-  const sowNowSet = new Set();
-  if (selectedZone) {
-    const d = getPlantingData(selectedZone, currentMonth);
-    ['startIndoors','directSow','transplant','harvest'].forEach(k => (d[k] || []).forEach(n => activeSet.add(normalizeCropName(n))));
-    [...(d?.startIndoors || []), ...(d?.directSow || [])].forEach(n => sowNowSet.add(normalizeCropName(n)));
-  }
+  try {
+    renderBrowseRecentRow();  // Phase 139
+
+    // Build active set + sow-now set for current zone+month
+    let activeSet = new Set();
+    const sowNowSet = new Set();
+    if (selectedZone) {
+      const d = getPlantingData(selectedZone, currentMonth);
+      ['startIndoors','directSow','transplant','harvest'].forEach(k => (d[k] || []).forEach(n => activeSet.add(normalizeCropName(n))));
+      [...(d?.startIndoors || []), ...(d?.directSow || [])].forEach(n => sowNowSet.add(normalizeCropName(n)));
+    }
 
   // Filter
   let crops = Object.entries(cropData);
@@ -2442,7 +2444,16 @@ function renderBrowseGrid() {
       ${c.custom ? '<div class="browse-card-custom">Custom</div>' : ''}
     </div>`;
   }).join('');
-  hideBrowseSkeleton();  // Phase 139: hide skeleton after rendering
+  } catch (err) {
+    console.error('Error rendering browse grid:', err);
+    grid.innerHTML = `<div class="browse-empty">
+      <div class="browse-empty-icon">⚠️</div>
+      <div class="browse-empty-title">Error loading crops</div>
+      <div class="browse-empty-hint">Please try again or refresh the page</div>
+    </div>`;
+  } finally {
+    hideBrowseSkeleton();  // Phase 139: hide skeleton after rendering (always)
+  }
 }
 
 // ╔═══════════════════════════════════════════════╗
