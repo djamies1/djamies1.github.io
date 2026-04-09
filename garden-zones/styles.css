@@ -1378,7 +1378,8 @@ button:active, [role="button"]:active {
   z-index: var(--z-topbar);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1452,7 +1453,6 @@ button:active, [role="button"]:active {
   flex-direction: column;
   gap: var(--space-2);
   border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
 }
 
 /* Phase 139: Mobile filter toggle */
@@ -1577,15 +1577,11 @@ button:active, [role="button"]:active {
 #browse-season-label input { accent-color: var(--accent); cursor: pointer; }
 
 #browse-grid {
-  flex: 1;
-  overflow-y: auto;
   padding: var(--space-3);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 10px;
   align-content: start;
-  scrollbar-width: thin;
-  scrollbar-color: color-mix(in srgb, var(--accent) 30%, transparent) transparent;
 }
 
 @media (max-width: 640px) {
