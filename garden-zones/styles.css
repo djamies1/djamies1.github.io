@@ -4444,6 +4444,9 @@ body.garden-mode .plant-section ul {
   gap: 12px;
   padding: 12px;
 }
+#browse-skeleton[hidden] {
+  display: none !important;
+}
 .skeleton-browse-card {
   background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
   background-size: 200% 100%;
