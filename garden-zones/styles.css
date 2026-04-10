@@ -6632,21 +6632,33 @@ body.garden-mode .plant-section ul {
   }
 }
 
-/* P2 Fix: Touch target minimum size (WCAG 2.5.5) */
+/* P2 Fix: Touch target minimum size (WCAG 2.5.5) — Targeted approach */
 @media (max-width: 768px) {
-  button,
-  a[role="button"],
-  [role="button"],
-  input[type="checkbox"],
-  input[type="radio"] {
-    min-height: 48px;
-    min-width: 48px;
+  /* Close buttons */
+  #panel-close,
+  #modal-close,
+  #browse-close,
+  .gallery-close-btn,
+  .gm-modal-close-btn {
+    min-height: 44px;
+    min-width: 44px;
   }
-  
-  /* Buttons with text content get padding-based sizing */
-  button:not(.diff-dot),
-  a[role="button"]:not(.diff-dot) {
-    padding: 12px 16px;
+
+  /* Onboarding dots — expand tap area without changing visual size */
+  .ob-dot {
+    padding: 8px;
+  }
+
+  /* Companion matrix cells — compromise for density */
+  .companion-matrix-cell {
+    min-height: 40px;
+  }
+
+  /* Filter chips */
+  .journal-filter-chip,
+  .gallery-filter-chip {
+    min-height: 36px;
+    padding: 6px 12px;
   }
 }
 
