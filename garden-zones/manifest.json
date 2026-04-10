@@ -1,4 +1,5 @@
 {
+  "id": "/garden-zones/",
   "name": "Organized Abundance",
   "short_name": "Abundance",
   "description": "Plan your garden with intention. Zone-aware planting calendars, a visual garden map, crop tracking, and harvest countdowns — all in one free app.",
@@ -8,7 +9,7 @@
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
   "orientation": "portrait-primary",
   "background_color": "#0a0f1a",
-  "theme_color": "#4ade80",
+  "theme_color": "#78c87a",
   "categories": ["lifestyle", "productivity", "food"],
   "lang": "en",
   "dir": "ltr",

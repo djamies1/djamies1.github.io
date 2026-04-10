@@ -36,6 +36,7 @@ const CORE = [
   '/garden-zones/icons/icon-192.png',
   '/garden-zones/icons/icon-512.png',
   '/garden-zones/icons/icon-192-maskable.png',
+  '/garden-zones/icons/icon-512-maskable.png',
   '/garden-zones/icons/favicon.ico',
 ];
 
