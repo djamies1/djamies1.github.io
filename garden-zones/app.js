@@ -4241,6 +4241,7 @@ function initOnboarding() {
   const overlay = document.getElementById('onboarding');
   if (!overlay) return;
   overlay.hidden = false;
+  trapFocus(overlay);
   let step = 0;
   let selectedLevel = '';
   let selectedStarterCrops = new Set();
@@ -4291,7 +4292,7 @@ function initOnboarding() {
 
     grid.innerHTML = prioritised.map(name => {
       const c = cropData[name];
-      return `<button class="ob-crop-btn" data-name="${name}">
+      return `<button class="ob-crop-btn" data-name="${name}" aria-pressed="false">
         <span class="ob-crop-emoji">${c.emoji || '🌱'}</span>
         <span class="ob-crop-name">${name}</span>
         ${c.difficulty ? `<span class="ob-crop-diff ob-diff--${(c.difficulty||'').toLowerCase()}">${c.difficulty}</span>` : ''}
@@ -4301,8 +4302,9 @@ function initOnboarding() {
     grid.querySelectorAll('.ob-crop-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const name = btn.dataset.name;
-        if (selectedStarterCrops.has(name)) { selectedStarterCrops.delete(name); btn.classList.remove('selected'); }
-        else { selectedStarterCrops.add(name); btn.classList.add('selected'); }
+        const isSelected = selectedStarterCrops.has(name);
+        if (isSelected) { selectedStarterCrops.delete(name); btn.classList.remove('selected'); btn.setAttribute('aria-pressed', 'false'); }
+        else { selectedStarterCrops.add(name); btn.classList.add('selected'); btn.setAttribute('aria-pressed', 'true'); }
         const count = selectedStarterCrops.size;
         const countEl = document.getElementById('ob-selected-count');
         if (countEl) countEl.textContent = count === 0 ? '0 selected' : `${count} selected`;
@@ -4358,7 +4360,11 @@ function initOnboarding() {
   overlay.querySelectorAll('.ob-level-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       selectedLevel = btn.dataset.level;
-      overlay.querySelectorAll('.ob-level-btn').forEach(b => b.classList.toggle('active', b === btn));
+      overlay.querySelectorAll('.ob-level-btn').forEach(b => {
+        const isActive = b === btn;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
       const nextBtn = document.getElementById('ob-level-next');
       if (nextBtn) nextBtn.disabled = false;
     });

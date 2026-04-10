@@ -89,7 +89,7 @@
 
   <header id="top-bar">
     <div id="title">
-      <img src="icons/icon.svg" alt="" width="22" height="22" style="vertical-align:middle;border-radius:4px">
+      <img src="icons/icon.svg" alt="Organized Abundance" width="22" height="22" style="vertical-align:middle;border-radius:4px">
       <span>Organized Abundance</span>
     </div>
     <button id="layout-toggle" title="Switch to garden view" aria-label="Switch layout">🌱 Garden</button>
@@ -569,7 +569,7 @@
   </dialog>
 
   <!-- Onboarding overlay -->
-  <div id="onboarding" hidden>
+  <div id="onboarding" hidden role="dialog" aria-modal="true" aria-label="Welcome to Organized Abundance">
     <div id="onboarding-card">
       <div class="ob-steps">
         <!-- Step 0: Warm welcome + quick start options -->
@@ -618,17 +618,17 @@
           <h2>What's your experience level?</h2>
           <p>We'll tailor starter crop suggestions to match your confidence in the garden.</p>
           <div class="ob-level-picker">
-            <button class="ob-level-btn" data-level="beginner">
+            <button class="ob-level-btn" data-level="beginner" aria-pressed="false">
               <span class="ob-level-icon">🌱</span>
               <strong>Beginner</strong>
               <span>First time growing</span>
             </button>
-            <button class="ob-level-btn" data-level="intermediate">
+            <button class="ob-level-btn" data-level="intermediate" aria-pressed="false">
               <span class="ob-level-icon">🌿</span>
               <strong>Intermediate</strong>
               <span>A few seasons in</span>
             </button>
-            <button class="ob-level-btn" data-level="experienced">
+            <button class="ob-level-btn" data-level="experienced" aria-pressed="false">
               <span class="ob-level-icon">🌳</span>
               <strong>Experienced</strong>
               <span>Confident grower</span>
