@@ -860,11 +860,9 @@ function hidePanelSkeleton() {
 }
 // Phase 139: Browse, weather, and garden skeletons
 function showBrowseSkeleton() {
-  console.log('[showBrowseSkeleton] Showing skeleton');
   document.getElementById('browse-skeleton')?.removeAttribute('hidden');
 }
 function hideBrowseSkeleton() {
-  console.log('[hideBrowseSkeleton] Hiding skeleton');
   document.getElementById('browse-skeleton')?.setAttribute('hidden', '');
 }
 function showWeatherSkeleton() {
@@ -2187,15 +2185,12 @@ function renderBrowseSpotlights() {
 
 function renderBrowseGrid() {
   const grid = document.getElementById('browse-grid');
-  console.log('[renderBrowseGrid] Starting - grid exists:', !!grid, 'cropData loaded:', !!cropData, 'cropCount:', cropData ? Object.keys(cropData).length : 0);
   if (!grid || !cropData) {
-    console.log('[renderBrowseGrid] Early return: grid=', !!grid, 'cropData=', !!cropData);
     return;
   }
   showBrowseSkeleton();  // Phase 139: show skeleton while rendering
 
   try {
-    console.log('[renderBrowseGrid] In try block, starting render');
     renderBrowseRecentRow();  // Phase 139
 
     // Build active set + sow-now set for current zone+month
@@ -2209,17 +2204,14 @@ function renderBrowseGrid() {
 
   // Filter
   let crops = Object.entries(cropData);
-  console.log('[renderBrowseGrid] Initial crops count:', crops.length);
 
   if (browseCategory) {
     const catSet = new Set(CROP_CATEGORIES[browseCategory] || []);
     crops = crops.filter(([name]) => catSet.has(name));
-    console.log('[renderBrowseGrid] After category filter:', crops.length);
   }
 
   if (browseSearch) {
     crops = crops.filter(([name]) => cropMatchesQuery(name, browseSearch));
-    console.log('[renderBrowseGrid] After search filter:', crops.length);
   }
 
   if (browseDifficulty) {
@@ -2362,9 +2354,7 @@ function renderBrowseGrid() {
     }
   }
 
-  console.log('[renderBrowseGrid] After all filters, crops count:', crops.length);
   if (!crops.length) {
-    console.log('[renderBrowseGrid] No crops - showing empty state');
     // Phase 139: add "Clear all" CTA if any filters are active
     const hasFilters = browseSearch || browseCategory || browseDifficulty || browseInSeason ||
                        browseSun || browseShortSeason || browseInGarden || browseFamily ||
@@ -2456,9 +2446,7 @@ function renderBrowseGrid() {
       ${c.custom ? '<div class="browse-card-custom">Custom</div>' : ''}
     </div>`;
   }).join('');
-  console.log('[renderBrowseGrid] Final grid HTML length:', gridHTML.length, 'bytes');
   grid.innerHTML = gridHTML;
-  console.log('[renderBrowseGrid] Grid HTML set successfully');
   } catch (err) {
     console.error('[renderBrowseGrid] ERROR:', err);
     console.error('Error stack:', err.stack);
@@ -2468,7 +2456,6 @@ function renderBrowseGrid() {
       <div class="browse-empty-hint">Error: ${err.message}</div>
     </div>`;
   } finally {
-    console.log('[renderBrowseGrid] Finally block - hiding skeleton');
     hideBrowseSkeleton();  // Phase 139: hide skeleton after rendering (always)
   }
 }
