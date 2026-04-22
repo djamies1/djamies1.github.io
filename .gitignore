@@ -5,9 +5,10 @@ video_output/
 
 # Large binary media assets (store these locally, not in git)
 background_images/
-horror_music/
-music/
-riddle_music/
+*_music/
+
+# moviepy temp files
+*TEMP_MPY_wvf_snd.mp4
 
 # Scraper progress tracking
 .riddlesdotcom_progress.json

@@ -1,0 +1,550 @@
+[
+  {
+    "id": "math_0001",
+    "question": "8 ÷ 2(2 + 2) = ?",
+    "answer": "16",
+    "answer_note": "Left-to-right: 8÷2=4, then 4×4=16. Most calculators agree.",
+    "category": "order_of_operations",
+    "difficulty": "medium",
+    "hook": "99% of adults get this wrong"
+  },
+  {
+    "id": "math_0002",
+    "question": "6 ÷ 2(1 + 2) = ?",
+    "answer": "9",
+    "answer_note": "Left-to-right: 6÷2=3, then 3×3=9. Did you say 1?",
+    "category": "order_of_operations",
+    "difficulty": "medium",
+    "hook": "This breaks the internet every time"
+  },
+  {
+    "id": "math_0003",
+    "question": "What is 1 + 1 + 1 + 1 + 1 × 0?",
+    "answer": "5",
+    "answer_note": "Multiplication first: 1×0=0, then 1+1+1+1+0=5. Not 0!",
+    "category": "order_of_operations",
+    "difficulty": "easy",
+    "hook": "Most people say 0"
+  },
+  {
+    "id": "math_0004",
+    "question": "A bat and ball cost $1.10 total. The bat costs $1.00 MORE than the ball. How much is the ball?",
+    "answer": "5 cents",
+    "answer_note": "Ball = x. Bat = x + $1.00. So 2x + $1.00 = $1.10 → x = $0.05",
+    "category": "word_problem",
+    "difficulty": "medium",
+    "hook": "Harvard students get this wrong"
+  },
+  {
+    "id": "math_0005",
+    "question": "If 5 machines make 5 widgets in 5 minutes, how long for 100 machines to make 100 widgets?",
+    "answer": "5 minutes",
+    "answer_note": "Each machine makes 1 widget in 5 mins. 100 machines → 100 widgets in 5 mins.",
+    "category": "word_problem",
+    "difficulty": "medium",
+    "hook": "Instinct says 100 minutes — instinct is wrong"
+  },
+  {
+    "id": "math_0006",
+    "question": "Lily pads double daily. They cover a lake in 48 days. When was the lake HALF covered?",
+    "answer": "Day 47",
+    "answer_note": "If it doubles each day, then the day before full coverage = half coverage.",
+    "category": "word_problem",
+    "difficulty": "medium",
+    "hook": "Think carefully before you answer"
+  },
+  {
+    "id": "math_0007",
+    "question": "A farmer has 17 sheep. ALL BUT 9 die. How many sheep are left?",
+    "answer": "9",
+    "answer_note": "'All but 9' means 9 survive. The rest died.",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "Read it twice before answering"
+  },
+  {
+    "id": "math_0008",
+    "question": "How long did the Hundred Years' War last?",
+    "answer": "116 years",
+    "answer_note": "It ran from 1337 to 1453 — a full 116 years.",
+    "category": "common_knowledge",
+    "difficulty": "easy",
+    "hook": "The name is a lie"
+  },
+  {
+    "id": "math_0009",
+    "question": "You have a bowl with 6 apples. You take away 4. How many apples do YOU have?",
+    "answer": "4",
+    "answer_note": "You have the 4 you took. The bowl has 2.",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "This is simpler than you think"
+  },
+  {
+    "id": "math_0010",
+    "question": "A snail is at the bottom of a 10ft well. It climbs 3ft by day, slips 2ft at night. How many days to escape?",
+    "answer": "8 days",
+    "answer_note": "After day 7 it's at 7ft. On day 8 it climbs to 10ft and escapes before slipping.",
+    "category": "word_problem",
+    "difficulty": "hard",
+    "hook": "Most people say 10 days"
+  },
+  {
+    "id": "math_0011",
+    "question": "What comes next?\n1, 1, 2, 3, 5, 8, 13, __",
+    "answer": "21",
+    "answer_note": "Fibonacci sequence — each number is the sum of the two before it.",
+    "category": "sequence",
+    "difficulty": "easy",
+    "hook": "Nature's favourite sequence"
+  },
+  {
+    "id": "math_0012",
+    "question": "What letter comes next?\nO, T, T, F, F, S, S, E, __",
+    "answer": "N",
+    "answer_note": "One, Two, Three, Four, Five, Six, Seven, Eight, NINE.",
+    "category": "sequence",
+    "difficulty": "hard",
+    "hook": "Only 1% figure this out"
+  },
+  {
+    "id": "math_0013",
+    "question": "What letter comes next?\nJ, F, M, A, M, J, J, A, __",
+    "answer": "S",
+    "answer_note": "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, SEPTEMBER.",
+    "category": "sequence",
+    "difficulty": "medium",
+    "hook": "You use these every day"
+  },
+  {
+    "id": "math_0014",
+    "question": "How many months have 28 days?",
+    "answer": "12",
+    "answer_note": "ALL months have at least 28 days. Not just February!",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "Everyone says 1"
+  },
+  {
+    "id": "math_0015",
+    "question": "A rooster lays an egg on top of a sloped roof. Which side does it roll down?",
+    "answer": "Neither — roosters don't lay eggs.",
+    "answer_note": "Only hens lay eggs. The question is a trap.",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "Don't overthink it"
+  },
+  {
+    "id": "math_0016",
+    "question": "If you flip a fair coin 5 times and get heads each time, what's the chance of heads on flip 6?",
+    "answer": "50%",
+    "answer_note": "Each flip is independent. Past results don't affect future flips.",
+    "category": "common_knowledge",
+    "difficulty": "medium",
+    "hook": "The gambler's fallacy strikes again"
+  },
+  {
+    "id": "math_0017",
+    "question": "How many squares are on a standard 8×8 chessboard?",
+    "answer": "204",
+    "answer_note": "Not just 64! Count all sizes: 1×1=64, 2×2=49, 3×3=36... up to 8×8=1. Total=204.",
+    "category": "logic",
+    "difficulty": "hard",
+    "hook": "Everyone says 64"
+  },
+  {
+    "id": "math_0018",
+    "question": "What comes next?\n1, 4, 9, 16, 25, __",
+    "answer": "36",
+    "answer_note": "Perfect squares: 1², 2², 3², 4², 5², 6²=36.",
+    "category": "sequence",
+    "difficulty": "easy",
+    "hook": "Spot the pattern"
+  },
+  {
+    "id": "math_0019",
+    "question": "Two trains 200 miles apart travel toward each other at 50mph each. A bird flies 100mph between them until they collide. How far does the bird fly?",
+    "answer": "100 miles",
+    "answer_note": "Trains meet in 2 hours (each travels 100 mi). Bird flies 100mph × 2h = 200... wait: they meet in 2h, bird flies 100×2=200 miles.",
+    "answer": "200 miles",
+    "answer_note": "Trains close 100mph combined. Meet in 2 hours. Bird flies 100mph × 2h = 200 miles.",
+    "category": "word_problem",
+    "difficulty": "hard",
+    "hook": "Don't try to calculate the zigzag"
+  },
+  {
+    "id": "math_0020",
+    "question": "What is the next number?\n2, 4, 8, 16, 32, __",
+    "answer": "64",
+    "answer_note": "Each number doubles: ×2 each time.",
+    "category": "sequence",
+    "difficulty": "easy",
+    "hook": "The power of doubling"
+  },
+  {
+    "id": "math_0021",
+    "question": "If you have 3 apples and take away 2, how many apples do YOU have?",
+    "answer": "2",
+    "answer_note": "You TOOK 2, so you HAVE 2. The pile has 1 left.",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "Read it carefully"
+  },
+  {
+    "id": "math_0022",
+    "question": "What is half of 2 + 2?",
+    "answer": "3",
+    "answer_note": "Half of 2 = 1, then 1 + 2 = 3. Order of operations!",
+    "category": "order_of_operations",
+    "difficulty": "easy",
+    "hook": "It's not 2"
+  },
+  {
+    "id": "math_0023",
+    "question": "In a room of 23 strangers, what's the probability two share a birthday?",
+    "answer": "Greater than 50%",
+    "answer_note": "The Birthday Paradox. With 23 people there are 253 pairs — more likely than not.",
+    "category": "common_knowledge",
+    "difficulty": "hard",
+    "hook": "The answer will shock you"
+  },
+  {
+    "id": "math_0024",
+    "question": "Mary is twice as old as Ann was when Mary was as old as Ann is now. Ann is 24. How old is Mary?",
+    "answer": "32",
+    "answer_note": "When Mary was 24, Ann was 16. Now Ann is 24 (aged 8). Mary is also 8 years older: 24+8=32.",
+    "category": "word_problem",
+    "difficulty": "hard",
+    "hook": "Read it three times"
+  },
+  {
+    "id": "math_0025",
+    "question": "Is it Febreze or Febreeze?",
+    "answer": "Febreze",
+    "answer_note": "Only one 'e' in the middle. Most people remember it wrong.",
+    "category": "common_knowledge",
+    "difficulty": "easy",
+    "hook": "The Mandela Effect strikes again"
+  },
+  {
+    "id": "math_0026",
+    "question": "What is 100 ÷ 1/2 + 1?",
+    "answer": "201",
+    "answer_note": "100 ÷ 0.5 = 200. Then 200 + 1 = 201. Dividing by a half DOUBLES.",
+    "category": "order_of_operations",
+    "difficulty": "medium",
+    "hook": "Division by a fraction trips everyone up"
+  },
+  {
+    "id": "math_0027",
+    "question": "A doctor has 10 pills. They give 1 pill every 30 minutes. How long until all pills are taken?",
+    "answer": "4.5 hours",
+    "answer_note": "Pill 1 at t=0, pill 10 at t=270 min. That's 270 min = 4.5 hours. Not 5!",
+    "category": "word_problem",
+    "difficulty": "medium",
+    "hook": "Don't multiply — think it through"
+  },
+  {
+    "id": "math_0028",
+    "question": "How many times can you subtract 10 from 100?",
+    "answer": "Once",
+    "answer_note": "After the first subtraction it's 90, not 100 anymore. You can only subtract 10 from 100 ONCE.",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "The answer isn't 10"
+  },
+  {
+    "id": "math_0029",
+    "question": "What comes next?\n3, 3, 5, 4, 4, 3, 5, 5, __",
+    "answer": "4",
+    "answer_note": "Count the letters in each number: Three=5, Four=4, Five=4... wait: One=3,Two=3,Three=5,Four=4,Five=4,Six=3,Seven=5,Eight=5,NINE=4.",
+    "category": "sequence",
+    "difficulty": "hard",
+    "hook": "The pattern is hidden in plain sight"
+  },
+  {
+    "id": "math_0030",
+    "question": "I am an odd number. Take away one letter and I become even. What number am I?",
+    "answer": "Seven",
+    "answer_note": "Remove the 's' from SEVEN and you get EVEN.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "Think outside the numbers"
+  },
+  {
+    "id": "math_0031",
+    "question": "What weighs more: a pound of feathers or a pound of gold?",
+    "answer": "They weigh the same",
+    "answer_note": "A pound is a pound. But gold uses troy pounds (12 oz) vs. avoirdupois (16 oz) — so feathers actually weigh more!",
+    "category": "trick_question",
+    "difficulty": "medium",
+    "hook": "There's a twist most people miss"
+  },
+  {
+    "id": "math_0032",
+    "question": "If a plane crashes on the border of the US and Canada, where do you bury the survivors?",
+    "answer": "You don't bury survivors.",
+    "answer_note": "Survivors are alive. You don't bury living people.",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "Did you catch the trick?"
+  },
+  {
+    "id": "math_0033",
+    "question": "Some months have 30 days, some 31. How many have 28 days?",
+    "answer": "All 12",
+    "answer_note": "Every month has at least 28 days. The trick is in the word 'have', not 'only have'.",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "Same trick, different wording — did you get it this time?"
+  },
+  {
+    "id": "math_0034",
+    "question": "What is 2 + 2 × 2?",
+    "answer": "6",
+    "answer_note": "Multiplication first: 2×2=4, then 4+2=6. Not 8!",
+    "category": "order_of_operations",
+    "difficulty": "easy",
+    "hook": "Most people say 8"
+  },
+  {
+    "id": "math_0035",
+    "question": "What number do you get when you multiply all the digits on a phone's number pad?",
+    "answer": "0",
+    "answer_note": "The number pad includes 0. Anything multiplied by 0 is 0.",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "There's a shortcut most people miss"
+  },
+  {
+    "id": "math_0036",
+    "question": "A boy is 4 years old. His sister is twice his age. When the boy is 100, how old will his sister be?",
+    "answer": "102",
+    "answer_note": "Sister is 8 now (4 years older). When he's 100, she's 104... wait: she's currently 4 more than him. So 100+4=104? No — she's currently 2× his age = 8. She's 4 years older. When he's 100, she's 104.",
+    "answer": "104",
+    "answer_note": "Sister is currently 8 (twice 4). She is 4 years OLDER. When he turns 100, she is 104.",
+    "category": "word_problem",
+    "difficulty": "medium",
+    "hook": "Most people say 200"
+  },
+  {
+    "id": "math_0037",
+    "question": "Which is heavier: a tonne of steel or a tonne of cotton?",
+    "answer": "They weigh the same",
+    "answer_note": "Both are exactly one tonne. Volume and density differ, weight does not.",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "Classic misdirection"
+  },
+  {
+    "id": "math_0038",
+    "question": "What 3-digit number, when reversed, gives a number 396 more than itself?",
+    "answer": "307",
+    "answer_note": "703 − 307 = 396. The reversed number is 703.",
+    "category": "logic",
+    "difficulty": "hard",
+    "hook": "Can you crack it?"
+  },
+  {
+    "id": "math_0039",
+    "question": "What number comes next?\n1, 8, 27, 64, 125, __",
+    "answer": "216",
+    "answer_note": "Perfect cubes: 1³, 2³, 3³, 4³, 5³, 6³=216.",
+    "category": "sequence",
+    "difficulty": "medium",
+    "hook": "A classic pattern"
+  },
+  {
+    "id": "math_0040",
+    "question": "Take 1000, add 40. Add 1000. Add 30. Add 1000. Plus 20. Plus 1000. Plus 10. Total?",
+    "answer": "4100",
+    "answer_note": "The brain wants to say 5000. Actual sum: 1000+40+1000+30+1000+20+1000+10=4100.",
+    "category": "order_of_operations",
+    "difficulty": "medium",
+    "hook": "Do it in your head — carefully"
+  },
+  {
+    "id": "math_0041",
+    "question": "How many times does the digit 9 appear between 1 and 100?",
+    "answer": "20",
+    "answer_note": "9,19,29,39,49,59,69,79,89,90,91,92,93,94,95,96,97,98,99 (two 9s here),100. Count=20.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "Don't forget 99 has TWO nines"
+  },
+  {
+    "id": "math_0042",
+    "question": "What is bigger: the number of seconds in a day, or the number of hours in a century?",
+    "answer": "Both are equal",
+    "answer_note": "Day: 86,400 seconds. Century: 100 years × 365.25 × 24 ≈ 876,600 hours. Hours in a century wins.",
+    "answer": "Hours in a century",
+    "answer_note": "Seconds in a day: 86,400. Hours in a century: ~876,600. Hours in a century is far bigger.",
+    "category": "common_knowledge",
+    "difficulty": "hard",
+    "hook": "Think before you answer"
+  },
+  {
+    "id": "math_0043",
+    "question": "If there are 6 oranges and you take 4, how many do you have?",
+    "answer": "4",
+    "answer_note": "You TOOK 4, so you HAVE 4. The pile now has 2.",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "Watch the wording"
+  },
+  {
+    "id": "math_0044",
+    "question": "What is (0.1 + 0.2) = ?",
+    "answer": "0.30000000000000004",
+    "answer_note": "In binary floating point, 0.1+0.2 ≠ 0.3 exactly. Every programmer knows this.",
+    "category": "common_knowledge",
+    "difficulty": "hard",
+    "hook": "Computers don't always agree with maths"
+  },
+  {
+    "id": "math_0045",
+    "question": "I start with 1, and double every step. After 64 steps, how large am I?",
+    "answer": "18.4 quintillion",
+    "answer_note": "2^64 = 18,446,744,073,709,551,616. The power of exponential growth.",
+    "category": "common_knowledge",
+    "difficulty": "hard",
+    "hook": "The chessboard grain of rice problem"
+  },
+  {
+    "id": "math_0046",
+    "question": "A clock shows 3:15. What is the angle between the hour and minute hands?",
+    "answer": "7.5 degrees",
+    "answer_note": "At 3:15, minute hand is at 90°. Hour hand has moved 15/60 × 30° = 7.5° past 90°. Difference = 7.5°.",
+    "category": "logic",
+    "difficulty": "hard",
+    "hook": "Most people say 0 degrees"
+  },
+  {
+    "id": "math_0047",
+    "question": "What number is missing?\n2, 4, __, 16, 32",
+    "answer": "8",
+    "answer_note": "Doubling sequence: 2×2=4, 4×2=8, 8×2=16, 16×2=32.",
+    "category": "sequence",
+    "difficulty": "easy",
+    "hook": "A warm-up to test your focus"
+  },
+  {
+    "id": "math_0048",
+    "question": "If 1 = 5, 2 = 10, 3 = 15, 4 = 20, then 5 = ?",
+    "answer": "1",
+    "answer_note": "The problem stated 1 = 5 at the start. So 5 = 1.",
+    "category": "trick_question",
+    "difficulty": "medium",
+    "hook": "Go back and re-read the first line"
+  },
+  {
+    "id": "math_0049",
+    "question": "What is the sum of all numbers from 1 to 100?",
+    "answer": "5050",
+    "answer_note": "Gauss's trick: pair 1+100, 2+99... = 50 pairs of 101 = 5050.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "Gauss solved this aged 10 in seconds"
+  },
+  {
+    "id": "math_0050",
+    "question": "If a brick weighs 1kg plus half a brick, how heavy is a whole brick?",
+    "answer": "2kg",
+    "answer_note": "Let brick = x. x = 1 + x/2. So x/2 = 1. x = 2kg.",
+    "category": "word_problem",
+    "difficulty": "medium",
+    "hook": "Set up the equation"
+  },
+  {
+    "id": "math_0051",
+    "question": "How many sides does a circle have?",
+    "answer": "1",
+    "answer_note": "Technically one curved side. Some say 0 (no straight sides) or infinite. The debate is real.",
+    "category": "trick_question",
+    "difficulty": "medium",
+    "hook": "This one starts arguments"
+  },
+  {
+    "id": "math_0052",
+    "question": "What number is both a perfect square and a perfect cube under 100?",
+    "answer": "64",
+    "answer_note": "64 = 8² = 4³. Also 1 qualifies (1²=1³). But 64 is the largest under 100.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "Combining two patterns"
+  },
+  {
+    "id": "math_0053",
+    "question": "Is the answer to this question no?",
+    "answer": "There's no correct answer",
+    "answer_note": "If you say yes, the answer IS no — contradiction. If you say no, then no IS the answer — also a contradiction. It's a paradox.",
+    "category": "logic",
+    "difficulty": "hard",
+    "hook": "A genuine paradox"
+  },
+  {
+    "id": "math_0054",
+    "question": "What two whole numbers multiply to give 17?",
+    "answer": "1 and 17",
+    "answer_note": "17 is a prime number. The only whole number factors are 1 and 17 itself.",
+    "category": "logic",
+    "difficulty": "easy",
+    "hook": "Don't overthink it"
+  },
+  {
+    "id": "math_0055",
+    "question": "If 2 painters paint 2 walls in 2 hours, how long for 8 painters to paint 8 walls?",
+    "answer": "2 hours",
+    "answer_note": "Each painter paints 1 wall in 2 hours. 8 painters still take 2 hours for 8 walls.",
+    "category": "word_problem",
+    "difficulty": "medium",
+    "hook": "Instinct says 8 hours"
+  },
+  {
+    "id": "math_0056",
+    "question": "What is 111,111,111 × 111,111,111?",
+    "answer": "12,345,678,987,654,321",
+    "answer_note": "The result forms a perfect palindrome! 1-2-3-4-5-6-7-8-9-8-7-6-5-4-3-2-1.",
+    "category": "common_knowledge",
+    "difficulty": "hard",
+    "hook": "The most beautiful multiplication in maths"
+  },
+  {
+    "id": "math_0057",
+    "question": "I have 6 eggs. I break 2, fry 2, and eat 2. How many eggs do I have left?",
+    "answer": "6",
+    "answer_note": "You broke, fried, and ate the SAME 2 eggs. So 6−2=4... actually the same 2 are broken, fried, eaten. 6−2=4. Wait — you had 6, used 2 for the whole process. You have 4 left.",
+    "answer": "4",
+    "answer_note": "You used 2 eggs: broke them, fried them, then ate them. 6 − 2 = 4 remaining.",
+    "category": "trick_question",
+    "difficulty": "easy",
+    "hook": "Read carefully — it's the same 2 eggs"
+  },
+  {
+    "id": "math_0058",
+    "question": "What is the next prime number after 89?",
+    "answer": "97",
+    "answer_note": "90,91,92,93,94,95,96 are all composite. 97 is prime.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "Can you spot it without a calculator?"
+  },
+  {
+    "id": "math_0059",
+    "question": "If you travel at 60mph for 1 hour, then 60mph for another hour, what is your average speed?",
+    "answer": "60mph",
+    "answer_note": "Constant speed the whole time = average of 60mph. The trick is to check if you were tempted to divide differently.",
+    "category": "word_problem",
+    "difficulty": "easy",
+    "hook": "Sometimes the answer IS that simple"
+  },
+  {
+    "id": "math_0060",
+    "question": "What is the missing number?\n1, 2, 4, 7, 11, 16, 22, __",
+    "answer": "29",
+    "answer_note": "Differences increase by 1 each time: +1, +2, +3, +4, +5, +6, +7. So 22+7=29.",
+    "category": "sequence",
+    "difficulty": "medium",
+    "hook": "Find the hidden pattern in the gaps"
+  }
+]

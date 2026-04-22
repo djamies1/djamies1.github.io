@@ -1,0 +1,2984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hand Field</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; overflow: hidden; font-family: 'Courier New', monospace; color: #fff; }
+    canvas { display: block; }
+
+    #video {
+      position: fixed; bottom: 12px; right: 12px;
+      width: 180px; height: 101px;
+      transform: scaleX(-1); border-radius: 6px;
+      opacity: 0.45; border: 1px solid rgba(255,255,255,0.1);
+      transition: opacity 0.3s;
+    }
+    #video.hidden { opacity: 0; pointer-events: none; }
+
+    #ui {
+      position: fixed; top: 12px; left: 14px;
+      font-size: 12px; opacity: 0.32; line-height: 2.1; pointer-events: none;
+    }
+    #status {
+      position: fixed; top: 12px; right: 14px;
+      font-size: 11px; opacity: 0.5; text-align: right;
+      pointer-events: none; line-height: 1.8;
+    }
+    #intro {
+      position: fixed; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 14px;
+      pointer-events: none; transition: opacity 1.8s ease;
+    }
+    #intro.fade { opacity: 0; }
+    #intro h1 {
+      font-size: clamp(1.2rem, 4vw, 2.4rem); font-weight: 200;
+      letter-spacing: 0.35em; color: rgba(255,255,255,0.65);
+    }
+    #intro p { font-size: 0.75rem; color: rgba(255,255,255,0.35); letter-spacing: 0.18em; }
+
+    #mode-label {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 100;
+      color: #fff; pointer-events: none;
+      opacity: 0; letter-spacing: 0.4em;
+      font-family: 'Courier New', monospace;
+    }
+
+    @keyframes modeLabelIn {
+      from { opacity: 0; letter-spacing: 0.8em; transform: scale(1.04); }
+      to   { opacity: 1; letter-spacing: 0.4em; transform: scale(1); }
+    }
+
+    @keyframes modeLabelOut {
+      from { opacity: 1; letter-spacing: 0.4em; transform: scale(1); }
+      to   { opacity: 0; letter-spacing: 0.55em; transform: scale(0.98); }
+    }
+
+    #mode-label.mode-label-in  { animation: modeLabelIn  600ms cubic-bezier(0.16,1,0.3,1) forwards; }
+    #mode-label.mode-label-out { animation: modeLabelOut 1200ms ease forwards; }
+
+    #clap-feedback {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; opacity: 0;
+      transition: opacity 0.15s;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="canvas"></canvas>
+  <video id="video" autoplay playsinline muted></video>
+
+  <div id="intro">
+    <h1>MOVE YOUR HANDS</h1>
+    <p>pinch both hands to switch mode</p>
+  </div>
+
+  <div id="mode-label"></div>
+  <div id="clap-feedback">👏</div>
+
+  <div id="ui">
+    [F] fullscreen &nbsp; [H] camera<br>
+    [M] next mode &nbsp; [1–4] jump<br>
+    [pinch ×2] switch
+  </div>
+
+  <div id="status">
+    <span id="status-text">loading...</span><br>
+    <span id="status-mode"></span><br>
+    <span id="bead-count"></span><br>
+    <span id="status-audio"></span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+
+  <script>
+  // ─── Canvas setup ──────────────────────────────────────────────────────────
+
+  const canvas      = document.getElementById('canvas');
+  const ctx         = canvas.getContext('2d');
+  const TWO_PI  = Math.PI * 2;
+  const HALF_PI = Math.PI * 0.5;
+  const video       = document.getElementById('video');
+  const statusEl    = document.getElementById('status-text');
+  const statusModeEl= document.getElementById('status-mode');
+  const countEl     = document.getElementById('bead-count');
+  const introEl     = document.getElementById('intro');
+  const modeLabelEl = document.getElementById('mode-label');
+  const clapFeedEl  = document.getElementById('clap-feedback');
+
+  let waveMaxR = 0;
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    waveMaxR = Math.hypot(canvas.width, canvas.height);
+  }
+  window.addEventListener('resize', () => {
+    resize();
+    if (MODES.length && MODES[currentMode] && MODES[currentMode].init) {
+      MODES[currentMode].init();
+    }
+  });
+  resize();
+
+  // ─── Shared utilities ──────────────────────────────────────────────────────
+
+  const rnd = Math.random.bind(Math);
+
+  function distSqToSeg(px, py, ax, ay, bx, by) {
+    const dx = bx-ax, dy = by-ay;
+    const lenSq = dx*dx + dy*dy;
+    let t = 0;
+    if (lenSq > 0.01) t = Math.max(0, Math.min(1, ((px-ax)*dx + (py-ay)*dy) / lenSq));
+    const cx = ax + t*dx - px, cy = ay + t*dy - py;
+    return cx*cx + cy*cy;
+  }
+
+  function closestOnSeg(px, py, ax, ay, bx, by) {
+    const dx = bx-ax, dy = by-ay;
+    const lenSq = dx*dx + dy*dy;
+    let t = 0;
+    if (lenSq > 0.01) t = Math.max(0, Math.min(1, ((px-ax)*dx + (py-ay)*dy) / lenSq));
+    return { x: ax+t*dx, y: ay+t*dy };
+  }
+
+  // ─── Finger/palm segment pairs ─────────────────────────────────────────────
+
+  const SEGMENTS = [
+    [0,1],[1,2],[2,3],[3,4],
+    [5,6],[6,7],[7,8],
+    [9,10],[10,11],[11,12],
+    [13,14],[14,15],[15,16],
+    [17,18],[18,19],[19,20],
+    [0,5],[0,9],[0,13],[0,17],[5,9],[9,13],[13,17],
+  ];
+
+  // Hue offset per segment (thumb=+35 warm, index=+0, middle=+30, ring=+60, pinky=+90, palm=+0)
+  const SEG_HUE_OFFSET = [35,35,35,35, 0,0,0, 30,30,30, 60,60,60, 90,90,90, 0,0,0,0, 0,0,0];
+
+  // ─── Hand state ────────────────────────────────────────────────────────────
+
+  let handSegPts      = [];
+  let handPts         = [];  // per-hand scaled landmark arrays (for overlay fingertip dots)
+  let palmCenters     = [];
+  let prevPalmCenters = [];
+  let rawLandmarks    = [];
+  let handsVisible    = false;
+  let HAND_SCALE      = 0.70;  // was 0.50 — more 1:1 feel on projector
+  let smoothPts       = [];  // per-hand smoothed landmark positions
+  let prevRawPts      = [];  // previous frame raw positions (for speed calc)
+  let handSpeeds      = [];  // per-hand average speed in px/frame
+
+  // ─── Pinch gesture state ───────────────────────────────────────────────────
+  let pinchFrameCount    = 0;
+  let pinchCooldownUntil = 0;
+  const PINCH_HOLD_FRAMES = 15;
+  const PINCH_COOLDOWN_MS = 1500;
+  // Ghost: hold last-known overlay data for up to 8 frames after hands vanish
+  let ghostFrames  = 0;
+  let ghostSegs    = [];
+  let ghostPalms   = [];
+  let ghostHandPts = [];
+
+  // ─── Global state ──────────────────────────────────────────────────────────
+
+  let currentMode  = 0;
+  let transitioning = false;
+  let frameCount   = 0;
+  const MODES      = [];
+
+  // Change A — crossfade transition state
+  let transitionCanvas = null;
+  let transitionAlpha  = 0;
+  function easeOutQuad(t) { return 1 - (1-t)*(1-t); }
+
+  // Change B — mode-tinted overlay
+  // Hue for hand overlay per mode (matches MODES push order)
+  // CONSTELLATION, GEOMETRY, FACE FIELD, JUGGLER, ASTEROID, RHYTHM, PORTAL, VOID
+  const MODE_OVERLAY_COLOR = [45, 280, 180, 200, 30, 320, 120, 260];
+
+  // ─── Audio analysis state ──────────────────────────────────────────────────
+  let audioBass = 0, audioMid = 0, audioHigh = 0, prevAudioBass = 0;
+  let audioTransient = 0;  // 0→1 spike on bass transients, decays 0.85/frame
+  let audioFreqData = null;  // raw Uint8Array from analyser — updated every audio frame
+  let waveOpenness = 0.7;  // 0=fist → 1=fully open; controls waveform ring scale
+
+  // ─── Hand-openness shockwave state ────────────────────────────────────────
+  let perHandOpennessCurr = [];    // raw openness per hand this frame
+  let perHandFistFrames   = [];    // frames held in fist position per hand
+  const shockwaves        = [];    // active shockwave objects {cx,cy,r,maxR,speed,alpha}
+  const SHOCK_OPEN_THRESH = 0.55;  // was 0.62 — less demanding open-hand trigger
+  const SHOCK_FIST_THRESH = 0.38;  // was 0.28 — looser fist counts, easier to charge
+  const SHOCK_FIST_NEEDED = 10;    // was 12 — slightly shorter hold required (~0.17s)
+  const SHOCK_COOLDOWN_MS  = 900;
+  let shockCooldownUntil   = [];    // per-hand timestamp
+  let handednessLabels     = [];    // 'Left'|'Right' per hand, parallel to palmCenters
+
+  // Circular waveform constants
+  const WAVE_SAMPLES    = 128;   // points around the circle
+  const WAVE_BINS       = 64;    // FFT bins used (0–63, mirrored for symmetry)
+  const WAVE_BASE_R     = 110;   // base radius in px — encapsulates the hand
+  const WAVE_MAX_AMP    = 65;    // max outward spike from base radius
+  const WAVE_MIN_ENERGY = 0.04;  // total energy threshold below which ring is hidden
+
+  // Per-palm waveform data (computed each frame, read by BEADS physics)
+  let waveformProfiles = [];  // [{cx, cy, samples: Float32Array(WAVE_SAMPLES)}]
+
+  // Pre-allocated reusable buffers for updateCircularWaveform (up to 2 palms)
+  const _waveSamplesBufs = [new Float32Array(WAVE_SAMPLES), new Float32Array(WAVE_SAMPLES)];
+  const _wavePtsBufs = [
+    Array.from({length: WAVE_SAMPLES}, () => ({x: 0, y: 0})),
+    Array.from({length: WAVE_SAMPLES}, () => ({x: 0, y: 0})),
+  ];
+
+  let _audioTick = null;  // set when mic permission granted; called each frame from animate()
+
+  function initAudioAnalyser() {
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+      .then(stream => {
+        const actx = new AudioContext();
+        actx.resume();  // browsers suspend AudioContext until user gesture — force resume
+        const src  = actx.createMediaStreamSource(stream);
+        const analyser = actx.createAnalyser();
+        analyser.fftSize = 512;              // 256 frequency bins
+        analyser.smoothingTimeConstant = 0.55; // punchier FFT — less temporal blur
+        src.connect(analyser);
+        const buf = new Uint8Array(analyser.frequencyBinCount);  // 256 bins
+        audioFreqData = buf;  // expose globally for waveform drawing
+        document.getElementById('status-audio').textContent = '[AUD]';
+        _audioTick = function() {
+          analyser.getByteFrequencyData(buf);
+          function avgRange(lo, hi) { let s = 0; for (let i = lo; i < hi; i++) s += buf[i]; return s / ((hi - lo) * 255); }
+          prevAudioBass = audioBass;
+          audioBass = avgRange(0, 8);
+          audioMid  = avgRange(8, 30);
+          audioHigh = avgRange(30, 80);
+          // Transient detector — spikes on sudden bass hits
+          if (audioBass - prevAudioBass > 0.12) audioTransient = 1.0;
+          audioTransient *= 0.85;
+        };
+      })
+      .catch(() => {});  // silent skip — no mic is fine
+  }
+
+  let fingertipTrails = [];  // [handIndex][tipIndex] = [{x,y}, ...]
+  const TRAIL_LENGTH  = 12;
+  const TIP_INDICES   = [4, 8, 12, 16, 20];
+
+  // Change D — canvas clap pulses
+  let clapPulses = [];
+
+  // ─── Mode switching ────────────────────────────────────────────────────────
+
+  let modeLabelTimer = null;
+
+  function switchMode(idx) {
+    if (transitioning) return;
+    transitioning = true;
+    const next = ((idx % MODES.length) + MODES.length) % MODES.length;
+
+    // Capture current frame to offscreen canvas
+    if (!transitionCanvas ||
+        transitionCanvas.width  !== canvas.width ||
+        transitionCanvas.height !== canvas.height) {
+      transitionCanvas = document.createElement('canvas');
+      transitionCanvas.width  = canvas.width;
+      transitionCanvas.height = canvas.height;
+    }
+    transitionCanvas.getContext('2d').drawImage(canvas, 0, 0);
+    transitionAlpha = 1.0;
+
+    if (MODES[next].init) MODES[next].init();
+    currentMode = next;
+    countEl.textContent = '';
+    statusModeEl.textContent = MODES[next].name;
+
+    if (modeLabelTimer) clearTimeout(modeLabelTimer);
+    modeLabelEl.textContent = MODES[next].name;
+    modeLabelEl.classList.remove('mode-label-in', 'mode-label-out');
+    void modeLabelEl.offsetWidth;  // force reflow to re-trigger animation
+    modeLabelEl.classList.add('mode-label-in');
+    modeLabelTimer = setTimeout(() => {
+      modeLabelEl.classList.remove('mode-label-in');
+      modeLabelEl.classList.add('mode-label-out');
+      setTimeout(() => modeLabelEl.classList.remove('mode-label-out'), 1400);
+    }, 1800);
+
+    setTimeout(() => { transitioning = false; }, 400);
+  }
+
+  function showClapFeedback() {
+    const cx = canvas.width * 0.5, cy = canvas.height * 0.5;
+    clapPulses.push({x:cx, y:cy, r:   0, maxR: canvas.width*0.55, alpha: 0.9});
+    clapPulses.push({x:cx, y:cy, r:  60, maxR: canvas.width*0.55, alpha: 0.75});
+    clapPulses.push({x:cx, y:cy, r: 120, maxR: canvas.width*0.55, alpha: 0.60});
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODE 0 — BEADS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  const BEAD_CFG = {
+    gridSpacing: 20,
+    repRadius:   32,  // was 22
+    repForce:    10,
+    tangent:     0.28,
+    springK:     0.09,
+    friction:    0.78,
+    bob:         0.12,
+    heatRadius:  65,
+    heatDecay:   0.90,
+  };
+
+  const COOL_COLORS = [
+    [55,  40,  130],  // deep indigo
+    [100, 70,  160],  // dusty violet
+    [50,  120, 130],  // slate teal
+    [60,  100, 170],  // steel blue
+    [80,  130, 100],  // sage green
+    [160, 130, 60],   // muted gold
+    [160, 80,  100],  // warm rose
+    [90,  100, 115],  // pewter
+  ];
+
+  function heatToRGB(heat, cool) {
+    const wL = [210,175,55], wM = [235,125,35], wH = [255,70,25];
+    let tr, tg, tb;
+    if (heat < 0.35) {
+      const t = heat/0.35;
+      tr = cool[0]+(wL[0]-cool[0])*t; tg = cool[1]+(wL[1]-cool[1])*t; tb = cool[2]+(wL[2]-cool[2])*t;
+    } else if (heat < 0.65) {
+      const t = (heat-0.35)/0.3;
+      tr = wL[0]+(wM[0]-wL[0])*t; tg = wL[1]+(wM[1]-wL[1])*t; tb = wL[2]+(wM[2]-wL[2])*t;
+    } else {
+      const t = (heat-0.65)/0.35;
+      tr = wM[0]+(wH[0]-wM[0])*t; tg = wM[1]+(wH[1]-wM[1])*t; tb = wM[2]+(wH[2]-wM[2])*t;
+    }
+    return [Math.round(tr), Math.round(tg), Math.round(tb)];
+  }
+
+  class Bead {
+    constructor(hx, hy) {
+      this.r       = 2.5 + rnd() * 2.0;
+      this.homeX   = hx; this.homeY = hy;
+      this.x       = hx; this.y     = hy;
+      this.vx      = 0;  this.vy    = 0;
+      this.phase   = rnd() * TWO_PI;
+      this.heat    = 0;
+      this.coolRGB = COOL_COLORS[Math.floor(rnd() * COOL_COLORS.length)];
+      this.opacity = 0.65 + rnd() * 0.25;
+    }
+    update(t) {
+      this.y += Math.sin(t*0.00055 + this.phase)       * BEAD_CFG.bob;
+      this.x += Math.cos(t*0.00045 + this.phase*1.3)   * BEAD_CFG.bob * 0.4;
+
+      const repRSq  = BEAD_CFG.repRadius * BEAD_CFG.repRadius;
+      const heatRSq = BEAD_CFG.heatRadius * BEAD_CFG.heatRadius;
+      let closestD2 = Infinity;
+
+      for (const segs of handSegPts) {
+        for (const seg of segs) {
+          const d2 = distSqToSeg(this.x, this.y, seg.ax, seg.ay, seg.bx, seg.by);
+          if (d2 < closestD2) closestD2 = d2;
+          if (d2 < repRSq && d2 > 1) {
+            const cp = closestOnSeg(this.x, this.y, seg.ax, seg.ay, seg.bx, seg.by);
+            const dx = this.x-cp.x, dy = this.y-cp.y;
+            const d  = Math.sqrt(d2);
+            const str = (1-d/BEAD_CFG.repRadius);
+            const nx = dx/d, ny = dy/d;
+            const tx = -ny, ty = nx;
+            this.vx += nx*str*BEAD_CFG.repForce + tx*str*BEAD_CFG.repForce*BEAD_CFG.tangent;
+            this.vy += ny*str*BEAD_CFG.repForce + ty*str*BEAD_CFG.repForce*BEAD_CFG.tangent;
+          }
+        }
+      }
+
+      if (closestD2 < heatRSq) {
+        const d = Math.sqrt(closestD2);
+        this.heat = Math.max(this.heat, this.heat + (1-d/BEAD_CFG.heatRadius-this.heat)*0.35);
+      }
+      const spd = Math.sqrt(this.vx*this.vx + this.vy*this.vy);
+      if (spd > 1) this.heat = Math.max(this.heat, Math.min(1, spd/10));
+      this.heat *= BEAD_CFG.heatDecay;
+      if (this.heat < 0.005) this.heat = 0;
+
+      this.vx += (this.homeX-this.x)*BEAD_CFG.springK;
+      this.vy += (this.homeY-this.y)*BEAD_CFG.springK;
+      this.vx *= BEAD_CFG.friction;
+      this.vy *= BEAD_CFG.friction;
+      this.x += this.vx; this.y += this.vy;
+
+      const p = this.r;
+      if (this.x < p)               { this.x = p;               this.vx =  Math.abs(this.vx)*0.3; }
+      if (this.x > canvas.width-p)  { this.x = canvas.width-p;  this.vx = -Math.abs(this.vx)*0.3; }
+      if (this.y < p)               { this.y = p;               this.vy =  Math.abs(this.vy)*0.3; }
+      if (this.y > canvas.height-p) { this.y = canvas.height-p; this.vy = -Math.abs(this.vy)*0.3; }
+    }
+    draw(t) {
+      const rgb = this.heat > 0.01 ? heatToRGB(Math.min(1, this.heat), this.coolRGB) : this.coolRGB;
+      const shimmerOp = this.opacity + 0.08 * Math.sin(t * 0.0008 + this.phase);
+      const speed  = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+      const stretch = speed > 1.5 ? Math.min(2.5, 1 + speed * 0.3) : 1;
+      if (stretch > 1.05) {
+        const angle = Math.atan2(this.vy, this.vx);
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(angle);
+        ctx.scale(stretch, 1);
+        ctx.beginPath();
+        ctx.arc(0, 0, this.r, 0, TWO_PI);
+        ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${shimmerOp})`;
+        ctx.fill();
+        ctx.restore();
+      } else {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, TWO_PI);
+        ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${shimmerOp})`;
+        ctx.fill();
+      }
+    }
+    drawHot() {
+      if (this.heat <= 0.2) return;
+      const rgb = heatToRGB(Math.min(1, this.heat), this.coolRGB);
+      ctx.shadowBlur = this.heat * 18;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, TWO_PI);
+      ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  let beads = [];
+  let beadTrailUntil = 0;
+
+  function respawnBeads() {
+    beads = [];
+    const sp = BEAD_CFG.gridSpacing;
+    const cols = Math.ceil(canvas.width/sp), rows = Math.ceil(canvas.height/sp);
+    for (let r = 0; r < rows; r++)
+      for (let c = 0; c < cols; c++)
+        beads.push(new Bead(c*sp+sp/2+(rnd()-0.5)*2.5, r*sp+sp/2+(rnd()-0.5)*2.5));
+    beadTrailUntil = 0;
+  }
+
+  function drawBeadGlow() {
+    for (const pc of palmCenters) {
+      const g1 = ctx.createRadialGradient(pc.x, pc.y, 0, pc.x, pc.y, 140);
+      g1.addColorStop(0, 'rgba(60,160,255,0.14)');
+      g1.addColorStop(0.5,'rgba(40,120,220,0.055)');
+      g1.addColorStop(1, 'rgba(20,80,180,0)');
+      ctx.fillStyle = g1;
+      ctx.fillRect(pc.x-140, pc.y-140, 280, 280);
+
+      const g2 = ctx.createRadialGradient(pc.x, pc.y, 0, pc.x, pc.y, 260);
+      g2.addColorStop(0, 'rgba(40,100,255,0.03)');
+      g2.addColorStop(1, 'rgba(0,0,200,0)');
+      ctx.fillStyle = g2;
+      ctx.fillRect(pc.x-260, pc.y-260, 520, 520);
+    }
+  }
+
+  const _archivedBeads = {
+    name: 'BEADS',
+    init() { respawnBeads(); },
+    update(t) {
+      // Circular waveform force — waveform boundary pushes beads outward
+      // Force is proportional to local FFT amplitude at each bead's angle
+      const effBaseR  = WAVE_BASE_R  * (0.3 + waveOpenness * 0.95);
+      const effMaxAmp = WAVE_MAX_AMP * (0.45 + waveOpenness * 0.70);
+      for (const profile of waveformProfiles) {
+        for (const b of beads) {
+          const dx = b.x - profile.cx, dy = b.y - profile.cy;
+          const d  = Math.sqrt(dx*dx + dy*dy) || 1;
+          if (d > effBaseR + effMaxAmp + 12) continue;  // skip far beads
+
+          // Map bead's angle to waveform sample index
+          let angle = Math.atan2(dy, dx) + HALF_PI;  // rotate so top = sample 0
+          if (angle < 0) angle += TWO_PI;
+          const si       = Math.floor((angle / (TWO_PI)) * WAVE_SAMPLES) % WAVE_SAMPLES;
+          const waveR    = profile.samples[si];
+          const localAmp = (waveR - effBaseR) / (effMaxAmp || 1);  // 0–1
+
+          if (d < waveR) {
+            // Bead is inside the waveform boundary — push outward
+            const str = (1 - d / waveR) * (0.8 + localAmp * 3.5);
+            b.vx += (dx / d) * str;
+            b.vy += (dy / d) * str;
+          }
+        }
+      }
+      for (const b of beads) b.update(t);
+      // Shockwave physics — blast beads near the expanding ring front
+      for (const sw of shockwaves) {
+        const hitZone = 55;
+        for (const b of beads) {
+          const dx = b.x - sw.cx, dy = b.y - sw.cy;
+          const d  = Math.sqrt(dx*dx + dy*dy) || 1;
+          if (Math.abs(d - sw.r) < hitZone) {
+            const str = (1 - Math.abs(d - sw.r) / hitZone) * sw.alpha * 9;
+            b.vx += (dx / d) * str;
+            b.vy += (dy / d) * str;
+            b.heat = Math.min(1, b.heat + str * 0.12);
+          }
+        }
+      }
+    },
+    draw(t) {
+      if (palmCenters.length > 0) beadTrailUntil = frameCount + 120;
+      ctx.fillStyle = frameCount < beadTrailUntil ? 'rgba(0,0,0,0.18)' : '#000000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      drawBeadGlow();
+      for (const b of beads) b.draw(t);
+      // Bloom pass on hot beads — screen-blended enlarged glow
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      ctx.shadowBlur = 18;
+      for (const b of beads) {
+        if (b.heat <= 0.35) continue;
+        // Pulse heat on bass transients
+        b.heat = Math.min(1, b.heat + audioTransient * 0.04);
+        const rgb = heatToRGB(Math.min(1, b.heat), b.coolRGB);
+        ctx.shadowColor = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},0.6)`;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.r * 1.5, 0, TWO_PI);
+        ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${b.heat * 0.3})`;
+        ctx.fill();
+      }
+      ctx.restore();
+      if (frameCount % 90 === 0) countEl.textContent = `${beads.length} beads`;
+    }
+  };  // archived — not pushed to MODES
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODE 1 — WAVES (archived)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  const WAVE_CELL = 8;
+  let waveW = 0, waveH = 0;
+  let waveSources = [];
+  let waveTransientRings = [];  // {x,y,r,life} — burst rings on bass transients
+
+  const _archivedWaves = {
+    name: 'WAVES',
+    init() {
+      waveW = Math.ceil(canvas.width / WAVE_CELL);
+      waveH = Math.ceil(canvas.height / WAVE_CELL);
+      waveMaxR = Math.hypot(canvas.width, canvas.height);
+      // 2 calm ambient sources — wide freq spacing for ocean sonar feel
+      waveSources = [
+        { x: canvas.width*0.30, y: canvas.height*0.38, freq:240, amp:0.22, phase:0,           born:0, isAmbient:true },
+        { x: canvas.width*0.70, y: canvas.height*0.55, freq:210, amp:0.18, phase:Math.PI*0.9, born:0, isAmbient:true },
+      ];
+    },
+    update(t) {
+      // Decay hand-added sources (not ambient) after ~5s; ambient sources persist forever
+      waveSources = waveSources.filter(s => s.isAmbient || frameCount - s.born < 300);
+
+      // Add/update sources from hand segments (every 4th segment)
+      for (const segs of handSegPts) {
+        for (let i = 0; i < segs.length; i += 4) {
+          const seg = segs[i];
+          const mx = (seg.ax+seg.bx)*0.5, my = (seg.ay+seg.by)*0.5;
+          let found = false;
+          for (const s of waveSources) {
+            const dx = s.x-mx, dy = s.y-my;
+            if (dx*dx+dy*dy < 2500) { s.x = mx; s.y = my; s.born = frameCount; found = true; break; }
+          }
+          if (!found && waveSources.length < 12) {
+            waveSources.push({ x:mx, y:my, freq:150+rnd()*70, amp:0.28+rnd()*0.28, phase:rnd()*TWO_PI, born:frameCount });
+          }
+        }
+      }
+      // Shockwave physics — spawn burst wave sources
+      for (const sw of shockwaves) {
+        if (sw._waveBlasted || sw.r < 40) continue;
+        sw._waveBlasted = true;
+        for (let i = 0; i < 3; i++) {
+          waveSources.push({
+            x: sw.cx + (Math.random()-0.5)*60,
+            y: sw.cy + (Math.random()-0.5)*60,
+            freq: 80 + Math.random()*60, amp: 0.65, phase: Math.random()*TWO_PI,
+            born: frameCount, isAmbient: false,
+          });
+        }
+      }
+    },
+    draw(t) {
+      ctx.fillStyle = 'rgba(0,4,14,0.20)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const maxR = waveMaxR;
+
+      // Hand-source glow pass — innermost 2 rings drawn twice with shadow
+      for (const s of waveSources) {
+        if (s.isAmbient) continue;
+        const scroll = (t * 0.0008 * s.freq) % s.freq;
+        ctx.save();
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = 'hsla(188,80%,65%,0.4)';
+        ctx.lineWidth = 4;
+        let ringsDrawn = 0;
+        for (let r = scroll; r < maxR && ringsDrawn < 2; r += s.freq) {
+          const frac = r / maxR;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, r, 0, TWO_PI);
+          ctx.strokeStyle = `hsla(188,80%,65%,${s.amp * (1-frac) * 0.30})`;
+          ctx.stroke();
+          ringsDrawn++;
+        }
+        ctx.restore();
+      }
+
+      // Spawn transient rings on bass hits
+      if (audioTransient > 0.4) {
+        for (const s of waveSources) {
+          if (s.isAmbient) continue;
+          waveTransientRings.push({ x: s.x, y: s.y, r: 20, life: 8 });
+        }
+      }
+      let ringIdx = 0;
+      for (const s of waveSources) {
+        const scroll = (t * 0.0008 * s.freq) % s.freq;
+        const isHand = !s.isAmbient;
+        let ringCount = 0;
+        for (let r = scroll; r < maxR; r += s.freq) {
+          const frac = r / maxR;
+          const ambScale = s.isAmbient ? (1 + audioMid * 2.5) : 1;
+          const op = s.amp * (1 - frac) * (isHand ? 0.55 : 0.28 * ambScale);
+          if (op < 0.008) continue;
+          // Every 3rd hand-source ring gets glow
+          const doGlow = isHand && (ringCount % 3 === 0);
+          if (doGlow) {
+            ctx.save();
+            ctx.shadowBlur = 8 * (1 - frac);
+            ctx.shadowColor = `hsla(188,80%,65%,${op * 0.4})`;
+          }
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, r, 0, TWO_PI);
+          if (isHand) {
+            // Audio-reactive hue shift: mids→green, bass→indigo
+            const hue = 185 + frac * 20 + audioMid * 30 - audioBass * 15;
+            const lit  = 28  + frac * 45;
+            const sat  = 75  - frac * 15;
+            ctx.strokeStyle = `hsla(${hue},${sat}%,${lit}%,${op})`;
+          } else {
+            const hue = 215 + frac * 18;
+            ctx.strokeStyle = `hsla(${hue},55%,${30 - frac * 8}%,${op})`;
+          }
+          ctx.lineWidth = (isHand ? 1.5 : 0.7) * (1 - frac * 0.5);
+          ctx.stroke();
+          if (doGlow) ctx.restore();
+          ringCount++;
+        }
+      }
+      // Draw transient burst rings
+      const aliveRings = [];
+      for (const tr of waveTransientRings) {
+        tr.r += 25; tr.life--;
+        if (tr.life <= 0) continue;
+        aliveRings.push(tr);
+        const a = (tr.life / 8) * 0.5;
+        ctx.beginPath();
+        ctx.arc(tr.x, tr.y, tr.r, 0, TWO_PI);
+        ctx.strokeStyle = `hsla(195,85%,70%,${a})`;
+        ctx.lineWidth = 2.5 * (tr.life / 8);
+        ctx.stroke();
+      }
+      waveTransientRings = aliveRings;
+      // Palm bloom
+      for (const pc of palmCenters) {
+        const grad = ctx.createRadialGradient(pc.x, pc.y, 0, pc.x, pc.y, 140);
+        grad.addColorStop(0, 'rgba(20,90,150,0.14)');
+        grad.addColorStop(1, 'rgba(0,100,200,0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(pc.x-140, pc.y-140, 280, 280);
+      }
+    }
+  };  // archived — not pushed to MODES
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODE 0 — CONSTELLATION
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  const NUM_STARS = 220;
+  const EDGE_DIST = 95;
+  const STAR_CELL = 120;
+  let stars = [];
+  let starGrid = []; let starGcols = 0, starGrows = 0;
+
+  function makeStar() {
+    const x = rnd()*canvas.width, y = rnd()*canvas.height;
+    return { x, y, homeX:x, homeY:y, vx:0, vy:0,
+             size: 0.8+rnd()*2.2, base: 0.3+rnd()*0.7,
+             brightness: 0.5, phase: rnd()*TWO_PI, heat: 0,
+             hueShift: (rnd()-0.5)*60,  // per-star chromatic variation
+             posHistory: [],             // for shooting star trails
+             gridX: Math.floor(x/STAR_CELL), gridY: Math.floor(y/STAR_CELL) };
+  }
+
+  function buildStarGrid() {
+    starGcols = Math.ceil(canvas.width / STAR_CELL);
+    starGrows = Math.ceil(canvas.height / STAR_CELL);
+    const total = starGcols * starGrows;
+    if (starGrid.length !== total) starGrid = Array.from({length: total}, () => []);
+    else for (let i = 0; i < total; i++) starGrid[i].length = 0;
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      const key = Math.floor(s.y / STAR_CELL) * starGcols + Math.floor(s.x / STAR_CELL);
+      if (key >= 0 && key < total) starGrid[key].push(i);
+    }
+  }
+
+  MODES.push({
+    name: 'CONSTELLATION',
+    init() {
+      stars = Array.from({length: NUM_STARS}, makeStar);
+      buildStarGrid();
+    },
+    update(t) {
+      const repRSq = 70*70, heatRSq = 80*80;  // repRSq was 55*55
+      for (const s of stars) {
+        s.brightness = s.base + 0.15*Math.sin(t*0.001+s.phase);
+        let fx = (s.homeX-s.x)*0.04, fy = (s.homeY-s.y)*0.04;
+        let closestD2 = Infinity;
+
+        // Palm proximity pre-filter — skip expensive segment checks for stars far from any hand
+        let nearAnyPalm = false;
+        for (const pc of palmCenters) {
+          const pdx = s.x - pc.x, pdy = s.y - pc.y;
+          if (pdx*pdx + pdy*pdy < 200*200) { nearAnyPalm = true; break; }
+        }
+        if (nearAnyPalm) {
+          for (const segs of handSegPts) {
+            for (const seg of segs) {
+              const d2 = distSqToSeg(s.x, s.y, seg.ax, seg.ay, seg.bx, seg.by);
+              if (d2 < closestD2) closestD2 = d2;
+              if (d2 < repRSq && d2 > 1) {
+                const cp = closestOnSeg(s.x, s.y, seg.ax, seg.ay, seg.bx, seg.by);
+                const dx = s.x-cp.x, dy = s.y-cp.y;
+                const d = Math.sqrt(d2) || 1;
+                const str = (1-d/70)*4;
+                fx += (dx/d)*str; fy += (dy/d)*str;
+              }
+            }
+          }
+        }
+        if (closestD2 < heatRSq) {
+          const d = Math.sqrt(closestD2);
+          s.heat = Math.min(1, s.heat + (1-d/80)*0.1);
+        }
+        s.heat *= 0.92;
+
+        s.vx = (s.vx+fx)*0.82; s.vy = (s.vy+fy)*0.82;
+        s.x  = Math.max(0, Math.min(canvas.width,  s.x+s.vx));
+        s.y  = Math.max(0, Math.min(canvas.height, s.y+s.vy));
+
+        // Track position history for shooting star trails — disabled during blast to avoid
+        // 500 object allocations/frame and GC pressure
+        const spd = Math.sqrt(s.vx*s.vx + s.vy*s.vy);
+        if (spd > 2 && !shockwaves.length) {
+          s.posHistory.unshift({x: s.x, y: s.y});
+          if (s.posHistory.length > 5) s.posHistory.pop();
+        } else {
+          s.posHistory.length = 0;
+        }
+      }
+      // Incremental grid rebuild — throttled every other frame during active blast
+      let gridDirty = false;
+      for (const s of stars) {
+        const cx = Math.floor(s.x/STAR_CELL), cy = Math.floor(s.y/STAR_CELL);
+        if (cx !== s.gridX || cy !== s.gridY) { s.gridX = cx; s.gridY = cy; gridDirty = true; }
+      }
+      if (gridDirty && (!shockwaves.length || frameCount % 2 === 0)) buildStarGrid();
+      // Shockwave physics — use spatial grid bounding box (O(ring_band) not O(N))
+      for (const sw of shockwaves) {
+        const hitZone = 60;
+        const outerR  = sw.r + hitZone;
+        const gxMin = Math.max(0, Math.floor((sw.cx - outerR) / STAR_CELL));
+        const gxMax = Math.min(starGcols - 1, Math.ceil((sw.cx + outerR) / STAR_CELL));
+        const gyMin = Math.max(0, Math.floor((sw.cy - outerR) / STAR_CELL));
+        const gyMax = Math.min(starGrows - 1, Math.ceil((sw.cy + outerR) / STAR_CELL));
+        for (let gy = gyMin; gy <= gyMax; gy++) {
+          for (let gx = gxMin; gx <= gxMax; gx++) {
+            const cell = starGrid[gy * starGcols + gx];
+            if (!cell || !cell.length) continue;
+            for (const si of cell) {
+              const s = stars[si];
+              const dx = s.x - sw.cx, dy = s.y - sw.cy;
+              const d  = Math.sqrt(dx*dx + dy*dy) || 1;
+              if (Math.abs(d - sw.r) < hitZone) {
+                const str = (1 - Math.abs(d - sw.r) / hitZone) * sw.alpha * 5;
+                s.vx += (dx / d) * str;
+                s.vy += (dy / d) * str;
+                s.heat = Math.min(1, s.heat + str * 0.15);
+              }
+            }
+          }
+        }
+      }
+    },
+    draw(t) {
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const edgeSq = EDGE_DIST*EDGE_DIST;
+
+      // Draw edges via spatial grid (batched into single path to avoid per-edge draw calls)
+      const heatedEdges = [];
+      const coldEdges   = [];
+      for (let gy = 0; gy < starGrows; gy++) {
+        for (let gx = 0; gx < starGcols; gx++) {
+          const cellA = starGrid[gy * starGcols + gx];
+          if (!cellA || cellA.length === 0) continue;
+
+          // Within-cell pairs
+          for (let ii = 0; ii < cellA.length; ii++) {
+            for (let jj = ii+1; jj < cellA.length; jj++) {
+              const sa = stars[cellA[ii]], sb = stars[cellA[jj]];
+              const dx = sa.x-sb.x, dy = sa.y-sb.y, d2 = dx*dx+dy*dy;
+              if (d2 < edgeSq) {
+                const baseAl = (1-Math.sqrt(d2)/EDGE_DIST)*0.4*(sa.brightness+sb.brightness)*0.5;
+                const al = baseAl * (1 + audioBass * 1.5);
+                if (sa.heat > 0.1 && sb.heat > 0.1) { heatedEdges.push({ax:sa.x,ay:sa.y,bx:sb.x,by:sb.y,al}); }
+                else { coldEdges.push({ax:sa.x,ay:sa.y,bx:sb.x,by:sb.y,al}); }
+              }
+            }
+          }
+
+          // Neighbor cells (right, bottom-left, bottom, bottom-right)
+          for (const [nx, ny] of [[gx+1,gy],[gx-1,gy+1],[gx,gy+1],[gx+1,gy+1]]) {
+            if (nx < 0 || nx >= starGcols || ny >= starGrows) continue;
+            const cellB = starGrid[ny * starGcols + nx];
+            if (!cellB || cellB.length === 0) continue;
+            for (const ai of cellA) {
+              for (const bi of cellB) {
+                const sa = stars[ai], sb = stars[bi];
+                const dx = sa.x-sb.x, dy = sa.y-sb.y, d2 = dx*dx+dy*dy;
+                if (d2 < edgeSq) {
+                  const baseAl = (1-Math.sqrt(d2)/EDGE_DIST)*0.4*(sa.brightness+sb.brightness)*0.5;
+                  const al = baseAl * (1 + audioBass * 1.5);
+                  if (sa.heat > 0.1 && sb.heat > 0.1) { heatedEdges.push({ax:sa.x,ay:sa.y,bx:sb.x,by:sb.y,al}); }
+                  else { coldEdges.push({ax:sa.x,ay:sa.y,bx:sb.x,by:sb.y,al}); }
+                }
+              }
+            }
+          }
+        }
+      }
+      // Cold edges — single batched path (uniform alpha, minimal draw calls)
+      if (coldEdges.length > 0) {
+        ctx.save();
+        ctx.strokeStyle = 'rgba(180,200,255,0.18)';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        for (const e of coldEdges) { ctx.moveTo(e.ax, e.ay); ctx.lineTo(e.bx, e.by); }
+        ctx.stroke();
+        ctx.restore();
+      }
+      // Heated edge second pass — batched single stroke call
+      if (heatedEdges.length > 0) {
+        ctx.save();
+        ctx.strokeStyle = 'rgba(180,200,255,0.7)';
+        ctx.lineWidth = 0.8;
+        ctx.shadowBlur = 5;
+        ctx.shadowColor = 'rgba(180,200,255,0.35)';
+        ctx.beginPath();
+        for (const e of heatedEdges) { ctx.moveTo(e.ax, e.ay); ctx.lineTo(e.bx, e.by); }
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // Draw stars — 3-pass (corona + mid glow + bright core) with chromatic variation
+      // During active blast: corona shadow is batched into one save/restore instead of 500
+      const blasting = shockwaves.length > 0;
+      let _trailsDrawn = 0;
+
+      if (blasting) {
+        // Batched corona pass — single shadow state for all heated stars
+        ctx.save();
+        ctx.shadowBlur  = 14;
+        ctx.shadowColor = 'rgba(180,200,255,0.35)';
+        for (const s of stars) {
+          if (s.heat <= 0.15) continue;
+          const r = s.size*(1+0.5*s.heat);
+          ctx.fillStyle = `hsla(${200+s.hueShift},70%,75%,${Math.max(0,Math.min(1,s.brightness))*0.05})`;
+          ctx.beginPath(); ctx.arc(s.x, s.y, r*6, 0, TWO_PI); ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      for (const s of stars) {
+        const br = Math.max(0, Math.min(1, s.brightness));
+        const r  = s.size*(1+0.5*s.heat);
+        const starHue = 200 + s.hueShift;
+
+        // Shooting star trail — disabled during blast (posHistory is already cleared)
+        if (s.posHistory.length >= 2 && _trailsDrawn < 50) {
+          _trailsDrawn++;
+          ctx.save();
+          ctx.lineCap = 'round';
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = `hsla(${starHue},80%,80%,0.5)`;
+          ctx.beginPath();
+          ctx.arc(s.posHistory[0].x, s.posHistory[0].y, r * 1.4, 0, TWO_PI);
+          ctx.fillStyle = `hsla(${starHue},80%,85%,${br * 0.5})`;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+          for (let i = 0; i < s.posHistory.length-1; i++) {
+            const a = (1 - i/s.posHistory.length) * br * 0.5;
+            ctx.beginPath();
+            ctx.moveTo(s.posHistory[i].x, s.posHistory[i].y);
+            ctx.lineTo(s.posHistory[i+1].x, s.posHistory[i+1].y);
+            ctx.strokeStyle = `hsla(${starHue},80%,85%,${a})`;
+            ctx.lineWidth = r * (1 - i/s.posHistory.length);
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+
+        // Pass 1: outer corona with per-star shadow — only when no active blast
+        if (!blasting && s.heat > 0.15) {
+          ctx.save();
+          ctx.shadowBlur = 6 + s.heat * 10;
+          ctx.shadowColor = `hsla(${starHue},70%,80%,${s.heat * 0.4})`;
+          ctx.fillStyle = `hsla(${starHue},70%,75%,${br * 0.05})`;
+          ctx.beginPath(); ctx.arc(s.x, s.y, r*6, 0, TWO_PI); ctx.fill();
+          ctx.restore();
+        }
+
+      }
+
+      // Pass 2: mid glow — batched single fill call across all stars
+      ctx.save();
+      ctx.fillStyle = 'rgba(170,190,255,0.15)';
+      ctx.beginPath();
+      for (const s of stars) {
+        const rad = s.size*(1+0.5*s.heat)*3;
+        ctx.moveTo(s.x+rad, s.y); ctx.arc(s.x, s.y, rad, 0, TWO_PI);
+      }
+      ctx.fill();
+      ctx.restore();
+
+      // Pass 3: bright core — batched single fill call (brightness encoded as size)
+      ctx.save();
+      ctx.fillStyle = 'rgba(240,244,255,0.88)';
+      ctx.beginPath();
+      for (const s of stars) {
+        const br = Math.max(0, Math.min(1, s.brightness));
+        const rad = s.size*(1+0.5*s.heat)*1.2 * br;
+        if (rad < 0.3) continue;
+        ctx.moveTo(s.x+rad, s.y); ctx.arc(s.x, s.y, rad, 0, TWO_PI);
+      }
+      ctx.fill();
+      ctx.restore();
+
+      // Palm glow
+      for (const pc of palmCenters) {
+        const grad = ctx.createRadialGradient(pc.x, pc.y, 0, pc.x, pc.y, 200);
+        grad.addColorStop(0, 'rgba(180,210,255,0.08)');
+        grad.addColorStop(1, 'rgba(100,150,255,0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(pc.x-200, pc.y-200, 400, 400);
+      }
+    }
+  });
+
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODE 4 — WARP GRID
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  const GRID_COLS = 42;
+  const GRID_ROWS = 26;
+  let gridPts = [];
+
+  function initWarpGrid() {
+    gridPts = [];
+    const cellW = canvas.width  / (GRID_COLS - 1);
+    const cellH = canvas.height / (GRID_ROWS - 1);
+    for (let row = 0; row < GRID_ROWS; row++)
+      for (let col = 0; col < GRID_COLS; col++) {
+        const hx = col*cellW, hy = row*cellH;
+        gridPts.push({ x:hx, y:hy, homeX:hx, homeY:hy, vx:0, vy:0, disp:0 });
+      }
+  }
+
+  function drawGridSeg(a, b) {
+    const avgDisp = (a.disp + b.disp) * 0.5;
+    const tFrac   = Math.min(1, avgDisp / 90);
+    const hue     = tFrac < 0.5
+      ? 225 - tFrac * 80
+      : 185 + (tFrac - 0.5) * 230;
+    const lit   = 22 + tFrac * 42;
+    const alpha = 0.18 + tFrac * 0.55;
+    const lw    = 0.5 + tFrac * 1.8;
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.strokeStyle = `hsla(${hue},80%,${lit}%,${alpha})`;
+    ctx.lineWidth   = lw;
+    ctx.stroke();
+  }
+
+  MODES.push({
+    name: 'GEOMETRY',
+    init() { initWarpGrid(); },
+    update(t) {
+      for (const p of gridPts) {
+        let fx = (p.homeX - p.x) * 0.055;
+        let fy = (p.homeY - p.y) * 0.055;
+        for (const pc of palmCenters) {
+          const dx = p.x - pc.x, dy = p.y - pc.y;
+          const d  = Math.sqrt(dx*dx + dy*dy) || 1;
+          if (d < 240) {
+            const str = (1 - d/240) * 14;
+            fx += (dx/d) * str;
+            fy += (dy/d) * str;
+          }
+        }
+        p.vx = (p.vx + fx) * 0.80;
+        p.vy = (p.vy + fy) * 0.80;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.disp = Math.hypot(p.x - p.homeX, p.y - p.homeY);
+      }
+      // Shockwave physics
+      for (const sw of shockwaves) {
+        const hitZone = 45;
+        for (const p of gridPts) {
+          const dx = p.x - sw.cx, dy = p.y - sw.cy;
+          const d = Math.sqrt(dx*dx + dy*dy) || 1;
+          if (Math.abs(d - sw.r) < hitZone) {
+            const str = (1 - Math.abs(d - sw.r) / hitZone) * sw.alpha * 10;
+            p.vx += (dx/d) * str; p.vy += (dy/d) * str;
+          }
+        }
+      }
+    },
+    draw(t) {
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Pass 1: single batched stroke for all cold (near-resting) segments
+      ctx.save();
+      ctx.strokeStyle = 'hsla(225,80%,22%,0.18)';
+      ctx.lineWidth = 0.5;
+      ctx.shadowBlur = 0;
+      ctx.beginPath();
+      for (let row = 0; row < GRID_ROWS; row++)
+        for (let col = 0; col < GRID_COLS - 1; col++) {
+          const a = gridPts[row*GRID_COLS+col], b = gridPts[row*GRID_COLS+col+1];
+          if ((a.disp + b.disp) * 0.5 < 5.4) { ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); }
+        }
+      for (let row = 0; row < GRID_ROWS - 1; row++)
+        for (let col = 0; col < GRID_COLS; col++) {
+          const a = gridPts[row*GRID_COLS+col], b = gridPts[(row+1)*GRID_COLS+col];
+          if ((a.disp + b.disp) * 0.5 < 5.4) { ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); }
+        }
+      ctx.stroke();
+      ctx.restore();
+
+      // Pass 2: displaced segments only — individual styled calls
+      for (let row = 0; row < GRID_ROWS; row++)
+        for (let col = 0; col < GRID_COLS - 1; col++) {
+          const a = gridPts[row*GRID_COLS+col], b = gridPts[row*GRID_COLS+col+1];
+          if ((a.disp + b.disp) * 0.5 >= 5.4) drawGridSeg(a, b);
+        }
+      for (let row = 0; row < GRID_ROWS - 1; row++)
+        for (let col = 0; col < GRID_COLS; col++) {
+          const a = gridPts[row*GRID_COLS+col], b = gridPts[(row+1)*GRID_COLS+col];
+          if ((a.disp + b.disp) * 0.5 >= 5.4) drawGridSeg(a, b);
+        }
+
+      // Vertex glow dots — use cached disp
+      ctx.save();
+      ctx.shadowBlur = 10;
+      for (const p of gridPts) {
+        if (p.disp > 40) {
+          const tFrac = Math.min(1, p.disp / 90);
+          const hue = tFrac < 0.5 ? 225 - tFrac * 80 : 185 + (tFrac - 0.5) * 230;
+          ctx.shadowColor = `hsla(${hue},80%,65%,0.5)`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 1.5 + tFrac * 2, 0, TWO_PI);
+          ctx.fillStyle = `hsla(${hue},80%,75%,${0.25 + tFrac * 0.35})`;
+          ctx.fill();
+        }
+      }
+      ctx.restore();
+      // Palm glow — larger with secondary outer layer
+      for (const pc of palmCenters) {
+        const grad = ctx.createRadialGradient(pc.x, pc.y, 0, pc.x, pc.y, 280);
+        grad.addColorStop(0, 'rgba(0,180,255,0.10)');
+        grad.addColorStop(0.7, 'rgba(0,120,255,0.04)');
+        grad.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(pc.x-280, pc.y-280, 560, 560);
+        // Secondary outer layer
+        const g2 = ctx.createRadialGradient(pc.x, pc.y, 0, pc.x, pc.y, 350);
+        g2.addColorStop(0, 'rgba(0,100,255,0.04)');
+        g2.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = g2;
+        ctx.fillRect(pc.x-350, pc.y-350, 700, 700);
+      }
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODE 5 — FACE FIELD
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // 20 key face landmark indices (from MediaPipe FaceMesh 468-point model)
+  const FACE_ATTRACTOR_INDICES = [33, 133, 362, 263, 1, 4, 61, 291, 152, 10, 234, 454, 172, 397, 70, 300, 107, 336, 78, 308];
+
+  const ANIMAL_OUTLINES = {
+    WOLF:   [[0,-1.1],[0.22,-1.15],[0.40,-1.55],[0.58,-1.1],[0.78,-0.72],
+              [1.0,-0.18],[0.93,0.42],[0.65,0.88],[0.30,1.18],[0,1.28],
+              [-0.30,1.18],[-0.65,0.88],[-0.93,0.42],[-1.0,-0.18],
+              [-0.78,-0.72],[-0.58,-1.1],[-0.40,-1.55],[-0.22,-1.15]],
+    BEAR:   [[0,-0.88],[0.30,-0.95],[0.52,-1.18],[0.72,-0.90],
+              [0.95,-0.42],[1.05,0.14],[0.86,0.66],[0.50,1.06],[0,1.18],
+              [-0.50,1.06],[-0.86,0.66],[-1.05,0.14],[-0.95,-0.42],
+              [-0.72,-0.90],[-0.52,-1.18],[-0.30,-0.95]],
+    CAT:    [[0,-0.92],[0.24,-0.98],[0.48,-1.45],[0.70,-0.84],
+              [0.98,-0.32],[1.02,0.20],[0.82,0.70],[0.46,1.06],[0,1.16],
+              [-0.46,1.06],[-0.82,0.70],[-1.02,0.20],[-0.98,-0.32],
+              [-0.70,-0.84],[-0.48,-1.45],[-0.24,-0.98]],
+    FOX:    [[0,-0.96],[0.20,-1.02],[0.40,-1.48],[0.62,-0.92],[0.86,-0.56],
+              [1.02,0.00],[0.90,0.52],[0.60,0.90],[0.28,1.12],[0,1.22],
+              [-0.28,1.12],[-0.60,0.90],[-0.90,0.52],[-1.02,0.00],
+              [-0.86,-0.56],[-0.62,-0.92],[-0.40,-1.48],[-0.20,-1.02]],
+    RABBIT: [[0,-0.82],[0.18,-0.88],[0.28,-1.15],[0.34,-2.10],[0.22,-2.30],
+              [0.10,-2.10],[0.20,-1.15],[0.50,-0.78],[0.92,-0.22],[0.98,0.32],
+              [0.82,0.78],[0.46,1.06],[0,1.16],[-0.46,1.06],[-0.82,0.78],
+              [-0.98,0.32],[-0.92,-0.22],[-0.50,-0.78],[-0.20,-1.15],
+              [-0.10,-2.10],[-0.22,-2.30],[-0.34,-2.10],[-0.28,-1.15],[-0.18,-0.88]],
+    OWL:    [[0,-1.02],[0.22,-1.08],[0.38,-1.35],[0.30,-1.08],[0.62,-0.92],
+              [0.98,-0.40],[1.08,0.15],[0.90,0.68],[0.52,1.00],[0,1.10],
+              [-0.52,1.00],[-0.90,0.68],[-1.08,0.15],[-0.98,-0.40],
+              [-0.62,-0.92],[-0.30,-1.08],[-0.38,-1.35],[-0.22,-1.08]],
+  };
+  const ANIMAL_NAMES = ['WOLF','BEAR','CAT','FOX','RABBIT','OWL'];
+
+  // Assign hue by anatomical region
+  function getAttractorHue(idx) {
+    const i = idx % FACE_ATTRACTOR_INDICES.length;
+    if (i <= 3) return 200;          // eyes: pale blue
+    if (i <= 5) return 45;           // nose: warm gold
+    if (i === 6 || i === 7 || i === 18 || i === 19) return 330;  // mouth: rose
+    return 160;                      // jaw / cheek / brow: mint
+  }
+
+  let facePts = [];
+  let smoothFacePts = [];   // exponentially smoothed face landmarks
+  let faceGhostFrames = 0;  // frames since face was last seen
+  let lastFacePts = [];     // last known face positions for ghost persistence
+  let faceFieldPs = [];
+  const FACE_PARTICLE_COUNT = 320;
+
+  let animalIdx   = 0;
+  let animalTimer = 0;
+  let animalFadeT = 1.0;
+  const ANIMAL_HOLD_MS = 5000;
+  const ANIMAL_FADE_MS = 1200;
+
+  function initFaceField() {
+    faceFieldPs = [];
+    for (let i = 0; i < FACE_PARTICLE_COUNT; i++) {
+      const tgt  = i % FACE_ATTRACTOR_INDICES.length;
+      const baseR = 1.5 + rnd() * 2;
+      faceFieldPs.push({
+        x:         rnd() * canvas.width,
+        y:         rnd() * canvas.height,
+        vx:        0, vy: 0,
+        target:    tgt,
+        hue:       getAttractorHue(tgt),
+        r:         baseR,
+        baseR:     baseR,
+        opacity:   0.4 + rnd() * 0.5,
+        distToAtt: 200,
+        blastHeat: 0,
+      });
+    }
+  }
+
+  function drawFaceAmbient(cx, cy) {
+    ctx.save();
+
+    // 4 atmospheric pulsing rings — bass/mid/high/bass-outer
+    const bandRings = [
+      { r:  90, amp: audioBass * 0.9 + 0.08, hue: 195, lineBase: 0.09 },
+      { r: 195, amp: audioMid  * 0.9 + 0.04, hue: 185, lineBase: 0.06 },
+      { r: 330, amp: audioHigh * 0.9 + 0.02, hue: 175, lineBase: 0.04 },
+      { r: 510, amp: audioBass * 0.6 + 0.01, hue: 200, lineBase: 0.03 },
+    ];
+    for (const ring of bandRings) {
+      const pr = ring.r * (1 + ring.amp * 0.18);
+      const op = ring.lineBase + ring.amp * 0.10;
+      // Soft wide halo
+      ctx.beginPath(); ctx.arc(cx, cy, pr, 0, TWO_PI);
+      ctx.strokeStyle = `hsla(${ring.hue},70%,55%,${op * 0.35})`;
+      ctx.lineWidth   = 14 + ring.amp * 18;
+      ctx.stroke();
+      // Crisp edge
+      ctx.beginPath(); ctx.arc(cx, cy, pr, 0, TWO_PI);
+      ctx.strokeStyle = `hsla(${ring.hue},80%,68%,${op})`;
+      ctx.lineWidth   = 0.7;
+      ctx.stroke();
+    }
+
+    // 2 FFT waveform rings (only when audio active)
+    if (audioFreqData) {
+      const S = 128;
+      for (const { baseR, ampScale, op } of [
+        { baseR: Math.min(canvas.width, canvas.height) * 0.28, ampScale: 0.22, op: 0.20 },
+        { baseR: Math.min(canvas.width, canvas.height) * 0.48, ampScale: 0.13, op: 0.11 },
+      ]) {
+        const wPts = [];
+        for (let i = 0; i < S; i++) {
+          const half  = S / 2;
+          const bi    = i < half ? Math.floor((i / half) * 64)
+                                 : Math.floor(((S - i) / half) * 64);
+          const b0    = audioFreqData[Math.max(0, bi - 1)] / 255;
+          const b1    = audioFreqData[bi] / 255;
+          const b2    = audioFreqData[Math.min(audioFreqData.length - 1, bi + 1)] / 255;
+          const amp   = ((b0 + b1 * 2 + b2) / 4) * baseR * ampScale;
+          const angle = (i / S) * TWO_PI - HALF_PI;
+          wPts.push({ x: cx + (baseR + amp) * Math.cos(angle),
+                      y: cy + (baseR + amp) * Math.sin(angle) });
+        }
+        function buildAmbientPath() {
+          const mp = { x: (wPts[0].x + wPts[S-1].x) / 2,
+                       y: (wPts[0].y + wPts[S-1].y) / 2 };
+          ctx.beginPath(); ctx.moveTo(mp.x, mp.y);
+          for (let i = 0; i < S; i++) {
+            const nx = wPts[(i + 1) % S];
+            ctx.quadraticCurveTo(wPts[i].x, wPts[i].y,
+              (wPts[i].x + nx.x) / 2, (wPts[i].y + nx.y) / 2);
+          }
+          ctx.closePath();
+        }
+        // Glow pass
+        ctx.shadowBlur  = 14;
+        ctx.shadowColor = `rgba(100,215,200,${op * 0.5})`;
+        ctx.strokeStyle = `rgba(90,200,190,${op * 0.4})`;
+        ctx.lineWidth   = 7 + audioBass * 8;
+        buildAmbientPath(); ctx.stroke();
+        // Crisp pass
+        ctx.shadowBlur  = 0;
+        ctx.strokeStyle = `rgba(150,235,220,${op})`;
+        ctx.lineWidth   = 0.8;
+        buildAmbientPath(); ctx.stroke();
+      }
+    }
+
+    ctx.restore();
+  }
+
+  MODES.push({
+    name: 'FACE FIELD',
+    init() { initFaceField(); },
+    update(t) {
+      for (const p of faceFieldPs) {
+        // Spring toward face attractor (weak)
+        if (facePts.length > 0) {
+          const att = facePts[p.target % facePts.length];
+          if (att) {
+            const dx = att.x - p.x, dy = att.y - p.y;
+            p.vx += dx * 0.04;
+            p.vy += dy * 0.04;
+          }
+        } else {
+          // Drift to canvas center when no face
+          p.vx += (canvas.width * 0.5  - p.x) * 0.002;
+          p.vy += (canvas.height * 0.5 - p.y) * 0.002;
+        }
+
+        // Hand repulsion — scatter effect
+        for (const pc of palmCenters) {
+          const dx = p.x - pc.x, dy = p.y - pc.y;
+          const d = Math.sqrt(dx*dx + dy*dy) || 1;
+          if (d < 200) {
+            const str = (1 - d / 200) * 6;
+            p.vx += (dx / d) * str;
+            p.vy += (dy / d) * str;
+          }
+        }
+
+        p.vx *= 0.85; p.vy *= 0.85;
+        p.x  += p.vx; p.y  += p.vy;
+        // Cache distance to attractor for draw
+        if (facePts.length > 0) {
+          const att = facePts[p.target % facePts.length];
+          if (att) { const ddx = p.x-att.x, ddy = p.y-att.y; p.distToAtt = Math.sqrt(ddx*ddx+ddy*ddy); }
+        } else { p.distToAtt = 200; }
+      }
+      // Shockwave physics
+      for (const sw of shockwaves) {
+        const hitZone = 70;
+        for (const p of faceFieldPs) {
+          const dx = p.x - sw.cx, dy = p.y - sw.cy;
+          const d = Math.sqrt(dx*dx + dy*dy) || 1;
+          if (Math.abs(d - sw.r) < hitZone) {
+            const str = (1 - Math.abs(d - sw.r) / hitZone) * sw.alpha * 8;
+            p.vx += (dx/d) * str; p.vy += (dy/d) * str;
+            p.blastHeat = Math.min(1, p.blastHeat + str * 0.18);
+          }
+        }
+      }
+      // Decay blast heat each frame
+      for (const p of faceFieldPs) {
+        if (p.blastHeat > 0) p.blastHeat *= 0.91;
+      }
+    },
+    draw(t) {
+      ctx.fillStyle = 'rgba(0,0,0,0.22)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Compute face center (reused by ambient background and animal outline)
+      const bgCx = facePts.length >= 4
+        ? facePts.reduce((s, p) => s + p.x, 0) / facePts.length : canvas.width  * 0.5;
+      const bgCy = facePts.length >= 4
+        ? facePts.reduce((s, p) => s + p.y, 0) / facePts.length : canvas.height * 0.45;
+      drawFaceAmbient(bgCx, bgCy);
+
+      // Gradient skeleton between adjacent attractor points
+      if (facePts.length >= 2) {
+        const skelPairs = [
+          [0,1],[1,4],[4,5],[5,2],[2,3],
+          [6,7],[8,9],[10,11],[12,13],
+          [0,14],[2,16],[14,15],[16,17],
+          [18,19],[6,18],[7,19],
+        ];
+        ctx.save();
+        ctx.lineWidth = 0.8;
+        for (const [ai, bi] of skelPairs) {
+          if (facePts[ai] && facePts[bi]) {
+            const hA = getAttractorHue(ai), hB = getAttractorHue(bi);
+            const grad = ctx.createLinearGradient(facePts[ai].x, facePts[ai].y, facePts[bi].x, facePts[bi].y);
+            grad.addColorStop(0, `hsla(${hA},80%,70%,0.20)`);
+            grad.addColorStop(1, `hsla(${hB},80%,70%,0.20)`);
+            ctx.beginPath();
+            ctx.moveTo(facePts[ai].x, facePts[ai].y);
+            ctx.lineTo(facePts[bi].x, facePts[bi].y);
+            ctx.strokeStyle = grad;
+            ctx.stroke();
+          }
+        }
+        ctx.restore();
+      }
+
+      // Animal head outline — cycles every 5s with crossfade
+      {
+        // Reuse bgCx/bgCy computed above for face center
+        let eyeSpan = canvas.height * 0.18;
+        if (facePts.length >= 4) {
+          const dx=facePts[0].x-facePts[2].x, dy=facePts[0].y-facePts[2].y;
+          eyeSpan = Math.sqrt(dx*dx+dy*dy);
+        }
+        const faceCx = bgCx, faceCy = bgCy;
+        const animalScale = eyeSpan * 1.1;
+
+        const now = performance.now();
+        if (now - animalTimer > ANIMAL_HOLD_MS) {
+          animalIdx = (animalIdx+1) % ANIMAL_NAMES.length;
+          animalTimer = now; animalFadeT = 0;
+        }
+        animalFadeT = Math.min(1, animalFadeT + 0.016/(ANIMAL_FADE_MS/1000));
+
+        function drawAnimalOutline(name, cx, cy, scale, op) {
+          const verts = ANIMAL_OUTLINES[name]; if (!verts) return;
+          ctx.save();
+          ctx.strokeStyle = `rgba(180,255,220,${op*0.7})`;
+          ctx.lineWidth=1.5; ctx.lineJoin='round';
+          ctx.shadowBlur=18; ctx.shadowColor=`rgba(120,255,200,${op*0.55})`;
+          ctx.beginPath();
+          ctx.moveTo(cx+verts[0][0]*scale, cy+verts[0][1]*scale);
+          for (let i=1; i<verts.length; i++) ctx.lineTo(cx+verts[i][0]*scale, cy+verts[i][1]*scale);
+          ctx.closePath(); ctx.stroke(); ctx.restore();
+        }
+
+        if (animalFadeT < 1) {
+          const prev = (animalIdx-1+ANIMAL_NAMES.length) % ANIMAL_NAMES.length;
+          drawAnimalOutline(ANIMAL_NAMES[prev], faceCx, faceCy, animalScale, 1-animalFadeT);
+        }
+        drawAnimalOutline(ANIMAL_NAMES[animalIdx], faceCx, faceCy, animalScale, animalFadeT);
+
+        // Name label — fades in at start of each cycle
+        if (animalFadeT < 0.7) {
+          const lOp = (0.7-animalFadeT)/0.7;
+          ctx.save();
+          ctx.font='13px "Courier New"'; ctx.textAlign='center';
+          ctx.fillStyle=`rgba(180,255,220,${lOp*0.7})`;
+          ctx.fillText(ANIMAL_NAMES[animalIdx], faceCx, faceCy+animalScale*1.5);
+          ctx.restore();
+        }
+      }
+
+      // Particles — proximity-based size: small near attractor, larger when drifting
+      // Blast-heated particles flash white and expand briefly
+      const hotPs = [], coldPs = [];
+      for (const p of faceFieldPs) {
+        (p.blastHeat > 0.05 ? hotPs : coldPs).push(p);
+      }
+      // Cold particles — single state, no shadow
+      for (const p of coldPs) {
+        const drawR = p.baseR * (0.8 + Math.min(p.distToAtt, 200) / 200);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, drawR, 0, TWO_PI);
+        ctx.fillStyle = `hsla(${p.hue},90%,75%,${p.opacity * 0.7})`;
+        ctx.fill();
+      }
+      // Hot particles — glow + white flash + size boost
+      if (hotPs.length > 0) {
+        ctx.save();
+        for (const p of hotPs) {
+          const h = p.blastHeat;
+          const drawR = p.baseR * (0.8 + Math.min(p.distToAtt, 200) / 200) * (1 + h * 3.5);
+          const lightness = 75 + h * 25;
+          const sat       = 90 - h * 50;
+          const alpha     = p.opacity * 0.7 + h * 0.3;
+          ctx.shadowBlur  = h * 22;
+          ctx.shadowColor = `hsla(${p.hue},100%,90%,${h * 0.8})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, drawR, 0, TWO_PI);
+          ctx.fillStyle = `hsla(${p.hue},${sat}%,${lightness}%,${alpha})`;
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      // Glowing attractor dots at face landmarks
+      if (facePts.length > 0) {
+        ctx.save();
+        ctx.shadowBlur  = 8;
+        ctx.shadowColor = 'rgba(100,220,200,0.6)';
+        for (const fp of facePts) {
+          ctx.beginPath();
+          ctx.arc(fp.x, fp.y, 2.5, 0, TWO_PI);
+          ctx.fillStyle = 'rgba(160,255,230,0.65)';
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      if (frameCount % 90 === 0) countEl.textContent = facePts.length > 0 ? 'face tracked' : 'no face';
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SHARED GAME HELPERS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  function drawGameHUD(score, lives, extra) {
+    ctx.save();
+    ctx.shadowBlur = 0;
+    ctx.font = 'bold 26px monospace';
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.textAlign = 'right';
+    ctx.fillText(score.toLocaleString(), canvas.width - 20, 42);
+    ctx.textAlign = 'left';
+    ctx.font = '22px monospace';
+    for (let i = 0; i < lives; i++) ctx.fillText('\u2665', 16 + i * 28, 42);
+    if (extra) {
+      ctx.textAlign = 'center';
+      ctx.font = '16px monospace';
+      ctx.fillStyle = 'rgba(255,255,255,0.5)';
+      ctx.fillText(extra, canvas.width * 0.5, 42);
+    }
+    ctx.restore();
+  }
+
+  function drawGameOverlay(score) {
+    ctx.save();
+    ctx.fillStyle = 'rgba(0,0,0,0.72)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.textAlign = 'center';
+    ctx.font = 'bold 48px monospace';
+    ctx.fillStyle = 'rgba(255,255,255,0.95)';
+    ctx.fillText('GAME OVER', canvas.width * 0.5, canvas.height * 0.5 - 36);
+    ctx.font = '26px monospace';
+    ctx.fillStyle = 'rgba(255,255,255,0.65)';
+    ctx.fillText('SCORE  ' + score.toLocaleString(), canvas.width * 0.5, canvas.height * 0.5 + 10);
+    ctx.font = '14px monospace';
+    ctx.fillStyle = 'rgba(255,255,255,0.38)';
+    ctx.fillText('fire a shockwave to restart', canvas.width * 0.5, canvas.height * 0.5 + 50);
+    ctx.restore();
+  }
+
+  function drawGameWaiting(line1, line2) {
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.shadowBlur = 0;
+    ctx.font = 'bold 30px monospace';
+    ctx.fillStyle = 'rgba(255,255,255,0.65)';
+    ctx.fillText(line1, canvas.width * 0.5, canvas.height * 0.5);
+    if (line2) {
+      ctx.font = '15px monospace';
+      ctx.fillStyle = 'rgba(255,255,255,0.35)';
+      ctx.fillText(line2, canvas.width * 0.5, canvas.height * 0.5 + 38);
+    }
+    ctx.restore();
+  }
+
+  function tickPopups(arr) {
+    for (let i = arr.length - 1; i >= 0; i--) {
+      arr[i].y -= 1.2; arr[i].life--;
+      if (arr[i].life <= 0) arr.splice(i, 1);
+    }
+  }
+  function drawPopups(arr) {
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.shadowBlur = 0;
+    for (const p of arr) {
+      const a = Math.min(1, p.life / 20);
+      ctx.font = `bold ${p.sz || 20}px monospace`;
+      ctx.fillStyle = `rgba(255,255,255,${a * 0.9})`;
+      ctx.fillText(p.text, p.x, p.y);
+    }
+    ctx.restore();
+  }
+
+  function freshShockwave() {
+    return shockwaves.some(sw => sw.r < 20);
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODE 3 — ORBITAL JUGGLER
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  const J_GRAV = 0.35, J_PALM_R = 58, J_ORB_R = 13, J_MAX_SPD = 18;
+  let jOrbs = [], jScore = 0, jLives = 3, jState = 'waiting', jPopups = [];
+
+  function jSpawnOrb() {
+    jOrbs.push({
+      x: canvas.width * 0.5 + (rnd() - 0.5) * 200,
+      y: 80,
+      vx: (rnd() - 0.5) * 4,
+      vy: 2,
+      trail: [],
+      bounceFlash: 0,
+      hue: 200 + rnd() * 40
+    });
+  }
+
+  MODES.push({
+    name: 'JUGGLER',
+    init() { jOrbs = []; jScore = 0; jLives = 3; jState = 'waiting'; jPopups = []; },
+    update() {
+      if (jState === 'waiting') {
+        if (freshShockwave()) { jState = 'playing'; jSpawnOrb(); }
+        return;
+      }
+      if (jState === 'over') {
+        if (freshShockwave()) { this.init(); jState = 'playing'; jSpawnOrb(); }
+        return;
+      }
+      // playing
+      const W = canvas.width, H = canvas.height;
+      for (let oi = jOrbs.length - 1; oi >= 0; oi--) {
+        const o = jOrbs[oi];
+        o.vy += J_GRAV;
+        o.x += o.vx; o.y += o.vy;
+        if (o.x < J_ORB_R) { o.x = J_ORB_R; o.vx = Math.abs(o.vx) * 0.85; }
+        if (o.x > W - J_ORB_R) { o.x = W - J_ORB_R; o.vx = -Math.abs(o.vx) * 0.85; }
+        if (o.y < J_ORB_R) { o.y = J_ORB_R; o.vy = Math.abs(o.vy) * 0.85; }
+
+        // palm bounce
+        for (const palm of palmCenters) {
+          const dx = o.x - palm.x, dy = o.y - palm.y;
+          const d = Math.sqrt(dx * dx + dy * dy) || 1;
+          if (d < J_ORB_R + J_PALM_R) {
+            const nx = dx / d, ny = dy / d;
+            const dot = o.vx * nx + o.vy * ny;
+            if (dot < 0) {
+              o.vx -= 2 * dot * nx; o.vy -= 2 * dot * ny;
+              const spd = Math.sqrt(o.vx * o.vx + o.vy * o.vy);
+              if (spd > J_MAX_SPD) { o.vx = o.vx / spd * J_MAX_SPD; o.vy = o.vy / spd * J_MAX_SPD; }
+              o.bounceFlash = 14; jScore += 10;
+              jPopups.push({ text: '+10', x: o.x, y: o.y, life: 30, sz: 18 });
+            }
+          }
+        }
+
+        // shockwave boost
+        for (const sw of shockwaves) {
+          const dx = o.x - sw.cx, dy = o.y - sw.cy;
+          const d = Math.sqrt(dx * dx + dy * dy) || 1;
+          const diff = Math.abs(d - sw.r);
+          if (diff < 50) {
+            const str = (1 - diff / 50) * 12;
+            o.vx += (dx / d) * str; o.vy += (dy / d) * str;
+          }
+        }
+
+        // fell off bottom
+        if (o.y > H + 30) {
+          jOrbs.splice(oi, 1);
+          jLives--;
+          if (jLives > 0) jSpawnOrb();
+          else jState = 'over';
+          continue;
+        }
+
+        o.trail.unshift({ x: o.x, y: o.y });
+        if (o.trail.length > 8) o.trail.pop();
+        if (o.bounceFlash > 0) o.bounceFlash--;
+        jScore++;
+      }
+      tickPopups(jPopups);
+    },
+    draw() {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (jState === 'waiting') {
+        drawGameWaiting('JUGGLER', 'keep the orbs airborne \u2014 fire to start');
+        return;
+      }
+      for (const o of jOrbs) {
+        // trail
+        ctx.save();
+        for (let i = 0; i < o.trail.length - 1; i++) {
+          const a = (1 - i / o.trail.length) * 0.45;
+          ctx.strokeStyle = `hsla(${o.hue},80%,65%,${a})`;
+          ctx.lineWidth = J_ORB_R * 0.7 * (1 - i / o.trail.length);
+          ctx.beginPath();
+          ctx.moveTo(o.trail[i].x, o.trail[i].y);
+          ctx.lineTo(o.trail[i + 1].x, o.trail[i + 1].y);
+          ctx.stroke();
+        }
+        ctx.restore();
+        // orb
+        ctx.save();
+        if (o.bounceFlash > 0) {
+          ctx.shadowBlur = 20 + o.bounceFlash * 2;
+          ctx.shadowColor = `hsl(${o.hue},90%,65%)`;
+        }
+        ctx.beginPath();
+        ctx.arc(o.x, o.y, J_ORB_R, 0, TWO_PI);
+        ctx.fillStyle = `hsl(${o.hue},80%,62%)`;
+        ctx.fill();
+        ctx.restore();
+      }
+      drawGameHUD(jScore, jLives);
+      drawPopups(jPopups);
+      if (jState === 'over') drawGameOverlay(jScore);
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODE 4 — ASTEROID FIELD
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  let astRocks = [], astScore = 0, astLives = 3, astWave = 0, astState = 'waiting';
+  let astPending = 0, astSpawnClock = 0, astPopups = [], astStars = [];
+
+  function astBuildStars() {
+    astStars = [];
+    for (let i = 0; i < 60; i++) {
+      astStars.push({ x: rnd() * canvas.width, y: rnd() * canvas.height, r: 0.5 + rnd() * 1.2 });
+    }
+  }
+
+  function astSpawnRock() {
+    const W = canvas.width, H = canvas.height;
+    const cx = W * 0.5, cy = H * 0.5;
+    const edge = Math.floor(rnd() * 4);
+    let x, y;
+    if (edge === 0) { x = rnd() * W; y = -20; }
+    else if (edge === 1) { x = W + 20; y = rnd() * H; }
+    else if (edge === 2) { x = rnd() * W; y = H + 20; }
+    else { x = -20; y = rnd() * H; }
+    const dx = cx - x, dy = cy - y;
+    const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+    const spd = Math.min(2.8, 0.55 + astWave * 0.07);
+    const r = astWave < 3 ? 12 : (rnd() < 0.3 ? 22 : 12);
+    const hp = r > 16 ? 2 : 1;
+    const verts = [];
+    for (let i = 0; i < 10; i++) {
+      const a = (i / 10) * TWO_PI + (rnd() - 0.5) * 0.4;
+      const rv = r * (0.7 + rnd() * 0.6);
+      verts.push({ dx: Math.cos(a) * rv, dy: Math.sin(a) * rv });
+    }
+    astRocks.push({ x, y, vx: (dx / dist) * spd, vy: (dy / dist) * spd, r, hp, maxHp: hp, spin: (rnd() - 0.5) * 0.04, angle: 0, verts, heat: 0 });
+  }
+
+  function astSpawnWave() {
+    astWave++;
+    astPending = Math.min(4 + astWave * 2, 20);
+    astSpawnClock = 0;
+  }
+
+  MODES.push({
+    name: 'ASTEROID',
+    init() {
+      astRocks = []; astScore = 0; astLives = 3; astWave = 0; astState = 'waiting';
+      astPending = 0; astSpawnClock = 0; astPopups = [];
+      astBuildStars();
+    },
+    update() {
+      if (astState === 'waiting') {
+        if (freshShockwave()) { astState = 'playing'; astSpawnWave(); }
+        return;
+      }
+      if (astState === 'over') {
+        if (freshShockwave()) { this.init(); astState = 'playing'; astSpawnWave(); }
+        return;
+      }
+      // playing
+      const W = canvas.width, H = canvas.height;
+      const cx = W * 0.5, cy = H * 0.5;
+      astSpawnClock++;
+      if (astPending > 0 && astSpawnClock % 25 === 0) { astSpawnRock(); astPending--; }
+
+      for (let ri = astRocks.length - 1; ri >= 0; ri--) {
+        const rock = astRocks[ri];
+        rock.angle += rock.spin;
+        rock.x += rock.vx; rock.y += rock.vy;
+        rock.heat *= 0.88;
+
+        // shockwave hit
+        for (const sw of shockwaves) {
+          const dx = rock.x - sw.cx, dy = rock.y - sw.cy;
+          const d = Math.sqrt(dx * dx + dy * dy) || 1;
+          if (Math.abs(d - sw.r) < 55) {
+            rock.hp--; rock.heat = 1;
+            if (rock.hp <= 0) {
+              const pts = (rock.r > 16 ? 50 : 25) * astWave;
+              astScore += pts;
+              astPopups.push({ text: '+' + pts, x: rock.x, y: rock.y, life: 40, sz: 20 });
+              // split large rocks
+              if (rock.r > 16) {
+                for (let s = 0; s < 2; s++) {
+                  const a = rnd() * TWO_PI;
+                  const spd = Math.min(2.8, 0.55 + astWave * 0.07);
+                  const verts2 = [];
+                  for (let i = 0; i < 10; i++) {
+                    const ang = (i / 10) * TWO_PI + (rnd() - 0.5) * 0.4;
+                    const rv = 12 * (0.7 + rnd() * 0.6);
+                    verts2.push({ dx: Math.cos(ang) * rv, dy: Math.sin(ang) * rv });
+                  }
+                  astRocks.push({ x: rock.x, y: rock.y, vx: Math.cos(a) * spd, vy: Math.sin(a) * spd, r: 12, hp: 1, maxHp: 1, spin: (rnd() - 0.5) * 0.04, angle: 0, verts: verts2, heat: 0.5 });
+                }
+              }
+              astRocks.splice(ri, 1);
+              break;
+            }
+          }
+        }
+        if (ri >= astRocks.length) continue;
+
+        // palm repulsion
+        for (const palm of palmCenters) {
+          const dx = rock.x - palm.x, dy = rock.y - palm.y;
+          const d = Math.sqrt(dx * dx + dy * dy) || 1;
+          if (d < rock.r + 90) {
+            const str = (1 - d / (rock.r + 90)) * 1.5;
+            rock.vx += (dx / d) * str; rock.vy += (dy / d) * str;
+          }
+        }
+
+        // reached center
+        const cdx = rock.x - cx, cdy = rock.y - cy;
+        if (Math.sqrt(cdx * cdx + cdy * cdy) < 75) {
+          astRocks.splice(ri, 1);
+          astLives--;
+          if (astLives <= 0) astState = 'over';
+          continue;
+        }
+      }
+      if (astRocks.length === 0 && astPending === 0) astSpawnWave();
+      tickPopups(astPopups);
+    },
+    draw() {
+      ctx.fillStyle = '#05051a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // stars
+      ctx.save();
+      ctx.fillStyle = 'rgba(200,210,255,0.35)';
+      for (const s of astStars) { ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, TWO_PI); ctx.fill(); }
+      ctx.restore();
+
+      if (astState === 'waiting') {
+        drawGameWaiting('ASTEROID', 'fire a shockwave to blast the rocks');
+        return;
+      }
+
+      for (const rock of astRocks) {
+        ctx.save();
+        ctx.translate(rock.x, rock.y);
+        ctx.rotate(rock.angle);
+        ctx.beginPath();
+        for (let i = 0; i < rock.verts.length; i++) {
+          const v = rock.verts[i];
+          if (i === 0) ctx.moveTo(v.dx, v.dy); else ctx.lineTo(v.dx, v.dy);
+        }
+        ctx.closePath();
+        const hue = rock.heat > 0.3 ? Math.round(210 + (30 - 210) * rock.heat) : 210;
+        ctx.strokeStyle = `hsla(${hue},80%,65%,${0.8 + rock.heat * 0.2})`;
+        if (rock.heat > 0) { ctx.shadowBlur = 10 + rock.heat * 14; ctx.shadowColor = `hsl(${hue},80%,65%)`; }
+        ctx.lineWidth = rock.hp > 1 ? 2.5 : 1.5;
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      drawGameHUD(astScore, astLives, 'WAVE ' + astWave);
+      drawPopups(astPopups);
+      if (astState === 'over') drawGameOverlay(astScore);
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODE 5 — RHYTHM CONDUCTOR
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  let rhyRings = [], rhyScore = 0, rhyCombo = 0, rhyLives = 5, rhyState = 'waiting';
+  let rhyLastSpawn = 0, rhyInterval = 96, rhyPopups = [];
+
+  function rhySpawnRing() {
+    rhyRings.push({ r: 0, speed: 2.8, scored: false, missed: false, alpha: 1, hitFlash: 0 });
+    rhyLastSpawn = frameCount;
+  }
+
+  MODES.push({
+    name: 'RHYTHM',
+    init() { rhyRings = []; rhyScore = 0; rhyCombo = 0; rhyLives = 5; rhyState = 'waiting'; rhyLastSpawn = 0; rhyInterval = 96; rhyPopups = []; },
+    update() {
+      if (rhyState === 'waiting') {
+        if (freshShockwave()) { rhyState = 'playing'; rhyLastSpawn = frameCount; }
+        return;
+      }
+      if (rhyState === 'over') {
+        if (freshShockwave()) { this.init(); rhyState = 'playing'; rhyLastSpawn = frameCount; }
+        return;
+      }
+      // spawn
+      if (audioTransient > 0.35 && frameCount - rhyLastSpawn > 42) rhySpawnRing();
+      else if (frameCount - rhyLastSpawn > rhyInterval) rhySpawnRing();
+      rhyInterval = Math.max(50, 96 - Math.floor(rhyScore / 1000) * 5);
+
+      const cx = canvas.width * 0.5, cy = canvas.height * 0.5;
+      const maxDist = Math.hypot(canvas.width, canvas.height) * 0.58;
+      for (let i = rhyRings.length - 1; i >= 0; i--) {
+        const ring = rhyRings[i];
+        ring.r += ring.speed;
+        if (ring.hitFlash > 0) ring.hitFlash--;
+
+        if (!ring.scored && !ring.missed) {
+          for (let hi = 0; hi < palmCenters.length; hi++) {
+            const palm = palmCenters[hi];
+            const palmDist = Math.hypot(palm.x - cx, palm.y - cy);
+            const diff = Math.abs(ring.r - palmDist);
+            if (diff < 32 && (handSpeeds[hi] || 0) > 5) {
+              ring.scored = true; ring.hitFlash = 18;
+              const label = diff < 8 ? 'PERFECT' : diff < 18 ? 'GOOD' : 'OK';
+              const pts = diff < 8 ? 100 : diff < 18 ? 50 : 15;
+              rhyCombo++;
+              rhyScore += pts * Math.max(1, Math.floor(rhyCombo / 3));
+              rhyPopups.push({ text: label, x: palm.x, y: palm.y - 20, life: 40, sz: 22 });
+              break;
+            }
+          }
+        }
+
+        if (!ring.scored && ring.r > maxDist) {
+          ring.missed = true; rhyCombo = 0; rhyLives--;
+          if (rhyLives <= 0) rhyState = 'over';
+        }
+
+        if (ring.r > canvas.width * 0.55) ring.alpha -= 0.05;
+        if (ring.alpha <= 0) { rhyRings.splice(i, 1); }
+      }
+      tickPopups(rhyPopups);
+    },
+    draw() {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (rhyState === 'waiting') {
+        drawGameWaiting('RHYTHM', 'move your hand to the ring as it passes \u2014 fire to start');
+        return;
+      }
+      const cx = canvas.width * 0.5, cy = canvas.height * 0.5;
+      const halfDiag = Math.hypot(canvas.width, canvas.height) * 0.5;
+      // guide rings
+      ctx.save();
+      ctx.setLineDash([6, 12]);
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+      ctx.lineWidth = 1;
+      for (const pct of [0.5, 0.75]) {
+        ctx.beginPath(); ctx.arc(cx, cy, halfDiag * pct, 0, TWO_PI); ctx.stroke();
+      }
+      ctx.setLineDash([]);
+      ctx.restore();
+
+      for (const ring of rhyRings) {
+        const a = ring.alpha;
+        if (ring.hitFlash > 0) {
+          ctx.save();
+          ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+          ctx.lineWidth = 5 + ring.hitFlash;
+          ctx.globalAlpha = (ring.hitFlash / 18) * a;
+          ctx.beginPath(); ctx.arc(cx, cy, ring.r, 0, TWO_PI); ctx.stroke();
+          ctx.globalAlpha = 1;
+          ctx.restore();
+        }
+        ctx.save();
+        ctx.strokeStyle = ring.missed ? `rgba(255,80,80,${a * 0.5})` : `hsla(320,90%,65%,${a * 0.75})`;
+        ctx.lineWidth = 2.5;
+        if (!ring.scored) { ctx.shadowBlur = 8; ctx.shadowColor = `hsla(320,100%,65%,0.5)`; }
+        ctx.beginPath(); ctx.arc(cx, cy, ring.r, 0, TWO_PI); ctx.stroke();
+        ctx.restore();
+      }
+
+      // palm distance indicator
+      for (const palm of palmCenters) {
+        const d = Math.hypot(palm.x - cx, palm.y - cy);
+        ctx.save();
+        ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 8]);
+        ctx.beginPath(); ctx.arc(cx, cy, d, 0, TWO_PI); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.restore();
+      }
+
+      drawGameHUD(rhyScore, rhyLives, 'COMBO \xd7' + rhyCombo);
+      drawPopups(rhyPopups);
+      if (rhyState === 'over') drawGameOverlay(rhyScore);
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODE 6 — PORTAL KEEPER
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  const PK_BALL_R = 10, PK_PALM_R = 60, PK_SPEED = 5.5;
+  let pkBall = null, pkTargets = [], pkScore = 0, pkLives = 3, pkRound = 1;
+  let pkState = 'waiting', pkPopups = [];
+
+  function pkNormSpeed(b) {
+    const spd = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
+    if (spd > 0.1) { b.vx = b.vx / spd * PK_SPEED; b.vy = b.vy / spd * PK_SPEED; }
+  }
+
+  function pkSpawnBall() {
+    let a;
+    do { a = rnd() * TWO_PI; } while (Math.abs(Math.cos(a)) < 0.25 && Math.abs(Math.sin(a)) < 0.25);
+    pkBall = { x: canvas.width * 0.5, y: canvas.height * 0.5, vx: Math.cos(a) * PK_SPEED, vy: Math.sin(a) * PK_SPEED, trail: [], flash: 0 };
+  }
+
+  function pkBuildTargets(round) {
+    pkTargets = [];
+    const cols = round >= 2 ? 4 : 3;
+    const rows = round >= 3 ? 5 : (round >= 2 ? 4 : 4);
+    const W = canvas.width, H = canvas.height;
+    const startX = W * 0.5 - (cols - 1) * 60 * 0.5;
+    const startY = H * 0.18;
+    const stepY = (H * 0.52 - startY) / Math.max(1, rows - 1);
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const hp = round >= 3 ? (rnd() < 0.3 ? 3 : 1) : (round >= 2 ? (c % 2 === 0 ? 2 : 1) : 1);
+        pkTargets.push({ x: startX + c * 60, y: startY + r * stepY, r: 20, hp, maxHp: hp, hue: 120 + rnd() * 120, flash: 0 });
+      }
+    }
+  }
+
+  MODES.push({
+    name: 'PORTAL KEEPER',
+    init() { pkBall = null; pkTargets = []; pkScore = 0; pkLives = 3; pkRound = 1; pkState = 'waiting'; pkPopups = []; pkBuildTargets(1); },
+    update() {
+      if (pkState === 'waiting') {
+        if (freshShockwave()) { pkState = 'playing'; pkSpawnBall(); }
+        return;
+      }
+      if (pkState === 'over') {
+        if (freshShockwave()) { this.init(); pkState = 'playing'; pkSpawnBall(); }
+        return;
+      }
+      const b = pkBall;
+      if (!b) return;
+      b.x += b.vx; b.y += b.vy;
+      pkNormSpeed(b);
+      b.trail.unshift({ x: b.x, y: b.y });
+      if (b.trail.length > 10) b.trail.pop();
+      if (b.flash > 0) b.flash--;
+
+      const W = canvas.width, H = canvas.height;
+      if (b.x < PK_BALL_R) { b.x = PK_BALL_R; b.vx = Math.abs(b.vx); pkNormSpeed(b); }
+      if (b.x > W - PK_BALL_R) { b.x = W - PK_BALL_R; b.vx = -Math.abs(b.vx); pkNormSpeed(b); }
+      if (b.y < PK_BALL_R) { b.y = PK_BALL_R; b.vy = Math.abs(b.vy); pkNormSpeed(b); }
+      if (b.y > H + PK_BALL_R) {
+        pkLives--;
+        if (pkLives <= 0) { pkState = 'over'; return; }
+        pkSpawnBall(); return;
+      }
+
+      // palm collision
+      for (const palm of palmCenters) {
+        const dx = b.x - palm.x, dy = b.y - palm.y;
+        const d = Math.sqrt(dx * dx + dy * dy) || 1;
+        if (d < PK_BALL_R + PK_PALM_R) {
+          const nx = dx / d, ny = dy / d;
+          const dot = b.vx * nx + b.vy * ny;
+          if (dot < 0) { b.vx -= 2 * dot * nx; b.vy -= 2 * dot * ny; b.flash = 10; pkNormSpeed(b); }
+        }
+      }
+
+      // shockwave nudge
+      for (const sw of shockwaves) {
+        const dx = b.x - sw.cx, dy = b.y - sw.cy;
+        const d = Math.sqrt(dx * dx + dy * dy) || 1;
+        if (Math.abs(d - sw.r) < 40) {
+          b.vx += (dx / d) * 4; b.vy += (dy / d) * 4;
+          pkNormSpeed(b);
+        }
+      }
+
+      // target collision
+      for (let ti = pkTargets.length - 1; ti >= 0; ti--) {
+        const tgt = pkTargets[ti];
+        const dx = b.x - tgt.x, dy = b.y - tgt.y;
+        const d = Math.sqrt(dx * dx + dy * dy) || 1;
+        if (d < PK_BALL_R + tgt.r) {
+          const nx = dx / d, ny = dy / d;
+          const dot = b.vx * nx + b.vy * ny;
+          if (dot < 0) { b.vx -= 2 * dot * nx; b.vy -= 2 * dot * ny; pkNormSpeed(b); }
+          tgt.hp--; tgt.flash = 14;
+          pkScore += 100 * pkRound;
+          pkPopups.push({ text: '+' + (100 * pkRound), x: tgt.x, y: tgt.y - 20, life: 35, sz: 18 });
+          if (tgt.hp <= 0) pkTargets.splice(ti, 1);
+        }
+      }
+
+      if (pkTargets.length === 0) { pkRound++; pkBuildTargets(pkRound); pkSpawnBall(); }
+      tickPopups(pkPopups);
+    },
+    draw() {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (pkState === 'waiting') {
+        drawGameWaiting('PORTAL KEEPER', 'destroy all targets \u2014 fire to start');
+        return;
+      }
+      // targets
+      for (const tgt of pkTargets) {
+        ctx.save();
+        ctx.strokeStyle = tgt.flash > 0 ? 'white' : `hsl(${tgt.hue},80%,60%)`;
+        ctx.lineWidth = 2;
+        if (tgt.flash > 0) { ctx.shadowBlur = 16; ctx.shadowColor = 'white'; }
+        ctx.beginPath(); ctx.arc(tgt.x, tgt.y, tgt.r, 0, TWO_PI); ctx.stroke();
+        if (tgt.hp > 1) { ctx.beginPath(); ctx.arc(tgt.x, tgt.y, tgt.r * 0.6, 0, TWO_PI); ctx.stroke(); }
+        if (tgt.flash > 0) tgt.flash--;
+        ctx.restore();
+      }
+      // palm zones
+      for (const palm of palmCenters) {
+        ctx.save();
+        ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(palm.x, palm.y, PK_PALM_R, 0, TWO_PI); ctx.stroke();
+        ctx.restore();
+      }
+      // ball trail + ball
+      if (pkBall) {
+        const b = pkBall;
+        ctx.save();
+        for (let i = 0; i < b.trail.length - 1; i++) {
+          const a = (1 - i / b.trail.length) * 0.5;
+          ctx.strokeStyle = `rgba(255,255,255,${a})`;
+          ctx.lineWidth = PK_BALL_R * 1.2 * (1 - i / b.trail.length);
+          ctx.beginPath();
+          ctx.moveTo(b.trail[i].x, b.trail[i].y);
+          ctx.lineTo(b.trail[i + 1].x, b.trail[i + 1].y);
+          ctx.stroke();
+        }
+        ctx.restore();
+        ctx.save();
+        if (b.flash > 0) { ctx.shadowBlur = 16; ctx.shadowColor = 'white'; }
+        ctx.fillStyle = 'white';
+        ctx.beginPath(); ctx.arc(b.x, b.y, PK_BALL_R, 0, TWO_PI); ctx.fill();
+        ctx.restore();
+      }
+      drawGameHUD(pkScore, pkLives, 'ROUND ' + pkRound);
+      drawPopups(pkPopups);
+      if (pkState === 'over') drawGameOverlay(pkScore);
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MODE 7 — VOID EATER
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  const VOID_MAX_R = 80, VOID_GROW_BASE = 0.12;
+  let voidBlobs = [], voidScore = 0, voidLives = 3, voidState = 'waiting';
+  let voidFrame = 0, voidNextSpawn = 120, voidSpawnInt = 120, voidPopups = [];
+
+  function voidSpawnBlob() {
+    const W = canvas.width, H = canvas.height;
+    voidBlobs.push({
+      x: 80 + rnd() * (W - 160),
+      y: 80 + rnd() * (H - 160),
+      size: 5,
+      phase: rnd() * TWO_PI,
+      growRate: VOID_GROW_BASE + voidFrame * 0.00006,
+      touchFlash: 0
+    });
+  }
+
+  MODES.push({
+    name: 'VOID EATER',
+    init() {
+      voidBlobs = []; voidScore = 0; voidLives = 3; voidState = 'waiting';
+      voidFrame = 0; voidNextSpawn = 120; voidSpawnInt = 120; voidPopups = [];
+    },
+    update() {
+      if (voidState === 'waiting') {
+        if (freshShockwave()) { voidState = 'playing'; voidSpawnBlob(); voidSpawnBlob(); }
+        return;
+      }
+      if (voidState === 'over') {
+        if (freshShockwave()) { this.init(); voidState = 'playing'; voidSpawnBlob(); voidSpawnBlob(); }
+        return;
+      }
+      voidFrame++; voidNextSpawn--;
+      if (voidNextSpawn <= 0) {
+        voidSpawnBlob();
+        voidSpawnInt = Math.max(55, 120 - Math.floor(voidFrame / 180) * 6);
+        voidNextSpawn = voidSpawnInt;
+      }
+
+      for (let bi = voidBlobs.length - 1; bi >= 0; bi--) {
+        const blob = voidBlobs[bi];
+        blob.phase += 0.06;
+        let touched = false;
+
+        for (const palm of palmCenters) {
+          const d = Math.hypot(blob.x - palm.x, blob.y - palm.y);
+          if (d < blob.size + 55) { blob.size -= 0.45; touched = true; blob.touchFlash = 8; }
+        }
+        if (!touched) blob.size += blob.growRate;
+        if (blob.touchFlash > 0) blob.touchFlash--;
+
+        // shockwave destroy
+        for (const sw of shockwaves) {
+          const d = Math.hypot(blob.x - sw.cx, blob.y - sw.cy);
+          if (d < sw.r + blob.size * 0.5) blob.size = -1;
+        }
+
+        if (blob.size <= 0) {
+          voidScore += 30 + Math.floor(voidFrame / 60) * 5;
+          voidPopups.push({ text: '+' + (30 + Math.floor(voidFrame / 60) * 5), x: blob.x, y: blob.y - 20, life: 40, sz: 18 });
+          voidBlobs.splice(bi, 1);
+        } else if (blob.size >= VOID_MAX_R) {
+          voidLives--; voidBlobs.splice(bi, 1); voidSpawnBlob();
+          if (voidLives <= 0) voidState = 'over';
+        }
+      }
+      tickPopups(voidPopups);
+    },
+    draw() {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (voidState === 'waiting') {
+        drawGameWaiting('VOID EATER', 'contain the voids before they expand \u2014 fire to start');
+        return;
+      }
+
+      for (const blob of voidBlobs) {
+        // outer glow halo
+        const g = ctx.createRadialGradient(blob.x, blob.y, 0, blob.x, blob.y, blob.size * 2);
+        g.addColorStop(0, 'hsla(260,80%,30%,0.3)');
+        g.addColorStop(1, 'transparent');
+        ctx.fillStyle = g;
+        ctx.fillRect(blob.x - blob.size * 2, blob.y - blob.size * 2, blob.size * 4, blob.size * 4);
+
+        // jagged body
+        ctx.save();
+        const dangerFrac = blob.size / VOID_MAX_R;
+        const hue = Math.round(260 + dangerFrac * 60);
+        ctx.strokeStyle = `hsla(${hue},90%,65%,${0.6 + (blob.touchFlash / 8) * 0.4})`;
+        ctx.fillStyle = `hsla(${hue},60%,8%,0.9)`;
+        ctx.lineWidth = 1.8;
+        if (blob.size > VOID_MAX_R * 0.7) { ctx.shadowBlur = 10; ctx.shadowColor = `hsl(${hue},100%,60%)`; }
+        ctx.beginPath();
+        for (let i = 0; i < 24; i++) {
+          const a = (i / 24) * TWO_PI;
+          const r = blob.size * (0.82 + 0.18 * Math.sin(a * 5 + blob.phase));
+          const px = blob.x + Math.cos(a) * r, py = blob.y + Math.sin(a) * r;
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.closePath(); ctx.fill(); ctx.stroke();
+        ctx.restore();
+      }
+
+      // palm containment auras
+      for (const palm of palmCenters) {
+        const g = ctx.createRadialGradient(palm.x, palm.y, 0, palm.x, palm.y, 70);
+        g.addColorStop(0, 'rgba(120,180,255,0.1)');
+        g.addColorStop(1, 'transparent');
+        ctx.fillStyle = g;
+        ctx.fillRect(palm.x - 70, palm.y - 70, 140, 140);
+      }
+
+      drawGameHUD(voidScore, voidLives, voidBlobs.length + ' ACTIVE');
+      drawPopups(voidPopups);
+      if (voidState === 'over') drawGameOverlay(voidScore);
+    }
+  });
+
+  // ─── Circular audio waveform ───────────────────────────────────────────────
+  // A circular FFT waveform drawn around each palm.
+  // Bins 0–63 mapped ascending (0°→180°), mirrored descending (180°→360°).
+  // Also populates waveformProfiles[] for BEADS physics.
+
+  function updateCircularWaveform() {
+    waveformProfiles = [];
+    if (!audioFreqData || palmCenters.length === 0) return;
+
+    const totalEnergy = audioBass * 0.55 + audioMid * 0.30 + audioHigh * 0.15;
+    if (totalEnergy < WAVE_MIN_ENERGY) return;
+
+    // Fade-in alpha when energy is just above threshold
+    const visAlpha = Math.min(1, (totalEnergy - WAVE_MIN_ENERGY) / 0.10);
+
+    // Mode-matched hue — RIBBONS (null) animates slowly through full wheel
+    const rawHue = MODE_OVERLAY_COLOR[currentMode];
+    const hue    = rawHue !== null ? rawHue : (frameCount * 0.4) % 360;
+    const lBase  = 62 + audioBass * 14;          // lightness pulses with bass
+
+    // Hand openness controls ring scale: fist→small, open→large
+    const effectiveBaseR  = WAVE_BASE_R  * (0.3 + waveOpenness * 0.95);
+    const effectiveMaxAmp = WAVE_MAX_AMP * (0.45 + waveOpenness * 0.70);
+
+    for (let palmIdx = 0; palmIdx < palmCenters.length; palmIdx++) {
+      const pc = palmCenters[palmIdx];
+      // ── Build radius sample array — mirrored spectrum for symmetry ──────
+      const samples = _waveSamplesBufs[palmIdx];
+      for (let i = 0; i < WAVE_SAMPLES; i++) {
+        const half   = WAVE_SAMPLES / 2;
+        const binIdx = i < half
+          ? Math.floor((i / half) * WAVE_BINS)
+          : Math.floor(((WAVE_SAMPLES - i) / half) * WAVE_BINS);
+        // 3-bin weighted average to smooth spikes
+        const b0 = audioFreqData[Math.max(0, binIdx - 1)] / 255;
+        const b1 = audioFreqData[binIdx] / 255;
+        const b2 = audioFreqData[Math.min(audioFreqData.length - 1, binIdx + 1)] / 255;
+        samples[i] = effectiveBaseR + ((b0 + b1 * 2 + b2) / 4) * effectiveMaxAmp;
+      }
+      waveformProfiles.push({ cx: pc.x, cy: pc.y, samples });
+
+      // ── Canvas point array — reuse pre-allocated objects ─────────────────
+      const pts = _wavePtsBufs[palmIdx];
+      for (let i = 0; i < WAVE_SAMPLES; i++) {
+        const angle = (i / WAVE_SAMPLES) * TWO_PI - HALF_PI;
+        pts[i].x = pc.x + samples[i] * Math.cos(angle);
+        pts[i].y = pc.y + samples[i] * Math.sin(angle);
+      }
+
+      // Shared smooth-curve path builder
+      function buildWavePath() {
+        const mp = { x: (pts[0].x + pts[WAVE_SAMPLES - 1].x) / 2,
+                     y: (pts[0].y + pts[WAVE_SAMPLES - 1].y) / 2 };
+        ctx.beginPath();
+        ctx.moveTo(mp.x, mp.y);
+        for (let i = 0; i < WAVE_SAMPLES; i++) {
+          const next = pts[(i + 1) % WAVE_SAMPLES];
+          ctx.quadraticCurveTo(pts[i].x, pts[i].y,
+            (pts[i].x + next.x) / 2, (pts[i].y + next.y) / 2);
+        }
+        ctx.closePath();
+      }
+
+      // ── 1. Interior radial fill — very faint, gives shape volume ────────
+      ctx.save();
+      const fillGrad = ctx.createRadialGradient(
+        pc.x, pc.y, effectiveBaseR * 0.25,
+        pc.x, pc.y, effectiveBaseR + effectiveMaxAmp
+      );
+      fillGrad.addColorStop(0,   `hsla(${hue},70%,${lBase}%,0)`);
+      fillGrad.addColorStop(0.6, `hsla(${hue},80%,${lBase}%,${visAlpha * 0.04})`);
+      fillGrad.addColorStop(1,   `hsla(${hue},90%,${lBase}%,0)`);
+      buildWavePath();
+      ctx.fillStyle = fillGrad;
+      ctx.fill();
+      ctx.restore();
+
+      // ── 2. Dashed reference ring — shows resting radius ─────────────────
+      ctx.save();
+      ctx.strokeStyle = `hsla(${hue},60%,${lBase}%,${visAlpha * 0.18})`;
+      ctx.lineWidth   = 1;
+      ctx.setLineDash([6, 10]);
+      ctx.lineDashOffset = -(frameCount * 0.6) % 16;  // slow clockwise rotation
+      ctx.beginPath();
+      ctx.arc(pc.x, pc.y, effectiveBaseR, 0, TWO_PI);
+      ctx.stroke();
+      ctx.restore();
+
+      // ── 3. Atmospheric outer halo ────────────────────────────────────────
+      ctx.save();
+      ctx.shadowBlur  = 55;
+      ctx.shadowColor = `hsla(${hue},100%,${lBase}%,${visAlpha * 0.35})`;
+      ctx.strokeStyle = `hsla(${hue},85%,${lBase}%,${visAlpha * 0.20})`;
+      ctx.lineWidth   = 9 + totalEnergy * 6;
+      ctx.lineCap     = 'round';
+      buildWavePath();
+      ctx.stroke();
+      ctx.restore();
+
+      // ── 4. Medium glow pass ──────────────────────────────────────────────
+      ctx.save();
+      ctx.shadowBlur  = 18;
+      ctx.shadowColor = `hsla(${hue},100%,${lBase + 10}%,${visAlpha * 0.55})`;
+      ctx.strokeStyle = `hsla(${hue},90%,${lBase + 8}%,${visAlpha * 0.50})`;
+      ctx.lineWidth   = 2.5 + totalEnergy * 2;
+      ctx.lineCap     = 'round';
+      buildWavePath();
+      ctx.stroke();
+      ctx.restore();
+
+      // ── 5. Crisp inner line — bright, almost white ───────────────────────
+      ctx.save();
+      ctx.strokeStyle = `hsla(${hue},60%,${Math.min(lBase + 24, 94)}%,${visAlpha * 0.85})`;
+      ctx.lineWidth   = 1;
+      ctx.lineCap     = 'round';
+      buildWavePath();
+      ctx.stroke();
+      ctx.restore();
+
+      // ── 6. Peak highlight dots — top 5 amplitude peaks ──────────────────
+      // Find local maxima in the sample array
+      const peaks = [];
+      for (let i = 0; i < WAVE_SAMPLES; i++) {
+        const prev = samples[(i - 1 + WAVE_SAMPLES) % WAVE_SAMPLES];
+        const curr = samples[i];
+        const next = samples[(i + 1) % WAVE_SAMPLES];
+        if (curr > prev && curr > next && curr > effectiveBaseR + effectiveMaxAmp * 0.45) {
+          peaks.push({ i, amp: curr - effectiveBaseR });
+        }
+      }
+      peaks.sort((a, b) => b.amp - a.amp);
+      const topPeaks = peaks.slice(0, 5);
+      for (const peak of topPeaks) {
+        const angle = (peak.i / WAVE_SAMPLES) * TWO_PI - HALF_PI;
+        const r     = samples[peak.i];
+        const px    = pc.x + r * Math.cos(angle);
+        const py    = pc.y + r * Math.sin(angle);
+        const dotR  = 1.5 + (peak.amp / (effectiveMaxAmp || 1)) * 2.5;
+        ctx.save();
+        ctx.shadowBlur  = 10;
+        ctx.shadowColor = `hsla(${hue},100%,90%,${visAlpha})`;
+        ctx.fillStyle   = `hsla(${hue},40%,96%,${visAlpha * 0.9})`;
+        ctx.beginPath();
+        ctx.arc(px, py, dotR, 0, TWO_PI);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ANIMATION LOOP
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // ─── Universal hand skeleton overlay ─────────────────────────────────────
+  // Drawn on top of every mode so the user always sees their hands.
+
+  function drawHandOverlay() {
+    const useGhost = handSegPts.length === 0 && ghostFrames > 0 && ghostFrames < 8 && ghostSegs.length > 0;
+    const segsArr  = useGhost ? ghostSegs    : handSegPts;
+    const palmsArr = useGhost ? ghostPalms   : palmCenters;
+    const ptsArr   = useGhost ? ghostHandPts : handPts;
+    if (segsArr.length === 0) return;
+
+    const baseOpacity = useGhost ? Math.max(0, 1 - ghostFrames/8) : 1;
+    const rawHue = MODE_OVERLAY_COLOR[currentMode];
+    const tintHue = rawHue === null ? (frameCount * 0.5) % 360 : rawHue;
+
+    // Update trails (live hands only)
+    if (!useGhost) {
+      fingertipTrails.length = ptsArr.length;
+      for (let hi = 0; hi < ptsArr.length; hi++) {
+        const pts = ptsArr[hi];
+        if (!pts || pts.length < 21) continue;
+        if (!fingertipTrails[hi]) fingertipTrails[hi] = TIP_INDICES.map(() => ({ buf: new Float32Array(TRAIL_LENGTH * 2), head: 0, len: 0 }));
+        for (let ti = 0; ti < TIP_INDICES.length; ti++) {
+          const p = pts[TIP_INDICES[ti]];
+          const tr = fingertipTrails[hi][ti];
+          tr.buf[tr.head * 2]     = p.x;
+          tr.buf[tr.head * 2 + 1] = p.y;
+          tr.head = (tr.head + 1) % TRAIL_LENGTH;
+          if (tr.len < TRAIL_LENGTH) tr.len++;
+        }
+      }
+    } else {
+      // Shrink trails while ghosting
+      for (const handTrails of fingertipTrails) {
+        if (!handTrails) continue;
+        for (const trail of handTrails) { if (trail.len > 2) trail.len -= 2; }
+      }
+    }
+
+    const glowPulse = 0.9 + 0.1 * Math.sin(frameCount * 0.04); // gentle breathing
+
+    for (let hi = 0; hi < segsArr.length; hi++) {
+      const segs = segsArr[hi];
+      const pc   = palmsArr[hi];
+      const pts  = ptsArr[hi];
+
+      // 1. Tinted palm glow — breathing radius
+      const glowR = 180 * glowPulse;
+      const grad = ctx.createRadialGradient(pc.x, pc.y, 0, pc.x, pc.y, glowR);
+      grad.addColorStop(0,   `hsla(${tintHue},80%,75%,${0.20 * baseOpacity})`);
+      grad.addColorStop(0.4, `hsla(${tintHue},70%,60%,${0.08 * baseOpacity})`);
+      grad.addColorStop(1,   `hsla(${tintHue},60%,50%,0)`);
+      ctx.fillStyle = grad;
+      ctx.fillRect(pc.x - glowR, pc.y - glowR, glowR*2, glowR*2);
+
+      // 2. Skeleton lines — per-finger hue
+      ctx.save();
+      ctx.lineWidth = 2; ctx.lineCap = 'round';
+      for (let si = 0; si < segs.length; si++) {
+        const seg = segs[si];
+        const fHue = (tintHue + (SEG_HUE_OFFSET[si] || 0)) % 360;
+        ctx.shadowBlur  = 12;
+        ctx.shadowColor = `hsla(${fHue},100%,80%,${0.65 * baseOpacity})`;
+        ctx.strokeStyle = `hsla(${fHue},65%,82%,${0.38 * baseOpacity})`;
+        ctx.beginPath(); ctx.moveTo(seg.ax, seg.ay); ctx.lineTo(seg.bx, seg.by); ctx.stroke();
+      }
+      ctx.restore();
+
+      // 3. Fingertip ink trails — with glow pre-pass and speed reactivity
+      const handTrails = fingertipTrails[hi];
+      const speed = handSpeeds[hi] || 0;
+      const speedMult = speed > 8 ? 1 + speed * 0.04 : 1;
+      const effectiveTrailLen = speed > 8 ? 18 : TRAIL_LENGTH;
+      if (handTrails) {
+        // 3a. Glow pre-pass — wider, softer trail beneath
+        for (let ti = 0; ti < TIP_INDICES.length; ti++) {
+          const trail = handTrails[ti];
+          if (!trail || trail.len < 2) continue;
+          ctx.save();
+          ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = `hsla(${tintHue},100%,80%,0.3)`;
+          const len = Math.min(trail.len, effectiveTrailLen);
+          for (let i = 0; i < len - 1; i++) {
+            const f  = 1 - i/len;
+            const a  = f * 0.20 * baseOpacity * speedMult;
+            const w  = 5 * f;
+            // Read newest-first: index (len-1-i) is newest at i=0
+            const bi  = ((trail.head + trail.len - 1 - i)     % trail.len) * 2;
+            const bi1 = ((trail.head + trail.len - 1 - (i+1)) % trail.len) * 2;
+            ctx.beginPath();
+            ctx.moveTo(trail.buf[bi], trail.buf[bi + 1]);
+            ctx.lineTo(trail.buf[bi1], trail.buf[bi1 + 1]);
+            ctx.strokeStyle = `hsla(${tintHue},100%,80%,${a})`;
+            ctx.lineWidth = w;
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+        // 3b. Crisp trail
+        for (let ti = 0; ti < TIP_INDICES.length; ti++) {
+          const trail = handTrails[ti];
+          if (!trail || trail.len < 2) continue;
+          ctx.save();
+          ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+          const len = Math.min(trail.len, effectiveTrailLen);
+          for (let i = 0; i < len - 1; i++) {
+            const f  = 1 - i/len;
+            const a  = f * 0.6 * baseOpacity * speedMult;
+            const w  = Math.max(0.5, 3 * f);
+            const bi  = ((trail.head + trail.len - 1 - i)     % trail.len) * 2;
+            const bi1 = ((trail.head + trail.len - 1 - (i+1)) % trail.len) * 2;
+            ctx.beginPath();
+            ctx.moveTo(trail.buf[bi], trail.buf[bi + 1]);
+            ctx.lineTo(trail.buf[bi1], trail.buf[bi1 + 1]);
+            ctx.strokeStyle = `hsla(${tintHue},100%,80%,${a})`;
+            ctx.lineWidth = w;
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+      }
+
+      // 4. All-joint dots — size varies by joint type + fingertip bloom
+      if (pts && pts.length >= 21) {
+        ctx.save();
+        for (let li = 0; li < 21; li++) {
+          const p = pts[li];
+          const isTip     = TIP_INDICES.includes(li);
+          const isKnuckle = [5,6,9,10,13,14,17,18].includes(li);
+          const dotR  = isTip ? 5*glowPulse : isKnuckle ? 2.5 : 1.5;
+          const dotOp = isTip ? 0.90 : isKnuckle ? 0.65 : 0.40;
+          const lHue  = (tintHue + (SEG_HUE_OFFSET[li] || 0)) % 360;
+          // Fingertip bloom — radial halo + shadowBlur
+          if (isTip) {
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = `hsla(${lHue},80%,80%,${0.5 * baseOpacity})`;
+            // Secondary halo behind tip
+            const haloGrad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, 14);
+            haloGrad.addColorStop(0, `hsla(${lHue},60%,90%,${0.25 * baseOpacity})`);
+            haloGrad.addColorStop(1, `hsla(${lHue},60%,90%,0)`);
+            ctx.fillStyle = haloGrad;
+            ctx.beginPath(); ctx.arc(p.x, p.y, 14, 0, TWO_PI); ctx.fill();
+          } else {
+            ctx.shadowBlur = 0;
+          }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, dotR, 0, TWO_PI);
+          ctx.fillStyle = `hsla(${lHue},40%,95%,${dotOp * baseOpacity})`;
+          ctx.fill();
+        }
+        ctx.shadowBlur = 0;
+        ctx.restore();
+      }
+    }
+  }
+
+  function drawClapPulses() {
+    ctx.save();
+    const rawHue = MODE_OVERLAY_COLOR[currentMode];
+    const pulseHue = rawHue !== null ? rawHue : (frameCount * 0.5) % 360;
+    const alive = [];
+    for (const p of clapPulses) {
+      p.r += 20; p.alpha -= 0.025;
+      if (p.alpha <= 0 || p.r > p.maxR) continue;
+      alive.push(p);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, TWO_PI);
+      ctx.strokeStyle = `hsla(${pulseHue},80%,85%,${p.alpha})`;
+      ctx.lineWidth   = 3 * (1 - p.r/p.maxR) + 0.5;
+      ctx.shadowBlur  = 18;
+      ctx.shadowColor = `hsla(${pulseHue},100%,80%,${p.alpha * 0.5})`;
+      ctx.stroke();
+    }
+    ctx.restore();
+    clapPulses = alive;
+  }
+
+  // ─── Pinch detection ───────────────────────────────────────────────────────
+
+  function isPinch(pts) {
+    if (!pts || pts.length < 21) return false;
+    const wrist = pts[0], knuckle = pts[9];
+    const hx = knuckle.x - wrist.x, hy = knuckle.y - wrist.y;
+    const handSize = Math.sqrt(hx*hx + hy*hy) || 1;
+    const dx = pts[4].x - pts[8].x, dy = pts[4].y - pts[8].y;
+    return Math.sqrt(dx*dx + dy*dy) / handSize < 0.18;
+  }
+
+  // Returns 0.0 (fist) → 1.0 (fully open), normalized to hand size
+  function measureHandOpenness(pts) {
+    if (!pts || pts.length < 21) return 0.5;
+    const wrist = pts[0], knuckle = pts[9];
+    const handSize = Math.sqrt((knuckle.x-wrist.x)**2 + (knuckle.y-wrist.y)**2) || 1;
+    // Extension of 4 fingers: tip-to-MCP distance / handSize
+    // tip indices: 8,12,16,20  MCP indices: 5,9,13,17
+    const tipMcp = [[8,5],[12,9],[16,13],[20,17]];
+    const ext = tipMcp.map(([tip, mcp]) => {
+      const dx = pts[tip].x - pts[mcp].x, dy = pts[tip].y - pts[mcp].y;
+      return Math.sqrt(dx*dx + dy*dy) / handSize;
+    });
+    return Math.min(1, (ext[0]+ext[1]+ext[2]+ext[3]) / 4 / 0.55);
+  }
+
+  function detectPinchGesture() {
+    if (performance.now() < pinchCooldownUntil) return;
+    // Require both hands visible and both pinching — prevents accidental triggers
+    const anyPinch = handPts.length >= 2 && handPts.every(isPinch);
+    if (anyPinch) {
+      pinchFrameCount++;
+      if (pinchFrameCount === PINCH_HOLD_FRAMES) {
+        switchMode(currentMode + 1);
+        showClapFeedback();
+        pinchCooldownUntil = performance.now() + PINCH_COOLDOWN_MS;
+      }
+    } else {
+      pinchFrameCount = 0;
+    }
+  }
+
+  function drawShockwaveCharge() {
+    if (!palmCenters.length) return;
+    const rawHue = MODE_OVERLAY_COLOR[currentMode];
+    const hue    = rawHue !== null ? rawHue : (frameCount * 0.5) % 360;
+    ctx.save();
+    for (let hi = 0; hi < palmCenters.length; hi++) {
+      const slot    = palmCenters[hi].x > canvas.width / 2 ? 0 : 1;
+      const frames  = perHandFistFrames[slot] || 0;
+      if (frames < 1) continue;
+      const pc       = palmCenters[hi];
+      const progress = Math.min(1, frames / SHOCK_FIST_NEEDED);
+      const charged  = frames >= SHOCK_FIST_NEEDED;
+
+      if (charged) {
+        // ── Charged: large radial bloom that breathes ──────────────────────
+        const pulse  = 0.5 + 0.5 * Math.sin(frameCount * 0.28);
+        const glowR  = 75 + pulse * 30;
+        const bloom  = ctx.createRadialGradient(pc.x, pc.y, 0, pc.x, pc.y, glowR);
+        bloom.addColorStop(0,   `hsla(${hue},100%,96%,${0.55 + pulse * 0.30})`);
+        bloom.addColorStop(0.35,`hsla(${hue},100%,88%,${0.28 + pulse * 0.12})`);
+        bloom.addColorStop(0.7, `hsla(${hue},90%,70%,${0.10 + pulse * 0.06})`);
+        bloom.addColorStop(1,   `hsla(${hue},80%,55%,0)`);
+        ctx.fillStyle = bloom;
+        ctx.beginPath();
+        ctx.arc(pc.x, pc.y, glowR, 0, TWO_PI);
+        ctx.fill();
+        // Outer crisp ring
+        ctx.shadowBlur  = 20 + pulse * 15;
+        ctx.shadowColor = `hsla(${hue},100%,90%,0.9)`;
+        ctx.beginPath();
+        ctx.arc(pc.x, pc.y, glowR * 0.88, 0, TWO_PI);
+        ctx.strokeStyle = `hsla(${hue},90%,94%,${0.55 + pulse * 0.35})`;
+        ctx.lineWidth   = 1.5;
+        ctx.stroke();
+
+      } else {
+        // ── Charging: radial fill grows + arc sweep progress indicator ─────
+        const outerR = 28 + progress * 42;
+        const fill   = ctx.createRadialGradient(pc.x, pc.y, 0, pc.x, pc.y, outerR);
+        fill.addColorStop(0,   `hsla(${hue},90%,90%,${progress * 0.40})`);
+        fill.addColorStop(0.5, `hsla(${hue},85%,78%,${progress * 0.18})`);
+        fill.addColorStop(1,   `hsla(${hue},80%,60%,0)`);
+        ctx.fillStyle = fill;
+        ctx.beginPath();
+        ctx.arc(pc.x, pc.y, outerR, 0, TWO_PI);
+        ctx.fill();
+        // Thin sweep arc as explicit progress indicator
+        ctx.shadowBlur  = 8;
+        ctx.shadowColor = `hsla(${hue},80%,75%,0.6)`;
+        ctx.beginPath();
+        ctx.arc(pc.x, pc.y, 28 + progress * 14,
+                -HALF_PI, -HALF_PI + progress * TWO_PI);
+        ctx.strokeStyle = `hsla(${hue},85%,82%,${0.35 + progress * 0.50})`;
+        ctx.lineWidth   = 1.5;
+        ctx.stroke();
+      }
+    }
+    ctx.shadowBlur = 0;
+    ctx.restore();
+  }
+
+  function updateDrawShockwaves() {
+    if (!shockwaves.length) return;
+    const rawHue = MODE_OVERLAY_COLOR[currentMode];
+    const hue    = rawHue !== null ? rawHue : (frameCount * 0.5) % 360;
+    ctx.save();
+    let i = shockwaves.length;
+    while (i--) {
+      const sw  = shockwaves[i];
+      sw.r     += sw.speed;
+      sw.speed *= 0.975;           // gentle deceleration
+      sw.alpha -= 0.011;
+      if (sw.alpha <= 0 || sw.r > sw.maxR) { shockwaves.splice(i, 1); continue; }
+      const frac = sw.r / sw.maxR;
+      const rOp  = sw.alpha * (1 - frac * 0.6);
+
+      // Snap flash — one-shot full-screen radial burst on spawn
+      if (!sw.snapped) {
+        sw.snapped = true;
+        const flashR = Math.hypot(canvas.width, canvas.height) * 0.4;
+        const flashGrad = ctx.createRadialGradient(sw.cx, sw.cy, 0, sw.cx, sw.cy, flashR);
+        flashGrad.addColorStop(0, `hsla(${hue},100%,95%,0.08)`);
+        flashGrad.addColorStop(1, `hsla(${hue},100%,95%,0)`);
+        ctx.fillStyle = flashGrad;
+        ctx.fillRect(sw.cx - flashR, sw.cy - flashR, flashR * 2, flashR * 2);
+      }
+
+      // Diffuse outer bloom ring — very faint wide pass
+      ctx.beginPath(); ctx.arc(sw.cx, sw.cy, sw.r * 1.15, 0, TWO_PI);
+      ctx.strokeStyle = `hsla(${hue},70%,70%,${rOp * 0.04})`;
+      ctx.lineWidth   = Math.max(2, 40 * (1 - frac));
+      ctx.shadowBlur  = 0;
+      ctx.stroke();
+
+      // Wide soft haze — tapers with distance
+      ctx.beginPath(); ctx.arc(sw.cx, sw.cy, sw.r, 0, TWO_PI);
+      ctx.strokeStyle = `hsla(${hue},80%,75%,${rOp * 0.12})`;
+      ctx.lineWidth   = Math.max(2, 22 * (1 - frac));
+      ctx.stroke();
+
+      // Crisp bright ring with glow
+      ctx.shadowBlur  = 22;
+      ctx.shadowColor = `hsla(${hue},100%,88%,${rOp * 0.55})`;
+      ctx.beginPath(); ctx.arc(sw.cx, sw.cy, sw.r, 0, TWO_PI);
+      ctx.strokeStyle = `hsla(${hue},90%,90%,${rOp * 0.80})`;
+      ctx.lineWidth   = 1.5;
+      ctx.stroke();
+      ctx.shadowBlur  = 0;
+    }
+    ctx.restore();
+  }
+
+  function animate(t) {
+    requestAnimationFrame(animate);
+    if (_audioTick) _audioTick();
+    if (!MODES.length) return;
+    const mode = MODES[currentMode];
+    if (mode.update) mode.update(t);
+    if (mode.draw)   mode.draw(t);
+    // Smooth waveform scale based on hand openness + shockwave detection
+    if (handPts.length > 0) {
+      let sum = 0;
+      for (let hi = 0; hi < handPts.length; hi++) {
+        const raw  = measureHandOpenness(handPts[hi]);
+        // Slot by screen position — right half = slot 0 (user's right hand in mirrored view)
+        const slot = palmCenters[hi].x > canvas.width / 2 ? 0 : 1;
+        if (raw < SHOCK_FIST_THRESH) {
+          perHandFistFrames[slot] = (perHandFistFrames[slot] || 0) + 1;
+        } else if (raw > SHOCK_OPEN_THRESH
+                   && (perHandFistFrames[slot] || 0) >= SHOCK_FIST_NEEDED
+                   && performance.now() > (shockCooldownUntil[slot] || 0)) {
+          const pc = palmCenters[hi];
+          shockwaves.push({
+            cx: pc.x, cy: pc.y, r: 0,
+            maxR: Math.hypot(canvas.width, canvas.height) * 0.65,
+            speed: 18, alpha: 1.0, snapped: false,
+          });
+          shockCooldownUntil[slot]  = performance.now() + SHOCK_COOLDOWN_MS;
+          perHandFistFrames[slot]   = 0;
+        } else if (raw > SHOCK_OPEN_THRESH) {
+          perHandFistFrames[slot] = 0;
+        }
+        perHandOpennessCurr[hi] = raw;
+        sum += raw;
+      }
+      perHandOpennessCurr.length = handPts.length;
+      // perHandFistFrames keyed by slot [0]=left half, [1]=right half — not truncated
+      waveOpenness += (sum / handPts.length - waveOpenness) * 0.14;
+    } else {
+      waveOpenness += (0.7 - waveOpenness) * 0.04;  // drift to default when no hands
+      perHandOpennessCurr.length = 0;
+      // Don't instantly clear fist frames — MediaPipe can drop a frame mid-gesture.
+      // Decay them instead so brief tracking loss doesn't abort a nearly-charged fist.
+      for (let s = 0; s < perHandFistFrames.length; s++) {
+        if (perHandFistFrames[s] > 0) perHandFistFrames[s] = Math.max(0, perHandFistFrames[s] - 3);
+      }
+    }
+    updateCircularWaveform();
+    drawHandOverlay();
+    drawShockwaveCharge();
+    if (shockwaves.length > 0) updateDrawShockwaves();
+    detectPinchGesture();
+
+    // Dissolve old frame out on top
+    if (transitionAlpha > 0) {
+      transitionAlpha = Math.max(0, transitionAlpha - 0.0278); // ~600ms at 60fps
+      ctx.globalAlpha = easeOutQuad(transitionAlpha);
+      ctx.drawImage(transitionCanvas, 0, 0);
+      ctx.globalAlpha = 1;
+    }
+
+    if (clapPulses.length > 0) drawClapPulses();
+
+    prevPalmCenters = palmCenters.map(p => ({x:p.x, y:p.y}));
+    frameCount++;
+  }
+
+  // Initialise mode 0 and start loop
+  MODES[0].init();
+  statusModeEl.textContent = MODES[0].name;
+  requestAnimationFrame(animate);
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MEDIAPIPE HANDS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  const hands = new Hands({
+    locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
+  });
+
+  hands.setOptions({
+    maxNumHands: 2, modelComplexity: 1,
+    minDetectionConfidence: 0.5,  // was 0.7 — catches hands in more angles/lighting
+    minTrackingConfidence:  0.4,  // was 0.5 — holds tracking through fast movement
+  });
+
+  hands.onResults((results) => {
+    rawLandmarks    = results.multiHandLandmarks || [];
+    handSegPts      = [];
+    handPts         = [];
+    palmCenters     = [];
+    handednessLabels = [];
+
+    for (let hi = 0; hi < rawLandmarks.length; hi++) {
+      const landmarks = rawLandmarks[hi];
+      let cx = 0, cy = 0;
+      for (const lm of landmarks) { cx += lm.x; cy += lm.y; }
+      cx /= landmarks.length; cy /= landmarks.length;
+
+      const s = HAND_SCALE;
+      // Raw scaled positions
+      const rawP = landmarks.map(lm => ({
+        x: (1-(cx+(lm.x-cx)*s)) * canvas.width,
+        y:    (cy+(lm.y-cy)*s)  * canvas.height,
+      }));
+
+      // Compute per-hand speed (avg landmark delta in px/frame)
+      let speed = 0;
+      if (prevRawPts[hi]) {
+        let totalDelta = 0;
+        for (let j = 0; j < rawP.length; j++) {
+          const dx = rawP[j].x - prevRawPts[hi][j].x;
+          const dy = rawP[j].y - prevRawPts[hi][j].y;
+          totalDelta += Math.sqrt(dx * dx + dy * dy);
+        }
+        speed = totalDelta / rawP.length;
+      }
+      handSpeeds[hi] = speed;
+      prevRawPts[hi] = rawP.map(p => ({...p}));
+
+      // Velocity-adaptive alpha: slow→0.25 (heavy smooth), fast→0.85 (near-raw)
+      const alpha = 0.25 + Math.min(1, Math.max(0, speed / 20)) * 0.60;
+
+      // Exponential smoothing
+      if (smoothPts[hi]) {
+        rawP.forEach((rp, j) => {
+          smoothPts[hi][j].x = smoothPts[hi][j].x * (1 - alpha) + rp.x * alpha;
+          smoothPts[hi][j].y = smoothPts[hi][j].y * (1 - alpha) + rp.y * alpha;
+        });
+        // Predictive offset for fast hands — compensates smoothing lag
+        if (speed > 5 && prevRawPts[hi]) {
+          for (let j = 0; j < smoothPts[hi].length; j++) {
+            const vx = rawP[j].x - (prevRawPts[hi][j]?.x ?? rawP[j].x);
+            const vy = rawP[j].y - (prevRawPts[hi][j]?.y ?? rawP[j].y);
+            smoothPts[hi][j].x += vx * 0.3;
+            smoothPts[hi][j].y += vy * 0.3;
+          }
+        }
+      } else {
+        smoothPts[hi] = rawP.map(p => ({...p}));
+      }
+      const pts = smoothPts[hi];
+
+      handPts.push(pts);
+      handSegPts.push(SEGMENTS.map(([a,b]) => ({ax:pts[a].x,ay:pts[a].y,bx:pts[b].x,by:pts[b].y})));
+      palmCenters.push({x:pts[9].x, y:pts[9].y});
+      const hn = results.multiHandedness || [];
+      handednessLabels.push(hn[hi]?.label || 'Right');
+    }
+
+    // Trim arrays if fewer hands detected this frame
+    smoothPts.length = rawLandmarks.length;
+    prevRawPts.length = rawLandmarks.length;
+    handSpeeds.length = rawLandmarks.length;
+
+    if (rawLandmarks.length > 0) {
+      // Update ghost data and reset ghost counter
+      ghostSegs    = handSegPts.map(s => s.slice());
+      ghostPalms   = palmCenters.map(p => ({...p}));
+      ghostHandPts = handPts.map(h => h.map(p => ({...p})));
+      ghostFrames  = 0;
+      fingertipTrails.length = rawLandmarks.length;
+
+      statusEl.textContent = `${rawLandmarks.length} hand${rawLandmarks.length>1?'s':''}`;
+      if (!handsVisible) {
+        handsVisible = true;
+        introEl.classList.add('fade');
+        setTimeout(() => introEl.style.display = 'none', 2000);
+      }
+    } else {
+      ghostFrames++;
+      statusEl.textContent = 'no hands';
+    }
+  });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // CAMERA
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  statusEl.textContent = 'requesting camera...';
+
+  // ─── FaceMesh setup ────────────────────────────────────────────────────────
+
+  const faceMesh = new FaceMesh({
+    locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
+  });
+  faceMesh.setOptions({
+    maxNumFaces: 1,
+    refineLandmarks: false,
+    minDetectionConfidence: 0.5,
+    minTrackingConfidence: 0.5,
+  });
+  faceMesh.onResults((results) => {
+    if (results.multiFaceLandmarks && results.multiFaceLandmarks.length > 0) {
+      const lms = results.multiFaceLandmarks[0];
+      const rawFace = [];
+      for (const idx of FACE_ATTRACTOR_INDICES) {
+        const lm = lms[idx];
+        if (lm) rawFace.push({ x: (1 - lm.x) * canvas.width, y: lm.y * canvas.height });
+      }
+      // Exponential smooth (α=0.45 — faces move slower than hands)
+      if (smoothFacePts.length === rawFace.length) {
+        for (let i = 0; i < rawFace.length; i++) {
+          smoothFacePts[i].x = smoothFacePts[i].x * 0.55 + rawFace[i].x * 0.45;
+          smoothFacePts[i].y = smoothFacePts[i].y * 0.55 + rawFace[i].y * 0.45;
+        }
+      } else {
+        smoothFacePts = rawFace.map(p => ({...p}));
+      }
+      facePts = smoothFacePts.map(p => ({...p}));
+      lastFacePts = facePts.map(p => ({...p}));
+      faceGhostFrames = 0;
+    } else {
+      // Ghost persistence: hold last known face for 15 frames
+      faceGhostFrames++;
+      if (faceGhostFrames < 15 && lastFacePts.length > 0) {
+        facePts = lastFacePts;
+      } else {
+        facePts = [];
+        smoothFacePts = [];
+      }
+    }
+  });
+
+  const camera = new Camera(video, {
+    onFrame: async () => {
+      await hands.send({ image: video });
+      await faceMesh.send({ image: video });
+    },
+    width: 640, height: 480,
+  });
+
+  camera.start()
+    .then(() => { statusEl.textContent = 'show your hands'; initAudioAnalyser(); })
+    .catch((err) => { statusEl.textContent = `camera: ${err.message}`; });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // KEYBOARD
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  document.addEventListener('keydown', (e) => {
+    switch (e.key) {
+      case 'f': case 'F':
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{});
+        else document.exitFullscreen();
+        break;
+      case 'h': case 'H':
+        video.classList.toggle('hidden');
+        break;
+      case 'm': case 'M':
+        switchMode(currentMode+1);
+        break;
+      case 'c': case 'C':
+        switchMode(currentMode+1);
+        showClapFeedback();
+        break;
+      default:
+        if (e.key >= '1' && e.key <= '4') switchMode(parseInt(e.key,10)-1);
+    }
+  });
+  </script>
+</body>
+</html>

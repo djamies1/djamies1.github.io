@@ -15,14 +15,20 @@ Usage:
 """
 
 import argparse
+import asyncio
+import io
 import json
+import os
 import re
 import sys
+import tempfile
+import urllib.parse
+import urllib.request
 from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
-from moviepy import AudioFileClip, VideoClip, concatenate_audioclips
+from moviepy import AudioFileClip, CompositeAudioClip, VideoClip, concatenate_audioclips
 
 # ── Video dimensions ──────────────────────────────────────────────────────────
 WIDTH    = 1080
@@ -45,12 +51,25 @@ SHADOW_COLOR   = (0, 0, 0)
 QUESTION_FONT_SIZE_MAX = 80    # try from here, shrink until it fits
 QUESTION_FONT_SIZE_MIN = 26
 LINE_SPACING           = 1.4
+OVERLAY_OPACITY        = 175
+
+POLLINATIONS_URL = (
+    "https://image.pollinations.ai/prompt/{prompt}"
+    "?width=1080&height=1920&nologo=true&seed={seed}"
+)
+IMAGE_TIMEOUT = 90
 
 
 
 # ── Audio ─────────────────────────────────────────────────────────────────────
-MUSIC_FOLDER = "riddle_music"
+MUSIC_FOLDER = str(Path(__file__).resolve().parent / "riddle_music")
 MUSIC_VOLUME = 0.50
+
+TTS_VOICE        = "en-US-GuyNeural"
+TTS_RATE         = "+0%"
+TTS_PITCH        = "+0Hz"
+TTS_VOLUME       = 1.0
+MUSIC_DUCK_SCALE = 0.10
 
 # ── Files (all relative to this script's directory) ──────────────────────────
 _DIR                = Path(__file__).resolve().parent
@@ -100,14 +119,14 @@ def _wrap(text: str, font: ImageFont.FreeTypeFont, max_width: int) -> list[str]:
 
 # ── Background ────────────────────────────────────────────────────────────────
 
-def load_background() -> np.ndarray:
-    """Load the static local background image, scaled to fill the frame."""
+def load_local_background() -> np.ndarray:
+    """Load a random local background image, scaled to fill the frame."""
     import random
     folder = Path(BACKGROUND_FOLDER)
     exts   = {".jpg", ".jpeg", ".png", ".webp"}
     images = [f for f in folder.iterdir() if f.suffix.lower() in exts]
     if not images:
-        raise FileNotFoundError(f"No images found in '{BACKGROUND_FOLDER}'")
+        return np.full((HEIGHT, WIDTH, 3), (15, 12, 25), dtype=np.uint8)
     chosen = random.choice(images)
     print(f"  Background : {chosen.name}")
     img    = Image.open(chosen).convert("RGB")
@@ -115,9 +134,66 @@ def load_background() -> np.ndarray:
     new_w  = int(img.width * scale)
     new_h  = int(img.height * scale)
     img    = img.resize((new_w, new_h), Image.LANCZOS)
-    left   = (new_w - WIDTH) // 2
-    top    = (new_h - HEIGHT) // 2
-    return np.array(img.crop((left, top, left + WIDTH, top + HEIGHT)))
+    left  = (new_w - WIDTH) // 2
+    top   = (new_h - HEIGHT) // 2
+    img   = img.crop((left, top, left + WIDTH, top + HEIGHT))
+    ov    = Image.new("RGBA", img.size, (0, 0, 0, OVERLAY_OPACITY))
+    img   = Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB")
+    arr   = np.array(img, dtype=np.float32)
+    Y, X  = np.ogrid[:HEIGHT, :WIDTH]
+    dist  = np.sqrt(((X - WIDTH/2)/(WIDTH*0.6))**2 + ((Y - HEIGHT*0.45)/(HEIGHT*0.55))**2)
+    vign  = np.clip(1.0 - 0.6*dist**1.5, 0.2, 1.0)[..., np.newaxis]
+    return np.clip(arr * vign, 0, 255).astype(np.uint8)
+
+
+def _content_to_image_prompt(item: dict) -> str:
+    keywords = " ".join(item.get("question", "").split()[:6])
+    cat = item.get("category", "classic")
+    return (f"bright vivid colorful mysterious background, riddle puzzle, "
+            f"{cat}, {keywords}, enigmatic, vibrant, engaging, digital art")
+
+
+def fetch_ai_background(item: dict) -> np.ndarray:
+    prompt  = _content_to_image_prompt(item)
+    encoded = urllib.parse.quote(prompt)
+    seed    = abs(hash(str(item.get("id", "x")))) % 99999
+    url     = POLLINATIONS_URL.format(prompt=encoded, seed=seed)
+    print(f"  Background : fetching AI image...")
+    for attempt in range(2):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "shorts-video/1.0"})
+            with urllib.request.urlopen(req, timeout=IMAGE_TIMEOUT) as resp:
+                img_data = resp.read()
+            break
+        except Exception as e:
+            if attempt < 1:
+                print(f"  Background : attempt {attempt+1} failed ({e}) — retrying...")
+                import time; time.sleep(10)
+            else:
+                raise
+    img    = Image.open(io.BytesIO(img_data)).convert("RGB")
+    scale  = max(WIDTH / img.width, HEIGHT / img.height)
+    new_w  = int(img.width * scale)
+    new_h  = int(img.height * scale)
+    img    = img.resize((new_w, new_h), Image.LANCZOS)
+    left  = (new_w - WIDTH) // 2
+    top   = (new_h - HEIGHT) // 2
+    img   = img.crop((left, top, left + WIDTH, top + HEIGHT))
+    ov    = Image.new("RGBA", img.size, (0, 0, 0, OVERLAY_OPACITY))
+    img   = Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB")
+    arr   = np.array(img, dtype=np.float32)
+    Y, X  = np.ogrid[:HEIGHT, :WIDTH]
+    dist  = np.sqrt(((X - WIDTH/2)/(WIDTH*0.6))**2 + ((Y - HEIGHT*0.45)/(HEIGHT*0.55))**2)
+    vign  = np.clip(1.0 - 0.6*dist**1.5, 0.2, 1.0)[..., np.newaxis]
+    return np.clip(arr * vign, 0, 255).astype(np.uint8)
+
+
+def load_background(item: dict) -> np.ndarray:
+    try:
+        return fetch_ai_background(item)
+    except Exception as e:
+        print(f"  Background : AI fetch failed ({e}) — using local image")
+        return load_local_background()
 
 
 # ── Audio helpers ─────────────────────────────────────────────────────────────
@@ -141,7 +217,29 @@ def _resolve_music(path: str) -> str | None:
         chosen = random.choice(tracks)
         print(f"  Music      : {chosen.name}")
         return str(chosen)
-    return path
+    return path if p.exists() else None
+
+
+# ── TTS narration helpers ──────────────────────────────────────────────────────
+
+def _build_narration_text(item: dict) -> str:
+    return f"Can you solve this riddle? {item['question']}"
+
+
+async def _tts_generate(text: str, output_path: str) -> None:
+    import edge_tts
+    comm = edge_tts.Communicate(text, voice=TTS_VOICE, rate=TTS_RATE, pitch=TTS_PITCH)
+    await comm.save(output_path)
+
+
+def generate_narration(item: dict, output_path: str) -> bool:
+    text = _build_narration_text(item)
+    try:
+        asyncio.run(_tts_generate(text, output_path))
+        return True
+    except Exception as e:
+        print(f"  Narration  : TTS failed ({e}) — skipping")
+        return False
 
 
 # ── Question overlay ──────────────────────────────────────────────────────────
@@ -201,6 +299,7 @@ def create_video(
     output_path: str,
     music_path: str | None = MUSIC_FOLDER,
     music_volume: float = MUSIC_VOLUME,
+    narration: bool = True,
 ) -> None:
     question = riddle["question"]
 
@@ -208,7 +307,7 @@ def create_video(
 
     # Background (static local image — branding already baked in)
     try:
-        bg_arr = load_background()
+        bg_arr = load_background(riddle)
     except Exception as e:
         print(f"  Background : failed ({e}) - using solid dark background")
         bg_arr = np.full((HEIGHT, WIDTH, 3), (15, 12, 25), dtype=np.uint8)
@@ -220,13 +319,29 @@ def create_video(
     q_float = q_rgba[:, :, :3].astype(np.float32)
     q_alpha = q_rgba[:, :, 3:4].astype(np.float32) / 255.0
 
-    # Audio
-    audio = None
+    # Audio — narration + background music mix
+    audio       = None
+    _tmp_narr   = None
+    audio_clips = []
+
+    if narration:
+        _tmp_narr = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
+        _tmp_narr.close()
+        print(f"  Narration  : generating TTS...")
+        if generate_narration(riddle, _tmp_narr.name):
+            narr_clip = AudioFileClip(_tmp_narr.name).with_volume_scaled(TTS_VOLUME)
+            audio_clips.append(narr_clip)
+
     if music_path:
         resolved = _resolve_music(music_path)
         if resolved:
-            bg_music = AudioFileClip(resolved)
-            audio = _loop_audio(bg_music, DURATION).with_volume_scaled(music_volume)
+            vol = MUSIC_DUCK_SCALE if audio_clips else music_volume
+            audio_clips.append(_loop_audio(AudioFileClip(resolved), DURATION).with_volume_scaled(vol))
+
+    if len(audio_clips) > 1:
+        audio = CompositeAudioClip(audio_clips)
+    elif audio_clips:
+        audio = audio_clips[0]
 
     print(f"  Duration   : {DURATION:.0f}s")
     print(f"  Output     : {output_path}\n")
@@ -254,6 +369,11 @@ def create_video(
         output_path, fps=FPS, codec="libx264", audio_codec="aac", logger=None,
     )
     clip.close()
+    if _tmp_narr is not None:
+        try:
+            os.unlink(_tmp_narr.name)
+        except OSError:
+            pass
     print()
     print(f"\nDone! Saved to: {output_path}")
 
@@ -285,6 +405,8 @@ def main():
     parser.add_argument("--music-volume", type=float, default=MUSIC_VOLUME)
     parser.add_argument("--out",          default=None)
     parser.add_argument("--list",         action="store_true")
+    parser.add_argument("--no-narration", action="store_true",
+                        help="Skip TTS narration, use music only")
     args = parser.parse_args()
 
     riddles = load_riddles()
@@ -309,6 +431,7 @@ def main():
         output_path=output,
         music_path=args.music,
         music_volume=args.music_volume,
+        narration=not args.no_narration,
     )
 
 

@@ -1,0 +1,422 @@
+[
+  {
+    "id": "me_0001",
+    "question": "The Monopoly man wears a monocle.\nTrue or false?",
+    "answer": "FALSE — he never has",
+    "answer_note": "Rich Uncle Pennybags has no monocle in any official artwork. Millions swear they remember one.",
+    "hook": "Comment if you SWEAR you remember it"
+  },
+  {
+    "id": "me_0002",
+    "question": "Darth Vader says 'Luke, I am your father.'\nTrue or false?",
+    "answer": "FALSE — it's 'No. I AM your father.'",
+    "answer_note": "The word 'Luke' never appears in that sentence. Check the clip — you'll be stunned.",
+    "hook": "Everyone gets this wrong"
+  },
+  {
+    "id": "me_0003",
+    "question": "The Berenstein Bears.\nIs that the correct spelling?",
+    "answer": "FALSE — it's Berenstain Bears",
+    "answer_note": "The Berenstain family always spelled it with an 'a'. Millions of people remember 'ein'. Check the books.",
+    "hook": "One of the most famous memory glitches"
+  },
+  {
+    "id": "me_0004",
+    "question": "Pikachu has a black tip on its tail.\nTrue or false?",
+    "answer": "FALSE — the tail is entirely yellow",
+    "answer_note": "Every official image shows a plain yellow tail. Zero black. Millions remember it differently.",
+    "hook": "Every Pokémon fan fails this"
+  },
+  {
+    "id": "me_0005",
+    "question": "Snow White's Evil Queen says 'Mirror, mirror on the wall.'\nTrue or false?",
+    "answer": "FALSE — it's 'Magic mirror on the wall'",
+    "answer_note": "The 1937 Disney film uses 'Magic mirror' throughout. 'Mirror mirror' doesn't appear once.",
+    "hook": "Go check. You'll feel crazy."
+  },
+  {
+    "id": "me_0006",
+    "question": "C-3PO is entirely gold.\nTrue or false?",
+    "answer": "FALSE — he has one silver leg",
+    "answer_note": "C-3PO's right shin has always been silver. It's visible in all films. Almost nobody notices.",
+    "hook": "Look it up — then comment"
+  },
+  {
+    "id": "me_0007",
+    "question": "Curious George has a tail.\nTrue or false?",
+    "answer": "FALSE — he has never had a tail",
+    "answer_note": "Despite being a monkey, Curious George has no tail in any book or cartoon. Millions remember one.",
+    "hook": "This one breaks people's brains"
+  },
+  {
+    "id": "me_0008",
+    "question": "Is it spelled 'Febreeze' or 'Febreze'?",
+    "answer": "Febreze — one 'e' in the middle",
+    "answer_note": "The brand has always been 'Febreze'. Most people add an extra 'e'. Check the bottle.",
+    "hook": "Comment which you thought it was"
+  },
+  {
+    "id": "me_0009",
+    "question": "The Queen in Snow White says 'Eat the apple, dearie.'\nTrue or false?",
+    "answer": "FALSE — she says 'Have a bite.'",
+    "answer_note": "The classic line most people quote doesn't match the film. Another famous misremembering.",
+    "hook": "Memory is not what we think"
+  },
+  {
+    "id": "me_0010",
+    "question": "Kit Kat is spelled KitKat (no hyphen).\nTrue or false?",
+    "answer": "TRUE — never had a hyphen",
+    "answer_note": "It has always been 'KitKat' as one word or two — never 'Kit-Kat' with a hyphen. Most people remember a hyphen.",
+    "hook": "This one surprises almost everyone"
+  },
+  {
+    "id": "me_0011",
+    "question": "Hannibal Lecter says 'Hello, Clarice' in Silence of the Lambs.\nTrue or false?",
+    "answer": "FALSE — he says 'Good morning.'",
+    "answer_note": "The line 'Hello, Clarice' doesn't appear. He says 'Good morning' on their first meeting. Hollywood invented the rest.",
+    "hook": "The most misquoted thriller line ever"
+  },
+  {
+    "id": "me_0012",
+    "question": "The logo for Froot Loops shows a toucan with a multicolour beak.\nTrue or false?",
+    "answer": "FALSE — Toucan Sam's beak is striped orange only",
+    "answer_note": "Toucan Sam has always had an orange beak with coloured stripes, not a full rainbow beak. Most people misremember.",
+    "hook": "Check the box if you dare"
+  },
+  {
+    "id": "me_0013",
+    "question": "Jiffy peanut butter is a real brand.\nTrue or false?",
+    "answer": "FALSE — it's Jif",
+    "answer_note": "There is no 'Jiffy' peanut butter. The brand is 'Jif'. Millions of people have vivid memories of buying 'Jiffy'.",
+    "hook": "This one divides the internet"
+  },
+  {
+    "id": "me_0014",
+    "question": "Oscar the Grouch from Sesame Street was always green.\nTrue or false?",
+    "answer": "FALSE — he was originally orange",
+    "answer_note": "Oscar was orange in Season 1. He turned green in Season 2. Most people have only seen reruns where he's green.",
+    "hook": "Even Sesame Street fans get this wrong"
+  },
+  {
+    "id": "me_0015",
+    "question": "The classic Volkswagen logo has always had a line separating the V and W.\nTrue or false?",
+    "answer": "TRUE — it has always had the dividing lines",
+    "answer_note": "The dividing lines between V and W have always been there. People who remember 'no lines' are experiencing Mandela Effect.",
+    "hook": "Look at your keys before you answer"
+  },
+  {
+    "id": "me_0016",
+    "question": "Is the brand spelled 'Sketchers' or 'Skechers'?",
+    "answer": "Skechers — no 't'",
+    "answer_note": "The shoe brand has never had a 't'. It's 'Skechers'. Millions of people add a 't' that isn't there.",
+    "hook": "Comment A for Sketchers or B for Skechers"
+  },
+  {
+    "id": "me_0017",
+    "question": "In Forrest Gump, the line is 'Life is like a box of chocolates.'\nTrue or false?",
+    "answer": "FALSE — he says 'Life WAS like a box of chocolates'",
+    "answer_note": "The actual quote uses past tense: 'was'. Forrest is quoting his mother. The present-tense version is everywhere — and wrong.",
+    "hook": "You've been misquoting this for 30 years"
+  },
+  {
+    "id": "me_0018",
+    "question": "The Great Wall of China appears on Google Maps as a continuous line.\nTrue or false?",
+    "answer": "FALSE — large sections are missing or broken",
+    "answer_note": "Many sections have crumbled or were never connected. The 'continuous wall' is a myth reinforced by maps that depict the full route.",
+    "hook": "Most people picture something that doesn't exist"
+  },
+  {
+    "id": "me_0019",
+    "question": "Chartreuse is a shade of red or pink.\nTrue or false?",
+    "answer": "FALSE — chartreuse is yellow-green",
+    "answer_note": "Named after a French liqueur, chartreuse is a vivid yellow-green. Most people confidently say red or pink.",
+    "hook": "What colour do YOU picture?"
+  },
+  {
+    "id": "me_0020",
+    "question": "Patrick from SpongeBob wears green shorts.\nTrue or false?",
+    "answer": "FALSE — he wears purple shorts with flowers",
+    "answer_note": "Patrick's shorts have always been purple with green flowers (or pink flowers depending on episode). Not green.",
+    "hook": "Comment what you remember"
+  },
+  {
+    "id": "me_0021",
+    "question": "The Monopoly board has 40 spaces.\nTrue or false?",
+    "answer": "TRUE — exactly 40",
+    "answer_note": "There are exactly 40 spaces on a standard Monopoly board. People often guess 36 or 42.",
+    "hook": "Go count them right now"
+  },
+  {
+    "id": "me_0022",
+    "question": "In the iconic Abbey Road photo, Paul McCartney is barefoot.\nTrue or false?",
+    "answer": "TRUE",
+    "answer_note": "Paul is indeed barefoot in the Abbey Road cover — this detail launched the 'Paul is dead' conspiracy theory.",
+    "hook": "Did you remember this?"
+  },
+  {
+    "id": "me_0023",
+    "question": "The logo for Volvo is a circle with a cross.\nTrue or false?",
+    "answer": "FALSE — it's an arrow pointing to the upper right",
+    "answer_note": "The Volvo logo is the Mars symbol — a circle with an arrow. The female/cross symbol is used by other brands.",
+    "hook": "Picture it before you answer"
+  },
+  {
+    "id": "me_0024",
+    "question": "Sherlock Holmes's famous hat is a deerstalker.\nTrue or false?",
+    "answer": "TRUE — but Doyle never named it in the stories",
+    "answer_note": "The deerstalker became iconic through illustrations. Doyle himself only described 'a close-fitting cloth cap'. The name was added later.",
+    "hook": "Half right and half wrong"
+  },
+  {
+    "id": "me_0025",
+    "question": "In the original Star Wars, Han Solo shoots first.\nTrue or false?",
+    "answer": "TRUE — in the 1977 original. FALSE — in later edits",
+    "answer_note": "George Lucas controversially edited the 1997 re-release so Greedo shoots first. The original 1977 cut clearly shows Han shooting first.",
+    "hook": "The most debated scene in film history"
+  },
+  {
+    "id": "me_0026",
+    "question": "Mickey Mouse's gloves have always been white.\nTrue or false?",
+    "answer": "TRUE — always white",
+    "answer_note": "Mickey has worn white gloves since 1929. This is one of the ME questions where reality matches the memory.",
+    "hook": "Some memories ARE correct"
+  },
+  {
+    "id": "me_0027",
+    "question": "Rubik's Cube has 6 colours: red, orange, yellow, green, blue, and white.\nTrue or false?",
+    "answer": "TRUE — those are the standard 6",
+    "answer_note": "White, yellow, red, orange, blue and green — one colour per face. Many people misremember purple or black.",
+    "hook": "Comment the colour you pictured"
+  },
+  {
+    "id": "me_0028",
+    "question": "The Fruit of the Loom logo has always had a cornucopia.\nTrue or false?",
+    "answer": "FALSE — no cornucopia, ever",
+    "answer_note": "The Fruit of the Loom logo shows fruit only — no cornucopia basket. Millions of people remember one. Documented Mandela Effect.",
+    "hook": "One of the most famous Mandela Effects"
+  },
+  {
+    "id": "me_0029",
+    "question": "Mother Teresa has been made a saint.\nTrue or false?",
+    "answer": "TRUE — canonised in 2016",
+    "answer_note": "Mother Teresa was canonised by Pope Francis on 4 September 2016. Many people are unaware this has happened.",
+    "hook": "Did you know this?"
+  },
+  {
+    "id": "me_0030",
+    "question": "The original Ghostbusters logo has the ghost's mouth open.\nTrue or false?",
+    "answer": "TRUE — the mouth is open",
+    "answer_note": "The classic logo shows the ghost with an open 'O' mouth. Some remember it closed. The open mouth is the original.",
+    "hook": "Picture it — then answer"
+  },
+  {
+    "id": "me_0031",
+    "question": "Mr. Peanut (Planters mascot) has always worn a top hat and monocle.\nTrue or false?",
+    "answer": "TRUE — both the hat and monocle are original",
+    "answer_note": "Unlike the Monopoly man, Mr. Peanut has always had both. The monocle is real here — the irony of mixing them up is part of the Mandela Effect.",
+    "hook": "You might be confusing two characters"
+  },
+  {
+    "id": "me_0032",
+    "question": "Coca-Cola Santa Claus wears blue.\nTrue or false?",
+    "answer": "FALSE — he wears red",
+    "answer_note": "Coca-Cola's iconic Santa has always worn red. The myth that Coke invented the red suit is also false — red Santas predate the Coke ads.",
+    "hook": "Two myths for the price of one"
+  },
+  {
+    "id": "me_0033",
+    "question": "In the famous E.T. scene, government agents carry guns.\nTrue or false?",
+    "answer": "Depends on the version",
+    "answer_note": "In Spielberg's 2002 re-release, guns were digitally replaced with walkie-talkies. The original 1982 film shows guns. Both versions exist.",
+    "hook": "Which version did you see?"
+  },
+  {
+    "id": "me_0034",
+    "question": "There are 50 stars on the US flag.\nTrue or false?",
+    "answer": "TRUE — 50 stars since 1960",
+    "answer_note": "One star per state. Hawaii became the 50th state in 1959; the 50-star flag was adopted in 1960. Some people miscount.",
+    "hook": "Count them if you dare"
+  },
+  {
+    "id": "me_0035",
+    "question": "The word 'dilemma' is sometimes spelled 'dilemna'.\nTrue or false?",
+    "answer": "FALSE — it has always been 'dilemma'",
+    "answer_note": "Millions of people clearly remember being taught 'dilemna' in school. No record of this spelling exists. One of the most puzzling language Mandela Effects.",
+    "hook": "How did you learn to spell it?"
+  },
+  {
+    "id": "me_0036",
+    "question": "The Statue of Liberty faces east (toward Europe).\nTrue or false?",
+    "answer": "FALSE — she faces southeast",
+    "answer_note": "Lady Liberty actually faces southeast, toward the open ocean — not directly toward Europe. Many people picture her facing east.",
+    "hook": "Picture the harbour — which way is she looking?"
+  },
+  {
+    "id": "me_0037",
+    "question": "In Wizard of Oz, the tin man says 'If I only had a heart.'\nTrue or false?",
+    "answer": "TRUE — that is his line",
+    "answer_note": "The Tin Man's song is 'If I Only Had a Heart'. The Scarecrow wants a brain. The Lion wants courage. All three lines are frequently mixed up.",
+    "hook": "Which character gets which wish?"
+  },
+  {
+    "id": "me_0038",
+    "question": "The human body has 206 bones.\nTrue or false?",
+    "answer": "TRUE — in an adult",
+    "answer_note": "Adults have 206 bones. Babies are born with around 270-300 bones; many fuse together as we grow.",
+    "hook": "Did you know babies have more bones?"
+  },
+  {
+    "id": "me_0039",
+    "question": "Flintstones vitamins come in the shape of Barney.\nTrue or false?",
+    "answer": "TRUE — Barney has always been included",
+    "answer_note": "Barney has been in the Flintstones vitamins range from the start. Some people swear he was removed and added back — he wasn't.",
+    "hook": "Comment what you remember"
+  },
+  {
+    "id": "me_0040",
+    "question": "The Game Boy had a colour screen from the beginning.\nTrue or false?",
+    "answer": "FALSE — original was grey/green monochrome",
+    "answer_note": "The original 1989 Game Boy had a four-shade grey-green screen. The Game Boy Color didn't arrive until 1998.",
+    "hook": "What did YOUR Game Boy screen look like?"
+  },
+  {
+    "id": "me_0041",
+    "question": "In the Monopoly game, the player pieces include a boot.\nTrue or false?",
+    "answer": "FALSE — the boot was retired in 2013",
+    "answer_note": "Hasbro retired the iron, boot, and wheelbarrow in 2013, replacing them with a cat, helicopter and guitar. The 'classic boot' is gone.",
+    "hook": "Did you know the pieces changed?"
+  },
+  {
+    "id": "me_0042",
+    "question": "The Queen's Guard at Buckingham Palace are not allowed to move.\nTrue or false?",
+    "answer": "FALSE — they follow strict drills and can shout commands",
+    "answer_note": "The Queen's Guard can and do move. They march, turn, and are permitted to shout at civilians who obstruct them. 'Statue' is a myth.",
+    "hook": "The tourist myth debunked"
+  },
+  {
+    "id": "me_0043",
+    "question": "Judge Judy (Judge Judith Sheindlin) is a real judge.\nTrue or false?",
+    "answer": "FALSE — she's a retired family court judge arbitrating on TV",
+    "answer_note": "Judge Judy is a former New York Family Court judge. Her TV show is legally binding arbitration, not a real court. Her rulings aren't precedent.",
+    "hook": "The courtroom is not what it seems"
+  },
+  {
+    "id": "me_0044",
+    "question": "Nelson Mandela died in prison in the 1980s.\nTrue or false?",
+    "answer": "FALSE — he was released in 1990 and died in 2013",
+    "answer_note": "Mandela was released from prison on 11 February 1990, served as South Africa's president 1994–1999, and died on 5 December 2013.",
+    "hook": "The original Mandela Effect — his own death"
+  },
+  {
+    "id": "me_0045",
+    "question": "In Home Alone, Kevin McCallister says 'Keep the change, ya filthy animal.'\nTrue or false?",
+    "answer": "FALSE — it's from a fake film within the film",
+    "answer_note": "Kevin watches 'Angels with Filthy Souls', a fictional black-and-white gangster movie. He never says the line himself.",
+    "hook": "One of the most misattributed movie quotes"
+  },
+  {
+    "id": "me_0046",
+    "question": "Australia is both a country and a continent.\nTrue or false?",
+    "answer": "TRUE",
+    "answer_note": "Australia is the only nation in the world that is also a continent (though geographers sometimes use 'Oceania' for the region).",
+    "hook": "More people get this wrong than you'd think"
+  },
+  {
+    "id": "me_0047",
+    "question": "The Twitter bird has always been named Larry.\nTrue or false?",
+    "answer": "TRUE — named after Larry Bird",
+    "answer_note": "Twitter's co-founder Biz Stone named the bird 'Larry' after basketball legend Larry Bird. Most people never knew the bird had a name.",
+    "hook": "Did you know the bird had a name?"
+  },
+  {
+    "id": "me_0048",
+    "question": "Human blood is blue inside the body and turns red when it hits oxygen.\nTrue or false?",
+    "answer": "FALSE — blood is always red inside the body",
+    "answer_note": "Deoxygenated blood is dark red, not blue. Veins look blue through skin due to the way light penetrates and reflects. Blood is never actually blue.",
+    "hook": "Taught in schools — completely wrong"
+  },
+  {
+    "id": "me_0049",
+    "question": "The famous 'Thinker' statue by Rodin shows a man with his fist under his chin.\nTrue or false?",
+    "answer": "FALSE — the fist rests on his mouth/lower lip, not under the chin",
+    "answer_note": "The hand is clenched and rests against the mouth, with the chin resting on the bent wrist. Most people misremember hand-under-chin.",
+    "hook": "Picture it before you answer"
+  },
+  {
+    "id": "me_0050",
+    "question": "Jimi Hendrix was left-handed.\nTrue or false?",
+    "answer": "TRUE — he was naturally left-handed",
+    "answer_note": "Hendrix was born left-handed but played a right-handed guitar strung upside down, or sometimes restrung for lefties. His natural hand was his left.",
+    "hook": "Rock trivia that surprises many"
+  },
+  {
+    "id": "me_0051",
+    "question": "Finland does not exist.\nTrue or false?",
+    "answer": "FALSE — Finland is a real country",
+    "answer_note": "The 'Finland doesn't exist' conspiracy theory claims it's a fictional country. It is entirely false. Finland is real and has 5.5 million people.",
+    "hook": "One of the internet's weirdest conspiracy theories"
+  },
+  {
+    "id": "me_0052",
+    "question": "The original iPod had a click wheel from day one.\nTrue or false?",
+    "answer": "FALSE — the first generation had a mechanical scroll wheel",
+    "answer_note": "The first iPod (2001) had a physical mechanical scroll wheel. The touch-sensitive click wheel didn't arrive until the 3rd generation in 2003.",
+    "hook": "Apple fans often get this wrong"
+  },
+  {
+    "id": "me_0053",
+    "question": "The classic 'I want YOU' Uncle Sam poster shows him pointing directly at you.\nTrue or false?",
+    "answer": "TRUE",
+    "answer_note": "J.M. Flagg's 1917 poster does show Uncle Sam pointing straight out at the viewer. Unlike many Mandela Effects, this memory is correct.",
+    "hook": "Some things you remember correctly"
+  },
+  {
+    "id": "me_0054",
+    "question": "Tyrannosaurus Rex had tiny arms that were useless.\nTrue or false?",
+    "answer": "FALSE — T. Rex arms were actually very powerful",
+    "answer_note": "T. Rex arms were about 1m long with powerful muscles, capable of lifting 180kg. Small relative to its body, but far from useless.",
+    "hook": "Jurassic Park lied to us all"
+  },
+  {
+    "id": "me_0055",
+    "question": "The human appendix has no known function.\nTrue or false?",
+    "answer": "FALSE — it stores beneficial gut bacteria",
+    "answer_note": "Research since 2007 shows the appendix acts as a reservoir for beneficial gut bacteria, helping repopulate the intestine after illness.",
+    "hook": "Even doctors believed this myth"
+  },
+  {
+    "id": "me_0056",
+    "question": "Charles Darwin coined the phrase 'survival of the fittest'.\nTrue or false?",
+    "answer": "FALSE — Herbert Spencer coined it",
+    "answer_note": "Herbert Spencer coined 'survival of the fittest' in 1864. Darwin used 'natural selection'. Spencer's phrase was later incorporated into Darwin's work.",
+    "hook": "Misattributed for 150 years"
+  },
+  {
+    "id": "me_0057",
+    "question": "Walt Disney's body was cryogenically frozen after his death.\nTrue or false?",
+    "answer": "FALSE — he was cremated",
+    "answer_note": "Walt Disney died on 15 December 1966 and was cremated two days later. The cryogenic freezing story is a persistent urban legend with no factual basis.",
+    "hook": "One of Hollywood's most enduring myths"
+  },
+  {
+    "id": "me_0058",
+    "question": "Humans only use 10% of their brains.\nTrue or false?",
+    "answer": "FALSE — we use virtually all of it",
+    "answer_note": "Brain imaging shows all regions are active. The 10% myth likely originated from misquoting William James. Even during sleep most of the brain is active.",
+    "hook": "The most repeated neuroscience lie"
+  },
+  {
+    "id": "me_0059",
+    "question": "A duck's quack doesn't echo.\nTrue or false?",
+    "answer": "FALSE — it does echo",
+    "answer_note": "This myth was scientifically debunked. A duck's quack does echo — it's just quiet and hard to distinguish from the original sound.",
+    "hook": "A famous 'fact' that isn't"
+  },
+  {
+    "id": "me_0060",
+    "question": "Napoleon Bonaparte was exiled to Elba for the rest of his life.\nTrue or false?",
+    "answer": "FALSE — he escaped after 300 days and returned to power",
+    "answer_note": "Napoleon escaped Elba in February 1815, returned to Paris, and ruled again for the 'Hundred Days' before final defeat at Waterloo.",
+    "hook": "History skips over this escape"
+  }
+]

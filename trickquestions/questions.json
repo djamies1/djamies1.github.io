@@ -1,0 +1,542 @@
+[
+  {
+    "id": "tq_0001",
+    "question": "Which country invented French fries?",
+    "answer": "Belgium",
+    "answer_note": "Belgian street vendors were frying fish and potatoes in the late 1600s. France just got the credit.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Everyone says France — everyone's wrong"
+  },
+  {
+    "id": "tq_0002",
+    "question": "What colour is a black box on a plane?",
+    "answer": "Bright orange",
+    "answer_note": "Flight recorders are painted vivid orange so they're easy to find in wreckage.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "The name is a total lie"
+  },
+  {
+    "id": "tq_0003",
+    "question": "Did Einstein fail maths at school?",
+    "answer": "No — he excelled at it",
+    "answer_note": "Einstein mastered calculus by 15. The myth comes from a misread Swiss grading system.",
+    "category": "history",
+    "difficulty": "easy",
+    "hook": "The most repeated myth in education"
+  },
+  {
+    "id": "tq_0004",
+    "question": "Where do Panama hats come from?",
+    "answer": "Ecuador",
+    "answer_note": "They've been made in Ecuador for centuries. They were just sold and popularised via Panama during the canal construction.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Not where you think"
+  },
+  {
+    "id": "tq_0005",
+    "question": "Can you see the Great Wall of China from space?",
+    "answer": "No",
+    "answer_note": "It's too narrow. Even Chinese astronaut Yang Liwei confirmed he couldn't see it with the naked eye.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Taught in schools — completely wrong"
+  },
+  {
+    "id": "tq_0006",
+    "question": "Are peanuts actually nuts?",
+    "answer": "No — they're legumes",
+    "answer_note": "Peanuts grow underground in pods, making them legumes like peas and lentils. Not nuts at all.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "It's in the name but it's still wrong"
+  },
+  {
+    "id": "tq_0007",
+    "question": "Did Napoleon Bonaparte have short stature?",
+    "answer": "No — he was average height",
+    "answer_note": "He was 5'7\" — average for a Frenchman of his era. British propaganda exaggerated a translation error (French vs. English inches).",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "History's greatest height lie"
+  },
+  {
+    "id": "tq_0008",
+    "question": "Is the Frankenstein monster's name Frankenstein?",
+    "answer": "No — the doctor is Frankenstein",
+    "answer_note": "Dr. Victor Frankenstein is the scientist. The creature has no name in Mary Shelley's novel.",
+    "category": "language",
+    "difficulty": "easy",
+    "hook": "Everyone gets this backwards"
+  },
+  {
+    "id": "tq_0009",
+    "question": "Do bulls charge at the colour red?",
+    "answer": "No — bulls are partially colour-blind",
+    "answer_note": "Bulls react to the movement of the matador's cape, not the colour. The red just hides bloodstains.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "The matador's biggest secret"
+  },
+  {
+    "id": "tq_0010",
+    "question": "Did Sherlock Holmes ever say 'Elementary, my dear Watson'?",
+    "answer": "Never — not once in any story",
+    "answer_note": "The phrase doesn't appear anywhere in Arthur Conan Doyle's original stories. It's a film invention.",
+    "category": "language",
+    "difficulty": "medium",
+    "hook": "The most famous misquote in fiction"
+  },
+  {
+    "id": "tq_0011",
+    "question": "What did Edison actually invent?",
+    "answer": "He improved existing inventions — rarely invented from scratch",
+    "answer_note": "The lightbulb, phonograph and more were built on others' work. He was a brilliant developer and marketer.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "The most overcredited inventor in history"
+  },
+  {
+    "id": "tq_0012",
+    "question": "Is the koala a bear?",
+    "answer": "No — it's a marsupial",
+    "answer_note": "Koalas are more closely related to wombats and kangaroos than to any bear species.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "'Koala bear' is a misnomer"
+  },
+  {
+    "id": "tq_0013",
+    "question": "Does the Monopoly man wear a monocle?",
+    "answer": "No — he never has",
+    "answer_note": "Rich Uncle Pennybags has never had a monocle in any official Hasbro artwork. This is a Mandela Effect.",
+    "category": "mandela_effect",
+    "difficulty": "easy",
+    "hook": "Check again — you'll be shocked"
+  },
+  {
+    "id": "tq_0014",
+    "question": "What was the original colour of Coca-Cola?",
+    "answer": "Green",
+    "answer_note": "Early Coke syrup had a greenish tint from the original ingredients. The caramel colour came later.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Not what you picture"
+  },
+  {
+    "id": "tq_0015",
+    "question": "Do carrots actually improve your eyesight?",
+    "answer": "No — this was WWII British propaganda",
+    "answer_note": "The British spread this myth to hide their radar technology from the Germans. Carrots won't help unless you're severely vitamin-A deficient.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "You've been lied to since childhood"
+  },
+  {
+    "id": "tq_0016",
+    "question": "Is it 'Berenstein Bears' or 'Berenstain Bears'?",
+    "answer": "Berenstain — always has been",
+    "answer_note": "The creators' name was Berenstain. Millions of people remember 'Berenstein' — one of the most famous Mandela Effects.",
+    "category": "mandela_effect",
+    "difficulty": "easy",
+    "hook": "Brace yourself for this one"
+  },
+  {
+    "id": "tq_0017",
+    "question": "Where did Arabic numerals originate?",
+    "answer": "India",
+    "answer_note": "The numeral system was developed in India and spread to Europe via Arab mathematicians — hence the name 'Arabic'.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "The name is misleading"
+  },
+  {
+    "id": "tq_0018",
+    "question": "How many colours are in a rainbow?",
+    "answer": "Infinite — we arbitrarily count 7",
+    "answer_note": "A rainbow is a continuous spectrum. Newton chose 7 colours to match the musical scale. The actual number is infinite.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "The answer you learned is wrong"
+  },
+  {
+    "id": "tq_0019",
+    "question": "Is 'blood is thicker than water' about family loyalty?",
+    "answer": "No — the full saying means the opposite",
+    "answer_note": "The full phrase is 'the blood of the covenant is thicker than the water of the womb' — bonds of choice outweigh family.",
+    "category": "language",
+    "difficulty": "hard",
+    "hook": "You've been using this phrase backwards"
+  },
+  {
+    "id": "tq_0020",
+    "question": "Do humans have only 5 senses?",
+    "answer": "No — we have at least 9",
+    "answer_note": "Beyond the classic 5: proprioception (body position), thermoception (temperature), nociception (pain), equilibrioception (balance), and more.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Aristotle was wrong and we never updated it"
+  },
+  {
+    "id": "tq_0021",
+    "question": "Did humans evolve from chimpanzees?",
+    "answer": "No — we share a common ancestor",
+    "answer_note": "Humans and chimps both evolved from a now-extinct common ancestor around 6–8 million years ago.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Even many science teachers get this wrong"
+  },
+  {
+    "id": "tq_0022",
+    "question": "How long is a moment?",
+    "answer": "90 seconds",
+    "answer_note": "In medieval times a 'moment' was a unit of time equal to 1.5 minutes (1/40th of an hour).",
+    "category": "language",
+    "difficulty": "hard",
+    "hook": "It used to be a precise measurement"
+  },
+  {
+    "id": "tq_0023",
+    "question": "Does lightning never strike the same place twice?",
+    "answer": "False — it strikes the same spots constantly",
+    "answer_note": "The Empire State Building is struck by lightning ~23 times per year. Tall structures are natural lightning rods.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "One of the most wrong 'facts' ever told"
+  },
+  {
+    "id": "tq_0024",
+    "question": "What country is India ink from?",
+    "answer": "China",
+    "answer_note": "India ink was first produced and used in ancient China. It reached Europe via trade routes through India — giving it the wrong name.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Named after the wrong country"
+  },
+  {
+    "id": "tq_0025",
+    "question": "Is a tomato a fruit or a vegetable?",
+    "answer": "Botanically a fruit — legally a vegetable",
+    "answer_note": "The US Supreme Court ruled in 1893 that tomatoes are vegetables for trade purposes. Botanically they're berries.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Both answers are correct — depending on who you ask"
+  },
+  {
+    "id": "tq_0026",
+    "question": "Did Vikings wear horned helmets?",
+    "answer": "No — that's a 19th-century invention",
+    "answer_note": "Actual Viking helmets were simple iron caps. The horned design came from a costume designer for an 1876 opera.",
+    "category": "history",
+    "difficulty": "easy",
+    "hook": "Almost every Viking image is wrong"
+  },
+  {
+    "id": "tq_0027",
+    "question": "What part of the tongue tastes sweetness?",
+    "answer": "All of it equally",
+    "answer_note": "The 'tongue map' showing different zones for sweet, sour, salty, bitter was debunked in 1974. All taste buds detect all tastes.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "It's in every biology textbook — and it's wrong"
+  },
+  {
+    "id": "tq_0028",
+    "question": "Is C-3PO entirely gold?",
+    "answer": "No — one leg is silver",
+    "answer_note": "C-3PO has had a silver right shin in every film. Almost no one notices. Classic Mandela Effect.",
+    "category": "mandela_effect",
+    "difficulty": "medium",
+    "hook": "Look it up — you'll feel crazy"
+  },
+  {
+    "id": "tq_0029",
+    "question": "Does the word 'nice' originally mean 'pleasant'?",
+    "answer": "No — it meant 'foolish' or 'ignorant'",
+    "answer_note": "From Latin 'nescius' (ignorant). Over 700 years it shifted through 'wanton', 'lascivious', 'precise', then finally 'pleasant'.",
+    "category": "language",
+    "difficulty": "hard",
+    "hook": "Words change more than we think"
+  },
+  {
+    "id": "tq_0030",
+    "question": "How many stars are in the Milky Way?",
+    "answer": "200–400 billion",
+    "answer_note": "Most people guess far too low. Our galaxy alone contains hundreds of billions of stars — and there are 2 trillion galaxies.",
+    "category": "science",
+    "difficulty": "hard",
+    "hook": "Your guess is probably off by billions"
+  },
+  {
+    "id": "tq_0031",
+    "question": "Did Cleopatra live closer in time to us or to the pyramids?",
+    "answer": "Closer to us",
+    "answer_note": "The Great Pyramid was built around 2560 BC. Cleopatra lived around 50 BC — just 2,000 years before us, but 2,500 years after the pyramids.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Time is stranger than you think"
+  },
+  {
+    "id": "tq_0032",
+    "question": "What is the shortest war in history?",
+    "answer": "The Anglo-Zanzibar War — 38 minutes",
+    "answer_note": "Fought on 27 August 1896 between Britain and Zanzibar. It lasted between 38 and 45 minutes.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "History's quickest conflict"
+  },
+  {
+    "id": "tq_0033",
+    "question": "Are almonds nuts?",
+    "answer": "No — they're the seeds of drupes (stone fruits)",
+    "answer_note": "An almond is the seed inside the pit of a drupe, like a peach or plum. Botanically not a nut at all.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Almost no 'nut' is actually a nut"
+  },
+  {
+    "id": "tq_0034",
+    "question": "Is the Sahara the world's largest desert?",
+    "answer": "No — Antarctica is",
+    "answer_note": "A desert is defined by low precipitation, not heat. Antarctica receives less rainfall than the Sahara, making it the world's largest cold desert.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "The definition will surprise you"
+  },
+  {
+    "id": "tq_0035",
+    "question": "Does hair or nails continue growing after death?",
+    "answer": "No — the skin just retracts",
+    "answer_note": "Dehydration causes skin to shrink and tighten after death, making nails and stubble appear longer. Nothing actually grows.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "A horror movie myth debunked"
+  },
+  {
+    "id": "tq_0036",
+    "question": "Was the Great Fire of London in 1666 deadly?",
+    "answer": "It killed almost no one — around 6 deaths",
+    "answer_note": "Despite destroying 13,200 houses, the fire killed only 6 confirmed people. The low density of the city at night saved most lives.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "The least deadly 'Great' disaster in history"
+  },
+  {
+    "id": "tq_0037",
+    "question": "Do bats navigate by sight or by sound?",
+    "answer": "Both — bats aren't blind",
+    "answer_note": "'Blind as a bat' is wrong. Most bats have perfectly functional eyes and use both echolocation and vision depending on conditions.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Even the idiom got it wrong"
+  },
+  {
+    "id": "tq_0038",
+    "question": "What is the oldest written language?",
+    "answer": "Sumerian cuneiform (~3400 BC)",
+    "answer_note": "Sumerian from ancient Mesopotamia (modern Iraq) is the oldest known written language, predating Egyptian hieroglyphics.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Most people guess Egyptian"
+  },
+  {
+    "id": "tq_0039",
+    "question": "Does Pikachu have a black tip on its tail?",
+    "answer": "No — the tail is entirely yellow",
+    "answer_note": "Millions of people remember a black-tipped tail. In reality, the tail has always been plain yellow. Classic Mandela Effect.",
+    "category": "mandela_effect",
+    "difficulty": "easy",
+    "hook": "Every Pokémon fan fails this"
+  },
+  {
+    "id": "tq_0040",
+    "question": "Which came first: the chicken or the egg?",
+    "answer": "The egg",
+    "answer_note": "Animals that preceded modern chickens laid eggs. Through genetic mutation, an egg was laid that produced the first true 'chicken'.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Science has actually settled this"
+  },
+  {
+    "id": "tq_0041",
+    "question": "How old is the universe?",
+    "answer": "About 13.8 billion years",
+    "answer_note": "The Big Bang occurred approximately 13.787 billion years ago. The Earth is only 4.5 billion years old — the universe is 3× older.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Most people are off by billions"
+  },
+  {
+    "id": "tq_0042",
+    "question": "Was the word 'quiz' always a word?",
+    "answer": "It was invented as a prank in 1791",
+    "answer_note": "A Dublin theatre owner supposedly bet he could make a nonsense word go viral overnight. He chalked it on walls citywide — and it stuck.",
+    "category": "language",
+    "difficulty": "hard",
+    "hook": "A word born from a bet"
+  },
+  {
+    "id": "tq_0043",
+    "question": "Does the Queen of England own all unmarked swans?",
+    "answer": "Yes — in open waters",
+    "answer_note": "A law from the 12th century still gives the Crown ownership of all unmarked mute swans in open waters in England and Wales.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "A medieval law that still exists"
+  },
+  {
+    "id": "tq_0044",
+    "question": "Is it illegal to chew gum in Singapore?",
+    "answer": "Mostly yes — since 1992",
+    "answer_note": "Importing or selling gum for non-medicinal use is banned. Therapeutic gum from dentists is the only exception.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "One of the strangest laws in the world"
+  },
+  {
+    "id": "tq_0045",
+    "question": "What colour were the original Olympic gold medals?",
+    "answer": "Solid gold — until 1912",
+    "answer_note": "Early Olympic gold medals were made of solid gold. Since 1912 they've been silver covered in a thin layer of gold plating (at least 6g).",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "They're not what they look like"
+  },
+  {
+    "id": "tq_0046",
+    "question": "Does the word 'golf' stand for 'Gentlemen Only, Ladies Forbidden'?",
+    "answer": "No — that's a backronym invented later",
+    "answer_note": "Golf simply comes from the Dutch word 'kolf' meaning club. The GOLF acronym appeared centuries after the game was named.",
+    "category": "language",
+    "difficulty": "medium",
+    "hook": "A convincing myth that isn't true"
+  },
+  {
+    "id": "tq_0047",
+    "question": "How fast does a sneeze travel?",
+    "answer": "About 100mph (160km/h)",
+    "answer_note": "The commonly cited '100mph' figure comes from medical studies. Some reach up to 200km/h.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Faster than you think"
+  },
+  {
+    "id": "tq_0048",
+    "question": "Which planet has the longest day?",
+    "answer": "Venus",
+    "answer_note": "A day on Venus (one full rotation) takes 243 Earth days — longer than its year, which is only 225 Earth days.",
+    "category": "science",
+    "difficulty": "hard",
+    "hook": "Not Mercury — that's the trap"
+  },
+  {
+    "id": "tq_0049",
+    "question": "Do goldfish have a 3-second memory?",
+    "answer": "No — they remember for months",
+    "answer_note": "Studies show goldfish can be trained and remember learned behaviours for at least 3 months.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "You've believed this for years — it's false"
+  },
+  {
+    "id": "tq_0050",
+    "question": "How many bones does a shark have?",
+    "answer": "Zero",
+    "answer_note": "Sharks have no bones at all — their skeleton is made entirely of cartilage, the same material as human ears and noses.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Most people are completely wrong"
+  },
+  {
+    "id": "tq_0051",
+    "question": "What is the loudest animal on Earth?",
+    "answer": "The sperm whale",
+    "answer_note": "Sperm whale clicks reach 230 decibels — louder than a jet engine. The blue whale is second. Most people say lion.",
+    "category": "science",
+    "difficulty": "hard",
+    "hook": "It's not the animal you're thinking of"
+  },
+  {
+    "id": "tq_0052",
+    "question": "Is the tongue the strongest muscle in the human body?",
+    "answer": "No — it's one of the most agile, but not strongest",
+    "answer_note": "The masseter (jaw muscle) is strongest relative to size. The glutes and quads produce more raw force. The tongue myth persists despite no evidence.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "A school 'fact' that isn't"
+  },
+  {
+    "id": "tq_0053",
+    "question": "Did Marie Curie win one Nobel Prize?",
+    "answer": "No — she won two",
+    "answer_note": "Marie Curie won the Nobel Prize in Physics (1903) and Chemistry (1911) — making her the first person to win in two different sciences.",
+    "category": "history",
+    "difficulty": "easy",
+    "hook": "The first — and still rare — double Nobel winner"
+  },
+  {
+    "id": "tq_0054",
+    "question": "Which country consumes the most chocolate per person?",
+    "answer": "Switzerland",
+    "answer_note": "Switzerland leads at around 10kg per person per year. Belgium, widely assumed to be first, ranks lower.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Belgium fans will be upset"
+  },
+  {
+    "id": "tq_0055",
+    "question": "Is the word 'set' the word with the most definitions in the English language?",
+    "answer": "Yes — over 430 definitions",
+    "answer_note": "The word 'set' holds the record in the Oxford English Dictionary with 430+ definitions across noun, verb, and adjective uses.",
+    "category": "language",
+    "difficulty": "hard",
+    "hook": "The most flexible word in English"
+  },
+  {
+    "id": "tq_0056",
+    "question": "What percentage of the ocean has been explored?",
+    "answer": "About 20%",
+    "answer_note": "We have more detailed maps of the Moon and Mars than of Earth's ocean floor. Around 80% of the ocean remains unmapped and unseen.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Space gets more attention than our own planet"
+  },
+  {
+    "id": "tq_0057",
+    "question": "How many senses does your tongue have?",
+    "answer": "5 — not 4",
+    "answer_note": "Beyond sweet, sour, salty and bitter — the fifth taste is umami (savouriness), officially recognised since 1985.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "The one that got added to the textbooks"
+  },
+  {
+    "id": "tq_0058",
+    "question": "Is it 'Mirror, mirror on the wall' in Snow White?",
+    "answer": "No — it's 'Magic mirror on the wall'",
+    "answer_note": "The 1937 Disney film uses 'Magic mirror'. 'Mirror, mirror' doesn't appear. One of the most cited Mandela Effects.",
+    "category": "mandela_effect",
+    "difficulty": "easy",
+    "hook": "Go check. You'll be stunned."
+  },
+  {
+    "id": "tq_0059",
+    "question": "How long can a cockroach survive without its head?",
+    "answer": "Up to a week",
+    "answer_note": "Cockroaches breathe through spiracles in their body segments, not their head. They die of dehydration, not decapitation.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "One of nature's most disturbing facts"
+  },
+  {
+    "id": "tq_0060",
+    "question": "Was the 'Dark Ages' actually dark?",
+    "answer": "No — it was a myth invented by Renaissance scholars",
+    "answer_note": "The term was coined by Petrarch to mock medieval Europe. In reality, Islamic and Byzantine civilisations flourished with huge advances in maths and medicine.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "History rewrote itself"
+  }
+]

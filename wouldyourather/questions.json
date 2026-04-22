@@ -1,0 +1,482 @@
+[
+  {
+    "id": "wyr_0001",
+    "option_a": "Be able to fly, but only at walking speed",
+    "option_b": "Run at 100mph, but never fly",
+    "category": "superpowers",
+    "hook": "No right answer — just pick one!",
+    "debate_note": "Flight = freedom. Speed = pure utility. Which matters more?"
+  },
+  {
+    "id": "wyr_0002",
+    "option_a": "Know every language in the world",
+    "option_b": "Play every musical instrument perfectly",
+    "category": "skills",
+    "hook": "You can only choose one for life",
+    "debate_note": "Communication vs. art. Which opens more doors?"
+  },
+  {
+    "id": "wyr_0003",
+    "option_a": "Always be 10 minutes early",
+    "option_b": "Always be 10 minutes late",
+    "category": "lifestyle",
+    "hook": "You have NO choice — it's permanent",
+    "debate_note": "Early = reliable but stressed. Late = relaxed but judged."
+  },
+  {
+    "id": "wyr_0004",
+    "option_a": "Only be able to eat sweet foods forever",
+    "option_b": "Only be able to eat savoury foods forever",
+    "category": "food",
+    "hook": "Choose wisely — this is for life",
+    "debate_note": "No chocolate, cake, or ice cream vs. no pizza, pasta, or steak."
+  },
+  {
+    "id": "wyr_0005",
+    "option_a": "Be invisible whenever you want",
+    "option_b": "Read minds whenever you want",
+    "category": "superpowers",
+    "hook": "The classic debate — settle it",
+    "debate_note": "Invisibility = freedom. Mind reading = truth. But can you handle the truth?"
+  },
+  {
+    "id": "wyr_0006",
+    "option_a": "Have unlimited money but live alone forever",
+    "option_b": "Be surrounded by loved ones but always broke",
+    "category": "moral",
+    "hook": "This one will tell you a lot about yourself",
+    "debate_note": "Money vs. connection — the oldest question."
+  },
+  {
+    "id": "wyr_0007",
+    "option_a": "Speak every language but only speak in rhymes",
+    "option_b": "Know one language but speak normally",
+    "category": "absurd",
+    "hook": "One is useful, one is chaos",
+    "debate_note": "Imagine job interviews. Imagine arguments. In rhyme."
+  },
+  {
+    "id": "wyr_0008",
+    "option_a": "Live 200 years but look 90 the whole time",
+    "option_b": "Live 70 years but look 25 the whole time",
+    "category": "lifestyle",
+    "hook": "Quantity or quality?",
+    "debate_note": "Would you trade your looks for double the life?"
+  },
+  {
+    "id": "wyr_0009",
+    "option_a": "Have superhuman strength",
+    "option_b": "Have superhuman speed",
+    "category": "superpowers",
+    "hook": "Pick your superpower",
+    "debate_note": "Strength = power. Speed = escape, arrive anywhere, save anyone faster."
+  },
+  {
+    "id": "wyr_0010",
+    "option_a": "Know the exact date of your death",
+    "option_b": "Not know, but live 20 years longer",
+    "category": "moral",
+    "hook": "Would knowing ruin everything?",
+    "debate_note": "The certainty might let you plan — or it might haunt every day."
+  },
+  {
+    "id": "wyr_0011",
+    "option_a": "Eat your favourite meal every day but nothing else",
+    "option_b": "Never eat your favourite meal again",
+    "category": "food",
+    "hook": "This ruins food either way",
+    "debate_note": "Repetition kills enjoyment. But giving it up forever?"
+  },
+  {
+    "id": "wyr_0012",
+    "option_a": "Be the smartest person in any room",
+    "option_b": "Be the funniest person in any room",
+    "category": "skills",
+    "hook": "Intelligence or charisma?",
+    "debate_note": "Smart people solve problems. Funny people survive them."
+  },
+  {
+    "id": "wyr_0013",
+    "option_a": "Always feel too hot",
+    "option_b": "Always feel too cold",
+    "category": "physical",
+    "hook": "There's no right answer here",
+    "debate_note": "Cold = add layers. Heat = can't remove your skin."
+  },
+  {
+    "id": "wyr_0014",
+    "option_a": "Travel the world broke for 1 year",
+    "option_b": "Stay home with $100k you can't spend on travel",
+    "category": "lifestyle",
+    "hook": "Experience vs. security",
+    "debate_note": "Memories you can't buy vs. security you can actually use."
+  },
+  {
+    "id": "wyr_0015",
+    "option_a": "Never need sleep ever again",
+    "option_b": "Get paid $500 every time you sleep 8 hours",
+    "category": "lifestyle",
+    "hook": "Extra time OR extra money?",
+    "debate_note": "No sleep = 8 extra hours daily. $500/sleep = $182k/year for doing nothing."
+  },
+  {
+    "id": "wyr_0016",
+    "option_a": "Have a photographic memory",
+    "option_b": "Forget all your bad memories",
+    "category": "mental",
+    "hook": "Your mind, your rules",
+    "debate_note": "Perfect recall includes every embarrassment. Clean slate erases trauma."
+  },
+  {
+    "id": "wyr_0017",
+    "option_a": "Be able to pause time",
+    "option_b": "Be able to rewind time by 10 minutes",
+    "category": "superpowers",
+    "hook": "Time powers — pick one",
+    "debate_note": "Pause = unlimited time. Rewind = undo mistakes. Which would you use more?"
+  },
+  {
+    "id": "wyr_0018",
+    "option_a": "Hiccup once a minute for the rest of your life",
+    "option_b": "Sneeze 10 times every hour for the rest of your life",
+    "category": "absurd",
+    "hook": "Both are terrible — pick your suffering",
+    "debate_note": "Sneezing is exhausting. Hiccups are distracting. Vote in the comments."
+  },
+  {
+    "id": "wyr_0019",
+    "option_a": "Be able to control fire",
+    "option_b": "Be able to control water",
+    "category": "superpowers",
+    "hook": "Classic elemental battle",
+    "debate_note": "Fire = offense and warmth. Water = covers 71% of Earth and most of your body."
+  },
+  {
+    "id": "wyr_0020",
+    "option_a": "Only eat at McDonald's for a year",
+    "option_b": "Never eat fast food again",
+    "category": "food",
+    "hook": "A year of golden arches OR never again?",
+    "debate_note": "You CAN eat salads at McDonald's. But forever without? No pizza? No chips?"
+  },
+  {
+    "id": "wyr_0021",
+    "option_a": "Have an extra $10,000 right now",
+    "option_b": "Have your biggest insecurity permanently erased",
+    "category": "moral",
+    "hook": "Money or peace of mind?",
+    "debate_note": "Some insecurities cost far more than $10k in therapy."
+  },
+  {
+    "id": "wyr_0022",
+    "option_a": "Be extremely attractive but dumb",
+    "option_b": "Be extremely smart but unattractive",
+    "category": "lifestyle",
+    "hook": "Looks vs. intelligence — pick one",
+    "debate_note": "Attractiveness opens doors. Intelligence keeps them open."
+  },
+  {
+    "id": "wyr_0023",
+    "option_a": "Fight 100 duck-sized horses",
+    "option_b": "Fight 1 horse-sized duck",
+    "category": "absurd",
+    "hook": "The internet's favourite question",
+    "debate_note": "100 tiny hooves vs. one MASSIVE beak. The numbers vs. the trauma."
+  },
+  {
+    "id": "wyr_0024",
+    "option_a": "Be famous but hated",
+    "option_b": "Be unknown but universally loved by everyone you meet",
+    "category": "social",
+    "hook": "Fame vs. genuine love",
+    "debate_note": "Fame is loud. Being loved by everyone who knows you is quiet — and rarer."
+  },
+  {
+    "id": "wyr_0025",
+    "option_a": "Teleport anywhere instantly",
+    "option_b": "Time travel but only to the past (no changes allowed)",
+    "category": "superpowers",
+    "hook": "The ultimate travel power",
+    "debate_note": "Teleportation changes your daily life completely. Time travel is just tourism with guilt."
+  },
+  {
+    "id": "wyr_0026",
+    "option_a": "Never have to work again but be permanently bored",
+    "option_b": "Love your job but work 80 hours a week",
+    "category": "lifestyle",
+    "hook": "Freedom vs. passion",
+    "debate_note": "No work sounds great until you have nothing to do. 80 hours sounds brutal until you love it."
+  },
+  {
+    "id": "wyr_0027",
+    "option_a": "Always say exactly what you think",
+    "option_b": "Never be able to tell the truth",
+    "category": "social",
+    "hook": "Brutal honesty or chronic lies?",
+    "debate_note": "Total honesty destroys relationships. Total lying makes them hollow."
+  },
+  {
+    "id": "wyr_0028",
+    "option_a": "Win $1 million but can never tell anyone how you got it",
+    "option_b": "Win $100k that everyone knows about",
+    "category": "moral",
+    "hook": "Wealth with a secret or modest fame?",
+    "debate_note": "A secret million is powerful. Public $100k invites requests from everyone you know."
+  },
+  {
+    "id": "wyr_0029",
+    "option_a": "Have the ability to breathe underwater",
+    "option_b": "Have the ability to survive in space without a suit",
+    "category": "superpowers",
+    "hook": "Explore the ocean or the stars?",
+    "debate_note": "70% of Earth is ocean, 99% unexplored. Space is infinite but far."
+  },
+  {
+    "id": "wyr_0030",
+    "option_a": "Never feel physical pain",
+    "option_b": "Never feel emotional pain",
+    "category": "physical",
+    "hook": "The deepest trade-off",
+    "debate_note": "No physical pain sounds great until you can't tell you're injured. Emotional pain signals danger too."
+  },
+  {
+    "id": "wyr_0031",
+    "option_a": "Eat a tablespoon of wasabi",
+    "option_b": "Eat a tablespoon of Vegemite",
+    "category": "food",
+    "hook": "One is agony, one is an acquired taste",
+    "debate_note": "Wasabi burns for 2 minutes max. Vegemite is forever traumatic if you're not Australian."
+  },
+  {
+    "id": "wyr_0032",
+    "option_a": "Talk to animals",
+    "option_b": "Talk to plants",
+    "category": "superpowers",
+    "hook": "Which conversations would actually be useful?",
+    "debate_note": "Animals warn you about danger. Plants… take a very long time to get to the point."
+  },
+  {
+    "id": "wyr_0033",
+    "option_a": "Be the best at everything you try but only for one hour",
+    "option_b": "Be decent at everything forever",
+    "category": "skills",
+    "hook": "Peak moments or steady competence?",
+    "debate_note": "One hour of genius per skill is powerful. Permanent mediocrity is safe."
+  },
+  {
+    "id": "wyr_0034",
+    "option_a": "Every song you've ever liked suddenly sounds terrible to you",
+    "option_b": "Every movie you've ever loved becomes unwatchable",
+    "category": "lifestyle",
+    "hook": "Which loss would hurt more?",
+    "debate_note": "Music is everywhere — loss is constant. Movies you can avoid. Which do you use more?"
+  },
+  {
+    "id": "wyr_0035",
+    "option_a": "Be 10 years older than you are now",
+    "option_b": "Be 10 years younger with no memories of those years",
+    "category": "lifestyle",
+    "hook": "Time is not on your side either way",
+    "debate_note": "Older = more wisdom, less time. Younger = more time, less experience."
+  },
+  {
+    "id": "wyr_0036",
+    "option_a": "Gain 20kg overnight",
+    "option_b": "Lose all your hair overnight",
+    "category": "physical",
+    "hook": "Both happen tonight. Pick the lesser evil.",
+    "debate_note": "Weight can be worked off. Hair might not come back."
+  },
+  {
+    "id": "wyr_0037",
+    "option_a": "Have legs for arms and arms for legs",
+    "option_b": "Have your head where your stomach is and your stomach where your head is",
+    "category": "absurd",
+    "hook": "Biology was not consulted",
+    "debate_note": "Both are horrifying. The question is which is more functional."
+  },
+  {
+    "id": "wyr_0038",
+    "option_a": "Find your true love but they live on the other side of the world",
+    "option_b": "Never find true love but have an amazing friend group",
+    "category": "moral",
+    "hook": "Romantic love vs. friendship",
+    "debate_note": "Long distance is hard. But loneliness without close friends is harder."
+  },
+  {
+    "id": "wyr_0039",
+    "option_a": "Have free WiFi everywhere you go for life",
+    "option_b": "Have free food everywhere you go for life",
+    "category": "lifestyle",
+    "hook": "The modern survival question",
+    "debate_note": "Free food = survival. Free WiFi = productivity, entertainment, connection. Which runs out first?"
+  },
+  {
+    "id": "wyr_0040",
+    "option_a": "Always win every argument",
+    "option_b": "Always know when you're wrong",
+    "category": "social",
+    "hook": "Victory vs. wisdom",
+    "debate_note": "Winning arguments feels good but isolates. Knowing when you're wrong is genuinely rare and powerful."
+  },
+  {
+    "id": "wyr_0041",
+    "option_a": "Have your phone battery always at 100%",
+    "option_b": "Never feel hungry or thirsty again",
+    "category": "lifestyle",
+    "hook": "Modern need vs. biological need",
+    "debate_note": "No hunger = massive time and money saved. Full battery = never anxious about your phone dying."
+  },
+  {
+    "id": "wyr_0042",
+    "option_a": "Live in your favourite city but be broke",
+    "option_b": "Live somewhere boring but be comfortable financially",
+    "category": "lifestyle",
+    "hook": "Location or security?",
+    "debate_note": "A great city costs money to enjoy anyway. Comfort anywhere buys experiences."
+  },
+  {
+    "id": "wyr_0043",
+    "option_a": "Be able to stop time",
+    "option_b": "Be immortal (but aging normally)",
+    "category": "superpowers",
+    "hook": "Control time or beat it?",
+    "debate_note": "Stopping time gives unlimited productivity. Immortality is just eternal aging."
+  },
+  {
+    "id": "wyr_0044",
+    "option_a": "Skip traffic forever",
+    "option_b": "Never be cold again",
+    "category": "lifestyle",
+    "hook": "Two genuinely great superpowers",
+    "debate_note": "Traffic wastes years of your life. But cold is constant misery."
+  },
+  {
+    "id": "wyr_0045",
+    "option_a": "Go back to high school knowing everything you know now",
+    "option_b": "Fast-forward 10 years with $1 million in your account",
+    "category": "lifestyle",
+    "hook": "Past knowledge or future wealth?",
+    "debate_note": "Past = chance to reshape your life. Future = skip the struggle."
+  },
+  {
+    "id": "wyr_0046",
+    "option_a": "Be able to speak to the dead for 5 minutes",
+    "option_b": "Know your future for the next 10 years",
+    "category": "moral",
+    "hook": "One conversation with the past or a map of the future?",
+    "debate_note": "5 minutes with anyone who's gone. Or certainty about what's coming."
+  },
+  {
+    "id": "wyr_0047",
+    "option_a": "Always sneeze when someone says your name",
+    "option_b": "Always laugh when someone cries",
+    "category": "absurd",
+    "hook": "Both will ruin your social life",
+    "debate_note": "Sneezing is annoying but harmless. Laughing at grief is a social catastrophe."
+  },
+  {
+    "id": "wyr_0048",
+    "option_a": "Know the Wi-Fi password of every place you enter",
+    "option_b": "Never wait in a queue longer than 1 minute",
+    "category": "lifestyle",
+    "hook": "Everyday superpowers",
+    "debate_note": "Free WiFi anywhere = hundreds of dollars saved. Zero queuing = years of your life returned."
+  },
+  {
+    "id": "wyr_0049",
+    "option_a": "Be able to talk to your pet",
+    "option_b": "Have your pet live as long as you do",
+    "category": "lifestyle",
+    "hook": "For all the pet owners",
+    "debate_note": "Conversation reveals if they're happy. But would you want to know what they really think?"
+  },
+  {
+    "id": "wyr_0050",
+    "option_a": "Have no one show up to your wedding",
+    "option_b": "Have no one show up to your funeral",
+    "category": "social",
+    "hook": "Which would hurt more?",
+    "debate_note": "No wedding guests = humiliation while alive. No funeral guests = you'll never know — but still."
+  },
+  {
+    "id": "wyr_0051",
+    "option_a": "Only be able to whisper for the rest of your life",
+    "option_b": "Only be able to shout for the rest of your life",
+    "category": "absurd",
+    "hook": "Volume is now out of your hands",
+    "debate_note": "Whispering in loud places = isolation. Shouting in quiet places = constant embarrassment."
+  },
+  {
+    "id": "wyr_0052",
+    "option_a": "Have the superpower to heal others but not yourself",
+    "option_b": "Heal yourself instantly but never be able to help others",
+    "category": "moral",
+    "hook": "Selfless vs. selfish power",
+    "debate_note": "Healing others is heroic but painful. Healing yourself is practical but isolating."
+  },
+  {
+    "id": "wyr_0053",
+    "option_a": "Be able to read 10 times faster",
+    "option_b": "Remember everything you've ever read",
+    "category": "skills",
+    "hook": "Reading superpowers — pick one",
+    "debate_note": "Speed = more input. Memory = better output. Which changes your life more?"
+  },
+  {
+    "id": "wyr_0054",
+    "option_a": "Never have to exercise but stay perfectly healthy",
+    "option_b": "Never have to sleep but feel fully rested",
+    "category": "lifestyle",
+    "hook": "Which chore would you drop forever?",
+    "debate_note": "No exercise = ~5 hours/week back. No sleep = ~56 hours/week back."
+  },
+  {
+    "id": "wyr_0055",
+    "option_a": "Have the ability to delete any memory",
+    "option_b": "Be able to replay any memory in perfect detail",
+    "category": "mental",
+    "hook": "Memory is power — how do you use it?",
+    "debate_note": "Deletion = remove regret. Replay = relive every perfect moment."
+  },
+  {
+    "id": "wyr_0056",
+    "option_a": "Always know when someone is lying to you",
+    "option_b": "Always be believed when you tell the truth",
+    "category": "social",
+    "hook": "Detect lies or be trusted completely?",
+    "debate_note": "Knowing lies is exhausting but protective. Being believed = infinite credibility."
+  },
+  {
+    "id": "wyr_0057",
+    "option_a": "Give up social media forever",
+    "option_b": "Give up watching TV and movies forever",
+    "category": "lifestyle",
+    "hook": "Which one can you actually live without?",
+    "debate_note": "No social media = less FOMO, more time. No movies/TV = less entertainment, more production?"
+  },
+  {
+    "id": "wyr_0058",
+    "option_a": "Be able to survive without food",
+    "option_b": "Be able to survive without water",
+    "category": "physical",
+    "hook": "Which biological need would you drop?",
+    "debate_note": "Food = time, money, and logistics. Water = you'd be unstoppable in a crisis."
+  },
+  {
+    "id": "wyr_0059",
+    "option_a": "Be completely fluent in every coding language",
+    "option_b": "Be able to master any physical skill in 24 hours",
+    "category": "skills",
+    "hook": "Digital mastery or physical genius?",
+    "debate_note": "Code fluency = massive career power. Physical skill mastery = you can do literally anything."
+  },
+  {
+    "id": "wyr_0060",
+    "option_a": "Have $1 million but must spend it all in 24 hours",
+    "option_b": "Get $1,000 per day for the rest of your life",
+    "category": "moral",
+    "hook": "One shot vs. steady income",
+    "debate_note": "$1M in 24h = ~$41k/hour, mostly wasted. $1k/day = $365k/year forever. Maths wins."
+  }
+]
