@@ -53,7 +53,7 @@ HEADER_Y_FRAC   = 0.10   # "WOULD YOU RATHER..." top label
 OPTION_A_Y_FRAC = 0.34   # centre of option A zone
 OR_Y_FRAC       = 0.54   # centre of "— OR —" divider
 OPTION_B_Y_FRAC = 0.72   # centre of option B zone
-PROMPT_Y_FRAC   = 0.89   # "Comment A or B 👇"
+PROMPT_Y_FRAC   = 0.82   # "Comment A or B 👇"
 
 # Coloured pill boxes behind each option
 BOX_PADDING_X = 40

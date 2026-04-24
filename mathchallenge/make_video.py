@@ -49,7 +49,7 @@ CENTER_X        = PADDING_X + DRAW_WIDTH // 2
 HOOK_Y_FRAC         = 0.14   # "99% of adults get this wrong" sits here
 QUESTION_CENTER_FRAC = 0.42  # problem text vertically centred here
 ANSWER_CENTER_FRAC   = 0.72  # answer block vertically centred here
-PROMPT_Y_FRAC        = 0.88  # "Did you get it?" near the bottom
+PROMPT_Y_FRAC        = 0.82  # "Did you get it?" near the bottom
 
 # ── Appearance ────────────────────────────────────────────────────────────────
 HOOK_COLOR      = (255, 200, 50)    # amber — eye-catching

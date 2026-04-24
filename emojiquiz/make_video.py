@@ -43,7 +43,7 @@ CENTER_X        = PADDING_X + DRAW_WIDTH // 2
 HOOK_Y_FRAC    = 0.12
 EMOJI_Y_FRAC   = 0.40
 ANSWER_Y_FRAC  = 0.70
-PROMPT_Y_FRAC  = 0.88
+PROMPT_Y_FRAC  = 0.82
 
 HOOK_COLOR    = (255, 220, 80)    # warm yellow
 ANSWER_COLOR  = (255, 140, 50)    # orange

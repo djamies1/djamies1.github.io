@@ -36,8 +36,8 @@ HOOK_Y_FRAC       = 0.12
 STATEMENT_Y_FRAC  = 0.38
 PROMPT_Q_Y_FRAC   = 0.62   # "TRUE or FALSE?" in phase 1
 VERDICT_Y_FRAC    = 0.62
-EXPLAIN_Y_FRAC    = 0.78
-PROMPT_Y_FRAC     = 0.91
+EXPLAIN_Y_FRAC    = 0.74
+PROMPT_Y_FRAC     = 0.82
 
 HOOK_COLOR      = (255, 230, 80)   # warm yellow
 STATEMENT_COLOR = (255, 255, 255)  # white

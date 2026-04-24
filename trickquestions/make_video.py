@@ -51,7 +51,7 @@ CENTER_X        = PADDING_X + DRAW_WIDTH // 2
 HOOK_Y_FRAC          = 0.13
 QUESTION_CENTER_FRAC = 0.40
 ANSWER_CENTER_FRAC   = 0.71
-PROMPT_Y_FRAC        = 0.88
+PROMPT_Y_FRAC        = 0.82
 
 # ── Appearance — gold/amber trivia palette ─────────────────────────────────────
 HOOK_COLOR      = (255, 190, 40)    # warm amber
