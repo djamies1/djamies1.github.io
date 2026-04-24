@@ -111,7 +111,7 @@ def main():
     ap.add_argument("--privacy",       choices=["private", "unlisted", "public"],
                                        default=DEFAULT_PRIVACY)
     ap.add_argument("--delay",         type=int,   default=DEFAULT_DELAY)
-    ap.add_argument("--stagger-hours", type=float, default=4)
+    ap.add_argument("--stagger-hours", type=float, default=6)
     ap.add_argument("--no-stagger",    action="store_true")
     ap.add_argument("--dry-run",       action="store_true")
     args = ap.parse_args()

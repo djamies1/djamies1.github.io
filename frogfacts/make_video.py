@@ -34,7 +34,7 @@ DURATION = 9.984     # fallback — overridden at render time by actual audio le
 # ── Layout fractions (centre-y of each element as fraction of HEIGHT) ────────
 TITLE_Y_FRAC  = 0.11   # "FROG FACTS"
 FACT_Y_FRAC   = 0.50   # fact text block (centred vertically)
-FOOTER_Y_FRAC = 0.91   # follow prompt
+FOOTER_Y_FRAC = 0.87   # follow prompt
 
 # ── Font sizes ────────────────────────────────────────────────────────────────
 TITLE_FONT_SIZE  = 128

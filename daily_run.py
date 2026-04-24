@@ -29,13 +29,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 
 PIPELINES = [
-    # ("Math Challenge",   ROOT / "mathchallenge"  / "daily_upload.py"),
-    # ("Would You Rather", ROOT / "wouldyourather" / "daily_upload.py"),
-    # ("Trick Questions",  ROOT / "trickquestions" / "daily_upload.py"),
-    # ("Mandela Effect",   ROOT / "mandelaeffect"  / "daily_upload.py"),
-    # ("Emoji Quiz",       ROOT / "emojiquiz"      / "daily_upload.py"),
-    # ("Fun Facts",        ROOT / "funfacts"       / "daily_upload.py"),
-    # ("True or False",    ROOT / "trueorfalse"    / "daily_upload.py"),
+    ("Math Challenge",   ROOT / "mathchallenge"  / "daily_upload.py"),
+    ("Would You Rather", ROOT / "wouldyourather" / "daily_upload.py"),
+    ("Trick Questions",  ROOT / "trickquestions" / "daily_upload.py"),
+    ("Mandela Effect",   ROOT / "mandelaeffect"  / "daily_upload.py"),
+    ("Emoji Quiz",       ROOT / "emojiquiz"      / "daily_upload.py"),
+    ("Fun Facts",        ROOT / "funfacts"       / "daily_upload.py"),
+    ("True or False",    ROOT / "trueorfalse"    / "daily_upload.py"),
     ("Riddles",          ROOT / "riddles"        / "daily_upload.py"),
     ("Frog Facts",       ROOT / "frogfacts"      / "daily_upload.py"),
 ]

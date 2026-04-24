@@ -29,6 +29,7 @@ HEADERS = {
 
 # Each source: url + list of CSS selectors to try (in order)
 SOURCES = [
+    # ── Original sources ──────────────────────────────────────────────────────
     {
         "url": "https://www.natgeokids.com/uk/discover/animals/reptiles-and-amphibians/frog-facts/",
         "selectors": ["div.entry-content p", "div.entry-content li", "article p"],
@@ -52,6 +53,39 @@ SOURCES = [
     {
         "url": "https://a-z-animals.com/blog/10-incredible-frog-facts/",
         "selectors": ["div.entry-content p", "article p"],
+    },
+    # ── Additional sources ────────────────────────────────────────────────────
+    {
+        "url": "https://en.wikipedia.org/wiki/Frog",
+        "selectors": ["div.mw-parser-output p"],
+    },
+    {
+        "url": "https://www.britannica.com/animal/frog",
+        "selectors": ["div.topic-content p", "div.article-section p", "article p"],
+    },
+    {
+        "url": "https://animaldiversity.org/accounts/Anura/",
+        "selectors": ["div#content p", "div.prose p", "section p"],
+    },
+    {
+        "url": "https://www.dkfindout.com/us/animals-and-nature/amphibians/frogs/",
+        "selectors": ["div.page-content p", "div.text-module p", "article p"],
+    },
+    {
+        "url": "https://www.sandiegozoo.org/animals/frog",
+        "selectors": ["div.field-item p", "div.content p", "article p"],
+    },
+    {
+        "url": "https://www.worldwildlife.org/species/frog",
+        "selectors": ["div.content-block p", "main p", "article p"],
+    },
+    {
+        "url": "https://a-z-animals.com/animals/frog/",
+        "selectors": ["div.entry-content p", "div.entry-content li", "article p"],
+    },
+    {
+        "url": "https://www.thoughtco.com/frog-facts-4685969",
+        "selectors": ["div.article-content p", "div#article-content p", "article p"],
     },
 ]
 

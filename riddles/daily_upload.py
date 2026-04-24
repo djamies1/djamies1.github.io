@@ -43,7 +43,7 @@ _DIR          = Path(__file__).resolve().parent
 RIDDLES_FILE  = str(_DIR / "riddles.json")
 UPLOADED_FILE = str(_DIR / "uploaded.json")
 DEFAULT_LIMIT         = 3
-DEFAULT_STAGGER_HOURS = 4
+DEFAULT_STAGGER_HOURS = 6
 
 # YouTube channel branding
 YT_TITLE_SUFFIX = " | Riddle Me Shorts"
