@@ -1,0 +1,77 @@
+name: Daily Shorts Upload
+
+on:
+  schedule:
+    - cron: '0 8 * * *'   # 8:00 AM UTC daily
+  workflow_dispatch:        # Manual trigger from GitHub Actions UI
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install system dependencies
+        run: sudo apt-get install -y ffmpeg
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install \
+            moviepy \
+            Pillow \
+            google-api-python-client \
+            google-auth-httplib2 \
+            google-auth-oauthlib \
+            google-cloud-texttospeech \
+            imageio \
+            imageio-ffmpeg \
+            requests
+
+      - name: Restore YouTube OAuth token
+        run: |
+          echo "${{ secrets.YOUTUBE_TOKEN_JSON }}" | base64 -d > nosleep/token.json
+
+      - name: Restore GCP credentials
+        run: |
+          echo "${{ secrets.GCP_CREDENTIALS_JSON }}" | base64 -d > twosentencehorror/google_credentials.json
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$PWD/twosentencehorror/google_credentials.json" >> $GITHUB_ENV
+
+      - name: Run daily pipeline
+        run: python daily_run.py
+
+      - name: Commit updated tracking files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add \
+            nosleep/uploaded.json \
+            nosleep/token.json \
+            mathchallenge/uploaded.json \
+            wouldyourather/uploaded.json \
+            trickquestions/uploaded.json \
+            mandelaeffect/uploaded.json \
+            emojiquiz/uploaded.json \
+            funfacts/uploaded.json \
+            trueorfalse/uploaded.json \
+            riddles/uploaded.json \
+            frogfacts/uploaded.json \
+            twosentencehorror/uploaded.json
+          git diff --staged --quiet || git commit -m "chore: daily upload [skip ci]"
+          git push
