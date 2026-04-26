@@ -112,4 +112,5 @@ jobs:
             frogfacts/uploaded.json \
             twosentencehorror/uploaded.json
           git diff --staged --quiet || git commit -m "chore: daily upload [skip ci]"
+          git pull --rebase origin main
           git push
