@@ -70,7 +70,8 @@ jobs:
             google-cloud-texttospeech \
             imageio \
             imageio-ffmpeg \
-            requests
+            requests \
+            edge-tts
 
       - name: Restore YouTube credentials
         run: |
