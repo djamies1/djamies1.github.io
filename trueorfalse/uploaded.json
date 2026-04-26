@@ -90,5 +90,12 @@
     "verdict": "FALSE",
     "uploaded_at": "2026-04-26T19:06:10Z",
     "publish_at": "2026-04-27T03:01:33.000Z"
+  },
+  "tof_0013": {
+    "youtube_id": "c2Zdv0GX47c",
+    "youtube_url": "https://www.youtube.com/watch?v=c2Zdv0GX47c",
+    "statement": "Eating carrots improves your night vision.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-04-26T20:42:54Z"
   }
 }
