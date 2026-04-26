@@ -69,6 +69,10 @@ jobs:
         run: |
           echo "${{ secrets.YOUTUBE_TOKEN_JSON }}" | base64 -d > nosleep/token.json
 
+      - name: Restore YouTube client secrets
+        run: |
+          echo "${{ secrets.YOUTUBE_CLIENT_SECRETS }}" | base64 -d > nosleep/client_secrets.json
+
       - name: Restore GCP credentials
         run: |
           echo "${{ secrets.GCP_CREDENTIALS_JSON }}" | base64 -d > twosentencehorror/google_credentials.json
