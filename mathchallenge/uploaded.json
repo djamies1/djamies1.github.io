@@ -1,0 +1,106 @@
+{
+  "math_0001": {
+    "youtube_id": "wkf1mDJ5K0Y",
+    "youtube_url": "https://www.youtube.com/watch?v=wkf1mDJ5K0Y",
+    "question": "8 ÷ 2(2 + 2) = ?",
+    "answer": "16",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-04-24T01:07:57Z"
+  },
+  "math_0002": {
+    "youtube_id": "A5rNjL4sOHc",
+    "youtube_url": "https://www.youtube.com/watch?v=A5rNjL4sOHc",
+    "question": "6 ÷ 2(1 + 2) = ?",
+    "answer": "9",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-04-24T01:09:42Z",
+    "publish_at": "2026-04-24T05:07:54.000Z"
+  },
+  "math_0003": {
+    "youtube_id": "BfYw-1t3wrc",
+    "youtube_url": "https://www.youtube.com/watch?v=BfYw-1t3wrc",
+    "question": "What is 1 + 1 + 1 + 1 + 1 × 0?",
+    "answer": "5",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-04-24T01:10:56Z",
+    "publish_at": "2026-04-24T09:07:54.000Z"
+  },
+  "math_0004": {
+    "youtube_id": "esAXrXjJisY",
+    "youtube_url": "https://www.youtube.com/watch?v=esAXrXjJisY",
+    "question": "A bat and ball cost $1.10 total. The bat costs $1.00 MORE than the ball. How much is the ball?",
+    "answer": "5 cents",
+    "category": "word_problem",
+    "uploaded_at": "2026-04-24T13:34:00Z"
+  },
+  "math_0005": {
+    "youtube_id": "MU0FI4HLoOk",
+    "youtube_url": "https://www.youtube.com/watch?v=MU0FI4HLoOk",
+    "question": "If 5 machines make 5 widgets in 5 minutes, how long for 100 machines to make 100 widgets?",
+    "answer": "5 minutes",
+    "category": "word_problem",
+    "uploaded_at": "2026-04-24T13:35:30Z",
+    "publish_at": "2026-04-24T17:33:07.000Z"
+  },
+  "math_0006": {
+    "youtube_id": "Foo4lt5kMdc",
+    "youtube_url": "https://www.youtube.com/watch?v=Foo4lt5kMdc",
+    "question": "Lily pads double daily. They cover a lake in 48 days. When was the lake HALF covered?",
+    "answer": "Day 47",
+    "category": "word_problem",
+    "uploaded_at": "2026-04-24T13:36:59Z",
+    "publish_at": "2026-04-24T21:33:07.000Z"
+  },
+  "math_0007": {
+    "youtube_id": "1JW84r5jA8A",
+    "youtube_url": "https://www.youtube.com/watch?v=1JW84r5jA8A",
+    "question": "A farmer has 17 sheep. ALL BUT 9 die. How many sheep are left?",
+    "answer": "9",
+    "category": "trick_question",
+    "uploaded_at": "2026-04-25T14:55:45Z"
+  },
+  "math_0008": {
+    "youtube_id": "isqSL7EEucE",
+    "youtube_url": "https://www.youtube.com/watch?v=isqSL7EEucE",
+    "question": "How long did the Hundred Years' War last?",
+    "answer": "116 years",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-04-25T14:57:16Z",
+    "publish_at": "2026-04-25T18:54:25.000Z"
+  },
+  "math_0009": {
+    "youtube_id": "tcQ5-yuXM0s",
+    "youtube_url": "https://www.youtube.com/watch?v=tcQ5-yuXM0s",
+    "question": "You have a bowl with 6 apples. You take away 4. How many apples do YOU have?",
+    "answer": "4",
+    "category": "trick_question",
+    "uploaded_at": "2026-04-25T14:58:49Z",
+    "publish_at": "2026-04-25T22:54:25.000Z"
+  },
+  "math_0010": {
+    "youtube_id": "3Swi0BlXm_I",
+    "youtube_url": "https://www.youtube.com/watch?v=3Swi0BlXm_I",
+    "question": "A snail is at the bottom of a 10ft well. It climbs 3ft by day, slips 2ft at night. How many days to escape?",
+    "answer": "8 days",
+    "category": "word_problem",
+    "uploaded_at": "2026-04-26T18:36:24Z"
+  },
+  "math_0011": {
+    "youtube_id": "kfl6EKXYyB0",
+    "youtube_url": "https://www.youtube.com/watch?v=kfl6EKXYyB0",
+    "question": "What comes next?\n1, 1, 2, 3, 5, 8, 13, __",
+    "answer": "21",
+    "category": "sequence",
+    "uploaded_at": "2026-04-26T18:37:49Z",
+    "publish_at": "2026-04-26T22:35:06.000Z"
+  },
+  "math_0012": {
+    "youtube_id": "6nqCNj8Txr0",
+    "youtube_url": "https://www.youtube.com/watch?v=6nqCNj8Txr0",
+    "question": "What letter comes next?\nO, T, T, F, F, S, S, E, __",
+    "answer": "N",
+    "category": "sequence",
+    "uploaded_at": "2026-04-26T18:39:17Z",
+    "publish_at": "2026-04-27T02:35:06.000Z"
+  }
+}

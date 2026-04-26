@@ -34,7 +34,6 @@ __pycache__/
 # YouTube upload credentials and state (keep off git)
 client_secrets.json
 token.json
-uploaded.json
 
 # TikTok upload credentials and state
 tiktok_creds.json
