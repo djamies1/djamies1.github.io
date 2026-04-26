@@ -5,7 +5,9 @@ video_output/
 
 # Large binary media assets (store these locally, not in git)
 background_images/
-*_music/
+# Music: commit small MP3s but ignore large WAV/FLAC files
+*.wav
+*.flac
 
 # moviepy temp files
 *TEMP_MPY_wvf_snd.mp4
