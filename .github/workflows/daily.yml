@@ -72,6 +72,7 @@ jobs:
       - name: Restore YouTube client secrets
         run: |
           echo "${{ secrets.YOUTUBE_CLIENT_SECRETS }}" | base64 -d > nosleep/client_secrets.json
+          echo "${{ secrets.YOUTUBE_CLIENT_SECRETS }}" | base64 -d > client_secrets.json
 
       - name: Restore GCP credentials
         run: |
