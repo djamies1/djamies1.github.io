@@ -115,6 +115,8 @@ DISPLAY_FONTS = [
     "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/October Crow.ttf",
     "C:/Windows/Fonts/October Crow.ttf",
     "October Crow.ttf",
+    "/home/runner/.local/share/fonts/FredokaOne-Regular.ttf",
+    "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf",
 ]
 BODY_FONTS = [
     "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/PlayfairDisplay-Italic.ttf",
@@ -122,6 +124,8 @@ BODY_FONTS = [
     "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/Roboto-Italic.ttf",
     "C:/Windows/Fonts/Roboto-Italic.ttf",
     "C:/Windows/Fonts/georgiai.ttf",
+    "/usr/share/fonts/truetype/freefont/FreeSerif.ttf",
+    "/usr/share/fonts/truetype/freefont/FreeSans.ttf",
 ]
 BODY_FONTS_ITALIC = [
     "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/PlayfairDisplay-Italic.ttf",

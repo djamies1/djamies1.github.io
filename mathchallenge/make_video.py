@@ -99,6 +99,8 @@ DISPLAY_FONTS = [
     "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/PlayfairDisplay-Bold.ttf",
     "C:/Windows/Fonts/arialbd.ttf",
     "C:/Windows/Fonts/calibrib.ttf",
+    "/home/runner/.local/share/fonts/FredokaOne-Regular.ttf",
+    "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf",
 ]
 BODY_FONTS = [
     "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/PlayfairDisplay-Regular.ttf",
@@ -106,6 +108,8 @@ BODY_FONTS = [
     "C:/Windows/Fonts/georgia.ttf",
     "C:/Windows/Fonts/arial.ttf",
     "C:/Windows/Fonts/calibri.ttf",
+    "/usr/share/fonts/truetype/freefont/FreeSerif.ttf",
+    "/usr/share/fonts/truetype/freefont/FreeSans.ttf",
 ]
 
 

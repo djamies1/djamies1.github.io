@@ -51,7 +51,12 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install system dependencies
-        run: sudo apt-get install -y ffmpeg
+        run: |
+          sudo apt-get install -y ffmpeg fonts-freefont-ttf wget
+          mkdir -p /home/runner/.local/share/fonts
+          wget -q "https://github.com/google/fonts/raw/main/ofl/fredokaone/FredokaOne-Regular.ttf" \
+            -O /home/runner/.local/share/fonts/FredokaOne-Regular.ttf
+          fc-cache -f
 
       - name: Install Python dependencies
         run: |
@@ -69,8 +74,7 @@ jobs:
 
       - name: Restore YouTube credentials
         run: |
-          echo "${{ secrets.YOUTUBE_TOKEN_JSON }}" | base64 -d > token.json
-          echo "${{ secrets.YOUTUBE_TOKEN_JSON }}" | base64 -d > nosleep/token.json
+          echo "${{ secrets.ALL_PIPELINE_TOKENS }}" | base64 -d | tar xz
           echo "${{ secrets.YOUTUBE_CLIENT_SECRETS }}" | base64 -d > client_secrets.json
           echo "${{ secrets.YOUTUBE_CLIENT_SECRETS }}" | base64 -d > nosleep/client_secrets.json
 
@@ -82,7 +86,7 @@ jobs:
       - name: Run daily pipeline
         run: |
           if [ -n "${{ github.event.inputs.pipeline }}" ]; then
-            python "${{ github.event.inputs.pipeline }}/daily_upload.py" ${{ github.event.inputs.extra_args }}
+            cd "${{ github.event.inputs.pipeline }}" && python daily_upload.py ${{ github.event.inputs.extra_args }}
           else
             python daily_run.py ${{ github.event.inputs.extra_args }}
           fi

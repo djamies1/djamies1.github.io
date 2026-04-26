@@ -89,6 +89,8 @@ BODY_FONTS = [
     "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/Roboto-Regular.ttf",  # per-user install (static)
     "C:/Windows/Fonts/Roboto-Regular.ttf",   # system-wide install
     "C:/Users/prawn/Downloads/Creepster,Roboto/Roboto/static/Roboto-Regular.ttf",
+    "/usr/share/fonts/truetype/freefont/FreeSerif.ttf",
+    "/usr/share/fonts/truetype/freefont/FreeSans.ttf",
 ]
 BODY_FONTS_ITALIC = [
     "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/Roboto-Italic.ttf",
@@ -119,6 +121,8 @@ DISPLAY_FONTS = [
     "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/October Crow.ttf",  # per-user install
     "C:/Windows/Fonts/October Crow.ttf",                                       # system-wide install
     "October Crow.ttf",                                                         # fallback: same folder as script
+    "/home/runner/.local/share/fonts/FredokaOne-Regular.ttf",
+    "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf",
 ]
 
 def _load_font(size: int, bold: bool = False, display: bool = False,
