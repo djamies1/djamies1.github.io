@@ -4,6 +4,27 @@ on:
   schedule:
     - cron: '0 8 * * *'   # 8:00 AM UTC daily
   workflow_dispatch:        # Manual trigger from GitHub Actions UI
+    inputs:
+      pipeline:
+        description: 'Pipeline to run (leave blank for all)'
+        required: false
+        default: ''
+        type: choice
+        options:
+          - ''
+          - mathchallenge
+          - wouldyourather
+          - trickquestions
+          - mandelaeffect
+          - emojiquiz
+          - funfacts
+          - trueorfalse
+          - riddles
+          - frogfacts
+      extra_args:
+        description: 'Extra args e.g. --limit 1 --privacy private'
+        required: false
+        default: ''
 
 jobs:
   upload:
@@ -54,7 +75,12 @@ jobs:
           echo "GOOGLE_APPLICATION_CREDENTIALS=$PWD/twosentencehorror/google_credentials.json" >> $GITHUB_ENV
 
       - name: Run daily pipeline
-        run: python daily_run.py
+        run: |
+          if [ -n "${{ github.event.inputs.pipeline }}" ]; then
+            python "${{ github.event.inputs.pipeline }}/daily_upload.py" ${{ github.event.inputs.extra_args }}
+          else
+            python daily_run.py ${{ github.event.inputs.extra_args }}
+          fi
 
       - name: Commit updated tracking files
         run: |
