@@ -65,14 +65,12 @@ jobs:
             imageio-ffmpeg \
             requests
 
-      - name: Restore YouTube OAuth token
+      - name: Restore YouTube credentials
         run: |
+          echo "${{ secrets.YOUTUBE_TOKEN_JSON }}" | base64 -d > token.json
           echo "${{ secrets.YOUTUBE_TOKEN_JSON }}" | base64 -d > nosleep/token.json
-
-      - name: Restore YouTube client secrets
-        run: |
-          echo "${{ secrets.YOUTUBE_CLIENT_SECRETS }}" | base64 -d > nosleep/client_secrets.json
           echo "${{ secrets.YOUTUBE_CLIENT_SECRETS }}" | base64 -d > client_secrets.json
+          echo "${{ secrets.YOUTUBE_CLIENT_SECRETS }}" | base64 -d > nosleep/client_secrets.json
 
       - name: Restore GCP credentials
         run: |
@@ -89,6 +87,7 @@ jobs:
 
       - name: Commit updated tracking files
         run: |
+          cp token.json nosleep/token.json
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add \
