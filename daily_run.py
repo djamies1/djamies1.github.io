@@ -62,4 +62,4 @@ print(f"\n{'='*60}")
 print("All pipelines finished." if overall_ok else "Done (one or more pipelines had errors).")
 print(f"{'='*60}")
 
-sys.exit(0 if overall_ok else 1)
+sys.exit(0)  # always exit 0 so workflow commit step isn't skipped on partial failures
