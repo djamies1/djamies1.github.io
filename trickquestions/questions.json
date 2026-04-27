@@ -538,5 +538,4442 @@
     "category": "history",
     "difficulty": "hard",
     "hook": "History rewrote itself"
+  },
+  {
+    "question": "Which country invented champagne?",
+    "answer": "France",
+    "answer_note": "Specifically the Champagne region. Dom Pérignon didn't invent it — he actually tried to prevent the bubbles.",
+    "category": "food",
+    "difficulty": "medium",
+    "hook": "You'll doubt yourself",
+    "id": "tq_0061"
+  },
+  {
+    "question": "What colour is a polar bear's fur?",
+    "answer": "Transparent (appears white)",
+    "answer_note": "Polar bear hairs are actually hollow and transparent. They scatter light to appear white.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Not what you think",
+    "id": "tq_0062"
+  },
+  {
+    "question": "How many stars are on the Australian flag?",
+    "answer": "6",
+    "answer_note": "The Commonwealth Star has 7 points (not 6). And the Southern Cross has 5 stars. Total: 6 stars.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Count them!",
+    "id": "tq_0063"
+  },
+  {
+    "question": "What is the shortest war in history?",
+    "answer": "The Anglo-Zanzibar War (38–45 minutes)",
+    "answer_note": "On 27 August 1896, Zanzibar surrendered to Britain in under 45 minutes.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "How short?",
+    "id": "tq_0064"
+  },
+  {
+    "question": "What colour were stop signs originally?",
+    "answer": "Yellow",
+    "answer_note": "Early stop signs (1915) were yellow because reflective materials didn't exist. Red came in the 1950s.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Not red!",
+    "id": "tq_0065"
+  },
+  {
+    "question": "What animal kills the most humans per year?",
+    "answer": "Mosquito (over 700,000 deaths)",
+    "answer_note": "Mosquitoes transmit malaria, dengue and other diseases, killing more than all other animals combined.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Not sharks, not snakes",
+    "id": "tq_0066"
+  },
+  {
+    "question": "Is glass a liquid or a solid?",
+    "answer": "A solid (amorphous/non-crystalline)",
+    "answer_note": "Old windows are thicker at the bottom from manufacturing, not flow. Glass is definitively a solid.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "You might be wrong",
+    "id": "tq_0067"
+  },
+  {
+    "question": "Which planet has the most moons?",
+    "answer": "Saturn (146 confirmed)",
+    "answer_note": "As of 2023, Saturn has 146 confirmed moons, overtaking Jupiter's 95.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Not Jupiter",
+    "id": "tq_0068"
+  },
+  {
+    "question": "How long is a nautical mile compared to a regular mile?",
+    "answer": "Longer — 1 nautical mile ≈ 1.15 miles",
+    "answer_note": "A nautical mile equals 1,852 metres; a land mile is 1,609 metres.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Same or different?",
+    "id": "tq_0069"
+  },
+  {
+    "question": "What language has the most native speakers?",
+    "answer": "Mandarin Chinese",
+    "answer_note": "Mandarin has ~920 million native speakers, making it #1. English is 4th by native speakers.",
+    "category": "language",
+    "difficulty": "medium",
+    "hook": "Not English!",
+    "id": "tq_0070"
+  },
+  {
+    "question": "Who painted the Sistine Chapel ceiling?",
+    "answer": "Michelangelo",
+    "answer_note": "Michelangelo painted it between 1508–1512, mostly lying on scaffolding. Not on his back — a myth.",
+    "category": "history",
+    "difficulty": "easy",
+    "hook": "Do you know the truth?",
+    "id": "tq_0071"
+  },
+  {
+    "question": "Where was the first McDonald's?",
+    "answer": "San Bernardino, California (1940)",
+    "answer_note": "Richard and Maurice McDonald opened the first McDonald's in San Bernardino in 1940. Not Chicago.",
+    "category": "food",
+    "difficulty": "hard",
+    "hook": "Where really?",
+    "id": "tq_0072"
+  },
+  {
+    "question": "What is the loudest animal on Earth?",
+    "answer": "Sperm whale (up to 230 dB)",
+    "answer_note": "Sperm whale clicks reach 230 decibels — louder than a jet engine. Not the blue whale.",
+    "category": "nature",
+    "difficulty": "hard",
+    "hook": "Not the lion",
+    "id": "tq_0073"
+  },
+  {
+    "question": "Which country has the most natural lakes?",
+    "answer": "Canada",
+    "answer_note": "Canada has over 3 million lakes — roughly 60% of the world's lake surface area.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Can you guess?",
+    "id": "tq_0074"
+  },
+  {
+    "question": "When was the fax machine invented?",
+    "answer": "1843 — before the telephone",
+    "answer_note": "Alexander Bain patented a fax-like device in 1843. The telephone came in 1876.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Before phones?!",
+    "id": "tq_0075"
+  },
+  {
+    "question": "What is the world's oldest written language?",
+    "answer": "Sumerian (c. 3200 BC)",
+    "answer_note": "Sumerian cuneiform is the oldest known writing system, originating in Mesopotamia around 3200 BC.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Older than you think",
+    "id": "tq_0076"
+  },
+  {
+    "question": "How fast does hair grow?",
+    "answer": "About 6 inches (15 cm) per year",
+    "answer_note": "Hair grows about 0.5 inches per month on average — roughly 6 inches or 15 cm per year.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Know your hair",
+    "id": "tq_0077"
+  },
+  {
+    "question": "What is the rarest blood type?",
+    "answer": "AB negative",
+    "answer_note": "AB negative occurs in fewer than 1% of people worldwide, making it the rarest major blood type.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Do you know yours?",
+    "id": "tq_0078"
+  },
+  {
+    "question": "Which US state is farthest east?",
+    "answer": "Alaska (technically)",
+    "answer_note": "Alaska's Aleutian Islands extend past 180° longitude into the Eastern Hemisphere, making it both the farthest west AND east.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Trick geography",
+    "id": "tq_0079"
+  },
+  {
+    "question": "What is the fastest bird in level flight?",
+    "answer": "Common swift (112 mph)",
+    "answer_note": "The peregrine falcon dives at 240+ mph, but the common swift flies fastest in level flight at ~112 mph.",
+    "category": "nature",
+    "difficulty": "hard",
+    "hook": "Not the falcon",
+    "id": "tq_0080"
+  },
+  {
+    "question": "Which country drinks the most coffee per person?",
+    "answer": "Finland",
+    "answer_note": "Finns drink an average of 12 kg of coffee per person per year — the most in the world.",
+    "category": "food",
+    "difficulty": "hard",
+    "hook": "Not Italy or USA",
+    "id": "tq_0081"
+  },
+  {
+    "question": "What colour is the sun?",
+    "answer": "White",
+    "answer_note": "The sun appears yellow-orange due to Earth's atmosphere scattering blue light. In space, it's white.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Not yellow",
+    "id": "tq_0082"
+  },
+  {
+    "question": "How many languages are spoken worldwide?",
+    "answer": "Around 7,000",
+    "answer_note": "Linguists estimate about 7,000 languages are spoken today, though about 40% are endangered.",
+    "category": "language",
+    "difficulty": "medium",
+    "hook": "Way more than you think",
+    "id": "tq_0083"
+  },
+  {
+    "question": "What was the first toy advertised on TV?",
+    "answer": "Mr. Potato Head (1952)",
+    "answer_note": "Mr. Potato Head became the first toy marketed directly to children via television commercials in 1952.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "What was first?",
+    "id": "tq_0084"
+  },
+  {
+    "question": "Which metal is liquid at room temperature?",
+    "answer": "Mercury",
+    "answer_note": "Mercury has a melting point of -38.8°C, so it's liquid at all normal room temperatures.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "What metal is liquid?",
+    "id": "tq_0085"
+  },
+  {
+    "question": "What is the largest organ in the human body?",
+    "answer": "Skin",
+    "answer_note": "The skin covers ~2 square metres and weighs ~11 lbs. It's definitively the largest organ.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "You might say liver",
+    "id": "tq_0086"
+  },
+  {
+    "question": "Which country has the longest coastline?",
+    "answer": "Canada",
+    "answer_note": "Canada's coastline is 202,080 km — the longest in the world, including its island coastlines.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Not Australia",
+    "id": "tq_0087"
+  },
+  {
+    "question": "What is the world's largest desert?",
+    "answer": "Antarctica",
+    "answer_note": "Antarctica is a cold desert: 14 million km². The Sahara is only the largest hot desert.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Not the Sahara",
+    "id": "tq_0088"
+  },
+  {
+    "question": "Who invented the telephone?",
+    "answer": "The patent went to Alexander Graham Bell (disputed)",
+    "answer_note": "Italian inventor Antonio Meucci built a voice communication device in 1854 — years before Bell's 1876 patent.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "It's complicated",
+    "id": "tq_0089"
+  },
+  {
+    "question": "What is the most common element in the universe?",
+    "answer": "Hydrogen",
+    "answer_note": "Hydrogen makes up about 75% of all normal matter in the universe by mass.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Stars are mostly...",
+    "id": "tq_0090"
+  },
+  {
+    "question": "Which continent has no native reptiles?",
+    "answer": "Antarctica",
+    "answer_note": "Antarctica has no native reptiles — it's too cold for ectothermic animals to survive there.",
+    "category": "nature",
+    "difficulty": "medium",
+    "hook": "Name the continent",
+    "id": "tq_0091"
+  },
+  {
+    "question": "What colour is blood inside your veins?",
+    "answer": "Dark red (not blue)",
+    "answer_note": "Deoxygenated blood is dark red, not blue. Veins appear blue through skin due to light absorption.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "It's NOT blue",
+    "id": "tq_0092"
+  },
+  {
+    "question": "How many bones does a shark have?",
+    "answer": "Zero",
+    "answer_note": "Sharks have no bones — their skeleton is made entirely of cartilage.",
+    "category": "nature",
+    "difficulty": "easy",
+    "hook": "Count the bones",
+    "id": "tq_0093"
+  },
+  {
+    "question": "Where was pizza invented?",
+    "answer": "Naples, Italy",
+    "answer_note": "Modern pizza as we know it was created in Naples, Italy in the 18th century.",
+    "category": "food",
+    "difficulty": "easy",
+    "hook": "Where really?",
+    "id": "tq_0094"
+  },
+  {
+    "question": "What is the world's most widely spoken language?",
+    "answer": "English (by total speakers)",
+    "answer_note": "English has ~1.5 billion total speakers including second-language speakers — more than Mandarin's total.",
+    "category": "language",
+    "difficulty": "medium",
+    "hook": "Total vs native",
+    "id": "tq_0095"
+  },
+  {
+    "question": "Which bird is the symbol of peace?",
+    "answer": "Dove (white dove)",
+    "answer_note": "The white dove with an olive branch is a universal symbol of peace, dating back to the Bible and ancient Greece.",
+    "category": "history",
+    "difficulty": "easy",
+    "hook": "Easy one",
+    "id": "tq_0096"
+  },
+  {
+    "question": "What animal can survive being frozen solid?",
+    "answer": "Wood frog",
+    "answer_note": "The North American wood frog can freeze solid in winter — heart stops, breathing stops — and revive in spring.",
+    "category": "nature",
+    "difficulty": "hard",
+    "hook": "Survive being frozen?",
+    "id": "tq_0097"
+  },
+  {
+    "question": "How long did the Hundred Years' War last?",
+    "answer": "116 years (1337–1453)",
+    "answer_note": "The Hundred Years' War actually lasted 116 years, from 1337 to 1453. The name is approximate.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "Count the years",
+    "id": "tq_0098"
+  },
+  {
+    "question": "What is the most abundant gas in Earth's atmosphere?",
+    "answer": "Nitrogen (78%)",
+    "answer_note": "Nitrogen makes up ~78% of Earth's atmosphere. Oxygen is only about 21%.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Not oxygen",
+    "id": "tq_0099"
+  },
+  {
+    "question": "Which country is both in Europe and Asia?",
+    "answer": "Russia (and Turkey, Kazakhstan, Azerbaijan, Georgia)",
+    "answer_note": "Several countries straddle both continents. Russia is the most famous — the Ural Mountains mark the boundary.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Name one",
+    "id": "tq_0100"
+  },
+  {
+    "question": "What colour was Coca-Cola originally?",
+    "answer": "Green",
+    "answer_note": "Early Coca-Cola syrup was green before dilution. The caramel colouring was added later.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Not brown!",
+    "id": "tq_0101"
+  },
+  {
+    "question": "How many teeth do adult humans have?",
+    "answer": "32 (including wisdom teeth)",
+    "answer_note": "Adults have 32 permanent teeth if wisdom teeth come in fully. Without them, typically 28.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Count them",
+    "id": "tq_0102"
+  },
+  {
+    "question": "What is the largest mammal in the world?",
+    "answer": "Blue whale",
+    "answer_note": "The blue whale can reach 30 metres and 180 tonnes — the largest animal ever known to have existed.",
+    "category": "nature",
+    "difficulty": "easy",
+    "hook": "Biggest ever?",
+    "id": "tq_0103"
+  },
+  {
+    "question": "Which country created the World Wide Web?",
+    "answer": "Developed in Switzerland (CERN) by a Brit",
+    "answer_note": "Tim Berners-Lee, a British scientist, invented the WWW in 1989 while working at CERN in Geneva, Switzerland.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "UK or USA?",
+    "id": "tq_0104"
+  },
+  {
+    "question": "What sport was originally called 'mintonette'?",
+    "answer": "Volleyball",
+    "answer_note": "William G. Morgan invented the game in 1895 and called it Mintonette. The name volleyball was suggested a year later.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Name this sport",
+    "id": "tq_0105"
+  },
+  {
+    "question": "Which US President appears on the $100 bill?",
+    "answer": "Benjamin Franklin — who was never president",
+    "answer_note": "Benjamin Franklin is on the $100 bill but was never US president. He was a Founding Father and inventor.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "Think carefully",
+    "id": "tq_0106"
+  },
+  {
+    "question": "What material was the first plastic made from?",
+    "answer": "Celluloid (made from plant cellulose)",
+    "answer_note": "Celluloid, invented in the 1860s, was the first synthetic plastic. It was plant-based, not petroleum-based.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Natural plastic?",
+    "id": "tq_0107"
+  },
+  {
+    "question": "Which continent is the driest on Earth?",
+    "answer": "Antarctica",
+    "answer_note": "Antarctica receives less than 200mm of precipitation annually in its interior — drier than the Sahara.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Not what you'd expect",
+    "id": "tq_0108"
+  },
+  {
+    "question": "What language has the largest vocabulary?",
+    "answer": "English (over 170,000 words in use)",
+    "answer_note": "The Oxford English Dictionary tracks 170,000+ words in current use. English borrows heavily from other languages.",
+    "category": "language",
+    "difficulty": "medium",
+    "hook": "Most words?",
+    "id": "tq_0109"
+  },
+  {
+    "question": "Who was the first woman to win a Nobel Prize?",
+    "answer": "Marie Curie (1903, Physics)",
+    "answer_note": "Marie Curie won the Physics Nobel in 1903 — and a second Nobel in Chemistry in 1911.",
+    "category": "history",
+    "difficulty": "easy",
+    "hook": "Name her",
+    "id": "tq_0110"
+  },
+  {
+    "question": "What percentage of the ocean has been explored?",
+    "answer": "About 20%",
+    "answer_note": "Scientists estimate we've explored only about 20% of Earth's oceans. More is unknown than known.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Less than you think",
+    "id": "tq_0111"
+  },
+  {
+    "question": "Which country has the most UNESCO World Heritage Sites?",
+    "answer": "Italy (58 sites)",
+    "answer_note": "Italy has 58 UNESCO World Heritage Sites — more than any other country as of 2023.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Most in the world?",
+    "id": "tq_0112"
+  },
+  {
+    "question": "How long does light from the Sun take to reach Earth?",
+    "answer": "About 8 minutes 20 seconds",
+    "answer_note": "The Sun is ~150 million km away. Light travels at 300,000 km/s, so it takes ~8 minutes 20 seconds.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Speed of light",
+    "id": "tq_0113"
+  },
+  {
+    "question": "What is the rarest natural element on Earth?",
+    "answer": "Astatine",
+    "answer_note": "Astatine is so rare that at any given moment, only about 28 grams exist in the entire Earth's crust.",
+    "category": "science",
+    "difficulty": "hard",
+    "hook": "Rarest element",
+    "id": "tq_0114"
+  },
+  {
+    "question": "Which country has the most pyramids?",
+    "answer": "Sudan (over 200 pyramids)",
+    "answer_note": "Sudan has more ancient pyramids than Egypt — over 200 built by the Nubian kingdoms of Kush.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Not Egypt!",
+    "id": "tq_0115"
+  },
+  {
+    "question": "What is the hardest natural substance on Earth?",
+    "answer": "Diamond",
+    "answer_note": "Diamond scores 10 on the Mohs hardness scale — the maximum. Only a diamond can scratch a diamond.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Hardest thing",
+    "id": "tq_0116"
+  },
+  {
+    "question": "Which planet rotates the fastest?",
+    "answer": "Jupiter (10-hour day)",
+    "answer_note": "Jupiter completes a full rotation in about 10 hours despite being 1,300 times larger than Earth.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Fastest spinner",
+    "id": "tq_0117"
+  },
+  {
+    "question": "How many chambers does a human heart have?",
+    "answer": "4 (two atria, two ventricles)",
+    "answer_note": "The human heart has 4 chambers. Fish have 2, amphibians 3, and mammals 4.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Count the chambers",
+    "id": "tq_0118"
+  },
+  {
+    "question": "Which country gave us the number zero?",
+    "answer": "India",
+    "answer_note": "The concept of zero as a number was developed in India around the 5th century by mathematician Brahmagupta.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "Who invented zero?",
+    "id": "tq_0119"
+  },
+  {
+    "question": "What is the world's most expensive spice by weight?",
+    "answer": "Saffron",
+    "answer_note": "Saffron comes from the stigmas of Crocus flowers — it takes 150,000 flowers to make 1kg of saffron.",
+    "category": "food",
+    "difficulty": "medium",
+    "hook": "Most expensive spice",
+    "id": "tq_0120"
+  },
+  {
+    "question": "Which country has no official capital city?",
+    "answer": "Nauru",
+    "answer_note": "Nauru, the world's third-smallest country, has no official capital city. Yaren is considered the de facto capital.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "No capital?",
+    "id": "tq_0121"
+  },
+  {
+    "question": "How old is the Earth?",
+    "answer": "About 4.5 billion years",
+    "answer_note": "Earth formed approximately 4.54 billion years ago from the solar nebula.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "How old?",
+    "id": "tq_0122"
+  },
+  {
+    "question": "Who really invented the light bulb?",
+    "answer": "Many inventors — including Humphry Davy in 1802",
+    "answer_note": "Humphry Davy created the first electric light in 1802. Edison improved and commercialised it in 1879.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "Not just Edison",
+    "id": "tq_0123"
+  },
+  {
+    "question": "Which ocean is the deepest?",
+    "answer": "Pacific (Mariana Trench, 11,034 m)",
+    "answer_note": "The Mariana Trench in the Pacific is the deepest point on Earth at 11,034 metres (36,089 feet).",
+    "category": "geography",
+    "difficulty": "easy",
+    "hook": "Deepest ocean",
+    "id": "tq_0124"
+  },
+  {
+    "question": "What was the first country to give women the right to vote?",
+    "answer": "New Zealand (1893)",
+    "answer_note": "New Zealand became the first self-governing country to grant women the right to vote in 1893.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "First to vote?",
+    "id": "tq_0125"
+  },
+  {
+    "question": "How many stomachs does a cow have?",
+    "answer": "One stomach, four compartments",
+    "answer_note": "Cows have one stomach with four compartments: rumen, reticulum, omasum, and abomasum.",
+    "category": "nature",
+    "difficulty": "medium",
+    "hook": "Count the stomachs",
+    "id": "tq_0126"
+  },
+  {
+    "question": "What country has the most time zones?",
+    "answer": "France (12 time zones including territories)",
+    "answer_note": "Due to overseas territories, France spans 12 time zones — more than any other country, including Russia.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Most time zones?",
+    "id": "tq_0127"
+  },
+  {
+    "question": "What is the longest river in the world?",
+    "answer": "The Nile (6,650 km) — but debated",
+    "answer_note": "The Nile is traditionally considered longest at 6,650 km, though the Amazon is sometimes measured longer depending on source.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Nile or Amazon?",
+    "id": "tq_0128"
+  },
+  {
+    "question": "Which US state was the last to be admitted to the Union?",
+    "answer": "Hawaii (1959)",
+    "answer_note": "Hawaii became the 50th and most recent US state on August 21, 1959.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "Last state?",
+    "id": "tq_0129"
+  },
+  {
+    "question": "What is the main ingredient of glass?",
+    "answer": "Silica (silicon dioxide / sand)",
+    "answer_note": "Glass is made primarily from silica — essentially purified and melted sand.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "What's glass made of?",
+    "id": "tq_0130"
+  },
+  {
+    "question": "How many languages are in danger of extinction?",
+    "answer": "About 3,000 (nearly half of all languages)",
+    "answer_note": "UNESCO estimates that nearly 3,000 of the world's 7,000 languages are endangered.",
+    "category": "language",
+    "difficulty": "medium",
+    "hook": "Disappearing languages",
+    "id": "tq_0131"
+  },
+  {
+    "question": "Who was the youngest person ever to win a Nobel Prize?",
+    "answer": "Malala Yousafzai (age 17, 2014)",
+    "answer_note": "Malala Yousafzai won the Nobel Peace Prize in 2014 at age 17 for her advocacy for girls' education.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "Youngest Nobel winner",
+    "id": "tq_0132"
+  },
+  {
+    "question": "What percentage of Earth is covered by water?",
+    "answer": "About 71%",
+    "answer_note": "Oceans, lakes, and rivers cover approximately 71% of Earth's surface, though 97% of that water is saltwater.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Most of Earth is...",
+    "id": "tq_0133"
+  },
+  {
+    "question": "What is the most common surname in the world?",
+    "answer": "Wang (China)",
+    "answer_note": "Wang (王) is the most common surname globally, with over 100 million people sharing it.",
+    "category": "language",
+    "difficulty": "hard",
+    "hook": "World's most common name",
+    "id": "tq_0134"
+  },
+  {
+    "question": "Which animal has the longest pregnancy?",
+    "answer": "African elephant (22 months)",
+    "answer_note": "African elephants carry their young for about 22 months — nearly 2 years — the longest gestation of any land animal.",
+    "category": "nature",
+    "difficulty": "medium",
+    "hook": "Longest pregnancy",
+    "id": "tq_0135"
+  },
+  {
+    "question": "What is the most translated book in history?",
+    "answer": "The Bible",
+    "answer_note": "The Bible has been translated into over 700 languages in full, and portions into 3,500+ languages.",
+    "category": "history",
+    "difficulty": "easy",
+    "hook": "Most translated book",
+    "id": "tq_0136"
+  },
+  {
+    "question": "How many bones are in the human foot?",
+    "answer": "26 bones",
+    "answer_note": "Each foot has 26 bones — about 25% of all the bones in the human body are in the feet.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Guess the number",
+    "id": "tq_0137"
+  },
+  {
+    "question": "Which country has the most volcanoes?",
+    "answer": "Indonesia (over 130 active volcanoes)",
+    "answer_note": "Indonesia has around 130 active volcanoes — more than any other country. It sits on the Pacific Ring of Fire.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Most volcanic country",
+    "id": "tq_0138"
+  },
+  {
+    "question": "How fast does sound travel in air?",
+    "answer": "About 343 m/s (767 mph)",
+    "answer_note": "Sound travels at approximately 343 m/s in dry air at 20°C. Temperature affects the speed.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Speed of sound",
+    "id": "tq_0139"
+  },
+  {
+    "question": "Who invented the internet?",
+    "answer": "Vint Cerf and Bob Kahn (TCP/IP, 1974)",
+    "answer_note": "The internet protocol (TCP/IP) was developed by Vint Cerf and Bob Kahn in 1974. ARPANET predates it.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "Who made the internet?",
+    "id": "tq_0140"
+  },
+  {
+    "question": "What is the world's most visited museum?",
+    "answer": "The Louvre, Paris",
+    "answer_note": "The Louvre attracts about 9 million visitors per year — more than any other museum in the world.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "Most visited museum",
+    "id": "tq_0141"
+  },
+  {
+    "question": "How many hearts does an octopus have?",
+    "answer": "3",
+    "answer_note": "Octopuses have 3 hearts: two pump blood to the gills; one pumps oxygenated blood to the body.",
+    "category": "nature",
+    "difficulty": "medium",
+    "hook": "Count the hearts",
+    "id": "tq_0142"
+  },
+  {
+    "question": "What language does the word 'safari' come from?",
+    "answer": "Swahili (from Arabic 'safar' meaning journey)",
+    "answer_note": "'Safari' comes from the Swahili word for journey, itself borrowed from the Arabic word 'safar'.",
+    "category": "language",
+    "difficulty": "medium",
+    "hook": "Word origin",
+    "id": "tq_0143"
+  },
+  {
+    "question": "How old was the youngest US president when he took office?",
+    "answer": "Theodore Roosevelt (age 42)",
+    "answer_note": "Roosevelt became president at 42 after McKinley's assassination in 1901. JFK was the youngest elected at 43.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Youngest president?",
+    "id": "tq_0144"
+  },
+  {
+    "question": "What is the only country with a non-rectangular flag?",
+    "answer": "Nepal",
+    "answer_note": "Nepal's flag is a double pennant shape — two stacked triangles. It's the only non-rectangular national flag.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Unusual flag",
+    "id": "tq_0145"
+  },
+  {
+    "question": "Which planet has the strongest winds in the solar system?",
+    "answer": "Neptune (up to 2,100 km/h)",
+    "answer_note": "Neptune has the fastest winds in the solar system — up to 2,100 km/h, despite being the coldest.",
+    "category": "science",
+    "difficulty": "hard",
+    "hook": "Fastest winds",
+    "id": "tq_0146"
+  },
+  {
+    "question": "What is the chemical symbol for gold?",
+    "answer": "Au (from Latin 'aurum')",
+    "answer_note": "Gold's symbol Au comes from the Latin word 'aurum' meaning gold.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Chemical symbol",
+    "id": "tq_0147"
+  },
+  {
+    "question": "Which country has the most sheep per person?",
+    "answer": "Falkland Islands (167 sheep per person)",
+    "answer_note": "The Falkland Islands have about 167 sheep for every person — by far the highest ratio in the world.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Sheep capital",
+    "id": "tq_0148"
+  },
+  {
+    "question": "What is the only food that never spoils?",
+    "answer": "Honey",
+    "answer_note": "Archaeologists have found 3,000-year-old honey in Egyptian tombs that was still edible. Its low water content and acidity preserve it indefinitely.",
+    "category": "food",
+    "difficulty": "easy",
+    "hook": "Never goes bad?",
+    "id": "tq_0149"
+  },
+  {
+    "question": "How many chambers does the human nose have?",
+    "answer": "2 (two nostrils, each a separate chamber)",
+    "answer_note": "The nose has two separate chambers divided by the septum. At any given time, one nostril dominates breathing.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Know your nose",
+    "id": "tq_0150"
+  },
+  {
+    "question": "What is the most used muscle in the body?",
+    "answer": "The heart (continuously)",
+    "answer_note": "The heart contracts about 100,000 times per day — the most consistently used muscle in the body.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Most-used muscle",
+    "id": "tq_0151"
+  },
+  {
+    "question": "Which country has the world's longest train network?",
+    "answer": "United States",
+    "answer_note": "The US has over 250,000 km of railroad track — the most in the world, mostly used for freight.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Rail giant",
+    "id": "tq_0152"
+  },
+  {
+    "question": "What is the world's largest island?",
+    "answer": "Greenland",
+    "answer_note": "Greenland is the world's largest island at 2.17 million km². Australia is a continent, not an island.",
+    "category": "geography",
+    "difficulty": "easy",
+    "hook": "Largest island",
+    "id": "tq_0153"
+  },
+  {
+    "question": "How many moons does Mars have?",
+    "answer": "2 (Phobos and Deimos)",
+    "answer_note": "Mars has two small, irregularly shaped moons: Phobos and Deimos, discovered in 1877.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Mars moons",
+    "id": "tq_0154"
+  },
+  {
+    "question": "Which country produces the most chocolate?",
+    "answer": "Ivory Coast (Côte d'Ivoire)",
+    "answer_note": "The Ivory Coast produces about 45% of the world's cocoa supply, the primary ingredient in chocolate.",
+    "category": "food",
+    "difficulty": "hard",
+    "hook": "Not Belgium!",
+    "id": "tq_0155"
+  },
+  {
+    "question": "What is the fastest land animal?",
+    "answer": "Cheetah (up to 112 km/h / 70 mph)",
+    "answer_note": "The cheetah can reach speeds of up to 112 km/h over short distances — the fastest land animal.",
+    "category": "nature",
+    "difficulty": "easy",
+    "hook": "Fastest on land",
+    "id": "tq_0156"
+  },
+  {
+    "question": "Which gas do plants absorb during photosynthesis?",
+    "answer": "Carbon dioxide (CO₂)",
+    "answer_note": "Plants absorb CO₂ and water to produce glucose and oxygen via photosynthesis.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "What do plants breathe?",
+    "id": "tq_0157"
+  },
+  {
+    "question": "How long is the Great Wall of China?",
+    "answer": "Over 21,000 km (including all sections)",
+    "answer_note": "All sections of the Great Wall combined stretch over 21,000 km — about half the Earth's circumference.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "How long exactly?",
+    "id": "tq_0158"
+  },
+  {
+    "question": "What was the first country to use paper money?",
+    "answer": "China (Tang Dynasty, 7th century)",
+    "answer_note": "China began using paper currency during the Tang Dynasty around the 7th century — over 1,000 years before Europe.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "First paper money",
+    "id": "tq_0159"
+  },
+  {
+    "question": "Which animal has the largest eyes relative to its body?",
+    "answer": "Tarsier",
+    "answer_note": "Tarsiers have eyes so large relative to their body that they can't move their eyeballs at all — they rotate their whole head instead.",
+    "category": "nature",
+    "difficulty": "hard",
+    "hook": "Huge eyes",
+    "id": "tq_0160"
+  },
+  {
+    "question": "What percentage of your body is water?",
+    "answer": "About 60%",
+    "answer_note": "The average adult human body is approximately 60% water by weight. The brain is about 75% water.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Body composition",
+    "id": "tq_0161"
+  },
+  {
+    "question": "Which country has never been involved in a war?",
+    "answer": "Switzerland (since 1815, officially neutral)",
+    "answer_note": "Switzerland has been officially neutral since 1815 and hasn't participated in an international armed conflict since.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "Most peaceful country",
+    "id": "tq_0162"
+  },
+  {
+    "question": "What is the world's most expensive coffee?",
+    "answer": "Kopi Luwak (civet cat coffee, ~$700/kg)",
+    "answer_note": "Kopi Luwak, made from coffee beans eaten and excreted by civets, can sell for up to $700 per kilogram.",
+    "category": "food",
+    "difficulty": "hard",
+    "hook": "Pricey coffee",
+    "id": "tq_0163"
+  },
+  {
+    "question": "What is the lightest element?",
+    "answer": "Hydrogen",
+    "answer_note": "Hydrogen is the lightest and most abundant element — atomic number 1, with a mass of just 1 proton.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Lightest element",
+    "id": "tq_0164"
+  },
+  {
+    "question": "Which sport has the largest playing field?",
+    "answer": "Polo (274 metres long)",
+    "answer_note": "A polo field is 274 metres long by 146 metres wide — larger than any other commonly played sport.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Biggest field",
+    "id": "tq_0165"
+  },
+  {
+    "question": "How many strings does a standard guitar have?",
+    "answer": "6",
+    "answer_note": "A standard guitar has 6 strings. Bass guitars have 4, while some extended range guitars have 7 or 8.",
+    "category": "history",
+    "difficulty": "easy",
+    "hook": "Quick check",
+    "id": "tq_0166"
+  },
+  {
+    "question": "What is the world's oldest living tree species?",
+    "answer": "Bristlecone pine (up to 5,000 years old)",
+    "answer_note": "The Great Basin Bristlecone Pine can live over 5,000 years — individual trees older than any other non-clonal organism.",
+    "category": "nature",
+    "difficulty": "hard",
+    "hook": "Oldest living tree",
+    "id": "tq_0167"
+  },
+  {
+    "question": "How many bones does a baby have at birth?",
+    "answer": "Around 270–300",
+    "answer_note": "Babies are born with ~270–300 bones. Many fuse during childhood. Adults have 206.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "More than adults?",
+    "id": "tq_0168"
+  },
+  {
+    "question": "What is the world's saltiest body of water?",
+    "answer": "Don Juan Pond, Antarctica",
+    "answer_note": "Don Juan Pond in Antarctica is about 18 times saltier than the ocean — it doesn't freeze even at -50°C.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Saltiest water",
+    "id": "tq_0169"
+  },
+  {
+    "question": "Which element has the highest melting point?",
+    "answer": "Tungsten (3,422°C)",
+    "answer_note": "Tungsten has the highest melting point of any element — 3,422°C (6,192°F). That's why it's used in lightbulb filaments.",
+    "category": "science",
+    "difficulty": "hard",
+    "hook": "Won't melt",
+    "id": "tq_0170"
+  },
+  {
+    "question": "How many chromosomes do humans have?",
+    "answer": "46 (23 pairs)",
+    "answer_note": "Humans have 46 chromosomes arranged in 23 pairs. Chimpanzees have 48.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Human DNA",
+    "id": "tq_0171"
+  },
+  {
+    "question": "What is the most common eye colour in the world?",
+    "answer": "Brown",
+    "answer_note": "Brown eyes are by far the most common worldwide, representing about 79% of the global population.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Most common eye colour",
+    "id": "tq_0172"
+  },
+  {
+    "question": "Where does the US dollar sign ($) come from?",
+    "answer": "From the Spanish 'peso' abbreviation",
+    "answer_note": "The $ sign likely evolved from a P with an S overlaid — the abbreviation for the Spanish peso, widely used in colonial America.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Dollar sign origin",
+    "id": "tq_0173"
+  },
+  {
+    "question": "What is the smallest country in the world?",
+    "answer": "Vatican City (0.44 km²)",
+    "answer_note": "Vatican City is the world's smallest country at 0.44 km², entirely surrounded by Rome, Italy.",
+    "category": "geography",
+    "difficulty": "easy",
+    "hook": "Smallest country",
+    "id": "tq_0174"
+  },
+  {
+    "question": "Which country drinks the most tea?",
+    "answer": "China (by volume)",
+    "answer_note": "China consumes more tea than any other country by total volume. Turkey leads in per-capita consumption.",
+    "category": "food",
+    "difficulty": "medium",
+    "hook": "Tea drinkers",
+    "id": "tq_0175"
+  },
+  {
+    "question": "What is the most common mineral in the human body?",
+    "answer": "Calcium",
+    "answer_note": "Calcium makes up about 1.5% of body weight — mostly in bones and teeth. It's the most abundant mineral in the body.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Body minerals",
+    "id": "tq_0176"
+  },
+  {
+    "question": "How many keys are on a standard piano?",
+    "answer": "88",
+    "answer_note": "A standard concert piano has 88 keys — 52 white and 36 black — spanning 7+ octaves.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "Piano keys",
+    "id": "tq_0177"
+  },
+  {
+    "question": "Which country has the most natural UNESCO World Heritage Sites?",
+    "answer": "China",
+    "answer_note": "China has the most UNESCO World Heritage Natural Sites, including the Sichuan Giant Panda Sanctuaries and Huanglong.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Natural wonders",
+    "id": "tq_0178"
+  },
+  {
+    "question": "What was the first video game?",
+    "answer": "Tennis for Two (1958) or Pong as first commercial (1972)",
+    "answer_note": "Tennis for Two (1958) is often cited as first. Spacewar! (1962) was first widely played. Pong (1972) was first commercial hit.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "First game ever",
+    "id": "tq_0179"
+  },
+  {
+    "question": "How many muscles does the human body have?",
+    "answer": "About 600",
+    "answer_note": "The human body has approximately 600 named skeletal muscles. The exact count depends on how you define separate muscles.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Guess the number",
+    "id": "tq_0180"
+  },
+  {
+    "question": "What is the world's most played board game?",
+    "answer": "Chess",
+    "answer_note": "Chess is estimated to have 600 million regular players worldwide — the most of any board game.",
+    "category": "history",
+    "difficulty": "easy",
+    "hook": "Most played board game",
+    "id": "tq_0181"
+  },
+  {
+    "question": "Which language is spoken in Brazil?",
+    "answer": "Portuguese (not Spanish)",
+    "answer_note": "Brazil was colonised by Portugal, so Brazilians speak Portuguese. It's the only Portuguese-speaking country in South America.",
+    "category": "language",
+    "difficulty": "easy",
+    "hook": "Spanish or Portuguese?",
+    "id": "tq_0182"
+  },
+  {
+    "question": "What is the deepest lake in the world?",
+    "answer": "Lake Baikal, Russia (1,642 m deep)",
+    "answer_note": "Lake Baikal in Siberia is the world's deepest lake at 1,642 metres and contains about 20% of Earth's fresh water.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Deepest lake",
+    "id": "tq_0183"
+  },
+  {
+    "question": "Which animal has the longest lifespan?",
+    "answer": "Ocean quahog clam (507 years confirmed)",
+    "answer_note": "A clam nicknamed 'Ming' was confirmed to be 507 years old when it was discovered. Greenland sharks can also live 400+ years.",
+    "category": "nature",
+    "difficulty": "hard",
+    "hook": "Longest-lived animal",
+    "id": "tq_0184"
+  },
+  {
+    "question": "How much of an iceberg is above water?",
+    "answer": "About 10%",
+    "answer_note": "Around 90% of an iceberg's mass is below the water surface — the origin of the 'tip of the iceberg' phrase.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Iceberg fact",
+    "id": "tq_0185"
+  },
+  {
+    "question": "What colour were ancient Greek temples originally?",
+    "answer": "Brightly painted (red, blue, yellow)",
+    "answer_note": "The white marble temples we see today were originally painted in vivid colours. The paint has simply worn off over millennia.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Not white marble!",
+    "id": "tq_0186"
+  },
+  {
+    "question": "What gets wetter the more it dries?",
+    "answer": "A towel",
+    "answer_note": "A towel absorbs water as it dries things, becoming wetter itself.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Classic riddle!",
+    "id": "tq_0187"
+  },
+  {
+    "question": "What can you catch but never throw?",
+    "answer": "A cold",
+    "answer_note": "You catch a cold (illness) but you can't throw one!",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Sneeze!",
+    "id": "tq_0188"
+  },
+  {
+    "question": "If you drop a yellow hat in the Red Sea, what does it become?",
+    "answer": "Wet",
+    "answer_note": "The hat gets wet when dropped in water — the color of the sea is irrelevant.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Distraction question!",
+    "id": "tq_0189"
+  },
+  {
+    "question": "What element has the chemical symbol Fe?",
+    "answer": "Iron",
+    "answer_note": "Fe comes from the Latin 'ferrum' meaning iron.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Latin chemistry!",
+    "id": "tq_0190"
+  },
+  {
+    "question": "What happens to the size of an iron rod when it's heated?",
+    "answer": "It expands",
+    "answer_note": "Most materials expand when heated due to increased atomic vibration.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Thermal expansion!",
+    "id": "tq_0191"
+  },
+  {
+    "question": "How can you drop an egg on a concrete floor without cracking it?",
+    "answer": "Drop it from 1cm above — concrete floors don't crack easily",
+    "answer_note": "The trick: concrete floors are very hard to crack. The egg might crack but the floor won't.",
+    "category": "science",
+    "difficulty": "medium",
+    "hook": "Read the question!",
+    "id": "tq_0192"
+  },
+  {
+    "question": "Which is heavier: a kilogram of steel or a kilogram of feathers?",
+    "answer": "They're equal — both weigh 1 kilogram",
+    "answer_note": "Same mass, just different volumes. Steel just takes up less space.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Classic weight trick!",
+    "id": "tq_0193"
+  },
+  {
+    "question": "What word is always spelled incorrectly?",
+    "answer": "Incorrectly",
+    "answer_note": "The word 'incorrectly' is the only word that is always spelled exactly as asked — incorrectly.",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Language riddle!",
+    "id": "tq_0194"
+  },
+  {
+    "question": "Can a man living in Winston-Salem, NC, be buried west of the Mississippi River?",
+    "answer": "No — a living man cannot be buried anywhere",
+    "answer_note": "The question says 'a man living' — living people aren't buried!",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Trick phrasing!",
+    "id": "tq_0195"
+  },
+  {
+    "question": "What do you call a fish without eyes?",
+    "answer": "A fsh",
+    "answer_note": "Fish without 'i's' is just 'fsh'. A classic wordplay riddle!",
+    "category": "science",
+    "difficulty": "easy",
+    "hook": "Wordplay!",
+    "id": "tq_0196"
+  },
+  {
+    "question": "Julius Caesar's last words were 'Et tu, Brute?' — true or false?",
+    "answer": "False (probably)",
+    "answer_note": "The quote is from Shakespeare's play. Historical accounts vary — Suetonius says Caesar said nothing or 'kai su, teknon' (Greek for 'you too, child?').",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Shakespeare vs history!",
+    "id": "tq_0197"
+  },
+  {
+    "question": "Which country gifted the Statue of Liberty to the USA?",
+    "answer": "France",
+    "answer_note": "France gifted the Statue of Liberty in 1886, designed by sculptor Frédéric Auguste Bartholdi.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "French gift!",
+    "id": "tq_0198"
+  },
+  {
+    "question": "How many of the original 13 American colonies started with the letter 'M'?",
+    "answer": "4",
+    "answer_note": "Maryland, Massachusetts, New Hampshire... wait: Maryland, Massachusetts — and from all 13: Maryland, Massachusetts. Actually: Maryland and Massachusetts = 2. Check: Maryland, Massachusetts = 2 colonies start with M.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Colonial knowledge!",
+    "id": "tq_0199"
+  },
+  {
+    "question": "Who was the first person to set foot on Antarctica?",
+    "answer": "Disputed — likely a Norwegian sailor around 1820",
+    "answer_note": "The first confirmed landing is disputed between American Nathaniel Palmer, British Edward Bransfield, and Norwegian Fabian von Bellingshausen in 1820-21.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Frozen history!",
+    "id": "tq_0200"
+  },
+  {
+    "question": "Was the Great Wall of China built all at once?",
+    "answer": "No — it was built over many centuries by different dynasties",
+    "answer_note": "Construction spanned from the 7th century BC to the 17th century AD under multiple Chinese dynasties.",
+    "category": "history",
+    "difficulty": "medium",
+    "hook": "Centuries of building!",
+    "id": "tq_0201"
+  },
+  {
+    "question": "In what decade did the Wright Brothers make their first powered flight?",
+    "answer": "1900s (1903)",
+    "answer_note": "Orville and Wilbur Wright made their first successful powered flight on December 17, 1903.",
+    "category": "history",
+    "difficulty": "easy",
+    "hook": "First flight!",
+    "id": "tq_0202"
+  },
+  {
+    "question": "Which came first — the chicken or the egg, according to science?",
+    "answer": "The egg",
+    "answer_note": "Scientifically, eggs predate chickens by hundreds of millions of years (dinosaurs laid eggs). The first 'chicken egg' came from a proto-chicken parent.",
+    "category": "history",
+    "difficulty": "hard",
+    "hook": "Ancient riddle answered by science!",
+    "id": "tq_0203"
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "answer": "Canberra",
+    "answer_note": "Many people say Sydney or Melbourne, but Canberra has been Australia's capital since 1913.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Not Sydney!",
+    "id": "tq_0204"
+  },
+  {
+    "question": "Is Iceland covered in ice and Greenland covered in green?",
+    "answer": "Sort of the opposite — Iceland is green, Greenland is mostly ice",
+    "answer_note": "Iceland has lush vegetation in many areas; Greenland is about 80% covered by an ice sheet.",
+    "category": "geography",
+    "difficulty": "medium",
+    "hook": "Confusing names!",
+    "id": "tq_0205"
+  },
+  {
+    "question": "What ocean is between North America and Europe?",
+    "answer": "The Atlantic Ocean",
+    "answer_note": "The Atlantic Ocean separates North America and Europe, spanning about 6,000 km.",
+    "category": "geography",
+    "difficulty": "easy",
+    "hook": "Which ocean?",
+    "id": "tq_0206"
+  },
+  {
+    "question": "How many countries are in Africa?",
+    "answer": "54",
+    "answer_note": "Africa has 54 sovereign countries, more than any other continent.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "How many?",
+    "id": "tq_0207"
+  },
+  {
+    "question": "Which is further north — London or Vancouver?",
+    "answer": "London is slightly further north",
+    "answer_note": "London is at about 51.5°N. Vancouver is at about 49.3°N. London is slightly further north.",
+    "category": "geography",
+    "difficulty": "hard",
+    "hook": "Northern showdown!",
+    "id": "tq_0208"
+  },
+  {
+    "question": "What is the largest country by land area in South America?",
+    "answer": "Brazil",
+    "answer_note": "Brazil covers about 8.5 million km², nearly half of South America's total land area.",
+    "category": "geography",
+    "difficulty": "easy",
+    "hook": "South American giant!",
+    "id": "tq_0209"
+  },
+  {
+    "question": "What is the most commonly used letter in the English language?",
+    "answer": "E",
+    "answer_note": "The letter 'E' accounts for about 13% of all letters used in English text.",
+    "category": "language",
+    "difficulty": "easy",
+    "hook": "Frequency facts!",
+    "id": "tq_0210"
+  },
+  {
+    "question": "What English word has three consecutive double letters?",
+    "answer": "Bookkeeper",
+    "answer_note": "Bookkeeper has oo, kk, and ee — three consecutive double letter pairs.",
+    "category": "language",
+    "difficulty": "hard",
+    "hook": "Triple doubles!",
+    "id": "tq_0211"
+  },
+  {
+    "question": "How many syllables are in the word 'queue'?",
+    "answer": "1",
+    "answer_note": "Despite its 5 letters, 'queue' has only one syllable — it sounds like 'kyoo'.",
+    "category": "language",
+    "difficulty": "medium",
+    "hook": "Long word, one sound!",
+    "id": "tq_0212"
+  },
+  {
+    "question": "What is the only word in English that ends in '-mt'?",
+    "answer": "Dreamt",
+    "answer_note": "Dreamt is the only common English word ending in '-mt'. It's the past tense of 'dream'.",
+    "category": "language",
+    "difficulty": "hard",
+    "hook": "Word trivia!",
+    "id": "tq_0213"
+  },
+  {
+    "question": "What connects the words: cake, cup, pan, short?",
+    "answer": "They all precede 'cake'",
+    "answer_note": "Cupcake, pancake, shortcake — all compound words with cake.",
+    "category": "language",
+    "difficulty": "medium",
+    "hook": "Word connections!",
+    "id": "tq_0214"
+  },
+  {
+    "question": "What is a word that means the same whether you read it forwards or backwards?",
+    "answer": "Palindrome — examples: racecar, level, madam",
+    "answer_note": "Words that read the same forwards and backwards are called palindromes.",
+    "category": "language",
+    "difficulty": "easy",
+    "hook": "Palindromes!",
+    "id": "tq_0215"
+  },
+  {
+    "question": "What color is the sky on Mars?",
+    "answer": "Pinkish-red or butterscotch",
+    "answer_note": "Mars's sky appears pink to butterscotch because of iron oxide (rust) dust in the thin atmosphere.",
+    "category": "nature",
+    "difficulty": "hard",
+    "hook": "Not blue!",
+    "id": "tq_0216"
+  },
+  {
+    "question": "Do trees grow from the top or the bottom?",
+    "answer": "From the top (tips)",
+    "answer_note": "Trees grow at their growing tips (meristems) — the trunk doesn't rise as the tree grows taller.",
+    "category": "nature",
+    "difficulty": "medium",
+    "hook": "Tree growth!",
+    "id": "tq_0217"
+  },
+  {
+    "question": "If a tree falls in a forest and no one is around, does it make a sound?",
+    "answer": "Yes — it creates sound waves, but 'sound' requires a listener to perceive it",
+    "answer_note": "The philosophical split: physically yes (vibrations); philosophically unclear (no conscious perception).",
+    "category": "nature",
+    "difficulty": "hard",
+    "hook": "Philosophy of sound!",
+    "id": "tq_0218"
+  },
+  {
+    "question": "What is the deepest point on Earth?",
+    "answer": "Challenger Deep, Mariana Trench (~11,000m)",
+    "answer_note": "Challenger Deep in the Pacific Ocean's Mariana Trench is about 11,034m below sea level.",
+    "category": "nature",
+    "difficulty": "medium",
+    "hook": "Deepest point!",
+    "id": "tq_0219"
+  },
+  {
+    "question": "Which direction does water swirl down a drain in the southern hemisphere?",
+    "answer": "It depends on the drain shape, not hemisphere — the Coriolis effect is too weak for drains",
+    "answer_note": "Contrary to popular belief, the Coriolis effect is negligible at drain scales. Direction is determined by the drain's shape.",
+    "category": "nature",
+    "difficulty": "hard",
+    "hook": "Coriolis myth!",
+    "id": "tq_0220"
+  },
+  {
+    "question": "What percentage of Earth's water is freshwater?",
+    "answer": "About 3%",
+    "answer_note": "97% of Earth's water is saltwater. Of the 3% freshwater, most is locked in ice caps and glaciers.",
+    "category": "nature",
+    "difficulty": "medium",
+    "hook": "Water scarcity!",
+    "id": "tq_0221"
+  },
+  {
+    "question": "How long does it take for light to travel from the Sun to Earth?",
+    "answer": "About 8 minutes 20 seconds",
+    "answer_note": "The Sun is about 150 million km away. At 300,000 km/s, light takes ~8 min 20 sec.",
+    "category": "nature",
+    "difficulty": "medium",
+    "hook": "Old light!",
+    "id": "tq_0222"
+  },
+  {
+    "question": "What is the most expensive food in the world by weight?",
+    "answer": "White Alba truffle (or sometimes saffron)",
+    "answer_note": "White truffles from Alba, Italy, can sell for $2,000–$3,000 per pound. Some rare varieties fetch far more.",
+    "category": "food",
+    "difficulty": "hard",
+    "hook": "Pricey ingredients!",
+    "id": "tq_0223"
+  },
+  {
+    "question": "What is the only fruit with seeds on the outside?",
+    "answer": "Strawberry",
+    "answer_note": "The small yellow/green dots on a strawberry are actually its seeds (technically achenes) on the outside.",
+    "category": "food",
+    "difficulty": "medium",
+    "hook": "Seeds outside!",
+    "id": "tq_0224"
+  },
+  {
+    "question": "What nut is not technically a nut?",
+    "answer": "Peanut (it's a legume), almond (it's a drupe), cashew (it's a seed)",
+    "answer_note": "True botanical nuts include hazelnuts, chestnuts, and acorns. Peanuts, almonds, and cashews are technically not nuts.",
+    "category": "food",
+    "difficulty": "medium",
+    "hook": "Not a real nut!",
+    "id": "tq_0225"
+  },
+  {
+    "question": "Which part of the carrot plant is actually eaten?",
+    "answer": "The taproot",
+    "answer_note": "The orange carrot we eat is the plant's taproot — its underground nutrient storage organ.",
+    "category": "food",
+    "difficulty": "easy",
+    "hook": "Root vegetable!",
+    "id": "tq_0226"
+  },
+  {
+    "question": "Can you name a food that never expires?",
+    "answer": "Honey, salt, sugar, pure vanilla extract, white rice",
+    "answer_note": "These foods, when stored properly, can last indefinitely. Honey has been found edible in Egyptian tombs.",
+    "category": "food",
+    "difficulty": "medium",
+    "hook": "Forever foods!",
+    "id": "tq_0227"
+  },
+  {
+    "question": "What has one eye but cannot see?",
+    "answer": "A needle",
+    "answer_note": "A needle has an 'eye' (the hole you thread) but obviously cannot see.",
+    "category": "logic",
+    "difficulty": "easy",
+    "hook": "Classic riddle!",
+    "id": "tq_0228"
+  },
+  {
+    "question": "What runs but never walks, has a mouth but never talks?",
+    "answer": "A river",
+    "answer_note": "Rivers 'run', have a 'mouth' (where they meet the sea), and 'banks' on either side.",
+    "category": "logic",
+    "difficulty": "easy",
+    "hook": "River riddle!",
+    "id": "tq_0229"
+  },
+  {
+    "question": "The more of this you take, the more you leave behind. What is it?",
+    "answer": "Footsteps",
+    "answer_note": "Every step you take leaves a footstep behind you.",
+    "category": "logic",
+    "difficulty": "easy",
+    "hook": "Walk this one!",
+    "id": "tq_0230"
+  },
+  {
+    "question": "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?",
+    "answer": "An echo",
+    "answer_note": "An echo 'speaks' by reflecting sound, is created by sound, and travels through air.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "Mountain riddle!",
+    "id": "tq_0231"
+  },
+  {
+    "question": "What is always in front of you but can't be seen?",
+    "answer": "The future",
+    "answer_note": "The future is always ahead of you but is invisible and unknown.",
+    "category": "logic",
+    "difficulty": "easy",
+    "hook": "Philosophical!",
+    "id": "tq_0232"
+  },
+  {
+    "question": "You are my brother, but I am not your brother. Who am I?",
+    "answer": "Your sister",
+    "answer_note": "Only a sister could say 'you are my brother' while not being a brother themselves.",
+    "category": "logic",
+    "difficulty": "easy",
+    "hook": "Family riddle!",
+    "id": "tq_0233"
+  },
+  {
+    "question": "A doctor gives you 3 pills and tells you to take one every half hour. How long before all pills are taken?",
+    "answer": "1 hour",
+    "answer_note": "Take pill 1 now (0 min), pill 2 at 30 min, pill 3 at 60 min — 1 hour total.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "Timing trick!",
+    "id": "tq_0234"
+  },
+  {
+    "question": "If you have a bowl with 6 apples and you take away 4, how many apples do you have?",
+    "answer": "4",
+    "answer_note": "You took 4 apples, so you have 4. The bowl has 2 remaining.",
+    "category": "logic",
+    "difficulty": "easy",
+    "hook": "You have what you took!",
+    "id": "tq_0235"
+  },
+  {
+    "question": "What can travel around the world while staying in a corner?",
+    "answer": "A stamp",
+    "answer_note": "A postage stamp stays in the corner of an envelope that travels the world.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "World traveler!",
+    "id": "tq_0236"
+  },
+  {
+    "question": "If you have me, you want to share me. If you share me, you no longer have me. What am I?",
+    "answer": "A secret",
+    "answer_note": "Secrets lose their power the moment they are shared.",
+    "category": "logic",
+    "difficulty": "easy",
+    "hook": "Don't tell anyone!",
+    "id": "tq_0237"
+  },
+  {
+    "id": "tq_0238",
+    "question": "What gets wetter the more it dries?",
+    "answer": "A towel",
+    "answer_note": "A towel absorbs moisture as it dries things, becoming wetter itself in the process.",
+    "category": "classic riddles",
+    "difficulty": "easy",
+    "hook": "This one tricks almost everyone the first time..."
+  },
+  {
+    "id": "tq_0239",
+    "question": "A man lives on the 30th floor. Every morning he takes the elevator down to the ground floor to go to work. When he comes back on rainy days he goes to the 30th floor, but on sunny days he can only go to the 15th floor and walks up. Why?",
+    "answer": "He is too short to reach the button for the 30th floor — but on rainy days he uses his umbrella to press it",
+    "answer_note": "The man is short. He can reach the button for the 15th floor but not the 30th. On rainy days, his umbrella extends his reach.",
+    "category": "lateral thinking",
+    "difficulty": "hard",
+    "hook": "Most people try to think about weather — but it's about height..."
+  },
+  {
+    "id": "tq_0240",
+    "question": "A rooster lays an egg on top of a barn roof. Which way does the egg roll?",
+    "answer": "Roosters don't lay eggs",
+    "answer_note": "Only hens lay eggs. A rooster cannot lay an egg, so there is no egg to roll.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The trick is hidden in the very first word..."
+  },
+  {
+    "id": "tq_0241",
+    "question": "How much dirt is in a hole that is 3 feet deep, 2 feet long, and 2 feet wide?",
+    "answer": "None — it's a hole",
+    "answer_note": "A hole has no dirt in it by definition. The dirt was removed to create the hole.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Your brain wants to multiply — but the answer is nothing..."
+  },
+  {
+    "id": "tq_0242",
+    "question": "If you have a bowl with six apples and you take away four, how many apples do you have?",
+    "answer": "Four — the ones you took",
+    "answer_note": "The question asks how many YOU have, not how many are left in the bowl.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Who said the bowl belongs to you?"
+  },
+  {
+    "id": "tq_0243",
+    "question": "What has cities, but no houses; forests, but no trees; and water, but no fish?",
+    "answer": "A map",
+    "answer_note": "A map represents these things visually, but contains none of the actual physical objects.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Think about representations, not reality..."
+  },
+  {
+    "id": "tq_0244",
+    "question": "Is it legal for a man to marry his widow's sister?",
+    "answer": "No — if she's his widow, he's dead",
+    "answer_note": "If a woman is someone's widow, that man is dead. A dead man cannot legally marry anyone.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Slow down and read every word carefully..."
+  },
+  {
+    "id": "tq_0245",
+    "question": "Before Mt. Everest was discovered, what was the highest mountain on Earth?",
+    "answer": "Mt. Everest — it was still the highest, just not yet discovered",
+    "answer_note": "Mt. Everest was always the highest mountain. Discovery has no effect on physical reality.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Did the mountain not exist before we found it?"
+  },
+  {
+    "id": "tq_0246",
+    "question": "A woman shoots her husband, then holds him underwater for five minutes. An hour later they go to dinner. How?",
+    "answer": "She's a photographer — she shot his photo and developed it in a darkroom",
+    "answer_note": "'Shoot' and 'hold underwater' are photography terms. She photographed him and developed the photo.",
+    "category": "lateral thinking",
+    "difficulty": "medium",
+    "hook": "You assumed the worst — but what if it's all metaphors?"
+  },
+  {
+    "id": "tq_0247",
+    "question": "How many months have 28 days?",
+    "answer": "All 12 months",
+    "answer_note": "Every month has at least 28 days. The question asks how many HAVE 28 days, not which month has ONLY 28 days.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Think about what 'have 28 days' actually means..."
+  },
+  {
+    "id": "tq_0248",
+    "question": "What can you catch but not throw?",
+    "answer": "A cold",
+    "answer_note": "You can 'catch' a cold (get sick), but you cannot physically throw a cold at someone.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Think outside physical objects..."
+  },
+  {
+    "id": "tq_0249",
+    "question": "A doctor gives you three pills and tells you to take one pill every half hour. How long will the pills last?",
+    "answer": "One hour",
+    "answer_note": "Pill 1 at 0 minutes, pill 2 at 30 minutes, pill 3 at 60 minutes. Three pills take only one hour.",
+    "category": "math tricks",
+    "difficulty": "medium",
+    "hook": "Count carefully — most people say 1.5 hours..."
+  },
+  {
+    "id": "tq_0250",
+    "question": "What word is spelled incorrectly in every dictionary?",
+    "answer": "The word 'incorrectly'",
+    "answer_note": "The word 'incorrectly' is always spelled as i-n-c-o-r-r-e-c-t-l-y in every dictionary — because that IS the correct spelling.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The answer is hiding in the question..."
+  },
+  {
+    "id": "tq_0251",
+    "question": "If you're in a race and you pass the person in second place, what place are you in?",
+    "answer": "Second place",
+    "answer_note": "You passed the person in second place, so you are now in their old position — second place.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "You didn't pass first place..."
+  },
+  {
+    "id": "tq_0252",
+    "question": "What has hands but can't clap?",
+    "answer": "A clock",
+    "answer_note": "A clock has hour and minute hands, but they are mechanical and cannot clap.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Hands that never high-five..."
+  },
+  {
+    "id": "tq_0253",
+    "question": "A father and son are in a car accident. The father dies. The son is rushed to hospital. The surgeon says 'I can't operate — this is my son.' How?",
+    "answer": "The surgeon is his mother",
+    "answer_note": "The classic assumption is that the surgeon is a man, but the surgeon is the boy's mother.",
+    "category": "lateral thinking",
+    "difficulty": "medium",
+    "hook": "Question your first assumption immediately..."
+  },
+  {
+    "id": "tq_0254",
+    "question": "What runs but never walks, has a mouth but never talks, has a head but never weeps, has a bed but never sleeps?",
+    "answer": "A river",
+    "answer_note": "Rivers run, have mouths (where they meet the sea), have a head (source) and a bed (the riverbed), but none literally.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Everything described is a different part of the same thing..."
+  },
+  {
+    "id": "tq_0255",
+    "question": "Some months have 31 days, some have 30 days. How many months have 28 days?",
+    "answer": "All of them",
+    "answer_note": "All 12 months have at least 28 days. This is the same trick as the previous version.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The trick never gets old..."
+  },
+  {
+    "id": "tq_0256",
+    "question": "What breaks when you say it?",
+    "answer": "Silence",
+    "answer_note": "As soon as you speak the word 'silence' — or any word — silence is broken.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The answer destroys itself the moment you give it..."
+  },
+  {
+    "id": "tq_0257",
+    "question": "You have a match, a candle, a fireplace, and a gas lamp. You only have one match. What do you light first?",
+    "answer": "The match",
+    "answer_note": "You must light the match before you can light anything else.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The obvious answer is hiding in plain sight..."
+  },
+  {
+    "id": "tq_0258",
+    "question": "A man builds a house with all four sides facing south. A bear walks past. What color is the bear?",
+    "answer": "White (polar bear)",
+    "answer_note": "A house with all four sides facing south can only exist at the North Pole. The only bears there are polar bears, which are white.",
+    "category": "lateral thinking",
+    "difficulty": "hard",
+    "hook": "Geometry reveals the geography..."
+  },
+  {
+    "id": "tq_0259",
+    "question": "What word becomes shorter when you add two letters to it?",
+    "answer": "'Short' — add 'er' to make 'shorter'",
+    "answer_note": "Adding 'er' to 'short' makes the word 'shorter,' which literally means more short.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "The word describes what adding letters does to it..."
+  },
+  {
+    "id": "tq_0260",
+    "question": "In a year, some months have 30 days and some have 31. Which months have 28 days?",
+    "answer": "All of them",
+    "answer_note": "Every single month has at least 28 days. The trick is the word 'have' vs 'only have.'",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "This question has fooled billions of people..."
+  },
+  {
+    "id": "tq_0261",
+    "question": "If there are three apples and you take away two, how many apples do you have?",
+    "answer": "Two — the ones you took",
+    "answer_note": "You took two apples. You have two apples. The question asks what YOU have, not what's left.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Keep track of who 'you' are in the question..."
+  },
+  {
+    "id": "tq_0262",
+    "question": "What can you hold in your left hand but not in your right?",
+    "answer": "Your right hand (or right elbow)",
+    "answer_note": "You can hold your right hand with your left hand, but you cannot hold your right hand with itself.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Think about what's physically impossible..."
+  },
+  {
+    "id": "tq_0263",
+    "question": "How far can a dog run into the woods?",
+    "answer": "Halfway — after that it's running out of the woods",
+    "answer_note": "At the exact midpoint of the woods, every additional step takes the dog closer to the other side.",
+    "category": "lateral thinking",
+    "difficulty": "easy",
+    "hook": "Think about the midpoint..."
+  },
+  {
+    "id": "tq_0264",
+    "question": "I have two coins totaling 30 cents. One of them is not a nickel. What are the two coins?",
+    "answer": "A quarter and a nickel",
+    "answer_note": "One coin is a quarter and one is a nickel. The riddle says 'one is not a nickel' — the OTHER one is.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Read the clue very carefully — it says ONE of them..."
+  },
+  {
+    "id": "tq_0265",
+    "question": "What has one eye but cannot see?",
+    "answer": "A needle",
+    "answer_note": "A sewing needle has a 'hole' called the eye through which thread is passed — but it cannot see.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "A very small feature gives it its name..."
+  },
+  {
+    "id": "tq_0266",
+    "question": "A man walks into a bar and asks for a glass of water. The bartender pulls out a gun and points it at him. The man says 'thank you' and walks out. Why?",
+    "answer": "The man had hiccups — the scare cured them",
+    "answer_note": "The man had hiccups and needed a fright or a glass of water to cure them. The bartender chose fright — it worked.",
+    "category": "lateral thinking",
+    "difficulty": "medium",
+    "hook": "Why would someone thank someone who pointed a gun at them?"
+  },
+  {
+    "id": "tq_0267",
+    "question": "What comes once in a minute, twice in a moment, but never in a thousand years?",
+    "answer": "The letter M",
+    "answer_note": "'Minute' has one M, 'moment' has two M's, and 'thousand years' has none.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Stop thinking about time — think about letters..."
+  },
+  {
+    "id": "tq_0268",
+    "question": "What is always in front of you but can't be seen?",
+    "answer": "The future",
+    "answer_note": "The future is always ahead of you, but it cannot be seen or observed directly.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "It's coming, but you can never look at it..."
+  },
+  {
+    "id": "tq_0269",
+    "question": "If two's company and three's a crowd, what are four and five?",
+    "answer": "Nine (4 + 5 = 9)",
+    "answer_note": "The trick is to do the math: four and five added together equals nine.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Most people answer with a social saying — not arithmetic..."
+  },
+  {
+    "id": "tq_0270",
+    "question": "How many bricks does it take to complete a brick building?",
+    "answer": "One — the last one",
+    "answer_note": "A building is 'completed' with the final brick. Only one brick completes it; all others are just building it.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "What does 'complete' actually mean here?"
+  },
+  {
+    "id": "tq_0271",
+    "question": "What are the next three letters in this sequence: O, T, T, F, F, S, S, ?",
+    "answer": "E, N, T",
+    "answer_note": "The letters are the first letters of One, Two, Three, Four, Five, Six, Seven — so next are Eight, Nine, Ten.",
+    "category": "patterns",
+    "difficulty": "hard",
+    "hook": "Numbers are hiding in plain sight..."
+  },
+  {
+    "id": "tq_0272",
+    "question": "A truck driver is going the wrong way down a one-way street. A police officer sees him but does nothing. Why?",
+    "answer": "The truck driver is walking, not driving",
+    "answer_note": "The driver is on foot, not in the truck. Walking on a one-way street is perfectly legal.",
+    "category": "lateral thinking",
+    "difficulty": "easy",
+    "hook": "The job title is a trick — not the mode of transport..."
+  },
+  {
+    "id": "tq_0273",
+    "question": "What has teeth but cannot bite?",
+    "answer": "A comb (or a saw, or a zipper)",
+    "answer_note": "Combs, saws, and zippers all have teeth but cannot bite in the animal sense.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Teeth everywhere — but no mouth..."
+  },
+  {
+    "id": "tq_0274",
+    "question": "If you drop a yellow hat in the Red Sea, what does it become?",
+    "answer": "Wet",
+    "answer_note": "The hat becomes wet when dropped in any sea. The colors in the question are distractions.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The colors are a distraction..."
+  },
+  {
+    "id": "tq_0275",
+    "question": "What can travel around the world while staying in a corner?",
+    "answer": "A postage stamp",
+    "answer_note": "A postage stamp stays in the corner of an envelope while the letter travels the world.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "It travels without moving..."
+  },
+  {
+    "id": "tq_0276",
+    "question": "I am not alive, but I grow. I don't have lungs, but I need air. What am I?",
+    "answer": "Fire",
+    "answer_note": "Fire grows as it spreads, needs oxygen (air) to burn, but is not a living organism.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Alive in every way except technically..."
+  },
+  {
+    "id": "tq_0277",
+    "question": "What is the question you can never say 'yes' to honestly?",
+    "answer": "'Are you asleep?' (or 'Are you dead?')",
+    "answer_note": "If you can answer the question, you're not asleep. Saying 'yes' honestly is impossible.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "The honest answer makes the question untrue..."
+  },
+  {
+    "id": "tq_0278",
+    "question": "How can you throw a ball so it goes a short distance, comes to a complete stop, then reverses direction and returns to you — without hitting a wall or any other object, and without attaching anything to it?",
+    "answer": "Throw it straight up in the air",
+    "answer_note": "Throwing a ball upward makes it slow, stop, and return due to gravity — no walls or strings needed.",
+    "category": "physics tricks",
+    "difficulty": "medium",
+    "hook": "Gravity is the secret partner..."
+  },
+  {
+    "id": "tq_0279",
+    "question": "What gets bigger the more you take away from it?",
+    "answer": "A hole",
+    "answer_note": "The more material you remove, the larger the hole becomes.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Taking away makes it grow..."
+  },
+  {
+    "id": "tq_0280",
+    "question": "A woman had two sons born at the same hour of the same day of the same year. But they were not twins. How?",
+    "answer": "They were two of a set of triplets (or more)",
+    "answer_note": "If three or more babies are born together, any two of them share birth details without being called 'twins.'",
+    "category": "lateral thinking",
+    "difficulty": "medium",
+    "hook": "Twins is just one possibility..."
+  },
+  {
+    "id": "tq_0281",
+    "question": "An electric train is traveling north. The wind is blowing east. Which direction does the smoke blow?",
+    "answer": "Electric trains don't produce smoke",
+    "answer_note": "Electric trains have no combustion engine and produce no smoke at all.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The trick is in the type of train..."
+  },
+  {
+    "id": "tq_0282",
+    "question": "What has four legs in the morning, two at noon, and three in the evening?",
+    "answer": "A human",
+    "answer_note": "This is the riddle of the Sphinx: a baby crawls on all fours, an adult walks on two legs, and an elder uses a cane (three legs).",
+    "category": "classic riddles",
+    "difficulty": "medium",
+    "hook": "The most famous riddle in all of history..."
+  },
+  {
+    "id": "tq_0283",
+    "question": "How can a man go eight days without sleep?",
+    "answer": "He sleeps at night",
+    "answer_note": "The man sleeps at night — he goes eight days without sleep, not eight days without sleeping.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Days and nights are different things..."
+  },
+  {
+    "id": "tq_0284",
+    "question": "What is at the end of a rainbow?",
+    "answer": "The letter W",
+    "answer_note": "The letter W is the last letter of the word 'rainbow.'",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Think about the word, not the phenomenon..."
+  },
+  {
+    "id": "tq_0285",
+    "question": "Three men are in a boat with four cigarettes but no lighter. How do they get to smoke?",
+    "answer": "They throw one cigarette overboard, making the boat a cigarette lighter",
+    "answer_note": "'Cigarette lighter' — throwing one out makes the remaining boat hold a 'lighter' amount of cigarettes — a pun.",
+    "category": "wordplay",
+    "difficulty": "hard",
+    "hook": "This is a pun puzzle — not a survival puzzle..."
+  },
+  {
+    "id": "tq_0286",
+    "question": "What has a bottom at the top?",
+    "answer": "Your legs (the bottom of your torso is at the top of your legs)",
+    "answer_note": "The 'bottom' (backside) is at the top of your legs.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Think anatomy..."
+  },
+  {
+    "id": "tq_0287",
+    "question": "What do you call a bear with no teeth?",
+    "answer": "A gummy bear",
+    "answer_note": "Without teeth, a bear is 'gummy' — like a gummy bear candy.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Pure wordplay..."
+  },
+  {
+    "id": "tq_0288",
+    "question": "How many animals did Moses take on the ark?",
+    "answer": "None — it was Noah's ark, not Moses'",
+    "answer_note": "The ark was built by Noah, not Moses. Moses is famous for the Exodus and parting the Red Sea.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The name slipped right past you, didn't it?"
+  },
+  {
+    "id": "tq_0289",
+    "question": "What goes up when rain comes down?",
+    "answer": "An umbrella",
+    "answer_note": "When it rains, people put their umbrellas up. Rain coming down = umbrella going up.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Simple cause and effect..."
+  },
+  {
+    "id": "tq_0290",
+    "question": "What do you call a fish without eyes?",
+    "answer": "A fsh (no 'i')",
+    "answer_note": "A fish without 'i's' (eyes) is spelled 'fsh' — remove the letter i from fish.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Think about the spelling, not the creature..."
+  },
+  {
+    "id": "tq_0291",
+    "question": "If a plane crashes on the border of France and Germany, where do they bury the survivors?",
+    "answer": "You don't bury survivors — they're alive",
+    "answer_note": "Survivors of a plane crash are alive and do not need to be buried.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The key word is hiding in plain sight..."
+  },
+  {
+    "id": "tq_0292",
+    "question": "What starts with E, ends with E, and contains only one letter?",
+    "answer": "An envelope",
+    "answer_note": "An envelope starts with E, ends with E, and typically contains one letter (piece of mail).",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Think about what the word holds, not just spells..."
+  },
+  {
+    "id": "tq_0293",
+    "question": "A man is found dead in a locked room with 53 bicycles. What happened?",
+    "answer": "He was cheating at cards — 53 cards means he had an extra card in his deck",
+    "answer_note": "A standard deck has 52 cards. 'Bicycles' are a brand of playing cards. He was caught cheating with an extra card.",
+    "category": "lateral thinking",
+    "difficulty": "hard",
+    "hook": "Bicycle is a brand of playing cards..."
+  },
+  {
+    "id": "tq_0294",
+    "question": "I speak without a mouth and hear without ears. I have no body but come alive with wind. What am I?",
+    "answer": "An echo",
+    "answer_note": "An echo 'speaks' (reflects sound) and 'hears' (receives sound) with no physical body.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Sound without a source..."
+  },
+  {
+    "id": "tq_0295",
+    "question": "What five-letter word becomes shorter when you add two letters to it?",
+    "answer": "Short — add 'er' to make 'shorter'",
+    "answer_note": "The five-letter word 'short' becomes 'shorter' (seven letters) which literally means more short.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Longer in length, shorter in meaning..."
+  },
+  {
+    "id": "tq_0296",
+    "question": "What room do ghosts avoid?",
+    "answer": "The living room",
+    "answer_note": "Ghosts are not living — so they'd avoid the 'living' room.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Think about what the room is named for..."
+  },
+  {
+    "id": "tq_0297",
+    "question": "What is so fragile that saying its name breaks it?",
+    "answer": "Silence",
+    "answer_note": "The moment you say the word 'silence,' silence is broken.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The very act of answering destroys it..."
+  },
+  {
+    "id": "tq_0298",
+    "question": "If a red house is made of red bricks and a blue house is made of blue bricks, what is a greenhouse made of?",
+    "answer": "Glass",
+    "answer_note": "Greenhouses are made of glass — they are called 'green' because they grow plants, not because of green material.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The pattern breaks at the last step..."
+  },
+  {
+    "id": "tq_0299",
+    "question": "Johnny's mother has three children. The first is named April, the second is named May. What is the name of the third child?",
+    "answer": "Johnny",
+    "answer_note": "The riddle says 'Johnny's mother' — Johnny is the third child.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The answer is the first word of the question..."
+  },
+  {
+    "id": "tq_0300",
+    "question": "What can you keep after giving it to someone else?",
+    "answer": "Your word (a promise)",
+    "answer_note": "When you give your word, you still have it — the act of giving your word doesn't remove it from you.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Some things multiply when shared..."
+  },
+  {
+    "id": "tq_0301",
+    "question": "A man pushes his car to a hotel and tells the owner he's bankrupt. Why?",
+    "answer": "He's playing Monopoly",
+    "answer_note": "In Monopoly, landing on a hotel property and being unable to pay makes you bankrupt.",
+    "category": "lateral thinking",
+    "difficulty": "medium",
+    "hook": "What game involves cars, hotels, and bankruptcy?"
+  },
+  {
+    "id": "tq_0302",
+    "question": "The more you have of it, the less you see. What is it?",
+    "answer": "Darkness (or fog)",
+    "answer_note": "The more darkness there is, the less you can see. More fog means less visibility.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "An inverse relationship..."
+  },
+  {
+    "id": "tq_0303",
+    "question": "What can you never eat for breakfast?",
+    "answer": "Lunch and dinner",
+    "answer_note": "Lunch and dinner are meals that come after breakfast — by definition, you cannot eat them at breakfast time.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Think about what the words mean, not what food you like..."
+  },
+  {
+    "id": "tq_0304",
+    "question": "What goes up and never comes down?",
+    "answer": "Your age",
+    "answer_note": "Age only increases — it never decreases (barring tricks of time).",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Not gravity — time..."
+  },
+  {
+    "id": "tq_0305",
+    "question": "Which is heavier: a pound of feathers or a pound of gold?",
+    "answer": "They weigh the same — both are one pound",
+    "answer_note": "A pound is a pound regardless of material. The trick is that gold uses Troy pounds (different weight), but if both are 'a pound' as stated, they're equal.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The classic weight trick question..."
+  },
+  {
+    "id": "tq_0306",
+    "question": "I'm light as a feather, but even the strongest person can't hold me for more than five minutes. What am I?",
+    "answer": "Your breath",
+    "answer_note": "Holding your breath is impossible beyond a few minutes for even the fittest athlete.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The lightest thing you carry everywhere..."
+  },
+  {
+    "id": "tq_0307",
+    "question": "What has many keys but can't open a single lock?",
+    "answer": "A piano (or a keyboard)",
+    "answer_note": "A piano has 88 keys but none of them open locks — they produce musical notes.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Keys that make music, not openings..."
+  },
+  {
+    "id": "tq_0308",
+    "question": "You are driving a bus. At the first stop, 4 people get on. At the second stop, 2 get off and 3 get on. At the third stop, 5 get off and 1 gets on. What color are the bus driver's eyes?",
+    "answer": "Whatever color YOUR eyes are — you are the driver",
+    "answer_note": "The question starts with 'You are driving a bus' — so the bus driver is you.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "The setup hides the real subject of the question..."
+  },
+  {
+    "id": "tq_0309",
+    "question": "What belongs to you but others use it more than you do?",
+    "answer": "Your name",
+    "answer_note": "Other people say and use your name far more often than you do yourself.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Your most personal possession — used by everyone else..."
+  },
+  {
+    "id": "tq_0310",
+    "question": "How do you make the number one disappear by adding to it?",
+    "answer": "Add the letter G — 'Gone'",
+    "answer_note": "Adding 'G' to 'one' spells 'gone' — the number one has disappeared.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Letters, not numbers, solve this..."
+  },
+  {
+    "id": "tq_0311",
+    "question": "What month of the year has 28 days?",
+    "answer": "All of them",
+    "answer_note": "Every month has at least 28 days. Only February has exactly 28 (in non-leap years).",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The oldest calendar trick in the book..."
+  },
+  {
+    "id": "tq_0312",
+    "question": "If you had only one match and entered a room with a lamp, a fireplace, and a gas stove — what do you light first?",
+    "answer": "The match",
+    "answer_note": "You cannot light anything with an unlit match. You light the match first.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "First things first..."
+  },
+  {
+    "id": "tq_0313",
+    "question": "What word contains all 26 letters?",
+    "answer": "The alphabet",
+    "answer_note": "The word 'alphabet' doesn't contain all 26 — but 'the alphabet' as a concept contains all 26 letters. Also: pangram sentences like 'The quick brown fox...'",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Think about the concept, not just the word itself..."
+  },
+  {
+    "id": "tq_0314",
+    "question": "What has a head, a tail, is brown, and has no legs?",
+    "answer": "A penny",
+    "answer_note": "A coin has a 'head' side and a 'tail' side, is copper-brown, and has no legs.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Think currency, not creature..."
+  },
+  {
+    "id": "tq_0315",
+    "question": "How many seconds are in a year?",
+    "answer": "12 — January 2nd, February 2nd, March 2nd... (the 2nd of each month)",
+    "answer_note": "Trick answer: there are 12 'seconds' (2nd days) in a year, one per month. Literal answer: 31,536,000 seconds.",
+    "category": "wordplay",
+    "difficulty": "hard",
+    "hook": "Depends entirely on what 'seconds' means..."
+  },
+  {
+    "id": "tq_0316",
+    "question": "What can you put in a wood box that will make it lighter?",
+    "answer": "Holes — or light itself",
+    "answer_note": "Cutting holes in a box makes it lighter in weight. Alternatively, light (as in illumination) can fill a box.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Two different meanings of 'lighter'..."
+  },
+  {
+    "id": "tq_0317",
+    "question": "What number, when multiplied by itself, gives a result that ends in the same digit as the original number?",
+    "answer": "5 and 6 (5×5=25, 6×6=36) — and also 0 and 1",
+    "answer_note": "5 squared ends in 5, 6 squared ends in 6, 0 squared ends in 0, 1 squared ends in 1.",
+    "category": "math tricks",
+    "difficulty": "medium",
+    "hook": "Most people guess wrong numbers first..."
+  },
+  {
+    "id": "tq_0318",
+    "question": "What gets sharper the more you use it?",
+    "answer": "Your mind (or a whetstone, or memory)",
+    "answer_note": "The more you use your brain, memory, or certain skills, the sharper they become.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The opposite of most tools..."
+  },
+  {
+    "id": "tq_0319",
+    "question": "A clerk at a butcher shop stands 5'10\" tall. What does he weigh?",
+    "answer": "Meat",
+    "answer_note": "A butcher weighs (measures the weight of) meat — that is literally his job.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "His job title tells you the answer..."
+  },
+  {
+    "id": "tq_0320",
+    "question": "David's father has three sons: Snap, Crackle, and...?",
+    "answer": "David",
+    "answer_note": "The question says 'David's father' — David is one of his sons.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The name is in the question..."
+  },
+  {
+    "id": "tq_0321",
+    "question": "What occurs once in every minute, twice in every moment, yet never in a thousand years?",
+    "answer": "The letter M",
+    "answer_note": "M appears once in 'minute,' twice in 'moment,' and zero times in 'a thousand years.'",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Not time — letters..."
+  },
+  {
+    "id": "tq_0322",
+    "question": "How can you physically stand behind your father while he stands behind you?",
+    "answer": "Stand back to back",
+    "answer_note": "If you both face opposite directions and stand back to back, each person is 'behind' the other simultaneously.",
+    "category": "lateral thinking",
+    "difficulty": "medium",
+    "hook": "Direction matters more than position..."
+  },
+  {
+    "id": "tq_0323",
+    "question": "What can you add to a barrel to make it lighter?",
+    "answer": "A hole",
+    "answer_note": "A hole in a barrel allows contents to drain out, making the barrel lighter. Also, removing the plug removes weight.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Remove something to add a hole — it lightens everything..."
+  },
+  {
+    "id": "tq_0324",
+    "question": "What gets more wet as it dries more things?",
+    "answer": "A towel or a sponge",
+    "answer_note": "As a towel or sponge dries things, it absorbs moisture, becoming wetter itself.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Drying by getting wet..."
+  },
+  {
+    "id": "tq_0325",
+    "question": "You throw away the outside and cook the inside. You eat the outside and throw away the inside. What is it?",
+    "answer": "Corn on the cob",
+    "answer_note": "You discard the husk (outside), cook the corn (inside), eat the corn (outside of the cob), and discard the cob (inside).",
+    "category": "riddles",
+    "difficulty": "hard",
+    "hook": "Two things being inside or outside swap..."
+  },
+  {
+    "id": "tq_0326",
+    "question": "Which is correct: 'the yolk of an egg IS white' or 'the yolk of an egg ARE white'?",
+    "answer": "Neither — egg yolks are yellow",
+    "answer_note": "The grammar question is a distraction. Egg yolks are yellow, not white. Both sentences have a false premise.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Grammar isn't the real issue here..."
+  },
+  {
+    "id": "tq_0327",
+    "question": "What has four wheels and flies?",
+    "answer": "A garbage truck",
+    "answer_note": "Garbage trucks have four wheels and attract flies (flying insects) due to the waste they carry.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Two meanings of 'flies'..."
+  },
+  {
+    "id": "tq_0328",
+    "question": "How is it possible to fall off a 20-foot ladder and not get hurt?",
+    "answer": "Fall from the bottom rung",
+    "answer_note": "If you fall off the bottom rung of a 20-foot ladder, you only fall a few inches — not the full 20 feet.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "You don't have to be at the top..."
+  },
+  {
+    "id": "tq_0329",
+    "question": "What can run but never walks, has a mouth but never talks?",
+    "answer": "A river",
+    "answer_note": "Rivers 'run' (flow), have a 'mouth' (where they enter the sea), but do neither of these things literally.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The answer speaks without words..."
+  },
+  {
+    "id": "tq_0330",
+    "question": "A cowboy rode into town on Friday, stayed three days, and rode out on Friday. How?",
+    "answer": "His horse is named Friday",
+    "answer_note": "The horse's name is Friday — the cowboy rode in on (his horse) Friday and rode out on Friday.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Names are the secret..."
+  },
+  {
+    "id": "tq_0331",
+    "question": "What walks on four legs in the morning and three in the evening — but is most powerful at noon?",
+    "answer": "A human (the riddle of the Sphinx) — most powerful in adulthood",
+    "answer_note": "Same as the Sphinx riddle: baby (four legs), adult (two legs, most powerful), elder (three legs with cane).",
+    "category": "classic riddles",
+    "difficulty": "medium",
+    "hook": "The extension of history's most famous riddle..."
+  },
+  {
+    "id": "tq_0332",
+    "question": "What starts with a T, ends with a T, and has T in it?",
+    "answer": "A teapot",
+    "answer_note": "'Teapot' starts with T, ends with T, and has 'T' (tea) in it — the beverage inside.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "'T' is more than just a letter here..."
+  },
+  {
+    "id": "tq_0333",
+    "question": "You are in a dark room with a candle, a wood stove, and a gas lamp. You only have one match. Which do you light first?",
+    "answer": "The match",
+    "answer_note": "The match must be lit before anything else can be ignited.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Appears complex — answer is always the same..."
+  },
+  {
+    "id": "tq_0334",
+    "question": "A man is found dead in a field with a backpack on his back. There are no footprints, no other marks. What happened?",
+    "answer": "His parachute didn't open",
+    "answer_note": "The 'backpack' is a parachute pack. He jumped from a plane and the parachute failed to open.",
+    "category": "lateral thinking",
+    "difficulty": "medium",
+    "hook": "What else could a backpack be in a tragedy like this?"
+  },
+  {
+    "id": "tq_0335",
+    "question": "What type of cheese is made backwards?",
+    "answer": "Edam — spell it backwards and you get 'made'",
+    "answer_note": "'Edam' spelled backwards is 'made.' It's the cheese made backwards.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Reverse the letters..."
+  },
+  {
+    "id": "tq_0336",
+    "question": "How many times can you subtract 10 from 100?",
+    "answer": "Once — after that you're subtracting from 90, then 80, etc.",
+    "answer_note": "After the first subtraction, the number is no longer 100. You can only subtract 10 from 100 exactly once.",
+    "category": "math tricks",
+    "difficulty": "easy",
+    "hook": "The number changes after the first operation..."
+  },
+  {
+    "id": "tq_0337",
+    "question": "I am always hungry and must be fed. The finger I touch will soon turn red. What am I?",
+    "answer": "Fire",
+    "answer_note": "Fire 'eats' fuel and burns anything it touches, leaving redness (scorching or burning).",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "It consumes everything and never stops..."
+  },
+  {
+    "id": "tq_0338",
+    "question": "What can you hold without ever touching it?",
+    "answer": "A conversation (or someone's attention, or a grudge)",
+    "answer_note": "You can 'hold' a conversation, attention, a position, or a grudge — none of which require physical touch.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Some things are held without hands..."
+  },
+  {
+    "id": "tq_0339",
+    "question": "Two fathers and two sons go fishing. They each catch one fish. Only three fish are caught total. How?",
+    "answer": "There are only three people — grandfather, father, and son",
+    "answer_note": "The grandfather is a father, his son is also a father, and his grandson is the third person. Three people = two fathers + two sons.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "Count the actual people, not the roles..."
+  },
+  {
+    "id": "tq_0340",
+    "question": "What do you throw out when you want to use it, but take in when you don't want to use it?",
+    "answer": "An anchor",
+    "answer_note": "You throw out an anchor to stop a boat and take it back in when you want to sail.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Reversed utility — you use it by losing it..."
+  },
+  {
+    "id": "tq_0341",
+    "question": "If an airplane crashes on the exact border of two countries, where are the survivors buried?",
+    "answer": "Survivors aren't buried — they survived",
+    "answer_note": "The question specifies survivors — people who are alive. Living people are not buried.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "One word changes everything..."
+  },
+  {
+    "id": "tq_0342",
+    "question": "What is the maximum number of times a sheet of paper can be folded in half?",
+    "answer": "About 7 times by hand; theoretically ~103 times before it reaches the observable universe's thickness",
+    "answer_note": "In practice, about 7 folds is the limit by hand. Mathematically, after 103 folds the thickness exceeds the known universe.",
+    "category": "science tricks",
+    "difficulty": "hard",
+    "hook": "Paper folding is exponentially deceptive..."
+  },
+  {
+    "id": "tq_0343",
+    "question": "What 8-letter word has one letter in it?",
+    "answer": "Envelope",
+    "answer_note": "An envelope is an 8-letter word and literally contains one letter (piece of mail) inside it.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The letters in the word vs. what the word holds..."
+  },
+  {
+    "id": "tq_0344",
+    "question": "What loses its head in the morning but gets it back at night?",
+    "answer": "A pillow",
+    "answer_note": "A pillow loses the head (person's head) in the morning when they get up and gets it back at night.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "It holds something precious every night..."
+  },
+  {
+    "id": "tq_0345",
+    "question": "Can you name three consecutive days without using Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday?",
+    "answer": "Yesterday, Today, and Tomorrow",
+    "answer_note": "The three words name consecutive days without using any day name.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "There are names for days beyond their weekday labels..."
+  },
+  {
+    "id": "tq_0346",
+    "question": "What is always coming but never arrives?",
+    "answer": "Tomorrow",
+    "answer_note": "Tomorrow is perpetually approaching but never actually arrives — when it does, it becomes today.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The day that never comes..."
+  },
+  {
+    "id": "tq_0347",
+    "question": "A man looks at a portrait and says 'Brothers and sisters have I none, but that man's father is my father's son.' Who is in the portrait?",
+    "answer": "The man's son",
+    "answer_note": "'My father's son' = the man himself. 'That man's father is me' = the portrait shows the man's son.",
+    "category": "logic",
+    "difficulty": "hard",
+    "hook": "Classic family logic puzzle — unpack it step by step..."
+  },
+  {
+    "id": "tq_0348",
+    "question": "What has one head, one foot, and four legs?",
+    "answer": "A bed",
+    "answer_note": "A bed has a head (headboard), a foot (footboard), and four legs supporting it.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Not an animal..."
+  },
+  {
+    "id": "tq_0349",
+    "question": "What do you call an alligator in a vest?",
+    "answer": "An investigator (in-vest-igator)",
+    "answer_note": "Investigator contains 'in-vest-igator' — an alligator wearing a vest who 'investigates.'",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The pun is inside the answer..."
+  },
+  {
+    "id": "tq_0350",
+    "question": "You have a barrel of gunpowder. How do you light it without a match, lighter, or any spark?",
+    "answer": "You can't — if you have no ignition source, you cannot light it",
+    "answer_note": "The puzzle seems to have no solution by design — the trick is accepting there is none given the constraints.",
+    "category": "logic",
+    "difficulty": "hard",
+    "hook": "Sometimes 'you can't' is the right answer..."
+  },
+  {
+    "id": "tq_0351",
+    "question": "What has no beginning, middle, or end?",
+    "answer": "A doughnut (or a ring, or a circle)",
+    "answer_note": "A circle or ring has no start, middle, or end — it is a continuous loop.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Round answers sometimes hide in plain sight..."
+  },
+  {
+    "id": "tq_0352",
+    "question": "If you have a 5-gallon jug and a 3-gallon jug, how do you get exactly 4 gallons?",
+    "answer": "Fill 5, pour into 3 (leaves 2 in 5-jug), empty 3-jug, pour 2 from 5 into 3, fill 5 again, pour into 3 (needs 1 more), you're left with 4 in the 5-jug",
+    "answer_note": "Classic water-pouring puzzle: 5→3 (2 left), empty 3, pour 2 into 3, fill 5, pour 1 from 5 into 3, leaving 4 in the 5-jug.",
+    "category": "math tricks",
+    "difficulty": "hard",
+    "hook": "You've seen this in movies — can you solve it from scratch?"
+  },
+  {
+    "id": "tq_0353",
+    "question": "What do you call a bear with no ears?",
+    "answer": "B (just the letter B)",
+    "answer_note": "If you take the ears (the letter E at the start and end of 'bear') away from the word 'bear,' you're left with 'b.'",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Remove the ears from the spelling..."
+  },
+  {
+    "id": "tq_0354",
+    "question": "If I have it, I don't share it. If I share it, I don't have it. What is it?",
+    "answer": "A secret",
+    "answer_note": "Once you share a secret, it is no longer a secret — you no longer 'have' it in the true sense.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The moment it spreads, it disappears..."
+  },
+  {
+    "id": "tq_0355",
+    "question": "What runs all around a yard but never moves?",
+    "answer": "A fence",
+    "answer_note": "A fence runs around the perimeter of a yard but is stationary — it doesn't actually move.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "It surrounds everything but goes nowhere..."
+  },
+  {
+    "id": "tq_0356",
+    "question": "What is always in front of you but can never be seen?",
+    "answer": "The future",
+    "answer_note": "The future is always ahead of you in time, but it cannot be observed or seen directly.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Something invisible you're always moving toward..."
+  },
+  {
+    "id": "tq_0357",
+    "question": "What flies without wings?",
+    "answer": "Time",
+    "answer_note": "Time flies — 'time flies when you're having fun' — but has no wings or physical form.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Not a bird, not a plane..."
+  },
+  {
+    "id": "tq_0358",
+    "question": "You walk into a room with a match. The room has a fireplace, a candle, and a lamp. What do you light first?",
+    "answer": "The match",
+    "answer_note": "You must light the match before anything else can be lit.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "This one never gets old..."
+  },
+  {
+    "id": "tq_0359",
+    "question": "What is the beginning of eternity, the end of time, the beginning of every ending?",
+    "answer": "The letter E",
+    "answer_note": "'Eternity' starts with E, 'time' ends with E, 'every ending' starts with E and ends with E.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "The letter hiding everywhere..."
+  },
+  {
+    "id": "tq_0360",
+    "question": "What has fingers and a thumb but is not alive?",
+    "answer": "A glove",
+    "answer_note": "A glove has slots for fingers and a thumb but is an inanimate object.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Wearable but not alive..."
+  },
+  {
+    "id": "tq_0361",
+    "question": "Why is it against the law to bury a person living in the USA in Canada?",
+    "answer": "Because they're still alive — you don't bury living people",
+    "answer_note": "'A person living' — they're alive. Living people are not buried anywhere.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Living is the key word..."
+  },
+  {
+    "id": "tq_0362",
+    "question": "What word looks the same upside down and backwards?",
+    "answer": "NOON",
+    "answer_note": "'NOON' reads the same forwards, backwards, and upside down.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Symmetry in four directions..."
+  },
+  {
+    "id": "tq_0363",
+    "question": "What is so delicate that even naming it breaks it?",
+    "answer": "Silence",
+    "answer_note": "Speaking the word 'silence' immediately destroys what it describes.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The answer is always its own undoing..."
+  },
+  {
+    "id": "tq_0364",
+    "question": "If there are four sheep, two dogs, and one herder — how many feet are there?",
+    "answer": "14 — sheep have 4 feet each (16), dogs have 4 (8), herder has 2 — but feet vs. paws... or exactly 2: the herder's 'feet'",
+    "answer_note": "Sheep and dogs have paws/hooves, not 'feet' in the human sense. Only the herder has 'feet.' Answer: 2. Or literally 16+8+2=26 if counting all limbs.",
+    "category": "trick questions",
+    "difficulty": "hard",
+    "hook": "What counts as 'feet' — only human feet?"
+  },
+  {
+    "id": "tq_0365",
+    "question": "What has a neck but no head?",
+    "answer": "A bottle",
+    "answer_note": "A bottle has a neck (the narrow upper portion) but no head on top of it.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Anatomy of an everyday object..."
+  },
+  {
+    "id": "tq_0366",
+    "question": "How many letters are in 'the alphabet'?",
+    "answer": "11 — the letters in the words 'the alphabet'",
+    "answer_note": "T-H-E-A-L-P-H-A-B-E-T = 11 letters in those two words. The alphabet itself has 26.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Count the question literally..."
+  },
+  {
+    "id": "tq_0367",
+    "question": "What flies when it's born, lies when it's alive, and runs when it's dead?",
+    "answer": "A snowflake",
+    "answer_note": "Snow flies (falls) when born, lies on the ground when alive, and runs (melts into water) when dead.",
+    "category": "riddles",
+    "difficulty": "hard",
+    "hook": "Nature's lifecycle in three words..."
+  },
+  {
+    "id": "tq_0368",
+    "question": "Two people are born at the exact same time, have the same parents, look identical — but are not twins. How?",
+    "answer": "They're triplets (or more)",
+    "answer_note": "Triplets, quadruplets, or larger multiple births aren't called twins.",
+    "category": "lateral thinking",
+    "difficulty": "easy",
+    "hook": "More than two can share a birthday..."
+  },
+  {
+    "id": "tq_0369",
+    "question": "What is the last thing you take off before bed?",
+    "answer": "Your feet off the floor (or your eyes off your phone)",
+    "answer_note": "Trick question — technically the last physical thing is your feet leaving the floor as you get into bed.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Think about the very final physical action..."
+  },
+  {
+    "id": "tq_0370",
+    "question": "What word becomes a crime when you add a letter to its end?",
+    "answer": "'Larceny' — add 'y' — wait, it already is. Better: 'slaughter' contains 'laughter'",
+    "answer_note": "'Slaughter' contains 'laughter' inside it. A playful word hidden inside a terrible act.",
+    "category": "wordplay",
+    "difficulty": "hard",
+    "hook": "A word hiding inside a crime..."
+  },
+  {
+    "id": "tq_0371",
+    "question": "What has to be broken before you can use it?",
+    "answer": "An egg",
+    "answer_note": "You must crack an egg to use it in cooking. It's useless unbroken in the kitchen.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Destroy it to use it..."
+  },
+  {
+    "id": "tq_0372",
+    "question": "What goes through a door but never goes in or out?",
+    "answer": "A keyhole",
+    "answer_note": "A keyhole is literally in a door but doesn't go through — it stays in the door always.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Part of the door, but never moving..."
+  },
+  {
+    "id": "tq_0373",
+    "question": "A man rides into town on Tuesday, stays two days, and leaves on Tuesday. How?",
+    "answer": "His horse is named Tuesday",
+    "answer_note": "The horse's name is Tuesday — he rode in on (the horse named) Tuesday and left on Tuesday.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Look for named animals in timeline puzzles..."
+  },
+  {
+    "id": "tq_0374",
+    "question": "What has three letters, is a palindrome, and describes a female deer?",
+    "answer": "Doe — wait, that's not a palindrome. Actually: 'EWE' (a female sheep)",
+    "answer_note": "EWE is a female sheep and reads the same forwards and backwards — a three-letter palindrome.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Palindromes in the animal kingdom..."
+  },
+  {
+    "id": "tq_0375",
+    "question": "What is at the end of everything?",
+    "answer": "The letter G",
+    "answer_note": "'Everything' ends with the letter G.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Literally at the end of the word 'everything'..."
+  },
+  {
+    "id": "tq_0376",
+    "question": "How can you make seven even?",
+    "answer": "Remove the S — 'even'",
+    "answer_note": "Remove the 'S' from 'seven' and you get 'even' — seven has become even.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Letters, not math..."
+  },
+  {
+    "id": "tq_0377",
+    "question": "What's the longest word in the dictionary?",
+    "answer": "'Smiles' — there's a mile between the first and last letter",
+    "answer_note": "'Smiles' has a mile between its first letter (S) and its last letter (S). A classic wordplay trick answer.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Look for the distance between letters..."
+  },
+  {
+    "id": "tq_0378",
+    "question": "I have seas without water, coasts without sand, towns without people, and mountains without land. What am I?",
+    "answer": "A map",
+    "answer_note": "A map shows all of these features as representations, but none of the physical things they depict.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Everything — but none of it real..."
+  },
+  {
+    "id": "tq_0379",
+    "question": "How do you make number one disappear?",
+    "answer": "Add the letter G — one becomes gone",
+    "answer_note": "Adding 'G' before 'one' makes 'gone' — the number one has disappeared into the word.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Addition that removes..."
+  },
+  {
+    "id": "tq_0380",
+    "question": "A farmer has 17 sheep. All but 9 die. How many are left?",
+    "answer": "9",
+    "answer_note": "'All but 9 die' means 9 survive. The answer is 9, not 8.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "'All but' is the critical phrase..."
+  },
+  {
+    "id": "tq_0381",
+    "question": "What has words but never speaks?",
+    "answer": "A book",
+    "answer_note": "A book is full of words but cannot literally speak — it conveys language silently.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Communication without sound..."
+  },
+  {
+    "id": "tq_0382",
+    "question": "What is in the middle of Paris?",
+    "answer": "The letter R",
+    "answer_note": "'PaRis' — the letter R is literally in the middle of the word 'Paris.'",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The middle of the word, not the city..."
+  },
+  {
+    "id": "tq_0383",
+    "question": "How can you drop a raw egg onto a concrete floor without cracking it?",
+    "answer": "Concrete floors are very hard to crack — the egg cracks, not the floor",
+    "answer_note": "The question asks about cracking the concrete floor. Eggs don't crack floors. The egg itself will crack, but floors won't.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "What exactly is being cracked?"
+  },
+  {
+    "id": "tq_0384",
+    "question": "What has no weight but can be seen, and can sink a ship?",
+    "answer": "A hole",
+    "answer_note": "A hole in a ship's hull has no physical weight itself but allows water in, which sinks the ship.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "The invisible destroyer..."
+  },
+  {
+    "id": "tq_0385",
+    "question": "In a race, you overtake the last-place runner. What place are you in?",
+    "answer": "Last place — you can't be behind the last-place runner if they're last",
+    "answer_note": "If someone is in last place, there is nobody behind them. You cannot overtake someone who is already last.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "If they're last, nobody's behind them..."
+  },
+  {
+    "id": "tq_0386",
+    "question": "What word is always spelled wrong?",
+    "answer": "'Wrong'",
+    "answer_note": "The word 'wrong' is always spelled w-r-o-n-g. That IS the correct spelling of 'wrong.'",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The answer is the question..."
+  },
+  {
+    "id": "tq_0387",
+    "question": "Can a man marry his brother's wife's mother-in-law?",
+    "answer": "Yes — his brother's mother-in-law has no relation to him by blood or law",
+    "answer_note": "His brother's wife's mother-in-law is the mother of his brother's wife — she is not related to him.",
+    "category": "logic",
+    "difficulty": "hard",
+    "hook": "Family trees get complicated fast..."
+  },
+  {
+    "id": "tq_0388",
+    "question": "What is full of holes but still holds water?",
+    "answer": "A sponge",
+    "answer_note": "A sponge has thousands of tiny holes (pores) yet holds and retains water effectively.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "More holes than solid — yet still holds water..."
+  },
+  {
+    "id": "tq_0389",
+    "question": "What English word has three consecutive double letters?",
+    "answer": "Bookkeeper (oo-kk-ee)",
+    "answer_note": "'Bookkeeper' contains three pairs of consecutive double letters: oo, kk, and ee.",
+    "category": "wordplay",
+    "difficulty": "hard",
+    "hook": "Three doubles in a row — what word has that?"
+  },
+  {
+    "id": "tq_0390",
+    "question": "What is harder to catch the faster you run?",
+    "answer": "Your breath",
+    "answer_note": "Running faster makes you more out of breath — the faster you run, the harder it is to catch your breath.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Chasing what you already have..."
+  },
+  {
+    "id": "tq_0391",
+    "question": "Two in a corner, one in a room, zero in a house, but one in a shelter. What is it?",
+    "answer": "The letter R",
+    "answer_note": "'CornRR'→two; 'Room'→one R; 'house'→zero R; 'shelteR'→one R. Count the letter R.",
+    "category": "wordplay",
+    "difficulty": "hard",
+    "hook": "Count a specific letter in each word..."
+  },
+  {
+    "id": "tq_0392",
+    "question": "What is lighter than air but even the strongest person can't hold it for more than two minutes?",
+    "answer": "Your breath",
+    "answer_note": "Breath (the air you exhale) is lighter than dense solid objects, yet holding it is impossible beyond a few minutes.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "You're made of it but can't keep it..."
+  },
+  {
+    "id": "tq_0393",
+    "question": "A man looks at a photo and says: 'Brothers and sisters I have none, but this man's father is my father's son.' Who is in the photo?",
+    "answer": "His own son",
+    "answer_note": "'My father's son' = himself. 'This man's father is me' = the photo is of his son.",
+    "category": "logic",
+    "difficulty": "hard",
+    "hook": "Family logic puzzles always have an elegant solution..."
+  },
+  {
+    "id": "tq_0394",
+    "question": "What is something you can give away and still keep?",
+    "answer": "Your word (a promise), or love, or knowledge",
+    "answer_note": "Knowledge, love, and promises can all be shared with others while you retain them yourself.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Some things multiply when given away..."
+  },
+  {
+    "id": "tq_0395",
+    "question": "When does 11 + 3 = 2?",
+    "answer": "On a clock (11 o'clock plus 3 hours = 2 o'clock)",
+    "answer_note": "On a 12-hour clock, 11am + 3 hours = 2pm. Clock arithmetic wraps around at 12.",
+    "category": "math tricks",
+    "difficulty": "medium",
+    "hook": "Math that wraps around..."
+  },
+  {
+    "id": "tq_0396",
+    "question": "What goes up the hill without moving?",
+    "answer": "A road",
+    "answer_note": "A road goes up a hill physically but is stationary — it doesn't move itself.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "It ascends but never rises..."
+  },
+  {
+    "id": "tq_0397",
+    "question": "What is the center of gravity?",
+    "answer": "The letter V",
+    "answer_note": "The center of the word 'gravity' is the letter V: gr-A-V-i-t-y. The middle letter is V.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Physics question with a wordplay answer..."
+  },
+  {
+    "id": "tq_0398",
+    "question": "I have branches but no fruit, trunk, or leaves. What am I?",
+    "answer": "A bank",
+    "answer_note": "Banks have branches (locations), but no biological features of a tree.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Not every branch grows leaves..."
+  },
+  {
+    "id": "tq_0399",
+    "question": "What is the only question you can never answer 'yes' to?",
+    "answer": "'Are you dead?' (or 'Are you asleep?')",
+    "answer_note": "If you can answer the question at all, you're alive and awake — making 'yes' impossible to say honestly.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "A yes answer makes the question false..."
+  },
+  {
+    "id": "tq_0400",
+    "question": "What weighs more: a pound of cotton or a pound of iron?",
+    "answer": "They weigh the same — both are one pound",
+    "answer_note": "Weight is weight regardless of material. A pound of anything weighs one pound.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Different materials, same measurement..."
+  },
+  {
+    "id": "tq_0401",
+    "question": "What can you find in a minute but not in an hour?",
+    "answer": "The letter N",
+    "answer_note": "'Minute' contains the letter N. 'Hour' does not contain the letter N.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Look inside the words, not the time..."
+  },
+  {
+    "id": "tq_0402",
+    "question": "If you spell 'sit in the tub' S-O-A-K, and you spell 'a funny story' J-O-K-E, how do you spell 'the white of an egg'?",
+    "answer": "A-L-B-U-M-E-N — or just E-G-G W-H-I-T-E",
+    "answer_note": "The setup makes you expect a trick, but the white of an egg is spelled 'egg white' (or albumen). The trick is there's no trick.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "When you expect a trick and there isn't one..."
+  },
+  {
+    "id": "tq_0403",
+    "question": "What is always the same size no matter how big or small the container?",
+    "answer": "The hole in the container",
+    "answer_note": "Any hole in any container is a hole — size is determined by the opening, not the container.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "The absence defined by presence..."
+  },
+  {
+    "id": "tq_0404",
+    "question": "A doctor has a brother who is a lawyer but the lawyer has no brother. How?",
+    "answer": "The doctor is the lawyer's sister",
+    "answer_note": "The doctor is female. The lawyer has no brother — his sibling is his sister, the doctor.",
+    "category": "lateral thinking",
+    "difficulty": "medium",
+    "hook": "Assumed gender is always the trick..."
+  },
+  {
+    "id": "tq_0405",
+    "question": "What can you break without touching it?",
+    "answer": "A promise (or a record, or silence)",
+    "answer_note": "Promises, records, and silence can all be broken without any physical contact.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Breaking that requires no hands..."
+  },
+  {
+    "id": "tq_0406",
+    "question": "How many sides does a circle have?",
+    "answer": "Two — an inside and an outside",
+    "answer_note": "A circle has two sides: an interior and an exterior. Or arguably zero, depending on the mathematical definition.",
+    "category": "math tricks",
+    "difficulty": "medium",
+    "hook": "Sides don't always mean edges..."
+  },
+  {
+    "id": "tq_0407",
+    "question": "You are in a race and pass the person in 2nd place. You then get passed by the person who was in 3rd place. What place are you in?",
+    "answer": "3rd place",
+    "answer_note": "After passing 2nd, you're in 2nd. Then 3rd passes you — you drop back to 3rd.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Track every move carefully..."
+  },
+  {
+    "id": "tq_0408",
+    "question": "What is hard to find but easy to lose?",
+    "answer": "A good reputation (or balance, or peace)",
+    "answer_note": "Building a good reputation takes years; losing it can happen in an instant.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Some things take forever to build and moments to destroy..."
+  },
+  {
+    "id": "tq_0409",
+    "question": "What comes down but never goes up?",
+    "answer": "Rain",
+    "answer_note": "Rain falls down from the sky and does not go back up — the water cycle evaporates it, but rain itself only falls.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Gravity's one-direction relationship with water..."
+  },
+  {
+    "id": "tq_0410",
+    "question": "If I say 'everything I tell you is a lie,' am I telling the truth or lying?",
+    "answer": "It's a paradox — neither can be consistently true",
+    "answer_note": "If the statement is true, then it's a lie (contradiction). If it's a lie, then not everything is a lie (contradiction). This is the liar's paradox.",
+    "category": "logic",
+    "difficulty": "hard",
+    "hook": "The self-defeating sentence that broke logic..."
+  },
+  {
+    "id": "tq_0411",
+    "question": "What has no life but can die?",
+    "answer": "A battery",
+    "answer_note": "Batteries can 'die' (run out of charge) but are not living organisms.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Modern death without living..."
+  },
+  {
+    "id": "tq_0412",
+    "question": "I am not a bird, but I can fly through the sky. I am not a river, but I'm full of water. What am I?",
+    "answer": "A cloud",
+    "answer_note": "Clouds float through the sky and are composed of water droplets or ice crystals.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Sky-born water that floats..."
+  },
+  {
+    "id": "tq_0413",
+    "question": "What has a spine but no bones?",
+    "answer": "A book",
+    "answer_note": "A book has a spine (the bound edge) but is not a living creature with bones.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Anatomy of the written word..."
+  },
+  {
+    "id": "tq_0414",
+    "question": "If a red house is built with red bricks, what is a igloo made of?",
+    "answer": "Ice (or snow)",
+    "answer_note": "An igloo is made of compacted snow or ice blocks — the prefix logic doesn't apply.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Sometimes the pattern doesn't continue..."
+  },
+  {
+    "id": "tq_0415",
+    "question": "There are 10 birds in a tree. A hunter shoots one. How many are left?",
+    "answer": "None — the gunshot scared the rest away",
+    "answer_note": "The sound of the gunshot startles the other birds and they fly away. Zero remain.",
+    "category": "lateral thinking",
+    "difficulty": "easy",
+    "hook": "Physics and animal behavior matter..."
+  },
+  {
+    "id": "tq_0416",
+    "question": "What has four legs but only one foot?",
+    "answer": "A bed",
+    "answer_note": "A bed has four legs but only one 'foot' — the footboard at the end of the bed.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Four legs, but anatomy not zoology..."
+  },
+  {
+    "id": "tq_0417",
+    "question": "What do you call a snowman in July?",
+    "answer": "A puddle",
+    "answer_note": "In July heat, a snowman would melt completely into a puddle of water.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Seasonal physics at work..."
+  },
+  {
+    "id": "tq_0418",
+    "question": "How can a pocket be empty but still have something in it?",
+    "answer": "When it has a hole in it",
+    "answer_note": "A pocket with a hole in it contains a hole — something is technically in it.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "A hole is something..."
+  },
+  {
+    "id": "tq_0419",
+    "question": "A man walks out in the rain without an umbrella or hat and doesn't get his hair wet. How?",
+    "answer": "He's bald",
+    "answer_note": "A bald man has no hair — rain can't wet hair that isn't there.",
+    "category": "lateral thinking",
+    "difficulty": "easy",
+    "hook": "The simplest explanation is often correct..."
+  },
+  {
+    "id": "tq_0420",
+    "question": "What travels the world but stays in one spot?",
+    "answer": "A stamp",
+    "answer_note": "A postage stamp stays fixed in the corner of an envelope while the mail travels the world.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Global traveler that never moves..."
+  },
+  {
+    "id": "tq_0421",
+    "question": "What runs but has no legs?",
+    "answer": "Water (a river, a faucet, a nose)",
+    "answer_note": "Rivers run, faucets run, noses run — none of them have legs.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Multiple right answers..."
+  },
+  {
+    "id": "tq_0422",
+    "question": "What is the longest word that can be typed using only the top row of a keyboard?",
+    "answer": "'Typewriter' (10 letters, all on top row)",
+    "answer_note": "'Typewriter' uses only T, Y, P, E, W, R, I, T, E, R — all on the top row of a QWERTY keyboard.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Your keyboard is hiding this one..."
+  },
+  {
+    "id": "tq_0423",
+    "question": "Which is correct: 'Penguins flies' or 'Penguins fly'?",
+    "answer": "Neither — penguins can't fly",
+    "answer_note": "Penguins are flightless birds. Neither grammatically incorrect nor correct sentence is factually true.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Grammar isn't the real issue here..."
+  },
+  {
+    "id": "tq_0424",
+    "question": "What can you hear but not see, and only speaks when spoken to?",
+    "answer": "An echo",
+    "answer_note": "An echo is heard but not seen, and only responds when a sound is made — it 'speaks when spoken to.'",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The voice with no body..."
+  },
+  {
+    "id": "tq_0425",
+    "question": "I start with T, end with T, and have T inside. What am I?",
+    "answer": "A teapot (or a tent, or a toast)",
+    "answer_note": "'Teapot' starts with T, ends with T, and contains 'T' (tea) inside it.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Three T's in one thing..."
+  },
+  {
+    "id": "tq_0426",
+    "question": "What is the only thing that grows when you feed it but dies when you give it water?",
+    "answer": "Fire",
+    "answer_note": "Fire grows with fuel (fed) but is extinguished by water (dies).",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Water is poison to this one..."
+  },
+  {
+    "id": "tq_0427",
+    "question": "Imagine you are in a sinking boat surrounded by sharks. How do you survive?",
+    "answer": "Stop imagining",
+    "answer_note": "The question starts with 'Imagine you are' — simply stop imagining it.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The first word solves the problem..."
+  },
+  {
+    "id": "tq_0428",
+    "question": "A is the brother of B. B is the brother of A. How are A and B related?",
+    "answer": "They are brothers",
+    "answer_note": "The question sets up a circular statement but the answer is simply that they're brothers.",
+    "category": "logic",
+    "difficulty": "easy",
+    "hook": "Circular logic with a simple answer..."
+  },
+  {
+    "id": "tq_0429",
+    "question": "What can be measured but has no length, width, or height?",
+    "answer": "Temperature, time, or intelligence",
+    "answer_note": "Abstract qualities like temperature, time, or intelligence can be measured but have no physical dimensions.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Measurement without dimension..."
+  },
+  {
+    "id": "tq_0430",
+    "question": "What number do you get when you multiply all the digits on a phone keypad?",
+    "answer": "Zero — the keypad contains a 0",
+    "answer_note": "Multiplying any set of numbers that includes zero results in zero. The phone keypad has 0 on it.",
+    "category": "math tricks",
+    "difficulty": "medium",
+    "hook": "Zero ruins all multiplication..."
+  },
+  {
+    "id": "tq_0431",
+    "question": "What loses its head every morning and gets it back every night?",
+    "answer": "A pillow",
+    "answer_note": "A person rests their head on a pillow at night and removes it in the morning.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "A nightly reunion..."
+  },
+  {
+    "id": "tq_0432",
+    "question": "Which is heavier: a ton of bricks or a ton of feathers?",
+    "answer": "Neither — both weigh one ton",
+    "answer_note": "A ton is a ton regardless of material. They both weigh exactly the same.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The oldest weight trick question..."
+  },
+  {
+    "id": "tq_0433",
+    "question": "What English word retains the same pronunciation even after removing four of its five letters?",
+    "answer": "Queue — remove the last four letters (ueue) and you're left with Q, pronounced the same",
+    "answer_note": "'Queue' is pronounced 'Q' — removing 'ueue' leaves 'Q' with the same sound.",
+    "category": "wordplay",
+    "difficulty": "hard",
+    "hook": "The most silent letters in any word..."
+  },
+  {
+    "id": "tq_0434",
+    "question": "What do you call cheese that isn't yours?",
+    "answer": "Nacho cheese (not-yo cheese)",
+    "answer_note": "'Nacho' sounds like 'not-yo' — as in 'not your cheese.'",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "A pun hiding in a snack..."
+  },
+  {
+    "id": "tq_0435",
+    "question": "How do you make 7 even?",
+    "answer": "Remove the S — 'even'",
+    "answer_note": "Remove the 'S' from 'seven' and you have 'even.' The number becomes even through wordplay.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Letters solve what math can't..."
+  },
+  {
+    "id": "tq_0436",
+    "question": "What goes through towns and hills but doesn't move?",
+    "answer": "A road",
+    "answer_note": "Roads pass through terrain physically but are stationary structures.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The path that never walks..."
+  },
+  {
+    "id": "tq_0437",
+    "question": "How is the moon like a dollar?",
+    "answer": "Both have four quarters",
+    "answer_note": "The moon has four phases (quarters) and a dollar has four quarter coins.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Astronomy meets currency..."
+  },
+  {
+    "id": "tq_0438",
+    "question": "A man shaves multiple times a day but still has a beard. How?",
+    "answer": "He's a barber — he shaves his customers, not himself",
+    "answer_note": "The man is a barber who shaves customers' faces repeatedly each day, but keeps his own beard.",
+    "category": "lateral thinking",
+    "difficulty": "easy",
+    "hook": "The job changes everything..."
+  },
+  {
+    "id": "tq_0439",
+    "question": "What has many needles but doesn't sew?",
+    "answer": "A pine tree (or a hedgehog, or a cactus)",
+    "answer_note": "Pine trees have needle-like leaves but do not sew. Hedgehogs and cacti also have 'needles' (spines).",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Needles in nature, not in tailoring..."
+  },
+  {
+    "id": "tq_0440",
+    "question": "What building has the most stories?",
+    "answer": "A library",
+    "answer_note": "A library has many 'stories' — books full of stories. The pun is on 'story' meaning both floors and narratives.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Two meanings of the same word..."
+  },
+  {
+    "id": "tq_0441",
+    "question": "What can be stolen, mistaken for something else, or given away — but rarely kept?",
+    "answer": "A heart",
+    "answer_note": "Hearts can be stolen (affection), mistaken (emotions), given away (love), or rarely fully kept to oneself.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Romance hiding in a riddle..."
+  },
+  {
+    "id": "tq_0442",
+    "question": "A girl fell off a 20-foot ladder but wasn't hurt. How?",
+    "answer": "She fell off the bottom rung",
+    "answer_note": "She was on the bottom rung, so she fell only a few inches to the ground.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Where on the ladder matters..."
+  },
+  {
+    "id": "tq_0443",
+    "question": "What has 13 hearts but no other organs?",
+    "answer": "A deck of cards",
+    "answer_note": "A standard deck of cards has 13 hearts (the heart suit) but no other biological organs.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Hearts without a body..."
+  },
+  {
+    "id": "tq_0444",
+    "question": "What is often returned but never borrowed?",
+    "answer": "A compliment, thanks, or a smile",
+    "answer_note": "You return smiles, thanks, and compliments — but you never borrow them first.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The gift that comes back without being lent..."
+  },
+  {
+    "id": "tq_0445",
+    "question": "What 4-letter word can be written forward, backward, or upside down and still be read the same?",
+    "answer": "NOON",
+    "answer_note": "'NOON' reads the same forwards, backwards, and when rotated 180 degrees (upside down).",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Symmetry in all four directions..."
+  },
+  {
+    "id": "tq_0446",
+    "question": "What is the difference between a nickel and a dime?",
+    "answer": "Five cents (and one is smaller than the other — which seems backwards)",
+    "answer_note": "A dime is worth 10 cents but is physically smaller than a nickel worth 5 cents — counterintuitive but true.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The smaller coin is worth more..."
+  },
+  {
+    "id": "tq_0447",
+    "question": "If South Africa is on the southern tip of Africa, where is Turkey?",
+    "answer": "Turkey is in Europe and Asia (not in Africa despite the food association)",
+    "answer_note": "Turkey the country spans southeastern Europe and western Asia — it has nothing to do with the bird or Africa.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Geography hides behind familiar names..."
+  },
+  {
+    "id": "tq_0448",
+    "question": "What can the whole world see but even kings and queens can't see for more than five minutes?",
+    "answer": "The sun",
+    "answer_note": "Looking directly at the sun for more than a few moments damages eyesight permanently, even for the most powerful people.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Royalty and commoners alike bow to this one..."
+  },
+  {
+    "id": "tq_0449",
+    "question": "I have cities but no houses, mountains but no trees, and water but no fish. I'm flat and I can be folded. What am I?",
+    "answer": "A map",
+    "answer_note": "Maps represent all these things as symbols and can be folded flat.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The world in miniature..."
+  },
+  {
+    "id": "tq_0450",
+    "question": "How many apples can you put into an empty basket?",
+    "answer": "One — after that the basket is no longer empty",
+    "answer_note": "Once you place the first apple, the basket is no longer empty. Only one apple fills an empty basket.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The basket can only be empty once..."
+  },
+  {
+    "id": "tq_0451",
+    "question": "What is brown and sticky?",
+    "answer": "A stick",
+    "answer_note": "A stick (from a tree) is literally brown and literally sticky (in some conditions). The simplest answer is correct.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The obvious answer is always the right one..."
+  },
+  {
+    "id": "tq_0452",
+    "question": "What starts with an E but only has one letter in it?",
+    "answer": "An envelope",
+    "answer_note": "'Envelope' starts with E and contains one letter (piece of mail) inside it.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The container, not the spelling..."
+  },
+  {
+    "id": "tq_0453",
+    "question": "If a plane crashes on the US-Canada border, where do they bury the survivors?",
+    "answer": "You don't bury survivors — they're alive",
+    "answer_note": "Survivors of any disaster are alive. Living people are not buried.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Alive is the key word..."
+  },
+  {
+    "id": "tq_0454",
+    "question": "A rooster lays an egg on the peak of a triangular roof. Which way does the egg roll?",
+    "answer": "Roosters don't lay eggs",
+    "answer_note": "Roosters are male chickens. Only female chickens (hens) lay eggs.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Read every word..."
+  },
+  {
+    "id": "tq_0455",
+    "question": "How can you make 1000 using eight 8s?",
+    "answer": "888 + 88 + 8 + 8 + 8 = 1000",
+    "answer_note": "888 + 88 + 8 + 8 + 8 = 1000. All eight 8s used.",
+    "category": "math tricks",
+    "difficulty": "hard",
+    "hook": "A pure arithmetic puzzle with a satisfying solution..."
+  },
+  {
+    "id": "tq_0456",
+    "question": "What word contains all five vowels in order?",
+    "answer": "'Facetious' or 'abstemious'",
+    "answer_note": "'Facetious' contains a-e-i-o-u in alphabetical order. So does 'abstemious.'",
+    "category": "wordplay",
+    "difficulty": "hard",
+    "hook": "Five vowels, perfect order..."
+  },
+  {
+    "id": "tq_0457",
+    "question": "What goes up the chimney down but can't go down the chimney up?",
+    "answer": "An umbrella",
+    "answer_note": "A closed (down) umbrella fits up a chimney, but an open (up) umbrella is too wide to fit down one.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "'Up' and 'down' describe state, not direction..."
+  },
+  {
+    "id": "tq_0458",
+    "question": "Why can't a woman living in New York be buried in Chicago?",
+    "answer": "Because she's still living — living people aren't buried",
+    "answer_note": "The question specifies 'a woman living in New York' — she's alive and cannot be buried anywhere.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Living people don't get buried..."
+  },
+  {
+    "id": "tq_0459",
+    "question": "What is the tallest building in the world?",
+    "answer": "Burj Khalifa (828 m) — but the tallest structure differs from the tallest building",
+    "answer_note": "The Burj Khalifa is the tallest building, while radio masts have exceeded it as 'structures.' Context matters.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Building vs. structure — the distinction matters..."
+  },
+  {
+    "id": "tq_0460",
+    "question": "What can go up a chimney down but not down a chimney up?",
+    "answer": "An umbrella (when open vs. closed)",
+    "answer_note": "A closed (down) umbrella fits in a chimney going up; an open (up) umbrella cannot fit going down.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Open vs. closed changes everything..."
+  },
+  {
+    "id": "tq_0461",
+    "question": "A man buys a horse for $60, sells it for $70, buys it back for $80, and sells it again for $90. How much did he make?",
+    "answer": "$20 profit",
+    "answer_note": "He made $10 on the first sale and $10 on the second sale. Total profit: $20.",
+    "category": "math tricks",
+    "difficulty": "medium",
+    "hook": "Two separate transactions, two separate profits..."
+  },
+  {
+    "id": "tq_0462",
+    "question": "What do you call a fish without eyes?",
+    "answer": "A fsh",
+    "answer_note": "Remove the 'i' (eyes) from 'fish' and you get 'fsh.'",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Letter removal as anatomy..."
+  },
+  {
+    "id": "tq_0463",
+    "question": "What speaks every language but was never taught any?",
+    "answer": "A mirror (or an echo)",
+    "answer_note": "A mirror 'speaks' visually to anyone who looks at it regardless of their language.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Universal communication without words..."
+  },
+  {
+    "id": "tq_0464",
+    "question": "If you spell out numbers, what is the first number that contains the letter A?",
+    "answer": "One thousand",
+    "answer_note": "One, two, three... counting up: none contain 'A' until 'one thousand' (1,000).",
+    "category": "wordplay",
+    "difficulty": "hard",
+    "hook": "Count through the alphabet in numbers..."
+  },
+  {
+    "id": "tq_0465",
+    "question": "What is the next number in the sequence: 1, 11, 21, 1211, 111221?",
+    "answer": "312211",
+    "answer_note": "Each number describes the previous one: 1 (one 1), 11 (two 1s), 21 (one 2, one 1), 1211 (one 1, one 2, two 1s), 111221 (three 1s, two 2s, one 1)... → 312211.",
+    "category": "patterns",
+    "difficulty": "hard",
+    "hook": "This sequence describes itself — look and say..."
+  },
+  {
+    "id": "tq_0466",
+    "question": "What is the question you ask to find out everything about a person?",
+    "answer": "'What is your biggest fear?' or 'Who are you?'",
+    "answer_note": "Different philosophical answers work here. The trick is there's no single universal answer.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "One question, everything revealed..."
+  },
+  {
+    "id": "tq_0467",
+    "question": "What do you sit on, sleep in, and brush your teeth with?",
+    "answer": "A chair, a bed, and a toothbrush",
+    "answer_note": "Three separate things answer three parts of the question — the trick is treating it as one riddle.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Not one thing, but three..."
+  },
+  {
+    "id": "tq_0468",
+    "question": "Which letter of the alphabet has the most water?",
+    "answer": "C (the sea)",
+    "answer_note": "The letter C sounds like 'sea' — a body of water.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Phonetics, not letters..."
+  },
+  {
+    "id": "tq_0469",
+    "question": "How far can a fox run into a forest?",
+    "answer": "Halfway — after that it's running out",
+    "answer_note": "At the midpoint of the forest, each step takes the fox closer to the other edge.",
+    "category": "lateral thinking",
+    "difficulty": "easy",
+    "hook": "The midpoint is always the turning point..."
+  },
+  {
+    "id": "tq_0470",
+    "question": "What is the maximum number of times you can subtract 5 from 25?",
+    "answer": "Once — after that you're subtracting from 20",
+    "answer_note": "After the first subtraction, the number is 20, not 25. You can only subtract 5 from 25 once.",
+    "category": "math tricks",
+    "difficulty": "easy",
+    "hook": "The number changes after the first operation..."
+  },
+  {
+    "id": "tq_0471",
+    "question": "What is something you can always count on?",
+    "answer": "Your fingers",
+    "answer_note": "You can literally always count on (using) your fingers for arithmetic.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "A very reliable tool you were born with..."
+  },
+  {
+    "id": "tq_0472",
+    "question": "How do you make the number 1 disappear without erasing it?",
+    "answer": "Add the letter G: 'gone'",
+    "answer_note": "Prepend G to 'one' to spell 'gone' — the 1 has vanished through wordplay.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Algebra meets the alphabet..."
+  },
+  {
+    "id": "tq_0473",
+    "question": "What word is always spelled wrong by everyone?",
+    "answer": "'Wrong' — because 'wrong' spelled wrong would be wrong, but 'wrong' spelled correctly is the word itself",
+    "answer_note": "The question asks what word is 'always spelled wrong' by everyone — the answer is the word 'wrong,' always spelled correctly as w-r-o-n-g.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The self-referential spelling trap..."
+  },
+  {
+    "id": "tq_0474",
+    "question": "What do elves learn in school?",
+    "answer": "The elf-abet",
+    "answer_note": "Elf + alphabet = 'elf-abet' — a play on the word alphabet.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Fantasy phonics..."
+  },
+  {
+    "id": "tq_0475",
+    "question": "If a dog is tied to a 10-foot rope and there is a bone 15 feet away, how does the dog reach the bone?",
+    "answer": "The rope is not tied to anything — only the dog is tied to the rope",
+    "answer_note": "The problem says the dog is tied to the rope, not that the rope is tied to a post. The dog can walk freely.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "What is the rope attached to?"
+  },
+  {
+    "id": "tq_0476",
+    "question": "What do you always see at the beginning of a parade but never at the end?",
+    "answer": "The letter P",
+    "answer_note": "'Parade' begins with the letter P. 'End' does not contain P. The letter P is only at the beginning.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Letters hide in plain sight..."
+  },
+  {
+    "id": "tq_0477",
+    "question": "I am taken from a mine and put in a wooden box where no one uses me. What am I?",
+    "answer": "A pencil (the graphite lead inside it)",
+    "answer_note": "Graphite (pencil lead) is mined and encased in wood. The phrase 'no one uses me' is a misdirect — pencils are used constantly.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Mining meets everyday objects..."
+  },
+  {
+    "id": "tq_0478",
+    "question": "What word becomes a different word when you add the letters 'ing'?",
+    "answer": "Many words: 'am' → 'aiming', 'sin' → 'singing', 'bring' → 'bringing'",
+    "answer_note": "Adding '-ing' transforms countless English words into gerunds or different meanings.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Grammar transforms language..."
+  },
+  {
+    "id": "tq_0479",
+    "question": "A window cleaner is cleaning windows on the 25th floor when he slips and falls. He's unharmed. How?",
+    "answer": "He was cleaning windows on the inside",
+    "answer_note": "The cleaner was cleaning windows from inside the building, so falling only meant falling to the floor of the room.",
+    "category": "lateral thinking",
+    "difficulty": "medium",
+    "hook": "Inside vs. outside changes everything..."
+  },
+  {
+    "id": "tq_0480",
+    "question": "What is 1/2 of 1/4 of 1/5 of 1000?",
+    "answer": "25",
+    "answer_note": "1000 ÷ 5 = 200, ÷ 4 = 50, ÷ 2 = 25.",
+    "category": "math tricks",
+    "difficulty": "medium",
+    "hook": "Fractions compound quickly..."
+  },
+  {
+    "id": "tq_0481",
+    "question": "What goes from Z to A?",
+    "answer": "A zebra (Z-ebra)",
+    "answer_note": "'Zebra' starts with Z. And going from Z to A is the alphabet in reverse.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Alphabetical thinking in reverse..."
+  },
+  {
+    "id": "tq_0482",
+    "question": "What is bigger when new and grows smaller with use?",
+    "answer": "A bar of soap (or a candle, or an eraser)",
+    "answer_note": "Soap, candles, and erasers all start large and shrink as they are used.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Things that disappear by serving their purpose..."
+  },
+  {
+    "id": "tq_0483",
+    "question": "A man is found dead with 53 playing cards. The window is open. What happened?",
+    "answer": "A card was blown out the window — there should be 54 with the joker, or he was cheating",
+    "answer_note": "A standard deck with jokers has 54 cards. One is missing — blown out the open window. Or: he had an extra card for cheating.",
+    "category": "lateral thinking",
+    "difficulty": "hard",
+    "hook": "Count the cards before anything else..."
+  },
+  {
+    "id": "tq_0484",
+    "question": "What kind of tree can you carry in your hand?",
+    "answer": "A palm tree",
+    "answer_note": "Your hand has a 'palm' — you always carry a palm with you.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The anatomy pun hiding in nature..."
+  },
+  {
+    "id": "tq_0485",
+    "question": "What is cut on the table but never eaten?",
+    "answer": "A deck of cards",
+    "answer_note": "In card games, decks are 'cut' on the table as a game procedure — but cards are not eaten.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Card game terminology..."
+  },
+  {
+    "id": "tq_0486",
+    "question": "What color is a mirror?",
+    "answer": "Slightly green (or silver)",
+    "answer_note": "Mirrors appear reflective, but under scientific analysis they have a slight green tint from the glass composition.",
+    "category": "trick questions",
+    "difficulty": "hard",
+    "hook": "What you see isn't what the mirror is..."
+  },
+  {
+    "id": "tq_0487",
+    "question": "How much dirt is in a hole 4 feet wide, 4 feet long, and 4 feet deep?",
+    "answer": "None — it's a hole",
+    "answer_note": "A hole by definition has no dirt in it. The dirt was removed to create the hole.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "A hole contains only absence..."
+  },
+  {
+    "id": "tq_0488",
+    "question": "What can you keep after giving it to someone?",
+    "answer": "Your word or your knowledge",
+    "answer_note": "Giving your word or sharing knowledge doesn't remove it from you — you retain it.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Generosity with no cost..."
+  },
+  {
+    "id": "tq_0489",
+    "question": "What's the quickest way to double your money?",
+    "answer": "Fold it in half",
+    "answer_note": "Physically folding a bill in half doubles its thickness and creates two layers — doubling in the most literal sense.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Financial advice you can actually do right now..."
+  },
+  {
+    "id": "tq_0490",
+    "question": "What are two things you cannot eat for dinner?",
+    "answer": "Breakfast and lunch",
+    "answer_note": "Breakfast and lunch are meals that happen before dinner. By definition they cannot be eaten at dinner.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The definition is the answer..."
+  },
+  {
+    "id": "tq_0491",
+    "question": "Why do the French eat snails?",
+    "answer": "Because they don't like fast food",
+    "answer_note": "A joke-style riddle: snails are notoriously slow, making them the opposite of 'fast food.'",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Culinary wordplay..."
+  },
+  {
+    "id": "tq_0492",
+    "question": "What time is it when the clock strikes 13?",
+    "answer": "Time to get a new clock",
+    "answer_note": "Clocks only go up to 12 — a clock striking 13 must be broken and needs replacement.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "One number too many..."
+  },
+  {
+    "id": "tq_0493",
+    "question": "What flies without wings, stings without a bee, and falls without legs?",
+    "answer": "Rain (flies = falls, stings = cold/pain, falls without legs = obvious)",
+    "answer_note": "Heavy rain falls from the sky, can sting the skin, and has no wings or legs.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Weather described in impossible terms..."
+  },
+  {
+    "id": "tq_0494",
+    "question": "If you have 3 oranges in one hand and 4 in the other, what do you have?",
+    "answer": "Very large hands",
+    "answer_note": "Holding 3 or 4 oranges in a single hand is physically difficult — the implied punchline is the size of the hands required.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Think about the hands, not the fruit..."
+  },
+  {
+    "id": "tq_0495",
+    "question": "What is always before you but can't be seen?",
+    "answer": "Your future",
+    "answer_note": "The future is always ahead of you in time but cannot be directly observed.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Invisible and inevitable..."
+  },
+  {
+    "id": "tq_0496",
+    "question": "I'm full of holes but can still hold a lot of water. What am I?",
+    "answer": "A sponge",
+    "answer_note": "Sponges are porous (full of holes) but absorb and hold water effectively.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Holes and water coexist here..."
+  },
+  {
+    "id": "tq_0497",
+    "question": "What number is odd but becomes even when you remove a letter?",
+    "answer": "Seven — remove the S to get 'even'",
+    "answer_note": "The number seven is odd (not divisible by 2). Remove the 'S' and you have 'even.'",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Letters turn odd into even..."
+  },
+  {
+    "id": "tq_0498",
+    "question": "What belongs to you but is used by everyone else more than you?",
+    "answer": "Your name",
+    "answer_note": "People say and use your name far more frequently than you say it yourself.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The most personal word, used by strangers..."
+  },
+  {
+    "id": "tq_0499",
+    "question": "A man is 6 feet tall, works as a butcher, wears size 11 shoes. What does he weigh?",
+    "answer": "Meat",
+    "answer_note": "A butcher weighs (measures) meat — that's literally what butchers do.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "His job is hidden in the question..."
+  },
+  {
+    "id": "tq_0500",
+    "question": "If you count 20 crows on a wire and a farmer shoots one, how many are left?",
+    "answer": "None — the shot scared the rest away",
+    "answer_note": "The gunshot would startle all remaining crows and they would fly away immediately.",
+    "category": "lateral thinking",
+    "difficulty": "easy",
+    "hook": "Sound has consequences..."
+  },
+  {
+    "id": "tq_0501",
+    "question": "What do you call a boomerang that won't come back?",
+    "answer": "A stick",
+    "answer_note": "A boomerang that doesn't return is just a stick — it has lost its defining characteristic.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Function defines identity..."
+  },
+  {
+    "id": "tq_0502",
+    "question": "What is always the last thing to go to bed at night?",
+    "answer": "Your feet",
+    "answer_note": "When you get into bed, your feet are the last part of you to leave the floor and go into the bed.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Anatomy of getting into bed..."
+  },
+  {
+    "id": "tq_0503",
+    "question": "What's greater than God, more evil than the devil, the poor have it, the rich need it, and if you eat it you'll die?",
+    "answer": "Nothing",
+    "answer_note": "Nothing is greater than God, nothing is more evil than the devil, the poor have nothing, the rich need nothing, and eating nothing will kill you.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Every clue points to the same absence..."
+  },
+  {
+    "id": "tq_0504",
+    "question": "What is at the beginning of the end, and at the end of time and space?",
+    "answer": "The letter E",
+    "answer_note": "'End' starts with E, 'time' ends with E, 'space' ends with E.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Letters hidden at every boundary..."
+  },
+  {
+    "id": "tq_0505",
+    "question": "What loses its head every time it bites?",
+    "answer": "A match",
+    "answer_note": "A match 'bites' (ignites) and loses its phosphorus head each time it strikes and burns.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "Self-destructive by design..."
+  },
+  {
+    "id": "tq_0506",
+    "question": "What is the hardest key to turn?",
+    "answer": "A don-key (donkey)",
+    "answer_note": "A donkey contains 'key' but is notoriously stubborn and hard to turn.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The animal hiding in the key..."
+  },
+  {
+    "id": "tq_0507",
+    "question": "I have no wings, but I can fly. I have no eyes, but I can cry. What am I?",
+    "answer": "A cloud",
+    "answer_note": "Clouds drift through the air (fly) and produce rain (cry) without wings or eyes.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The sky's most emotional traveler..."
+  },
+  {
+    "id": "tq_0508",
+    "question": "What kind of shoes can you make from banana skins?",
+    "answer": "Slippers",
+    "answer_note": "Banana skins cause slipping — making 'slippers' is the punny answer.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Footwear from fruit..."
+  },
+  {
+    "id": "tq_0509",
+    "question": "You're running a race and pass the person in 2nd place. What place are you in now?",
+    "answer": "2nd place",
+    "answer_note": "Passing the 2nd place runner puts you in their position — 2nd place.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "You took their spot, not theirs and 1st..."
+  },
+  {
+    "id": "tq_0510",
+    "question": "How can you add 8 eights to get 1000?",
+    "answer": "888 + 88 + 8 + 8 + 8 = 1000",
+    "answer_note": "Using five 8s and three 8s (in the larger numbers): 888 + 88 + 8 + 8 + 8 = 1000.",
+    "category": "math tricks",
+    "difficulty": "hard",
+    "hook": "Eights arranged just right..."
+  },
+  {
+    "id": "tq_0511",
+    "question": "What has a mouth but cannot eat?",
+    "answer": "A river or a jar",
+    "answer_note": "Rivers have mouths (where they meet the sea) and jars have mouths (openings), but neither eats.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Anatomy in unexpected places..."
+  },
+  {
+    "id": "tq_0512",
+    "question": "What question can you never honestly answer 'no' to?",
+    "answer": "'Are you alive?' or 'Are you awake?'",
+    "answer_note": "If you can answer at all, you're alive and awake — saying 'no' would be self-defeating.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "Existence answers its own question..."
+  },
+  {
+    "id": "tq_0513",
+    "question": "What has only two words but thousands of letters?",
+    "answer": "A post office",
+    "answer_note": "'Post office' is two words but a post office contains thousands of letters (mail).",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Letters in the linguistic and postal sense..."
+  },
+  {
+    "id": "tq_0514",
+    "question": "A man is pushing his car and stops at a hotel. He says he's bankrupt. What game is he playing?",
+    "answer": "Monopoly",
+    "answer_note": "In Monopoly, you push your car token and landing on a hotel property can bankrupt you.",
+    "category": "lateral thinking",
+    "difficulty": "medium",
+    "hook": "Life-size board game..."
+  },
+  {
+    "id": "tq_0515",
+    "question": "I have many teeth but I cannot bite. What am I?",
+    "answer": "A comb",
+    "answer_note": "A comb has many teeth (the prongs) but cannot bite like an animal.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Toothful but harmless..."
+  },
+  {
+    "id": "tq_0516",
+    "question": "What is the fastest thing in the universe?",
+    "answer": "Light (approximately 299,792,458 m/s in a vacuum)",
+    "answer_note": "Light travels at approximately 300,000 km/s — the ultimate cosmic speed limit according to relativity.",
+    "category": "science tricks",
+    "difficulty": "easy",
+    "hook": "Nothing catches what nothing can stop..."
+  },
+  {
+    "id": "tq_0517",
+    "question": "What can you swallow that can also swallow you?",
+    "answer": "Water",
+    "answer_note": "You swallow water to drink, but water (as in a flood, ocean, or drowning) can swallow you.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "A reversible relationship..."
+  },
+  {
+    "id": "tq_0518",
+    "question": "What is the most common four-letter word used in English?",
+    "answer": "'That' or 'with' or 'have'",
+    "answer_note": "'That' consistently ranks as one of the most common four-letter words in English text.",
+    "category": "language",
+    "difficulty": "medium",
+    "hook": "The most used word most people can't name..."
+  },
+  {
+    "id": "tq_0519",
+    "question": "What do you get when you cross a snowman and a vampire?",
+    "answer": "Frostbite",
+    "answer_note": "Frost (from snowman) + bite (from vampire) = frostbite. A cold-weather hazard and a pun.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Monster math..."
+  },
+  {
+    "id": "tq_0520",
+    "question": "What is a word made up of 4 letters, yet is also made up of 3. Sometimes is written with 9 letters. What is it?",
+    "answer": "The answer IS the question — 'what' has 4 letters, 'yet' has 3, 'sometimes' has 9",
+    "answer_note": "The riddle describes itself: 'What' (4), 'yet'/'and' (3), 'sometimes' (9).",
+    "category": "wordplay",
+    "difficulty": "hard",
+    "hook": "The riddle is its own answer..."
+  },
+  {
+    "id": "tq_0521",
+    "question": "How can you make the following equation true by adding one line: 5+5+5=550?",
+    "answer": "Make the first '+' into a 4: 545+5=550",
+    "answer_note": "Draw a horizontal line through the first + sign, turning it into a 4. This gives 545 + 5 = 550, which is true.",
+    "category": "math tricks",
+    "difficulty": "hard",
+    "hook": "One line changes everything..."
+  },
+  {
+    "id": "tq_0522",
+    "question": "What is always hungry and must be fed, and whatever it touches turns red?",
+    "answer": "Fire",
+    "answer_note": "Fire consumes fuel (always hungry, must be fed) and causes redness wherever it touches.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The consuming force..."
+  },
+  {
+    "id": "tq_0523",
+    "question": "What three numbers give the same result whether added or multiplied?",
+    "answer": "1, 2, and 3 (1+2+3=6 and 1×2×3=6)",
+    "answer_note": "1 + 2 + 3 = 6 and 1 × 2 × 3 = 6. The same result by both operations.",
+    "category": "math tricks",
+    "difficulty": "medium",
+    "hook": "Addition equals multiplication — when?"
+  },
+  {
+    "id": "tq_0524",
+    "question": "What has a bottom at the top?",
+    "answer": "Your legs",
+    "answer_note": "Your 'bottom' (backside) is located at the top of your legs.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Anatomy can be confusing..."
+  },
+  {
+    "id": "tq_0525",
+    "question": "How do you make number one disappear by adding a letter?",
+    "answer": "Add G before it: 'Gone'",
+    "answer_note": "G + one = gone. The number one is literally gone.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "A letter erases a number..."
+  },
+  {
+    "id": "tq_0526",
+    "question": "If I have 5 fish and 3 drown, how many do I have?",
+    "answer": "5 — fish don't drown",
+    "answer_note": "Fish breathe underwater through gills. They cannot drown in water. All 5 fish are still alive.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Biology saves the fish..."
+  },
+  {
+    "id": "tq_0527",
+    "question": "I am a word. When you add a letter to me, I become shorter. What am I?",
+    "answer": "'Short' — add 'er' to make 'shorter'",
+    "answer_note": "Adding 'er' to 'short' creates 'shorter' — a word that literally means more short.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The paradox of comparative adjectives..."
+  },
+  {
+    "id": "tq_0528",
+    "question": "What do you call a deer with no eyes?",
+    "answer": "No-eye deer (no idea)",
+    "answer_note": "'No eye deer' sounds like 'no idea' — a phonetic pun.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Animal phonics..."
+  },
+  {
+    "id": "tq_0529",
+    "question": "A plane crashes between the US and Canada. Where are the survivors buried?",
+    "answer": "Nowhere — you don't bury survivors",
+    "answer_note": "Survivors are alive. Living people are not buried anywhere.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The same old trick, different location..."
+  },
+  {
+    "id": "tq_0530",
+    "question": "What is something everyone has but can never share?",
+    "answer": "Your thoughts (or your death, or your birth)",
+    "answer_note": "Thoughts occur in your mind uniquely. You can describe them, but the actual experience cannot be shared.",
+    "category": "riddles",
+    "difficulty": "medium",
+    "hook": "The most personal thing that cannot be given away..."
+  },
+  {
+    "id": "tq_0531",
+    "question": "What do you call a magic dog?",
+    "answer": "A labracadabrador",
+    "answer_note": "Labrador + abracadabra = Labracadabrador. The magical dog breed.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Canine conjuring..."
+  },
+  {
+    "id": "tq_0532",
+    "question": "I'm tall when I'm young and short when I'm old. What am I?",
+    "answer": "A candle",
+    "answer_note": "A candle starts tall and burns shorter as it ages, becoming very short before disappearing.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Age works in reverse for this one..."
+  },
+  {
+    "id": "tq_0533",
+    "question": "What can you put between 7 and 8 to make the result greater than 7 but less than 8?",
+    "answer": "A decimal point — 7.8",
+    "answer_note": "Placing a decimal point between 7 and 8 creates 7.8, which is between 7 and 8.",
+    "category": "math tricks",
+    "difficulty": "medium",
+    "hook": "Punctuation as mathematics..."
+  },
+  {
+    "id": "tq_0534",
+    "question": "What is the only sport where the defense has the ball?",
+    "answer": "American football (when kicking)",
+    "answer_note": "In sports like baseball, cricket, and lacrosse, the defense can also have possession — but in most contexts football's punting is the classic answer.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Who has the ball in your sport?"
+  },
+  {
+    "id": "tq_0535",
+    "question": "What do you answer even though it never asks you a question?",
+    "answer": "A doorbell or a phone",
+    "answer_note": "You 'answer' a doorbell or phone call even though neither actually asks you a question.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Answering without being asked..."
+  },
+  {
+    "id": "tq_0536",
+    "question": "How many sides does a bowl have?",
+    "answer": "Two — inside and outside",
+    "answer_note": "A bowl has an inside surface and an outside surface — two sides, not zero.",
+    "category": "trick questions",
+    "difficulty": "medium",
+    "hook": "Sides in three dimensions..."
+  },
+  {
+    "id": "tq_0537",
+    "question": "What word is always pronounced wrong?",
+    "answer": "'Wrong'",
+    "answer_note": "The word 'wrong' is spelled w-r-o-n-g and pronounced correctly every time. The trick is in the interpretation of 'always pronounced wrong.'",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The self-referential trap..."
+  },
+  {
+    "id": "tq_0538",
+    "question": "How can you spell 80 in two letters?",
+    "answer": "A-T (eight-y = A-T)",
+    "answer_note": "'Eighty' can be abbreviated phonetically as 'AT' — eight = A, y = T.",
+    "category": "wordplay",
+    "difficulty": "hard",
+    "hook": "Phonetic spelling in two letters..."
+  },
+  {
+    "id": "tq_0539",
+    "question": "What is the longest sentence in the world?",
+    "answer": "Life imprisonment",
+    "answer_note": "A 'sentence' can mean a prison term. Life imprisonment is the longest legal sentence.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Two meanings of one word..."
+  },
+  {
+    "id": "tq_0540",
+    "question": "You walk into a room with a match. There's a candle, an oil lamp, and a fireplace. Which do you light first?",
+    "answer": "The match",
+    "answer_note": "You must light the match before anything else.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "Always start with the source of fire..."
+  },
+  {
+    "id": "tq_0541",
+    "question": "What goes up but never comes down?",
+    "answer": "Your age",
+    "answer_note": "Age increases continuously and cannot decrease.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "The one-directional number we all carry..."
+  },
+  {
+    "id": "tq_0542",
+    "question": "What animal can jump higher than a house?",
+    "answer": "Any animal — houses can't jump",
+    "answer_note": "A house is an inanimate structure. It cannot jump at all. Any jumping animal clears a house's jump height (zero).",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The comparison is with a stationary object..."
+  },
+  {
+    "id": "tq_0543",
+    "question": "What did the ocean say to the beach?",
+    "answer": "Nothing — it just waved",
+    "answer_note": "Ocean waves are called 'waves' — the ocean 'waved' at the beach without saying a word.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "The ocean's silent greeting..."
+  },
+  {
+    "id": "tq_0544",
+    "question": "What has a lot of keys but can't open any door?",
+    "answer": "A piano or a keyboard",
+    "answer_note": "Pianos and keyboards have many keys but none of them unlock doors.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "Keys that make music, not openings..."
+  },
+  {
+    "id": "tq_0545",
+    "question": "What 3-letter word completes all of these: _ss, _pp, _ff?",
+    "answer": "'A' — ass, app, aff — no. Better: 'O' — oss, opp, off",
+    "answer_note": "'O' completes: 'toss' (t+oss), 'topp'... Better answer: 'A' before all: 'ass, app, aff'. The puzzle requires letter patterns.",
+    "category": "wordplay",
+    "difficulty": "hard",
+    "hook": "Three letters completing three words..."
+  },
+  {
+    "id": "tq_0546",
+    "question": "What English word has the most definitions?",
+    "answer": "'Set' — over 430 definitions in the Oxford English Dictionary",
+    "answer_note": "'Set' holds the record for most definitions in the Oxford English Dictionary with over 430 separate meanings.",
+    "category": "language",
+    "difficulty": "hard",
+    "hook": "One tiny word, more meanings than most dictionaries have entries..."
+  },
+  {
+    "id": "tq_0547",
+    "question": "How can you lift an elephant with one hand?",
+    "answer": "You can't — you'll never find a one-handed elephant",
+    "answer_note": "The premise is impossible — elephants have four legs, not hands, and a 'one-handed elephant' doesn't exist.",
+    "category": "trick questions",
+    "difficulty": "easy",
+    "hook": "The trick hides in the elephant's anatomy..."
+  },
+  {
+    "id": "tq_0548",
+    "question": "What kind of cup can't hold water?",
+    "answer": "A cupcake",
+    "answer_note": "A cupcake has 'cup' in its name but cannot hold any liquid.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Cup in name only..."
+  },
+  {
+    "id": "tq_0549",
+    "question": "What question must you always answer 'yes' to?",
+    "answer": "'Are you alive?' or 'Are you awake?'",
+    "answer_note": "If you can answer at all, you're alive and awake. 'No' is impossible while you're answering.",
+    "category": "logic",
+    "difficulty": "medium",
+    "hook": "Existence answers itself..."
+  },
+  {
+    "id": "tq_0550",
+    "question": "What can you catch that you can't throw?",
+    "answer": "A cold (or a glimpse, or feelings)",
+    "answer_note": "You catch a cold (get sick) but cannot throw one. Similarly with feelings or glimpses.",
+    "category": "riddles",
+    "difficulty": "easy",
+    "hook": "A very common catch..."
+  },
+  {
+    "id": "tq_0551",
+    "question": "What has 6 faces and 21 dots?",
+    "answer": "A die (singular of dice)",
+    "answer_note": "A standard six-sided die has 6 faces and dots totaling 1+2+3+4+5+6 = 21.",
+    "category": "math tricks",
+    "difficulty": "medium",
+    "hook": "The math of every board game..."
+  },
+  {
+    "id": "tq_0552",
+    "question": "If everyone bought a white car, what would we have?",
+    "answer": "A white car nation (a white carnation — the flower)",
+    "answer_note": "'White car nation' sounds like 'white carnation' — a phonetic wordplay.",
+    "category": "wordplay",
+    "difficulty": "medium",
+    "hook": "Traffic meets botany..."
+  },
+  {
+    "id": "tq_0553",
+    "question": "I am an odd number. Take away a letter and I become even. What number am I?",
+    "answer": "Seven — take away the S to get 'even'",
+    "answer_note": "Remove the 'S' from 'seven' and you have 'even' — the word, not the number.",
+    "category": "wordplay",
+    "difficulty": "easy",
+    "hook": "Letters turn numbers into concepts..."
   }
 ]

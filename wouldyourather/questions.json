@@ -478,5 +478,3941 @@
     "category": "moral",
     "hook": "One shot vs. steady income",
     "debate_note": "$1M in 24h = ~$41k/hour, mostly wasted. $1k/day = $365k/year forever. Maths wins."
+  },
+  {
+    "option_a": "Know every language fluently",
+    "option_b": "Play every instrument perfectly",
+    "category": "skills",
+    "hook": "Both are incredible gifts",
+    "debate_note": "Language opens the world. Music speaks beyond words. Which matters more to you?",
+    "id": "wyr_0061"
+  },
+  {
+    "option_a": "Be able to pause time whenever you want",
+    "option_b": "Be able to rewind time up to 10 minutes",
+    "category": "superpowers",
+    "hook": "Time control — your way",
+    "debate_note": "Pause = unlimited control. Rewind = undo mistakes. Which power changes your life more?",
+    "id": "wyr_0062"
+  },
+  {
+    "option_a": "Never need to sleep",
+    "option_b": "Only need 1 hour of sleep and wake fully refreshed",
+    "category": "lifestyle",
+    "hook": "Sleep optional?",
+    "debate_note": "No sleep = 8 extra hours daily. 1-hour sleep = still experience dreaming. Which wins?",
+    "id": "wyr_0063"
+  },
+  {
+    "option_a": "Have a photographic memory",
+    "option_b": "Be able to learn any skill in one day",
+    "category": "mental",
+    "hook": "Mind upgrade time",
+    "debate_note": "Memory = recall everything you see. Learning = master anything instantly. Your pick?",
+    "id": "wyr_0064"
+  },
+  {
+    "option_a": "Always be 10 minutes early",
+    "option_b": "Always be exactly on time with no effort",
+    "category": "lifestyle",
+    "hook": "Time management hack",
+    "debate_note": "Early = polite and stress-free. On-time = maximum efficiency. Which suits you?",
+    "id": "wyr_0065"
+  },
+  {
+    "option_a": "Be able to talk to animals",
+    "option_b": "Be able to talk to plants",
+    "category": "superpowers",
+    "hook": "Nature communicator",
+    "debate_note": "Animals = fascinating conversations. Plants = millennia of patience and wisdom. Which?",
+    "id": "wyr_0066"
+  },
+  {
+    "option_a": "Win every argument",
+    "option_b": "Never get into an argument in the first place",
+    "category": "social",
+    "hook": "Debate superpower",
+    "debate_note": "Winning feels great but peace is priceless. What's more valuable to you?",
+    "id": "wyr_0067"
+  },
+  {
+    "option_a": "Always have perfect Wi-Fi wherever you go",
+    "option_b": "Never have a dead phone battery",
+    "category": "lifestyle",
+    "hook": "Tech wish",
+    "debate_note": "Wi-Fi = unlimited data. No dead battery = always connected. Which frustrates you more now?",
+    "id": "wyr_0068"
+  },
+  {
+    "option_a": "Be fluent in every coding language",
+    "option_b": "Have an IQ of 200",
+    "category": "skills",
+    "hook": "Ultimate brain boost",
+    "debate_note": "Coding = infinite tools. IQ 200 = solve any problem from scratch. What's more useful?",
+    "id": "wyr_0069"
+  },
+  {
+    "option_a": "Have the ability to heal others instantly",
+    "option_b": "Have the ability to heal yourself instantly",
+    "category": "superpowers",
+    "hook": "Healing power",
+    "debate_note": "Heal others = save lives and be needed. Heal yourself = invincibility. Which is better?",
+    "id": "wyr_0070"
+  },
+  {
+    "option_a": "Only eat your favourite food forever",
+    "option_b": "Never be able to eat your favourite food again",
+    "category": "food",
+    "hook": "Food dilemma",
+    "debate_note": "Favourite forever = bliss or boredom? Never again = deprivation or freedom?",
+    "id": "wyr_0071"
+  },
+  {
+    "option_a": "Be able to see 10 minutes into the future",
+    "option_b": "Be able to remember the past with perfect clarity",
+    "category": "superpowers",
+    "hook": "Time perception",
+    "debate_note": "See ahead = avoid danger. Perfect memory = never forget a moment. Which is richer?",
+    "id": "wyr_0072"
+  },
+  {
+    "option_a": "Have an unlimited travel budget but can never stay home",
+    "option_b": "Have a dream home but can never leave it",
+    "category": "lifestyle",
+    "hook": "Home vs adventure",
+    "debate_note": "Travel forever = freedom with no roots. Dream home = comfort with no adventure.",
+    "id": "wyr_0073"
+  },
+  {
+    "option_a": "Be able to breathe underwater",
+    "option_b": "Be able to fly at bird speed (30 mph)",
+    "category": "superpowers",
+    "hook": "Two amazing powers",
+    "debate_note": "Oceans cover 70% of Earth. But flight changes your daily commute. Which is more useful?",
+    "id": "wyr_0074"
+  },
+  {
+    "option_a": "Have the voice of a professional singer",
+    "option_b": "Have the body of a professional athlete",
+    "category": "physical",
+    "hook": "Talent swap",
+    "debate_note": "Voice = entertain the world. Athletic body = perform at peak. What matters more?",
+    "id": "wyr_0075"
+  },
+  {
+    "option_a": "Always know when someone is lying to you",
+    "option_b": "Be able to make anyone trust you completely",
+    "category": "social",
+    "hook": "Social superpower",
+    "debate_note": "Lie detector = never be deceived. Trust maker = influence anyone. Which is more powerful?",
+    "id": "wyr_0076"
+  },
+  {
+    "option_a": "Have a mansion but terrible neighbours",
+    "option_b": "Have a small flat with amazing neighbours",
+    "category": "lifestyle",
+    "hook": "Home situation",
+    "debate_note": "Space vs community. Where you live shapes everything — what wins for you?",
+    "id": "wyr_0077"
+  },
+  {
+    "option_a": "Be able to speak to the dead",
+    "option_b": "Be able to see 1 year into the future",
+    "category": "superpowers",
+    "hook": "Beyond limits",
+    "debate_note": "Dead = closure, wisdom, reunion. Future = prepare, avoid mistakes. Which calls to you?",
+    "id": "wyr_0078"
+  },
+  {
+    "option_a": "Have the ability to copy any skill after watching it once",
+    "option_b": "Master one skill completely beyond any human alive",
+    "category": "skills",
+    "hook": "Ultimate ability",
+    "debate_note": "Copy anything = versatility. One mastery = become the best in history. Your choice?",
+    "id": "wyr_0079"
+  },
+  {
+    "option_a": "Never have to work but have an average lifestyle",
+    "option_b": "Love your job so much it never feels like work",
+    "category": "lifestyle",
+    "hook": "Work life",
+    "debate_note": "Freedom vs fulfilment. Which sounds better to you honestly?",
+    "id": "wyr_0080"
+  },
+  {
+    "option_a": "Have unlimited money but lose all your friends",
+    "option_b": "Have amazing friends but always struggle financially",
+    "category": "moral",
+    "hook": "Hard choice",
+    "debate_note": "Money can buy a lot but not real connection. How much does friendship mean to you?",
+    "id": "wyr_0081"
+  },
+  {
+    "option_a": "Be able to read minds but only at random",
+    "option_b": "Be able to project your thoughts into someone's mind",
+    "category": "superpowers",
+    "hook": "Telepathy options",
+    "debate_note": "Random reading = occasional insight and chaos. Projecting = control every conversation.",
+    "id": "wyr_0082"
+  },
+  {
+    "option_a": "Have a job you love that pays average salary",
+    "option_b": "Have a job you hate that pays $500k per year",
+    "category": "lifestyle",
+    "hook": "Money vs passion",
+    "debate_note": "Passion = happiness. $500k = freedom in 5 years. Which do you choose?",
+    "id": "wyr_0083"
+  },
+  {
+    "option_a": "Be able to instantly teleport anywhere on Earth",
+    "option_b": "Be able to stop time for up to 1 hour per day",
+    "category": "superpowers",
+    "hook": "The big two",
+    "debate_note": "Teleport = travel freely. Stop time = get more done than anyone. Which changes your life more?",
+    "id": "wyr_0084"
+  },
+  {
+    "option_a": "Have perfect skin your whole life",
+    "option_b": "Have perfect teeth your whole life",
+    "category": "physical",
+    "hook": "Cosmetic superpower",
+    "debate_note": "Skin = confidence boost everywhere. Teeth = health and smile. Which matters more to you?",
+    "id": "wyr_0085"
+  },
+  {
+    "option_a": "Know the exact day you'll die (but live a full life)",
+    "option_b": "Live 20 extra years but never know when you'll die",
+    "category": "moral",
+    "hook": "Life and death",
+    "debate_note": "Certainty = plan every day. Extra time = more experiences. What would you choose?",
+    "id": "wyr_0086"
+  },
+  {
+    "option_a": "Have super speed (run at 500 mph)",
+    "option_b": "Have super strength (lift 10 tonnes)",
+    "category": "superpowers",
+    "hook": "Classic powers",
+    "debate_note": "Speed = the ultimate commute and combat advantage. Strength = move anything. Which is more fun?",
+    "id": "wyr_0087"
+  },
+  {
+    "option_a": "Always feel energised and motivated",
+    "option_b": "Always feel calm and content",
+    "category": "mental",
+    "hook": "Mood upgrade",
+    "debate_note": "Energy = achieve everything. Calm = enjoy everything. Which do you value more right now?",
+    "id": "wyr_0088"
+  },
+  {
+    "option_a": "Be the smartest person in every room",
+    "option_b": "Be the most likeable person in every room",
+    "category": "social",
+    "hook": "Social IQ",
+    "debate_note": "Smart = solve every problem. Liked = open every door. Which gets you further in life?",
+    "id": "wyr_0089"
+  },
+  {
+    "option_a": "Live in a city but have a small place",
+    "option_b": "Live in the countryside in a large house",
+    "category": "lifestyle",
+    "hook": "Where to live?",
+    "debate_note": "City = opportunity, energy, convenience. Country = peace, space, nature. Where are you?",
+    "id": "wyr_0090"
+  },
+  {
+    "option_a": "Be able to speak every language",
+    "option_b": "Be understood by everyone regardless of language",
+    "category": "skills",
+    "hook": "Communication power",
+    "debate_note": "Speaking = active mastery. Being understood = passive magic. Which is truly better?",
+    "id": "wyr_0091"
+  },
+  {
+    "option_a": "Have an extra hour every day just for you",
+    "option_b": "Have your weekends extend to 3 days every week",
+    "category": "lifestyle",
+    "hook": "Time gift",
+    "debate_note": "Daily hour = consistency. Long weekends = adventure and rest. Which improves your life more?",
+    "id": "wyr_0092"
+  },
+  {
+    "option_a": "Never be stuck in traffic again",
+    "option_b": "Always get a parking spot immediately",
+    "category": "lifestyle",
+    "hook": "Commuter dream",
+    "debate_note": "No traffic = time saved. Instant parking = stress gone. Which annoys you more?",
+    "id": "wyr_0093"
+  },
+  {
+    "option_a": "Have a robot do all household chores",
+    "option_b": "Have a personal chef cook all your meals",
+    "category": "lifestyle",
+    "hook": "Luxury help",
+    "debate_note": "Chores = hours saved. Chef = nutrition and enjoyment. Which matters more in your day-to-day?",
+    "id": "wyr_0094"
+  },
+  {
+    "option_a": "Be able to become invisible at will",
+    "option_b": "Be able to change your appearance to look like anyone",
+    "category": "superpowers",
+    "hook": "Shapeshifter vs invisible",
+    "debate_note": "Invisible = stealth and privacy. Shapeshifter = become anyone. Both are wild — which wins?",
+    "id": "wyr_0095"
+  },
+  {
+    "option_a": "Have the best long-term memory of anyone on Earth",
+    "option_b": "Have the fastest processing speed brain of anyone on Earth",
+    "category": "mental",
+    "hook": "Brain power",
+    "debate_note": "Memory = know everything you've ever learned. Speed = think faster than anyone. Pick one.",
+    "id": "wyr_0096"
+  },
+  {
+    "option_a": "Always wake up feeling perfectly rested",
+    "option_b": "Never feel hungry unless you choose to eat",
+    "category": "physical",
+    "hook": "Body upgrade",
+    "debate_note": "Rest = energy and mood. No forced hunger = simplicity and health control. Your choice?",
+    "id": "wyr_0097"
+  },
+  {
+    "option_a": "Have $1 million now",
+    "option_b": "Have $1,000 per day for the rest of your life",
+    "category": "lifestyle",
+    "hook": "Money maths",
+    "debate_note": "$1M now = invest, buy, enjoy. $1K/day = ~$365k/year forever. Depends how long you live!",
+    "id": "wyr_0098"
+  },
+  {
+    "option_a": "Be famous but misunderstood",
+    "option_b": "Be anonymous but deeply understood by those close to you",
+    "category": "social",
+    "hook": "Fame vs intimacy",
+    "debate_note": "Fame = reach millions. Being understood = real connection. What feeds your soul more?",
+    "id": "wyr_0099"
+  },
+  {
+    "option_a": "Have the power to control weather",
+    "option_b": "Have the power to grow anything in seconds",
+    "category": "superpowers",
+    "hook": "Nature control",
+    "debate_note": "Weather = planetary power. Growth = end world hunger and garden in minutes. Which is bigger?",
+    "id": "wyr_0100"
+  },
+  {
+    "option_a": "Never have another headache in your life",
+    "option_b": "Never have another cold or flu in your life",
+    "category": "physical",
+    "hook": "Health wish",
+    "debate_note": "Headaches = sudden, disabling. Colds = lingering misery. Which wrecks your week more?",
+    "id": "wyr_0101"
+  },
+  {
+    "option_a": "Be able to run a marathon with no training",
+    "option_b": "Be able to lift twice your body weight easily",
+    "category": "physical",
+    "hook": "Athletic ability",
+    "debate_note": "Endurance = adventure and travel. Strength = practical power and protection. Which do you value?",
+    "id": "wyr_0102"
+  },
+  {
+    "option_a": "Read 1 book per day and remember it perfectly",
+    "option_b": "Have the wisdom to apply everything you already know",
+    "category": "mental",
+    "hook": "Knowledge vs wisdom",
+    "debate_note": "Reading = breadth. Wisdom = depth. Which shapes a better life?",
+    "id": "wyr_0103"
+  },
+  {
+    "option_a": "Have the world's best memory but terrible focus",
+    "option_b": "Have incredible focus but average memory",
+    "category": "mental",
+    "hook": "Mental tradeoff",
+    "debate_note": "Memory without focus = unfocused library. Focus without memory = a sharp but empty mind.",
+    "id": "wyr_0104"
+  },
+  {
+    "option_a": "Have the ability to make plants grow wherever you walk",
+    "option_b": "Have the ability to purify any water you touch",
+    "category": "superpowers",
+    "hook": "Environmental power",
+    "debate_note": "Growth = green world. Clean water = save lives. Which superpower does more good?",
+    "id": "wyr_0105"
+  },
+  {
+    "option_a": "Be able to pause any movie, show, or song at will — in real life",
+    "option_b": "Be able to skip any awkward or boring moment in real life",
+    "category": "absurd",
+    "hook": "Reality remote control",
+    "debate_note": "Pause = savour everything. Skip = avoid the boring parts. How do you live your life?",
+    "id": "wyr_0106"
+  },
+  {
+    "option_a": "Always have the perfect comeback in an argument",
+    "option_b": "Always know when to walk away from an argument",
+    "category": "social",
+    "hook": "Argument skills",
+    "debate_note": "Perfect comeback = feel vindicated. Walking away = preserve energy. Which is wiser?",
+    "id": "wyr_0107"
+  },
+  {
+    "option_a": "Have gills and live comfortably underwater",
+    "option_b": "Have wings and fly at 60 mph",
+    "category": "superpowers",
+    "hook": "Evolution upgrade",
+    "debate_note": "Gills = explore 70% of Earth you've never seen. Wings = freedom in the air. What calls you?",
+    "id": "wyr_0108"
+  },
+  {
+    "option_a": "Have a supercomputer brain but no emotions",
+    "option_b": "Have deep emotional intelligence but average intellect",
+    "category": "mental",
+    "hook": "Mind trade",
+    "debate_note": "Logic vs feeling. Which quality makes you more effective and happy in life?",
+    "id": "wyr_0109"
+  },
+  {
+    "option_a": "Eat the same meal every day (perfectly nutritious, you love it)",
+    "option_b": "Never eat the same meal twice",
+    "category": "food",
+    "hook": "Food routine or adventure?",
+    "debate_note": "Same meal = simplicity and health. Never repeated = endless discovery and excitement.",
+    "id": "wyr_0110"
+  },
+  {
+    "option_a": "Have a twin you never knew about who is your best friend",
+    "option_b": "Have a mentor who makes you 10× more successful",
+    "category": "social",
+    "hook": "Life-changing relationship",
+    "debate_note": "Twin = unconditional bond. Mentor = accelerated life. Which adds more to your story?",
+    "id": "wyr_0111"
+  },
+  {
+    "option_a": "Always make the right decision but never know why",
+    "option_b": "Understand the reasoning behind every decision but sometimes be wrong",
+    "category": "mental",
+    "hook": "Decision making",
+    "debate_note": "Right without reason = lucky genius. Right reasoning but wrong = learning. Which is you?",
+    "id": "wyr_0112"
+  },
+  {
+    "option_a": "Be the best at something nobody cares about",
+    "option_b": "Be average at something everyone admires",
+    "category": "social",
+    "hook": "Talent and recognition",
+    "debate_note": "Niche mastery = personal pride. Admired average = social reward. What motivates you?",
+    "id": "wyr_0113"
+  },
+  {
+    "option_a": "Have a dog that never gets sick or dies",
+    "option_b": "Have a cat that never gets sick or dies",
+    "category": "lifestyle",
+    "hook": "Immortal pet",
+    "debate_note": "Dog = loyal adventure partner forever. Cat = independent companion for life. Which pet matches your soul?",
+    "id": "wyr_0114"
+  },
+  {
+    "option_a": "Be able to communicate with any machine or computer",
+    "option_b": "Be able to feel exactly how any other person feels",
+    "category": "superpowers",
+    "hook": "Connection power",
+    "debate_note": "Machines = control technology. Empathy = understand everyone. Which is more powerful?",
+    "id": "wyr_0115"
+  },
+  {
+    "option_a": "Have unlimited storage for your brain — never forget anything",
+    "option_b": "Be able to delete any memory you choose",
+    "category": "mental",
+    "hook": "Memory control",
+    "debate_note": "Remember everything = rich inner life. Delete bad memories = emotional freedom. Which do you need?",
+    "id": "wyr_0116"
+  },
+  {
+    "option_a": "Never have to pay for food again",
+    "option_b": "Never have to pay for travel again",
+    "category": "lifestyle",
+    "hook": "Free forever",
+    "debate_note": "Food = daily savings and gourmet adventure. Travel = explore the world freely. Your priority?",
+    "id": "wyr_0117"
+  },
+  {
+    "option_a": "Be 5 years older and further along in life",
+    "option_b": "Be 5 years younger with everything you know now",
+    "category": "moral",
+    "hook": "Time trade",
+    "debate_note": "Older = reach your goals faster. Younger = fix mistakes and experience more. Tough call.",
+    "id": "wyr_0118"
+  },
+  {
+    "option_a": "Live in a world with no disease",
+    "option_b": "Live in a world with no war",
+    "category": "moral",
+    "hook": "Utopia choice",
+    "debate_note": "No disease = longer, healthier lives. No war = global peace. Which world would you choose?",
+    "id": "wyr_0119"
+  },
+  {
+    "option_a": "Have an incredible singing voice but be tone-deaf in your head",
+    "option_b": "Hear music perfectly in your mind but be unable to sing or play",
+    "category": "skills",
+    "hook": "Musical paradox",
+    "debate_note": "Sing beautifully but not hear it = share joy. Hear perfectly but never create = pure appreciation.",
+    "id": "wyr_0120"
+  },
+  {
+    "option_a": "Have the power to grant one wish to any stranger once per week",
+    "option_b": "Have one wish granted for yourself once per year",
+    "category": "superpowers",
+    "hook": "Wish power",
+    "debate_note": "Others = impact 52 people per year. Self = 1 wish per year but it's yours. What's better?",
+    "id": "wyr_0121"
+  },
+  {
+    "option_a": "Be allergic to technology after 8pm",
+    "option_b": "Be unable to leave your home after 10pm",
+    "category": "absurd",
+    "hook": "Strange restriction",
+    "debate_note": "Tech cutoff = better sleep and presence. Home curfew = forced rest. Which cramps your style less?",
+    "id": "wyr_0122"
+  },
+  {
+    "option_a": "Only be able to whisper",
+    "option_b": "Only be able to talk in a very loud voice",
+    "category": "absurd",
+    "hook": "Volume restriction",
+    "debate_note": "Whisper = intimate and mysterious. Loud = always commanding attention. Which would you pick?",
+    "id": "wyr_0123"
+  },
+  {
+    "option_a": "Know exactly what everyone thinks of you",
+    "option_b": "Know exactly what you think of yourself, with total clarity",
+    "category": "mental",
+    "hook": "Self-awareness",
+    "debate_note": "Others' views = external validation or brutal truth. Self-clarity = internal compass. Which serves you?",
+    "id": "wyr_0124"
+  },
+  {
+    "option_a": "Go back in time but only as an observer, never changing anything",
+    "option_b": "Go forward in time and return with one piece of knowledge",
+    "category": "superpowers",
+    "hook": "Time travel modes",
+    "debate_note": "Past observer = witness history. Future knowledge = change your present. Which is more valuable?",
+    "id": "wyr_0125"
+  },
+  {
+    "option_a": "Be able to control fire",
+    "option_b": "Be able to control water",
+    "category": "superpowers",
+    "hook": "Elemental power",
+    "debate_note": "Fire = energy, warmth, destruction. Water = cover most of Earth and sustain life. Which element?",
+    "id": "wyr_0126"
+  },
+  {
+    "option_a": "Have a skill that makes you $1M but takes 20 years to learn",
+    "option_b": "Have a skill that makes you $200k but can learn it in a year",
+    "category": "skills",
+    "hook": "Long game or quick win?",
+    "debate_note": "Patience = massive reward. Speed = earlier payoff and iteration. What's your approach to life?",
+    "id": "wyr_0127"
+  },
+  {
+    "option_a": "Live in a world where everyone tells the truth always",
+    "option_b": "Live in a world where everyone is unfailingly kind always",
+    "category": "moral",
+    "hook": "Honesty vs kindness",
+    "debate_note": "Truth = clarity but sometimes brutal. Kindness = warmth but sometimes false. Which world is better?",
+    "id": "wyr_0128"
+  },
+  {
+    "option_a": "Have 100 casual friends",
+    "option_b": "Have 3 deep, lifelong friends",
+    "category": "social",
+    "hook": "Quality vs quantity",
+    "debate_note": "100 casual = always someone around. 3 deep = truly known and loved. What feeds your soul?",
+    "id": "wyr_0129"
+  },
+  {
+    "option_a": "Be able to run at 60 mph",
+    "option_b": "Be able to jump 30 feet in the air",
+    "category": "physical",
+    "hook": "Athletic superpower",
+    "debate_note": "Speed = cover ground fast. Jump = reach anywhere vertically. Which is more useful?",
+    "id": "wyr_0130"
+  },
+  {
+    "option_a": "Always have the best seat on any flight",
+    "option_b": "Never experience jet lag no matter where you travel",
+    "category": "lifestyle",
+    "hook": "Traveller perk",
+    "debate_note": "Best seat = comfort in the air. No jet lag = land ready to go. Which matters more?",
+    "id": "wyr_0131"
+  },
+  {
+    "option_a": "Have a personal library with every book ever written",
+    "option_b": "Have a personal cinema with every film ever made",
+    "category": "lifestyle",
+    "hook": "Entertainment paradise",
+    "debate_note": "Books = depth and imagination. Films = immersive experience. Where do you spend your evenings?",
+    "id": "wyr_0132"
+  },
+  {
+    "option_a": "Never stub your toe again",
+    "option_b": "Never bite the inside of your cheek again",
+    "category": "absurd",
+    "hook": "Tiny pain relief",
+    "debate_note": "Stubbed toe = brief agony. Cheek bite = painful and repetitive. Which is worse for you?",
+    "id": "wyr_0133"
+  },
+  {
+    "option_a": "Have everyone immediately like you when they meet you",
+    "option_b": "Have everyone respect you deeply after knowing you for a month",
+    "category": "social",
+    "hook": "First impressions vs earned respect",
+    "debate_note": "Instant like = easier social life. Deep respect = meaningful relationships. Which lasts longer?",
+    "id": "wyr_0134"
+  },
+  {
+    "option_a": "Live in a city you love with no nature nearby",
+    "option_b": "Live in the perfect natural setting with no city amenities",
+    "category": "lifestyle",
+    "hook": "Urban vs nature",
+    "debate_note": "City = culture, career, connection. Nature = peace, health, beauty. Where is your soul?",
+    "id": "wyr_0135"
+  },
+  {
+    "option_a": "Be able to fall asleep anywhere in under 30 seconds",
+    "option_b": "Always wake up feeling like you slept perfectly",
+    "category": "physical",
+    "hook": "Sleep superpower",
+    "debate_note": "Fall fast = maximise rest everywhere. Wake perfect = start every day right. Which helps you more?",
+    "id": "wyr_0136"
+  },
+  {
+    "option_a": "Have a career that makes history",
+    "option_b": "Have a personal life that feels perfect",
+    "category": "moral",
+    "hook": "Legacy vs living",
+    "debate_note": "Legacy = impact beyond your life. Personal fulfilment = joy while you're here. What matters more?",
+    "id": "wyr_0137"
+  },
+  {
+    "option_a": "Have the ability to cook any cuisine perfectly",
+    "option_b": "Have the ability to eat anything without health consequences",
+    "category": "food",
+    "hook": "Food power",
+    "debate_note": "Cook perfectly = create joy for others. Eat anything = total dietary freedom. Chef or gourmand?",
+    "id": "wyr_0138"
+  },
+  {
+    "option_a": "Be able to speak to large crowds with zero nerves",
+    "option_b": "Be able to have 1-on-1 conversations with effortless charm",
+    "category": "social",
+    "hook": "Communication style",
+    "debate_note": "Stage presence = influence masses. Intimate charm = deep individual impact. Which suits you?",
+    "id": "wyr_0139"
+  },
+  {
+    "option_a": "Have a memory that only stores positive experiences",
+    "option_b": "Have perfect recall of everything but emotional detachment from bad memories",
+    "category": "mental",
+    "hook": "Emotional memory",
+    "debate_note": "Positivity bias = happiness but naive. Detached recall = wisdom without pain. Which is healthier?",
+    "id": "wyr_0140"
+  },
+  {
+    "option_a": "Work four 10-hour days per week",
+    "option_b": "Work five 6-hour days per week",
+    "category": "lifestyle",
+    "hook": "Work week design",
+    "debate_note": "4×10 = 3-day weekend. 5×6 = relaxed daily pace. Which suits your rhythm?",
+    "id": "wyr_0141"
+  },
+  {
+    "option_a": "Be an expert in history",
+    "option_b": "Be an expert in the science of the future",
+    "category": "skills",
+    "hook": "Past vs future",
+    "debate_note": "History = context for everything. Future science = build what comes next. Where does your curiosity lie?",
+    "id": "wyr_0142"
+  },
+  {
+    "option_a": "Have a best friend who is a billionaire",
+    "option_b": "Have a best friend who is the funniest person alive",
+    "category": "social",
+    "hook": "Friend wish",
+    "debate_note": "Billionaire friend = access and opportunity. Funniest friend = joy every single day. Which do you want?",
+    "id": "wyr_0143"
+  },
+  {
+    "option_a": "Always arrive 5 minutes early but feel rushed",
+    "option_b": "Always arrive exactly on time but never have a buffer",
+    "category": "lifestyle",
+    "hook": "Timing style",
+    "debate_note": "Early = polite but stressed. On-time = efficient but no margin. Which matches you?",
+    "id": "wyr_0144"
+  },
+  {
+    "option_a": "Have a pause button for awkward social situations",
+    "option_b": "Have a rewind button for social mistakes",
+    "category": "social",
+    "hook": "Social remote control",
+    "debate_note": "Pause = think before you speak. Rewind = take back anything. Which do you need more?",
+    "id": "wyr_0145"
+  },
+  {
+    "option_a": "Be immune to all poisons and venoms",
+    "option_b": "Be immune to all diseases and infections",
+    "category": "physical",
+    "hook": "Immunity upgrade",
+    "debate_note": "Poison immunity = survivalist power. Disease immunity = lifelong health. Which saves more lives?",
+    "id": "wyr_0146"
+  },
+  {
+    "option_a": "Have a brain that never second-guesses itself",
+    "option_b": "Have a heart that never regrets anything",
+    "category": "mental",
+    "hook": "Emotional upgrade",
+    "debate_note": "No second-guessing = decisive clarity. No regret = emotional freedom. Which would improve your life?",
+    "id": "wyr_0147"
+  },
+  {
+    "option_a": "Be able to teach any skill to anyone in an hour",
+    "option_b": "Be able to learn any skill from anyone in an hour",
+    "category": "skills",
+    "hook": "Teaching vs learning",
+    "debate_note": "Teaching = spread knowledge and impact others. Learning = absorb anything. Which grows you more?",
+    "id": "wyr_0148"
+  },
+  {
+    "option_a": "Have robot-level accuracy for tasks you focus on",
+    "option_b": "Have the creativity of the most imaginative human who ever lived",
+    "category": "mental",
+    "hook": "Precision vs creativity",
+    "debate_note": "Accuracy = execute flawlessly. Creativity = invent the impossible. Which defines your best self?",
+    "id": "wyr_0149"
+  },
+  {
+    "option_a": "Never feel the cold",
+    "option_b": "Never feel overheated",
+    "category": "physical",
+    "hook": "Temperature immunity",
+    "debate_note": "Cold immunity = winters and mountains. Heat immunity = summers and deserts. Which is harder for you?",
+    "id": "wyr_0150"
+  },
+  {
+    "option_a": "Have a house that's always clean on its own",
+    "option_b": "Have a car that's always perfectly maintained on its own",
+    "category": "lifestyle",
+    "hook": "Self-maintaining stuff",
+    "debate_note": "Clean home = daily peace. Perfect car = safety and reliability. Which saves you more time?",
+    "id": "wyr_0151"
+  },
+  {
+    "option_a": "Have the voice of the most calming person on Earth",
+    "option_b": "Have the laugh of the most infectious laugh on Earth",
+    "category": "social",
+    "hook": "Voice power",
+    "debate_note": "Calming voice = reduce tension anywhere. Infectious laugh = spread joy everywhere. Which is your gift?",
+    "id": "wyr_0152"
+  },
+  {
+    "option_a": "Know the plot of every book before reading",
+    "option_b": "Experience every book as if for the first time every re-read",
+    "category": "lifestyle",
+    "hook": "Reader's dilemma",
+    "debate_note": "Knowing ahead = efficiency. Fresh re-reads = endless wonder. What do you prefer?",
+    "id": "wyr_0153"
+  },
+  {
+    "option_a": "Have the ability to never feel bored",
+    "option_b": "Have the ability to feel deep flow in any task",
+    "category": "mental",
+    "hook": "Engagement superpower",
+    "debate_note": "No boredom = content anywhere. Deep flow = perform at your peak. Which changes your days?",
+    "id": "wyr_0154"
+  },
+  {
+    "option_a": "Have perfect posture without trying",
+    "option_b": "Have perfect sleep without trying",
+    "category": "physical",
+    "hook": "Body on autopilot",
+    "debate_note": "Posture = confidence and health. Perfect sleep = energy and mental clarity. Which matters more?",
+    "id": "wyr_0155"
+  },
+  {
+    "option_a": "Spend a year in space on the ISS",
+    "option_b": "Spend a year at the bottom of the ocean in a habitat",
+    "category": "absurd",
+    "hook": "Extreme living",
+    "debate_note": "Space = float above Earth and stargaze. Ocean = discover the deepest unknown. Where do you go?",
+    "id": "wyr_0156"
+  },
+  {
+    "option_a": "Be able to run a country for one year",
+    "option_b": "Be able to run the world's most successful company for one year",
+    "category": "moral",
+    "hook": "Ultimate power",
+    "debate_note": "Country = political impact and legacy. Company = economic power and innovation. What's your ambition?",
+    "id": "wyr_0157"
+  },
+  {
+    "option_a": "Have all your future memories intact but lose all your past memories",
+    "option_b": "Keep all your past memories but have no memory of the future",
+    "category": "moral",
+    "hook": "Memory paradox",
+    "debate_note": "Future memories = live with knowing. Past memories = identity and connection. Which makes you YOU?",
+    "id": "wyr_0158"
+  },
+  {
+    "option_a": "Be famous worldwide for something embarrassing",
+    "option_b": "Be unknown but have done something genuinely heroic",
+    "category": "social",
+    "hook": "Fame vs honour",
+    "debate_note": "Embarrassing fame = constant attention. Quiet heroism = personal dignity. Which sits better with you?",
+    "id": "wyr_0159"
+  },
+  {
+    "option_a": "Have the world's greatest singing voice but be unable to write music",
+    "option_b": "Have the world's greatest songwriting ability but be unable to sing",
+    "category": "skills",
+    "hook": "Musical talent split",
+    "debate_note": "Voice = perform others' work brilliantly. Writing = create what others sing. Which is the real gift?",
+    "id": "wyr_0160"
+  },
+  {
+    "option_a": "Always feel 10% happier than you do now",
+    "option_b": "Never feel lower than your current average mood",
+    "category": "mental",
+    "hook": "Happiness upgrade",
+    "debate_note": "10% happier = better life on average. Mood floor = protect against the lows. Which do you need?",
+    "id": "wyr_0161"
+  },
+  {
+    "option_a": "Have the confidence of someone who has never failed",
+    "option_b": "Have the resilience of someone who has failed and come back every time",
+    "category": "mental",
+    "hook": "Confidence vs resilience",
+    "debate_note": "Unfailing confidence = boldness. Battle-tested resilience = unbreakable. Which is more powerful?",
+    "id": "wyr_0162"
+  },
+  {
+    "option_a": "Eat only sweet food for a year",
+    "option_b": "Eat only savoury food for a year",
+    "category": "food",
+    "hook": "Taste restriction",
+    "debate_note": "Sweet = desserts and fruit only. Savoury = meat, cheese, pasta only. Which could you handle?",
+    "id": "wyr_0163"
+  },
+  {
+    "option_a": "Have a job that bores you but pays $300k",
+    "option_b": "Have a job you love that pays $50k",
+    "category": "lifestyle",
+    "hook": "Work fulfilment",
+    "debate_note": "$300k = financial freedom quickly. $50k loved job = daily meaning. What's your priority at 30? At 50?",
+    "id": "wyr_0164"
+  },
+  {
+    "option_a": "Be able to run 100m in under 10 seconds",
+    "option_b": "Be able to swim 100m in under 1 minute",
+    "category": "physical",
+    "hook": "Athletic elite",
+    "debate_note": "Sprint speed = world-class runner. Sub-1min swim = world-class swimmer. Which is the cooler skill?",
+    "id": "wyr_0165"
+  },
+  {
+    "option_a": "Have a perfect poker face at all times",
+    "option_b": "Always know what everyone else is thinking",
+    "category": "social",
+    "hook": "Mind games",
+    "debate_note": "Poker face = control your image. Mind reading = full transparency of others. Both are powerful.",
+    "id": "wyr_0166"
+  },
+  {
+    "option_a": "Have hair that's always perfectly styled without effort",
+    "option_b": "Have skin that's always perfectly clear without effort",
+    "category": "physical",
+    "hook": "Effortless looks",
+    "debate_note": "Hair = first impression and style. Skin = confidence and health signal. Which matters more to you?",
+    "id": "wyr_0167"
+  },
+  {
+    "option_a": "Only be able to communicate by song",
+    "option_b": "Only be able to communicate by interpretive dance",
+    "category": "absurd",
+    "hook": "Strange communication",
+    "debate_note": "Song = melodic conversation. Dance = physical expression. Both are ridiculous — which is funnier?",
+    "id": "wyr_0168"
+  },
+  {
+    "option_a": "Live in a perpetual spring",
+    "option_b": "Live in a perpetual autumn",
+    "category": "lifestyle",
+    "hook": "Forever season",
+    "debate_note": "Spring = growth, fresh air, bright days. Autumn = cosy, colourful, crisp. Which is your season?",
+    "id": "wyr_0169"
+  },
+  {
+    "option_a": "Have the ability to see in the dark like a cat",
+    "option_b": "Have the ability to hear like a dog (4× better)",
+    "category": "superpowers",
+    "hook": "Animal senses",
+    "debate_note": "Night vision = see everything others can't. Dog hearing = detect sounds miles away. Which is more useful?",
+    "id": "wyr_0170"
+  },
+  {
+    "option_a": "Age backwards from 80 to 0",
+    "option_b": "Age normally but live to 200 in full health",
+    "category": "moral",
+    "hook": "Longevity choice",
+    "debate_note": "Backwards ageing = end as a baby (then what?). 200 healthy = a full second life. Think it through.",
+    "id": "wyr_0171"
+  },
+  {
+    "option_a": "Have an unbreakable immune system",
+    "option_b": "Have a body that heals twice as fast as normal",
+    "category": "physical",
+    "hook": "Health upgrade",
+    "debate_note": "Immune = never get sick. Fast healing = recover from everything quickly. Which gives more peace of mind?",
+    "id": "wyr_0172"
+  },
+  {
+    "option_a": "Be able to communicate telepathically with anyone who consents",
+    "option_b": "Be able to feel the emotions of anyone within 10 metres",
+    "category": "superpowers",
+    "hook": "Mental connection",
+    "debate_note": "Telepathy = share thoughts precisely. Empathy field = feel the room's energy. Which is more useful?",
+    "id": "wyr_0173"
+  },
+  {
+    "option_a": "Always know the nutritional value of everything you eat",
+    "option_b": "Always know the exact calorie burn of everything you do",
+    "category": "lifestyle",
+    "hook": "Health data superpower",
+    "debate_note": "Food knowledge = eat smarter. Activity knowledge = move smarter. Which information changes you more?",
+    "id": "wyr_0174"
+  },
+  {
+    "option_a": "Never feel nervous before an important event",
+    "option_b": "Always feel confident afterwards no matter how it went",
+    "category": "mental",
+    "hook": "Performance mindset",
+    "debate_note": "No pre-nerves = peak performance. Post-confidence = learn and grow no matter what. Which is better?",
+    "id": "wyr_0175"
+  },
+  {
+    "option_a": "Be able to see colours no human has ever seen",
+    "option_b": "Be able to hear sounds no human has ever heard",
+    "category": "superpowers",
+    "hook": "Extended senses",
+    "debate_note": "New colours = indescribable visual beauty. New sounds = music beyond music. Which expansion do you choose?",
+    "id": "wyr_0176"
+  },
+  {
+    "option_a": "Have all your meals delivered perfectly every day for free",
+    "option_b": "Have a cleaner visit your home daily for free",
+    "category": "lifestyle",
+    "hook": "Daily luxury",
+    "debate_note": "Meals = nutrition and time saved. Cleaning = order and peace of mind. Which reduces more daily stress?",
+    "id": "wyr_0177"
+  },
+  {
+    "option_a": "Be able to translate any written language instantly",
+    "option_b": "Be able to translate any spoken language instantly",
+    "category": "skills",
+    "hook": "Language barrier broken",
+    "debate_note": "Written = read any book or sign. Spoken = converse with anyone on Earth. Which is more valuable daily?",
+    "id": "wyr_0178"
+  },
+  {
+    "option_a": "Have teeth that never need cleaning",
+    "option_b": "Have eyes that never need correction or strain",
+    "category": "physical",
+    "hook": "Low maintenance body",
+    "debate_note": "No dental care = zero dental bills. Perfect eyes = no glasses, no screens fatigue. Which do you choose?",
+    "id": "wyr_0179"
+  },
+  {
+    "option_a": "Live without social media but be slightly more productive",
+    "option_b": "Keep social media but have twice the self-discipline",
+    "category": "lifestyle",
+    "hook": "Social media deal",
+    "debate_note": "Quit social media = simpler life. Better self-discipline = do both well. Which is more realistic?",
+    "id": "wyr_0180"
+  },
+  {
+    "option_a": "Have the ability to fix any machine or device by touching it",
+    "option_b": "Have the ability to improve any recipe you cook by instinct",
+    "category": "skills",
+    "hook": "Practical superpowers",
+    "debate_note": "Fix machines = handy in any emergency. Instinct cooking = every meal is incredible. Which daily power?",
+    "id": "wyr_0181"
+  },
+  {
+    "option_a": "Always have good luck with small things",
+    "option_b": "Have one big piece of incredible luck per year",
+    "category": "lifestyle",
+    "hook": "Luck allocation",
+    "debate_note": "Small luck = no queues, green lights, found money. One big = life-changing event annually. Which wins?",
+    "id": "wyr_0182"
+  },
+  {
+    "option_a": "Know the answer to any maths problem instantly",
+    "option_b": "Know the right answer to any moral dilemma instantly",
+    "category": "mental",
+    "hook": "Instant knowing",
+    "debate_note": "Maths = technical mastery. Moral clarity = ethical leadership. Which is rarer and more valuable?",
+    "id": "wyr_0183"
+  },
+  {
+    "option_a": "Live 10 years longer but age normally",
+    "option_b": "Stop ageing at 35 for 10 extra years then continue",
+    "category": "physical",
+    "hook": "Aging deal",
+    "debate_note": "Extra 10 years at the end = more time. Pause at 35 = a decade of peak physical life. Which do you want?",
+    "id": "wyr_0184"
+  },
+  {
+    "option_a": "Have a supercomputer available 24/7 for personal use",
+    "option_b": "Have a team of 5 expert assistants for any task 24/7",
+    "category": "lifestyle",
+    "hook": "Ultimate resource",
+    "debate_note": "Supercomputer = infinite processing. Human experts = creativity, judgment, empathy. What do you need more?",
+    "id": "wyr_0185"
+  },
+  {
+    "option_a": "Be able to type 200 words per minute",
+    "option_b": "Never make a typo again",
+    "category": "skills",
+    "hook": "Keyboard upgrade",
+    "debate_note": "200 WPM = write at the speed of thought. Zero typos = perfect accuracy always. Which is more useful?",
+    "id": "wyr_0186"
+  },
+  {
+    "option_a": "Have a photographic memory but be unable to form new habits",
+    "option_b": "Form any new habit in 3 days but forget details quickly",
+    "category": "mental",
+    "hook": "Memory vs habit",
+    "debate_note": "Memory = know everything. Habits = become anything. Which builds a better life?",
+    "id": "wyr_0187"
+  },
+  {
+    "option_a": "Have a second home anywhere in the world",
+    "option_b": "Have the ability to travel anywhere instantly for free but only for day trips",
+    "category": "lifestyle",
+    "hook": "Travel dream",
+    "debate_note": "Second home = roots in two places. Day trips anywhere = explore freely but always come home. Which?",
+    "id": "wyr_0188"
+  },
+  {
+    "option_a": "Be respected by everyone but loved by no one",
+    "option_b": "Be loved by many but respected by few",
+    "category": "social",
+    "hook": "Respect vs love",
+    "debate_note": "Respect = professional power and integrity. Love = emotional warmth and belonging. Which fulfils you?",
+    "id": "wyr_0189"
+  },
+  {
+    "option_a": "Have a personal trainer who guarantees results",
+    "option_b": "Have a therapist who guarantees mental clarity",
+    "category": "mental",
+    "hook": "Personal investment",
+    "debate_note": "Physical fitness = confidence and energy. Mental clarity = better decisions and peace. Which first?",
+    "id": "wyr_0190"
+  },
+  {
+    "option_a": "Never lose your keys or phone again",
+    "option_b": "Always remember every person's name after meeting them once",
+    "category": "lifestyle",
+    "hook": "Daily superpower",
+    "debate_note": "Find everything = stress-free mornings. Remember names = social superpower. Which helps you more?",
+    "id": "wyr_0191"
+  },
+  {
+    "option_a": "Have the ability to make any plant grow anywhere",
+    "option_b": "Have the ability to make it rain whenever you need it",
+    "category": "superpowers",
+    "hook": "Natural power",
+    "debate_note": "Grow plants = green the world. Summon rain = water security for billions. Which is more impactful?",
+    "id": "wyr_0192"
+  },
+  {
+    "option_a": "Be able to speak every language fluently",
+    "option_b": "Be able to play every musical instrument perfectly",
+    "category": "skills",
+    "hook": "Communication or expression?",
+    "debate_note": "Languages connect you to billions; instruments let you express yourself universally.",
+    "id": "wyr_0193"
+  },
+  {
+    "option_a": "Have perfect aim with anything you throw",
+    "option_b": "Never miss a shot in any sport you play",
+    "category": "skills",
+    "hook": "Throwing vs sport?",
+    "debate_note": "Perfect aim could be useful in daily life; perfect sport shots only helps in games.",
+    "id": "wyr_0194"
+  },
+  {
+    "option_a": "Be able to speed read 10x faster",
+    "option_b": "Have a perfect photographic memory",
+    "category": "skills",
+    "hook": "Reading vs memory?",
+    "debate_note": "Speed reading gets through content fast; photographic memory retains everything forever.",
+    "id": "wyr_0195"
+  },
+  {
+    "option_a": "Be an expert chef who can cook any dish",
+    "option_b": "Be able to eat anything without getting full or gaining weight",
+    "category": "skills",
+    "hook": "Cooking vs eating?",
+    "debate_note": "Master chef impresses others; unlimited eating is pure personal pleasure.",
+    "id": "wyr_0196"
+  },
+  {
+    "option_a": "Be able to type 200 words per minute perfectly",
+    "option_b": "Be able to write code fluently in any programming language",
+    "category": "skills",
+    "hook": "Speed or coding?",
+    "debate_note": "Ultra-fast typing helps everyone; coding mastery unlocks a career and creativity.",
+    "id": "wyr_0197"
+  },
+  {
+    "option_a": "Always know when someone is lying to you",
+    "option_b": "Be able to convince anyone of anything you say",
+    "category": "skills",
+    "hook": "Detect or persuade?",
+    "debate_note": "Lie detection protects you; persuasion powers let you influence the world.",
+    "id": "wyr_0198"
+  },
+  {
+    "option_a": "Be fluent in all programming languages",
+    "option_b": "Have complete mastery over every art form",
+    "category": "skills",
+    "hook": "Tech or art?",
+    "debate_note": "Coding builds the future; art enriches the human experience.",
+    "id": "wyr_0199"
+  },
+  {
+    "option_a": "Be immune to all diseases",
+    "option_b": "Never need to sleep",
+    "category": "superpowers",
+    "hook": "Health or time?",
+    "debate_note": "Immunity means a longer, healthier life; no sleep gives you 8 extra hours every day.",
+    "id": "wyr_0200"
+  },
+  {
+    "option_a": "Have the ability to breathe underwater",
+    "option_b": "Be able to survive in outer space without a suit",
+    "category": "superpowers",
+    "hook": "Ocean or space?",
+    "debate_note": "Breathing underwater opens the deep ocean; surviving space lets you visit other worlds.",
+    "id": "wyr_0201"
+  },
+  {
+    "option_a": "Control the weather",
+    "option_b": "Control gravity",
+    "category": "superpowers",
+    "hook": "Weather or gravity?",
+    "debate_note": "Weather control shapes global events; gravity control lets you fly and lift anything.",
+    "id": "wyr_0202"
+  },
+  {
+    "option_a": "Have superhuman strength (lift 100 tons)",
+    "option_b": "Have superhuman speed (run at 1000 mph)",
+    "category": "superpowers",
+    "hook": "Strong or fast?",
+    "debate_note": "Strength lets you move mountains; speed lets you travel anywhere instantly.",
+    "id": "wyr_0203"
+  },
+  {
+    "option_a": "Be able to copy any skill after watching it once",
+    "option_b": "Be able to learn any subject in a single day",
+    "category": "superpowers",
+    "hook": "Copy or learn?",
+    "debate_note": "Copying skills works in real time; learning any subject builds deep expertise.",
+    "id": "wyr_0204"
+  },
+  {
+    "option_a": "Have the power to heal others instantly",
+    "option_b": "Have the power to restore any object to its original condition",
+    "category": "superpowers",
+    "hook": "Heal people or objects?",
+    "debate_note": "Healing saves lives; restoration saves priceless objects and reduces waste.",
+    "id": "wyr_0205"
+  },
+  {
+    "option_a": "Live in a penthouse in the world's most exciting city",
+    "option_b": "Live in a cabin in the most beautiful natural landscape on Earth",
+    "category": "lifestyle",
+    "hook": "City or nature?",
+    "debate_note": "Penthouse life buzzes with culture and people; cabin life brings peace and beauty.",
+    "id": "wyr_0206"
+  },
+  {
+    "option_a": "Work from home forever",
+    "option_b": "Travel to a new country every week for work",
+    "category": "lifestyle",
+    "hook": "Home comfort or global travel?",
+    "debate_note": "Home office gives stability; constant travel is exciting but exhausting.",
+    "id": "wyr_0207"
+  },
+  {
+    "option_a": "Have unlimited free time but no money",
+    "option_b": "Have unlimited money but only 1 hour of free time per day",
+    "category": "lifestyle",
+    "hook": "Time or money?",
+    "debate_note": "Free time is the ultimate luxury; but without money you can't enjoy much of it.",
+    "id": "wyr_0208"
+  },
+  {
+    "option_a": "Live without the internet for a year",
+    "option_b": "Live without air conditioning or heating for a year",
+    "category": "lifestyle",
+    "hook": "Tech or comfort?",
+    "debate_note": "No internet feels unthinkable; no temperature control could be genuinely dangerous.",
+    "id": "wyr_0209"
+  },
+  {
+    "option_a": "Only be able to wear one outfit forever",
+    "option_b": "Only be able to eat one meal forever",
+    "category": "lifestyle",
+    "hook": "Fashion or food?",
+    "debate_note": "One outfit is embarrassing; one meal gets boring but at least nutrition varies.",
+    "id": "wyr_0210"
+  },
+  {
+    "option_a": "Have a personal butler for the rest of your life",
+    "option_b": "Have a personal chef for the rest of your life",
+    "category": "lifestyle",
+    "hook": "Service or food?",
+    "debate_note": "A butler handles every task; a chef handles every meal — both are luxury.",
+    "id": "wyr_0211"
+  },
+  {
+    "option_a": "Be incredibly popular but have no close friends",
+    "option_b": "Have one absolutely perfect best friend but be ignored by everyone else",
+    "category": "social",
+    "hook": "Popularity or depth?",
+    "debate_note": "Popularity feels good but is shallow; one true friend can sustain you.",
+    "id": "wyr_0212"
+  },
+  {
+    "option_a": "Always say exactly what you think",
+    "option_b": "Always know the perfect thing to say in any situation",
+    "category": "social",
+    "hook": "Honesty or tact?",
+    "debate_note": "Brutal honesty can damage relationships; perfect words make you socially invincible.",
+    "id": "wyr_0213"
+  },
+  {
+    "option_a": "Never have to make small talk again",
+    "option_b": "Always have something interesting to say to anyone",
+    "category": "social",
+    "hook": "Avoid awkwardness or master it?",
+    "debate_note": "Skipping small talk saves time; having something to say wins every room.",
+    "id": "wyr_0214"
+  },
+  {
+    "option_a": "Have your dream partner but no friends",
+    "option_b": "Have the best friend group ever but never find a romantic partner",
+    "category": "social",
+    "hook": "Love or friendship?",
+    "debate_note": "One perfect partner for life vs a lifetime of deep platonic connection.",
+    "id": "wyr_0215"
+  },
+  {
+    "option_a": "Be able to run a marathon without training or fatigue",
+    "option_b": "Be able to lift twice your body weight effortlessly",
+    "category": "physical",
+    "hook": "Endurance or strength?",
+    "debate_note": "Marathon endurance lets you go forever; strength lets you do anything heavy.",
+    "id": "wyr_0216"
+  },
+  {
+    "option_a": "Have six-pack abs always without exercise",
+    "option_b": "Have perfect teeth without ever needing dental work",
+    "category": "physical",
+    "hook": "Aesthetic abs or dental perfection?",
+    "debate_note": "Abs are visual; perfect teeth affect health, speech, and confidence daily.",
+    "id": "wyr_0217"
+  },
+  {
+    "option_a": "Be naturally gifted at every sport you try",
+    "option_b": "Be naturally gifted at every creative hobby you try",
+    "category": "physical",
+    "hook": "Sports or creativity?",
+    "debate_note": "Sports talent impresses; creative talent produces art, music, and beauty.",
+    "id": "wyr_0218"
+  },
+  {
+    "option_a": "Every time you sneeze you teleport to a random location on Earth",
+    "option_b": "Every time you laugh you grow 1cm taller permanently",
+    "category": "absurd",
+    "hook": "Sneeze chaos or laugh growth?",
+    "debate_note": "Random teleporting is chaotic; laughing yourself to extreme heights is weird but controllable.",
+    "id": "wyr_0219"
+  },
+  {
+    "option_a": "Have a penguin follow you everywhere for the rest of your life",
+    "option_b": "Have a parrot that tells embarrassing truths about you in public",
+    "category": "absurd",
+    "hook": "Penguin or honest parrot?",
+    "debate_note": "A penguin is adorable but inconvenient; a parrot ruins your reputation.",
+    "id": "wyr_0220"
+  },
+  {
+    "option_a": "Only be able to communicate by singing",
+    "option_b": "Only be able to move by skipping",
+    "category": "absurd",
+    "hook": "Sing or skip?",
+    "debate_note": "Singing communication is musical chaos; skipping everywhere would get tiring fast.",
+    "id": "wyr_0221"
+  },
+  {
+    "option_a": "Everything you sit on makes a fart sound",
+    "option_b": "Every time you walk into a room, dramatic music plays",
+    "category": "absurd",
+    "hook": "Fart sounds or dramatic entrance?",
+    "debate_note": "Fart sounds are mortifying; dramatic music makes every arrival cinematic.",
+    "id": "wyr_0222"
+  },
+  {
+    "option_a": "Save one person you love from certain death",
+    "option_b": "Save 100 strangers from certain death",
+    "category": "moral",
+    "hook": "Love or duty?",
+    "debate_note": "The classic trolley problem of personal vs collective moral duty.",
+    "id": "wyr_0223"
+  },
+  {
+    "option_a": "Know the exact day you will die",
+    "option_b": "Know the exact cause of your death but not when",
+    "category": "moral",
+    "hook": "When or why?",
+    "debate_note": "Knowing when lets you prepare; knowing cause lets you avoid certain behaviors.",
+    "id": "wyr_0224"
+  },
+  {
+    "option_a": "Have the power to end all war but lose all your memories",
+    "option_b": "Keep your memories but the world continues as it is",
+    "category": "moral",
+    "hook": "Sacrifice for peace?",
+    "debate_note": "Would you erase yourself to save millions? The ultimate selfless choice.",
+    "id": "wyr_0225"
+  },
+  {
+    "option_a": "Everything you eat tastes like your favourite food",
+    "option_b": "You can eat absolutely anything without any negative health effects",
+    "category": "food",
+    "hook": "Taste or freedom?",
+    "debate_note": "Same great taste forever vs eat junk with zero consequences.",
+    "id": "wyr_0226"
+  },
+  {
+    "option_a": "Never eat sugar again",
+    "option_b": "Never eat salt again",
+    "category": "food",
+    "hook": "No sugar or no salt?",
+    "debate_note": "No sugar cuts dessert; no salt makes almost all savoury food taste flat.",
+    "id": "wyr_0227"
+  },
+  {
+    "option_a": "Only drink water for a year",
+    "option_b": "Only eat one type of cuisine for a year",
+    "category": "food",
+    "hook": "Plain drinks or repetitive food?",
+    "debate_note": "Only water is boring but healthy; one cuisine gets monotonous but flavorful.",
+    "id": "wyr_0228"
+  },
+  {
+    "option_a": "Get $1,000 every time you eat a vegetable you hate",
+    "option_b": "Get $100 every time you eat something delicious",
+    "category": "food",
+    "hook": "Pain for profit or pleasure for pennies?",
+    "debate_note": "Hate-eating vegetables hurts but pays well; delicious eating pays little.",
+    "id": "wyr_0229"
+  },
+  {
+    "option_a": "Be able to pause time for 1 hour per day",
+    "option_b": "Be able to go back in time 1 minute, unlimited times",
+    "category": "mental",
+    "hook": "Pause or rewind?",
+    "debate_note": "A pause gives you personal time; 1-minute rewinds let you redo any mistake endlessly.",
+    "id": "wyr_0230"
+  },
+  {
+    "option_a": "Have a brain that never forgets anything ever",
+    "option_b": "Have a brain that can perfectly estimate any probability or chance",
+    "category": "mental",
+    "hook": "Memory or prediction?",
+    "debate_note": "Perfect recall stores everything; perfect probability sense helps you gamble, invest, and decide.",
+    "id": "wyr_0231"
+  },
+  {
+    "option_a": "Have complete control over your dreams every night",
+    "option_b": "Be able to see anyone else's dreams while they sleep",
+    "category": "mental",
+    "hook": "Control your dreams or spy on others?",
+    "debate_note": "Dream control makes sleep an adventure; seeing others' dreams is fascinating but voyeuristic.",
+    "id": "wyr_0232"
+  },
+  {
+    "option_a": "Never feel boredom",
+    "option_b": "Never feel anxiety",
+    "category": "mental",
+    "hook": "Boredom or anxiety?",
+    "debate_note": "Boredom drives procrastination; anxiety drives stress and overthinking — which is worse for you?",
+    "id": "wyr_0233"
+  },
+  {
+    "option_a": "Know the answer to any question you ask but you can only ask 3 questions a day",
+    "option_b": "Get a good hint toward any answer but unlimited questions daily",
+    "category": "mental",
+    "hook": "Precision or volume?",
+    "debate_note": "3 perfect answers vs unlimited good-but-imperfect hints — quality vs quantity.",
+    "id": "wyr_0234"
+  },
+  {
+    "option_a": "Be able to hear any conversation happening anywhere in the world right now",
+    "option_b": "Be able to see any place in the world as if you were standing there",
+    "category": "superpowers",
+    "hook": "Hear or see the world?",
+    "debate_note": "Hearing gives information; seeing gives visual surveillance of anywhere.",
+    "id": "wyr_0235"
+  },
+  {
+    "option_a": "Always arrive exactly on time no matter what",
+    "option_b": "Never have to wait in any queue or line again",
+    "category": "lifestyle",
+    "hook": "Perfect timing or no queuing?",
+    "debate_note": "Perfect timing impresses everyone; no queues saves hours of your life annually.",
+    "id": "wyr_0236"
+  },
+  {
+    "option_a": "Have a robot do all your household chores",
+    "option_b": "Have a personal assistant manage all your admin and emails",
+    "category": "lifestyle",
+    "hook": "Physical chores or admin tasks?",
+    "debate_note": "Cleaning robots are useful; admin help frees mental bandwidth and time.",
+    "id": "wyr_0237"
+  },
+  {
+    "option_a": "Be able to instantly translate any written text you see",
+    "option_b": "Be able to instantly understand any spoken language you hear",
+    "category": "skills",
+    "hook": "Read or listen in any language?",
+    "debate_note": "Reading translation helps with signs and documents; spoken comprehension helps in conversation.",
+    "id": "wyr_0238"
+  },
+  {
+    "option_a": "Have a supercomputer-level brain but look average",
+    "option_b": "Look like the most beautiful person in the world but have average intelligence",
+    "category": "mental",
+    "hook": "Brains or beauty?",
+    "debate_note": "Intelligence builds wealth and solutions; beauty opens social doors and opportunities.",
+    "id": "wyr_0239"
+  },
+  {
+    "id": "wyr_0240",
+    "option_a": "Be able to speak every language fluently",
+    "option_b": "Be able to play every musical instrument perfectly",
+    "category": "skills",
+    "hook": "Communicate with the world or create music for it?",
+    "debate_note": "Language opens doors to every culture; music transcends all languages."
+  },
+  {
+    "id": "wyr_0241",
+    "option_a": "Have a rewind button for your life (1 use per year)",
+    "option_b": "Have a pause button that stops time for 1 hour per day",
+    "category": "superpowers",
+    "hook": "Fix the past or control the present?",
+    "debate_note": "A rewind fixes mistakes but a pause gives you extra time every single day."
+  },
+  {
+    "id": "wyr_0242",
+    "option_a": "Always be 10 minutes early",
+    "option_b": "Always be exactly on time",
+    "category": "lifestyle",
+    "hook": "Early bird advantage or perfect punctuality?",
+    "debate_note": "Being early means extra waiting; being exactly on time is technically impossible in practice."
+  },
+  {
+    "id": "wyr_0243",
+    "option_a": "Have the ability to see 10 minutes into the future",
+    "option_b": "Be able to rewind time by 10 minutes once per day",
+    "category": "superpowers",
+    "hook": "Preview or redo?",
+    "debate_note": "Seeing ahead helps you prepare; rewinding lets you fix what already went wrong."
+  },
+  {
+    "id": "wyr_0244",
+    "option_a": "Live in a world with no diseases",
+    "option_b": "Live in a world with no war",
+    "category": "world",
+    "hook": "Health or peace — which matters more?",
+    "debate_note": "Disease kills millions annually; war brings suffering but also drives medical innovation."
+  },
+  {
+    "id": "wyr_0245",
+    "option_a": "Be able to fly but only at walking speed",
+    "option_b": "Be able to run at 100 mph but only on the ground",
+    "category": "superpowers",
+    "hook": "Sky-slow or ground-fast?",
+    "debate_note": "Flight at walking speed is still magical; 100 mph on foot changes commuting entirely."
+  },
+  {
+    "id": "wyr_0246",
+    "option_a": "Only be able to eat hot food",
+    "option_b": "Only be able to eat cold food",
+    "category": "food",
+    "hook": "Hot meals only or cold meals forever?",
+    "debate_note": "No ice cream vs. no warm soup — which sacrifice hurts more?"
+  },
+  {
+    "id": "wyr_0247",
+    "option_a": "Have a photographic memory",
+    "option_b": "Have perfect math skills",
+    "category": "skills",
+    "hook": "Remember everything or calculate anything?",
+    "debate_note": "Photographic memory covers all subjects; perfect math is extremely valuable in specific fields."
+  },
+  {
+    "id": "wyr_0248",
+    "option_a": "Be able to talk to animals",
+    "option_b": "Be able to talk to plants",
+    "category": "nature",
+    "hook": "Fauna or flora — whose secrets do you want?",
+    "debate_note": "Animals have personalities and experiences; plants have been silently witnessing everything for centuries."
+  },
+  {
+    "id": "wyr_0249",
+    "option_a": "Know how every movie ends before watching it",
+    "option_b": "Forget every movie you've ever seen so you can rewatch them fresh",
+    "category": "entertainment",
+    "hook": "Spoiler vision or infinite rewatchability?",
+    "debate_note": "Knowing endings ruins surprises; forgetting means you can enjoy classics repeatedly."
+  },
+  {
+    "id": "wyr_0250",
+    "option_a": "Never have to sleep but also never get the pleasure of it",
+    "option_b": "Only need 2 hours of sleep per night and feel fully rested",
+    "category": "lifestyle",
+    "hook": "No sleep vs. minimal sleep?",
+    "debate_note": "No sleep gives 8 extra hours daily; 2-hour sleep still lets you enjoy rest."
+  },
+  {
+    "id": "wyr_0251",
+    "option_a": "Be famous for something embarrassing",
+    "option_b": "Be totally unknown but known privately as a great person",
+    "category": "fame",
+    "hook": "Embarrassing spotlight or quiet virtue?",
+    "debate_note": "Fame has perks even if awkward; living virtuously in obscurity is its own reward."
+  },
+  {
+    "id": "wyr_0252",
+    "option_a": "Have skin that changes color with your emotions",
+    "option_b": "Have a halo visible only to people who genuinely like you",
+    "category": "abilities",
+    "hook": "Emotional transparency or social radar?",
+    "debate_note": "Color-changing skin is beautiful but removes all privacy; the halo helps navigate relationships."
+  },
+  {
+    "id": "wyr_0253",
+    "option_a": "Be able to breathe underwater",
+    "option_b": "Never need to breathe at all",
+    "category": "superpowers",
+    "hook": "Ocean access or total freedom?",
+    "debate_note": "Breathing underwater opens the ocean; never needing to breathe removes all air restrictions entirely."
+  },
+  {
+    "id": "wyr_0254",
+    "option_a": "Have every book ever written downloaded into your brain",
+    "option_b": "Have the skill to write a perfect book on any topic instantly",
+    "category": "knowledge",
+    "hook": "Consume all knowledge or create it?",
+    "debate_note": "Knowing every book is encyclopedic; writing perfect books on demand is a superpower of creation."
+  },
+  {
+    "id": "wyr_0255",
+    "option_a": "Live without internet for a year",
+    "option_b": "Live without leaving your house for a year",
+    "category": "lifestyle",
+    "hook": "Offline or housebound?",
+    "debate_note": "No internet means reconnecting with the physical world; no leaving means cabin fever but full connectivity."
+  },
+  {
+    "id": "wyr_0256",
+    "option_a": "Fight one horse-sized duck",
+    "option_b": "Fight 100 duck-sized horses",
+    "category": "absurd",
+    "hook": "One giant problem or a hundred tiny ones?",
+    "debate_note": "A horse-sized duck would be terrifying but one target; 100 tiny horses means chaos from all directions."
+  },
+  {
+    "id": "wyr_0257",
+    "option_a": "Always say what you think",
+    "option_b": "Never be able to lie",
+    "category": "honesty",
+    "hook": "Blunt truth or filtered honesty?",
+    "debate_note": "Always saying what you think is unfiltered; never lying still allows omissions and diplomatic silence."
+  },
+  {
+    "id": "wyr_0258",
+    "option_a": "Have a butler for life",
+    "option_b": "Have a personal chef for life",
+    "category": "lifestyle",
+    "hook": "Service or cuisine — which luxury wins?",
+    "debate_note": "A butler handles everything logistical; a chef means every meal is restaurant-quality."
+  },
+  {
+    "id": "wyr_0259",
+    "option_a": "Know the day you will die",
+    "option_b": "Know the cause of your death",
+    "category": "life",
+    "hook": "When or why — which would haunt you more?",
+    "debate_note": "Knowing the day lets you plan everything; knowing the cause lets you try to avoid it."
+  },
+  {
+    "id": "wyr_0260",
+    "option_a": "Be able to eat anything without gaining weight",
+    "option_b": "Never get sick again for the rest of your life",
+    "category": "health",
+    "hook": "Dietary freedom or permanent health?",
+    "debate_note": "Eating anything is a joy but illness avoidance might be more practically valuable long-term."
+  },
+  {
+    "id": "wyr_0261",
+    "option_a": "Have a 10% chance of winning $10 million",
+    "option_b": "Have a guaranteed $100,000 right now",
+    "category": "money",
+    "hook": "High risk jackpot or reliable windfall?",
+    "debate_note": "Expected value favors the gamble ($1M vs $100k), but certainty has enormous life-changing value."
+  },
+  {
+    "id": "wyr_0262",
+    "option_a": "Be the world's greatest painter",
+    "option_b": "Be the world's greatest writer",
+    "category": "creativity",
+    "hook": "Visual art or written word — which changes the world more?",
+    "debate_note": "Great painting speaks across language barriers; great writing shapes how generations think."
+  },
+  {
+    "id": "wyr_0263",
+    "option_a": "Have the voice of an angel when you sing",
+    "option_b": "Be able to dance like a professional dancer",
+    "category": "arts",
+    "hook": "Voice or movement — which is more magnetic?",
+    "debate_note": "A beautiful voice can move people to tears; exceptional dancing commands any room."
+  },
+  {
+    "id": "wyr_0264",
+    "option_a": "Always have a front row seat at every event",
+    "option_b": "Never have to wait in line for anything ever again",
+    "category": "privileges",
+    "hook": "VIP access or frictionless life?",
+    "debate_note": "Front row everywhere is exciting; never waiting in line saves enormous time over a lifetime."
+  },
+  {
+    "id": "wyr_0265",
+    "option_a": "Be able to teleport but only to places you've been before",
+    "option_b": "Be able to fly but only outdoors and only in daylight",
+    "category": "superpowers",
+    "hook": "Instant revisiting or daytime flight?",
+    "debate_note": "Teleporting eliminates commute time; flight is exhilarating but limited in scope."
+  },
+  {
+    "id": "wyr_0266",
+    "option_a": "Have a pause button that freezes everything around you",
+    "option_b": "Have a fast-forward button that skips boring parts of life",
+    "category": "superpowers",
+    "hook": "Stop time or skip the dull bits?",
+    "debate_note": "Pausing everything gives unlimited time; fast-forward risks missing important context."
+  },
+  {
+    "id": "wyr_0267",
+    "option_a": "Only be able to wear one color forever",
+    "option_b": "Have your wardrobe randomly chosen for you every morning",
+    "category": "style",
+    "hook": "Monochrome control or daily surprise?",
+    "debate_note": "One color limits self-expression but is simple; random clothes could be delightful or mortifying."
+  },
+  {
+    "id": "wyr_0268",
+    "option_a": "Be able to hear any conversation happening anywhere in the world",
+    "option_b": "Be able to see any place in the world in real time",
+    "category": "superpowers",
+    "hook": "Hear the world or see it?",
+    "debate_note": "Hearing any conversation reveals secrets; seeing any place offers information without context."
+  },
+  {
+    "id": "wyr_0269",
+    "option_a": "Have the ability to instantly learn any physical skill",
+    "option_b": "Have the ability to instantly learn any academic subject",
+    "category": "learning",
+    "hook": "Body skills or mind skills?",
+    "debate_note": "Physical skills are immediately useful and impressive; academic knowledge opens career paths."
+  },
+  {
+    "id": "wyr_0270",
+    "option_a": "Be immune to all cold temperatures",
+    "option_b": "Be immune to all heat",
+    "category": "environment",
+    "hook": "Arctic freedom or desert comfort?",
+    "debate_note": "Cold immunity means comfortable winters and polar exploration; heat immunity is far more survival-useful on a warming planet."
+  },
+  {
+    "id": "wyr_0271",
+    "option_a": "Have unlimited storage in your mind",
+    "option_b": "Have perfect recall of everything you've ever experienced",
+    "category": "mind",
+    "hook": "Infinite storage or perfect replay?",
+    "debate_note": "Unlimited storage means you can learn anything; perfect recall means every memory, including bad ones, is vivid."
+  },
+  {
+    "id": "wyr_0272",
+    "option_a": "Be the first human to visit Mars",
+    "option_b": "Be the first human to reach the bottom of every ocean trench",
+    "category": "exploration",
+    "hook": "Sky high or depths unknown?",
+    "debate_note": "Mars is the ultimate frontier; ocean depths are more mysterious and dangerous than space."
+  },
+  {
+    "id": "wyr_0273",
+    "option_a": "Have a time machine that can only go back in time",
+    "option_b": "Have a time machine that can only go forward in time",
+    "category": "time travel",
+    "hook": "Revisit the past or preview the future?",
+    "debate_note": "Going back lets you change things; going forward shows you what's coming but risks being stranded."
+  },
+  {
+    "id": "wyr_0274",
+    "option_a": "Sneeze glitter every time you sneeze",
+    "option_b": "Hiccup bubbles every time you hiccup",
+    "category": "absurd",
+    "hook": "Sparkly mess or floating bubbles?",
+    "debate_note": "Glitter goes everywhere and sticks to everything; bubbles are charming but unavoidable in public."
+  },
+  {
+    "id": "wyr_0275",
+    "option_a": "Be an expert in every sport",
+    "option_b": "Be an expert in every art form",
+    "category": "skills",
+    "hook": "Athletic mastery or artistic mastery?",
+    "debate_note": "Sports expertise gives you physical vitality and competition; art expertise lets you create beauty in any medium."
+  },
+  {
+    "id": "wyr_0276",
+    "option_a": "Never lose your keys or phone again",
+    "option_b": "Always find parking instantly wherever you go",
+    "category": "convenience",
+    "hook": "Personal items or parking?",
+    "debate_note": "Lost keys are stressful; parking stress is one of life's biggest daily frustrations."
+  },
+  {
+    "id": "wyr_0277",
+    "option_a": "Have the power to fix broken relationships with one conversation",
+    "option_b": "Have the power to end any conflict peacefully with one meeting",
+    "category": "social",
+    "hook": "Personal healing or world peace?",
+    "debate_note": "Fixing personal relationships is deeply meaningful; ending conflicts could save millions of lives."
+  },
+  {
+    "id": "wyr_0278",
+    "option_a": "Be incredibly lucky in games of chance",
+    "option_b": "Be incredibly skilled at strategy games",
+    "category": "games",
+    "hook": "Luck or skill — which wins more?",
+    "debate_note": "Luck works in pure chance situations; strategy works in all complex games and even business."
+  },
+  {
+    "id": "wyr_0279",
+    "option_a": "Have the ability to make anyone fall asleep instantly",
+    "option_b": "Have the ability to make anyone calm down instantly",
+    "category": "abilities",
+    "hook": "Sleep dart or peace touch?",
+    "debate_note": "Instant sleep is useful in danger; calming people is more versatile in everyday situations."
+  },
+  {
+    "id": "wyr_0280",
+    "option_a": "Live on a tropical island but with no internet",
+    "option_b": "Live in a busy city with every technology available",
+    "category": "lifestyle",
+    "hook": "Paradise isolation or urban connection?",
+    "debate_note": "Tropical island life is idyllic; city life with full tech connectivity offers career and social opportunities."
+  },
+  {
+    "id": "wyr_0281",
+    "option_a": "Be able to eat anything you want with no health consequences",
+    "option_b": "Be able to go without sleep and feel perfectly fine",
+    "category": "biology",
+    "hook": "Food freedom or sleep freedom?",
+    "debate_note": "Dietary freedom is a daily joy; sleep freedom adds 8 hours to every single day."
+  },
+  {
+    "id": "wyr_0282",
+    "option_a": "Always have a song stuck in your head (you choose which one)",
+    "option_b": "Never be able to get a song out of your head (randomly chosen)",
+    "category": "music",
+    "hook": "Controlled earworm or random torment?",
+    "debate_note": "Choosing your earworm gives control; a random song could be anything — including ones you hate."
+  },
+  {
+    "id": "wyr_0283",
+    "option_a": "Be able to read minds but only negative thoughts",
+    "option_b": "Not be able to read minds but know when someone dislikes you",
+    "category": "social",
+    "hook": "Dark telepathy or social radar?",
+    "debate_note": "Negative thoughts only would be depressing; knowing who dislikes you is actionable information."
+  },
+  {
+    "id": "wyr_0284",
+    "option_a": "Be 4 inches taller than you are",
+    "option_b": "Be 20 pounds lighter than you are",
+    "category": "appearance",
+    "hook": "Height or weight — what matters more?",
+    "debate_note": "Height affects perception in career and social settings; weight affects health and everyday comfort."
+  },
+  {
+    "id": "wyr_0285",
+    "option_a": "Have the internet speed of 1 Gbps forever for free",
+    "option_b": "Never pay for gas or charging for your car again",
+    "category": "money",
+    "hook": "Speed or fuel — which saves more?",
+    "debate_note": "1 Gbps is already excellent for most users; free fuel/charging saves thousands of dollars annually."
+  },
+  {
+    "id": "wyr_0286",
+    "option_a": "Own a private island",
+    "option_b": "Own a private jet",
+    "category": "luxury",
+    "hook": "Land or air — which luxury matters more?",
+    "debate_note": "An island is a paradise retreat; a jet gives you the ability to go anywhere in the world instantly."
+  },
+  {
+    "id": "wyr_0287",
+    "option_a": "Be a master hacker with no ethical restrictions",
+    "option_b": "Be a world-class negotiator who never fails",
+    "category": "skills",
+    "hook": "Digital power or interpersonal power?",
+    "debate_note": "Hacking gives covert access to systems; negotiation achieves goals without breaking laws."
+  },
+  {
+    "id": "wyr_0288",
+    "option_a": "Only be able to drink water for the rest of your life",
+    "option_b": "Only be able to eat one meal per day (any food you want)",
+    "category": "food",
+    "hook": "Bland drinks or limited meals?",
+    "debate_note": "Only water means giving up coffee, juice, and alcohol; one meal a day is restrictive but the meal can be anything."
+  },
+  {
+    "id": "wyr_0289",
+    "option_a": "Have your life narrated by Morgan Freeman",
+    "option_b": "Have your life scored by Hans Zimmer",
+    "category": "pop culture",
+    "hook": "The voice or the music?",
+    "debate_note": "Freeman's narration makes everything profound; Zimmer's score would make every moment feel cinematic."
+  },
+  {
+    "id": "wyr_0290",
+    "option_a": "Be the last human on Earth",
+    "option_b": "Be the only human who can't access the internet",
+    "category": "isolation",
+    "hook": "Physical isolation or digital isolation?",
+    "debate_note": "Last human means total loneliness; no internet means exclusion from modern society but you're not alone."
+  },
+  {
+    "id": "wyr_0291",
+    "option_a": "Always feel too hot",
+    "option_b": "Always feel too cold",
+    "category": "comfort",
+    "hook": "Perpetually warm or perpetually chilly?",
+    "debate_note": "Being too hot is exhausting; being too cold lets you add layers, but chronic cold is miserable too."
+  },
+  {
+    "id": "wyr_0292",
+    "option_a": "Live in a world where you can see everyone's health bar",
+    "option_b": "Live in a world where you can see everyone's mood bar",
+    "category": "social",
+    "hook": "Health stats or mood stats?",
+    "debate_note": "Health bars show who needs help; mood bars tell you who to approach and who to avoid."
+  },
+  {
+    "id": "wyr_0293",
+    "option_a": "Be able to speak to the dead for 5 minutes once a year",
+    "option_b": "Receive a letter from your future self every New Year's Day",
+    "category": "supernatural",
+    "hook": "Past wisdom or future guidance?",
+    "debate_note": "Speaking to the dead gives closure; future letters give actionable advice about upcoming events."
+  },
+  {
+    "id": "wyr_0294",
+    "option_a": "Have a magical bag that always has exactly what you need",
+    "option_b": "Have a magical wallet that always has exactly as much money as you need",
+    "category": "magic",
+    "hook": "Practical magic or financial magic?",
+    "debate_note": "The bag covers every physical need; the wallet covers financial needs but not physical items."
+  },
+  {
+    "id": "wyr_0295",
+    "option_a": "Be able to communicate with any animal",
+    "option_b": "Be understood by every human regardless of language",
+    "category": "communication",
+    "hook": "Animal kingdom or human world?",
+    "debate_note": "Talking to animals reveals nature's secrets; universal human communication breaks down every cultural barrier."
+  },
+  {
+    "id": "wyr_0296",
+    "option_a": "Know every person's true opinion of you",
+    "option_b": "Have every person genuinely like you",
+    "category": "social",
+    "hook": "Brutal truth or universal love?",
+    "debate_note": "Knowing opinions helps you understand relationships; being universally liked opens every door."
+  },
+  {
+    "id": "wyr_0297",
+    "option_a": "Be a professional athlete for 10 years then retire",
+    "option_b": "Be a successful author with 10 bestselling novels",
+    "category": "career",
+    "hook": "Physical greatness or literary legacy?",
+    "debate_note": "Athletics gives physical accomplishment and fame; authorship creates lasting cultural impact."
+  },
+  {
+    "id": "wyr_0298",
+    "option_a": "Have the ability to stop time but you can't move",
+    "option_b": "Have the ability to move at light speed but time continues normally",
+    "category": "superpowers",
+    "hook": "Frozen world or blazing movement?",
+    "debate_note": "Stopping time but staying frozen lets you observe; moving at light speed means you can do anything in an instant."
+  },
+  {
+    "id": "wyr_0299",
+    "option_a": "Eat only foods that taste amazing but smell terrible",
+    "option_b": "Eat only foods that smell amazing but taste terrible",
+    "category": "food",
+    "hook": "Nose vs. taste buds — which matters more?",
+    "debate_note": "Terrible smell ruins social eating; bad taste ruins every meal you actually consume."
+  },
+  {
+    "id": "wyr_0300",
+    "option_a": "Have 10 close, lifelong friends",
+    "option_b": "Have 1,000 acquaintances who would help you in a pinch",
+    "category": "relationships",
+    "hook": "Depth or breadth in social connections?",
+    "debate_note": "Deep friendships provide emotional support; a wide network provides access to more resources and opportunities."
+  },
+  {
+    "id": "wyr_0301",
+    "option_a": "Live 200 years but look old from 40 onward",
+    "option_b": "Live 90 years but look 25 until you die",
+    "category": "life",
+    "hook": "Long life or lasting youth?",
+    "debate_note": "200 years means experiencing centuries of change; staying young-looking for 90 years has social advantages."
+  },
+  {
+    "id": "wyr_0302",
+    "option_a": "Have a dragon as a pet but it can't fly",
+    "option_b": "Have a unicorn as a pet but it can't do magic",
+    "category": "fantasy",
+    "hook": "Dragon minus flight or unicorn minus magic?",
+    "debate_note": "A fire-breathing dragon is still impressive; a unicorn is beautiful and rare even without magic."
+  },
+  {
+    "id": "wyr_0303",
+    "option_a": "Always win every argument",
+    "option_b": "Always know when someone is lying",
+    "category": "social",
+    "hook": "Persuasion or detection?",
+    "debate_note": "Winning arguments is powerful; knowing when you're being lied to protects you from manipulation."
+  },
+  {
+    "id": "wyr_0304",
+    "option_a": "Live in the world of your favorite book",
+    "option_b": "Live in the world of your favorite game",
+    "category": "fiction",
+    "hook": "Literary world or game world?",
+    "debate_note": "Book worlds have depth and narrative; game worlds usually have mechanics that make life more interactive."
+  },
+  {
+    "id": "wyr_0305",
+    "option_a": "Be able to become invisible at will",
+    "option_b": "Be able to read minds at will",
+    "category": "superpowers",
+    "hook": "Stealth or telepathy?",
+    "debate_note": "Invisibility gives physical access; telepathy gives informational access to every mind around you."
+  },
+  {
+    "id": "wyr_0306",
+    "option_a": "Have a permanent 3-day weekend every week",
+    "option_b": "Have 4 hours cut from every workday but same pay",
+    "category": "work",
+    "hook": "More days off or shorter days?",
+    "debate_note": "3-day weekends give long stretches of rest; shorter workdays give daily free time throughout the week."
+  },
+  {
+    "id": "wyr_0307",
+    "option_a": "Age 5 years instantly right now",
+    "option_b": "Go back in age 5 years instantly right now",
+    "category": "age",
+    "hook": "Older now or younger now?",
+    "debate_note": "Getting older now accelerates life experience; getting younger regains lost time but you lose some memories."
+  },
+  {
+    "id": "wyr_0308",
+    "option_a": "Taste everything you touch",
+    "option_b": "Hear everything you see",
+    "category": "senses",
+    "hook": "Touch-taste or sight-sound?",
+    "debate_note": "Tasting everything is unpleasant for most surfaces; hearing everything visible would be overwhelming noise."
+  },
+  {
+    "id": "wyr_0309",
+    "option_a": "Have a superpower that nobody believes you have",
+    "option_b": "Not have any superpower but everyone believes you do",
+    "category": "superpowers",
+    "hook": "Real power with no credit, or fake power with full credit?",
+    "debate_note": "Real power is useful regardless of belief; perceived power has social benefits even without the reality."
+  },
+  {
+    "id": "wyr_0310",
+    "option_a": "Be the best at one thing in the world",
+    "option_b": "Be above average at everything",
+    "category": "skills",
+    "hook": "World-class at one or good at everything?",
+    "debate_note": "Being best in world at one thing brings recognition; being above average at everything is extremely versatile."
+  },
+  {
+    "id": "wyr_0311",
+    "option_a": "Hiccup every time you lie",
+    "option_b": "Sneeze every time you're about to make a mistake",
+    "category": "quirks",
+    "hook": "Lie detector body or mistake alarm?",
+    "debate_note": "Hiccupping when lying is humiliating but keeps you honest; sneezing before mistakes could save you from disasters."
+  },
+  {
+    "id": "wyr_0312",
+    "option_a": "Have a photographic memory but only for useless trivia",
+    "option_b": "Have perfect recall but only for conversations you've had",
+    "category": "memory",
+    "hook": "Trivia master or conversation historian?",
+    "debate_note": "Trivia memory wins game shows; perfect recall of conversations helps relationships and negotiations."
+  },
+  {
+    "id": "wyr_0313",
+    "option_a": "Be able to talk to computers and have them understand you perfectly",
+    "option_b": "Be able to fix any broken object just by touching it",
+    "category": "abilities",
+    "hook": "Tech whisperer or repair master?",
+    "debate_note": "Perfect computer communication is extremely valuable in the digital age; fixing anything by touch is magical utility."
+  },
+  {
+    "id": "wyr_0314",
+    "option_a": "Have a free pass to travel anywhere in the world for 1 year",
+    "option_b": "Have every expense paid in your current city for 1 year",
+    "category": "travel",
+    "hook": "See the world or live rent-free?",
+    "debate_note": "World travel broadens perspective; free living in your city eliminates financial stress for a full year."
+  },
+  {
+    "id": "wyr_0315",
+    "option_a": "Always be slightly too cold",
+    "option_b": "Always be slightly too warm",
+    "category": "comfort",
+    "hook": "Chilly or toasty — pick your discomfort",
+    "debate_note": "Slightly cold means always needing a jacket; slightly warm means always being faintly sweaty."
+  },
+  {
+    "id": "wyr_0316",
+    "option_a": "Have a robot assistant that does 50% of your work",
+    "option_b": "Have a human assistant who does 100% of your admin tasks",
+    "category": "work",
+    "hook": "AI efficiency or human intelligence?",
+    "debate_note": "A robot handles half of everything but imperfectly; a human handles admin perfectly and intuitively."
+  },
+  {
+    "id": "wyr_0317",
+    "option_a": "Be incredibly charismatic but average in intelligence",
+    "option_b": "Be incredibly intelligent but barely charismatic",
+    "category": "personality",
+    "hook": "Charm or brains — which opens more doors?",
+    "debate_note": "Charisma wins social and political situations; intelligence wins in technical and analytical fields."
+  },
+  {
+    "id": "wyr_0318",
+    "option_a": "Have unlimited battery life on all your devices forever",
+    "option_b": "Have unlimited data and perfect signal everywhere forever",
+    "category": "technology",
+    "hook": "Power or connection — which do you need more?",
+    "debate_note": "Unlimited battery means never being tethered; unlimited data/signal means always connected."
+  },
+  {
+    "id": "wyr_0319",
+    "option_a": "Know exactly what your pet is thinking",
+    "option_b": "Have your pet live as long as you do",
+    "category": "pets",
+    "hook": "Pet telepathy or pet immortality?",
+    "debate_note": "Knowing pet thoughts is fascinating; having a lifelong pet companion eliminates the heartbreak of pet loss."
+  },
+  {
+    "id": "wyr_0320",
+    "option_a": "Be able to control the weather",
+    "option_b": "Be able to control traffic",
+    "category": "control",
+    "hook": "Mother Nature or rush hour?",
+    "debate_note": "Weather control affects agriculture, disasters, and climate; traffic control has daily quality-of-life impact."
+  },
+  {
+    "id": "wyr_0321",
+    "option_a": "Have every movie ever made available offline on your phone",
+    "option_b": "Have every song ever made available offline on your phone",
+    "category": "entertainment",
+    "hook": "Cinema or music — which matters more?",
+    "debate_note": "All movies covers entertainment; all music covers mood, workout, focus — more daily utility."
+  },
+  {
+    "id": "wyr_0322",
+    "option_a": "Be a master chef who hates eating",
+    "option_b": "Be someone who loves eating but can't cook at all",
+    "category": "food",
+    "hook": "Create food you can't enjoy or enjoy food you can't create?",
+    "debate_note": "Chef skills create a career; loving food without skill just means relying on others or restaurants."
+  },
+  {
+    "id": "wyr_0323",
+    "option_a": "Have a permanent smile on your face",
+    "option_b": "Have a permanent look of mild confusion on your face",
+    "category": "appearance",
+    "hook": "Always happy-looking or always puzzled?",
+    "debate_note": "A permanent smile is charming but may seem unsettling in serious situations; confused looks seem approachable."
+  },
+  {
+    "id": "wyr_0324",
+    "option_a": "Be able to take a 10-second power nap that equals 8 hours of sleep",
+    "option_b": "Be able to eat one pill that gives you a full day's nutrition",
+    "category": "biology",
+    "hook": "Sleep hack or food hack?",
+    "debate_note": "10-second sleep gives 8 hours of freedom; nutrient pills eliminate all food preparation and cost."
+  },
+  {
+    "id": "wyr_0325",
+    "option_a": "Have the strength of 100 people",
+    "option_b": "Have the speed of 100 people combined",
+    "category": "superpowers",
+    "hook": "Super strength or super speed?",
+    "debate_note": "Strength lets you lift anything; speed lets you outrun, outwork, and accomplish anything faster."
+  },
+  {
+    "id": "wyr_0326",
+    "option_a": "Be able to speak every programming language fluently",
+    "option_b": "Be able to build any physical thing with your hands perfectly",
+    "category": "skills",
+    "hook": "Code the digital world or build the physical one?",
+    "debate_note": "Programming fluency is extremely valuable in the tech age; master craftsmanship is rare and timeless."
+  },
+  {
+    "id": "wyr_0327",
+    "option_a": "Never stub your toe again",
+    "option_b": "Never bite your cheek while eating again",
+    "category": "comfort",
+    "hook": "Toe or cheek — which pain do you fear more?",
+    "debate_note": "Both are unexpectedly excruciating. Stubbing a toe is acute; biting your cheek ruins the whole meal."
+  },
+  {
+    "id": "wyr_0328",
+    "option_a": "Be the funniest person in any room",
+    "option_b": "Be the most interesting person in any room",
+    "category": "personality",
+    "hook": "Funny or fascinating?",
+    "debate_note": "Funny people are loved immediately; interesting people are remembered and sought after."
+  },
+  {
+    "id": "wyr_0329",
+    "option_a": "Have the ability to instantly understand any machine",
+    "option_b": "Have the ability to instantly understand any animal",
+    "category": "understanding",
+    "hook": "Machine whisperer or animal whisperer?",
+    "debate_note": "Understanding machines is practical in a technological world; understanding animals reveals nature's secret languages."
+  },
+  {
+    "id": "wyr_0330",
+    "option_a": "Be a bird that can't fly",
+    "option_b": "Be a fish that can't swim",
+    "category": "animals",
+    "hook": "Earthbound bird or landlocked fish?",
+    "debate_note": "Flightless birds still live on land; a fish that can't swim is trapped in its natural environment."
+  },
+  {
+    "id": "wyr_0331",
+    "option_a": "Live in a treehouse in a forest",
+    "option_b": "Live on a houseboat on the ocean",
+    "category": "lifestyle",
+    "hook": "Forest canopy or ocean horizon?",
+    "debate_note": "Treehouse offers nature, birds, and calm; houseboat offers freedom, movement, and ocean air."
+  },
+  {
+    "id": "wyr_0332",
+    "option_a": "Be able to communicate with insects",
+    "option_b": "Be able to communicate with sea creatures",
+    "category": "nature",
+    "hook": "Land bugs or ocean beings?",
+    "debate_note": "Insect communication reveals a massive hidden civilization; sea creature communication opens up the deep ocean."
+  },
+  {
+    "id": "wyr_0333",
+    "option_a": "Have the memory of an elephant (never forget anything)",
+    "option_b": "Have the night vision of a cat",
+    "category": "abilities",
+    "hook": "Perfect recall or night vision?",
+    "debate_note": "Perfect memory is academically and professionally invaluable; night vision is practically useful and socially impressive."
+  },
+  {
+    "id": "wyr_0334",
+    "option_a": "Be able to create food from nothing",
+    "option_b": "Be able to make anyone fall asleep instantly",
+    "category": "powers",
+    "hook": "Feed the world or end any conflict?",
+    "debate_note": "Creating food solves hunger; instant sleep could stop violence, end arguments, and save lives."
+  },
+  {
+    "id": "wyr_0335",
+    "option_a": "Always have just enough money but never struggle",
+    "option_b": "Have huge wealth but constant financial anxiety",
+    "category": "money",
+    "hook": "Comfortable simplicity or anxious abundance?",
+    "debate_note": "Enough money without stress is profoundly peaceful; great wealth offers opportunity despite stress."
+  },
+  {
+    "id": "wyr_0336",
+    "option_a": "Be able to record your dreams and replay them",
+    "option_b": "Be able to control your dreams every night (lucid dreaming)",
+    "category": "sleep",
+    "hook": "Dream cinema or dream control?",
+    "debate_note": "Recording dreams makes them shareable and analyzable; lucid dreaming makes every night an adventure."
+  },
+  {
+    "id": "wyr_0337",
+    "option_a": "Have the ability to instantly become an expert in any field you choose once a year",
+    "option_b": "Have the ability to reset any one decision once per year",
+    "category": "life",
+    "hook": "New expertise or decision undo?",
+    "debate_note": "Yearly expertise lets you grow; yearly decision reset protects you from your worst choice."
+  },
+  {
+    "id": "wyr_0338",
+    "option_a": "Only eat foods from one country for the rest of your life",
+    "option_b": "Only eat foods that are one color for the rest of your life",
+    "category": "food",
+    "hook": "Geographic restriction or color restriction?",
+    "debate_note": "One country's food still offers enormous variety; one color severely limits what you can eat nutritionally."
+  },
+  {
+    "id": "wyr_0339",
+    "option_a": "Have the power to grow any plant instantly",
+    "option_b": "Have the power to heal any wound instantly",
+    "category": "powers",
+    "hook": "Green thumb or healer's touch?",
+    "debate_note": "Instant plant growth could solve food crises; healing wounds saves lives in emergencies."
+  },
+  {
+    "id": "wyr_0340",
+    "option_a": "Live in a society where money doesn't exist",
+    "option_b": "Live in a society where no one ever lies",
+    "category": "society",
+    "hook": "No money or no lies — which utopia?",
+    "debate_note": "No money means bartering and sharing resources; no lies means total transparency in every relationship."
+  },
+  {
+    "id": "wyr_0341",
+    "option_a": "Be able to breathe in space",
+    "option_b": "Be able to survive without food or water indefinitely",
+    "category": "biology",
+    "hook": "Space breathing or biological independence?",
+    "debate_note": "Breathing in space opens the entire universe; surviving without sustenance eliminates one of life's biggest burdens."
+  },
+  {
+    "id": "wyr_0342",
+    "option_a": "Only be able to use one app on your phone forever",
+    "option_b": "Have a phone that never runs out of battery but can't update apps",
+    "category": "technology",
+    "hook": "App restriction or frozen tech?",
+    "debate_note": "One app means choosing wisely; frozen apps stop working as the internet evolves."
+  },
+  {
+    "id": "wyr_0343",
+    "option_a": "Be able to jump as high as you want but land perfectly safely",
+    "option_b": "Be able to sprint faster than any vehicle",
+    "category": "superpowers",
+    "hook": "Vertical freedom or horizontal speed?",
+    "debate_note": "Infinite safe jumping means you could reach any height; vehicle-speed sprinting changes every ground-based scenario."
+  },
+  {
+    "id": "wyr_0344",
+    "option_a": "Have a secret room in your house that leads to anywhere in the world",
+    "option_b": "Have a secret room in your house that contains anything you need",
+    "category": "magic",
+    "hook": "Portal room or supply room?",
+    "debate_note": "Portal room gives travel freedom; supply room eliminates shopping, shipping, and scarcity."
+  },
+  {
+    "id": "wyr_0345",
+    "option_a": "Be the best player in the world at chess",
+    "option_b": "Be the best player in the world at poker",
+    "category": "games",
+    "hook": "Pure strategy or mixed skill?",
+    "debate_note": "Best chess player is world-famous in intellectual circles; best poker player earns millions in tournaments."
+  },
+  {
+    "id": "wyr_0346",
+    "option_a": "Live in a house that cleans itself",
+    "option_b": "Drive a car that never needs repairs",
+    "category": "convenience",
+    "hook": "Home automation or car reliability?",
+    "debate_note": "A self-cleaning house saves hours weekly; a never-breaking car saves thousands in maintenance."
+  },
+  {
+    "id": "wyr_0347",
+    "option_a": "Have hair that perfectly styles itself every morning",
+    "option_b": "Have teeth that perfectly clean themselves every morning",
+    "category": "appearance",
+    "hook": "Perfect hair or perfect teeth?",
+    "debate_note": "Self-styling hair saves morning routine time; self-cleaning teeth eliminates dental bills and morning brushing."
+  },
+  {
+    "id": "wyr_0348",
+    "option_a": "Be able to hold your breath for 30 minutes",
+    "option_b": "Be able to run a marathon without getting tired",
+    "category": "fitness",
+    "hook": "Aquatic endurance or land endurance?",
+    "debate_note": "30-minute breath holding opens underwater exploration; marathon endurance without fatigue changes every physical challenge."
+  },
+  {
+    "id": "wyr_0349",
+    "option_a": "Have free flights anywhere in the world for life",
+    "option_b": "Have free accommodation at 5-star hotels anywhere for life",
+    "category": "travel",
+    "hook": "Getting there or staying there?",
+    "debate_note": "Free flights mean you can go anywhere; free 5-star hotels mean you live luxuriously wherever you go."
+  },
+  {
+    "id": "wyr_0350",
+    "option_a": "Never have to pay for food again",
+    "option_b": "Never have to pay for housing again",
+    "category": "money",
+    "hook": "Free food or free shelter — which matters more?",
+    "debate_note": "Free food saves $5-15k per year; free housing in most cities saves $15-40k+ per year."
+  },
+  {
+    "id": "wyr_0351",
+    "option_a": "Be able to shrink to the size of an ant",
+    "option_b": "Be able to grow to the size of a building",
+    "category": "size",
+    "hook": "Tiny explorer or giant of the world?",
+    "debate_note": "Ant-sized lets you see a world within our world; building-sized gives enormous power but creates major problems."
+  },
+  {
+    "id": "wyr_0352",
+    "option_a": "Have a genius IQ but social anxiety",
+    "option_b": "Have an average IQ but perfect social confidence",
+    "category": "personality",
+    "hook": "Smart and shy or average and outgoing?",
+    "debate_note": "Genius opens intellectual doors; social confidence opens professional and personal doors — arguably more of them."
+  },
+  {
+    "id": "wyr_0353",
+    "option_a": "Be able to predict natural disasters 24 hours before they happen",
+    "option_b": "Be able to reverse any environmental damage instantly",
+    "category": "environment",
+    "hook": "Early warning or magical healing?",
+    "debate_note": "Predicting disasters saves lives through evacuation; reversing damage heals what's already been destroyed."
+  },
+  {
+    "id": "wyr_0354",
+    "option_a": "Have access to every library ever created throughout history",
+    "option_b": "Have access to every lab and scientific instrument ever built",
+    "category": "knowledge",
+    "hook": "Written knowledge or experimental equipment?",
+    "debate_note": "All libraries give theoretical knowledge; all labs give the ability to test and discover through experimentation."
+  },
+  {
+    "id": "wyr_0355",
+    "option_a": "Be an Olympic gold medalist in swimming",
+    "option_b": "Be an Olympic gold medalist in gymnastics",
+    "category": "sports",
+    "hook": "The pool or the mat — which medal shines brighter?",
+    "debate_note": "Swimming gold is celebrated at almost every Olympics; gymnastics gold comes with unmatched artistry."
+  },
+  {
+    "id": "wyr_0356",
+    "option_a": "Have eyes in the back of your head",
+    "option_b": "Have a third eye in the middle of your forehead",
+    "category": "body",
+    "hook": "360-degree awareness or mystical third eye?",
+    "debate_note": "Eyes behind give peripheral safety; a third eye centered gives a larger visual field but changes your appearance forever."
+  },
+  {
+    "id": "wyr_0357",
+    "option_a": "Have the power to make anyone trust you instantly",
+    "option_b": "Have the power to make anyone tell you the truth",
+    "category": "influence",
+    "hook": "Automatic trust or forced truth?",
+    "debate_note": "Instant trust opens relationships and opportunities; forced truth reveals what people are actually thinking."
+  },
+  {
+    "id": "wyr_0358",
+    "option_a": "Spend a week on the ISS in space",
+    "option_b": "Spend a week 2 miles below the ocean surface in a submarine",
+    "category": "exploration",
+    "hook": "Space or deep sea — which frontier calls you?",
+    "debate_note": "Space offers the universe; the deep sea offers Earth's most mysterious and unexplored environment."
+  },
+  {
+    "id": "wyr_0359",
+    "option_a": "Be permanently 10°C (18°F) warmer than everyone around you",
+    "option_b": "Be permanently 10°C (18°F) cooler than everyone around you",
+    "category": "body",
+    "hook": "Human heater or human ice pack?",
+    "debate_note": "Being warmer means sweating constantly in crowds; being cooler means shivering in already-cold weather."
+  },
+  {
+    "id": "wyr_0360",
+    "option_a": "Have unlimited willpower",
+    "option_b": "Have unlimited creativity",
+    "category": "mental",
+    "hook": "Iron discipline or endless imagination?",
+    "debate_note": "Unlimited willpower means achieving every goal you set; unlimited creativity means generating infinite novel ideas."
+  },
+  {
+    "id": "wyr_0361",
+    "option_a": "Have a library that auto-restocks with any book you want",
+    "option_b": "Have a kitchen that auto-restocks with any ingredient you want",
+    "category": "home",
+    "hook": "Words or food — what fills you more?",
+    "debate_note": "Infinite books feed the mind; infinite ingredients enable endless culinary creation."
+  },
+  {
+    "id": "wyr_0362",
+    "option_a": "Be able to communicate through music (your thoughts become melody)",
+    "option_b": "Be able to communicate through art (your thoughts become paintings instantly)",
+    "category": "communication",
+    "hook": "Musical language or visual language?",
+    "debate_note": "Music communicates emotion powerfully; art communicates visually and can be preserved as physical objects."
+  },
+  {
+    "id": "wyr_0363",
+    "option_a": "Know the lyrics to every song ever written",
+    "option_b": "Know the rules to every game ever created",
+    "category": "knowledge",
+    "hook": "Musical knowledge or game mastery?",
+    "debate_note": "Song lyrics make you the ultimate karaoke partner; game rules make you unbeatable at any game."
+  },
+  {
+    "id": "wyr_0364",
+    "option_a": "Have the ability to undo your last spoken sentence",
+    "option_b": "Have the ability to remember exactly what was said in any conversation you've had",
+    "category": "communication",
+    "hook": "Undo words or replay them?",
+    "debate_note": "Undoing a sentence prevents regrets; perfect conversation recall helps in negotiations, relationships, and disputes."
+  },
+  {
+    "id": "wyr_0365",
+    "option_a": "Live in a world where all music is free and legal to access",
+    "option_b": "Live in a world where all education is free and accessible to everyone",
+    "category": "world",
+    "hook": "Culture for all or education for all?",
+    "debate_note": "Free music enriches daily life; free education changes lifelong opportunity for billions of people."
+  },
+  {
+    "id": "wyr_0366",
+    "option_a": "Be able to lift 10x your body weight",
+    "option_b": "Be able to run 10x your normal speed",
+    "category": "fitness",
+    "hook": "Super strength or super speed?",
+    "debate_note": "10x strength is impressive physically; 10x speed changes everything from commuting to emergency response."
+  },
+  {
+    "id": "wyr_0367",
+    "option_a": "Always get a perfect parking spot",
+    "option_b": "Never hit a red light when driving",
+    "category": "driving",
+    "hook": "Parking luck or traffic luck?",
+    "debate_note": "Perfect parking saves time in cities; green lights everywhere saves time on every commute."
+  },
+  {
+    "id": "wyr_0368",
+    "option_a": "Have the confidence to do anything once",
+    "option_b": "Have the skill to do everything perfectly without confidence",
+    "category": "personality",
+    "hook": "Fearless attempt or masterful but shy?",
+    "debate_note": "Confidence to try once opens experiences; skill without confidence means hiding extraordinary ability."
+  },
+  {
+    "id": "wyr_0369",
+    "option_a": "Live in a city that never sleeps",
+    "option_b": "Live in a village that never has crime",
+    "category": "lifestyle",
+    "hook": "Vibrant chaos or peaceful security?",
+    "debate_note": "Never-sleeping cities offer culture, opportunity, and energy; crime-free villages offer safety and community trust."
+  },
+  {
+    "id": "wyr_0370",
+    "option_a": "Be immune to jet lag",
+    "option_b": "Be immune to hangovers",
+    "category": "lifestyle",
+    "hook": "Travel ease or party ease?",
+    "debate_note": "No jet lag makes global travel effortless; no hangovers remove the cost of every social night out."
+  },
+  {
+    "id": "wyr_0371",
+    "option_a": "Have a button that skips any awkward silence in conversation",
+    "option_b": "Have a button that ends any conversation politely and instantly",
+    "category": "social",
+    "hook": "Fill the gap or cut the chat?",
+    "debate_note": "Skipping awkward silence smooths social situations; ending conversations instantly escapes any unwanted interaction."
+  },
+  {
+    "id": "wyr_0372",
+    "option_a": "Always land on your feet like a cat",
+    "option_b": "Always find north like a built-in compass",
+    "category": "abilities",
+    "hook": "Perfect balance or perfect navigation?",
+    "debate_note": "Cat-landing prevents injuries from falls; built-in compass prevents getting lost anywhere on Earth."
+  },
+  {
+    "id": "wyr_0373",
+    "option_a": "Have a conversation with your 10-year-old self",
+    "option_b": "Have a conversation with your 80-year-old self",
+    "category": "life",
+    "hook": "Childhood wisdom or elder wisdom?",
+    "debate_note": "Talking to your child self reminds you of joy and simplicity; your elder self gives practical life advice."
+  },
+  {
+    "id": "wyr_0374",
+    "option_a": "Work from anywhere in the world but never earn a raise",
+    "option_b": "Earn double your current salary but never be able to work remotely",
+    "category": "work",
+    "hook": "Location freedom or financial growth?",
+    "debate_note": "Location freedom means experiencing the world; double salary means financial security even if tied to one place."
+  },
+  {
+    "id": "wyr_0375",
+    "option_a": "Have the ability to clone yourself once",
+    "option_b": "Have the ability to pause your clone",
+    "category": "superpowers",
+    "hook": "Two of you or one controlled you?",
+    "debate_note": "Cloning doubles your productivity; pausing gives you a perfect backup when you need space or time."
+  },
+  {
+    "id": "wyr_0376",
+    "option_a": "Eat the world's spiciest food for one minute",
+    "option_b": "Eat the world's sourest food for 10 minutes",
+    "category": "food",
+    "hook": "Intense spice or prolonged sour?",
+    "debate_note": "World's spiciest food causes severe burning; prolonged sourness wrecks your taste buds and enamel."
+  },
+  {
+    "id": "wyr_0377",
+    "option_a": "Never have to charge your phone again",
+    "option_b": "Never have your phone die in the middle of something important again",
+    "category": "technology",
+    "hook": "Always charged or never dead at the worst moment?",
+    "debate_note": "Always charged means never worrying; never dying at the worst moment is more specifically useful but still dies otherwise."
+  },
+  {
+    "id": "wyr_0378",
+    "option_a": "Have a clone that does all your chores",
+    "option_b": "Have a clone that goes to all your boring meetings",
+    "category": "work",
+    "hook": "House chores or work obligations?",
+    "debate_note": "Chore-free living saves hours at home; meeting-free work means only doing the actual productive work."
+  },
+  {
+    "id": "wyr_0379",
+    "option_a": "Live a short, incredibly exciting life",
+    "option_b": "Live a long, quietly satisfying life",
+    "category": "life",
+    "hook": "Bright flame or steady glow?",
+    "debate_note": "An exciting life burns intensely but briefly; a satisfying life offers decades of contentment and depth."
+  },
+  {
+    "id": "wyr_0380",
+    "option_a": "Have the ability to delete any memory you choose",
+    "option_b": "Have the ability to relive any memory in full detail",
+    "category": "memory",
+    "hook": "Selective forgetting or perfect replay?",
+    "debate_note": "Deleting painful memories gives peace; reliving beautiful ones preserves joy from fleeting moments."
+  },
+  {
+    "id": "wyr_0381",
+    "option_a": "Win a Nobel Prize",
+    "option_b": "Win an Oscar",
+    "category": "achievement",
+    "hook": "Scientific prestige or cinematic glory?",
+    "debate_note": "A Nobel Prize is humanity's greatest intellectual honor; an Oscar is the pinnacle of entertainment achievement."
+  },
+  {
+    "id": "wyr_0382",
+    "option_a": "Have a reusable time machine that can only jump 24 hours in any direction",
+    "option_b": "Have a one-time jump that lets you go anywhere in time",
+    "category": "time travel",
+    "hook": "Small jumps forever or one massive leap?",
+    "debate_note": "Daily time jumps let you fix yesterday's mistakes repeatedly; one big jump lets you witness any historical moment."
+  },
+  {
+    "id": "wyr_0383",
+    "option_a": "Know every fact about the universe but be unable to share it",
+    "option_b": "Have a modest understanding of things but be an incredible teacher",
+    "category": "knowledge",
+    "hook": "Silent omniscience or shared wisdom?",
+    "debate_note": "Knowing everything is intellectually satisfying but futile if unshared; teaching well changes everyone you touch."
+  },
+  {
+    "id": "wyr_0384",
+    "option_a": "Have perfect weather every day",
+    "option_b": "Have perfect WiFi everywhere you go",
+    "category": "modern life",
+    "hook": "Outdoor perfection or digital perfection?",
+    "debate_note": "Perfect weather improves every outdoor activity; perfect WiFi enables work, entertainment, and communication anywhere."
+  },
+  {
+    "id": "wyr_0385",
+    "option_a": "Always have clean, fresh laundry waiting for you",
+    "option_b": "Always have a hot, freshly cooked meal waiting when you get home",
+    "category": "home",
+    "hook": "Clean clothes or hot food?",
+    "debate_note": "Clean laundry removes a weekly chore; a hot meal every evening is like having a personal chef."
+  },
+  {
+    "id": "wyr_0386",
+    "option_a": "Be able to speak with your past self once a month",
+    "option_b": "Receive a written update from your future self once a month",
+    "category": "time",
+    "hook": "Advise your past or receive future guidance?",
+    "debate_note": "Talking to your past self lets you guide your younger self; future updates let you prepare for what's coming."
+  },
+  {
+    "id": "wyr_0387",
+    "option_a": "Have a superpower that requires you to spin three times before using it",
+    "option_b": "Have no superpower but be immune to all superpowers",
+    "category": "superpowers",
+    "hook": "Awkward ability or total immunity?",
+    "debate_note": "Spinning is silly but power is power; immunity means no one can use powers against you — ever."
+  },
+  {
+    "id": "wyr_0388",
+    "option_a": "Be stranded on a deserted island with all survival gear but no people",
+    "option_b": "Be stranded on a deserted island with no gear but five other people",
+    "category": "survival",
+    "hook": "Tools without people or people without tools?",
+    "debate_note": "Gear means physical survival; people mean emotional survival, ingenuity, and companionship."
+  },
+  {
+    "id": "wyr_0389",
+    "option_a": "Have a pet dinosaur (herbivore) that listens to you perfectly",
+    "option_b": "Have a mythical creature (any you choose) that has its own opinions",
+    "category": "fantasy",
+    "hook": "Obedient dino or opinionated myth?",
+    "debate_note": "A perfect herbivore dinosaur is safe and loyal; a mythical creature with personality would be a true companion."
+  },
+  {
+    "id": "wyr_0390",
+    "option_a": "Have a skill that makes you the best at your current job but nothing else",
+    "option_b": "Have skills that make you above average at any job",
+    "category": "career",
+    "hook": "Master of one or jack of all?",
+    "debate_note": "Best at your current job is immediately valuable; versatile skills make you adaptable across all career changes."
+  },
+  {
+    "id": "wyr_0391",
+    "option_a": "Be able to taste colors",
+    "option_b": "Be able to see sounds",
+    "category": "senses",
+    "hook": "Synesthesia: taste-vision or sound-sight?",
+    "debate_note": "Tasting colors adds flavor to visuals; seeing sounds makes music visible and noise extremely distracting."
+  },
+  {
+    "id": "wyr_0392",
+    "option_a": "Have a guaranteed 8 hours of perfect sleep every night",
+    "option_b": "Wake up each morning feeling like you had the best day of your life so far",
+    "category": "wellbeing",
+    "hook": "Sleep quality or morning joy?",
+    "debate_note": "Perfect sleep is the foundation of health; waking euphorically motivated makes every day feel like your best."
+  },
+  {
+    "id": "wyr_0393",
+    "option_a": "Live in your favorite decade of history for one year",
+    "option_b": "Spend one year in a future century of your choice",
+    "category": "time travel",
+    "hook": "Explore the past or preview the future?",
+    "debate_note": "The past has known context; the future is unknown but potentially extraordinary."
+  },
+  {
+    "id": "wyr_0394",
+    "option_a": "Have a magical pen that makes anything you write come true",
+    "option_b": "Have a magical eraser that makes anything you erase cease to exist",
+    "category": "magic",
+    "hook": "Creation or deletion — which power shapes the world more?",
+    "debate_note": "A creation pen builds reality; an erasing eraser removes it — destruction can be as powerful as creation."
+  },
+  {
+    "id": "wyr_0395",
+    "option_a": "Always be the smartest person in the room",
+    "option_b": "Always be surrounded by people smarter than you",
+    "category": "intelligence",
+    "hook": "Lone genius or inspired by greatness?",
+    "debate_note": "Being the smartest means authority but isolation; being around smarter people accelerates your own growth."
+  },
+  {
+    "id": "wyr_0396",
+    "option_a": "Have the best meal of your life every day",
+    "option_b": "Have the most fun experience of your life every day",
+    "category": "happiness",
+    "hook": "Daily culinary peak or daily adventure peak?",
+    "debate_note": "Best meal daily satisfies deeply but could lose novelty; most fun daily means constant excitement and variety."
+  },
+  {
+    "id": "wyr_0397",
+    "option_a": "Be able to make anyone forgive you instantly",
+    "option_b": "Be able to make anyone understand your perspective instantly",
+    "category": "relationships",
+    "hook": "Instant forgiveness or instant understanding?",
+    "debate_note": "Forgiveness repairs; understanding prevents the need for forgiveness in the first place."
+  },
+  {
+    "id": "wyr_0398",
+    "option_a": "Have a magic wand that fixes any technical problem instantly",
+    "option_b": "Have a magic wand that fixes any interpersonal conflict instantly",
+    "category": "problems",
+    "hook": "Tech problems or people problems — which is harder?",
+    "debate_note": "Tech fixes save time and frustration; conflict resolution saves relationships and mental health."
+  },
+  {
+    "id": "wyr_0399",
+    "option_a": "Have an unlimited budget for one month",
+    "option_b": "Have a moderate but guaranteed income for the rest of your life",
+    "category": "money",
+    "hook": "One month of wealth or lifetime security?",
+    "debate_note": "Unlimited budget for a month can set up assets; lifetime income eliminates financial anxiety permanently."
+  },
+  {
+    "id": "wyr_0400",
+    "option_a": "Have the ability to speak any language but only in whispers",
+    "option_b": "Have the ability to sing beautifully but only when alone",
+    "category": "abilities",
+    "hook": "Quiet polyglot or solo singer?",
+    "debate_note": "Whispering in any language still communicates; solo singing means you can never share your gift publicly."
+  },
+  {
+    "id": "wyr_0401",
+    "option_a": "Always have fresh breath",
+    "option_b": "Always have soft, clear skin",
+    "category": "appearance",
+    "hook": "Oral freshness or flawless skin?",
+    "debate_note": "Fresh breath affects every social interaction; clear skin affects how you're perceived visually at all times."
+  },
+  {
+    "id": "wyr_0402",
+    "option_a": "Know every cheat code for real life",
+    "option_b": "Be able to save and load your life like a video game",
+    "category": "gaming",
+    "hook": "Exploit the system or reset and retry?",
+    "debate_note": "Cheat codes give immediate advantages; save/load lets you experiment with zero permanent consequences."
+  },
+  {
+    "id": "wyr_0403",
+    "option_a": "Have a personal assistant who is brilliant but brutally honest",
+    "option_b": "Have a personal assistant who is mediocre but endlessly encouraging",
+    "category": "work",
+    "hook": "Harsh genius or gentle mediocrity?",
+    "debate_note": "Brutal honesty from a genius improves your work; constant encouragement boosts morale even if it doesn't correct mistakes."
+  },
+  {
+    "id": "wyr_0404",
+    "option_a": "Have every book you read fully memorized forever",
+    "option_b": "Be able to read 10x faster than normal",
+    "category": "reading",
+    "hook": "Total recall or speed reading?",
+    "debate_note": "Memorizing books means unlimited reference; reading 10x faster means consuming 10x more content."
+  },
+  {
+    "id": "wyr_0405",
+    "option_a": "Be able to turn any liquid into water",
+    "option_b": "Be able to turn water into any liquid you want",
+    "category": "powers",
+    "hook": "Purify the world or transform it?",
+    "debate_note": "Turning anything to water is a purifying power; turning water to any liquid is an alchemy superpower."
+  },
+  {
+    "id": "wyr_0406",
+    "option_a": "Have the best coffee in the world delivered to you each morning",
+    "option_b": "Have the best night's sleep of your life every single night",
+    "category": "lifestyle",
+    "hook": "Morning ritual or night restoration?",
+    "debate_note": "Perfect coffee starts every day right; perfect sleep every night is the foundation of lifelong health."
+  },
+  {
+    "id": "wyr_0407",
+    "option_a": "Never be bored again",
+    "option_b": "Never be anxious again",
+    "category": "mental health",
+    "hook": "End boredom or end anxiety?",
+    "debate_note": "Never being bored means constant engagement; never being anxious removes one of the most paralyzing mental states."
+  },
+  {
+    "id": "wyr_0408",
+    "option_a": "Have a GPS that always finds the fastest route in real time",
+    "option_b": "Have a personal advisor who is always available and never wrong",
+    "category": "guidance",
+    "hook": "Route optimization or life optimization?",
+    "debate_note": "Perfect GPS saves commute time; a never-wrong advisor guides every life decision perfectly."
+  },
+  {
+    "id": "wyr_0409",
+    "option_a": "Have your dream job but at half the pay",
+    "option_b": "Have a boring job but at double your current pay",
+    "category": "work",
+    "hook": "Passion or paycheck?",
+    "debate_note": "Dream job brings fulfillment; double pay brings financial security even without personal satisfaction."
+  },
+  {
+    "id": "wyr_0410",
+    "option_a": "Be able to hold any object and know its full history",
+    "option_b": "Be able to look at any place and see what happened there in the past",
+    "category": "history",
+    "hook": "Object memory or location memory?",
+    "debate_note": "Object history reveals personal stories; location history reveals events that shaped communities and civilizations."
+  },
+  {
+    "id": "wyr_0411",
+    "option_a": "Live in a world where kindness is contagious",
+    "option_b": "Live in a world where violence is impossible",
+    "category": "world",
+    "hook": "Spreading good or eliminating harm?",
+    "debate_note": "Contagious kindness builds positive culture; impossible violence would end wars, crime, and abuse entirely."
+  },
+  {
+    "id": "wyr_0412",
+    "option_a": "Eat your favorite meal for every meal forever",
+    "option_b": "Have every meal you eat be a different food you've never tried",
+    "category": "food",
+    "hook": "Familiar comfort or constant discovery?",
+    "debate_note": "Favorite meal forever provides satisfaction; new food every time means an endless culinary adventure."
+  },
+  {
+    "id": "wyr_0413",
+    "option_a": "Have the ability to make anyone laugh",
+    "option_b": "Have the ability to make anyone cry (happy tears)",
+    "category": "emotional",
+    "hook": "Laughter or tears of joy?",
+    "debate_note": "Laughter is immediate bonding; moving people to happy tears creates deeper emotional connections."
+  },
+  {
+    "id": "wyr_0414",
+    "option_a": "Be able to see the world in infrared",
+    "option_b": "Be able to hear ultrasonic frequencies",
+    "category": "senses",
+    "hook": "Heat vision or ultra-hearing?",
+    "debate_note": "Infrared vision reveals heat signatures and hidden things; ultrasonic hearing reveals the world animals communicate in."
+  },
+  {
+    "id": "wyr_0415",
+    "option_a": "Have a superpower that only works in private",
+    "option_b": "Have no superpower but be world-famous for having one",
+    "category": "fame",
+    "hook": "Secret power or false fame?",
+    "debate_note": "Private power still works; fake fame comes with pressure and eventually scandal when the truth emerges."
+  },
+  {
+    "id": "wyr_0416",
+    "option_a": "Receive a compliment from a stranger every day",
+    "option_b": "Give the perfect compliment that changes someone's life once a month",
+    "category": "social",
+    "hook": "Daily small joy or monthly profound impact?",
+    "debate_note": "Daily compliments boost your mood consistently; monthly life-changing words create lasting positive impact in others."
+  },
+  {
+    "id": "wyr_0417",
+    "option_a": "Have a robot friend who genuinely cares about you",
+    "option_b": "Have an AI that perfectly predicts your needs before you have them",
+    "category": "technology",
+    "hook": "Emotional AI or predictive AI?",
+    "debate_note": "A caring robot friend provides companionship; a predictive AI anticipates every need before you feel it."
+  },
+  {
+    "id": "wyr_0418",
+    "option_a": "Be able to control the difficulty level of your own life",
+    "option_b": "Be able to add extra lives to your life",
+    "category": "life",
+    "hook": "Adjust the challenge or extend the game?",
+    "debate_note": "Controlling difficulty means you choose your own level of challenge; extra lives means more chances to get things right."
+  },
+  {
+    "id": "wyr_0419",
+    "option_a": "Have the world's most comfortable bed that you never want to leave",
+    "option_b": "Have the world's most comfortable shoes so every step is perfect",
+    "category": "comfort",
+    "hook": "Rest perfected or movement perfected?",
+    "debate_note": "Best bed makes sleep magical; best shoes make every waking moment of movement effortless."
+  },
+  {
+    "id": "wyr_0420",
+    "option_a": "Be able to generate any document or report perfectly in seconds",
+    "option_b": "Be able to make any decision and always be right",
+    "category": "work",
+    "hook": "Productivity superpower or judgment superpower?",
+    "debate_note": "Perfect instant documents remove busywork; perfect decision-making changes every aspect of life."
+  },
+  {
+    "id": "wyr_0421",
+    "option_a": "Have a phone that never breaks no matter what you do to it",
+    "option_b": "Have headphones with perfect audio that never break",
+    "category": "technology",
+    "hook": "Indestructible communication or indestructible audio?",
+    "debate_note": "Unbreakable phone eliminates replacement costs; perfect headphones transform every listening experience forever."
+  },
+  {
+    "id": "wyr_0422",
+    "option_a": "Have the ability to instantly end a conversation that's going badly",
+    "option_b": "Have the ability to instantly revive a conversation that's dying",
+    "category": "social",
+    "hook": "Escape button or revival button?",
+    "debate_note": "An escape button saves you from bad interactions; revival saves valuable conversations from fizzling out."
+  },
+  {
+    "id": "wyr_0423",
+    "option_a": "Be able to communicate across any distance with your thoughts",
+    "option_b": "Be able to share an experience with someone across any distance",
+    "category": "connection",
+    "hook": "Mental messaging or experience sharing?",
+    "debate_note": "Thought communication is telepathic texting; sharing experiences creates true empathy across distances."
+  },
+  {
+    "id": "wyr_0424",
+    "option_a": "Have perfect pitch (musical)",
+    "option_b": "Have perfect spelling and grammar automatically",
+    "category": "skills",
+    "hook": "Musical ear or linguistic precision?",
+    "debate_note": "Perfect pitch is rare and invaluable for musicians; perfect grammar helps in writing, communication, and professional settings."
+  },
+  {
+    "id": "wyr_0425",
+    "option_a": "Live in a house that automatically reorganizes itself to your preference",
+    "option_b": "Live in a neighborhood where everyone looks out for each other",
+    "category": "home",
+    "hook": "Smart house or strong community?",
+    "debate_note": "Self-organizing house maximizes personal efficiency; a caring neighborhood provides safety, help, and friendship."
+  },
+  {
+    "id": "wyr_0426",
+    "option_a": "Have a built-in lie detector",
+    "option_b": "Have a built-in calculator",
+    "category": "abilities",
+    "hook": "Truth detector or math machine?",
+    "debate_note": "Lie detection protects you from deception; a built-in calculator is useful daily in finance and practical tasks."
+  },
+  {
+    "id": "wyr_0427",
+    "option_a": "Be able to skip any line instantly",
+    "option_b": "Always get the best seat wherever you go",
+    "category": "privileges",
+    "hook": "Skip the wait or get the best spot?",
+    "debate_note": "Skipping lines saves significant time; best seats improve every entertainment and dining experience."
+  },
+  {
+    "id": "wyr_0428",
+    "option_a": "Have a memory palace so vivid you never forget directions",
+    "option_b": "Have a social memory so perfect you remember every name and face forever",
+    "category": "memory",
+    "hook": "Spatial memory or social memory?",
+    "debate_note": "Perfect direction memory eliminates getting lost; social memory means never awkwardly forgetting someone's name."
+  },
+  {
+    "id": "wyr_0429",
+    "option_a": "Be 100% honest with everyone for one year",
+    "option_b": "Be completely invisible to one person who you find toxic",
+    "category": "social",
+    "hook": "Radical honesty or selective invisibility?",
+    "debate_note": "Full honesty is liberating but relationship-changing; invisibility to one toxic person removes their impact on your life."
+  },
+  {
+    "id": "wyr_0430",
+    "option_a": "Have a great relationship with your family",
+    "option_b": "Have a great relationship with your coworkers",
+    "category": "relationships",
+    "hook": "Family harmony or workplace harmony?",
+    "debate_note": "Family relationships provide deep roots and identity; workplace harmony affects 40+ hours of every week."
+  },
+  {
+    "id": "wyr_0431",
+    "option_a": "Be able to type at 200 words per minute perfectly",
+    "option_b": "Be able to read at 2,000 words per minute with full comprehension",
+    "category": "productivity",
+    "hook": "Fastest typist or fastest reader?",
+    "debate_note": "200 WPM typing transforms output speed; 2,000 WPM reading with comprehension lets you consume books in minutes."
+  },
+  {
+    "id": "wyr_0432",
+    "option_a": "Always know if food is safe to eat or not",
+    "option_b": "Always know if a person is trustworthy or not",
+    "category": "intuition",
+    "hook": "Food safety or people safety?",
+    "debate_note": "Food safety detection prevents illness; trust detection prevents being manipulated or hurt by people."
+  },
+  {
+    "id": "wyr_0433",
+    "option_a": "Have a pet that can talk but is very sarcastic",
+    "option_b": "Have a pet that can't talk but always knows exactly how you feel",
+    "category": "pets",
+    "hook": "Witty companion or empathic companion?",
+    "debate_note": "A sarcastic talking pet is entertaining but exhausting; an emotionally attuned silent pet is deeply comforting."
+  },
+  {
+    "id": "wyr_0434",
+    "option_a": "Wake up every morning feeling excited about the day",
+    "option_b": "Go to bed every night feeling satisfied with the day",
+    "category": "wellbeing",
+    "hook": "Morning enthusiasm or evening contentment?",
+    "debate_note": "Waking excited gives daily momentum; sleeping satisfied gives nightly peace regardless of what happened."
+  },
+  {
+    "id": "wyr_0435",
+    "option_a": "Have a pause button for any social situation",
+    "option_b": "Have a rewind button for the last five minutes of any conversation",
+    "category": "social",
+    "hook": "Pause or rewind social moments?",
+    "debate_note": "Pausing gives time to think; rewinding lets you undo the last awkward five minutes."
+  },
+  {
+    "id": "wyr_0436",
+    "option_a": "Have unlimited access to any concert, show, or event for life",
+    "option_b": "Have unlimited access to any restaurant or food experience for life",
+    "category": "lifestyle",
+    "hook": "Entertainment or cuisine?",
+    "debate_note": "All events gives cultural access; all restaurants eliminates food costs and enables culinary exploration."
+  },
+  {
+    "id": "wyr_0437",
+    "option_a": "Have your rent or mortgage paid for life",
+    "option_b": "Have all your groceries paid for life",
+    "category": "money",
+    "hook": "Housing or food — which bill would you cut?",
+    "debate_note": "Rent-free means no housing stress — the biggest expense; free groceries save thousands annually with less impact."
+  },
+  {
+    "id": "wyr_0438",
+    "option_a": "Be able to fall asleep anywhere in 30 seconds",
+    "option_b": "Never feel jet-lagged after any amount of travel",
+    "category": "travel",
+    "hook": "Sleep anywhere or adjust anywhere?",
+    "debate_note": "30-second sleep is a power nap superpower; no jet lag makes global travel effortless."
+  },
+  {
+    "id": "wyr_0439",
+    "option_a": "Have the curiosity of a child forever",
+    "option_b": "Have the wisdom of an elder forever",
+    "category": "mindset",
+    "hook": "Childlike wonder or aged wisdom?",
+    "debate_note": "Infinite curiosity keeps you learning and discovering; permanent wisdom helps you navigate every situation well."
+  },
+  {
+    "id": "wyr_0440",
+    "option_a": "Be able to automatically backup your mind like a computer",
+    "option_b": "Be able to defragment your mind to remove clutter and noise",
+    "category": "mental",
+    "hook": "Brain backup or brain optimization?",
+    "debate_note": "Mind backup protects against memory loss; defragging removes mental noise for pure focus and clarity."
+  },
+  {
+    "id": "wyr_0441",
+    "option_a": "Have weather-proof clothing that keeps you comfortable in any climate",
+    "option_b": "Have shoes that eliminate all foot pain forever",
+    "category": "clothing",
+    "hook": "Climate comfort or foot freedom?",
+    "debate_note": "Climate-proof clothes make every environment comfortable; zero foot pain transforms daily movement and long distances."
+  },
+  {
+    "id": "wyr_0442",
+    "option_a": "Know every secret recipe in the world",
+    "option_b": "Know exactly how to fix anything mechanical",
+    "category": "skills",
+    "hook": "Culinary secrets or mechanical mastery?",
+    "debate_note": "Secret recipes let you recreate any dish; mechanical knowledge saves fortunes in repair bills."
+  },
+  {
+    "id": "wyr_0443",
+    "option_a": "Have a career that changes the world",
+    "option_b": "Have relationships that change the people closest to you",
+    "category": "impact",
+    "hook": "Global impact or personal impact?",
+    "debate_note": "World-changing work affects millions; life-changing relationships go deeper and create more personal meaning."
+  },
+  {
+    "id": "wyr_0444",
+    "option_a": "Travel the world for one year with no budget limit",
+    "option_b": "Have the best year of your life exactly where you are with no travel",
+    "category": "travel",
+    "hook": "Global adventure or local perfection?",
+    "debate_note": "Unlimited world travel gives breadth of experience; the best year at home gives depth in familiar surroundings."
+  },
+  {
+    "id": "wyr_0445",
+    "option_a": "Have the ability to heal any sickness but you feel the symptoms while healing",
+    "option_b": "Have the ability to protect anyone from harm but you feel the pain instead",
+    "category": "heroism",
+    "hook": "Healer who suffers or shield who suffers?",
+    "debate_note": "Absorbing illness symptoms is temporary; taking physical pain could be extreme depending on what you block."
+  },
+  {
+    "id": "wyr_0446",
+    "option_a": "Be able to talk to your past self from one year ago",
+    "option_b": "Be able to send a message to your future self one year from now",
+    "category": "time",
+    "hook": "Inform the past or instruct the future?",
+    "debate_note": "Talking to past self gives you a chance to warn yourself; messaging your future self is a gift that helps future-you."
+  },
+  {
+    "id": "wyr_0447",
+    "option_a": "Have the social skills of the most charismatic person you know",
+    "option_b": "Have the work ethic of the most disciplined person you know",
+    "category": "growth",
+    "hook": "Charm or discipline — which drives success more?",
+    "debate_note": "Extreme charisma opens doors; extreme discipline keeps you walking through them and building something lasting."
+  },
+  {
+    "id": "wyr_0448",
+    "option_a": "Be able to see beauty in everything",
+    "option_b": "Be able to find humor in everything",
+    "category": "perspective",
+    "hook": "Beauty lens or comedy lens?",
+    "debate_note": "Seeing beauty enriches every experience aesthetically; finding humor everywhere makes even dark times bearable."
+  },
+  {
+    "id": "wyr_0449",
+    "option_a": "Have a magic remote that skips or replays moments in your day",
+    "option_b": "Have a magic compass that always points toward your best decision",
+    "category": "tools",
+    "hook": "Time control or decision guidance?",
+    "debate_note": "Day control improves immediate experience; a best-decision compass improves every choice's long-term outcome."
+  },
+  {
+    "id": "wyr_0450",
+    "option_a": "Be able to communicate perfectly through body language alone",
+    "option_b": "Be able to write so clearly that anyone understands you perfectly",
+    "category": "communication",
+    "hook": "Nonverbal mastery or written clarity?",
+    "debate_note": "Body language communication transcends language barriers; perfect written clarity makes all your ideas undeniable."
+  },
+  {
+    "id": "wyr_0451",
+    "option_a": "Have a friendship group that challenges you to grow",
+    "option_b": "Have a friendship group that accepts you completely as you are",
+    "category": "relationships",
+    "hook": "Growth friends or acceptance friends?",
+    "debate_note": "Friends who challenge you push you to your potential; friends who accept you give unconditional belonging."
+  },
+  {
+    "id": "wyr_0452",
+    "option_a": "Be able to remember every dream you've ever had",
+    "option_b": "Be able to choose the topic of every dream you'll have",
+    "category": "dreams",
+    "hook": "Dream archive or dream channel?",
+    "debate_note": "Remembering all dreams is like having a personal movie library of your subconscious; choosing topics makes dreams purposeful."
+  },
+  {
+    "id": "wyr_0453",
+    "option_a": "Have every piece of clothing you own fit perfectly forever",
+    "option_b": "Always have the exact right outfit for every occasion materialize when you need it",
+    "category": "clothing",
+    "hook": "Perfect fit forever or perfect outfit on demand?",
+    "debate_note": "Perfect-fitting clothes eliminate shopping frustration; situational outfits mean you always look exactly right."
+  },
+  {
+    "id": "wyr_0454",
+    "option_a": "Have the ability to generate any piece of music instantly with your mind",
+    "option_b": "Have the ability to generate any visual artwork instantly with your mind",
+    "category": "creativity",
+    "hook": "Musical creation or visual creation?",
+    "debate_note": "Instant music creation fills the world with sound; instant visual art creates objects that people can see and keep."
+  },
+  {
+    "id": "wyr_0455",
+    "option_a": "Have a superpower that grows stronger the more you use it",
+    "option_b": "Have a superpower that starts at maximum but weakens with use",
+    "category": "superpowers",
+    "hook": "Growing power or fading power?",
+    "debate_note": "Growing power rewards persistence; maximum-start power is immediately impressive but requires careful rationing."
+  },
+  {
+    "id": "wyr_0456",
+    "option_a": "Live in a world where all energy is free and clean",
+    "option_b": "Live in a world where all fresh water is unlimited and free",
+    "category": "world",
+    "hook": "Free energy or free water — which changes the world more?",
+    "debate_note": "Free clean energy eliminates pollution and poverty; unlimited fresh water solves the single biggest humanitarian crisis."
+  },
+  {
+    "id": "wyr_0457",
+    "option_a": "Have a mentor who is perfect for your career",
+    "option_b": "Have a best friend who is perfect for your soul",
+    "category": "relationships",
+    "hook": "Career guide or soul companion?",
+    "debate_note": "A perfect mentor accelerates your professional trajectory; a perfect best friend sustains your emotional health for life."
+  },
+  {
+    "id": "wyr_0458",
+    "option_a": "Be able to teleport to any bookstore in the world instantly",
+    "option_b": "Be able to teleport to any concert or live event in the world instantly",
+    "category": "entertainment",
+    "hook": "Literary teleport or entertainment teleport?",
+    "debate_note": "Bookstore teleportation is a reader's dream; concert teleportation means every live experience is accessible instantly."
+  },
+  {
+    "id": "wyr_0459",
+    "option_a": "Have a photographic memory for faces but forget every name",
+    "option_b": "Remember every name perfectly but forget every face",
+    "category": "memory",
+    "hook": "Face recall or name recall?",
+    "debate_note": "Remembering faces prevents social awkwardness visually; remembering names is crucial for introductions and networking."
+  },
+  {
+    "id": "wyr_0460",
+    "option_a": "Be the world's most productive person",
+    "option_b": "Be the world's most creative person",
+    "category": "achievement",
+    "hook": "Efficiency or imagination — which creates more?",
+    "debate_note": "Extreme productivity turns plans into results; extreme creativity generates the ideas that make results worth pursuing."
+  },
+  {
+    "id": "wyr_0461",
+    "option_a": "Have a home library with every book ever written",
+    "option_b": "Have a home theater with every movie ever made",
+    "category": "entertainment",
+    "hook": "Books or films — your personal archive?",
+    "debate_note": "All books is humanity's complete written knowledge; all films is humanity's complete visual storytelling history."
+  },
+  {
+    "id": "wyr_0462",
+    "option_a": "Be able to feel zero pain ever again",
+    "option_b": "Be able to never feel physical exhaustion again",
+    "category": "biology",
+    "hook": "No pain or no fatigue?",
+    "debate_note": "No pain is comfortable but dangerous — pain is a warning system; no fatigue means infinite endurance for any task."
+  },
+  {
+    "id": "wyr_0463",
+    "option_a": "Have your ideal body forever without exercise",
+    "option_b": "Love exercising so much you do it every day with joy",
+    "category": "fitness",
+    "hook": "Effortless ideal body or joyful fitness habit?",
+    "debate_note": "Effortless ideal body removes all body image pressure; loving exercise naturally keeps you healthy long-term."
+  },
+  {
+    "id": "wyr_0464",
+    "option_a": "Be able to build anything from memory without instructions",
+    "option_b": "Be able to fix anything that's broken just by examining it",
+    "category": "skills",
+    "hook": "Builder or fixer?",
+    "debate_note": "Building from memory creates new things; fixing by examination saves money and restores value to broken objects."
+  },
+  {
+    "id": "wyr_0465",
+    "option_a": "Have a voice that's impossible to ignore",
+    "option_b": "Have a presence that commands attention without speaking",
+    "category": "charisma",
+    "hook": "Vocal magnetism or silent authority?",
+    "debate_note": "An irresistible voice leads in communication; commanding presence leads even in silence."
+  },
+  {
+    "id": "wyr_0466",
+    "option_a": "Be able to make plants grow anywhere instantly",
+    "option_b": "Be able to purify any polluted water instantly",
+    "category": "environment",
+    "hook": "Green the Earth or clean the water?",
+    "debate_note": "Instant plant growth could reforest the planet; purifying water instantly could save millions who lack clean water."
+  },
+  {
+    "id": "wyr_0467",
+    "option_a": "Have a dog that understands every word you say",
+    "option_b": "Have a cat that reveals its emotions clearly and honestly",
+    "category": "pets",
+    "hook": "Smart dog or transparent cat?",
+    "debate_note": "A comprehending dog is the ultimate loyal companion; an emotionally readable cat resolves the greatest pet mystery."
+  },
+  {
+    "id": "wyr_0468",
+    "option_a": "Live in a world where all music sounds live and real",
+    "option_b": "Live in a world where all food tastes perfect every time",
+    "category": "senses",
+    "hook": "Sonic perfection or culinary perfection?",
+    "debate_note": "Live-sounding music enriches every listening moment; perfectly tasting food enriches every meal."
+  },
+  {
+    "id": "wyr_0469",
+    "option_a": "Have a smart home that knows everything you need",
+    "option_b": "Have a smart car that drives perfectly and handles all logistics",
+    "category": "technology",
+    "hook": "Home intelligence or transportation intelligence?",
+    "debate_note": "Smart home optimizes where you spend most time; smart car optimizes the often-stressful act of getting around."
+  },
+  {
+    "id": "wyr_0470",
+    "option_a": "Be able to live underwater permanently with no downsides",
+    "option_b": "Be able to live in space permanently with no downsides",
+    "category": "habitat",
+    "hook": "Ocean life or space life?",
+    "debate_note": "Underwater life is mysterious and vast; space life is the ultimate frontier of human imagination."
+  },
+  {
+    "id": "wyr_0471",
+    "option_a": "Never feel loneliness again",
+    "option_b": "Never feel jealousy again",
+    "category": "emotions",
+    "hook": "End loneliness or end jealousy?",
+    "debate_note": "Loneliness is the most painful human emotion; jealousy poisons relationships and self-worth from the inside."
+  },
+  {
+    "id": "wyr_0472",
+    "option_a": "Have a skill that's more valuable than any degree",
+    "option_b": "Have a degree from any institution you choose for free",
+    "category": "education",
+    "hook": "Practical skill or prestigious credential?",
+    "debate_note": "Rare skills command high prices in the market; prestigious degrees open institutional and social doors."
+  },
+  {
+    "id": "wyr_0473",
+    "option_a": "Be able to slow down time around you when stressed",
+    "option_b": "Be able to speed up time around you when bored",
+    "category": "time",
+    "hook": "Slow the storm or fast-forward the dull?",
+    "debate_note": "Slow-time during stress gives clarity in crisis; fast-forward during boredom eliminates life's most wasted hours."
+  },
+  {
+    "id": "wyr_0474",
+    "option_a": "Have a collection of every artifact in human history",
+    "option_b": "Have access to every piece of knowledge in human history",
+    "category": "history",
+    "hook": "Physical history or intellectual history?",
+    "debate_note": "All artifacts means owning humanity's greatest treasures; all knowledge means holding every idea ever conceived."
+  },
+  {
+    "id": "wyr_0475",
+    "option_a": "Work for yourself with uncertain income",
+    "option_b": "Work for others with guaranteed stable income",
+    "category": "career",
+    "hook": "Freedom with risk or security with constraints?",
+    "debate_note": "Self-employment offers autonomy and upside; stable employment offers predictability and lower stress."
+  },
+  {
+    "id": "wyr_0476",
+    "option_a": "Have a mind that generates perfect solutions on demand",
+    "option_b": "Have a heart that always knows exactly what to say",
+    "category": "intelligence",
+    "hook": "Analytical genius or emotional genius?",
+    "debate_note": "Perfect solutions solve problems; knowing exactly what to say repairs and deepens every relationship."
+  },
+  {
+    "id": "wyr_0477",
+    "option_a": "Have a group of five friends who are completely loyal",
+    "option_b": "Have a network of thousands of people who are genuinely interested in you",
+    "category": "social",
+    "hook": "Deep loyalty or wide interest?",
+    "debate_note": "Five loyal friends provide real support in difficult times; thousands of interested people provide vast opportunity."
+  },
+  {
+    "id": "wyr_0478",
+    "option_a": "Have perfect emotional regulation",
+    "option_b": "Have perfect physical health for life",
+    "category": "health",
+    "hook": "Emotional mastery or physical mastery?",
+    "debate_note": "Emotional regulation eliminates anxiety, anger, and despair; perfect physical health eliminates pain, illness, and injury."
+  },
+  {
+    "id": "wyr_0479",
+    "option_a": "Be able to communicate your exact feelings to anyone without misunderstanding",
+    "option_b": "Be able to understand anyone's feelings exactly, even unexpressed ones",
+    "category": "empathy",
+    "hook": "Perfect expression or perfect reception?",
+    "debate_note": "Perfect expression ensures you're always understood; perfect reception gives you deep insight into every person around you."
+  },
+  {
+    "id": "wyr_0480",
+    "option_a": "Have a job that makes you famous",
+    "option_b": "Have a job that makes you wealthy",
+    "category": "career",
+    "hook": "Fame or fortune — what would you choose?",
+    "debate_note": "Fame brings recognition, influence, and opportunity; wealth brings security, freedom, and choice."
+  },
+  {
+    "id": "wyr_0481",
+    "option_a": "Always have perfect weather at your location",
+    "option_b": "Always find the perfect temperature inside any building you enter",
+    "category": "comfort",
+    "hook": "Outdoor perfection or indoor comfort?",
+    "debate_note": "Perfect outdoor weather improves life greatly; perfect indoor temperature is where most people spend most time."
+  },
+  {
+    "id": "wyr_0482",
+    "option_a": "Have the ability to experience any culture instantly and fully",
+    "option_b": "Have the ability to speak and understand every living language fluently",
+    "category": "culture",
+    "hook": "Cultural immersion or linguistic mastery?",
+    "debate_note": "Experiencing cultures gives empathy and understanding; knowing all languages removes every communication barrier."
+  },
+  {
+    "id": "wyr_0483",
+    "option_a": "Spend one year as the most powerful leader in the world",
+    "option_b": "Spend one year as the most successful artist in the world",
+    "category": "achievement",
+    "hook": "Political power or creative glory?",
+    "debate_note": "World leader affects billions; top artist shapes culture, emotion, and leaves a lasting creative legacy."
+  },
+  {
+    "id": "wyr_0484",
+    "option_a": "Have the patience of a saint",
+    "option_b": "Have the determination of a champion",
+    "category": "character",
+    "hook": "Infinite patience or relentless drive?",
+    "debate_note": "Unlimited patience allows you to wait through any difficulty; relentless determination pushes through any obstacle."
+  },
+  {
+    "id": "wyr_0485",
+    "option_a": "Live in a house that's perfectly organized automatically",
+    "option_b": "Have a schedule that manages itself and is always optimized",
+    "category": "productivity",
+    "hook": "Organized space or organized time?",
+    "debate_note": "A self-organizing house saves time on cleaning; an optimized schedule makes every hour count perfectly."
+  },
+  {
+    "id": "wyr_0486",
+    "option_a": "Have a genius sibling who helps you with everything",
+    "option_b": "Have a genius best friend who inspires you constantly",
+    "category": "relationships",
+    "hook": "Helpful genius or inspiring genius?",
+    "debate_note": "A genius sibling is always there for practical help; a genius friend challenges and elevates your thinking."
+  },
+  {
+    "id": "wyr_0487",
+    "option_a": "Be able to experience any historical event as a spectator",
+    "option_b": "Be able to meet any historical figure for one conversation",
+    "category": "history",
+    "hook": "Witness history or talk to it?",
+    "debate_note": "Witnessing events gives direct experience; a conversation with a historical figure reveals their private thoughts."
+  },
+  {
+    "id": "wyr_0488",
+    "option_a": "Have an alarm system in your head that warns you of danger",
+    "option_b": "Have a social radar that tells you who to trust in any group",
+    "category": "survival",
+    "hook": "Physical danger alert or social danger alert?",
+    "debate_note": "Physical danger detection saves your life; social radar protects you from manipulation and betrayal."
+  },
+  {
+    "id": "wyr_0489",
+    "option_a": "Have a wardrobe that updates with every new fashion trend automatically",
+    "option_b": "Have a timeless personal style that always looks perfect regardless of trend",
+    "category": "style",
+    "hook": "Trendy or timeless?",
+    "debate_note": "Trend-updating keeps you current; timeless style means you always look right without tracking fashion."
+  },
+  {
+    "id": "wyr_0490",
+    "option_a": "Be able to learn any instrument in one day",
+    "option_b": "Be able to compose a masterpiece in any musical style on demand",
+    "category": "music",
+    "hook": "Play any instrument or compose any piece?",
+    "debate_note": "Learning any instrument in a day gives you physical skill; composing masterpieces on demand creates original art."
+  },
+  {
+    "id": "wyr_0491",
+    "option_a": "Have a conversation with your younger self every decade",
+    "option_b": "Write a letter to your older self every decade that they receive",
+    "category": "life",
+    "hook": "Guide your past or prepare your future?",
+    "debate_note": "Advising your younger self changes your growth; letters to future self create a dialogue across time."
+  },
+  {
+    "id": "wyr_0492",
+    "option_a": "Be able to think 10x faster than normal",
+    "option_b": "Be able to focus 10x more intensely than normal",
+    "category": "mental",
+    "hook": "Speed of thought or depth of focus?",
+    "debate_note": "10x thinking speed processes more information; 10x focus produces deeper, higher-quality work on fewer things."
+  },
+  {
+    "id": "wyr_0493",
+    "option_a": "Have a talent that emerges at exactly the right moment",
+    "option_b": "Have connections that appear exactly when you need them",
+    "category": "luck",
+    "hook": "Natural talent timing or social luck?",
+    "debate_note": "Perfectly timed talent is impressive and undeniable; timely connections give you access to the right people at the right time."
+  },
+  {
+    "id": "wyr_0494",
+    "option_a": "Be able to run for any position and win",
+    "option_b": "Be able to start any business and guarantee it succeeds",
+    "category": "ambition",
+    "hook": "Political power or entrepreneurial success?",
+    "debate_note": "Political positions affect policy and governance; business success creates wealth and employment."
+  },
+  {
+    "id": "wyr_0495",
+    "option_a": "Have the ability to detect any falsehood in written text",
+    "option_b": "Have the ability to write any text so compellingly it's impossible to ignore",
+    "category": "writing",
+    "hook": "Lie detector reader or irresistible writer?",
+    "debate_note": "Detecting written lies protects from manipulation; irresistible writing gives you enormous communicative power."
+  },
+  {
+    "id": "wyr_0496",
+    "option_a": "Live in a world with 30-hour days",
+    "option_b": "Live in a world with 5-day weekends and 2-day workweeks",
+    "category": "time",
+    "hook": "Longer days or shorter work?",
+    "debate_note": "30-hour days give more time within each day; 5-day weekends dramatically change the ratio of work to leisure."
+  },
+  {
+    "id": "wyr_0497",
+    "option_a": "Have every piece of music you love available at perfect quality always",
+    "option_b": "Have every photo of your life's best memories always accessible in perfect quality",
+    "category": "media",
+    "hook": "Music for life or memories for life?",
+    "debate_note": "Perfect music access enriches daily life; perfect photo access preserves your personal history."
+  },
+  {
+    "id": "wyr_0498",
+    "option_a": "Be able to sleep and wake up whenever you choose without affecting your health",
+    "option_b": "Have your sleep always be exactly as long as it needs to be automatically",
+    "category": "sleep",
+    "hook": "Sleep freedom or optimized sleep?",
+    "debate_note": "Total sleep freedom enables any schedule; auto-optimized sleep ensures you're always perfectly rested."
+  },
+  {
+    "id": "wyr_0499",
+    "option_a": "Have a talent for languages that makes you multilingual in any language after one week",
+    "option_b": "Have a talent for understanding any culture deeply after one interaction",
+    "category": "cultural",
+    "hook": "Language mastery or cultural mastery?",
+    "debate_note": "Language mastery lets you communicate; cultural mastery lets you truly connect and understand."
+  },
+  {
+    "id": "wyr_0500",
+    "option_a": "Have a gift for making people feel at home wherever you are",
+    "option_b": "Have a gift for making people feel genuinely seen and understood",
+    "category": "social",
+    "hook": "Comfort maker or depth maker?",
+    "debate_note": "Making people feel at home creates belonging; making people feel seen creates profound and lasting connection."
+  },
+  {
+    "id": "wyr_0501",
+    "option_a": "Have the courage to do anything once",
+    "option_b": "Have the patience to do anything as many times as needed",
+    "category": "character",
+    "hook": "Bold once or persistent forever?",
+    "debate_note": "Courage to try once opens every door; infinite patience conquers every challenge no matter how long it takes."
+  },
+  {
+    "id": "wyr_0502",
+    "option_a": "Always know why someone is upset with you",
+    "option_b": "Always know exactly what would make someone happy",
+    "category": "empathy",
+    "hook": "Understand the problem or solve the mood?",
+    "debate_note": "Knowing why they're upset lets you fix real issues; knowing what makes them happy lets you proactively create joy."
+  },
+  {
+    "id": "wyr_0503",
+    "option_a": "Have a library card that grants access to any knowledge ever recorded",
+    "option_b": "Have a laboratory access card that lets you use any scientific equipment ever built",
+    "category": "knowledge",
+    "hook": "Theoretical knowledge or experimental power?",
+    "debate_note": "All recorded knowledge gives you every idea humans have had; all equipment lets you test and discover new ones."
+  },
+  {
+    "id": "wyr_0504",
+    "option_a": "Have a best friend who is brutally honest about everything",
+    "option_b": "Have a best friend who is unfailingly supportive of everything",
+    "category": "friendship",
+    "hook": "Harsh honesty or unconditional support?",
+    "debate_note": "Brutal honesty helps you improve; unconditional support gives you confidence to try."
+  },
+  {
+    "id": "wyr_0505",
+    "option_a": "Be able to experience any book as a movie in your mind as you read",
+    "option_b": "Be able to step into any movie and explore it like a world",
+    "category": "fiction",
+    "hook": "Book-to-film mind or movie explorer?",
+    "debate_note": "Vivid book visualization enriches reading; exploring movies as worlds makes every film an adventure."
+  },
+  {
+    "id": "wyr_0506",
+    "option_a": "Have zero regrets but live a very ordinary life",
+    "option_b": "Have many regrets but live an extraordinary, impactful life",
+    "category": "life",
+    "hook": "Peaceful ordinary or turbulent extraordinary?",
+    "debate_note": "No regrets gives peace; an extraordinary life creates meaning even if it comes with painful choices."
+  },
+  {
+    "id": "wyr_0507",
+    "option_a": "Have the charisma of the most charming person you've ever met",
+    "option_b": "Have the empathy of the most understanding person you've ever known",
+    "category": "personality",
+    "hook": "Irresistible charm or deep empathy?",
+    "debate_note": "Extreme charisma is magnetic and opens doors; extreme empathy creates the deepest and most meaningful connections."
+  },
+  {
+    "id": "wyr_0508",
+    "option_a": "Be able to relive your happiest memory as many times as you want",
+    "option_b": "Be able to erase your most painful memory completely",
+    "category": "memory",
+    "hook": "Replay joy or delete pain?",
+    "debate_note": "Reliving happiness provides comfort; erasing pain prevents trauma from shaping your behavior and beliefs."
+  },
+  {
+    "id": "wyr_0509",
+    "option_a": "Have a talent that everyone can see but nobody can explain",
+    "option_b": "Have a talent that nobody can see but changes everything you do",
+    "category": "talent",
+    "hook": "Visible mystery or invisible superpower?",
+    "debate_note": "A visible mysterious talent draws fascination; a hidden talent that shapes all your work is a silent competitive advantage."
+  },
+  {
+    "id": "wyr_0510",
+    "option_a": "Be able to learn from watching others perfectly",
+    "option_b": "Be able to teach others anything so they learn it perfectly",
+    "category": "education",
+    "hook": "Perfect learner or perfect teacher?",
+    "debate_note": "Learning by watching gives you all human skill; perfect teaching makes everyone around you as capable as possible."
+  },
+  {
+    "id": "wyr_0511",
+    "option_a": "Have a dog that can sense when you need cheering up and always succeeds",
+    "option_b": "Have a cat that predicts problems before they happen and warns you",
+    "category": "pets",
+    "hook": "Emotional comfort or predictive warning?",
+    "debate_note": "A mood-sensing dog provides companionship on hard days; a problem-predicting cat prevents disasters before they happen."
+  },
+  {
+    "id": "wyr_0512",
+    "option_a": "Have a voice that makes people trust you instantly",
+    "option_b": "Have a face that makes people like you instantly",
+    "category": "first impressions",
+    "hook": "Trustworthy voice or likable face?",
+    "debate_note": "Instant trust opens professional and social doors; instant likability creates immediate rapport in any setting."
+  },
+  {
+    "id": "wyr_0513",
+    "option_a": "Be able to make decisions without any doubt or second-guessing",
+    "option_b": "Always know within 24 hours if you made the right decision",
+    "category": "decisions",
+    "hook": "Confident decisions or quick feedback?",
+    "debate_note": "Doubt-free decisions let you act swiftly; knowing if you were right within 24 hours lets you course-correct quickly."
+  },
+  {
+    "id": "wyr_0514",
+    "option_a": "Have a superpower that only helps other people, never yourself",
+    "option_b": "Have a superpower that only helps yourself, never others",
+    "category": "superpowers",
+    "hook": "Altruistic power or selfish power?",
+    "debate_note": "Powers that help others make you a hero; powers that only help yourself give personal advantage but no legacy."
+  },
+  {
+    "id": "wyr_0515",
+    "option_a": "Live in a world where art is universally valued and supported",
+    "option_b": "Live in a world where science and medicine are universally funded and accessible",
+    "category": "world",
+    "hook": "Artistic world or scientific world?",
+    "debate_note": "Art enriches the human experience and culture; science and medicine extend and improve the quality of life."
+  },
+  {
+    "id": "wyr_0516",
+    "option_a": "Be able to communicate your emotions perfectly through music",
+    "option_b": "Be able to communicate your thoughts perfectly through art",
+    "category": "expression",
+    "hook": "Emotional music or visual thought?",
+    "debate_note": "Musical emotion is felt immediately; visual thought can be preserved, shared, and analyzed."
+  },
+  {
+    "id": "wyr_0517",
+    "option_a": "Have free access to every sports game or event in the world",
+    "option_b": "Have free access to every scientific conference and discovery in real time",
+    "category": "access",
+    "hook": "Sports world or science world?",
+    "debate_note": "All sports gives entertainment and connection; all science gives insight into humanity's greatest discoveries."
+  },
+  {
+    "id": "wyr_0518",
+    "option_a": "Have a personal trainer who makes you peak fit in 6 months",
+    "option_b": "Have a therapist who makes you emotionally peak healthy in 6 months",
+    "category": "health",
+    "hook": "Physical peak or mental peak?",
+    "debate_note": "Physical fitness improves energy and longevity; emotional health improves every relationship and every day."
+  },
+  {
+    "id": "wyr_0519",
+    "option_a": "Have the ability to make a friend for life anywhere you go",
+    "option_b": "Have the ability to reconnect with any lost friendship instantly",
+    "category": "friendship",
+    "hook": "New bonds everywhere or old bonds renewed?",
+    "debate_note": "Making friends everywhere builds a global network; reconnecting with lost friends restores meaningful history."
+  },
+  {
+    "id": "wyr_0520",
+    "option_a": "Have a job title that impresses everyone you meet",
+    "option_b": "Have job satisfaction that makes every Monday feel like Friday",
+    "category": "work",
+    "hook": "Impressive title or genuine fulfillment?",
+    "debate_note": "A prestigious title opens social and professional doors; genuine job satisfaction transforms every single workday."
+  },
+  {
+    "id": "wyr_0521",
+    "option_a": "Have a life with no failures but also very small successes",
+    "option_b": "Have a life with big failures but also incredible successes",
+    "category": "life",
+    "hook": "Safe small or risky great?",
+    "debate_note": "No failures means no growth experiences; big failures often precede the most significant achievements."
+  },
+  {
+    "id": "wyr_0522",
+    "option_a": "Be the world's best negotiator",
+    "option_b": "Be the world's best mediator",
+    "category": "skills",
+    "hook": "Win for yourself or create peace for others?",
+    "debate_note": "Best negotiator means you always get what you want; best mediator means you can resolve any conflict between parties."
+  },
+  {
+    "id": "wyr_0523",
+    "option_a": "Have a technology that shows you the most efficient path through any day",
+    "option_b": "Have a technology that eliminates all unnecessary digital noise from your life",
+    "category": "productivity",
+    "hook": "Optimal day planner or digital detox?",
+    "debate_note": "Efficient path planning maximizes output; eliminating digital noise improves focus and mental wellbeing."
+  },
+  {
+    "id": "wyr_0524",
+    "option_a": "Have the ability to experience what it's like to be any animal for an hour",
+    "option_b": "Have the ability to experience what it's like to be any other person for an hour",
+    "category": "empathy",
+    "hook": "Animal empathy or human empathy?",
+    "debate_note": "Animal experience reveals nature from the inside; human experience reveals how others truly feel and perceive the world."
+  },
+  {
+    "id": "wyr_0525",
+    "option_a": "Have a creative power that generates unlimited original ideas",
+    "option_b": "Have an execution power that completes any project perfectly once started",
+    "category": "creativity",
+    "hook": "Ideas forever or perfect completion?",
+    "debate_note": "Unlimited ideas without execution is just imagination; perfect execution without ideas has nothing to work with."
+  },
+  {
+    "id": "wyr_0526",
+    "option_a": "Be immune to embarrassment",
+    "option_b": "Be immune to self-doubt",
+    "category": "psychology",
+    "hook": "No shame or no doubt?",
+    "debate_note": "No embarrassment means total freedom of expression; no self-doubt means confidence to pursue anything."
+  },
+  {
+    "id": "wyr_0527",
+    "option_a": "Have the ability to create a perfect ecosystem anywhere",
+    "option_b": "Have the ability to restore any extinct species",
+    "category": "nature",
+    "hook": "Create new life or restore lost life?",
+    "debate_note": "Perfect ecosystems anywhere green the planet; restoring extinct species reverses humanity's greatest ecological failures."
+  },
+  {
+    "id": "wyr_0528",
+    "option_a": "Have a long life with many average experiences",
+    "option_b": "Have a shorter life with a few extraordinary ones",
+    "category": "life",
+    "hook": "Quantity or quality of experience?",
+    "debate_note": "Long life offers accumulation and depth over time; extraordinary experiences create the most memorable stories."
+  },
+  {
+    "id": "wyr_0529",
+    "option_a": "Be remembered for 1,000 years for one great thing",
+    "option_b": "Improve the lives of 1,000 people right now anonymously",
+    "category": "legacy",
+    "hook": "Enduring fame or immediate impact?",
+    "debate_note": "Being remembered means influencing future generations; anonymous impact means real, felt change in real people's lives right now."
+  },
+  {
+    "id": "wyr_0530",
+    "option_a": "Have the knowledge of a doctor, lawyer, and accountant simultaneously",
+    "option_b": "Have the practical skills of a chef, mechanic, and builder simultaneously",
+    "category": "expertise",
+    "hook": "Professional expertise or hands-on expertise?",
+    "debate_note": "Medical, legal, and financial knowledge saves money and protects you; practical skills make you self-sufficient."
+  },
+  {
+    "id": "wyr_0531",
+    "option_a": "Have a year where everything goes right",
+    "option_b": "Have a year where you grow incredibly from everything going wrong",
+    "category": "growth",
+    "hook": "Perfect year or transformative year?",
+    "debate_note": "A perfect year is comfortable and joyful; a difficult year of growth can create lasting resilience and wisdom."
+  },
+  {
+    "id": "wyr_0532",
+    "option_a": "Be able to make your home any size you want at any moment",
+    "option_b": "Be able to make your home appear anywhere in the world at will",
+    "category": "home",
+    "hook": "Size control or location control?",
+    "debate_note": "Variable home size accommodates any gathering or moment; location control means living anywhere without moving."
+  },
+  {
+    "id": "wyr_0533",
+    "option_a": "Have a mind that never stops generating questions",
+    "option_b": "Have a mind that always finds satisfying answers",
+    "category": "philosophy",
+    "hook": "Infinite curiosity or perpetual satisfaction?",
+    "debate_note": "Endless questions drive learning; satisfying answers bring peace — both are essential but which do you want more?"
+  },
+  {
+    "id": "wyr_0534",
+    "option_a": "Be able to see everyone's potential",
+    "option_b": "Be able to see everyone's true character",
+    "category": "perception",
+    "hook": "Potential vision or character vision?",
+    "debate_note": "Seeing potential helps you invest in people who could grow; seeing character helps you avoid those who won't."
+  },
+  {
+    "id": "wyr_0535",
+    "option_a": "Have an AI that handles all your communication",
+    "option_b": "Have an AI that handles all your scheduling",
+    "category": "AI",
+    "hook": "Communication AI or scheduling AI?",
+    "debate_note": "Communication AI manages your words and relationships; scheduling AI maximizes how your time is allocated."
+  },
+  {
+    "id": "wyr_0536",
+    "option_a": "Live in a future 200 years from now for one month",
+    "option_b": "Live in any past era of your choice for one year",
+    "category": "time travel",
+    "hook": "Brief future or long past?",
+    "debate_note": "A future month reveals technology and civilization; a past year gives deep immersion in history."
+  },
+  {
+    "id": "wyr_0537",
+    "option_a": "Have every problem in your life solved once but then return",
+    "option_b": "Have one problem in your life permanently solved forever",
+    "category": "problems",
+    "hook": "Temporary total relief or permanent partial relief?",
+    "debate_note": "Total temporary relief is a reset; permanent single-problem solution eliminates your most persistent burden."
+  },
+  {
+    "id": "wyr_0538",
+    "option_a": "Have a clone that lives your life while you take vacations",
+    "option_b": "Have a clone that takes all your vacations so you can experience them through their memories",
+    "category": "lifestyle",
+    "hook": "Life vacation or memory vacation?",
+    "debate_note": "Clone-at-work gives real freedom; memory vacation lets you experience without leaving."
+  },
+  {
+    "id": "wyr_0539",
+    "option_a": "Have a week where every conversation you have is deeply meaningful",
+    "option_b": "Have a week where you laugh for at least an hour every single day",
+    "category": "wellbeing",
+    "hook": "Deep meaning or daily laughter?",
+    "debate_note": "A week of meaningful conversations creates lasting perspective; a week of daily laughter heals the spirit."
+  },
+  {
+    "id": "wyr_0540",
+    "option_a": "Be able to find value in every failure",
+    "option_b": "Be able to prevent the failures that don't teach you anything",
+    "category": "growth",
+    "hook": "Learn from everything or avoid the pointless?",
+    "debate_note": "Finding value in every failure builds resilience; preventing pointless failures saves time for meaningful challenges."
+  },
+  {
+    "id": "wyr_0541",
+    "option_a": "Have the ability to stop time once per emergency",
+    "option_b": "Have the ability to undo any mistake once per year",
+    "category": "safety net",
+    "hook": "Emergency pause or annual reset?",
+    "debate_note": "Stopping time in an emergency could save lives; undoing a mistake annually prevents your worst decision each year."
+  },
+  {
+    "id": "wyr_0542",
+    "option_a": "Have a gift that makes everything you cook taste incredible",
+    "option_b": "Have a gift that makes everything you build last forever",
+    "category": "crafts",
+    "hook": "Culinary gift or construction gift?",
+    "debate_note": "Amazing cooking brings daily joy to everyone who eats with you; indestructible building creates lasting things."
+  },
+  {
+    "id": "wyr_0543",
+    "option_a": "Have the trust of every animal on Earth",
+    "option_b": "Have the admiration of every child on Earth",
+    "category": "bonds",
+    "hook": "Animal kingdom's trust or children's admiration?",
+    "debate_note": "Animal trust gives access to nature's wildest places; children's admiration means you inspire the next generation."
+  },
+  {
+    "id": "wyr_0544",
+    "option_a": "Have a life full of small perfect moments",
+    "option_b": "Have a life with a few enormous defining moments",
+    "category": "philosophy",
+    "hook": "Sprinkled joy or landmark peaks?",
+    "debate_note": "Small perfect moments create a life of consistent beauty; defining moments create the stories you tell forever."
+  },
+  {
+    "id": "wyr_0545",
+    "option_a": "Be able to express any complex emotion in one word",
+    "option_b": "Understand any complex situation with complete clarity instantly",
+    "category": "intelligence",
+    "hook": "Express complexity or comprehend it?",
+    "debate_note": "Perfect emotional expression helps others understand you; instant situational clarity helps you navigate anything."
+  },
+  {
+    "id": "wyr_0546",
+    "option_a": "Have unlimited free travel but can only travel alone",
+    "option_b": "Have one paid trip anywhere with the perfect travel companion",
+    "category": "travel",
+    "hook": "Solo unlimited or single perfect journey?",
+    "debate_note": "Unlimited solo travel offers freedom and personal growth; one perfect journey with the right person creates irreplaceable memories."
+  },
+  {
+    "id": "wyr_0547",
+    "option_a": "Live in a world where art is the primary language of communication",
+    "option_b": "Live in a world where math and logic are the primary communication system",
+    "category": "world",
+    "hook": "Artistic world or logical world?",
+    "debate_note": "Art as language is expressive and emotional; logic as language is precise but may lose nuance and beauty."
+  },
+  {
+    "id": "wyr_0548",
+    "option_a": "Have a compass that always points toward your purpose",
+    "option_b": "Have a map that shows exactly where your decisions lead",
+    "category": "guidance",
+    "hook": "Purpose direction or decision map?",
+    "debate_note": "A purpose compass keeps you moving toward what matters; a decision map shows the consequences of every choice."
+  },
+  {
+    "id": "wyr_0549",
+    "option_a": "Have a week with no responsibilities and unlimited resources",
+    "option_b": "Have a week where every effort you make has double the result",
+    "category": "productivity",
+    "hook": "Pure freedom or super-powered effort?",
+    "debate_note": "No responsibilities is ultimate rest; double-result effort lets you achieve in a week what normally takes a month."
+  },
+  {
+    "id": "wyr_0550",
+    "option_a": "Have the ability to experience peace of mind on demand",
+    "option_b": "Have the ability to experience joy on demand",
+    "category": "wellbeing",
+    "hook": "Peace or joy — which would you summon?",
+    "debate_note": "Peace calms anxiety and restores clarity; joy lights up the emotional experience of being alive."
+  },
+  {
+    "id": "wyr_0551",
+    "option_a": "Have everything you need and nothing more",
+    "option_b": "Have more than you need but never quite enough",
+    "category": "philosophy",
+    "hook": "Enough or always wanting?",
+    "debate_note": "Having exactly enough gives peace and gratitude; always wanting more can be either motivating or exhausting."
+  },
+  {
+    "id": "wyr_0552",
+    "option_a": "Be loved by many who don't truly know you",
+    "option_b": "Be truly known by a few who genuinely love you",
+    "category": "relationships",
+    "hook": "Broad admiration or deep belonging?",
+    "debate_note": "Being loved by many is flattering; being truly known and loved is one of the rarest and most meaningful human experiences."
   }
 ]
