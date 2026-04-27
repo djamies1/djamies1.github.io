@@ -212,7 +212,7 @@ def load_local_background() -> np.ndarray:
     import random
     folder = Path(BACKGROUND_FOLDER)
     exts   = {".jpg", ".jpeg", ".png", ".webp"}
-    images = [f for f in folder.iterdir() if f.suffix.lower() in exts]
+    images = [f for f in folder.iterdir() if f.suffix.lower() in exts] if folder.is_dir() else []
     if not images:
         print("  Background : no images — using solid dark background")
         return np.full((HEIGHT, WIDTH, 3), (10, 10, 20), dtype=np.uint8)

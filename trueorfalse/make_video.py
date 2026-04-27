@@ -154,7 +154,7 @@ def load_local_background():
     import random
     folder = Path(BACKGROUND_FOLDER)
     exts = {".jpg",".jpeg",".png",".webp"}
-    images = [f for f in folder.iterdir() if f.suffix.lower() in exts]
+    images = [f for f in folder.iterdir() if f.suffix.lower() in exts] if folder.is_dir() else []
     if not images:
         return np.full((HEIGHT,WIDTH,3),(10,10,30),dtype=np.uint8)
     chosen = random.choice(images)
