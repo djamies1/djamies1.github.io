@@ -77,11 +77,13 @@ TTS_VOLUME       = 1.0
 MUSIC_DUCK_SCALE = 0.10
 
 _DIR                = Path(__file__).resolve().parent
+_FONTS_DIR          = _DIR.parent / "fonts"
 QUESTIONS_FILE      = str(_DIR / "questions.json")
 VIDEO_OUTPUT_FOLDER = str(_DIR / "video_output")
 BACKGROUND_FOLDER   = str(_DIR / "background_images")
 
 DISPLAY_FONTS = [
+    str(_FONTS_DIR / "FredokaOne-Regular.ttf"),
     "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/FredokaOne-Regular.ttf",
     "C:/Windows/Fonts/FredokaOne-Regular.ttf",
     "C:/Windows/Fonts/arialbd.ttf",

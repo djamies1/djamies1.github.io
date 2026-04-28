@@ -52,13 +52,7 @@ jobs:
 
       - name: Install system dependencies
         run: |
-          sudo apt-get install -y ffmpeg fonts-freefont-ttf wget
-          mkdir -p /home/runner/.local/share/fonts
-          wget -q "https://raw.githubusercontent.com/google/fonts/main/ofl/fredokaone/FredokaOne-Regular.ttf" \
-            -O /home/runner/.local/share/fonts/FredokaOne-Regular.ttf || \
-          wget -q "https://raw.githubusercontent.com/google/fonts/main/ofl/fredoka/Fredoka%5Bwdth%2Cwght%5D.ttf" \
-            -O /home/runner/.local/share/fonts/FredokaOne-Regular.ttf || \
-          echo "FredokaOne not available, will use FreeSans fallback"
+          sudo apt-get install -y ffmpeg fonts-freefont-ttf
           fc-cache -f
 
       - name: Install Python dependencies

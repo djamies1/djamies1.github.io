@@ -75,12 +75,14 @@ MUSIC_FOLDER = str(Path(__file__).resolve().parent / "frog_music")
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 _DIR                = Path(__file__).resolve().parent
+_FONTS_DIR          = _DIR.parent / "fonts"
 FACTS_FILE          = str(_DIR / "facts.json")
 VIDEO_OUTPUT_FOLDER = str(_DIR / "video_output")
 BACKGROUND_FOLDER   = str(_DIR / "background_images")
 
 # ── Font search paths (Windows) ───────────────────────────────────────────────
 DISPLAY_FONTS = [
+    str(_FONTS_DIR / "FredokaOne-Regular.ttf"),
     "C:/Users/prawn/AppData/Local/Microsoft/Windows/Fonts/FredokaOne-Regular.ttf",
     "C:/Windows/Fonts/FredokaOne-Regular.ttf",
     "C:/Windows/Fonts/arialbd.ttf",
