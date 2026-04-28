@@ -110,5 +110,31 @@
     "answer": "No — he never has",
     "category": "mandela_effect",
     "uploaded_at": "2026-04-26T22:40:25Z"
+  },
+  "tq_0014": {
+    "youtube_id": "aeS35kwfQac",
+    "youtube_url": "https://www.youtube.com/watch?v=aeS35kwfQac",
+    "question": "What was the original colour of Coca-Cola?",
+    "answer": "Green",
+    "category": "history",
+    "uploaded_at": "2026-04-28T10:26:05Z"
+  },
+  "tq_0015": {
+    "youtube_id": "3YSejrtcZ5Q",
+    "youtube_url": "https://www.youtube.com/watch?v=3YSejrtcZ5Q",
+    "question": "Do carrots actually improve your eyesight?",
+    "answer": "No — this was WWII British propaganda",
+    "category": "science",
+    "uploaded_at": "2026-04-28T10:27:37Z",
+    "publish_at": "2026-04-28T14:24:27.000Z"
+  },
+  "tq_0016": {
+    "youtube_id": "grrzowHKX3s",
+    "youtube_url": "https://www.youtube.com/watch?v=grrzowHKX3s",
+    "question": "Is it 'Berenstein Bears' or 'Berenstain Bears'?",
+    "answer": "Berenstain — always has been",
+    "category": "mandela_effect",
+    "uploaded_at": "2026-04-28T10:29:06Z",
+    "publish_at": "2026-04-28T18:24:27.000Z"
   }
 }

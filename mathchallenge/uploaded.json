@@ -102,5 +102,31 @@
     "category": "sequence",
     "uploaded_at": "2026-04-26T18:39:17Z",
     "publish_at": "2026-04-27T02:35:06.000Z"
+  },
+  "math_0013": {
+    "youtube_id": "pBQvDUVLDQk",
+    "youtube_url": "https://www.youtube.com/watch?v=pBQvDUVLDQk",
+    "question": "What letter comes next?\nJ, F, M, A, M, J, J, A, __",
+    "answer": "S",
+    "category": "sequence",
+    "uploaded_at": "2026-04-28T10:17:07Z"
+  },
+  "math_0014": {
+    "youtube_id": "RRBTXcSkwes",
+    "youtube_url": "https://www.youtube.com/watch?v=RRBTXcSkwes",
+    "question": "How many months have 28 days?",
+    "answer": "12",
+    "category": "trick_question",
+    "uploaded_at": "2026-04-28T10:18:36Z",
+    "publish_at": "2026-04-28T14:16:19.000Z"
+  },
+  "math_0015": {
+    "youtube_id": "zFuO0WPPefE",
+    "youtube_url": "https://www.youtube.com/watch?v=zFuO0WPPefE",
+    "question": "A rooster lays an egg on top of a sloped roof. Which side does it roll down?",
+    "answer": "Neither — roosters don't lay eggs.",
+    "category": "trick_question",
+    "uploaded_at": "2026-04-28T10:20:09Z",
+    "publish_at": "2026-04-28T18:16:19.000Z"
   }
 }

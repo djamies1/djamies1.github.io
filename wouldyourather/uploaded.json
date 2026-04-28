@@ -102,5 +102,31 @@
     "category": "skills",
     "uploaded_at": "2026-04-26T18:43:28Z",
     "publish_at": "2026-04-27T02:39:19.000Z"
+  },
+  "wyr_0013": {
+    "youtube_id": "wp2fM5tSjLI",
+    "youtube_url": "https://www.youtube.com/watch?v=wp2fM5tSjLI",
+    "option_a": "Always feel too hot",
+    "option_b": "Always feel too cold",
+    "category": "physical",
+    "uploaded_at": "2026-04-28T10:21:26Z"
+  },
+  "wyr_0014": {
+    "youtube_id": "52x8s7DZQ9Q",
+    "youtube_url": "https://www.youtube.com/watch?v=52x8s7DZQ9Q",
+    "option_a": "Travel the world broke for 1 year",
+    "option_b": "Stay home with $100k you can't spend on travel",
+    "category": "lifestyle",
+    "uploaded_at": "2026-04-28T10:22:55Z",
+    "publish_at": "2026-04-28T14:20:10.000Z"
+  },
+  "wyr_0015": {
+    "youtube_id": "GytQ5RgpmTA",
+    "youtube_url": "https://www.youtube.com/watch?v=GytQ5RgpmTA",
+    "option_a": "Never need sleep ever again",
+    "option_b": "Get paid $500 every time you sleep 8 hours",
+    "category": "lifestyle",
+    "uploaded_at": "2026-04-28T10:24:26Z",
+    "publish_at": "2026-04-28T18:20:10.000Z"
   }
 }

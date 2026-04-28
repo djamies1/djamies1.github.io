@@ -104,5 +104,28 @@
     "statement": "The sun is yellow.",
     "verdict": "FALSE",
     "uploaded_at": "2026-04-26T22:28:34Z"
+  },
+  "tof_0015": {
+    "youtube_id": "9HaPGcKiMiQ",
+    "youtube_url": "https://www.youtube.com/watch?v=9HaPGcKiMiQ",
+    "statement": "Bats are blind.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-04-28T10:44:05Z"
+  },
+  "tof_0016": {
+    "youtube_id": "c-6alqgN07c",
+    "youtube_url": "https://www.youtube.com/watch?v=c-6alqgN07c",
+    "statement": "The human body replaces all its cells every 7 years.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-04-28T10:45:35Z",
+    "publish_at": "2026-04-28T14:42:36.000Z"
+  },
+  "tof_0017": {
+    "youtube_id": "oa6HFqTXxMw",
+    "youtube_url": "https://www.youtube.com/watch?v=oa6HFqTXxMw",
+    "statement": "Mount Everest is the tallest mountain on Earth.",
+    "verdict": "FALSE — it depends",
+    "uploaded_at": "2026-04-28T10:47:33Z",
+    "publish_at": "2026-04-28T18:42:36.000Z"
   }
 }
