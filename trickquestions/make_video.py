@@ -336,7 +336,7 @@ def render_answer_overlay(question: dict) -> np.ndarray:
     img  = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
 
-    answer = f"✓ {question['answer']}"
+    answer = question['answer']
     note   = question.get("answer_note", "")
 
     ans_font  = _load_font(ANSWER_FONT_SIZE, display=True)

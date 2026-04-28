@@ -361,7 +361,7 @@ def render_answer_overlay(problem: dict) -> np.ndarray:
     img  = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
 
-    answer = f"✓ {problem['answer']}"
+    answer = problem['answer']
     note   = problem.get("answer_note", "")
 
     # Answer (large, green)

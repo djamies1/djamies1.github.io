@@ -273,7 +273,7 @@ def render_answer(q):
     draw = ImageDraw.Draw(img)
 
     af = _load_font(ANSWER_FONT_SIZE, display=True)
-    al = _wrap(f"✓ {q['answer']}", af, DRAW_WIDTH)
+    al = _wrap(q['answer'], af, DRAW_WIDTH)
     alh = int(ANSWER_FONT_SIZE*LINE_SPACING)
     aw, ah = _block_size(al, af, alh)
     note = q.get("answer_note","")

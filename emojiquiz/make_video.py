@@ -259,7 +259,7 @@ def render_answer(q):
     img  = Image.new("RGBA",(WIDTH,HEIGHT),(0,0,0,0))
     draw = ImageDraw.Draw(img)
     af   = _load_font(ANSWER_FONT_SIZE, display=True)
-    al   = _wrap(f"✓ {q['answer']}", af, DRAW_WIDTH)
+    al   = _wrap(q['answer'], af, DRAW_WIDTH)
     alh  = int(ANSWER_FONT_SIZE*LINE_SPACING)
     y = int(HEIGHT*ANSWER_Y_FRAC) - len(al)*alh//2
     for line in al:
