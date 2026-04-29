@@ -128,5 +128,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-04-28T10:24:26Z",
     "publish_at": "2026-04-28T18:20:10.000Z"
+  },
+  "wyr_0016": {
+    "youtube_id": "vSc_tEEXMpQ",
+    "youtube_url": "https://www.youtube.com/watch?v=vSc_tEEXMpQ",
+    "option_a": "Have a photographic memory",
+    "option_b": "Forget all your bad memories",
+    "category": "mental",
+    "uploaded_at": "2026-04-29T10:13:07Z"
+  },
+  "wyr_0017": {
+    "youtube_id": "HNY-fysS9QI",
+    "youtube_url": "https://www.youtube.com/watch?v=HNY-fysS9QI",
+    "option_a": "Be able to pause time",
+    "option_b": "Be able to rewind time by 10 minutes",
+    "category": "superpowers",
+    "uploaded_at": "2026-04-29T10:14:36Z",
+    "publish_at": "2026-04-29T14:11:48.000Z"
+  },
+  "wyr_0018": {
+    "youtube_id": "17YC0A2twRY",
+    "youtube_url": "https://www.youtube.com/watch?v=17YC0A2twRY",
+    "option_a": "Hiccup once a minute for the rest of your life",
+    "option_b": "Sneeze 10 times every hour for the rest of your life",
+    "category": "absurd",
+    "uploaded_at": "2026-04-29T10:16:06Z",
+    "publish_at": "2026-04-29T18:11:48.000Z"
   }
 }

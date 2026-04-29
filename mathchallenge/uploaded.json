@@ -128,5 +128,31 @@
     "category": "trick_question",
     "uploaded_at": "2026-04-28T10:20:09Z",
     "publish_at": "2026-04-28T18:16:19.000Z"
+  },
+  "math_0016": {
+    "youtube_id": "-ZCztUIeT5c",
+    "youtube_url": "https://www.youtube.com/watch?v=-ZCztUIeT5c",
+    "question": "If you flip a fair coin 5 times and get heads each time, what's the chance of heads on flip 6?",
+    "answer": "50%",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-04-29T10:08:50Z"
+  },
+  "math_0017": {
+    "youtube_id": "_vLr61Tb5jM",
+    "youtube_url": "https://www.youtube.com/watch?v=_vLr61Tb5jM",
+    "question": "How many squares are on a standard 8×8 chessboard?",
+    "answer": "204",
+    "category": "logic",
+    "uploaded_at": "2026-04-29T10:10:17Z",
+    "publish_at": "2026-04-29T14:07:59.000Z"
+  },
+  "math_0018": {
+    "youtube_id": "FVA3HG6D_dk",
+    "youtube_url": "https://www.youtube.com/watch?v=FVA3HG6D_dk",
+    "question": "What comes next?\n1, 4, 9, 16, 25, __",
+    "answer": "36",
+    "category": "sequence",
+    "uploaded_at": "2026-04-29T10:11:47Z",
+    "publish_at": "2026-04-29T18:07:59.000Z"
   }
 }

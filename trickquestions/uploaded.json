@@ -136,5 +136,31 @@
     "category": "mandela_effect",
     "uploaded_at": "2026-04-28T10:29:06Z",
     "publish_at": "2026-04-28T18:24:27.000Z"
+  },
+  "tq_0017": {
+    "youtube_id": "tG_Yx-S1r0U",
+    "youtube_url": "https://www.youtube.com/watch?v=tG_Yx-S1r0U",
+    "question": "Where did Arabic numerals originate?",
+    "answer": "India",
+    "category": "history",
+    "uploaded_at": "2026-04-29T10:17:47Z"
+  },
+  "tq_0018": {
+    "youtube_id": "rddl9CVk6h0",
+    "youtube_url": "https://www.youtube.com/watch?v=rddl9CVk6h0",
+    "question": "How many colours are in a rainbow?",
+    "answer": "Infinite — we arbitrarily count 7",
+    "category": "science",
+    "uploaded_at": "2026-04-29T10:19:18Z",
+    "publish_at": "2026-04-29T14:16:07.000Z"
+  },
+  "tq_0019": {
+    "youtube_id": "eveCFuP3cps",
+    "youtube_url": "https://www.youtube.com/watch?v=eveCFuP3cps",
+    "question": "Is 'blood is thicker than water' about family loyalty?",
+    "answer": "No — the full saying means the opposite",
+    "category": "language",
+    "uploaded_at": "2026-04-29T10:20:47Z",
+    "publish_at": "2026-04-29T18:16:07.000Z"
   }
 }

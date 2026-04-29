@@ -127,5 +127,28 @@
     "verdict": "FALSE — it depends",
     "uploaded_at": "2026-04-28T10:47:33Z",
     "publish_at": "2026-04-28T18:42:36.000Z"
+  },
+  "tof_0018": {
+    "youtube_id": "U_1j1J7niko",
+    "youtube_url": "https://www.youtube.com/watch?v=U_1j1J7niko",
+    "statement": "Napoleon was extremely short for his time.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-04-29T10:35:46Z"
+  },
+  "tof_0019": {
+    "youtube_id": "flYYlTIQbIk",
+    "youtube_url": "https://www.youtube.com/watch?v=flYYlTIQbIk",
+    "statement": "Humans have only 5 senses.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-04-29T10:37:16Z",
+    "publish_at": "2026-04-29T14:34:16.000Z"
+  },
+  "tof_0020": {
+    "youtube_id": "0Fvq2sC_kyc",
+    "youtube_url": "https://www.youtube.com/watch?v=0Fvq2sC_kyc",
+    "statement": "Chewing gum stays in your stomach for 7 years if swallowed.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-04-29T10:38:46Z",
+    "publish_at": "2026-04-29T18:34:16.000Z"
   }
 }

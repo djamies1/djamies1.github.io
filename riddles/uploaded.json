@@ -548,5 +548,28 @@
     "answer": "Short.",
     "uploaded_at": "2026-04-28T10:51:24Z",
     "publish_at": "2026-04-28T22:47:33.000Z"
+  },
+  "rdl_0073": {
+    "youtube_id": "m2kcYLGRXpg",
+    "youtube_url": "https://www.youtube.com/watch?v=m2kcYLGRXpg",
+    "question": "If you have three oranges and you take away two, how many will you have?",
+    "answer": "Two. The two you took.",
+    "uploaded_at": "2026-04-29T10:40:06Z"
+  },
+  "rdl_0074": {
+    "youtube_id": "fYckkwrjQJg",
+    "youtube_url": "https://www.youtube.com/watch?v=fYckkwrjQJg",
+    "question": "What's the least number of chairs you would need around a table to sit four fathers, two grandfathers, and four sons?",
+    "answer": "Four. The trick is that the roles overlap. You only need four chairs because the same four people can simultaneously satisfy “four fathers,” “two grandfathers,” and “four sons.” A classic arrangement is: great‑grandfather, grandfather, father, and son. In this setup: The great‑grandfather and the grandfather are both grandfathers. All four can be fathers (the son can have a child not present). All four are also sons of someone. So the least number of chairs is four",
+    "uploaded_at": "2026-04-29T10:41:36Z",
+    "publish_at": "2026-04-29T16:38:47.000Z"
+  },
+  "rdl_0075": {
+    "youtube_id": "cjYcilatLko",
+    "youtube_url": "https://www.youtube.com/watch?v=cjYcilatLko",
+    "question": "Look at me. I can bring a smile to your face, A tear to your eye, Or even a thought to your mind. But, I can't be seen. What am I?",
+    "answer": "Your Memories.",
+    "uploaded_at": "2026-04-29T10:43:07Z",
+    "publish_at": "2026-04-29T22:38:47.000Z"
   }
 }

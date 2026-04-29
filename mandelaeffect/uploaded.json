@@ -113,5 +113,28 @@
     "answer": "TRUE — it has always had the dividing lines",
     "uploaded_at": "2026-04-28T10:33:35Z",
     "publish_at": "2026-04-28T18:29:07.000Z"
+  },
+  "me_0016": {
+    "youtube_id": "uwILqxJKCEQ",
+    "youtube_url": "https://www.youtube.com/watch?v=uwILqxJKCEQ",
+    "question": "Is the brand spelled 'Sketchers' or 'Skechers'?",
+    "answer": "Skechers — no 't'",
+    "uploaded_at": "2026-04-29T10:22:16Z"
+  },
+  "me_0017": {
+    "youtube_id": "zeYAXEoR60k",
+    "youtube_url": "https://www.youtube.com/watch?v=zeYAXEoR60k",
+    "question": "In Forrest Gump, the line is 'Life is like a box of chocolates.'\nTrue or false?",
+    "answer": "FALSE — he says 'Life WAS like a box of chocolates'",
+    "uploaded_at": "2026-04-29T10:23:46Z",
+    "publish_at": "2026-04-29T14:20:47.000Z"
+  },
+  "me_0018": {
+    "youtube_id": "PBn8-o19IA0",
+    "youtube_url": "https://www.youtube.com/watch?v=PBn8-o19IA0",
+    "question": "The Great Wall of China appears on Google Maps as a continuous line.\nTrue or false?",
+    "answer": "FALSE — large sections are missing or broken",
+    "uploaded_at": "2026-04-29T10:25:17Z",
+    "publish_at": "2026-04-29T18:20:47.000Z"
   }
 }
