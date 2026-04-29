@@ -61,7 +61,7 @@ PSYCHEDELIC_COLORS = [
 ]
 
 # ── Background / Pollinations ─────────────────────────────────────────────────
-OVERLAY_OPACITY  = 155           # 0-255 darkness of overlay on background
+OVERLAY_OPACITY  = 80            # 0-255 darkness of overlay on background
 IMAGE_TIMEOUT    = 90
 
 POLLINATIONS_URL = (
@@ -135,12 +135,15 @@ def _block_size(lines, font, lh):
 
 # ── Drawing primitives ────────────────────────────────────────────────────────
 
-def _draw_panel(draw, cx, cy, bw, bh, color=(0, 0, 0), alpha=165, radius=30, px=55, py=32):
+def _draw_panel(img, cx, cy, bw, bh, color=(0, 0, 0), alpha=60, radius=30, px=55, py=32):
+    overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(overlay)
     x0 = int(cx - bw // 2 - px)
     y0 = int(cy - bh // 2 - py)
     x1 = int(cx + bw // 2 + px)
     y1 = int(cy + bh // 2 + py)
-    draw.rounded_rectangle([x0, y0, x1, y1], radius=radius, fill=(*color, alpha))
+    d.rounded_rectangle([x0, y0, x1, y1], radius=radius, fill=(*color, alpha))
+    img.alpha_composite(overlay)
 
 
 def _draw_block(draw, lines, font, cx, cy, lh, color, alpha=255, stroke=3):
@@ -420,8 +423,8 @@ def create_video(fact: dict, output_path: str,
                             int(HEIGHT * TITLE_Y_FRAC), t, duration)
 
         # Dark panel behind fact text
-        _draw_panel(draw, CENTER_X, int(HEIGHT * FACT_Y_FRAC), fw, fh,
-                    color=(0, 0, 0), alpha=170)
+        _draw_panel(img, CENTER_X, int(HEIGHT * FACT_Y_FRAC), fw, fh,
+                    color=(0, 0, 0), alpha=60)
 
         # Fact text (multi-colour lines)
         _draw_fact_block(draw, fact_lines, fact_font, CENTER_X,
