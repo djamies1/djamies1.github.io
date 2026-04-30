@@ -154,5 +154,31 @@
     "category": "sequence",
     "uploaded_at": "2026-04-29T10:11:47Z",
     "publish_at": "2026-04-29T18:07:59.000Z"
+  },
+  "math_0019": {
+    "youtube_id": "bYbNVpJg0BU",
+    "youtube_url": "https://www.youtube.com/watch?v=bYbNVpJg0BU",
+    "question": "Two trains 200 miles apart travel toward each other at 50mph each. A bird flies 100mph between them until they collide. How far does the bird fly?",
+    "answer": "200 miles",
+    "category": "word_problem",
+    "uploaded_at": "2026-04-30T17:09:14Z"
+  },
+  "math_0020": {
+    "youtube_id": "LZ7jKJNSyeU",
+    "youtube_url": "https://www.youtube.com/watch?v=LZ7jKJNSyeU",
+    "question": "What is the next number?\n2, 4, 8, 16, 32, __",
+    "answer": "64",
+    "category": "sequence",
+    "uploaded_at": "2026-04-30T17:10:43Z",
+    "publish_at": "2026-04-30T21:08:24.000Z"
+  },
+  "math_0021": {
+    "youtube_id": "MrkOTCyDjlk",
+    "youtube_url": "https://www.youtube.com/watch?v=MrkOTCyDjlk",
+    "question": "If you have 3 apples and take away 2, how many apples do YOU have?",
+    "answer": "2",
+    "category": "trick_question",
+    "uploaded_at": "2026-04-30T17:12:12Z",
+    "publish_at": "2026-05-01T01:08:24.000Z"
   }
 }

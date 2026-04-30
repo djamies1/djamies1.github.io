@@ -136,5 +136,28 @@
     "answer": "WALL-E",
     "uploaded_at": "2026-04-29T10:29:45Z",
     "publish_at": "2026-04-29T18:25:18.000Z"
+  },
+  "eq_0019": {
+    "youtube_id": "9RTb_GJCluQ",
+    "youtube_url": "https://www.youtube.com/watch?v=9RTb_GJCluQ",
+    "emojis": "👆🌟📞",
+    "answer": "E.T. the Extra-Terrestrial",
+    "uploaded_at": "2026-04-30T17:27:13Z"
+  },
+  "eq_0020": {
+    "youtube_id": "jrUFsce61jk",
+    "youtube_url": "https://www.youtube.com/watch?v=jrUFsce61jk",
+    "emojis": "🦴💀🎸",
+    "answer": "Coco",
+    "uploaded_at": "2026-04-30T17:28:40Z",
+    "publish_at": "2026-04-30T21:25:42.000Z"
+  },
+  "eq_0021": {
+    "youtube_id": "GXqTRYmtzBE",
+    "youtube_url": "https://www.youtube.com/watch?v=GXqTRYmtzBE",
+    "emojis": "🌧️🐱🐶",
+    "answer": "Raining cats and dogs",
+    "uploaded_at": "2026-04-30T17:30:11Z",
+    "publish_at": "2026-05-01T01:25:42.000Z"
   }
 }

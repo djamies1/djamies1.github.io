@@ -136,5 +136,28 @@
     "answer": "FALSE — large sections are missing or broken",
     "uploaded_at": "2026-04-29T10:25:17Z",
     "publish_at": "2026-04-29T18:20:47.000Z"
+  },
+  "me_0019": {
+    "youtube_id": "rpnuGHkL-yM",
+    "youtube_url": "https://www.youtube.com/watch?v=rpnuGHkL-yM",
+    "question": "Chartreuse is a shade of red or pink.\nTrue or false?",
+    "answer": "FALSE — chartreuse is yellow-green",
+    "uploaded_at": "2026-04-30T17:22:44Z"
+  },
+  "me_0020": {
+    "youtube_id": "vtq6S76uJSQ",
+    "youtube_url": "https://www.youtube.com/watch?v=vtq6S76uJSQ",
+    "question": "Patrick from SpongeBob wears green shorts.\nTrue or false?",
+    "answer": "FALSE — he wears purple shorts with flowers",
+    "uploaded_at": "2026-04-30T17:24:13Z",
+    "publish_at": "2026-04-30T21:21:12.000Z"
+  },
+  "me_0021": {
+    "youtube_id": "rFNyM5Zlix4",
+    "youtube_url": "https://www.youtube.com/watch?v=rFNyM5Zlix4",
+    "question": "The Monopoly board has 40 spaces.\nTrue or false?",
+    "answer": "TRUE — exactly 40",
+    "uploaded_at": "2026-04-30T17:25:41Z",
+    "publish_at": "2026-05-01T01:21:12.000Z"
   }
 }

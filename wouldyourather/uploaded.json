@@ -154,5 +154,31 @@
     "category": "absurd",
     "uploaded_at": "2026-04-29T10:16:06Z",
     "publish_at": "2026-04-29T18:11:48.000Z"
+  },
+  "wyr_0019": {
+    "youtube_id": "palJZgbDMYc",
+    "youtube_url": "https://www.youtube.com/watch?v=palJZgbDMYc",
+    "option_a": "Be able to control fire",
+    "option_b": "Be able to control water",
+    "category": "superpowers",
+    "uploaded_at": "2026-04-30T17:13:31Z"
+  },
+  "wyr_0020": {
+    "youtube_id": "BFJGfHqVn6U",
+    "youtube_url": "https://www.youtube.com/watch?v=BFJGfHqVn6U",
+    "option_a": "Only eat at McDonald's for a year",
+    "option_b": "Never eat fast food again",
+    "category": "food",
+    "uploaded_at": "2026-04-30T17:15:01Z",
+    "publish_at": "2026-04-30T21:12:13.000Z"
+  },
+  "wyr_0021": {
+    "youtube_id": "_gl62Kuo1zQ",
+    "youtube_url": "https://www.youtube.com/watch?v=_gl62Kuo1zQ",
+    "option_a": "Have an extra $10,000 right now",
+    "option_b": "Have your biggest insecurity permanently erased",
+    "category": "moral",
+    "uploaded_at": "2026-04-30T17:16:31Z",
+    "publish_at": "2026-05-01T01:12:13.000Z"
   }
 }

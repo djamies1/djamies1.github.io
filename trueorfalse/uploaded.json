@@ -150,5 +150,28 @@
     "verdict": "FALSE",
     "uploaded_at": "2026-04-29T10:38:46Z",
     "publish_at": "2026-04-29T18:34:16.000Z"
+  },
+  "tof_0021": {
+    "youtube_id": "kxsgI9Oi4Kk",
+    "youtube_url": "https://www.youtube.com/watch?v=kxsgI9Oi4Kk",
+    "statement": "Bulls are enraged by the colour red.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-04-30T17:36:12Z"
+  },
+  "tof_0022": {
+    "youtube_id": "2CUSGneeD-8",
+    "youtube_url": "https://www.youtube.com/watch?v=2CUSGneeD-8",
+    "statement": "We only use 10% of our brain.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-04-30T17:37:41Z",
+    "publish_at": "2026-04-30T21:34:43.000Z"
+  },
+  "tof_0023": {
+    "youtube_id": "6FnqJjDNeSY",
+    "youtube_url": "https://www.youtube.com/watch?v=6FnqJjDNeSY",
+    "statement": "Hot water freezes faster than cold water.",
+    "verdict": "TRUE — sometimes",
+    "uploaded_at": "2026-04-30T17:39:11Z",
+    "publish_at": "2026-05-01T01:34:43.000Z"
   }
 }
