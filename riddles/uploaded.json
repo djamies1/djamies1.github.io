@@ -594,5 +594,28 @@
     "answer": "An egg .",
     "uploaded_at": "2026-04-30T17:43:31Z",
     "publish_at": "2026-05-01T05:39:12.000Z"
+  },
+  "rdl_0079": {
+    "youtube_id": "b-hLdR00O54",
+    "youtube_url": "https://www.youtube.com/watch?v=b-hLdR00O54",
+    "question": "There is a frog, dead in the middle of an island. If he swims north, the distance to the mainland is 2 meters. If he swims south, the distance to the mainland is 3 meters. If he swims east or west, the distance is 4 meters. Which way does he swim?",
+    "answer": "He doesn't swim at all, he is dead.",
+    "uploaded_at": "2026-05-01T17:16:09Z"
+  },
+  "rdl_0080": {
+    "youtube_id": "ezfKfFFqq0Y",
+    "youtube_url": "https://www.youtube.com/watch?v=ezfKfFFqq0Y",
+    "question": "You live in a one story house made entirely of redwood. What color would the stairs be?",
+    "answer": "What stairs? You live in a one-story house.",
+    "uploaded_at": "2026-05-01T17:17:38Z",
+    "publish_at": "2026-05-01T23:14:47.000Z"
+  },
+  "rdl_0081": {
+    "youtube_id": "tQ8gcizUfns",
+    "youtube_url": "https://www.youtube.com/watch?v=tQ8gcizUfns",
+    "question": "I can be created by humans, But they cannot control me. I suck on wood, paper and flesh alike. I can be more of a hindrance than help at times. To my creators, I seem to be everywhere at once. What am I?",
+    "answer": "A baby.",
+    "uploaded_at": "2026-05-01T17:19:08Z",
+    "publish_at": "2026-05-02T05:14:47.000Z"
   }
 }

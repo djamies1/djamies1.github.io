@@ -180,5 +180,31 @@
     "category": "moral",
     "uploaded_at": "2026-04-30T17:16:31Z",
     "publish_at": "2026-05-01T01:12:13.000Z"
+  },
+  "wyr_0022": {
+    "youtube_id": "Av3LjBY9-aY",
+    "youtube_url": "https://www.youtube.com/watch?v=Av3LjBY9-aY",
+    "option_a": "Be extremely attractive but dumb",
+    "option_b": "Be extremely smart but unattractive",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-01T16:49:08Z"
+  },
+  "wyr_0023": {
+    "youtube_id": "hL15gdT-6mo",
+    "youtube_url": "https://www.youtube.com/watch?v=hL15gdT-6mo",
+    "option_a": "Fight 100 duck-sized horses",
+    "option_b": "Fight 1 horse-sized duck",
+    "category": "absurd",
+    "uploaded_at": "2026-05-01T16:50:37Z",
+    "publish_at": "2026-05-01T20:47:46.000Z"
+  },
+  "wyr_0024": {
+    "youtube_id": "uGdye4Se_D0",
+    "youtube_url": "https://www.youtube.com/watch?v=uGdye4Se_D0",
+    "option_a": "Be famous but hated",
+    "option_b": "Be unknown but universally loved by everyone you meet",
+    "category": "social",
+    "uploaded_at": "2026-05-01T16:52:08Z",
+    "publish_at": "2026-05-02T00:47:46.000Z"
   }
 }

@@ -173,5 +173,28 @@
     "verdict": "TRUE — sometimes",
     "uploaded_at": "2026-04-30T17:39:11Z",
     "publish_at": "2026-05-01T01:34:43.000Z"
+  },
+  "tof_0024": {
+    "youtube_id": "XJpKOdGxiAs",
+    "youtube_url": "https://www.youtube.com/watch?v=XJpKOdGxiAs",
+    "statement": "The Great Wall of China is a single continuous wall.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-01T17:11:47Z"
+  },
+  "tof_0025": {
+    "youtube_id": "hESphLszplk",
+    "youtube_url": "https://www.youtube.com/watch?v=hESphLszplk",
+    "statement": "Humans and dinosaurs coexisted on Earth.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-01T17:13:15Z",
+    "publish_at": "2026-05-01T21:10:17.000Z"
+  },
+  "tof_0026": {
+    "youtube_id": "RUqgEae8mVo",
+    "youtube_url": "https://www.youtube.com/watch?v=RUqgEae8mVo",
+    "statement": "Antibiotics are effective against viral infections like the flu.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-01T17:14:46Z",
+    "publish_at": "2026-05-02T01:10:17.000Z"
   }
 }

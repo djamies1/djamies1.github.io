@@ -159,5 +159,28 @@
     "answer": "Raining cats and dogs",
     "uploaded_at": "2026-04-30T17:30:11Z",
     "publish_at": "2026-05-01T01:25:42.000Z"
+  },
+  "eq_0022": {
+    "youtube_id": "p5b1AvhxD-Q",
+    "youtube_url": "https://www.youtube.com/watch?v=p5b1AvhxD-Q",
+    "emojis": "🐦✋",
+    "answer": "A bird in the hand",
+    "uploaded_at": "2026-05-01T17:02:46Z"
+  },
+  "eq_0023": {
+    "youtube_id": "9Fbk5Pxoxjk",
+    "youtube_url": "https://www.youtube.com/watch?v=9Fbk5Pxoxjk",
+    "emojis": "🍎🥧",
+    "answer": "American as apple pie",
+    "uploaded_at": "2026-05-01T17:04:16Z",
+    "publish_at": "2026-05-01T21:01:20.000Z"
+  },
+  "eq_0024": {
+    "youtube_id": "7EM3Hileei8",
+    "youtube_url": "https://www.youtube.com/watch?v=7EM3Hileei8",
+    "emojis": "🐝🦷",
+    "answer": "The bee's knees",
+    "uploaded_at": "2026-05-01T17:05:45Z",
+    "publish_at": "2026-05-02T01:01:20.000Z"
   }
 }

@@ -180,5 +180,31 @@
     "category": "trick_question",
     "uploaded_at": "2026-04-30T17:12:12Z",
     "publish_at": "2026-05-01T01:08:24.000Z"
+  },
+  "math_0022": {
+    "youtube_id": "8U8xFydGIrg",
+    "youtube_url": "https://www.youtube.com/watch?v=8U8xFydGIrg",
+    "question": "What is half of 2 + 2?",
+    "answer": "3",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-01T16:44:47Z"
+  },
+  "math_0023": {
+    "youtube_id": "9rVgcZoh8C0",
+    "youtube_url": "https://www.youtube.com/watch?v=9rVgcZoh8C0",
+    "question": "In a room of 23 strangers, what's the probability two share a birthday?",
+    "answer": "Greater than 50%",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-05-01T16:46:16Z",
+    "publish_at": "2026-05-01T20:44:07.000Z"
+  },
+  "math_0024": {
+    "youtube_id": "odUZ0vmmlHg",
+    "youtube_url": "https://www.youtube.com/watch?v=odUZ0vmmlHg",
+    "question": "Mary is twice as old as Ann was when Mary was as old as Ann is now. Ann is 24. How old is Mary?",
+    "answer": "32",
+    "category": "word_problem",
+    "uploaded_at": "2026-05-01T16:47:46Z",
+    "publish_at": "2026-05-02T00:44:07.000Z"
   }
 }

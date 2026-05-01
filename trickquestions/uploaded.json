@@ -188,5 +188,31 @@
     "category": "language",
     "uploaded_at": "2026-04-30T17:21:11Z",
     "publish_at": "2026-05-01T01:16:32.000Z"
+  },
+  "tq_0023": {
+    "youtube_id": "gc12qru1Lq4",
+    "youtube_url": "https://www.youtube.com/watch?v=gc12qru1Lq4",
+    "question": "Does lightning never strike the same place twice?",
+    "answer": "False — it strikes the same spots constantly",
+    "category": "science",
+    "uploaded_at": "2026-05-01T16:53:47Z"
+  },
+  "tq_0024": {
+    "youtube_id": "bXpTEk2WR10",
+    "youtube_url": "https://www.youtube.com/watch?v=bXpTEk2WR10",
+    "question": "What country is India ink from?",
+    "answer": "China",
+    "category": "geography",
+    "uploaded_at": "2026-05-01T16:55:16Z",
+    "publish_at": "2026-05-01T20:52:09.000Z"
+  },
+  "tq_0025": {
+    "youtube_id": "RvVgxAHslhU",
+    "youtube_url": "https://www.youtube.com/watch?v=RvVgxAHslhU",
+    "question": "Is a tomato a fruit or a vegetable?",
+    "answer": "Botanically a fruit — legally a vegetable",
+    "category": "science",
+    "uploaded_at": "2026-05-01T16:56:47Z",
+    "publish_at": "2026-05-02T00:52:09.000Z"
   }
 }
