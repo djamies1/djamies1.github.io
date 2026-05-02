@@ -206,5 +206,31 @@
     "category": "word_problem",
     "uploaded_at": "2026-05-01T16:47:46Z",
     "publish_at": "2026-05-02T00:44:07.000Z"
+  },
+  "math_0025": {
+    "youtube_id": "gcgApup3Wlg",
+    "youtube_url": "https://www.youtube.com/watch?v=gcgApup3Wlg",
+    "question": "Is it Febreze or Febreeze?",
+    "answer": "Febreze",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-05-02T16:36:06Z"
+  },
+  "math_0026": {
+    "youtube_id": "DaxaJlJP6x4",
+    "youtube_url": "https://www.youtube.com/watch?v=DaxaJlJP6x4",
+    "question": "What is 100 ÷ 1/2 + 1?",
+    "answer": "201",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-02T16:37:35Z",
+    "publish_at": "2026-05-02T20:35:19.000Z"
+  },
+  "math_0027": {
+    "youtube_id": "6xvJ_MiGIBk",
+    "youtube_url": "https://www.youtube.com/watch?v=6xvJ_MiGIBk",
+    "question": "A doctor has 10 pills. They give 1 pill every 30 minutes. How long until all pills are taken?",
+    "answer": "4.5 hours",
+    "category": "word_problem",
+    "uploaded_at": "2026-05-02T16:39:06Z",
+    "publish_at": "2026-05-03T00:35:19.000Z"
   }
 }

@@ -182,5 +182,28 @@
     "answer": "TRUE — but Doyle never named it in the stories",
     "uploaded_at": "2026-05-01T17:01:20Z",
     "publish_at": "2026-05-02T00:56:47.000Z"
+  },
+  "me_0025": {
+    "youtube_id": "gVZ-4JXYJE0",
+    "youtube_url": "https://www.youtube.com/watch?v=gVZ-4JXYJE0",
+    "question": "In the original Star Wars, Han Solo shoots first.\nTrue or false?",
+    "answer": "TRUE — in the 1977 original. FALSE — in later edits",
+    "uploaded_at": "2026-05-02T16:49:34Z"
+  },
+  "me_0026": {
+    "youtube_id": "XDm4CUm2q1M",
+    "youtube_url": "https://www.youtube.com/watch?v=XDm4CUm2q1M",
+    "question": "Mickey Mouse's gloves have always been white.\nTrue or false?",
+    "answer": "TRUE — always white",
+    "uploaded_at": "2026-05-02T16:51:06Z",
+    "publish_at": "2026-05-02T20:48:06.000Z"
+  },
+  "me_0027": {
+    "youtube_id": "YUaoJ-JD-DI",
+    "youtube_url": "https://www.youtube.com/watch?v=YUaoJ-JD-DI",
+    "question": "Rubik's Cube has 6 colours: red, orange, yellow, green, blue, and white.\nTrue or false?",
+    "answer": "TRUE — those are the standard 6",
+    "uploaded_at": "2026-05-02T16:52:35Z",
+    "publish_at": "2026-05-03T00:48:06.000Z"
   }
 }

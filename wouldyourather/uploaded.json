@@ -206,5 +206,31 @@
     "category": "social",
     "uploaded_at": "2026-05-01T16:52:08Z",
     "publish_at": "2026-05-02T00:47:46.000Z"
+  },
+  "wyr_0025": {
+    "youtube_id": "wWqWMsCgse0",
+    "youtube_url": "https://www.youtube.com/watch?v=wWqWMsCgse0",
+    "option_a": "Teleport anywhere instantly",
+    "option_b": "Time travel but only to the past (no changes allowed)",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-02T16:40:25Z"
+  },
+  "wyr_0026": {
+    "youtube_id": "R2fGwSEdsYs",
+    "youtube_url": "https://www.youtube.com/watch?v=R2fGwSEdsYs",
+    "option_a": "Never have to work again but be permanently bored",
+    "option_b": "Love your job but work 80 hours a week",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-02T16:41:55Z",
+    "publish_at": "2026-05-02T20:39:07.000Z"
+  },
+  "wyr_0027": {
+    "youtube_id": "2n4KcGB2RXM",
+    "youtube_url": "https://www.youtube.com/watch?v=2n4KcGB2RXM",
+    "option_a": "Always say exactly what you think",
+    "option_b": "Never be able to tell the truth",
+    "category": "social",
+    "uploaded_at": "2026-05-02T16:43:25Z",
+    "publish_at": "2026-05-03T00:39:07.000Z"
   }
 }

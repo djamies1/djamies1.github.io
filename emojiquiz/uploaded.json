@@ -182,5 +182,28 @@
     "answer": "The bee's knees",
     "uploaded_at": "2026-05-01T17:05:45Z",
     "publish_at": "2026-05-02T01:01:20.000Z"
+  },
+  "eq_0025": {
+    "youtube_id": "MuBPqm6YgwA",
+    "youtube_url": "https://www.youtube.com/watch?v=MuBPqm6YgwA",
+    "emojis": "🌊🍵⛈️",
+    "answer": "Tempest in a teapot",
+    "uploaded_at": "2026-05-02T16:54:04Z"
+  },
+  "eq_0026": {
+    "youtube_id": "lUFgCfMDV_s",
+    "youtube_url": "https://www.youtube.com/watch?v=lUFgCfMDV_s",
+    "emojis": "🐘🏠",
+    "answer": "Elephant in the room",
+    "uploaded_at": "2026-05-02T16:55:35Z",
+    "publish_at": "2026-05-02T20:52:35.000Z"
+  },
+  "eq_0027": {
+    "youtube_id": "pjk9pykLZZ0",
+    "youtube_url": "https://www.youtube.com/watch?v=pjk9pykLZZ0",
+    "emojis": "🥄🍯",
+    "answer": "Spill the tea",
+    "uploaded_at": "2026-05-02T16:57:04Z",
+    "publish_at": "2026-05-03T00:52:35.000Z"
   }
 }

@@ -214,5 +214,31 @@
     "category": "science",
     "uploaded_at": "2026-05-01T16:56:47Z",
     "publish_at": "2026-05-02T00:52:09.000Z"
+  },
+  "tq_0026": {
+    "youtube_id": "r4BGAG3rPjQ",
+    "youtube_url": "https://www.youtube.com/watch?v=r4BGAG3rPjQ",
+    "question": "Did Vikings wear horned helmets?",
+    "answer": "No — that's a 19th-century invention",
+    "category": "history",
+    "uploaded_at": "2026-05-02T16:45:05Z"
+  },
+  "tq_0027": {
+    "youtube_id": "_HQSV7g9lIk",
+    "youtube_url": "https://www.youtube.com/watch?v=_HQSV7g9lIk",
+    "question": "What part of the tongue tastes sweetness?",
+    "answer": "All of it equally",
+    "category": "science",
+    "uploaded_at": "2026-05-02T16:46:36Z",
+    "publish_at": "2026-05-02T20:43:25.000Z"
+  },
+  "tq_0028": {
+    "youtube_id": "b57m9_DQT7Q",
+    "youtube_url": "https://www.youtube.com/watch?v=b57m9_DQT7Q",
+    "question": "Is C-3PO entirely gold?",
+    "answer": "No — one leg is silver",
+    "category": "mandela_effect",
+    "uploaded_at": "2026-05-02T16:48:05Z",
+    "publish_at": "2026-05-03T00:43:25.000Z"
   }
 }

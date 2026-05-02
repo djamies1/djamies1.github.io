@@ -196,5 +196,28 @@
     "verdict": "FALSE",
     "uploaded_at": "2026-05-01T17:14:46Z",
     "publish_at": "2026-05-02T01:10:17.000Z"
+  },
+  "tof_0027": {
+    "youtube_id": "M_sHn-dne3I",
+    "youtube_url": "https://www.youtube.com/watch?v=M_sHn-dne3I",
+    "statement": "The Amazon River discharges more water than any other river on Earth.",
+    "verdict": "TRUE",
+    "uploaded_at": "2026-05-02T17:03:05Z"
+  },
+  "tof_0028": {
+    "youtube_id": "c6rdHZyg69g",
+    "youtube_url": "https://www.youtube.com/watch?v=c6rdHZyg69g",
+    "statement": "You can see stars during the day from the bottom of a deep well.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-02T17:04:35Z",
+    "publish_at": "2026-05-02T21:01:35.000Z"
+  },
+  "tof_0029": {
+    "youtube_id": "y1BzBUkQFQg",
+    "youtube_url": "https://www.youtube.com/watch?v=y1BzBUkQFQg",
+    "statement": "The Moon has its own light.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-02T17:06:05Z",
+    "publish_at": "2026-05-03T01:01:35.000Z"
   }
 }
