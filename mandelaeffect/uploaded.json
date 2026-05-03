@@ -205,5 +205,28 @@
     "answer": "TRUE — those are the standard 6",
     "uploaded_at": "2026-05-02T16:52:35Z",
     "publish_at": "2026-05-03T00:48:06.000Z"
+  },
+  "me_0028": {
+    "youtube_id": "fm_0uw73REY",
+    "youtube_url": "https://www.youtube.com/watch?v=fm_0uw73REY",
+    "question": "The Fruit of the Loom logo has always had a cornucopia.\nTrue or false?",
+    "answer": "FALSE — no cornucopia, ever",
+    "uploaded_at": "2026-05-03T16:49:59Z"
+  },
+  "me_0029": {
+    "youtube_id": "jZfpUNwh700",
+    "youtube_url": "https://www.youtube.com/watch?v=jZfpUNwh700",
+    "question": "Mother Teresa has been made a saint.\nTrue or false?",
+    "answer": "TRUE — canonised in 2016",
+    "uploaded_at": "2026-05-03T16:51:29Z",
+    "publish_at": "2026-05-03T20:48:29.000Z"
+  },
+  "me_0030": {
+    "youtube_id": "jmouVtDTPFI",
+    "youtube_url": "https://www.youtube.com/watch?v=jmouVtDTPFI",
+    "question": "The original Ghostbusters logo has the ghost's mouth open.\nTrue or false?",
+    "answer": "TRUE — the mouth is open",
+    "uploaded_at": "2026-05-03T16:53:00Z",
+    "publish_at": "2026-05-04T00:48:29.000Z"
   }
 }

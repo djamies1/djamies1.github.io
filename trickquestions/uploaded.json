@@ -240,5 +240,31 @@
     "category": "mandela_effect",
     "uploaded_at": "2026-05-02T16:48:05Z",
     "publish_at": "2026-05-03T00:43:25.000Z"
+  },
+  "tq_0029": {
+    "youtube_id": "oGH2OW5rC_4",
+    "youtube_url": "https://www.youtube.com/watch?v=oGH2OW5rC_4",
+    "question": "Does the word 'nice' originally mean 'pleasant'?",
+    "answer": "No — it meant 'foolish' or 'ignorant'",
+    "category": "language",
+    "uploaded_at": "2026-05-03T16:45:29Z"
+  },
+  "tq_0030": {
+    "youtube_id": "qAudjXLq9Mo",
+    "youtube_url": "https://www.youtube.com/watch?v=qAudjXLq9Mo",
+    "question": "How many stars are in the Milky Way?",
+    "answer": "200–400 billion",
+    "category": "science",
+    "uploaded_at": "2026-05-03T16:47:00Z",
+    "publish_at": "2026-05-03T20:43:49.000Z"
+  },
+  "tq_0031": {
+    "youtube_id": "1Y_7gcNqXp0",
+    "youtube_url": "https://www.youtube.com/watch?v=1Y_7gcNqXp0",
+    "question": "Did Cleopatra live closer in time to us or to the pyramids?",
+    "answer": "Closer to us",
+    "category": "history",
+    "uploaded_at": "2026-05-03T16:48:29Z",
+    "publish_at": "2026-05-04T00:43:49.000Z"
   }
 }

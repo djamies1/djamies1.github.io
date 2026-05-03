@@ -232,5 +232,31 @@
     "category": "word_problem",
     "uploaded_at": "2026-05-02T16:39:06Z",
     "publish_at": "2026-05-03T00:35:19.000Z"
+  },
+  "math_0028": {
+    "youtube_id": "F5uv5kWcec4",
+    "youtube_url": "https://www.youtube.com/watch?v=F5uv5kWcec4",
+    "question": "How many times can you subtract 10 from 100?",
+    "answer": "Once",
+    "category": "trick_question",
+    "uploaded_at": "2026-05-03T16:36:31Z"
+  },
+  "math_0029": {
+    "youtube_id": "Itce43zDg4A",
+    "youtube_url": "https://www.youtube.com/watch?v=Itce43zDg4A",
+    "question": "What comes next?\n3, 3, 5, 4, 4, 3, 5, 5, __",
+    "answer": "4",
+    "category": "sequence",
+    "uploaded_at": "2026-05-03T16:38:00Z",
+    "publish_at": "2026-05-03T20:35:42.000Z"
+  },
+  "math_0030": {
+    "youtube_id": "KMunfzqwuE4",
+    "youtube_url": "https://www.youtube.com/watch?v=KMunfzqwuE4",
+    "question": "I am an odd number. Take away one letter and I become even. What number am I?",
+    "answer": "Seven",
+    "category": "logic",
+    "uploaded_at": "2026-05-03T16:39:30Z",
+    "publish_at": "2026-05-04T00:35:42.000Z"
   }
 }

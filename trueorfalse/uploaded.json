@@ -219,5 +219,28 @@
     "verdict": "FALSE",
     "uploaded_at": "2026-05-02T17:06:05Z",
     "publish_at": "2026-05-03T01:01:35.000Z"
+  },
+  "tof_0030": {
+    "youtube_id": "nUXVlsvMdYI",
+    "youtube_url": "https://www.youtube.com/watch?v=nUXVlsvMdYI",
+    "statement": "A penny dropped from the Empire State Building could kill someone.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-03T17:03:29Z"
+  },
+  "tof_0031": {
+    "youtube_id": "Np09IandaiE",
+    "youtube_url": "https://www.youtube.com/watch?v=Np09IandaiE",
+    "statement": "The Amazon Rainforest produces 20% of the world's oxygen.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-03T17:04:56Z",
+    "publish_at": "2026-05-03T21:01:59.000Z"
+  },
+  "tof_0032": {
+    "youtube_id": "5jfwSQaQEAc",
+    "youtube_url": "https://www.youtube.com/watch?v=5jfwSQaQEAc",
+    "statement": "Humans swallow an average of 8 spiders a year in their sleep.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-03T17:06:29Z",
+    "publish_at": "2026-05-04T01:01:59.000Z"
   }
 }

@@ -205,5 +205,28 @@
     "answer": "Spill the tea",
     "uploaded_at": "2026-05-02T16:57:04Z",
     "publish_at": "2026-05-03T00:52:35.000Z"
+  },
+  "eq_0028": {
+    "youtube_id": "v7v1gObyr-4",
+    "youtube_url": "https://www.youtube.com/watch?v=v7v1gObyr-4",
+    "emojis": "💤🐕",
+    "answer": "Let sleeping dogs lie",
+    "uploaded_at": "2026-05-03T16:54:28Z"
+  },
+  "eq_0029": {
+    "youtube_id": "in4wT_rR7Zk",
+    "youtube_url": "https://www.youtube.com/watch?v=in4wT_rR7Zk",
+    "emojis": "🍰🎂🍴",
+    "answer": "Piece of cake",
+    "uploaded_at": "2026-05-03T16:55:58Z",
+    "publish_at": "2026-05-03T20:53:01.000Z"
+  },
+  "eq_0030": {
+    "youtube_id": "8lFZylJeolY",
+    "youtube_url": "https://www.youtube.com/watch?v=8lFZylJeolY",
+    "emojis": "🐟🐠🌀",
+    "answer": "Something's fishy",
+    "uploaded_at": "2026-05-03T16:57:28Z",
+    "publish_at": "2026-05-04T00:53:01.000Z"
   }
 }

@@ -232,5 +232,31 @@
     "category": "social",
     "uploaded_at": "2026-05-02T16:43:25Z",
     "publish_at": "2026-05-03T00:39:07.000Z"
+  },
+  "wyr_0028": {
+    "youtube_id": "v0HfCXX2iis",
+    "youtube_url": "https://www.youtube.com/watch?v=v0HfCXX2iis",
+    "option_a": "Win $1 million but can never tell anyone how you got it",
+    "option_b": "Win $100k that everyone knows about",
+    "category": "moral",
+    "uploaded_at": "2026-05-03T16:40:49Z"
+  },
+  "wyr_0029": {
+    "youtube_id": "xWiFmOJ5EnI",
+    "youtube_url": "https://www.youtube.com/watch?v=xWiFmOJ5EnI",
+    "option_a": "Have the ability to breathe underwater",
+    "option_b": "Have the ability to survive in space without a suit",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-03T16:42:18Z",
+    "publish_at": "2026-05-03T20:39:30.000Z"
+  },
+  "wyr_0030": {
+    "youtube_id": "KnBmIJpcGTM",
+    "youtube_url": "https://www.youtube.com/watch?v=KnBmIJpcGTM",
+    "option_a": "Never feel physical pain",
+    "option_b": "Never feel emotional pain",
+    "category": "physical",
+    "uploaded_at": "2026-05-03T16:43:49Z",
+    "publish_at": "2026-05-04T00:39:30.000Z"
   }
 }
