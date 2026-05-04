@@ -258,5 +258,31 @@
     "category": "physical",
     "uploaded_at": "2026-05-03T16:43:49Z",
     "publish_at": "2026-05-04T00:39:30.000Z"
+  },
+  "wyr_0031": {
+    "youtube_id": "Wl7nb805PJs",
+    "youtube_url": "https://www.youtube.com/watch?v=Wl7nb805PJs",
+    "option_a": "Eat a tablespoon of wasabi",
+    "option_b": "Eat a tablespoon of Vegemite",
+    "category": "food",
+    "uploaded_at": "2026-05-04T17:25:37Z"
+  },
+  "wyr_0032": {
+    "youtube_id": "D1UH90awqOY",
+    "youtube_url": "https://www.youtube.com/watch?v=D1UH90awqOY",
+    "option_a": "Talk to animals",
+    "option_b": "Talk to plants",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-04T17:27:07Z",
+    "publish_at": "2026-05-04T21:24:18.000Z"
+  },
+  "wyr_0033": {
+    "youtube_id": "m5OotIj_bmw",
+    "youtube_url": "https://www.youtube.com/watch?v=m5OotIj_bmw",
+    "option_a": "Be the best at everything you try but only for one hour",
+    "option_b": "Be decent at everything forever",
+    "category": "skills",
+    "uploaded_at": "2026-05-04T17:28:38Z",
+    "publish_at": "2026-05-05T01:24:18.000Z"
   }
 }

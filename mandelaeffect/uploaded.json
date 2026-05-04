@@ -228,5 +228,28 @@
     "answer": "TRUE — the mouth is open",
     "uploaded_at": "2026-05-03T16:53:00Z",
     "publish_at": "2026-05-04T00:48:29.000Z"
+  },
+  "me_0031": {
+    "youtube_id": "geVPBvpVcQ0",
+    "youtube_url": "https://www.youtube.com/watch?v=geVPBvpVcQ0",
+    "question": "Mr. Peanut (Planters mascot) has always worn a top hat and monocle.\nTrue or false?",
+    "answer": "TRUE — both the hat and monocle are original",
+    "uploaded_at": "2026-05-04T17:34:48Z"
+  },
+  "me_0032": {
+    "youtube_id": "N8HOsi-zeGc",
+    "youtube_url": "https://www.youtube.com/watch?v=N8HOsi-zeGc",
+    "question": "Coca-Cola Santa Claus wears blue.\nTrue or false?",
+    "answer": "FALSE — he wears red",
+    "uploaded_at": "2026-05-04T17:36:18Z",
+    "publish_at": "2026-05-04T21:33:19.000Z"
+  },
+  "me_0033": {
+    "youtube_id": "Qzy25bJN03Y",
+    "youtube_url": "https://www.youtube.com/watch?v=Qzy25bJN03Y",
+    "question": "In the famous E.T. scene, government agents carry guns.\nTrue or false?",
+    "answer": "Depends on the version",
+    "uploaded_at": "2026-05-04T17:37:48Z",
+    "publish_at": "2026-05-05T01:33:19.000Z"
   }
 }

@@ -663,5 +663,28 @@
     "answer": "The North Pole.",
     "uploaded_at": "2026-05-03T17:10:48Z",
     "publish_at": "2026-05-04T05:06:30.000Z"
+  },
+  "rdl_0088": {
+    "youtube_id": "W_pN5_QaV1M",
+    "youtube_url": "https://www.youtube.com/watch?v=W_pN5_QaV1M",
+    "question": "What can you throw but not catch?",
+    "answer": "A cold.",
+    "uploaded_at": "2026-05-04T17:52:38Z"
+  },
+  "rdl_0089": {
+    "youtube_id": "rAQqnf0NHWQ",
+    "youtube_url": "https://www.youtube.com/watch?v=rAQqnf0NHWQ",
+    "question": "Which word can be placed between the two following words to make two new ones: TABLE _ _ _ _ HOUSE?",
+    "answer": "WARE.",
+    "uploaded_at": "2026-05-04T17:54:05Z",
+    "publish_at": "2026-05-04T23:51:18.000Z"
+  },
+  "rdl_0090": {
+    "youtube_id": "wIQ8UMw3UOI",
+    "youtube_url": "https://www.youtube.com/watch?v=wIQ8UMw3UOI",
+    "question": "A certain crime is punishable if attempted but not punishable if committed. What is it?",
+    "answer": "Suicide.",
+    "uploaded_at": "2026-05-04T17:55:37Z",
+    "publish_at": "2026-05-05T05:51:18.000Z"
   }
 }

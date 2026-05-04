@@ -258,5 +258,31 @@
     "category": "logic",
     "uploaded_at": "2026-05-03T16:39:30Z",
     "publish_at": "2026-05-04T00:35:42.000Z"
+  },
+  "math_0031": {
+    "youtube_id": "U8nMvYFlf40",
+    "youtube_url": "https://www.youtube.com/watch?v=U8nMvYFlf40",
+    "question": "What weighs more: a pound of feathers or a pound of gold?",
+    "answer": "They weigh the same",
+    "category": "trick_question",
+    "uploaded_at": "2026-05-04T17:21:20Z"
+  },
+  "math_0032": {
+    "youtube_id": "9JKXXI9bKtQ",
+    "youtube_url": "https://www.youtube.com/watch?v=9JKXXI9bKtQ",
+    "question": "If a plane crashes on the border of the US and Canada, where do you bury the survivors?",
+    "answer": "You don't bury survivors.",
+    "category": "trick_question",
+    "uploaded_at": "2026-05-04T17:22:49Z",
+    "publish_at": "2026-05-04T21:20:31.000Z"
+  },
+  "math_0033": {
+    "youtube_id": "7LIDJp647_E",
+    "youtube_url": "https://www.youtube.com/watch?v=7LIDJp647_E",
+    "question": "Some months have 30 days, some 31. How many have 28 days?",
+    "answer": "All 12",
+    "category": "trick_question",
+    "uploaded_at": "2026-05-04T17:24:18Z",
+    "publish_at": "2026-05-05T01:20:31.000Z"
   }
 }

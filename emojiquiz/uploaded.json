@@ -228,5 +228,28 @@
     "answer": "Something's fishy",
     "uploaded_at": "2026-05-03T16:57:28Z",
     "publish_at": "2026-05-04T00:53:01.000Z"
+  },
+  "eq_0031": {
+    "youtube_id": "v3VSP1ouWfs",
+    "youtube_url": "https://www.youtube.com/watch?v=v3VSP1ouWfs",
+    "emojis": "⛈️🔨",
+    "answer": "Under the weather",
+    "uploaded_at": "2026-05-04T17:39:17Z"
+  },
+  "eq_0032": {
+    "youtube_id": "DAc4PWJMDF8",
+    "youtube_url": "https://www.youtube.com/watch?v=DAc4PWJMDF8",
+    "emojis": "🎯🔴",
+    "answer": "Hit the bullseye",
+    "uploaded_at": "2026-05-04T17:40:47Z",
+    "publish_at": "2026-05-04T21:37:49.000Z"
+  },
+  "eq_0033": {
+    "youtube_id": "V1rvlEEM9A8",
+    "youtube_url": "https://www.youtube.com/watch?v=V1rvlEEM9A8",
+    "emojis": "🚀🌙",
+    "answer": "Shoot for the moon",
+    "uploaded_at": "2026-05-04T17:42:18Z",
+    "publish_at": "2026-05-05T01:37:49.000Z"
   }
 }

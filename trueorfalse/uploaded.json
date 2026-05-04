@@ -242,5 +242,28 @@
     "verdict": "FALSE",
     "uploaded_at": "2026-05-03T17:06:29Z",
     "publish_at": "2026-05-04T01:01:59.000Z"
+  },
+  "tof_0033": {
+    "youtube_id": "9Or1JwTGLa4",
+    "youtube_url": "https://www.youtube.com/watch?v=9Or1JwTGLa4",
+    "statement": "Glass is technically a liquid that flows very slowly over centuries.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-04T17:48:18Z"
+  },
+  "tof_0034": {
+    "youtube_id": "y2y31Bne6Fk",
+    "youtube_url": "https://www.youtube.com/watch?v=y2y31Bne6Fk",
+    "statement": "The human eye can see a candle flame from 48km (30 miles) away in darkness.",
+    "verdict": "TRUE",
+    "uploaded_at": "2026-05-04T17:49:47Z",
+    "publish_at": "2026-05-04T21:46:48.000Z"
+  },
+  "tof_0035": {
+    "youtube_id": "OcJl4ky1A38",
+    "youtube_url": "https://www.youtube.com/watch?v=OcJl4ky1A38",
+    "statement": "Sugar makes children hyperactive.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-04T17:51:17Z",
+    "publish_at": "2026-05-05T01:46:48.000Z"
   }
 }

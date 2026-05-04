@@ -266,5 +266,31 @@
     "category": "history",
     "uploaded_at": "2026-05-03T16:48:29Z",
     "publish_at": "2026-05-04T00:43:49.000Z"
+  },
+  "tq_0032": {
+    "youtube_id": "MjUtn99afVo",
+    "youtube_url": "https://www.youtube.com/watch?v=MjUtn99afVo",
+    "question": "What is the shortest war in history?",
+    "answer": "The Anglo-Zanzibar War — 38 minutes",
+    "category": "history",
+    "uploaded_at": "2026-05-04T17:30:19Z"
+  },
+  "tq_0033": {
+    "youtube_id": "NA4JHNxWr90",
+    "youtube_url": "https://www.youtube.com/watch?v=NA4JHNxWr90",
+    "question": "Are almonds nuts?",
+    "answer": "No — they're the seeds of drupes (stone fruits)",
+    "category": "science",
+    "uploaded_at": "2026-05-04T17:31:49Z",
+    "publish_at": "2026-05-04T21:28:39.000Z"
+  },
+  "tq_0034": {
+    "youtube_id": "83_IQZsnN_Q",
+    "youtube_url": "https://www.youtube.com/watch?v=83_IQZsnN_Q",
+    "question": "Is the Sahara the world's largest desert?",
+    "answer": "No — Antarctica is",
+    "category": "geography",
+    "uploaded_at": "2026-05-04T17:33:18Z",
+    "publish_at": "2026-05-05T01:28:39.000Z"
   }
 }
