@@ -251,5 +251,28 @@
     "answer": "Shoot for the moon",
     "uploaded_at": "2026-05-04T17:42:18Z",
     "publish_at": "2026-05-05T01:37:49.000Z"
+  },
+  "eq_0034": {
+    "youtube_id": "htXKIwMp5hQ",
+    "youtube_url": "https://www.youtube.com/watch?v=htXKIwMp5hQ",
+    "emojis": "🌊🤿",
+    "answer": "In deep water",
+    "uploaded_at": "2026-05-05T17:33:14Z"
+  },
+  "eq_0035": {
+    "youtube_id": "s8__1QcU-XA",
+    "youtube_url": "https://www.youtube.com/watch?v=s8__1QcU-XA",
+    "emojis": "🧱🧱🧱",
+    "answer": "Hit a brick wall",
+    "uploaded_at": "2026-05-05T17:34:45Z",
+    "publish_at": "2026-05-05T21:31:47.000Z"
+  },
+  "eq_0036": {
+    "youtube_id": "Uk-m7OkTmTA",
+    "youtube_url": "https://www.youtube.com/watch?v=Uk-m7OkTmTA",
+    "emojis": "🎭😀😢",
+    "answer": "All the world's a stage",
+    "uploaded_at": "2026-05-05T17:36:15Z",
+    "publish_at": "2026-05-06T01:31:47.000Z"
   }
 }

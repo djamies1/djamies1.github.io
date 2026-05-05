@@ -251,5 +251,28 @@
     "answer": "Depends on the version",
     "uploaded_at": "2026-05-04T17:37:48Z",
     "publish_at": "2026-05-05T01:33:19.000Z"
+  },
+  "me_0034": {
+    "youtube_id": "j4C6iJwYBes",
+    "youtube_url": "https://www.youtube.com/watch?v=j4C6iJwYBes",
+    "question": "There are 50 stars on the US flag.\nTrue or false?",
+    "answer": "TRUE — 50 stars since 1960",
+    "uploaded_at": "2026-05-05T17:28:48Z"
+  },
+  "me_0035": {
+    "youtube_id": "nDntaY8Tmhw",
+    "youtube_url": "https://www.youtube.com/watch?v=nDntaY8Tmhw",
+    "question": "The word 'dilemma' is sometimes spelled 'dilemna'.\nTrue or false?",
+    "answer": "FALSE — it has always been 'dilemma'",
+    "uploaded_at": "2026-05-05T17:30:18Z",
+    "publish_at": "2026-05-05T21:27:17.000Z"
+  },
+  "me_0036": {
+    "youtube_id": "lYkPtVC_8HI",
+    "youtube_url": "https://www.youtube.com/watch?v=lYkPtVC_8HI",
+    "question": "The Statue of Liberty faces east (toward Europe).\nTrue or false?",
+    "answer": "FALSE — she faces southeast",
+    "uploaded_at": "2026-05-05T17:31:46Z",
+    "publish_at": "2026-05-06T01:27:17.000Z"
   }
 }

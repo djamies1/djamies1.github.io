@@ -292,5 +292,31 @@
     "category": "geography",
     "uploaded_at": "2026-05-04T17:33:18Z",
     "publish_at": "2026-05-05T01:28:39.000Z"
+  },
+  "tq_0035": {
+    "youtube_id": "QXVIAXGnrWA",
+    "youtube_url": "https://www.youtube.com/watch?v=QXVIAXGnrWA",
+    "question": "Does hair or nails continue growing after death?",
+    "answer": "No — the skin just retracts",
+    "category": "science",
+    "uploaded_at": "2026-05-05T17:24:18Z"
+  },
+  "tq_0036": {
+    "youtube_id": "UJmxq-nE2EA",
+    "youtube_url": "https://www.youtube.com/watch?v=UJmxq-nE2EA",
+    "question": "Was the Great Fire of London in 1666 deadly?",
+    "answer": "It killed almost no one — around 6 deaths",
+    "category": "history",
+    "uploaded_at": "2026-05-05T17:25:47Z",
+    "publish_at": "2026-05-05T21:22:30.000Z"
+  },
+  "tq_0037": {
+    "youtube_id": "bvxSVt5z3k8",
+    "youtube_url": "https://www.youtube.com/watch?v=bvxSVt5z3k8",
+    "question": "Do bats navigate by sight or by sound?",
+    "answer": "Both — bats aren't blind",
+    "category": "science",
+    "uploaded_at": "2026-05-05T17:27:16Z",
+    "publish_at": "2026-05-06T01:22:30.000Z"
   }
 }

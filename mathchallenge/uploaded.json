@@ -284,5 +284,31 @@
     "category": "trick_question",
     "uploaded_at": "2026-05-04T17:24:18Z",
     "publish_at": "2026-05-05T01:20:31.000Z"
+  },
+  "math_0034": {
+    "youtube_id": "QFSNuCpE0DE",
+    "youtube_url": "https://www.youtube.com/watch?v=QFSNuCpE0DE",
+    "question": "What is 2 + 2 × 2?",
+    "answer": "6",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-05T17:15:17Z"
+  },
+  "math_0035": {
+    "youtube_id": "Hwc4BspICZI",
+    "youtube_url": "https://www.youtube.com/watch?v=Hwc4BspICZI",
+    "question": "What number do you get when you multiply all the digits on a phone's number pad?",
+    "answer": "0",
+    "category": "trick_question",
+    "uploaded_at": "2026-05-05T17:16:45Z",
+    "publish_at": "2026-05-05T21:14:14.000Z"
+  },
+  "math_0036": {
+    "youtube_id": "mSXhrOd3JwM",
+    "youtube_url": "https://www.youtube.com/watch?v=mSXhrOd3JwM",
+    "question": "A boy is 4 years old. His sister is twice his age. When the boy is 100, how old will his sister be?",
+    "answer": "104",
+    "category": "word_problem",
+    "uploaded_at": "2026-05-05T17:18:18Z",
+    "publish_at": "2026-05-06T01:14:14.000Z"
   }
 }

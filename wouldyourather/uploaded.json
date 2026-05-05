@@ -284,5 +284,31 @@
     "category": "skills",
     "uploaded_at": "2026-05-04T17:28:38Z",
     "publish_at": "2026-05-05T01:24:18.000Z"
+  },
+  "wyr_0034": {
+    "youtube_id": "JZ-OSxl3kpY",
+    "youtube_url": "https://www.youtube.com/watch?v=JZ-OSxl3kpY",
+    "option_a": "Every song you've ever liked suddenly sounds terrible to you",
+    "option_b": "Every movie you've ever loved becomes unwatchable",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-05T17:19:32Z"
+  },
+  "wyr_0035": {
+    "youtube_id": "zd_vHf7DlCg",
+    "youtube_url": "https://www.youtube.com/watch?v=zd_vHf7DlCg",
+    "option_a": "Be 10 years older than you are now",
+    "option_b": "Be 10 years younger with no memories of those years",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-05T17:21:00Z",
+    "publish_at": "2026-05-05T21:18:18.000Z"
+  },
+  "wyr_0036": {
+    "youtube_id": "XYGjrzluNGA",
+    "youtube_url": "https://www.youtube.com/watch?v=XYGjrzluNGA",
+    "option_a": "Gain 20kg overnight",
+    "option_b": "Lose all your hair overnight",
+    "category": "physical",
+    "uploaded_at": "2026-05-05T17:22:29Z",
+    "publish_at": "2026-05-06T01:18:18.000Z"
   }
 }

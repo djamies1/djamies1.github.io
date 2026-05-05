@@ -265,5 +265,28 @@
     "verdict": "FALSE",
     "uploaded_at": "2026-05-04T17:51:17Z",
     "publish_at": "2026-05-05T01:46:48.000Z"
+  },
+  "tof_0036": {
+    "youtube_id": "Bu38TsP55n0",
+    "youtube_url": "https://www.youtube.com/watch?v=Bu38TsP55n0",
+    "statement": "Einstein failed his university entrance exam.",
+    "verdict": "TRUE — partially",
+    "uploaded_at": "2026-05-05T17:42:15Z"
+  },
+  "tof_0037": {
+    "youtube_id": "x-ZJVh7Cf_4",
+    "youtube_url": "https://www.youtube.com/watch?v=x-ZJVh7Cf_4",
+    "statement": "The Eiffel Tower grows taller in summer.",
+    "verdict": "TRUE",
+    "uploaded_at": "2026-05-05T17:43:44Z",
+    "publish_at": "2026-05-05T21:40:44.000Z"
+  },
+  "tof_0038": {
+    "youtube_id": "tpEGa_g0qSA",
+    "youtube_url": "https://www.youtube.com/watch?v=tpEGa_g0qSA",
+    "statement": "Humans are the only animals that have sex for pleasure.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-05T17:45:14Z",
+    "publish_at": "2026-05-06T01:40:44.000Z"
   }
 }
