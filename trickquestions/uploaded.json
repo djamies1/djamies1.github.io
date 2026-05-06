@@ -318,5 +318,31 @@
     "category": "science",
     "uploaded_at": "2026-05-05T17:27:16Z",
     "publish_at": "2026-05-06T01:22:30.000Z"
+  },
+  "tq_0038": {
+    "youtube_id": "OIFcmxo_2gI",
+    "youtube_url": "https://www.youtube.com/watch?v=OIFcmxo_2gI",
+    "question": "What is the oldest written language?",
+    "answer": "Sumerian cuneiform (~3400 BC)",
+    "category": "history",
+    "uploaded_at": "2026-05-06T17:30:56Z"
+  },
+  "tq_0039": {
+    "youtube_id": "krIwPUueuKk",
+    "youtube_url": "https://www.youtube.com/watch?v=krIwPUueuKk",
+    "question": "Does Pikachu have a black tip on its tail?",
+    "answer": "No — the tail is entirely yellow",
+    "category": "mandela_effect",
+    "uploaded_at": "2026-05-06T17:32:26Z",
+    "publish_at": "2026-05-06T21:29:15.000Z"
+  },
+  "tq_0040": {
+    "youtube_id": "QDJRGCymfF0",
+    "youtube_url": "https://www.youtube.com/watch?v=QDJRGCymfF0",
+    "question": "Which came first: the chicken or the egg?",
+    "answer": "The egg",
+    "category": "science",
+    "uploaded_at": "2026-05-06T17:33:55Z",
+    "publish_at": "2026-05-07T01:29:15.000Z"
   }
 }

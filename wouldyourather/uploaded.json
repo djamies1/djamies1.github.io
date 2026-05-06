@@ -310,5 +310,31 @@
     "category": "physical",
     "uploaded_at": "2026-05-05T17:22:29Z",
     "publish_at": "2026-05-06T01:18:18.000Z"
+  },
+  "wyr_0037": {
+    "youtube_id": "SyMYo1qDGhk",
+    "youtube_url": "https://www.youtube.com/watch?v=SyMYo1qDGhk",
+    "option_a": "Have legs for arms and arms for legs",
+    "option_b": "Have your head where your stomach is and your stomach where your head is",
+    "category": "absurd",
+    "uploaded_at": "2026-05-06T17:26:14Z"
+  },
+  "wyr_0038": {
+    "youtube_id": "sI2EENeh75Q",
+    "youtube_url": "https://www.youtube.com/watch?v=sI2EENeh75Q",
+    "option_a": "Find your true love but they live on the other side of the world",
+    "option_b": "Never find true love but have an amazing friend group",
+    "category": "moral",
+    "uploaded_at": "2026-05-06T17:27:45Z",
+    "publish_at": "2026-05-06T21:24:56.000Z"
+  },
+  "wyr_0039": {
+    "youtube_id": "S9iRrQBI9KQ",
+    "youtube_url": "https://www.youtube.com/watch?v=S9iRrQBI9KQ",
+    "option_a": "Have free WiFi everywhere you go for life",
+    "option_b": "Have free food everywhere you go for life",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-06T17:29:14Z",
+    "publish_at": "2026-05-07T01:24:56.000Z"
   }
 }

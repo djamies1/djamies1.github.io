@@ -310,5 +310,31 @@
     "category": "word_problem",
     "uploaded_at": "2026-05-05T17:18:18Z",
     "publish_at": "2026-05-06T01:14:14.000Z"
+  },
+  "math_0037": {
+    "youtube_id": "s38tHILEKVo",
+    "youtube_url": "https://www.youtube.com/watch?v=s38tHILEKVo",
+    "question": "Which is heavier: a tonne of steel or a tonne of cotton?",
+    "answer": "They weigh the same",
+    "category": "trick_question",
+    "uploaded_at": "2026-05-06T17:21:57Z"
+  },
+  "math_0038": {
+    "youtube_id": "OMW33m8Bfmc",
+    "youtube_url": "https://www.youtube.com/watch?v=OMW33m8Bfmc",
+    "question": "What 3-digit number, when reversed, gives a number 396 more than itself?",
+    "answer": "307",
+    "category": "logic",
+    "uploaded_at": "2026-05-06T17:23:26Z",
+    "publish_at": "2026-05-06T21:21:08.000Z"
+  },
+  "math_0039": {
+    "youtube_id": "vVyBAsGxkCc",
+    "youtube_url": "https://www.youtube.com/watch?v=vVyBAsGxkCc",
+    "question": "What number comes next?\n1, 8, 27, 64, 125, __",
+    "answer": "216",
+    "category": "sequence",
+    "uploaded_at": "2026-05-06T17:24:55Z",
+    "publish_at": "2026-05-07T01:21:08.000Z"
   }
 }

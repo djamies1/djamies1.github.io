@@ -288,5 +288,28 @@
     "verdict": "FALSE",
     "uploaded_at": "2026-05-05T17:45:14Z",
     "publish_at": "2026-05-06T01:40:44.000Z"
+  },
+  "tof_0039": {
+    "youtube_id": "7sB_La6GUaA",
+    "youtube_url": "https://www.youtube.com/watch?v=7sB_La6GUaA",
+    "statement": "Chameleons change colour to match their background.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-06T17:48:54Z"
+  },
+  "tof_0040": {
+    "youtube_id": "2ddsIxa5JZw",
+    "youtube_url": "https://www.youtube.com/watch?v=2ddsIxa5JZw",
+    "statement": "There is no gravity in space.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-06T17:50:24Z",
+    "publish_at": "2026-05-06T21:47:26.000Z"
+  },
+  "tof_0041": {
+    "youtube_id": "NnvMzni9ipo",
+    "youtube_url": "https://www.youtube.com/watch?v=NnvMzni9ipo",
+    "statement": "Alcohol warms you up.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-06T17:51:54Z",
+    "publish_at": "2026-05-07T01:47:26.000Z"
   }
 }
