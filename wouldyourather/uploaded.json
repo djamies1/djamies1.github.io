@@ -336,5 +336,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-05-06T17:29:14Z",
     "publish_at": "2026-05-07T01:24:56.000Z"
+  },
+  "wyr_0040": {
+    "youtube_id": "TI0Slj34LK0",
+    "youtube_url": "https://www.youtube.com/watch?v=TI0Slj34LK0",
+    "option_a": "Always win every argument",
+    "option_b": "Always know when you're wrong",
+    "category": "social",
+    "uploaded_at": "2026-05-07T17:35:58Z"
+  },
+  "wyr_0041": {
+    "youtube_id": "O7IvD5Cqf2g",
+    "youtube_url": "https://www.youtube.com/watch?v=O7IvD5Cqf2g",
+    "option_a": "Have your phone battery always at 100%",
+    "option_b": "Never feel hungry or thirsty again",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-07T17:37:28Z",
+    "publish_at": "2026-05-07T21:34:46.000Z"
+  },
+  "wyr_0042": {
+    "youtube_id": "zYtfVNYm0Qs",
+    "youtube_url": "https://www.youtube.com/watch?v=zYtfVNYm0Qs",
+    "option_a": "Live in your favourite city but be broke",
+    "option_b": "Live somewhere boring but be comfortable financially",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-07T17:38:58Z",
+    "publish_at": "2026-05-08T01:34:46.000Z"
   }
 }

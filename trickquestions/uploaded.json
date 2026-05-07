@@ -344,5 +344,31 @@
     "category": "science",
     "uploaded_at": "2026-05-06T17:33:55Z",
     "publish_at": "2026-05-07T01:29:15.000Z"
+  },
+  "tq_0041": {
+    "youtube_id": "7y1KJ5n5yRw",
+    "youtube_url": "https://www.youtube.com/watch?v=7y1KJ5n5yRw",
+    "question": "How old is the universe?",
+    "answer": "About 13.8 billion years",
+    "category": "science",
+    "uploaded_at": "2026-05-07T17:40:45Z"
+  },
+  "tq_0042": {
+    "youtube_id": "GIuLzz_wJ0E",
+    "youtube_url": "https://www.youtube.com/watch?v=GIuLzz_wJ0E",
+    "question": "Was the word 'quiz' always a word?",
+    "answer": "It was invented as a prank in 1791",
+    "category": "language",
+    "uploaded_at": "2026-05-07T17:42:15Z",
+    "publish_at": "2026-05-07T21:38:59.000Z"
+  },
+  "tq_0043": {
+    "youtube_id": "xNZ6aiJ29-w",
+    "youtube_url": "https://www.youtube.com/watch?v=xNZ6aiJ29-w",
+    "question": "Does the Queen of England own all unmarked swans?",
+    "answer": "Yes — in open waters",
+    "category": "history",
+    "uploaded_at": "2026-05-07T17:43:45Z",
+    "publish_at": "2026-05-08T01:38:59.000Z"
   }
 }

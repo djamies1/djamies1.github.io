@@ -336,5 +336,31 @@
     "category": "sequence",
     "uploaded_at": "2026-05-06T17:24:55Z",
     "publish_at": "2026-05-07T01:21:08.000Z"
+  },
+  "math_0040": {
+    "youtube_id": "EpAxFAXztRU",
+    "youtube_url": "https://www.youtube.com/watch?v=EpAxFAXztRU",
+    "question": "Take 1000, add 40. Add 1000. Add 30. Add 1000. Plus 20. Plus 1000. Plus 10. Total?",
+    "answer": "4100",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-07T17:31:49Z"
+  },
+  "math_0041": {
+    "youtube_id": "TzCAx9PhYQk",
+    "youtube_url": "https://www.youtube.com/watch?v=TzCAx9PhYQk",
+    "question": "How many times does the digit 9 appear between 1 and 100?",
+    "answer": "20",
+    "category": "logic",
+    "uploaded_at": "2026-05-07T17:33:17Z",
+    "publish_at": "2026-05-07T21:30:44.000Z"
+  },
+  "math_0042": {
+    "youtube_id": "Z0N98OXZv0M",
+    "youtube_url": "https://www.youtube.com/watch?v=Z0N98OXZv0M",
+    "question": "What is bigger: the number of seconds in a day, or the number of hours in a century?",
+    "answer": "Hours in a century",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-05-07T17:34:45Z",
+    "publish_at": "2026-05-08T01:30:44.000Z"
   }
 }

@@ -297,5 +297,28 @@
     "answer": "Stop and smell the roses",
     "uploaded_at": "2026-05-06T17:42:54Z",
     "publish_at": "2026-05-07T01:38:26.000Z"
+  },
+  "eq_0040": {
+    "youtube_id": "BHM8ujMTboU",
+    "youtube_url": "https://www.youtube.com/watch?v=BHM8ujMTboU",
+    "emojis": "🎻💀",
+    "answer": "Fiddling while Rome burns",
+    "uploaded_at": "2026-05-07T17:49:44Z"
+  },
+  "eq_0041": {
+    "youtube_id": "BxQ8DClfrpY",
+    "youtube_url": "https://www.youtube.com/watch?v=BxQ8DClfrpY",
+    "emojis": "🎸🎤🎶",
+    "answer": "Bohemian Rhapsody",
+    "uploaded_at": "2026-05-07T17:51:14Z",
+    "publish_at": "2026-05-07T21:48:16.000Z"
+  },
+  "eq_0042": {
+    "youtube_id": "avzhGImPXfU",
+    "youtube_url": "https://www.youtube.com/watch?v=avzhGImPXfU",
+    "emojis": "🌙🕺🧤",
+    "answer": "Billie Jean",
+    "uploaded_at": "2026-05-07T17:52:44Z",
+    "publish_at": "2026-05-08T01:48:16.000Z"
   }
 }

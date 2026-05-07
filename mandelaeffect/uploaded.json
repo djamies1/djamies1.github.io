@@ -297,5 +297,28 @@
     "answer": "TRUE — Barney has always been included",
     "uploaded_at": "2026-05-06T17:38:25Z",
     "publish_at": "2026-05-07T01:33:56.000Z"
+  },
+  "me_0040": {
+    "youtube_id": "xEmqHQUFRgo",
+    "youtube_url": "https://www.youtube.com/watch?v=xEmqHQUFRgo",
+    "question": "The Game Boy had a colour screen from the beginning.\nTrue or false?",
+    "answer": "FALSE — original was grey/green monochrome",
+    "uploaded_at": "2026-05-07T17:45:14Z"
+  },
+  "me_0041": {
+    "youtube_id": "fC6kuvH1a70",
+    "youtube_url": "https://www.youtube.com/watch?v=fC6kuvH1a70",
+    "question": "In the Monopoly game, the player pieces include a boot.\nTrue or false?",
+    "answer": "FALSE — the boot was retired in 2013",
+    "uploaded_at": "2026-05-07T17:46:50Z",
+    "publish_at": "2026-05-07T21:43:46.000Z"
+  },
+  "me_0042": {
+    "youtube_id": "sRAkb-OZVDQ",
+    "youtube_url": "https://www.youtube.com/watch?v=sRAkb-OZVDQ",
+    "question": "The Queen's Guard at Buckingham Palace are not allowed to move.\nTrue or false?",
+    "answer": "FALSE — they follow strict drills and can shout commands",
+    "uploaded_at": "2026-05-07T17:48:16Z",
+    "publish_at": "2026-05-08T01:43:46.000Z"
   }
 }

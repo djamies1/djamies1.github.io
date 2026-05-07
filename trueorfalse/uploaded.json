@@ -311,5 +311,28 @@
     "verdict": "FALSE",
     "uploaded_at": "2026-05-06T17:51:54Z",
     "publish_at": "2026-05-07T01:47:26.000Z"
+  },
+  "tof_0042": {
+    "youtube_id": "6ytZtRYP34Q",
+    "youtube_url": "https://www.youtube.com/watch?v=6ytZtRYP34Q",
+    "statement": "Humans are descended from chimpanzees.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-07T17:58:45Z"
+  },
+  "tof_0043": {
+    "youtube_id": "pN_Y6orKn1A",
+    "youtube_url": "https://www.youtube.com/watch?v=pN_Y6orKn1A",
+    "statement": "You should wake a sleepwalker immediately for their safety.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-07T18:00:14Z",
+    "publish_at": "2026-05-07T21:57:15.000Z"
+  },
+  "tof_0044": {
+    "youtube_id": "w7IAEjfbY-A",
+    "youtube_url": "https://www.youtube.com/watch?v=w7IAEjfbY-A",
+    "statement": "Oxygen is the most abundant gas in Earth's atmosphere.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-07T18:01:44Z",
+    "publish_at": "2026-05-08T01:57:15.000Z"
   }
 }
