@@ -755,5 +755,28 @@
     "answer": "A chalkboard.",
     "uploaded_at": "2026-05-07T18:05:57Z",
     "publish_at": "2026-05-08T06:01:45.000Z"
+  },
+  "rdl_0100": {
+    "youtube_id": "juKKkPIzfzs",
+    "youtube_url": "https://www.youtube.com/watch?v=juKKkPIzfzs",
+    "question": "What has no beginning, no end, and nothing in the middle?",
+    "answer": "A doughnut (also a donut) or an ellipse like a circle and oval.",
+    "uploaded_at": "2026-05-08T17:33:09Z"
+  },
+  "rdl_0101": {
+    "youtube_id": "cSt34X2eTVE",
+    "youtube_url": "https://www.youtube.com/watch?v=cSt34X2eTVE",
+    "question": "A skin have I, more eyes than one. I can be very nice when I am done. What am I?",
+    "answer": "A potato.",
+    "uploaded_at": "2026-05-08T17:34:41Z",
+    "publish_at": "2026-05-08T23:31:50.000Z"
+  },
+  "rdl_0102": {
+    "youtube_id": "dcupZQUng3o",
+    "youtube_url": "https://www.youtube.com/watch?v=dcupZQUng3o",
+    "question": "If a rooster laid a brown egg and a white egg, what kind of chicks would hatch?",
+    "answer": "Roosters don't lay eggs.",
+    "uploaded_at": "2026-05-08T17:36:08Z",
+    "publish_at": "2026-05-09T05:31:50.000Z"
   }
 }

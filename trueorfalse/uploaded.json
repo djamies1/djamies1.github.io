@@ -334,5 +334,28 @@
     "verdict": "FALSE",
     "uploaded_at": "2026-05-07T18:01:44Z",
     "publish_at": "2026-05-08T01:57:15.000Z"
+  },
+  "tof_0045": {
+    "youtube_id": "smg2UlKXWzc",
+    "youtube_url": "https://www.youtube.com/watch?v=smg2UlKXWzc",
+    "statement": "Humans are the slowest runners in the animal kingdom.",
+    "verdict": "FALSE",
+    "uploaded_at": "2026-05-08T17:28:49Z"
+  },
+  "tof_0046": {
+    "youtube_id": "QP21dLERcp0",
+    "youtube_url": "https://www.youtube.com/watch?v=QP21dLERcp0",
+    "statement": "Tomatoes are vegetables.",
+    "verdict": "FALSE — botanically",
+    "uploaded_at": "2026-05-08T17:30:20Z",
+    "publish_at": "2026-05-08T21:27:20.000Z"
+  },
+  "tof_0047": {
+    "youtube_id": "omsucjQSoS0",
+    "youtube_url": "https://www.youtube.com/watch?v=omsucjQSoS0",
+    "statement": "You should drink 8 glasses of water a day.",
+    "verdict": "FALSE — as an absolute rule",
+    "uploaded_at": "2026-05-08T17:31:49Z",
+    "publish_at": "2026-05-09T01:27:20.000Z"
   }
 }

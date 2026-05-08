@@ -370,5 +370,31 @@
     "category": "history",
     "uploaded_at": "2026-05-07T17:43:45Z",
     "publish_at": "2026-05-08T01:38:59.000Z"
+  },
+  "tq_0044": {
+    "youtube_id": "oCQhRLz2AKI",
+    "youtube_url": "https://www.youtube.com/watch?v=oCQhRLz2AKI",
+    "question": "Is it illegal to chew gum in Singapore?",
+    "answer": "Mostly yes — since 1992",
+    "category": "geography",
+    "uploaded_at": "2026-05-08T17:10:49Z"
+  },
+  "tq_0045": {
+    "youtube_id": "3zIRGiyds54",
+    "youtube_url": "https://www.youtube.com/watch?v=3zIRGiyds54",
+    "question": "What colour were the original Olympic gold medals?",
+    "answer": "Solid gold — until 1912",
+    "category": "history",
+    "uploaded_at": "2026-05-08T17:12:20Z",
+    "publish_at": "2026-05-08T21:09:14.000Z"
+  },
+  "tq_0046": {
+    "youtube_id": "nIA8AzKeAdQ",
+    "youtube_url": "https://www.youtube.com/watch?v=nIA8AzKeAdQ",
+    "question": "Does the word 'golf' stand for 'Gentlemen Only, Ladies Forbidden'?",
+    "answer": "No — that's a backronym invented later",
+    "category": "language",
+    "uploaded_at": "2026-05-08T17:13:50Z",
+    "publish_at": "2026-05-09T01:09:14.000Z"
   }
 }

@@ -320,5 +320,28 @@
     "answer": "Billie Jean",
     "uploaded_at": "2026-05-07T17:52:44Z",
     "publish_at": "2026-05-08T01:48:16.000Z"
+  },
+  "eq_0043": {
+    "youtube_id": "5rrAKOC47rI",
+    "youtube_url": "https://www.youtube.com/watch?v=5rrAKOC47rI",
+    "emojis": "🎠🎡🎢",
+    "answer": "Paradise City",
+    "uploaded_at": "2026-05-08T17:19:49Z"
+  },
+  "eq_0044": {
+    "youtube_id": "vrbgtUPXzmI",
+    "youtube_url": "https://www.youtube.com/watch?v=vrbgtUPXzmI",
+    "emojis": "🌊🏄🌞",
+    "answer": "Good Vibrations",
+    "uploaded_at": "2026-05-08T17:21:19Z",
+    "publish_at": "2026-05-08T21:18:21.000Z"
+  },
+  "eq_0045": {
+    "youtube_id": "xBwG1rN9vIA",
+    "youtube_url": "https://www.youtube.com/watch?v=xBwG1rN9vIA",
+    "emojis": "💃🕺🌃",
+    "answer": "Dancing in the Dark",
+    "uploaded_at": "2026-05-08T17:22:49Z",
+    "publish_at": "2026-05-09T01:18:21.000Z"
   }
 }

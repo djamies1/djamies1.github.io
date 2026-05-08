@@ -320,5 +320,28 @@
     "answer": "FALSE — they follow strict drills and can shout commands",
     "uploaded_at": "2026-05-07T17:48:16Z",
     "publish_at": "2026-05-08T01:43:46.000Z"
+  },
+  "me_0043": {
+    "youtube_id": "SFwu-ZJgFdo",
+    "youtube_url": "https://www.youtube.com/watch?v=SFwu-ZJgFdo",
+    "question": "Judge Judy (Judge Judith Sheindlin) is a real judge.\nTrue or false?",
+    "answer": "FALSE — she's a retired family court judge arbitrating on TV",
+    "uploaded_at": "2026-05-08T17:15:21Z"
+  },
+  "me_0044": {
+    "youtube_id": "8jvP74gxt_0",
+    "youtube_url": "https://www.youtube.com/watch?v=8jvP74gxt_0",
+    "question": "Nelson Mandela died in prison in the 1980s.\nTrue or false?",
+    "answer": "FALSE — he was released in 1990 and died in 2013",
+    "uploaded_at": "2026-05-08T17:16:50Z",
+    "publish_at": "2026-05-08T21:13:51.000Z"
+  },
+  "me_0045": {
+    "youtube_id": "51hDYsPsxfM",
+    "youtube_url": "https://www.youtube.com/watch?v=51hDYsPsxfM",
+    "question": "In Home Alone, Kevin McCallister says 'Keep the change, ya filthy animal.'\nTrue or false?",
+    "answer": "FALSE — it's from a fake film within the film",
+    "uploaded_at": "2026-05-08T17:18:21Z",
+    "publish_at": "2026-05-09T01:13:51.000Z"
   }
 }
