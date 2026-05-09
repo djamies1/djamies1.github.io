@@ -388,5 +388,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-05-08T17:04:53Z",
     "publish_at": "2026-05-09T01:01:02.000Z"
+  },
+  "math_0046": {
+    "youtube_id": "lQL4lt3ClO4",
+    "youtube_url": "https://www.youtube.com/watch?v=lQL4lt3ClO4",
+    "question": "A clock shows 3:15. What is the angle between the hour and minute hands?",
+    "answer": "7.5 degrees",
+    "category": "logic",
+    "uploaded_at": "2026-05-09T16:40:54Z"
+  },
+  "math_0047": {
+    "youtube_id": "Hs6is6i4emY",
+    "youtube_url": "https://www.youtube.com/watch?v=Hs6is6i4emY",
+    "question": "What number is missing?\n2, 4, __, 16, 32",
+    "answer": "8",
+    "category": "sequence",
+    "uploaded_at": "2026-05-09T16:42:22Z",
+    "publish_at": "2026-05-09T20:40:06.000Z"
+  },
+  "math_0048": {
+    "youtube_id": "8yhY42J10Sc",
+    "youtube_url": "https://www.youtube.com/watch?v=8yhY42J10Sc",
+    "question": "If 1 = 5, 2 = 10, 3 = 15, 4 = 20, then 5 = ?",
+    "answer": "1",
+    "category": "trick_question",
+    "uploaded_at": "2026-05-09T16:43:52Z",
+    "publish_at": "2026-05-10T00:40:06.000Z"
   }
 }

@@ -778,5 +778,28 @@
     "answer": "Roosters don't lay eggs.",
     "uploaded_at": "2026-05-08T17:36:08Z",
     "publish_at": "2026-05-09T05:31:50.000Z"
+  },
+  "rdl_0103": {
+    "youtube_id": "zqBSqxkaKFE",
+    "youtube_url": "https://www.youtube.com/watch?v=zqBSqxkaKFE",
+    "question": "What do you serve that you can't eat?",
+    "answer": "A tennis ball.",
+    "uploaded_at": "2026-05-09T16:57:11Z"
+  },
+  "rdl_0104": {
+    "youtube_id": "T9F-LFZIUno",
+    "youtube_url": "https://www.youtube.com/watch?v=T9F-LFZIUno",
+    "question": "What starts with a T, ends with a T and has T in it?",
+    "answer": "A teapot.",
+    "uploaded_at": "2026-05-09T16:58:40Z",
+    "publish_at": "2026-05-09T22:55:51.000Z"
+  },
+  "rdl_0105": {
+    "youtube_id": "uMHW9BTHgds",
+    "youtube_url": "https://www.youtube.com/watch?v=uMHW9BTHgds",
+    "question": "Which is correct to say, \"The yolk of the egg are white,\" or \"The yolk of the egg is white?\"",
+    "answer": "Neither, because egg yolks are yellow.",
+    "uploaded_at": "2026-05-09T17:00:11Z",
+    "publish_at": "2026-05-10T04:55:51.000Z"
   }
 }

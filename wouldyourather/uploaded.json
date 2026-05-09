@@ -388,5 +388,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-05-08T17:09:13Z",
     "publish_at": "2026-05-09T01:04:54.000Z"
+  },
+  "wyr_0046": {
+    "youtube_id": "XnmftlIVnDw",
+    "youtube_url": "https://www.youtube.com/watch?v=XnmftlIVnDw",
+    "option_a": "Be able to speak to the dead for 5 minutes",
+    "option_b": "Know your future for the next 10 years",
+    "category": "moral",
+    "uploaded_at": "2026-05-09T16:45:13Z"
+  },
+  "wyr_0047": {
+    "youtube_id": "hqT-8K_xx5U",
+    "youtube_url": "https://www.youtube.com/watch?v=hqT-8K_xx5U",
+    "option_a": "Always sneeze when someone says your name",
+    "option_b": "Always laugh when someone cries",
+    "category": "absurd",
+    "uploaded_at": "2026-05-09T16:46:42Z",
+    "publish_at": "2026-05-09T20:43:52.000Z"
+  },
+  "wyr_0048": {
+    "youtube_id": "Y1U7NqhCdiQ",
+    "youtube_url": "https://www.youtube.com/watch?v=Y1U7NqhCdiQ",
+    "option_a": "Know the Wi-Fi password of every place you enter",
+    "option_b": "Never wait in a queue longer than 1 minute",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-09T16:48:11Z",
+    "publish_at": "2026-05-10T00:43:52.000Z"
   }
 }
