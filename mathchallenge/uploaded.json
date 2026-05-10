@@ -414,5 +414,31 @@
     "category": "trick_question",
     "uploaded_at": "2026-05-09T16:43:52Z",
     "publish_at": "2026-05-10T00:40:06.000Z"
+  },
+  "math_0049": {
+    "youtube_id": "IYzEr5WaSJI",
+    "youtube_url": "https://www.youtube.com/watch?v=IYzEr5WaSJI",
+    "question": "What is the sum of all numbers from 1 to 100?",
+    "answer": "5050",
+    "category": "logic",
+    "uploaded_at": "2026-05-10T16:41:53Z"
+  },
+  "math_0050": {
+    "youtube_id": "-OI_vZOlo20",
+    "youtube_url": "https://www.youtube.com/watch?v=-OI_vZOlo20",
+    "question": "If a brick weighs 1kg plus half a brick, how heavy is a whole brick?",
+    "answer": "2kg",
+    "category": "word_problem",
+    "uploaded_at": "2026-05-10T16:43:20Z",
+    "publish_at": "2026-05-10T20:41:03.000Z"
+  },
+  "math_0051": {
+    "youtube_id": "2hcSMpLFH2k",
+    "youtube_url": "https://www.youtube.com/watch?v=2hcSMpLFH2k",
+    "question": "How many sides does a circle have?",
+    "answer": "1",
+    "category": "trick_question",
+    "uploaded_at": "2026-05-10T16:44:51Z",
+    "publish_at": "2026-05-11T00:41:03.000Z"
   }
 }

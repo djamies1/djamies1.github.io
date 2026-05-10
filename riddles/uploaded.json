@@ -801,5 +801,28 @@
     "answer": "Neither, because egg yolks are yellow.",
     "uploaded_at": "2026-05-09T17:00:11Z",
     "publish_at": "2026-05-10T04:55:51.000Z"
+  },
+  "rdl_0106": {
+    "youtube_id": "vCeqHWinl24",
+    "youtube_url": "https://www.youtube.com/watch?v=vCeqHWinl24",
+    "question": "You can't keep this until you have given it. What is it?",
+    "answer": "Your word.",
+    "uploaded_at": "2026-05-10T16:58:09Z"
+  },
+  "rdl_0107": {
+    "youtube_id": "R7OG1TjzV4I",
+    "youtube_url": "https://www.youtube.com/watch?v=R7OG1TjzV4I",
+    "question": "What question can someone ask all day long, always get completely different answers, and yet all the answers could be correct?",
+    "answer": "\"What time is it?\"",
+    "uploaded_at": "2026-05-10T16:59:38Z",
+    "publish_at": "2026-05-10T22:56:49.000Z"
+  },
+  "rdl_0108": {
+    "youtube_id": "XYu5bp4q8B0",
+    "youtube_url": "https://www.youtube.com/watch?v=XYu5bp4q8B0",
+    "question": "Who can shave three times a day and still grow a beard?",
+    "answer": "A barber. He could shave other men three times a day and still grow his own beard.",
+    "uploaded_at": "2026-05-10T17:01:11Z",
+    "publish_at": "2026-05-11T04:56:49.000Z"
   }
 }
