@@ -824,5 +824,28 @@
     "answer": "A barber. He could shave other men three times a day and still grow his own beard.",
     "uploaded_at": "2026-05-10T17:01:11Z",
     "publish_at": "2026-05-11T04:56:49.000Z"
+  },
+  "rdl_0109": {
+    "youtube_id": "dMONzdJvVvY",
+    "youtube_url": "https://www.youtube.com/watch?v=dMONzdJvVvY",
+    "question": "In a certain city, 5% of all the people in town have unlisted phone numbers. If you select 100 names at random from that city's phone directory, how many people selected will have unlisted phone numbers?",
+    "answer": "None. If their names are in the phone directory, they do not have unlisted phone numbers!",
+    "uploaded_at": "2026-05-11T18:05:51Z"
+  },
+  "rdl_0110": {
+    "youtube_id": "5JiZ4lHVZ7s",
+    "youtube_url": "https://www.youtube.com/watch?v=5JiZ4lHVZ7s",
+    "question": "David's father has three sons: Snap, Crackle, and _____?",
+    "answer": "David.",
+    "uploaded_at": "2026-05-11T18:07:22Z",
+    "publish_at": "2026-05-12T00:04:30.000Z"
+  },
+  "rdl_0111": {
+    "youtube_id": "CIjXEOkj-OI",
+    "youtube_url": "https://www.youtube.com/watch?v=CIjXEOkj-OI",
+    "question": "A hundred feet in the air, but it's back is on the ground. What is it?",
+    "answer": "A centipede flipped over.",
+    "uploaded_at": "2026-05-11T18:08:50Z",
+    "publish_at": "2026-05-12T06:04:30.000Z"
   }
 }

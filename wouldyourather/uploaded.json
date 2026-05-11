@@ -440,5 +440,31 @@
     "category": "absurd",
     "uploaded_at": "2026-05-10T16:49:11Z",
     "publish_at": "2026-05-11T00:44:51.000Z"
+  },
+  "wyr_0052": {
+    "youtube_id": "2utxMNBQO2g",
+    "youtube_url": "https://www.youtube.com/watch?v=2utxMNBQO2g",
+    "option_a": "Have the superpower to heal others but not yourself",
+    "option_b": "Heal yourself instantly but never be able to help others",
+    "category": "moral",
+    "uploaded_at": "2026-05-11T17:53:52Z"
+  },
+  "wyr_0053": {
+    "youtube_id": "FrdagtyHcOM",
+    "youtube_url": "https://www.youtube.com/watch?v=FrdagtyHcOM",
+    "option_a": "Be able to read 10 times faster",
+    "option_b": "Remember everything you've ever read",
+    "category": "skills",
+    "uploaded_at": "2026-05-11T17:55:22Z",
+    "publish_at": "2026-05-11T21:52:32.000Z"
+  },
+  "wyr_0054": {
+    "youtube_id": "G5R4KZ19Rxw",
+    "youtube_url": "https://www.youtube.com/watch?v=G5R4KZ19Rxw",
+    "option_a": "Never have to exercise but stay perfectly healthy",
+    "option_b": "Never have to sleep but feel fully rested",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-11T17:56:51Z",
+    "publish_at": "2026-05-12T01:52:32.000Z"
   }
 }
