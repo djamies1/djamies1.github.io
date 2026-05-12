@@ -466,5 +466,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-05-11T17:56:51Z",
     "publish_at": "2026-05-12T01:52:32.000Z"
+  },
+  "wyr_0055": {
+    "youtube_id": "J0GDjC1uWzY",
+    "youtube_url": "https://www.youtube.com/watch?v=J0GDjC1uWzY",
+    "option_a": "Have the ability to delete any memory",
+    "option_b": "Be able to replay any memory in perfect detail",
+    "category": "mental",
+    "uploaded_at": "2026-05-12T17:57:34Z"
+  },
+  "wyr_0056": {
+    "youtube_id": "niAdul2Ia-I",
+    "youtube_url": "https://www.youtube.com/watch?v=niAdul2Ia-I",
+    "option_a": "Always know when someone is lying to you",
+    "option_b": "Always be believed when you tell the truth",
+    "category": "social",
+    "uploaded_at": "2026-05-12T17:59:04Z",
+    "publish_at": "2026-05-12T21:56:16.000Z"
+  },
+  "wyr_0057": {
+    "youtube_id": "YQDR4A60WNQ",
+    "youtube_url": "https://www.youtube.com/watch?v=YQDR4A60WNQ",
+    "option_a": "Give up social media forever",
+    "option_b": "Give up watching TV and movies forever",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-12T18:00:35Z",
+    "publish_at": "2026-05-13T01:56:16.000Z"
   }
 }
