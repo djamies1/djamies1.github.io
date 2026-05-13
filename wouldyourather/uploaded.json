@@ -492,5 +492,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-05-12T18:00:35Z",
     "publish_at": "2026-05-13T01:56:16.000Z"
+  },
+  "wyr_0058": {
+    "youtube_id": "2Is26vMV1Gs",
+    "youtube_url": "https://www.youtube.com/watch?v=2Is26vMV1Gs",
+    "option_a": "Be able to survive without food",
+    "option_b": "Be able to survive without water",
+    "category": "physical",
+    "uploaded_at": "2026-05-13T17:59:25Z"
+  },
+  "wyr_0059": {
+    "youtube_id": "eE0hi67BX7U",
+    "youtube_url": "https://www.youtube.com/watch?v=eE0hi67BX7U",
+    "option_a": "Be completely fluent in every coding language",
+    "option_b": "Be able to master any physical skill in 24 hours",
+    "category": "skills",
+    "uploaded_at": "2026-05-13T18:00:58Z",
+    "publish_at": "2026-05-13T21:58:06.000Z"
+  },
+  "wyr_0060": {
+    "youtube_id": "AoUHEyjeUY4",
+    "youtube_url": "https://www.youtube.com/watch?v=AoUHEyjeUY4",
+    "option_a": "Have $1 million but must spend it all in 24 hours",
+    "option_b": "Get $1,000 per day for the rest of your life",
+    "category": "moral",
+    "uploaded_at": "2026-05-13T18:02:26Z",
+    "publish_at": "2026-05-14T01:58:06.000Z"
   }
 }

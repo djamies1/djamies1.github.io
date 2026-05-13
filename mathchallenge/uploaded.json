@@ -492,5 +492,31 @@
     "category": "trick_question",
     "uploaded_at": "2026-05-12T17:56:15Z",
     "publish_at": "2026-05-13T01:52:28.000Z"
+  },
+  "math_0058": {
+    "youtube_id": "0FhHsh9BgY4",
+    "youtube_url": "https://www.youtube.com/watch?v=0FhHsh9BgY4",
+    "question": "What is the next prime number after 89?",
+    "answer": "97",
+    "category": "logic",
+    "uploaded_at": "2026-05-13T17:55:07Z"
+  },
+  "math_0059": {
+    "youtube_id": "joQppGVG0ao",
+    "youtube_url": "https://www.youtube.com/watch?v=joQppGVG0ao",
+    "question": "If you travel at 60mph for 1 hour, then 60mph for another hour, what is your average speed?",
+    "answer": "60mph",
+    "category": "word_problem",
+    "uploaded_at": "2026-05-13T17:56:36Z",
+    "publish_at": "2026-05-13T21:54:20.000Z"
+  },
+  "math_0060": {
+    "youtube_id": "3FIOLYLuicA",
+    "youtube_url": "https://www.youtube.com/watch?v=3FIOLYLuicA",
+    "question": "What is the missing number?\n1, 2, 4, 7, 11, 16, 22, __",
+    "answer": "29",
+    "category": "sequence",
+    "uploaded_at": "2026-05-13T17:58:05Z",
+    "publish_at": "2026-05-14T01:54:20.000Z"
   }
 }
