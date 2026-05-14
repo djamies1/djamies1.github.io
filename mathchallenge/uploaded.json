@@ -518,5 +518,31 @@
     "category": "sequence",
     "uploaded_at": "2026-05-13T17:58:05Z",
     "publish_at": "2026-05-14T01:54:20.000Z"
+  },
+  "math_0061": {
+    "youtube_id": "voOhmZsqZf8",
+    "youtube_url": "https://www.youtube.com/watch?v=voOhmZsqZf8",
+    "question": "5 + 5 × 5 = ?",
+    "answer": "30",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-14T17:32:17Z"
+  },
+  "math_0062": {
+    "youtube_id": "g7SGOAK23fA",
+    "youtube_url": "https://www.youtube.com/watch?v=g7SGOAK23fA",
+    "question": "2 + 3 × 4 = ?",
+    "answer": "14",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-14T17:33:46Z",
+    "publish_at": "2026-05-14T21:31:13.000Z"
+  },
+  "math_0063": {
+    "youtube_id": "uuaUMWZ1r44",
+    "youtube_url": "https://www.youtube.com/watch?v=uuaUMWZ1r44",
+    "question": "10 - 2 + 3 = ?",
+    "answer": "11",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-14T17:35:15Z",
+    "publish_at": "2026-05-15T01:31:13.000Z"
   }
 }

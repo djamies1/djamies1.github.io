@@ -518,5 +518,31 @@
     "category": "moral",
     "uploaded_at": "2026-05-13T18:02:26Z",
     "publish_at": "2026-05-14T01:58:06.000Z"
+  },
+  "wyr_0061": {
+    "youtube_id": "fxoOUDHWciI",
+    "youtube_url": "https://www.youtube.com/watch?v=fxoOUDHWciI",
+    "option_a": "Know every language fluently",
+    "option_b": "Play every instrument perfectly",
+    "category": "skills",
+    "uploaded_at": "2026-05-14T17:36:29Z"
+  },
+  "wyr_0062": {
+    "youtube_id": "V2MCxdZ1EhE",
+    "youtube_url": "https://www.youtube.com/watch?v=V2MCxdZ1EhE",
+    "option_a": "Be able to pause time whenever you want",
+    "option_b": "Be able to rewind time up to 10 minutes",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-14T17:37:59Z",
+    "publish_at": "2026-05-14T21:35:16.000Z"
+  },
+  "wyr_0063": {
+    "youtube_id": "WoSkETAS_UA",
+    "youtube_url": "https://www.youtube.com/watch?v=WoSkETAS_UA",
+    "option_a": "Never need to sleep",
+    "option_b": "Only need 1 hour of sleep and wake fully refreshed",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-14T17:39:29Z",
+    "publish_at": "2026-05-15T01:35:16.000Z"
   }
 }
