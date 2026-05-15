@@ -544,5 +544,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-05-14T17:39:29Z",
     "publish_at": "2026-05-15T01:35:16.000Z"
+  },
+  "wyr_0064": {
+    "youtube_id": "iAH3u4Ui7RA",
+    "youtube_url": "https://www.youtube.com/watch?v=iAH3u4Ui7RA",
+    "option_a": "Have a photographic memory",
+    "option_b": "Be able to learn any skill in one day",
+    "category": "mental",
+    "uploaded_at": "2026-05-15T17:26:58Z"
+  },
+  "wyr_0065": {
+    "youtube_id": "F5Pll6ZmW_0",
+    "youtube_url": "https://www.youtube.com/watch?v=F5Pll6ZmW_0",
+    "option_a": "Always be 10 minutes early",
+    "option_b": "Always be exactly on time with no effort",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-15T17:29:45Z",
+    "publish_at": "2026-05-15T21:25:38.000Z"
+  },
+  "wyr_0066": {
+    "youtube_id": "7VnigA-oU8M",
+    "youtube_url": "https://www.youtube.com/watch?v=7VnigA-oU8M",
+    "option_a": "Be able to talk to animals",
+    "option_b": "Be able to talk to plants",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-15T17:31:28Z",
+    "publish_at": "2026-05-16T01:25:38.000Z"
   }
 }

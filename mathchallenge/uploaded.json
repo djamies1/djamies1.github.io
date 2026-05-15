@@ -544,5 +544,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-14T17:35:15Z",
     "publish_at": "2026-05-15T01:31:13.000Z"
+  },
+  "math_0064": {
+    "youtube_id": "K70EYA482TY",
+    "youtube_url": "https://www.youtube.com/watch?v=K70EYA482TY",
+    "question": "8 ÷ 4 × 2 = ?",
+    "answer": "4",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-15T17:22:24Z"
+  },
+  "math_0065": {
+    "youtube_id": "rtNkPP2a0hc",
+    "youtube_url": "https://www.youtube.com/watch?v=rtNkPP2a0hc",
+    "question": "3 + 4 × 2 - 1 = ?",
+    "answer": "10",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-15T17:24:08Z",
+    "publish_at": "2026-05-15T21:20:14.000Z"
+  },
+  "math_0066": {
+    "youtube_id": "XPjoRuGb48M",
+    "youtube_url": "https://www.youtube.com/watch?v=XPjoRuGb48M",
+    "question": "12 ÷ 4 × 3 = ?",
+    "answer": "9",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-15T17:25:37Z",
+    "publish_at": "2026-05-16T01:20:14.000Z"
   }
 }
