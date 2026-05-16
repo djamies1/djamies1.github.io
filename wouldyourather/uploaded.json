@@ -570,5 +570,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-05-15T17:31:28Z",
     "publish_at": "2026-05-16T01:25:38.000Z"
+  },
+  "wyr_0067": {
+    "youtube_id": "cc3M4Oly4yo",
+    "youtube_url": "https://www.youtube.com/watch?v=cc3M4Oly4yo",
+    "option_a": "Win every argument",
+    "option_b": "Never get into an argument in the first place",
+    "category": "social",
+    "uploaded_at": "2026-05-16T16:48:32Z"
+  },
+  "wyr_0068": {
+    "youtube_id": "PZXaqyUXBtc",
+    "youtube_url": "https://www.youtube.com/watch?v=PZXaqyUXBtc",
+    "option_a": "Always have perfect Wi-Fi wherever you go",
+    "option_b": "Never have a dead phone battery",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-16T16:50:01Z",
+    "publish_at": "2026-05-16T20:47:18.000Z"
+  },
+  "wyr_0069": {
+    "youtube_id": "mu3dc1WjZ_Y",
+    "youtube_url": "https://www.youtube.com/watch?v=mu3dc1WjZ_Y",
+    "option_a": "Be fluent in every coding language",
+    "option_b": "Have an IQ of 200",
+    "category": "skills",
+    "uploaded_at": "2026-05-16T16:51:33Z",
+    "publish_at": "2026-05-17T00:47:18.000Z"
   }
 }

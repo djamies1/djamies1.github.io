@@ -570,5 +570,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-15T17:25:37Z",
     "publish_at": "2026-05-16T01:20:14.000Z"
+  },
+  "math_0067": {
+    "youtube_id": "3Zzf_NaWaK0",
+    "youtube_url": "https://www.youtube.com/watch?v=3Zzf_NaWaK0",
+    "question": "4 + 4 ÷ 4 + 4 = ?",
+    "answer": "9",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-16T16:44:20Z"
+  },
+  "math_0068": {
+    "youtube_id": "l0un1gC-45g",
+    "youtube_url": "https://www.youtube.com/watch?v=l0un1gC-45g",
+    "question": "1 + 1 × 1 - 1 ÷ 1 = ?",
+    "answer": "1",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-16T16:45:48Z",
+    "publish_at": "2026-05-16T20:43:18.000Z"
+  },
+  "math_0069": {
+    "youtube_id": "uJlUfJZd0bw",
+    "youtube_url": "https://www.youtube.com/watch?v=uJlUfJZd0bw",
+    "question": "3 + 3 × 3 - 3 ÷ 3 = ?",
+    "answer": "11",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-16T16:47:18Z",
+    "publish_at": "2026-05-17T00:43:18.000Z"
   }
 }
