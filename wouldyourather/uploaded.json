@@ -596,5 +596,31 @@
     "category": "skills",
     "uploaded_at": "2026-05-16T16:51:33Z",
     "publish_at": "2026-05-17T00:47:18.000Z"
+  },
+  "wyr_0070": {
+    "youtube_id": "kVQ3DeyyNf8",
+    "youtube_url": "https://www.youtube.com/watch?v=kVQ3DeyyNf8",
+    "option_a": "Have the ability to heal others instantly",
+    "option_b": "Have the ability to heal yourself instantly",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-17T16:49:17Z"
+  },
+  "wyr_0071": {
+    "youtube_id": "LycjBhWL4_s",
+    "youtube_url": "https://www.youtube.com/watch?v=LycjBhWL4_s",
+    "option_a": "Only eat your favourite food forever",
+    "option_b": "Never be able to eat your favourite food again",
+    "category": "food",
+    "uploaded_at": "2026-05-17T16:50:47Z",
+    "publish_at": "2026-05-17T20:47:55.000Z"
+  },
+  "wyr_0072": {
+    "youtube_id": "hQyxggTHFdg",
+    "youtube_url": "https://www.youtube.com/watch?v=hQyxggTHFdg",
+    "option_a": "Be able to see 10 minutes into the future",
+    "option_b": "Be able to remember the past with perfect clarity",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-17T16:52:17Z",
+    "publish_at": "2026-05-18T00:47:55.000Z"
   }
 }

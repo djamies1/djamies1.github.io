@@ -596,5 +596,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-16T16:47:18Z",
     "publish_at": "2026-05-17T00:43:18.000Z"
+  },
+  "math_0070": {
+    "youtube_id": "36ecdTrT7QM",
+    "youtube_url": "https://www.youtube.com/watch?v=36ecdTrT7QM",
+    "question": "6 + 6 × 6 - 6 ÷ 6 = ?",
+    "answer": "41",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-17T16:44:56Z"
+  },
+  "math_0071": {
+    "youtube_id": "diYeFHyP45s",
+    "youtube_url": "https://www.youtube.com/watch?v=diYeFHyP45s",
+    "question": "2 × 3² = ?",
+    "answer": "18",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-17T16:46:25Z",
+    "publish_at": "2026-05-17T20:44:17.000Z"
+  },
+  "math_0072": {
+    "youtube_id": "LRM_Oi28UaA",
+    "youtube_url": "https://www.youtube.com/watch?v=LRM_Oi28UaA",
+    "question": "(2+3)² × 2 = ?",
+    "answer": "50",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-17T16:47:54Z",
+    "publish_at": "2026-05-18T00:44:17.000Z"
   }
 }
