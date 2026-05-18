@@ -622,5 +622,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-17T16:47:54Z",
     "publish_at": "2026-05-18T00:44:17.000Z"
+  },
+  "math_0073": {
+    "youtube_id": "r4BOxlfPyD8",
+    "youtube_url": "https://www.youtube.com/watch?v=r4BOxlfPyD8",
+    "question": "√16 + √9 = ?",
+    "answer": "7",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-18T17:52:13Z"
+  },
+  "math_0074": {
+    "youtube_id": "cejXd5_4-bE",
+    "youtube_url": "https://www.youtube.com/watch?v=cejXd5_4-bE",
+    "question": "0.5 × 0.5 = ?",
+    "answer": "0.25",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-18T17:53:42Z",
+    "publish_at": "2026-05-18T21:51:25.000Z"
+  },
+  "math_0075": {
+    "youtube_id": "JPH_eP77uNs",
+    "youtube_url": "https://www.youtube.com/watch?v=JPH_eP77uNs",
+    "question": "1 ÷ 0.5 = ?",
+    "answer": "2",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-18T17:55:12Z",
+    "publish_at": "2026-05-19T01:51:25.000Z"
   }
 }

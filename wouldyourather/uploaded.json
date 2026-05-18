@@ -622,5 +622,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-05-17T16:52:17Z",
     "publish_at": "2026-05-18T00:47:55.000Z"
+  },
+  "wyr_0073": {
+    "youtube_id": "UB7liQtDIHE",
+    "youtube_url": "https://www.youtube.com/watch?v=UB7liQtDIHE",
+    "option_a": "Have an unlimited travel budget but can never stay home",
+    "option_b": "Have a dream home but can never leave it",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-18T17:56:31Z"
+  },
+  "wyr_0074": {
+    "youtube_id": "rz0xBoJbL0Y",
+    "youtube_url": "https://www.youtube.com/watch?v=rz0xBoJbL0Y",
+    "option_a": "Be able to breathe underwater",
+    "option_b": "Be able to fly at bird speed (30 mph)",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-18T17:58:02Z",
+    "publish_at": "2026-05-18T21:55:12.000Z"
+  },
+  "wyr_0075": {
+    "youtube_id": "exidbGla2t8",
+    "youtube_url": "https://www.youtube.com/watch?v=exidbGla2t8",
+    "option_a": "Have the voice of a professional singer",
+    "option_b": "Have the body of a professional athlete",
+    "category": "physical",
+    "uploaded_at": "2026-05-18T17:59:31Z",
+    "publish_at": "2026-05-19T01:55:12.000Z"
   }
 }
