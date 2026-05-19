@@ -418,6 +418,14 @@
     font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
     color: rgba(255,255,255,0.22); pointer-events: none;
   }
+  /* ── ORBIT TEASER (Amazon Leo card corner animation) ── */
+  .orbit-teaser {
+    position: absolute; top: 1.1rem; right: 1.1rem;
+    width: 80px; height: 80px; pointer-events: none;
+    opacity: 0; transition: opacity 0.9s ease 0.35s;
+  }
+  .job-card.active .orbit-teaser { opacity: 0.65; }
+
   /* Skill card click affordance */
   .skill-card { cursor: pointer; }
   .skill-card::after {
@@ -986,6 +994,7 @@ function buildCards() {
       : `${job.startYear} – ${endLabel}`;
 
     card.innerHTML = `
+      ${i === 0 ? '<canvas class="orbit-teaser" id="orbitTeaser"></canvas>' : ''}
       <p class="card-eyebrow">${dateRange} &nbsp;·&nbsp; ${job.location}</p>
       <h2 class="card-role">${job.role}</h2>
       <p class="card-company">
@@ -1001,6 +1010,78 @@ function buildCards() {
     `;
     cardWrap.appendChild(card);
   });
+}
+
+// ── orbit teaser: lightweight RAF orbital for Amazon Leo card corner
+function initOrbitTeaser() {
+  const canvas = document.getElementById('orbitTeaser');
+  if (!canvas) return;
+  const dpr  = window.devicePixelRatio || 1;
+  const SIZE = 80;
+  canvas.width  = SIZE * dpr;
+  canvas.height = SIZE * dpr;
+  canvas.style.width  = SIZE + 'px';
+  canvas.style.height = SIZE + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  const cx = SIZE / 2, cy = SIZE / 2;
+
+  const orbits = [
+    { rx: 15, ry:  6.5, tilt:  22, period: 4.1, t: 0   },
+    { rx: 23, ry: 10,   tilt: -18, period: 6.8, t: 1.6 },
+    { rx: 31, ry: 13.5, tilt:  38, period: 9.3, t: 3.0 },
+  ];
+
+  let last = 0;
+  function draw(now) {
+    const dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    ctx.clearRect(0, 0, SIZE, SIZE);
+
+    orbits.forEach(o => {
+      o.t += dt / o.period * Math.PI * 2;
+      const tiltRad = o.tilt * Math.PI / 180;
+      const cosT = Math.cos(tiltRad), sinT = Math.sin(tiltRad);
+
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(tiltRad);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, o.rx, o.ry, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(201,168,76,0.22)';
+      ctx.lineWidth = 0.7;
+      ctx.stroke();
+      ctx.restore();
+
+      const ex = o.rx * Math.cos(o.t);
+      const ey = o.ry * Math.sin(o.t);
+      const sx = cx + ex * cosT - ey * sinT;
+      const sy = cy + ex * sinT + ey * cosT;
+
+      ctx.beginPath();
+      ctx.arc(sx, sy, 1.8, 0, Math.PI * 2);
+      ctx.shadowBlur = 5;
+      ctx.shadowColor = 'rgba(201,168,76,0.85)';
+      ctx.fillStyle = 'rgba(255,255,255,0.88)';
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Central "earth" glow
+    ctx.beginPath();
+    ctx.arc(cx, cy, 3.5, 0, Math.PI * 2);
+    const g = ctx.createRadialGradient(cx - 1, cy - 1, 0, cx, cy, 3.5);
+    g.addColorStop(0, '#ffe080');
+    g.addColorStop(1, '#c9a84c');
+    ctx.fillStyle = g;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = 'rgba(201,168,76,0.7)';
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(ts => { last = ts; requestAnimationFrame(draw); });
 }
 
 // ── update handle & fill position from a 0–1 fraction
@@ -1134,6 +1215,7 @@ document.getElementById('explorer').addEventListener('wheel', e => {
 // ── init
 buildNotches();
 buildCards();
+initOrbitTeaser();
 buildDots();
 
 // wait for layout then set initial position
@@ -1877,12 +1959,15 @@ window.addEventListener('resize', () => updateHandlePosition(currentIndex / (job
         propagateAll(sats, sat);
       }
 
-      // Build globe
+      // Build globe — explicitly size to container so globe.gl doesn't fall back to window dimensions
+      const cW = container.clientWidth  || container.offsetWidth  || 420;
+      const cH = container.clientHeight || container.offsetHeight || 200;
       _miniGlobe = Globe({ animateIn: false })(container)
+        .width(cW).height(cH)
         .globeImageUrl('https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg')
-        .backgroundColor('rgba(0,0,0,0)')
+        .backgroundColor('#000000')
         .showAtmosphere(true)
-        .atmosphereColor('rgba(201,168,76,0.1)')
+        .atmosphereColor('#c9a84c')
         .atmosphereAltitude(0.18)
         .htmlElementsData(sats)
         .htmlElement(() => {
