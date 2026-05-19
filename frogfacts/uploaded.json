@@ -538,5 +538,25 @@
     "fact": "An amphibian can live both on land and in water.",
     "uploaded_at": "2026-05-18T18:09:21Z",
     "publish_at": "2026-05-19T06:04:00.000Z"
+  },
+  "frog_0082": {
+    "youtube_id": "IL6Yy9q68S8",
+    "youtube_url": "https://www.youtube.com/watch?v=IL6Yy9q68S8",
+    "fact": "Although frogs live on land their habitat must be near swamps, ponds or in a damp place. This is because they will die if their skin dries out.",
+    "uploaded_at": "2026-05-19T18:11:22Z"
+  },
+  "frog_0083": {
+    "youtube_id": "D3eDKUY2jZ0",
+    "youtube_url": "https://www.youtube.com/watch?v=D3eDKUY2jZ0",
+    "fact": "Frogs breathe through their nostrils while also absorbing about half the air they need through their skin.",
+    "uploaded_at": "2026-05-19T18:13:01Z",
+    "publish_at": "2026-05-20T00:08:59.000Z"
+  },
+  "frog_0084": {
+    "youtube_id": "YRWzs5EA_7A",
+    "youtube_url": "https://www.youtube.com/watch?v=YRWzs5EA_7A",
+    "fact": "Frogs use their sticky, muscular tongue to catch and swallow food. Unlike humans, their tongue is not attached to the back of its mouth. Instead it is attached to the front, enabling the frog to stick its tongue out much further.",
+    "uploaded_at": "2026-05-19T18:14:45Z",
+    "publish_at": "2026-05-20T06:08:59.000Z"
   }
 }

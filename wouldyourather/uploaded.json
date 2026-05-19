@@ -648,5 +648,31 @@
     "category": "physical",
     "uploaded_at": "2026-05-18T17:59:31Z",
     "publish_at": "2026-05-19T01:55:12.000Z"
+  },
+  "wyr_0076": {
+    "youtube_id": "7P5bySb7UDg",
+    "youtube_url": "https://www.youtube.com/watch?v=7P5bySb7UDg",
+    "option_a": "Always know when someone is lying to you",
+    "option_b": "Be able to make anyone trust you completely",
+    "category": "social",
+    "uploaded_at": "2026-05-19T18:01:30Z"
+  },
+  "wyr_0077": {
+    "youtube_id": "cTHNfTjGsz4",
+    "youtube_url": "https://www.youtube.com/watch?v=cTHNfTjGsz4",
+    "option_a": "Have a mansion but terrible neighbours",
+    "option_b": "Have a small flat with amazing neighbours",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-19T18:03:01Z",
+    "publish_at": "2026-05-19T22:00:12.000Z"
+  },
+  "wyr_0078": {
+    "youtube_id": "9yzQxK2MbDw",
+    "youtube_url": "https://www.youtube.com/watch?v=9yzQxK2MbDw",
+    "option_a": "Be able to speak to the dead",
+    "option_b": "Be able to see 1 year into the future",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-19T18:04:31Z",
+    "publish_at": "2026-05-20T02:00:12.000Z"
   }
 }

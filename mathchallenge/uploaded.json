@@ -648,5 +648,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-18T17:55:12Z",
     "publish_at": "2026-05-19T01:51:25.000Z"
+  },
+  "math_0076": {
+    "youtube_id": "WxG3Unm2klA",
+    "youtube_url": "https://www.youtube.com/watch?v=WxG3Unm2klA",
+    "question": "50 - 10 × 2 = ?",
+    "answer": "30",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-19T17:57:13Z"
+  },
+  "math_0077": {
+    "youtube_id": "u_nJac1Hs3w",
+    "youtube_url": "https://www.youtube.com/watch?v=u_nJac1Hs3w",
+    "question": "100 ÷ 5 × 2 = ?",
+    "answer": "40",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-19T17:58:41Z",
+    "publish_at": "2026-05-19T21:56:23.000Z"
+  },
+  "math_0078": {
+    "youtube_id": "6RWvUOLUzok",
+    "youtube_url": "https://www.youtube.com/watch?v=6RWvUOLUzok",
+    "question": "(5-3)² + 4 × 3 = ?",
+    "answer": "16",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-19T18:00:11Z",
+    "publish_at": "2026-05-20T01:56:23.000Z"
   }
 }
