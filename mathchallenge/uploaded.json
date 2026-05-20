@@ -674,5 +674,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-19T18:00:11Z",
     "publish_at": "2026-05-20T01:56:23.000Z"
+  },
+  "math_0079": {
+    "youtube_id": "HzxQi1h98Fo",
+    "youtube_url": "https://www.youtube.com/watch?v=HzxQi1h98Fo",
+    "question": "2³ - 2² = ?",
+    "answer": "4",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-20T18:09:55Z"
+  },
+  "math_0080": {
+    "youtube_id": "2NUARUz_qSU",
+    "youtube_url": "https://www.youtube.com/watch?v=2NUARUz_qSU",
+    "question": "5 × 4 ÷ 2 × 3 = ?",
+    "answer": "30",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-20T18:11:23Z",
+    "publish_at": "2026-05-20T22:09:06.000Z"
+  },
+  "math_0081": {
+    "youtube_id": "p5vjPsLxEIU",
+    "youtube_url": "https://www.youtube.com/watch?v=p5vjPsLxEIU",
+    "question": "2 + 4 × (3 - 1) = ?",
+    "answer": "10",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-20T18:12:53Z",
+    "publish_at": "2026-05-21T02:09:06.000Z"
   }
 }
