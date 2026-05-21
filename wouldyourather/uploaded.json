@@ -700,5 +700,31 @@
     "category": "moral",
     "uploaded_at": "2026-05-20T18:17:13Z",
     "publish_at": "2026-05-21T02:12:54.000Z"
+  },
+  "wyr_0082": {
+    "youtube_id": "DplrLTXY2JU",
+    "youtube_url": "https://www.youtube.com/watch?v=DplrLTXY2JU",
+    "option_a": "Be able to read minds but only at random",
+    "option_b": "Be able to project your thoughts into someone's mind",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-21T17:54:25Z"
+  },
+  "wyr_0083": {
+    "youtube_id": "LnWXBWp5k54",
+    "youtube_url": "https://www.youtube.com/watch?v=LnWXBWp5k54",
+    "option_a": "Have a job you love that pays average salary",
+    "option_b": "Have a job you hate that pays $500k per year",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-21T17:55:55Z",
+    "publish_at": "2026-05-21T21:53:05.000Z"
+  },
+  "wyr_0084": {
+    "youtube_id": "e91MWdEvGa8",
+    "youtube_url": "https://www.youtube.com/watch?v=e91MWdEvGa8",
+    "option_a": "Be able to instantly teleport anywhere on Earth",
+    "option_b": "Be able to stop time for up to 1 hour per day",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-21T17:57:25Z",
+    "publish_at": "2026-05-22T01:53:05.000Z"
   }
 }

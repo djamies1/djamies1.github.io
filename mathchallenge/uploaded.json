@@ -700,5 +700,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-20T18:12:53Z",
     "publish_at": "2026-05-21T02:09:06.000Z"
+  },
+  "math_0082": {
+    "youtube_id": "ecqS0eGGu5c",
+    "youtube_url": "https://www.youtube.com/watch?v=ecqS0eGGu5c",
+    "question": "10 × 10 ÷ 10 + 10 = ?",
+    "answer": "20",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-21T17:50:06Z"
+  },
+  "math_0083": {
+    "youtube_id": "YytqryBpnCU",
+    "youtube_url": "https://www.youtube.com/watch?v=YytqryBpnCU",
+    "question": "3 × (4 + 2) - 2 × 5 = ?",
+    "answer": "8",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-21T17:51:35Z",
+    "publish_at": "2026-05-21T21:49:20.000Z"
+  },
+  "math_0084": {
+    "youtube_id": "Mhr8Yf_MVvw",
+    "youtube_url": "https://www.youtube.com/watch?v=Mhr8Yf_MVvw",
+    "question": "8 - (2 × 3) + 4 = ?",
+    "answer": "6",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-21T17:53:05Z",
+    "publish_at": "2026-05-22T01:49:20.000Z"
   }
 }
