@@ -726,5 +726,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-05-21T17:57:25Z",
     "publish_at": "2026-05-22T01:53:05.000Z"
+  },
+  "wyr_0085": {
+    "youtube_id": "YZfWzV9v1bo",
+    "youtube_url": "https://www.youtube.com/watch?v=YZfWzV9v1bo",
+    "option_a": "Have perfect skin your whole life",
+    "option_b": "Have perfect teeth your whole life",
+    "category": "physical",
+    "uploaded_at": "2026-05-22T17:48:56Z"
+  },
+  "wyr_0086": {
+    "youtube_id": "haXp00A8ZoE",
+    "youtube_url": "https://www.youtube.com/watch?v=haXp00A8ZoE",
+    "option_a": "Know the exact day you'll die (but live a full life)",
+    "option_b": "Live 20 extra years but never know when you'll die",
+    "category": "moral",
+    "uploaded_at": "2026-05-22T17:50:25Z",
+    "publish_at": "2026-05-22T21:47:35.000Z"
+  },
+  "wyr_0087": {
+    "youtube_id": "fFRfr1sBBOY",
+    "youtube_url": "https://www.youtube.com/watch?v=fFRfr1sBBOY",
+    "option_a": "Have super speed (run at 500 mph)",
+    "option_b": "Have super strength (lift 10 tonnes)",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-22T17:51:54Z",
+    "publish_at": "2026-05-23T01:47:35.000Z"
   }
 }

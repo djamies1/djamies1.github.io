@@ -726,5 +726,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-21T17:53:05Z",
     "publish_at": "2026-05-22T01:49:20.000Z"
+  },
+  "math_0085": {
+    "youtube_id": "0PlbTkU7fV4",
+    "youtube_url": "https://www.youtube.com/watch?v=0PlbTkU7fV4",
+    "question": "10 + 10 × 0 + 10 = ?",
+    "answer": "20",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-22T17:44:36Z"
+  },
+  "math_0086": {
+    "youtube_id": "tXbMYjO4x80",
+    "youtube_url": "https://www.youtube.com/watch?v=tXbMYjO4x80",
+    "question": "3 × 7 - 4 × 5 = ?",
+    "answer": "1",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-22T17:46:05Z",
+    "publish_at": "2026-05-22T21:43:50.000Z"
+  },
+  "math_0087": {
+    "youtube_id": "h29hprRY_e0",
+    "youtube_url": "https://www.youtube.com/watch?v=h29hprRY_e0",
+    "question": "6 × 6 ÷ 6 × 6 = ?",
+    "answer": "36",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-22T17:47:34Z",
+    "publish_at": "2026-05-23T01:43:50.000Z"
   }
 }
