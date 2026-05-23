@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Quorum — Debate by Campfire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ── GAME VIEW ───────────────────────── -->
+  <div id="game-view" style="display:none;">
+    <div id="canvas-wrap">
+      <canvas id="game-canvas" width="800" height="472"></canvas>
+    </div>
+    <!-- History panel: overlays right edge of canvas -->
+    <div id="history-panel" class="history-panel" style="display:none;">
+      <div class="history-header">
+        <span>DEBATE LOG</span>
+        <button id="close-history-btn" class="btn-close">✕</button>
+      </div>
+      <div id="history-list" class="history-list"></div>
+    </div>
+    <div id="input-bar">
+      <input id="chat-input" class="chat-input" type="text" maxlength="200"
+             placeholder="Type to interject… (Enter to send)" autocomplete="off">
+      <button id="send-btn" class="btn-send">SEND</button>
+      <button id="history-btn" class="btn-history" title="Toggle debate log">LOG</button>
+      <button id="quit-btn" class="btn-quit" title="End debate">✕</button>
+    </div>
+  </div>
+
+  <!-- ── SETUP VIEW ──────────────────────── -->
+  <div id="setup-view">
+    <div class="setup-wrap">
+      <div class="logo">QUORUM</div>
+      <div class="logo-sub">Debate by Campfire</div>
+
+      <div class="setup-card">
+        <label class="field-label">BRING YOUR IDEA TO THE FIRE</label>
+        <textarea id="topic-input" class="topic-input" rows="3" maxlength="400"
+          placeholder="What do you want the panel to debate?&#10;e.g. Should I quit my job and start a company?"></textarea>
+
+        <label class="field-label" style="margin-top:24px;">YOUR PANEL <span class="label-hint">(pick 2–4)</span></label>
+        <div id="persona-grid" class="persona-grid"></div>
+
+        <div id="setup-error" class="error-msg" style="display:none;"></div>
+        <button id="start-btn" class="btn-start">LIGHT THE FIRE →</button>
+      </div>
+
+      <div class="setup-footer">
+        <button id="settings-btn" class="btn-settings">⚙ API KEY</button>
+        <span class="footer-note">Move: WASD / arrows &nbsp;·&nbsp; Interject: type below</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SETTINGS MODAL ──────────────────── -->
+  <div id="settings-modal" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="modal-title">⚙ SETTINGS</span>
+        <button id="close-settings-btn" class="btn-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="proxy-notice" style="display:none; margin-bottom:14px; font-size:0.78rem; color:#06d6a0; border:1px solid #06d6a0; padding:8px 12px; background:rgba(6,214,160,0.08);">
+          ✓ Shared server active — no API key needed.
+        </div>
+        <label class="field-label">PROVIDER</label>
+        <select id="provider-select" class="model-select" style="margin-bottom:14px;">
+          <option value="gemini">Google Gemini</option>
+          <option value="groq">Groq — Llama 3 (free, no quota issues)</option>
+        </select>
+
+        <label class="field-label" id="key-label">API KEY</label>
+        <input type="password" id="api-key-input" class="api-key-input"
+               placeholder="AIzaSy..." autocomplete="off">
+        <p class="help-text" id="key-help">
+          Free key at <strong>aistudio.google.com</strong> → Get API key.<br>
+          Stored locally. Sent only to the provider's API.
+        </p>
+
+        <label class="field-label" style="margin-top:18px;">MODEL</label>
+        <select id="model-select" class="model-select">
+          <option value="gemini-2.0-flash">Gemini 2.0 Flash (free, recommended)</option>
+          <option value="gemini-2.0-flash-lite">Gemini 2.0 Flash Lite (free, faster)</option>
+          <option value="gemini-1.5-flash">Gemini 1.5 Flash (free)</option>
+          <option value="gemini-1.5-pro">Gemini 1.5 Pro (paid)</option>
+        </select>
+        <div id="settings-error" class="error-msg" style="display:none; margin-top:12px;"></div>
+        <div id="settings-ok" style="display:none; margin-top:12px; font-size:0.78rem; color:#06d6a0; border:1px solid #06d6a0; padding:8px 12px; background:rgba(6,214,160,0.08);">
+          ✓ API key works! Model responded successfully.
+        </div>
+      </div>
+      <div class="modal-footer" style="display:flex; gap:10px; justify-content:flex-end;">
+        <button id="test-key-btn" class="btn-settings">TEST KEY</button>
+        <button id="save-settings-btn" class="btn-primary">SAVE</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="personas.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

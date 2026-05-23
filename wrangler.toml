@@ -1,0 +1,8 @@
+name            = "quorum-proxy"
+main            = "quorum/worker.js"
+compatibility_date = "2025-01-01"
+
+# After deploying, add your Groq key as a secret (never commit it):
+#   wrangler secret put GROQ_API_KEY
+#
+# Then paste the *.workers.dev URL into PROXY_URL in quorum/app.js.
