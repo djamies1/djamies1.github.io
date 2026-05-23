@@ -752,5 +752,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-22T17:47:34Z",
     "publish_at": "2026-05-23T01:43:50.000Z"
+  },
+  "math_0088": {
+    "youtube_id": "nIo7xdkNras",
+    "youtube_url": "https://www.youtube.com/watch?v=nIo7xdkNras",
+    "question": "1000 + 40 + 1000 + 30 + 1000 + 20 + 1000 + 10 = ?",
+    "answer": "4100",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-23T16:48:02Z"
+  },
+  "math_0089": {
+    "youtube_id": "dm_xG61bChk",
+    "youtube_url": "https://www.youtube.com/watch?v=dm_xG61bChk",
+    "question": "6 × 7 + 3 × 8 = ?",
+    "answer": "66",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-23T16:49:26Z",
+    "publish_at": "2026-05-23T20:47:12.000Z"
+  },
+  "math_0090": {
+    "youtube_id": "JybgicJhBr0",
+    "youtube_url": "https://www.youtube.com/watch?v=JybgicJhBr0",
+    "question": "9 × 9 - 8 × 8 = ?",
+    "answer": "17",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-23T16:50:58Z",
+    "publish_at": "2026-05-24T00:47:12.000Z"
   }
 }

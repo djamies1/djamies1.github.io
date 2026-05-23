@@ -752,5 +752,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-05-22T17:51:54Z",
     "publish_at": "2026-05-23T01:47:35.000Z"
+  },
+  "wyr_0088": {
+    "youtube_id": "OiJPNtPyAd8",
+    "youtube_url": "https://www.youtube.com/watch?v=OiJPNtPyAd8",
+    "option_a": "Always feel energised and motivated",
+    "option_b": "Always feel calm and content",
+    "category": "mental",
+    "uploaded_at": "2026-05-23T16:52:18Z"
+  },
+  "wyr_0089": {
+    "youtube_id": "Uj5rzQd_sWs",
+    "youtube_url": "https://www.youtube.com/watch?v=Uj5rzQd_sWs",
+    "option_a": "Be the smartest person in every room",
+    "option_b": "Be the most likeable person in every room",
+    "category": "social",
+    "uploaded_at": "2026-05-23T16:53:48Z",
+    "publish_at": "2026-05-23T20:50:59.000Z"
+  },
+  "wyr_0090": {
+    "youtube_id": "RcWYadcLSek",
+    "youtube_url": "https://www.youtube.com/watch?v=RcWYadcLSek",
+    "option_a": "Live in a city but have a small place",
+    "option_b": "Live in the countryside in a large house",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-23T16:55:19Z",
+    "publish_at": "2026-05-24T00:50:59.000Z"
   }
 }
