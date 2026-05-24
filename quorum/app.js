@@ -889,7 +889,7 @@ function updateBubble() {
   if (activeBubble.typing) {
     const prevInt = Math.floor(activeBubble.typeIdx);
     activeBubble.typeIdx = Math.min(
-      activeBubble.typeIdx + 0.18, // ~11 chars/sec at 60fps — comfortably readable
+      activeBubble.typeIdx + 0.38, // ~23 chars/sec at 60fps
       activeBubble.fullText.length
     );
     const newInt = Math.floor(activeBubble.typeIdx);
@@ -902,7 +902,7 @@ function updateBubble() {
 
     if (activeBubble.typeIdx >= activeBubble.fullText.length) {
       activeBubble.typing = false;
-      activeBubble.holdFrames = 240; // ~4s at 60fps
+      activeBubble.holdFrames = 150; // ~2.5s at 60fps
     }
     activeBubble.displayText = activeBubble.fullText.substring(0, newInt);
   } else {
@@ -1128,7 +1128,7 @@ async function runDebate() {
       await showBubble(char.id, text, char.color);
       await waitForBubbleClear();
 
-      await pause(1600); // beat of silence between speakers
+      await pause(900); // beat of silence between speakers
     }
   }
 }
