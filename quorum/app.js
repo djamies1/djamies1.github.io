@@ -1245,8 +1245,11 @@ function startGame() {
   state.history = [];
   state.debating = true;
   clearHistoryPanel();
-  document.getElementById('history-panel').style.display = 'flex';
-  document.getElementById('history-btn').classList.add('log-open');
+  // Only auto-open history panel on desktop — on mobile it covers the whole screen
+  if (window.innerWidth >= 768) {
+    document.getElementById('history-panel').style.display = 'flex';
+    document.getElementById('history-btn').classList.add('log-open');
+  }
 
   const selected = state.selectedIds.map(id => PERSONAS.find(p => p.id === id));
   initChars(selected);
