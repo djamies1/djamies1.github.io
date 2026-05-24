@@ -778,5 +778,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-05-23T16:55:19Z",
     "publish_at": "2026-05-24T00:50:59.000Z"
+  },
+  "wyr_0091": {
+    "youtube_id": "IjSExtE6XvU",
+    "youtube_url": "https://www.youtube.com/watch?v=IjSExtE6XvU",
+    "option_a": "Be able to speak every language",
+    "option_b": "Be understood by everyone regardless of language",
+    "category": "skills",
+    "uploaded_at": "2026-05-24T16:54:25Z"
+  },
+  "wyr_0092": {
+    "youtube_id": "ndlwJraHW6c",
+    "youtube_url": "https://www.youtube.com/watch?v=ndlwJraHW6c",
+    "option_a": "Have an extra hour every day just for you",
+    "option_b": "Have your weekends extend to 3 days every week",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-24T16:55:54Z",
+    "publish_at": "2026-05-24T20:53:04.000Z"
+  },
+  "wyr_0093": {
+    "youtube_id": "Bznd4XHAFpU",
+    "youtube_url": "https://www.youtube.com/watch?v=Bznd4XHAFpU",
+    "option_a": "Never be stuck in traffic again",
+    "option_b": "Always get a parking spot immediately",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-24T16:57:24Z",
+    "publish_at": "2026-05-25T00:53:04.000Z"
   }
 }

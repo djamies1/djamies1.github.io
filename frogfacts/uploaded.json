@@ -638,5 +638,25 @@
     "fact": "Most frogs have a transparent nictitating membrane that slides across the eye to protect it while swimming.",
     "uploaded_at": "2026-05-23T17:05:31Z",
     "publish_at": "2026-05-24T04:59:49.000Z"
+  },
+  "frog_0097": {
+    "youtube_id": "aP3GNb16cw8",
+    "youtube_url": "https://www.youtube.com/watch?v=aP3GNb16cw8",
+    "fact": "Frogs detect sound through a tympanic membrane, visible as a round disc located just behind each eye.",
+    "uploaded_at": "2026-05-24T17:04:20Z"
+  },
+  "frog_0098": {
+    "youtube_id": "RzY1s1GnGuE",
+    "youtube_url": "https://www.youtube.com/watch?v=RzY1s1GnGuE",
+    "fact": "The skeleton of a frog contains no ribs, a defining feature of all members of the order Anura.",
+    "uploaded_at": "2026-05-24T17:05:50Z",
+    "publish_at": "2026-05-24T23:01:55.000Z"
+  },
+  "frog_0099": {
+    "youtube_id": "DpJHMGj9p-Q",
+    "youtube_url": "https://www.youtube.com/watch?v=DpJHMGj9p-Q",
+    "fact": "Frogs have four fingers on each front limb and five toes on each hind limb.",
+    "uploaded_at": "2026-05-24T17:07:19Z",
+    "publish_at": "2026-05-25T05:01:55.000Z"
   }
 }
