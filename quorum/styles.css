@@ -365,7 +365,7 @@ html, body {
   line-height: 2.2;
 }
 @media (max-width: 767px) and (orientation: portrait) {
-  #rotate-hint { display: flex; }
+  body.in-game #rotate-hint { display: flex; }
 }
 
 /* History button */

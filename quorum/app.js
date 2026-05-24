@@ -1275,6 +1275,7 @@ function startGame() {
 
   document.getElementById('setup-view').style.display = 'none';
   document.getElementById('game-view').style.display  = 'flex';
+  document.body.classList.add('in-game');
 
   // Defer until browser has computed layout so clientWidth is correct
   requestAnimationFrame(() => {
@@ -1289,6 +1290,7 @@ function endGame() {
   stopLoop();
   document.getElementById('game-view').style.display  = 'none';
   document.getElementById('setup-view').style.display = 'flex';
+  document.body.classList.remove('in-game');
 }
 
 // ── O. SETTINGS ───────────────────────────────────────────────
