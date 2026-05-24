@@ -10,7 +10,8 @@
 <meta name="twitter:card" content="summary">
 <title>David Jamieson — BI Engineer &amp; Data Analytics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Geist:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -18,15 +19,19 @@
     --gold-dim: rgba(201,168,76,0.15); --gold-border: rgba(201,168,76,0.35);
     --rust: #c4572a; --muted: #777; --card: #fff; --border: #e0d8cc;
     --amazon: #FF9900; --pac: #1a4f9e; --falck: #c0392b; --led: #27ae60; --ey: #4a4a5a;
+    /* Easing tokens */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+  body { font-family: 'Geist', system-ui, sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
 
   /* ── SCROLL PROGRESS ── */
   #scroll-progress {
     position: fixed; top: 0; left: 0; height: 2px; width: 0%;
     background: linear-gradient(90deg, var(--gold), var(--gold-light));
-    z-index: 9999; pointer-events: none;
+    z-index: 100; pointer-events: none;
   }
 
   /* ── HERO ── */
@@ -64,7 +69,7 @@
   .btn {
     display: inline-block; padding: 0.7rem 1.8rem; border-radius: 2px;
     font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
-    text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+    text-decoration: none; transition: background 200ms var(--ease-out), color 200ms var(--ease-out), border-color 200ms var(--ease-out), transform 120ms var(--ease-out); cursor: pointer; border: none;
     position: relative; overflow: hidden;
   }
   .btn-gold { background: var(--gold); color: var(--ink); }
@@ -82,10 +87,10 @@
   .scroll-hint {
     position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
     color: rgba(255,255,255,0.22); font-size: 0.68rem; letter-spacing: 0.25em;
-    text-transform: uppercase; z-index: 1; animation: bounce 2.5s infinite;
+    text-transform: uppercase; z-index: 1; animation: scrollpulse 2.8s var(--ease-in-out) infinite;
   }
-  @keyframes bounce {
-    0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)}
+  @keyframes scrollpulse {
+    0%,100%{opacity:0.22; transform:translateX(-50%) translateY(0)} 50%{opacity:0.5; transform:translateX(-50%) translateY(5px)}
   }
 
   /* ── SHARED LAYOUT ── */
@@ -234,24 +239,8 @@
   .pdot:hover:not(.active) { background: rgba(255,255,255,0.35); }
   .scrubber-hint { font-size: 0.62rem; color: rgba(255,255,255,0.18); letter-spacing: 0.1em; margin-top: 0.6rem; }
 
-  /* Role title shimmer on active card */
-  .job-card.active .card-role {
-    background: linear-gradient(
-      105deg,
-      #ffffff 0%, #ffffff 35%,
-      #f0e0bc 46%, #c9a84c 50%, #f0e0bc 54%,
-      #ffffff 65%, #ffffff 100%
-    );
-    background-size: 250% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: roleShimmer 6s ease-in-out 0.6s infinite;
-  }
-  @keyframes roleShimmer {
-    0%, 55%  { background-position: 200% center; }
-    75%, 100% { background-position: -200% center; }
-  }
+  /* Active card role — plain white, no gradient text */
+  .job-card.active .card-role { color: #fff; }
 
   /* ── SKILLS ── */
   /* Zig-zag bento: wide(2/3)+narrow(1/3) alternating rows — avoids generic 3-equal-col pattern */
@@ -263,20 +252,12 @@
   }
   .skill-card {
     background: var(--card); border-radius: 6px;
-    padding: 1.6rem; transition: transform 0.22s, box-shadow 0.22s;
+    padding: 1.6rem; transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
     position: relative; overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 0 0 1px rgba(201,168,76,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 0 0 1px rgba(201,168,76,0.06);
   }
-  /* Gold left-border accent: grows on hover */
-  .skill-card::before {
-    content: ''; position: absolute; left: 0; top: 0;
-    width: 3px; height: 0;
-    background: var(--gold); transition: height 0.3s ease;
-    border-radius: 2px 0 0 2px;
-  }
-  .skill-card:hover::before { height: 100%; }
-  .skill-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(201,168,76,0.13), 0 4px 12px rgba(0,0,0,0.05); }
-  .skill-card:active { transform: scale(0.985); box-shadow: 0 4px 12px rgba(201,168,76,0.08); }
+  .skill-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.04); }
+  .skill-card:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition-duration: 60ms; }
   .skill-icon { font-size: 1.6rem; margin-bottom: 0.65rem; }
   .skill-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
   .skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
@@ -1332,12 +1313,12 @@ window.addEventListener('resize', () => updateHandlePosition(currentIndex / (job
   }
 
   // ══ ABOUT: STAT CARDS ENTRY ══
-  gsap.set('.stat-card', { opacity: 0, y: 24, scale: 0.97, filter: 'blur(6px)' });
+  gsap.set('.stat-card', { opacity: 0, y: 16 });
   ScrollTrigger.create({
     trigger: '#about-section',
     start: 'top 72%',
     onEnter: () => gsap.to('.stat-card', {
-      opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.65, stagger: 0.12, ease: 'power2.out'
+      opacity: 1, y: 0, duration: 0.55, stagger: 0.1, ease: 'power2.out'
     })
   });
 
@@ -1360,13 +1341,13 @@ window.addEventListener('resize', () => updateHandlePosition(currentIndex / (job
     onEnter: () => document.querySelectorAll('.count-up').forEach(runCounter)
   });
 
-  // ══ ABOUT: BIO PARAGRAPHS STAGGER ══
-  gsap.set('#about-section .about-bio > p', { opacity: 0, y: 16, filter: 'blur(3px)' });
+  // ══ ABOUT: BIO PARAGRAPHS — simple fade, no blur stagger
+  gsap.set('#about-section .about-bio > p', { opacity: 0, y: 12 });
   ScrollTrigger.create({
     trigger: '#about-section .about-bio',
     start: 'top 82%',
     onEnter: () => gsap.to('#about-section .about-bio > p', {
-      opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.65, stagger: 0.15, ease: 'power2.out'
+      opacity: 1, y: 0, duration: 0.55, stagger: 0.1, ease: 'power2.out'
     })
   });
 
@@ -1429,14 +1410,14 @@ window.addEventListener('resize', () => updateHandlePosition(currentIndex / (job
       yearBubble.style.top = (trackRect.top - colRect.top + px) + 'px';
     };
 
-    // Snap function used by keyboard/click nav — expressive elastic ease
+    // Snap function used by keyboard/click nav — snappy expo ease, no overshoot
     function snapHandle(frac) {
       const trackRect = track.getBoundingClientRect();
       const colRect   = scrubCol.getBoundingClientRect();
       const px = frac * trackRect.height;
-      gsap.to(handle,    { top: px, duration: 0.48, ease: 'elastic.out(1, 0.65)', overwrite: true });
-      gsap.to(trackFill, { height: px, duration: 0.38, ease: 'power3.out', overwrite: true });
-      gsap.to(yearBubble,{ top: trackRect.top - colRect.top + px, duration: 0.38, ease: 'power3.out', overwrite: true });
+      gsap.to(handle,    { top: px, duration: 0.42, ease: 'expo.out', overwrite: true });
+      gsap.to(trackFill, { height: px, duration: 0.35, ease: 'power3.out', overwrite: true });
+      gsap.to(yearBubble,{ top: trackRect.top - colRect.top + px, duration: 0.35, ease: 'power3.out', overwrite: true });
     }
 
     // ── 2. Handle pulse element (radial ring that expands on snap)
@@ -1450,20 +1431,21 @@ window.addEventListener('resize', () => updateHandlePosition(currentIndex / (job
       gsap.to(pulse, { scale: 2.8, opacity: 0, duration: 0.55, ease: 'power2.out', overwrite: true });
     }
 
-    // ── 3. Handle breathing glow when idle
-    const breathe = gsap.to(handle, {
-      boxShadow: '0 0 0 7px rgba(201,168,76,0.22), 0 4px 28px rgba(201,168,76,0.48)',
-      duration: 1.9, ease: 'power1.inOut', yoyo: true, repeat: -1, overwrite: false
+    // ── 3. One-shot attention pulse when section enters — no infinite loop
+    ScrollTrigger.create({
+      trigger: '.career-section',
+      start: 'top 65%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo(handle,
+          { boxShadow: '0 0 0 3px var(--gold-border), 0 4px 20px rgba(201,168,76,0.4)' },
+          { boxShadow: '0 0 0 10px rgba(201,168,76,0.12), 0 4px 28px rgba(201,168,76,0.5)',
+            duration: 0.65, ease: 'power2.out', yoyo: true, repeat: 1,
+            onComplete: () => gsap.set(handle, { boxShadow: '0 0 0 3px var(--gold-border), 0 4px 20px rgba(201,168,76,0.4)' })
+          }
+        );
+      }
     });
-    handle.addEventListener('mousedown',  () => {
-      breathe.pause();
-      gsap.set(handle, { boxShadow: '0 0 0 6px rgba(201,168,76,0.35), 0 4px 30px rgba(201,168,76,0.55)' });
-    });
-    handle.addEventListener('touchstart', () => {
-      breathe.pause();
-    }, { passive: true });
-    document.addEventListener('mouseup',  () => breathe.resume());
-    document.addEventListener('touchend', () => breathe.resume());
 
     // ── 4. Year watermark animated swap (scale + fade, avoids conflicting with yPercent parallax)
     function animateYearWM(yr) {
@@ -1484,7 +1466,7 @@ window.addEventListener('resize', () => updateHandlePosition(currentIndex / (job
       document.querySelectorAll('.pdot').forEach((d, i) => {
         if (i === idx) {
           gsap.to(d, { width: 20, borderRadius: 3, backgroundColor: '#c9a84c',
-                       duration: 0.4, ease: 'elastic.out(1.2, 0.5)', overwrite: true });
+                       duration: 0.3, ease: 'power3.out', overwrite: true });
         } else {
           gsap.to(d, { width: 6, borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.15)',
                        duration: 0.25, ease: 'power2.out', overwrite: true });
@@ -1649,37 +1631,37 @@ window.addEventListener('resize', () => updateHandlePosition(currentIndex / (job
   })();
 
   // ══ SKILLS: CARD STAGGER ══
-  gsap.set('.skill-card', { opacity: 0, y: 22, scale: 0.97, filter: 'blur(5px)' });
+  gsap.set('.skill-card', { opacity: 0, y: 18 });
   ScrollTrigger.create({
     trigger: '#skills-section',
     start: 'top 78%',
     onEnter: () => gsap.to('.skill-card', {
-      opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.6,
-      stagger: { each: 0.1, from: 'start', grid: 'auto' },
+      opacity: 1, y: 0, duration: 0.5,
+      stagger: { each: 0.08, from: 'start', grid: 'auto' },
       ease: 'power2.out'
     })
   });
 
-  // ══ EDUCATION: CARD SLIDE + BORDER DRAW ══
-  gsap.set('.edu-card', { opacity: 0, x: -22, filter: 'blur(4px)' });
+  // ══ EDUCATION: CARD FADE + BORDER DRAW ══
+  gsap.set('.edu-card', { opacity: 0, y: 14 });
   ScrollTrigger.create({
     trigger: '#edu-section',
     start: 'top 76%',
     onEnter: () => {
-      gsap.to('.edu-card', { opacity: 1, x: 0, filter: 'blur(0px)', duration: 0.6, stagger: 0.15, ease: 'power2.out' });
+      gsap.to('.edu-card', { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, ease: 'power2.out' });
       document.querySelectorAll('.edu-card').forEach((card, i) =>
-        setTimeout(() => card.classList.add('border-drawn'), i * 150 + 250)
+        setTimeout(() => card.classList.add('border-drawn'), i * 130 + 200)
       );
     }
   });
 
-  // ══ INTERESTS: CHIP BOUNCE ENTRY ══
-  gsap.set('.interest-chip', { opacity: 0, scale: 0.88, y: 8, filter: 'blur(3px)' });
+  // ══ INTERESTS: CHIP FADE ENTRY ══
+  gsap.set('.interest-chip', { opacity: 0, y: 8 });
   ScrollTrigger.create({
     trigger: '#interests-section',
     start: 'top 82%',
     onEnter: () => gsap.to('.interest-chip', {
-      opacity: 1, scale: 1, y: 0, filter: 'blur(0px)', duration: 0.5, stagger: 0.06, ease: 'back.out(1.4)'
+      opacity: 1, y: 0, duration: 0.45, stagger: 0.05, ease: 'power2.out'
     })
   });
 
@@ -1690,18 +1672,18 @@ window.addEventListener('resize', () => updateHandlePosition(currentIndex / (job
     const cTitle = contactEl.querySelector('.section-title');
     const cSub   = contactEl.querySelector('.contact-subtitle');
     const cBtns  = contactEl.querySelectorAll('.btn');
-    gsap.set([cLabel, cTitle, cSub].filter(Boolean), { opacity: 0, y: 20, filter: 'blur(4px)' });
-    gsap.set(cBtns, { opacity: 0, scale: 0.93, y: 10, filter: 'blur(3px)' });
+    gsap.set([cLabel, cTitle, cSub].filter(Boolean), { opacity: 0, y: 16 });
+    gsap.set(cBtns, { opacity: 0, y: 10 });
     ScrollTrigger.create({
       trigger: contactEl,
       start: 'top 76%',
       onEnter: () => {
         gsap.to([cLabel, cTitle, cSub].filter(Boolean), {
-          opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.65, stagger: 0.15, ease: 'power2.out'
+          opacity: 1, y: 0, duration: 0.55, stagger: 0.12, ease: 'power2.out'
         });
         gsap.to(cBtns, {
-          opacity: 1, scale: 1, y: 0, filter: 'blur(0px)', duration: 0.55, stagger: 0.1,
-          ease: 'power2.out', delay: 0.35
+          opacity: 1, y: 0, duration: 0.45, stagger: 0.08,
+          ease: 'power2.out', delay: 0.3
         });
       }
     });
