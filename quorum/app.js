@@ -1033,7 +1033,7 @@ async function callGroq(systemInstruction, userContent) {
           { role: 'system', content: systemInstruction },
           { role: 'user',   content: userContent }
         ],
-        max_tokens: 45,
+        max_tokens: 60,
         temperature: 0.95
       })
     });
@@ -1059,7 +1059,7 @@ async function callProxy(systemInstruction, userContent) {
           { role: 'system', content: systemInstruction },
           { role: 'user',   content: userContent },
         ],
-        max_tokens: 45,
+        max_tokens: 60,
         temperature: 0.95,
       }),
     });
@@ -1080,7 +1080,7 @@ function callLLM(systemInstruction, userContent, onStatus) {
   return callGemini(systemInstruction, userContent, onStatus);
 }
 
-const DEBATE_WRAPPER = `Campfire debate. ONE sentence, 12 words max. Contractions. Blunt and direct. No filler openings ("I think", "Well,", "That's a good point"). React to the last thing said. Plain text only.`;
+const DEBATE_WRAPPER = `Campfire debate. TWO sentences max, 20 words total. Contractions. Blunt and direct. No filler openings ("I think", "Well,", "That's a good point"). React to the last thing said. Plain text only.`;
 
 function buildSysPrompt(persona) {
   return `${persona.systemPrompt}\n\n${DEBATE_WRAPPER}`;
