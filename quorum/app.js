@@ -6,6 +6,11 @@ const CAMP_Y   = 230;
 const CAMP_R   = 90;   // personas orbit radius
 const S        = 3;    // pixel scale (each "game pixel" = 3 canvas pixels)
 
+// Mobile camera: 2× zoom centred on campfire
+const MOB_ZOOM = 2;
+const MOB_VX   = CAMP_X - WORLD_W / (2 * MOB_ZOOM); // 200 — left edge in world units
+const MOB_VY   = CAMP_Y - WORLD_H / (2 * MOB_ZOOM); // 112 — top edge in world units
+
 // Set this to your Cloudflare Worker URL after running `wrangler deploy`.
 // When set, visitors need no API key — the proxy holds the key server-side.
 // Leave empty to require users to enter their own key in Settings.
@@ -689,10 +694,11 @@ function drawPersonaOverlay(char, cx, cy, headTop, bodyTop, bob, wf) {
 function drawSpeechBubble(char, text, color, isTyping) {
   if (!text) return;
 
-  const maxW = 210;
-  const pad  = 9;
-  const lineH = 15;
-  const fontSize = 10;
+  const mob      = window.innerWidth < 768;
+  const maxW     = mob ? 155 : 210;
+  const pad      = mob ? 10  : 9;
+  const lineH    = mob ? 19  : 15;
+  const fontSize = mob ? 13  : 10;
 
   ctx.font = `${fontSize}px 'Courier New', monospace`;
   ctx.textAlign = 'left';
@@ -720,8 +726,10 @@ function drawSpeechBubble(char, text, color, isTyping) {
   const headTop = Math.round(char.y) - (5 + 6 + 5) * S - 5 * S;
   let bx = Math.round(char.x) - bw / 2;
   let by = headTop - bh - 14;
-  bx = Math.max(6, Math.min(WORLD_W - bw - 6, bx));
-  by = Math.max(6, by);
+  const clampL = mob ? MOB_VX + 5 : 6;
+  const clampR = mob ? MOB_VX + WORLD_W / MOB_ZOOM - bw - 5 : WORLD_W - bw - 6;
+  bx = Math.max(clampL, Math.min(clampR, bx));
+  by = Math.max(mob ? MOB_VY + 5 : 6, by);
 
   // Drop shadow
   ctx.fillStyle = 'rgba(0,0,0,0.65)';
@@ -806,6 +814,9 @@ function drawHUD() {
 function render() {
   ctx.clearRect(0, 0, WORLD_W, WORLD_H);
 
+  const mob = window.innerWidth < 768;
+  if (mob) ctx.setTransform(MOB_ZOOM, 0, 0, MOB_ZOOM, -MOB_VX * MOB_ZOOM, -MOB_VY * MOB_ZOOM);
+
   drawBackground();
 
   // Depth-sort: trees + mushrooms + chars by Y
@@ -832,11 +843,13 @@ function render() {
     const char = chars.find(c => c.id === activeBubble.charId);
     if (char) drawSpeechBubble(char, activeBubble.displayText, activeBubble.color, activeBubble.typing);
   }
-  if (playerBubble && player) {
+  if (playerBubble && player && !mob) {
     ctx.globalAlpha = Math.min(1, playerBubble.holdFrames / 10);
     drawSpeechBubble(player, playerBubble.text, '#b8d4f0', false);
     ctx.globalAlpha = 1;
   }
+
+  if (mob) ctx.setTransform(1, 0, 0, 1, 0, 0);
 
   drawVignette();
   drawHUD();
@@ -845,6 +858,7 @@ function render() {
 // ── J. UPDATE ─────────────────────────────────────────────────
 
 function updatePlayer() {
+  if (window.innerWidth < 768) return;
   // Don't steal keys when user is typing in the chat box
   if (document.activeElement === document.getElementById('chat-input')) return;
 
@@ -1019,7 +1033,7 @@ async function callGroq(systemInstruction, userContent) {
           { role: 'system', content: systemInstruction },
           { role: 'user',   content: userContent }
         ],
-        max_tokens: 70,
+        max_tokens: 45,
         temperature: 0.95
       })
     });
@@ -1045,7 +1059,7 @@ async function callProxy(systemInstruction, userContent) {
           { role: 'system', content: systemInstruction },
           { role: 'user',   content: userContent },
         ],
-        max_tokens: 70,
+        max_tokens: 45,
         temperature: 0.95,
       }),
     });
@@ -1066,7 +1080,7 @@ function callLLM(systemInstruction, userContent, onStatus) {
   return callGemini(systemInstruction, userContent, onStatus);
 }
 
-const DEBATE_WRAPPER = `You're at a campfire debate — be sharp and human. ONE short sentence, two at most. Use contractions. Sound like a real person: blunt, direct, opinionated. Never start with "I think", "Well,", "That's a good point", "It's worth noting", or any filler. React to the LAST thing said. Plain text only, no quotes around your output.`;
+const DEBATE_WRAPPER = `Campfire debate. ONE sentence, 12 words max. Contractions. Blunt and direct. No filler openings ("I think", "Well,", "That's a good point"). React to the last thing said. Plain text only.`;
 
 function buildSysPrompt(persona) {
   return `${persona.systemPrompt}\n\n${DEBATE_WRAPPER}`;
