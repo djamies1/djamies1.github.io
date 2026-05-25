@@ -804,5 +804,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-05-24T16:57:24Z",
     "publish_at": "2026-05-25T00:53:04.000Z"
+  },
+  "wyr_0094": {
+    "youtube_id": "6GHnE1pHO3o",
+    "youtube_url": "https://www.youtube.com/watch?v=6GHnE1pHO3o",
+    "option_a": "Have a robot do all household chores",
+    "option_b": "Have a personal chef cook all your meals",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-25T17:32:39Z"
+  },
+  "wyr_0095": {
+    "youtube_id": "JQH9pVWl-ew",
+    "youtube_url": "https://www.youtube.com/watch?v=JQH9pVWl-ew",
+    "option_a": "Be able to become invisible at will",
+    "option_b": "Be able to change your appearance to look like anyone",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-25T17:34:10Z",
+    "publish_at": "2026-05-25T21:31:28.000Z"
+  },
+  "wyr_0096": {
+    "youtube_id": "IWkeZc72h24",
+    "youtube_url": "https://www.youtube.com/watch?v=IWkeZc72h24",
+    "option_a": "Have the best long-term memory of anyone on Earth",
+    "option_b": "Have the fastest processing speed brain of anyone on Earth",
+    "category": "mental",
+    "uploaded_at": "2026-05-25T17:35:40Z",
+    "publish_at": "2026-05-26T01:31:28.000Z"
   }
 }

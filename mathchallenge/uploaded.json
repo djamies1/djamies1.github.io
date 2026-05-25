@@ -804,5 +804,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-24T16:53:03Z",
     "publish_at": "2026-05-25T00:49:29.000Z"
+  },
+  "math_0094": {
+    "youtube_id": "dfijI6pBHZc",
+    "youtube_url": "https://www.youtube.com/watch?v=dfijI6pBHZc",
+    "question": "100 - 99 + 98 - 97 + 96 - 95 = ?",
+    "answer": "3",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-25T17:28:26Z"
+  },
+  "math_0095": {
+    "youtube_id": "vx1ehuTx1qY",
+    "youtube_url": "https://www.youtube.com/watch?v=vx1ehuTx1qY",
+    "question": "5! ÷ 4! = ?",
+    "answer": "5",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-25T17:29:55Z",
+    "publish_at": "2026-05-25T21:27:37.000Z"
+  },
+  "math_0096": {
+    "youtube_id": "tC3lJciYdoQ",
+    "youtube_url": "https://www.youtube.com/watch?v=tC3lJciYdoQ",
+    "question": "2 × (3 + 4) - 2 × 3 = ?",
+    "answer": "8",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-25T17:31:27Z",
+    "publish_at": "2026-05-26T01:27:37.000Z"
   }
 }

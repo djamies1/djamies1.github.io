@@ -658,5 +658,25 @@
     "fact": "Frogs have four fingers on each front limb and five toes on each hind limb.",
     "uploaded_at": "2026-05-24T17:07:19Z",
     "publish_at": "2026-05-25T05:01:55.000Z"
+  },
+  "frog_0100": {
+    "youtube_id": "sUF7mt48_lA",
+    "youtube_url": "https://www.youtube.com/watch?v=sUF7mt48_lA",
+    "fact": "A frog's tongue is attached at the front of its jaw and flips outward rapidly to capture prey.",
+    "uploaded_at": "2026-05-25T17:42:07Z"
+  },
+  "frog_0101": {
+    "youtube_id": "y9QimrIojnk",
+    "youtube_url": "https://www.youtube.com/watch?v=y9QimrIojnk",
+    "fact": "Frogs exchange gases through their moist skin as well as their lungs, a process called cutaneous respiration.",
+    "uploaded_at": "2026-05-25T17:43:38Z",
+    "publish_at": "2026-05-25T23:40:10.000Z"
+  },
+  "frog_0102": {
+    "youtube_id": "Uc8LaTwMBW0",
+    "youtube_url": "https://www.youtube.com/watch?v=Uc8LaTwMBW0",
+    "fact": "The skin of a frog must remain moist at all times for cutaneous respiration to function properly.",
+    "uploaded_at": "2026-05-25T17:45:07Z",
+    "publish_at": "2026-05-26T05:40:10.000Z"
   }
 }
