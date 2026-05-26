@@ -678,5 +678,25 @@
     "fact": "The skin of a frog must remain moist at all times for cutaneous respiration to function properly.",
     "uploaded_at": "2026-05-25T17:45:07Z",
     "publish_at": "2026-05-26T05:40:10.000Z"
+  },
+  "frog_0103": {
+    "youtube_id": "VOnfaqQVULE",
+    "youtube_url": "https://www.youtube.com/watch?v=VOnfaqQVULE",
+    "fact": "Frogs lack a diaphragm and inflate their lungs using a buccal pumping mechanism driven by the throat.",
+    "uploaded_at": "2026-05-26T18:30:27Z"
+  },
+  "frog_0104": {
+    "youtube_id": "05pqA3MsARQ",
+    "youtube_url": "https://www.youtube.com/watch?v=05pqA3MsARQ",
+    "fact": "Some frog species possess small vomerine teeth on the roof of the mouth used to grip struggling prey.",
+    "uploaded_at": "2026-05-26T18:31:57Z",
+    "publish_at": "2026-05-27T00:28:13.000Z"
+  },
+  "frog_0105": {
+    "youtube_id": "iA5C4fB8oDM",
+    "youtube_url": "https://www.youtube.com/watch?v=iA5C4fB8oDM",
+    "fact": "Frogs have a three-chambered heart consisting of two atria and one ventricle.",
+    "uploaded_at": "2026-05-26T18:33:26Z",
+    "publish_at": "2026-05-27T06:28:13.000Z"
   }
 }

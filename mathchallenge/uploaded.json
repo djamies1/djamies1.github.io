@@ -830,5 +830,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-25T17:31:27Z",
     "publish_at": "2026-05-26T01:27:37.000Z"
+  },
+  "math_0097": {
+    "youtube_id": "qzWp9lHW0pc",
+    "youtube_url": "https://www.youtube.com/watch?v=qzWp9lHW0pc",
+    "question": "40% of 75 = ?",
+    "answer": "30",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-26T18:16:17Z"
+  },
+  "math_0098": {
+    "youtube_id": "onl5DQmrta0",
+    "youtube_url": "https://www.youtube.com/watch?v=onl5DQmrta0",
+    "question": "3 × 4 + 8 ÷ 2 = ?",
+    "answer": "16",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-26T18:17:47Z",
+    "publish_at": "2026-05-26T22:15:40.000Z"
+  },
+  "math_0099": {
+    "youtube_id": "mHhVYPmf_Z8",
+    "youtube_url": "https://www.youtube.com/watch?v=mHhVYPmf_Z8",
+    "question": "(3 + 4) × (8 - 3) = ?",
+    "answer": "35",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-26T18:19:16Z",
+    "publish_at": "2026-05-27T02:15:40.000Z"
   }
 }

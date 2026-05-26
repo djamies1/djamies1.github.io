@@ -830,5 +830,31 @@
     "category": "mental",
     "uploaded_at": "2026-05-25T17:35:40Z",
     "publish_at": "2026-05-26T01:31:28.000Z"
+  },
+  "wyr_0097": {
+    "youtube_id": "20p3aA9oJYg",
+    "youtube_url": "https://www.youtube.com/watch?v=20p3aA9oJYg",
+    "option_a": "Always wake up feeling perfectly rested",
+    "option_b": "Never feel hungry unless you choose to eat",
+    "category": "physical",
+    "uploaded_at": "2026-05-26T18:20:37Z"
+  },
+  "wyr_0098": {
+    "youtube_id": "rRLOtlwPsHQ",
+    "youtube_url": "https://www.youtube.com/watch?v=rRLOtlwPsHQ",
+    "option_a": "Have $1 million now",
+    "option_b": "Have $1,000 per day for the rest of your life",
+    "category": "lifestyle",
+    "uploaded_at": "2026-05-26T18:22:07Z",
+    "publish_at": "2026-05-26T22:19:16.000Z"
+  },
+  "wyr_0099": {
+    "youtube_id": "wtlgOLHsA8M",
+    "youtube_url": "https://www.youtube.com/watch?v=wtlgOLHsA8M",
+    "option_a": "Be famous but misunderstood",
+    "option_b": "Be anonymous but deeply understood by those close to you",
+    "category": "social",
+    "uploaded_at": "2026-05-26T18:23:36Z",
+    "publish_at": "2026-05-27T02:19:16.000Z"
   }
 }
