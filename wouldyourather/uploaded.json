@@ -856,5 +856,31 @@
     "category": "social",
     "uploaded_at": "2026-05-26T18:23:36Z",
     "publish_at": "2026-05-27T02:19:16.000Z"
+  },
+  "wyr_0100": {
+    "youtube_id": "tRrUOg-eOyI",
+    "youtube_url": "https://www.youtube.com/watch?v=tRrUOg-eOyI",
+    "option_a": "Have the power to control weather",
+    "option_b": "Have the power to grow anything in seconds",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-27T18:21:55Z"
+  },
+  "wyr_0101": {
+    "youtube_id": "Ktm1MbGGS4g",
+    "youtube_url": "https://www.youtube.com/watch?v=Ktm1MbGGS4g",
+    "option_a": "Never have another headache in your life",
+    "option_b": "Never have another cold or flu in your life",
+    "category": "physical",
+    "uploaded_at": "2026-05-27T18:23:25Z",
+    "publish_at": "2026-05-27T22:20:36.000Z"
+  },
+  "wyr_0102": {
+    "youtube_id": "SPkQvWRNYL8",
+    "youtube_url": "https://www.youtube.com/watch?v=SPkQvWRNYL8",
+    "option_a": "Be able to run a marathon with no training",
+    "option_b": "Be able to lift twice your body weight easily",
+    "category": "physical",
+    "uploaded_at": "2026-05-27T18:24:56Z",
+    "publish_at": "2026-05-28T02:20:36.000Z"
   }
 }

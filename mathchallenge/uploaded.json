@@ -856,5 +856,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-05-26T18:19:16Z",
     "publish_at": "2026-05-27T02:15:40.000Z"
+  },
+  "math_0100": {
+    "youtube_id": "FJNKXEpbmoo",
+    "youtube_url": "https://www.youtube.com/watch?v=FJNKXEpbmoo",
+    "question": "50 ÷ (2 + 3) × 4 = ?",
+    "answer": "40",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-05-27T18:17:36Z"
+  },
+  "math_0101": {
+    "youtube_id": "7eEhvIK7gKE",
+    "youtube_url": "https://www.youtube.com/watch?v=7eEhvIK7gKE",
+    "question": "1, 4, 9, 16, 25, ___ = ?",
+    "answer": "36",
+    "category": "sequence",
+    "uploaded_at": "2026-05-27T18:19:05Z",
+    "publish_at": "2026-05-27T22:16:59.000Z"
+  },
+  "math_0102": {
+    "youtube_id": "fK1VIFK6zDk",
+    "youtube_url": "https://www.youtube.com/watch?v=fK1VIFK6zDk",
+    "question": "1, 1, 2, 3, 5, 8, 13, ___ = ?",
+    "answer": "21",
+    "category": "sequence",
+    "uploaded_at": "2026-05-27T18:20:35Z",
+    "publish_at": "2026-05-28T02:16:59.000Z"
   }
 }

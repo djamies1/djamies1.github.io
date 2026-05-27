@@ -698,5 +698,25 @@
     "fact": "Frogs have a three-chambered heart consisting of two atria and one ventricle.",
     "uploaded_at": "2026-05-26T18:33:26Z",
     "publish_at": "2026-05-27T06:28:13.000Z"
+  },
+  "frog_0106": {
+    "youtube_id": "XYXWgZ8Hb-o",
+    "youtube_url": "https://www.youtube.com/watch?v=XYXWgZ8Hb-o",
+    "fact": "The eyes of a frog are positioned high on the sides of its head, providing a very wide field of view.",
+    "uploaded_at": "2026-05-27T18:31:45Z"
+  },
+  "frog_0107": {
+    "youtube_id": "k6SgOMROPTw",
+    "youtube_url": "https://www.youtube.com/watch?v=k6SgOMROPTw",
+    "fact": "Male frogs of most species are the only ones that vocalize, using calls to attract mates and defend territory.",
+    "uploaded_at": "2026-05-27T18:33:16Z",
+    "publish_at": "2026-05-28T00:29:25.000Z"
+  },
+  "frog_0108": {
+    "youtube_id": "U5ocsXRfX-c",
+    "youtube_url": "https://www.youtube.com/watch?v=U5ocsXRfX-c",
+    "fact": "Some frog species estivate during hot or dry seasons, burying themselves underground in a dormant state.",
+    "uploaded_at": "2026-05-27T18:34:46Z",
+    "publish_at": "2026-05-28T06:29:25.000Z"
   }
 }
