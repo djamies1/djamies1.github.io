@@ -882,5 +882,31 @@
     "category": "physical",
     "uploaded_at": "2026-05-27T18:24:56Z",
     "publish_at": "2026-05-28T02:20:36.000Z"
+  },
+  "wyr_0103": {
+    "youtube_id": "z-bwF20Ec3Q",
+    "youtube_url": "https://www.youtube.com/watch?v=z-bwF20Ec3Q",
+    "option_a": "Read 1 book per day and remember it perfectly",
+    "option_b": "Have the wisdom to apply everything you already know",
+    "category": "mental",
+    "uploaded_at": "2026-05-28T18:34:06Z"
+  },
+  "wyr_0104": {
+    "youtube_id": "EUrtVHMEnUw",
+    "youtube_url": "https://www.youtube.com/watch?v=EUrtVHMEnUw",
+    "option_a": "Have the world's best memory but terrible focus",
+    "option_b": "Have incredible focus but average memory",
+    "category": "mental",
+    "uploaded_at": "2026-05-28T18:35:36Z",
+    "publish_at": "2026-05-28T22:32:47.000Z"
+  },
+  "wyr_0105": {
+    "youtube_id": "9yFmH3a2Gec",
+    "youtube_url": "https://www.youtube.com/watch?v=9yFmH3a2Gec",
+    "option_a": "Have the ability to make plants grow wherever you walk",
+    "option_b": "Have the ability to purify any water you touch",
+    "category": "superpowers",
+    "uploaded_at": "2026-05-28T18:37:06Z",
+    "publish_at": "2026-05-29T02:32:47.000Z"
   }
 }

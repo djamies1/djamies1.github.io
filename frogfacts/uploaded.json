@@ -718,5 +718,25 @@
     "fact": "Some frog species estivate during hot or dry seasons, burying themselves underground in a dormant state.",
     "uploaded_at": "2026-05-27T18:34:46Z",
     "publish_at": "2026-05-28T06:29:25.000Z"
+  },
+  "frog_0109": {
+    "youtube_id": "jhQ6LG_KlKY",
+    "youtube_url": "https://www.youtube.com/watch?v=jhQ6LG_KlKY",
+    "fact": "Frogs typically swallow their prey whole, using their front limbs to push larger items further into their mouths.",
+    "uploaded_at": "2026-05-28T18:44:02Z"
+  },
+  "frog_0110": {
+    "youtube_id": "-gD8vWNoUVE",
+    "youtube_url": "https://www.youtube.com/watch?v=-gD8vWNoUVE",
+    "fact": "Frogs produce several types of vocalizations including advertisement calls, release calls, and distress calls.",
+    "uploaded_at": "2026-05-28T18:45:35Z",
+    "publish_at": "2026-05-29T00:41:38.000Z"
+  },
+  "frog_0111": {
+    "youtube_id": "gJsRwazWbbY",
+    "youtube_url": "https://www.youtube.com/watch?v=gJsRwazWbbY",
+    "fact": "The African clawed frog was historically used as a human pregnancy test, as females lay eggs in response to human pregnancy hormones.",
+    "uploaded_at": "2026-05-28T18:47:09Z",
+    "publish_at": "2026-05-29T06:41:38.000Z"
   }
 }

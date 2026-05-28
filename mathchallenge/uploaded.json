@@ -882,5 +882,31 @@
     "category": "sequence",
     "uploaded_at": "2026-05-27T18:20:35Z",
     "publish_at": "2026-05-28T02:16:59.000Z"
+  },
+  "math_0103": {
+    "youtube_id": "n5i1ZJnKr5o",
+    "youtube_url": "https://www.youtube.com/watch?v=n5i1ZJnKr5o",
+    "question": "2, 3, 5, 7, 11, 13, ___ = ?",
+    "answer": "17",
+    "category": "sequence",
+    "uploaded_at": "2026-05-28T18:29:46Z"
+  },
+  "math_0104": {
+    "youtube_id": "Z-xJNMeqCPI",
+    "youtube_url": "https://www.youtube.com/watch?v=Z-xJNMeqCPI",
+    "question": "1, 3, 6, 10, 15, ___ = ?",
+    "answer": "21",
+    "category": "sequence",
+    "uploaded_at": "2026-05-28T18:31:16Z",
+    "publish_at": "2026-05-28T22:29:10.000Z"
+  },
+  "math_0105": {
+    "youtube_id": "oSjcHf-dA34",
+    "youtube_url": "https://www.youtube.com/watch?v=oSjcHf-dA34",
+    "question": "1, 8, 27, 64, 125, ___ = ?",
+    "answer": "216",
+    "category": "sequence",
+    "uploaded_at": "2026-05-28T18:32:46Z",
+    "publish_at": "2026-05-29T02:29:10.000Z"
   }
 }
