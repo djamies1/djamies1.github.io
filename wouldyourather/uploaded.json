@@ -908,5 +908,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-05-28T18:37:06Z",
     "publish_at": "2026-05-29T02:32:47.000Z"
+  },
+  "wyr_0106": {
+    "youtube_id": "5WgsnhCBve8",
+    "youtube_url": "https://www.youtube.com/watch?v=5WgsnhCBve8",
+    "option_a": "Be able to pause any movie, show, or song at will — in real life",
+    "option_b": "Be able to skip any awkward or boring moment in real life",
+    "category": "absurd",
+    "uploaded_at": "2026-06-10T18:27:04Z"
+  },
+  "wyr_0107": {
+    "youtube_id": "7ccY13y0gto",
+    "youtube_url": "https://www.youtube.com/watch?v=7ccY13y0gto",
+    "option_a": "Always have the perfect comeback in an argument",
+    "option_b": "Always know when to walk away from an argument",
+    "category": "social",
+    "uploaded_at": "2026-06-10T18:27:55Z",
+    "publish_at": "2026-06-10T22:26:26.000Z"
+  },
+  "wyr_0108": {
+    "youtube_id": "5hDtRu2vr4g",
+    "youtube_url": "https://www.youtube.com/watch?v=5hDtRu2vr4g",
+    "option_a": "Have gills and live comfortably underwater",
+    "option_b": "Have wings and fly at 60 mph",
+    "category": "superpowers",
+    "uploaded_at": "2026-06-10T18:28:42Z",
+    "publish_at": "2026-06-11T02:26:26.000Z"
   }
 }

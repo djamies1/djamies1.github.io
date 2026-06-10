@@ -1238,5 +1238,28 @@
     "answer": "The kid filled a glass of water and held it over his head for 10 minutes.",
     "uploaded_at": "2026-05-28T18:41:37Z",
     "publish_at": "2026-05-29T06:37:10.000Z"
+  },
+  "rdl_0163": {
+    "youtube_id": "NW08YSaBOoc",
+    "youtube_url": "https://www.youtube.com/watch?v=NW08YSaBOoc",
+    "question": "There is a barrel with no lid and some wine in it. \"This barrel of wine is more than half full,\" said Curly. \"No it's not,\" says Mo. \"It's less than half full.\" Without any measuring implements and without removing any wine from the barrel, how can they easily determine who is correct?",
+    "answer": "Tilt the barrel until the wine barely touches the lip of the barrel. If the bottom of the barrel is visible then it is less than half full. If the barrel bottom is still completely covered by the wine, then it is more than half full.",
+    "uploaded_at": "2026-06-10T18:29:22Z"
+  },
+  "rdl_0164": {
+    "youtube_id": "7iSMQCppLDQ",
+    "youtube_url": "https://www.youtube.com/watch?v=7iSMQCppLDQ",
+    "question": "Why is swearing like an old coat?",
+    "answer": "Because it is a bad habit.",
+    "uploaded_at": "2026-06-10T18:30:07Z",
+    "publish_at": "2026-06-11T00:28:46.000Z"
+  },
+  "rdl_0165": {
+    "youtube_id": "rkIpTmT6B44",
+    "youtube_url": "https://www.youtube.com/watch?v=rkIpTmT6B44",
+    "question": "Joe and Sally were sitting in their family room one night. While Joe was watching T.V, his wife Sally was reading. All of a sudden the power went out and Joe decided to go to bed, but Sally kept on reading. With no use of artificial light, Sally kept on reading. How?",
+    "answer": "Sally was blind, she was reading a book by Braille.",
+    "uploaded_at": "2026-06-10T18:30:54Z",
+    "publish_at": "2026-06-11T06:28:46.000Z"
   }
 }
