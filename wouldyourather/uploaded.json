@@ -934,5 +934,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-06-10T18:28:42Z",
     "publish_at": "2026-06-11T02:26:26.000Z"
+  },
+  "wyr_0109": {
+    "youtube_id": "L1lJTEiGHDg",
+    "youtube_url": "https://www.youtube.com/watch?v=L1lJTEiGHDg",
+    "option_a": "Have a supercomputer brain but no emotions",
+    "option_b": "Have deep emotional intelligence but average intellect",
+    "category": "mental",
+    "uploaded_at": "2026-06-11T18:43:11Z"
+  },
+  "wyr_0110": {
+    "youtube_id": "H_DSWmtqgKA",
+    "youtube_url": "https://www.youtube.com/watch?v=H_DSWmtqgKA",
+    "option_a": "Eat the same meal every day (perfectly nutritious, you love it)",
+    "option_b": "Never eat the same meal twice",
+    "category": "food",
+    "uploaded_at": "2026-06-11T18:43:56Z",
+    "publish_at": "2026-06-11T22:42:35.000Z"
+  },
+  "wyr_0111": {
+    "youtube_id": "ZezGZj0RJpI",
+    "youtube_url": "https://www.youtube.com/watch?v=ZezGZj0RJpI",
+    "option_a": "Have a twin you never knew about who is your best friend",
+    "option_b": "Have a mentor who makes you 10× more successful",
+    "category": "social",
+    "uploaded_at": "2026-06-11T18:44:43Z",
+    "publish_at": "2026-06-12T02:42:35.000Z"
   }
 }
