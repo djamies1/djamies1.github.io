@@ -960,5 +960,31 @@
     "category": "sequence",
     "uploaded_at": "2026-06-11T18:42:35Z",
     "publish_at": "2026-06-12T02:39:57.000Z"
+  },
+  "math_0112": {
+    "youtube_id": "e-s6MTuJz9k",
+    "youtube_url": "https://www.youtube.com/watch?v=e-s6MTuJz9k",
+    "question": "2, 5, 11, 23, 47, ___ = ?",
+    "answer": "95",
+    "category": "sequence",
+    "uploaded_at": "2026-06-12T17:58:43Z"
+  },
+  "math_0113": {
+    "youtube_id": "3yrvL84N-z0",
+    "youtube_url": "https://www.youtube.com/watch?v=3yrvL84N-z0",
+    "question": "16, 8, 4, 2, 1, ___ = ?",
+    "answer": "0.5",
+    "category": "sequence",
+    "uploaded_at": "2026-06-12T17:59:38Z",
+    "publish_at": "2026-06-12T21:57:58.000Z"
+  },
+  "math_0114": {
+    "youtube_id": "CjAUIhN2Ls4",
+    "youtube_url": "https://www.youtube.com/watch?v=CjAUIhN2Ls4",
+    "question": "3, 1, 4, 1, 5, 9, 2, 6, ___ = ?",
+    "answer": "5",
+    "category": "sequence",
+    "uploaded_at": "2026-06-12T18:00:31Z",
+    "publish_at": "2026-06-13T01:57:58.000Z"
   }
 }

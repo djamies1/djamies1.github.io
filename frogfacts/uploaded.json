@@ -778,5 +778,25 @@
     "fact": "The Vietnamese mossy frog has bumpy green skin that closely mimics the appearance of moss-covered rocks.",
     "uploaded_at": "2026-06-11T18:51:38Z",
     "publish_at": "2026-06-12T06:46:55.000Z"
+  },
+  "frog_0118": {
+    "youtube_id": "VNE-2SxChhY",
+    "youtube_url": "https://www.youtube.com/watch?v=VNE-2SxChhY",
+    "fact": "More than one third of the world's known amphibian species are currently classified as threatened with extinction.",
+    "uploaded_at": "2026-06-12T18:06:13Z"
+  },
+  "frog_0119": {
+    "youtube_id": "B6Z-ULPHqWk",
+    "youtube_url": "https://www.youtube.com/watch?v=B6Z-ULPHqWk",
+    "fact": "Amphibians are experiencing population declines faster than any other class of vertebrates on Earth.",
+    "uploaded_at": "2026-06-12T18:07:54Z",
+    "publish_at": "2026-06-13T00:04:41.000Z"
+  },
+  "frog_0120": {
+    "youtube_id": "F_o9RU8tOtg",
+    "youtube_url": "https://www.youtube.com/watch?v=F_o9RU8tOtg",
+    "fact": "The introduction of the American bullfrog outside its native range has contributed to the decline of native frog species worldwide.",
+    "uploaded_at": "2026-06-12T18:09:37Z",
+    "publish_at": "2026-06-13T06:04:41.000Z"
   }
 }

@@ -1284,5 +1284,28 @@
     "answer": "A wedding ring.",
     "uploaded_at": "2026-06-11T18:46:55Z",
     "publish_at": "2026-06-12T06:44:47.000Z"
+  },
+  "rdl_0169": {
+    "youtube_id": "ewIzvqY4wWk",
+    "youtube_url": "https://www.youtube.com/watch?v=ewIzvqY4wWk",
+    "question": "Why are two heads better than one?",
+    "answer": "They are four-sighted (fore-sighted).",
+    "uploaded_at": "2026-06-12T18:03:13Z"
+  },
+  "rdl_0170": {
+    "youtube_id": "VU4U8bl6YX8",
+    "youtube_url": "https://www.youtube.com/watch?v=VU4U8bl6YX8",
+    "question": "What is that which has many leaves, but no stem?",
+    "answer": "A book.",
+    "uploaded_at": "2026-06-12T18:03:57Z",
+    "publish_at": "2026-06-13T00:02:40.000Z"
+  },
+  "rdl_0171": {
+    "youtube_id": "FW9kIIeZT00",
+    "youtube_url": "https://www.youtube.com/watch?v=FW9kIIeZT00",
+    "question": "What is that which goes with a carriage, comes with a carriage, is of no use to a carriage, and yet the carriage cannot go without it. What is it?",
+    "answer": "Noise.",
+    "uploaded_at": "2026-06-12T18:04:41Z",
+    "publish_at": "2026-06-13T06:02:40.000Z"
   }
 }
