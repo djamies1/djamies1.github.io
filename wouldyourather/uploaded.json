@@ -1038,5 +1038,31 @@
     "category": "skills",
     "uploaded_at": "2026-06-14T17:11:07Z",
     "publish_at": "2026-06-15T01:09:08.000Z"
+  },
+  "wyr_0121": {
+    "youtube_id": "yiCTq0VhWQY",
+    "youtube_url": "https://www.youtube.com/watch?v=yiCTq0VhWQY",
+    "option_a": "Have the power to grant one wish to any stranger once per week",
+    "option_b": "Have one wish granted for yourself once per year",
+    "category": "superpowers",
+    "uploaded_at": "2026-06-15T19:40:06Z"
+  },
+  "wyr_0122": {
+    "youtube_id": "HhrUFOym8vQ",
+    "youtube_url": "https://www.youtube.com/watch?v=HhrUFOym8vQ",
+    "option_a": "Be allergic to technology after 8pm",
+    "option_b": "Be unable to leave your home after 10pm",
+    "category": "absurd",
+    "uploaded_at": "2026-06-15T19:40:50Z",
+    "publish_at": "2026-06-15T23:39:32.000Z"
+  },
+  "wyr_0123": {
+    "youtube_id": "7Lgosuxe0gQ",
+    "youtube_url": "https://www.youtube.com/watch?v=7Lgosuxe0gQ",
+    "option_a": "Only be able to whisper",
+    "option_b": "Only be able to talk in a very loud voice",
+    "category": "absurd",
+    "uploaded_at": "2026-06-15T19:41:33Z",
+    "publish_at": "2026-06-16T03:39:32.000Z"
   }
 }

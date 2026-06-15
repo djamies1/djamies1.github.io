@@ -838,5 +838,25 @@
     "fact": "A mass of frog eggs laid together is called spawn, which may contain from a few to tens of thousands of eggs.",
     "uploaded_at": "2026-06-14T17:18:04Z",
     "publish_at": "2026-06-15T05:13:10.000Z"
+  },
+  "frog_0127": {
+    "youtube_id": "6K1iqKExRd8",
+    "youtube_url": "https://www.youtube.com/watch?v=6K1iqKExRd8",
+    "fact": "Warmer water temperatures generally cause frog eggs to develop and hatch more quickly than cooler conditions.",
+    "uploaded_at": "2026-06-15T19:45:05Z"
+  },
+  "frog_0128": {
+    "youtube_id": "KGDa2NCDke4",
+    "youtube_url": "https://www.youtube.com/watch?v=KGDa2NCDke4",
+    "fact": "The golden poison dart frog of Colombia secretes batrachotoxin, one of the most potent naturally occurring toxins known.",
+    "uploaded_at": "2026-06-15T19:46:43Z",
+    "publish_at": "2026-06-16T01:43:39.000Z"
+  },
+  "frog_0129": {
+    "youtube_id": "hYWd6Djf6kQ",
+    "youtube_url": "https://www.youtube.com/watch?v=hYWd6Djf6kQ",
+    "fact": "Poison dart frogs raised in captivity without their natural diet of alkaloid-rich insects do not develop their characteristic toxicity.",
+    "uploaded_at": "2026-06-15T19:48:21Z",
+    "publish_at": "2026-06-16T07:43:39.000Z"
   }
 }

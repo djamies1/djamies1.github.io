@@ -1038,5 +1038,31 @@
     "category": "sequence",
     "uploaded_at": "2026-06-14T17:09:07Z",
     "publish_at": "2026-06-15T01:06:39.000Z"
+  },
+  "math_0121": {
+    "youtube_id": "o36uGzRvJl8",
+    "youtube_url": "https://www.youtube.com/watch?v=o36uGzRvJl8",
+    "question": "1, 4, 13, 40, 121, ___ = ?",
+    "answer": "364",
+    "category": "sequence",
+    "uploaded_at": "2026-06-15T19:37:43Z"
+  },
+  "math_0122": {
+    "youtube_id": "qfqZ374TYAo",
+    "youtube_url": "https://www.youtube.com/watch?v=qfqZ374TYAo",
+    "question": "1, 2, 3, 5, 8, 13, 21, ___ = ?",
+    "answer": "34",
+    "category": "sequence",
+    "uploaded_at": "2026-06-15T19:38:37Z",
+    "publish_at": "2026-06-15T23:36:59.000Z"
+  },
+  "math_0123": {
+    "youtube_id": "W5WtaacgE9w",
+    "youtube_url": "https://www.youtube.com/watch?v=W5WtaacgE9w",
+    "question": "0, 3, 8, 15, 24, ___ = ?",
+    "answer": "35",
+    "category": "sequence",
+    "uploaded_at": "2026-06-15T19:39:31Z",
+    "publish_at": "2026-06-16T03:36:59.000Z"
   }
 }
