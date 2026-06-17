@@ -1376,5 +1376,28 @@
     "answer": "A cabbage.",
     "uploaded_at": "2026-06-15T19:43:38Z",
     "publish_at": "2026-06-16T07:41:37.000Z"
+  },
+  "rdl_0181": {
+    "youtube_id": "AKnY4oTHWoE",
+    "youtube_url": "https://www.youtube.com/watch?v=AKnY4oTHWoE",
+    "question": "You're in a magical bathroom with no windows and the only way things can get in and out is by an open door. You decide to have a bath so you turn on the tap, you shut the door and the handle breaks so you can't open it, you then turn off the tap and the knob breaks so water keeps coming. How do you save yourself from drowning?",
+    "answer": "Pull out the plug in the bath.",
+    "uploaded_at": "2026-06-17T18:12:58Z"
+  },
+  "rdl_0182": {
+    "youtube_id": "t4Pe0RwJYKg",
+    "youtube_url": "https://www.youtube.com/watch?v=t4Pe0RwJYKg",
+    "question": "What number, when added separately, to 100 and 164 can make each a perfect square?",
+    "answer": "The answer is 125. 125+100=225 and 125+164=289. The square root of 225 is 15 and the square root of 289 is 17 .",
+    "uploaded_at": "2026-06-17T18:13:41Z",
+    "publish_at": "2026-06-18T00:12:17.000Z"
+  },
+  "rdl_0183": {
+    "youtube_id": "JKvYNMij9VM",
+    "youtube_url": "https://www.youtube.com/watch?v=JKvYNMij9VM",
+    "question": "Why is the letter F like death?",
+    "answer": "Because without it life is a lie, or it makes life a lie.",
+    "uploaded_at": "2026-06-17T18:14:27Z",
+    "publish_at": "2026-06-18T06:12:17.000Z"
   }
 }

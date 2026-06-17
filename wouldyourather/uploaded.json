@@ -1064,5 +1064,31 @@
     "category": "absurd",
     "uploaded_at": "2026-06-15T19:41:33Z",
     "publish_at": "2026-06-16T03:39:32.000Z"
+  },
+  "wyr_0124": {
+    "youtube_id": "xrteOdbUUGM",
+    "youtube_url": "https://www.youtube.com/watch?v=xrteOdbUUGM",
+    "option_a": "Know exactly what everyone thinks of you",
+    "option_b": "Know exactly what you think of yourself, with total clarity",
+    "category": "mental",
+    "uploaded_at": "2026-06-17T18:10:43Z"
+  },
+  "wyr_0125": {
+    "youtube_id": "vwGDsArK0Jk",
+    "youtube_url": "https://www.youtube.com/watch?v=vwGDsArK0Jk",
+    "option_a": "Go back in time but only as an observer, never changing anything",
+    "option_b": "Go forward in time and return with one piece of knowledge",
+    "category": "superpowers",
+    "uploaded_at": "2026-06-17T18:11:32Z",
+    "publish_at": "2026-06-17T22:10:10.000Z"
+  },
+  "wyr_0126": {
+    "youtube_id": "4xmNtLibnPk",
+    "youtube_url": "https://www.youtube.com/watch?v=4xmNtLibnPk",
+    "option_a": "Be able to control fire",
+    "option_b": "Be able to control water",
+    "category": "superpowers",
+    "uploaded_at": "2026-06-17T18:12:13Z",
+    "publish_at": "2026-06-18T02:10:10.000Z"
   }
 }

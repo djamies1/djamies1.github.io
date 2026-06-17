@@ -1064,5 +1064,31 @@
     "category": "sequence",
     "uploaded_at": "2026-06-15T19:39:31Z",
     "publish_at": "2026-06-16T03:36:59.000Z"
+  },
+  "math_0124": {
+    "youtube_id": "y6YWsYyunzk",
+    "youtube_url": "https://www.youtube.com/watch?v=y6YWsYyunzk",
+    "question": "10, 9, 7, 4, 0, ___ = ?",
+    "answer": "-5",
+    "category": "sequence",
+    "uploaded_at": "2026-06-17T18:08:32Z"
+  },
+  "math_0125": {
+    "youtube_id": "bRcwZA3ya_s",
+    "youtube_url": "https://www.youtube.com/watch?v=bRcwZA3ya_s",
+    "question": "1, 10, 100, 1000, ___ = ?",
+    "answer": "10000",
+    "category": "sequence",
+    "uploaded_at": "2026-06-17T18:09:20Z",
+    "publish_at": "2026-06-17T22:07:55.000Z"
+  },
+  "math_0126": {
+    "youtube_id": "AxDhNfIB2M4",
+    "youtube_url": "https://www.youtube.com/watch?v=AxDhNfIB2M4",
+    "question": "2, 10, 30, 68, 130, ___ = ?",
+    "answer": "222",
+    "category": "sequence",
+    "uploaded_at": "2026-06-17T18:10:09Z",
+    "publish_at": "2026-06-18T02:07:55.000Z"
   }
 }
