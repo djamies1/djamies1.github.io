@@ -1090,5 +1090,31 @@
     "category": "sequence",
     "uploaded_at": "2026-06-17T18:10:09Z",
     "publish_at": "2026-06-18T02:07:55.000Z"
+  },
+  "math_0127": {
+    "youtube_id": "TcKv0fLpNe8",
+    "youtube_url": "https://www.youtube.com/watch?v=TcKv0fLpNe8",
+    "question": "A bat and ball cost $1.10. The bat costs $1 more. How much is the ball?",
+    "answer": "$0.05",
+    "category": "trick_question",
+    "uploaded_at": "2026-06-18T18:31:27Z"
+  },
+  "math_0128": {
+    "youtube_id": "pteJqDVQ8tc",
+    "youtube_url": "https://www.youtube.com/watch?v=pteJqDVQ8tc",
+    "question": "You're in a race. You pass the person in 2nd. What place are you in?",
+    "answer": "2nd place",
+    "category": "trick_question",
+    "uploaded_at": "2026-06-18T18:32:14Z",
+    "publish_at": "2026-06-18T22:30:49.000Z"
+  },
+  "math_0129": {
+    "youtube_id": "d3A2f8cQF68",
+    "youtube_url": "https://www.youtube.com/watch?v=d3A2f8cQF68",
+    "question": "How many months have 28 days?",
+    "answer": "All 12 months",
+    "category": "trick_question",
+    "uploaded_at": "2026-06-18T18:32:59Z",
+    "publish_at": "2026-06-19T02:30:49.000Z"
   }
 }

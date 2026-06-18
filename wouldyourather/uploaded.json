@@ -1090,5 +1090,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-06-17T18:12:13Z",
     "publish_at": "2026-06-18T02:10:10.000Z"
+  },
+  "wyr_0127": {
+    "youtube_id": "uDFjWjzt2E0",
+    "youtube_url": "https://www.youtube.com/watch?v=uDFjWjzt2E0",
+    "option_a": "Have a skill that makes you $1M but takes 20 years to learn",
+    "option_b": "Have a skill that makes you $200k but can learn it in a year",
+    "category": "skills",
+    "uploaded_at": "2026-06-18T18:33:37Z"
+  },
+  "wyr_0128": {
+    "youtube_id": "bFOuYIn9QpE",
+    "youtube_url": "https://www.youtube.com/watch?v=bFOuYIn9QpE",
+    "option_a": "Live in a world where everyone tells the truth always",
+    "option_b": "Live in a world where everyone is unfailingly kind always",
+    "category": "moral",
+    "uploaded_at": "2026-06-18T18:34:21Z",
+    "publish_at": "2026-06-18T22:33:00.000Z"
+  },
+  "wyr_0129": {
+    "youtube_id": "0BzImKUJ58M",
+    "youtube_url": "https://www.youtube.com/watch?v=0BzImKUJ58M",
+    "option_a": "Have 100 casual friends",
+    "option_b": "Have 3 deep, lifelong friends",
+    "category": "social",
+    "uploaded_at": "2026-06-18T18:35:08Z",
+    "publish_at": "2026-06-19T02:33:00.000Z"
   }
 }
