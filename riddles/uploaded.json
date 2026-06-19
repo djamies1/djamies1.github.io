@@ -1422,5 +1422,28 @@
     "answer": "Newspaper!",
     "uploaded_at": "2026-06-18T18:37:20Z",
     "publish_at": "2026-06-19T06:35:12.000Z"
+  },
+  "rdl_0187": {
+    "youtube_id": "rw3AwLKGQO0",
+    "youtube_url": "https://www.youtube.com/watch?v=rw3AwLKGQO0",
+    "question": "Picture three boxes containing fruit. The first box is marked peaches, the second is marked oranges, and the third box is marked peaches and oranges. Each of the boxes is labeled incorrectly. How could you label each box correctly if you were allowed to select only one fruit from one of the boxes?",
+    "answer": "First you select a fruit from the box marked peaches and oranges. If it was a orange you selected, you know that the box could only contain oranges. If it was a peach, you know that the box could only contain peaches since each box is incorrectly marked. If, for example an orange was selected, you would mark that box oranges and switch the other two incorrect labels around. Now all three would be correctly labeled.",
+    "uploaded_at": "2026-06-19T17:51:21Z"
+  },
+  "rdl_0188": {
+    "youtube_id": "Tcf9oSjrqtc",
+    "youtube_url": "https://www.youtube.com/watch?v=Tcf9oSjrqtc",
+    "question": "A guy was waiting at home, he swung a metal pole then took 3 left turns and on his way back home there was a masked man waiting for him. What is he doing and who is the masked man?",
+    "answer": "He is playing baseball and the masked man is the Catcher.",
+    "uploaded_at": "2026-06-19T17:52:04Z",
+    "publish_at": "2026-06-19T23:50:37.000Z"
+  },
+  "rdl_0189": {
+    "youtube_id": "PZuyyq7h1Fk",
+    "youtube_url": "https://www.youtube.com/watch?v=PZuyyq7h1Fk",
+    "question": "A farmer has 17 sheep and all but 9 die. How many are left alive?",
+    "answer": "9. All but nine die.",
+    "uploaded_at": "2026-06-19T17:52:49Z",
+    "publish_at": "2026-06-20T05:50:37.000Z"
   }
 }

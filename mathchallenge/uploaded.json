@@ -1116,5 +1116,31 @@
     "category": "trick_question",
     "uploaded_at": "2026-06-18T18:32:59Z",
     "publish_at": "2026-06-19T02:30:49.000Z"
+  },
+  "math_0130": {
+    "youtube_id": "LhSzotuC2Is",
+    "youtube_url": "https://www.youtube.com/watch?v=LhSzotuC2Is",
+    "question": "A farmer has 17 sheep. All but 9 die. How many are left?",
+    "answer": "9",
+    "category": "trick_question",
+    "uploaded_at": "2026-06-19T17:47:00Z"
+  },
+  "math_0131": {
+    "youtube_id": "gYJJUf4S1Pc",
+    "youtube_url": "https://www.youtube.com/watch?v=gYJJUf4S1Pc",
+    "question": "You have 10 oranges. You take 3. How many do YOU have?",
+    "answer": "3",
+    "category": "trick_question",
+    "uploaded_at": "2026-06-19T17:47:44Z",
+    "publish_at": "2026-06-19T21:46:24.000Z"
+  },
+  "math_0132": {
+    "youtube_id": "oo0qoRNNaD8",
+    "youtube_url": "https://www.youtube.com/watch?v=oo0qoRNNaD8",
+    "question": "What's half of 2 + 2?",
+    "answer": "3",
+    "category": "trick_question",
+    "uploaded_at": "2026-06-19T17:48:29Z",
+    "publish_at": "2026-06-20T01:46:24.000Z"
   }
 }

@@ -1116,5 +1116,31 @@
     "category": "social",
     "uploaded_at": "2026-06-18T18:35:08Z",
     "publish_at": "2026-06-19T02:33:00.000Z"
+  },
+  "wyr_0130": {
+    "youtube_id": "GlmMM_MvJm0",
+    "youtube_url": "https://www.youtube.com/watch?v=GlmMM_MvJm0",
+    "option_a": "Be able to run at 60 mph",
+    "option_b": "Be able to jump 30 feet in the air",
+    "category": "physical",
+    "uploaded_at": "2026-06-19T17:49:05Z"
+  },
+  "wyr_0131": {
+    "youtube_id": "AH2WIdhJQ4Y",
+    "youtube_url": "https://www.youtube.com/watch?v=AH2WIdhJQ4Y",
+    "option_a": "Always have the best seat on any flight",
+    "option_b": "Never experience jet lag no matter where you travel",
+    "category": "lifestyle",
+    "uploaded_at": "2026-06-19T17:49:50Z",
+    "publish_at": "2026-06-19T21:48:30.000Z"
+  },
+  "wyr_0132": {
+    "youtube_id": "ZUUt3cUnQFI",
+    "youtube_url": "https://www.youtube.com/watch?v=ZUUt3cUnQFI",
+    "option_a": "Have a personal library with every book ever written",
+    "option_b": "Have a personal cinema with every film ever made",
+    "category": "lifestyle",
+    "uploaded_at": "2026-06-19T17:50:34Z",
+    "publish_at": "2026-06-20T01:48:30.000Z"
   }
 }
