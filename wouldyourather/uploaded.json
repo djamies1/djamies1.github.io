@@ -1142,5 +1142,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-06-19T17:50:34Z",
     "publish_at": "2026-06-20T01:48:30.000Z"
+  },
+  "wyr_0133": {
+    "youtube_id": "Eo5Pxyp6z2s",
+    "youtube_url": "https://www.youtube.com/watch?v=Eo5Pxyp6z2s",
+    "option_a": "Never stub your toe again",
+    "option_b": "Never bite the inside of your cheek again",
+    "category": "absurd",
+    "uploaded_at": "2026-06-20T17:17:00Z"
+  },
+  "wyr_0134": {
+    "youtube_id": "8vPbaaGqIO8",
+    "youtube_url": "https://www.youtube.com/watch?v=8vPbaaGqIO8",
+    "option_a": "Have everyone immediately like you when they meet you",
+    "option_b": "Have everyone respect you deeply after knowing you for a month",
+    "category": "social",
+    "uploaded_at": "2026-06-20T17:17:46Z",
+    "publish_at": "2026-06-20T21:16:26.000Z"
+  },
+  "wyr_0135": {
+    "youtube_id": "qIdMvXSuNWg",
+    "youtube_url": "https://www.youtube.com/watch?v=qIdMvXSuNWg",
+    "option_a": "Live in a city you love with no nature nearby",
+    "option_b": "Live in the perfect natural setting with no city amenities",
+    "category": "lifestyle",
+    "uploaded_at": "2026-06-20T17:18:31Z",
+    "publish_at": "2026-06-21T01:16:26.000Z"
   }
 }
