@@ -1168,5 +1168,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-06-20T17:18:31Z",
     "publish_at": "2026-06-21T01:16:26.000Z"
+  },
+  "wyr_0136": {
+    "youtube_id": "qQBprVgCs6g",
+    "youtube_url": "https://www.youtube.com/watch?v=qQBprVgCs6g",
+    "option_a": "Be able to fall asleep anywhere in under 30 seconds",
+    "option_b": "Always wake up feeling like you slept perfectly",
+    "category": "physical",
+    "uploaded_at": "2026-06-21T17:19:33Z"
+  },
+  "wyr_0137": {
+    "youtube_id": "sD4WeLtz0-s",
+    "youtube_url": "https://www.youtube.com/watch?v=sD4WeLtz0-s",
+    "option_a": "Have a career that makes history",
+    "option_b": "Have a personal life that feels perfect",
+    "category": "moral",
+    "uploaded_at": "2026-06-21T17:20:18Z",
+    "publish_at": "2026-06-21T21:18:59.000Z"
+  },
+  "wyr_0138": {
+    "youtube_id": "wLhK1zMyCAc",
+    "youtube_url": "https://www.youtube.com/watch?v=wLhK1zMyCAc",
+    "option_a": "Have the ability to cook any cuisine perfectly",
+    "option_b": "Have the ability to eat anything without health consequences",
+    "category": "food",
+    "uploaded_at": "2026-06-21T17:21:03Z",
+    "publish_at": "2026-06-22T01:18:59.000Z"
   }
 }
