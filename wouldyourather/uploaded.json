@@ -1194,5 +1194,31 @@
     "category": "food",
     "uploaded_at": "2026-06-21T17:21:03Z",
     "publish_at": "2026-06-22T01:18:59.000Z"
+  },
+  "wyr_0139": {
+    "youtube_id": "XDdVqY2fZF0",
+    "youtube_url": "https://www.youtube.com/watch?v=XDdVqY2fZF0",
+    "option_a": "Be able to speak to large crowds with zero nerves",
+    "option_b": "Be able to have 1-on-1 conversations with effortless charm",
+    "category": "social",
+    "uploaded_at": "2026-06-22T19:20:27Z"
+  },
+  "wyr_0140": {
+    "youtube_id": "ghJqXDivj3M",
+    "youtube_url": "https://www.youtube.com/watch?v=ghJqXDivj3M",
+    "option_a": "Have a memory that only stores positive experiences",
+    "option_b": "Have perfect recall of everything but emotional detachment from bad memories",
+    "category": "mental",
+    "uploaded_at": "2026-06-22T19:21:11Z",
+    "publish_at": "2026-06-22T23:19:51.000Z"
+  },
+  "wyr_0141": {
+    "youtube_id": "0sT3qA0yvuM",
+    "youtube_url": "https://www.youtube.com/watch?v=0sT3qA0yvuM",
+    "option_a": "Work four 10-hour days per week",
+    "option_b": "Work five 6-hour days per week",
+    "category": "lifestyle",
+    "uploaded_at": "2026-06-22T19:21:56Z",
+    "publish_at": "2026-06-23T03:19:51.000Z"
   }
 }

@@ -1194,5 +1194,31 @@
     "category": "trick_question",
     "uploaded_at": "2026-06-21T17:18:58Z",
     "publish_at": "2026-06-22T01:16:48.000Z"
+  },
+  "math_0139": {
+    "youtube_id": "IrYCrLol0xQ",
+    "youtube_url": "https://www.youtube.com/watch?v=IrYCrLol0xQ",
+    "question": "Divide 30 by half and add 10. What's the answer?",
+    "answer": "70",
+    "category": "trick_question",
+    "uploaded_at": "2026-06-22T19:18:18Z"
+  },
+  "math_0140": {
+    "youtube_id": "ywYMBYQH0Mw",
+    "youtube_url": "https://www.youtube.com/watch?v=ywYMBYQH0Mw",
+    "question": "What next: 8, 5, 4, 9, 1, 7, 6, 3, 2, ___?",
+    "answer": "0",
+    "category": "trick_question",
+    "uploaded_at": "2026-06-22T19:19:04Z",
+    "publish_at": "2026-06-22T23:17:41.000Z"
+  },
+  "math_0141": {
+    "youtube_id": "4Xpn4ui7RvY",
+    "youtube_url": "https://www.youtube.com/watch?v=4Xpn4ui7RvY",
+    "question": "How many animals of each kind did Moses take on the ark?",
+    "answer": "None — that was Noah",
+    "category": "trick_question",
+    "uploaded_at": "2026-06-22T19:19:50Z",
+    "publish_at": "2026-06-23T03:17:41.000Z"
   }
 }
