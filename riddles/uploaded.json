@@ -1514,5 +1514,28 @@
     "answer": "A Watchdog.",
     "uploaded_at": "2026-06-22T19:24:11Z",
     "publish_at": "2026-06-23T07:21:59.000Z"
+  },
+  "rdl_0199": {
+    "youtube_id": "kw8E3mBdn_0",
+    "youtube_url": "https://www.youtube.com/watch?v=kw8E3mBdn_0",
+    "question": "There are two numbers whose product added to the sum of their squares is 109, and the difference of whose squares is 24. What are the two numbers?",
+    "answer": "5 and 7. (5)² = 25(7)² = 49(5x7)+25+49=10949-25=24",
+    "uploaded_at": "2026-06-23T17:48:48Z"
+  },
+  "rdl_0200": {
+    "youtube_id": "0fNArAgMjoQ",
+    "youtube_url": "https://www.youtube.com/watch?v=0fNArAgMjoQ",
+    "question": "Two cops walked into a room with no windows and found a dead man who obviously hung himself from the ceiling, though they couldn't figure out how. There was no chair beneath him that he might have jumped off of, or a table. Just a puddle of water. How'd he do it?",
+    "answer": "He stood on a block of ice until it melted.",
+    "uploaded_at": "2026-06-23T17:49:33Z",
+    "publish_at": "2026-06-23T23:48:07.000Z"
+  },
+  "rdl_0201": {
+    "youtube_id": "IU8iIzwqeUM",
+    "youtube_url": "https://www.youtube.com/watch?v=IU8iIzwqeUM",
+    "question": "My age today is three times what it will be three years from now minus three times what my age was three years ago. How old am I?",
+    "answer": "Don't be too confused, the answer is 18 years old.",
+    "uploaded_at": "2026-06-23T17:50:18Z",
+    "publish_at": "2026-06-24T05:48:07.000Z"
   }
 }

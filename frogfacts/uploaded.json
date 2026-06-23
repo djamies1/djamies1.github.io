@@ -978,5 +978,25 @@
     "fact": "Some frog species have been recorded living at altitudes above 4,000 meters in the Andes and Himalayan mountain ranges.",
     "uploaded_at": "2026-06-22T19:28:43Z",
     "publish_at": "2026-06-23T07:24:11.000Z"
+  },
+  "frog_0148": {
+    "youtube_id": "3Q_pkbQpUTo",
+    "youtube_url": "https://www.youtube.com/watch?v=3Q_pkbQpUTo",
+    "fact": "Herpetologists can survey the frog species present in an area using acoustic monitoring alone, identifying each by call.",
+    "uploaded_at": "2026-06-23T17:51:52Z"
+  },
+  "frog_0149": {
+    "youtube_id": "mnC7B_9CabY",
+    "youtube_url": "https://www.youtube.com/watch?v=mnC7B_9CabY",
+    "fact": "The African clawed frog can detect vibrations in water using a lateral line system similar to that found in fish.",
+    "uploaded_at": "2026-06-23T17:53:18Z",
+    "publish_at": "2026-06-23T23:50:18.000Z"
+  },
+  "frog_0150": {
+    "youtube_id": "48zAM5cyYSs",
+    "youtube_url": "https://www.youtube.com/watch?v=48zAM5cyYSs",
+    "fact": "The gastric brooding frog of Australia swallowed its fertilized eggs and suppressed its own digestion to brood young in its stomach.",
+    "uploaded_at": "2026-06-23T17:54:45Z",
+    "publish_at": "2026-06-24T05:50:18.000Z"
   }
 }
