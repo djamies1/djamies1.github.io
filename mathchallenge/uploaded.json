@@ -1246,5 +1246,31 @@
     "category": "trick_question",
     "uploaded_at": "2026-06-23T17:45:57Z",
     "publish_at": "2026-06-24T01:43:51.000Z"
+  },
+  "math_0145": {
+    "youtube_id": "mHJYatWaEFs",
+    "youtube_url": "https://www.youtube.com/watch?v=mHJYatWaEFs",
+    "question": "A snail in a 20-ft well climbs 5 ft daily and slides 4 at night. Days to escape?",
+    "answer": "16 days",
+    "category": "word_problem",
+    "uploaded_at": "2026-06-24T17:46:54Z"
+  },
+  "math_0146": {
+    "youtube_id": "J4_7G1mKO1g",
+    "youtube_url": "https://www.youtube.com/watch?v=J4_7G1mKO1g",
+    "question": "Two fathers and two sons go fishing, catch 3 fish and each gets 1. How?",
+    "answer": "3 people: grandfather, father, son",
+    "category": "trick_question",
+    "uploaded_at": "2026-06-24T17:47:39Z",
+    "publish_at": "2026-06-24T21:46:16.000Z"
+  },
+  "math_0147": {
+    "youtube_id": "1nBP24E-jZ8",
+    "youtube_url": "https://www.youtube.com/watch?v=1nBP24E-jZ8",
+    "question": "What's the sum of all numbers from 1 to 100?",
+    "answer": "5050",
+    "category": "word_problem",
+    "uploaded_at": "2026-06-24T17:48:26Z",
+    "publish_at": "2026-06-25T01:46:16.000Z"
   }
 }

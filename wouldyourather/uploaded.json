@@ -1246,5 +1246,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-06-23T17:48:04Z",
     "publish_at": "2026-06-24T01:45:58.000Z"
+  },
+  "wyr_0145": {
+    "youtube_id": "0SnCVn63z9A",
+    "youtube_url": "https://www.youtube.com/watch?v=0SnCVn63z9A",
+    "option_a": "Have a pause button for awkward social situations",
+    "option_b": "Have a rewind button for social mistakes",
+    "category": "social",
+    "uploaded_at": "2026-06-24T17:49:01Z"
+  },
+  "wyr_0146": {
+    "youtube_id": "c5cLkTR9GvU",
+    "youtube_url": "https://www.youtube.com/watch?v=c5cLkTR9GvU",
+    "option_a": "Be immune to all poisons and venoms",
+    "option_b": "Be immune to all diseases and infections",
+    "category": "physical",
+    "uploaded_at": "2026-06-24T17:49:46Z",
+    "publish_at": "2026-06-24T21:48:27.000Z"
+  },
+  "wyr_0147": {
+    "youtube_id": "7QN6emmG2rs",
+    "youtube_url": "https://www.youtube.com/watch?v=7QN6emmG2rs",
+    "option_a": "Have a brain that never second-guesses itself",
+    "option_b": "Have a heart that never regrets anything",
+    "category": "mental",
+    "uploaded_at": "2026-06-24T17:50:31Z",
+    "publish_at": "2026-06-25T01:48:27.000Z"
   }
 }
