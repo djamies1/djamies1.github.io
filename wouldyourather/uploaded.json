@@ -1272,5 +1272,31 @@
     "category": "mental",
     "uploaded_at": "2026-06-24T17:50:31Z",
     "publish_at": "2026-06-25T01:48:27.000Z"
+  },
+  "wyr_0148": {
+    "youtube_id": "15mjijEMANk",
+    "youtube_url": "https://www.youtube.com/watch?v=15mjijEMANk",
+    "option_a": "Be able to teach any skill to anyone in an hour",
+    "option_b": "Be able to learn any skill from anyone in an hour",
+    "category": "skills",
+    "uploaded_at": "2026-06-25T18:04:25Z"
+  },
+  "wyr_0149": {
+    "youtube_id": "VQvEbOjFaE8",
+    "youtube_url": "https://www.youtube.com/watch?v=VQvEbOjFaE8",
+    "option_a": "Have robot-level accuracy for tasks you focus on",
+    "option_b": "Have the creativity of the most imaginative human who ever lived",
+    "category": "mental",
+    "uploaded_at": "2026-06-25T18:05:09Z",
+    "publish_at": "2026-06-25T22:03:51.000Z"
+  },
+  "wyr_0150": {
+    "youtube_id": "DLJ4HLoWqNM",
+    "youtube_url": "https://www.youtube.com/watch?v=DLJ4HLoWqNM",
+    "option_a": "Never feel the cold",
+    "option_b": "Never feel overheated",
+    "category": "physical",
+    "uploaded_at": "2026-06-25T18:05:51Z",
+    "publish_at": "2026-06-26T02:03:51.000Z"
   }
 }
