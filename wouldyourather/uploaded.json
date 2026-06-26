@@ -1298,5 +1298,31 @@
     "category": "physical",
     "uploaded_at": "2026-06-25T18:05:51Z",
     "publish_at": "2026-06-26T02:03:51.000Z"
+  },
+  "wyr_0151": {
+    "youtube_id": "uSO2Jcrd4M4",
+    "youtube_url": "https://www.youtube.com/watch?v=uSO2Jcrd4M4",
+    "option_a": "Have a house that's always clean on its own",
+    "option_b": "Have a car that's always perfectly maintained on its own",
+    "category": "lifestyle",
+    "uploaded_at": "2026-06-26T17:32:00Z"
+  },
+  "wyr_0152": {
+    "youtube_id": "xN2bwf2e-64",
+    "youtube_url": "https://www.youtube.com/watch?v=xN2bwf2e-64",
+    "option_a": "Have the voice of the most calming person on Earth",
+    "option_b": "Have the laugh of the most infectious laugh on Earth",
+    "category": "social",
+    "uploaded_at": "2026-06-26T17:32:51Z",
+    "publish_at": "2026-06-26T21:31:28.000Z"
+  },
+  "wyr_0153": {
+    "youtube_id": "qTWV8KO2V80",
+    "youtube_url": "https://www.youtube.com/watch?v=qTWV8KO2V80",
+    "option_a": "Know the plot of every book before reading",
+    "option_b": "Experience every book as if for the first time every re-read",
+    "category": "lifestyle",
+    "uploaded_at": "2026-06-26T17:33:34Z",
+    "publish_at": "2026-06-27T01:31:28.000Z"
   }
 }

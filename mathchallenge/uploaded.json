@@ -1298,5 +1298,31 @@
     "category": "logic",
     "uploaded_at": "2026-06-25T18:03:50Z",
     "publish_at": "2026-06-26T02:01:20.000Z"
+  },
+  "math_0151": {
+    "youtube_id": "uLmm4Pj3p_o",
+    "youtube_url": "https://www.youtube.com/watch?v=uLmm4Pj3p_o",
+    "question": "A car does 60 miles at 30 mph and 60 miles at 60 mph. Average speed?",
+    "answer": "40 mph",
+    "category": "logic",
+    "uploaded_at": "2026-06-26T17:29:31Z"
+  },
+  "math_0152": {
+    "youtube_id": "3WfirUF0TpE",
+    "youtube_url": "https://www.youtube.com/watch?v=3WfirUF0TpE",
+    "question": "How many cuts to slice a log into 10 equal pieces?",
+    "answer": "9",
+    "category": "logic",
+    "uploaded_at": "2026-06-26T17:30:30Z",
+    "publish_at": "2026-06-26T21:28:43.000Z"
+  },
+  "math_0153": {
+    "youtube_id": "OSTSHGZczVs",
+    "youtube_url": "https://www.youtube.com/watch?v=OSTSHGZczVs",
+    "question": "What two numbers multiply to 48 and add to 14?",
+    "answer": "6 and 8",
+    "category": "logic",
+    "uploaded_at": "2026-06-26T17:31:27Z",
+    "publish_at": "2026-06-27T01:28:43.000Z"
   }
 }
