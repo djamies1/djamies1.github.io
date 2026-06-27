@@ -1324,5 +1324,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-06-26T17:33:34Z",
     "publish_at": "2026-06-27T01:31:28.000Z"
+  },
+  "wyr_0154": {
+    "youtube_id": "3lWv-X9xVak",
+    "youtube_url": "https://www.youtube.com/watch?v=3lWv-X9xVak",
+    "option_a": "Have the ability to never feel bored",
+    "option_b": "Have the ability to feel deep flow in any task",
+    "category": "mental",
+    "uploaded_at": "2026-06-27T16:57:14Z"
+  },
+  "wyr_0155": {
+    "youtube_id": "02cNA2GJuXM",
+    "youtube_url": "https://www.youtube.com/watch?v=02cNA2GJuXM",
+    "option_a": "Have perfect posture without trying",
+    "option_b": "Have perfect sleep without trying",
+    "category": "physical",
+    "uploaded_at": "2026-06-27T16:57:59Z",
+    "publish_at": "2026-06-27T20:56:39.000Z"
+  },
+  "wyr_0156": {
+    "youtube_id": "W2DIaqJ3ao8",
+    "youtube_url": "https://www.youtube.com/watch?v=W2DIaqJ3ao8",
+    "option_a": "Spend a year in space on the ISS",
+    "option_b": "Spend a year at the bottom of the ocean in a habitat",
+    "category": "absurd",
+    "uploaded_at": "2026-06-27T16:58:43Z",
+    "publish_at": "2026-06-28T00:56:39.000Z"
   }
 }

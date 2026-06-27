@@ -1324,5 +1324,31 @@
     "category": "logic",
     "uploaded_at": "2026-06-26T17:31:27Z",
     "publish_at": "2026-06-27T01:28:43.000Z"
+  },
+  "math_0154": {
+    "youtube_id": "--GM8yPvtY0",
+    "youtube_url": "https://www.youtube.com/watch?v=--GM8yPvtY0",
+    "question": "The only number equal to the count of its own letters?",
+    "answer": "4",
+    "category": "logic",
+    "uploaded_at": "2026-06-27T16:55:01Z"
+  },
+  "math_0155": {
+    "youtube_id": "dilWvu_Uk-E",
+    "youtube_url": "https://www.youtube.com/watch?v=dilWvu_Uk-E",
+    "question": "You flip a coin 10 times and get 10 heads. Odds of heads on next flip?",
+    "answer": "50%",
+    "category": "logic",
+    "uploaded_at": "2026-06-27T16:55:50Z",
+    "publish_at": "2026-06-27T20:54:23.000Z"
+  },
+  "math_0156": {
+    "youtube_id": "S6muHZC_SYE",
+    "youtube_url": "https://www.youtube.com/watch?v=S6muHZC_SYE",
+    "question": "Train A at 60 mph, Train B at 90 mph, 300 miles apart. How long to meet?",
+    "answer": "2 hours",
+    "category": "word_problem",
+    "uploaded_at": "2026-06-27T16:56:38Z",
+    "publish_at": "2026-06-28T00:54:23.000Z"
   }
 }
