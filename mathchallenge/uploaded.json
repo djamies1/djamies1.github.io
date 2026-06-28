@@ -1350,5 +1350,31 @@
     "category": "word_problem",
     "uploaded_at": "2026-06-27T16:56:38Z",
     "publish_at": "2026-06-28T00:54:23.000Z"
+  },
+  "math_0157": {
+    "youtube_id": "ufwRa6Y7eCs",
+    "youtube_url": "https://www.youtube.com/watch?v=ufwRa6Y7eCs",
+    "question": "A grandfather is twice his son's age. His son is twice his grandson's age. Together they're 140. How old is the grandson?",
+    "answer": "20 years old",
+    "category": "word_problem",
+    "uploaded_at": "2026-06-28T16:57:12Z"
+  },
+  "math_0158": {
+    "youtube_id": "XEvke4Bs8sk",
+    "youtube_url": "https://www.youtube.com/watch?v=XEvke4Bs8sk",
+    "question": "What is the next prime number after 17?",
+    "answer": "19",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-06-28T16:58:11Z",
+    "publish_at": "2026-06-28T20:56:22.000Z"
+  },
+  "math_0159": {
+    "youtube_id": "FfAODwHHsHw",
+    "youtube_url": "https://www.youtube.com/watch?v=FfAODwHHsHw",
+    "question": "How many degrees are in all angles of a triangle?",
+    "answer": "180°",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-06-28T16:59:11Z",
+    "publish_at": "2026-06-29T00:56:22.000Z"
   }
 }

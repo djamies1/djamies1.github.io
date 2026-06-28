@@ -1350,5 +1350,31 @@
     "category": "absurd",
     "uploaded_at": "2026-06-27T16:58:43Z",
     "publish_at": "2026-06-28T00:56:39.000Z"
+  },
+  "wyr_0157": {
+    "youtube_id": "hrUSQaAMAWA",
+    "youtube_url": "https://www.youtube.com/watch?v=hrUSQaAMAWA",
+    "option_a": "Be able to run a country for one year",
+    "option_b": "Be able to run the world's most successful company for one year",
+    "category": "moral",
+    "uploaded_at": "2026-06-28T16:59:45Z"
+  },
+  "wyr_0158": {
+    "youtube_id": "GAghc9fq3aA",
+    "youtube_url": "https://www.youtube.com/watch?v=GAghc9fq3aA",
+    "option_a": "Have all your future memories intact but lose all your past memories",
+    "option_b": "Keep all your past memories but have no memory of the future",
+    "category": "moral",
+    "uploaded_at": "2026-06-28T17:00:30Z",
+    "publish_at": "2026-06-28T20:59:11.000Z"
+  },
+  "wyr_0159": {
+    "youtube_id": "qxfsr8dHFUM",
+    "youtube_url": "https://www.youtube.com/watch?v=qxfsr8dHFUM",
+    "option_a": "Be famous worldwide for something embarrassing",
+    "option_b": "Be unknown but have done something genuinely heroic",
+    "category": "social",
+    "uploaded_at": "2026-06-28T17:01:21Z",
+    "publish_at": "2026-06-29T00:59:11.000Z"
   }
 }
