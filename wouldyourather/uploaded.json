@@ -1376,5 +1376,31 @@
     "category": "social",
     "uploaded_at": "2026-06-28T17:01:21Z",
     "publish_at": "2026-06-29T00:59:11.000Z"
+  },
+  "wyr_0160": {
+    "youtube_id": "FFxUGDu2lrU",
+    "youtube_url": "https://www.youtube.com/watch?v=FFxUGDu2lrU",
+    "option_a": "Have the world's greatest singing voice but be unable to write music",
+    "option_b": "Have the world's greatest songwriting ability but be unable to sing",
+    "category": "skills",
+    "uploaded_at": "2026-06-29T18:05:24Z"
+  },
+  "wyr_0161": {
+    "youtube_id": "0cO5EOCff9s",
+    "youtube_url": "https://www.youtube.com/watch?v=0cO5EOCff9s",
+    "option_a": "Always feel 10% happier than you do now",
+    "option_b": "Never feel lower than your current average mood",
+    "category": "mental",
+    "uploaded_at": "2026-06-29T18:06:09Z",
+    "publish_at": "2026-06-29T22:04:48.000Z"
+  },
+  "wyr_0162": {
+    "youtube_id": "n7l5JOZgtI8",
+    "youtube_url": "https://www.youtube.com/watch?v=n7l5JOZgtI8",
+    "option_a": "Have the confidence of someone who has never failed",
+    "option_b": "Have the resilience of someone who has failed and come back every time",
+    "category": "mental",
+    "uploaded_at": "2026-06-29T18:06:53Z",
+    "publish_at": "2026-06-30T02:04:48.000Z"
   }
 }

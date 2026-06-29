@@ -1376,5 +1376,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-06-28T16:59:11Z",
     "publish_at": "2026-06-29T00:56:22.000Z"
+  },
+  "math_0160": {
+    "youtube_id": "0LjX1bXN8T8",
+    "youtube_url": "https://www.youtube.com/watch?v=0LjX1bXN8T8",
+    "question": "How many faces does a cube have?",
+    "answer": "6",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-06-29T18:03:18Z"
+  },
+  "math_0161": {
+    "youtube_id": "M1xMg0t15LA",
+    "youtube_url": "https://www.youtube.com/watch?v=M1xMg0t15LA",
+    "question": "What is 2¹⁰?",
+    "answer": "1024",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-06-29T18:04:03Z",
+    "publish_at": "2026-06-29T22:02:42.000Z"
+  },
+  "math_0162": {
+    "youtube_id": "ApzpnbrZXB0",
+    "youtube_url": "https://www.youtube.com/watch?v=ApzpnbrZXB0",
+    "question": "What is the area of a circle with radius 5? (use π≈3.14)",
+    "answer": "78.5",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-06-29T18:04:48Z",
+    "publish_at": "2026-06-30T02:02:42.000Z"
   }
 }
