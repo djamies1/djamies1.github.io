@@ -1402,5 +1402,31 @@
     "category": "mental",
     "uploaded_at": "2026-06-29T18:06:53Z",
     "publish_at": "2026-06-30T02:04:48.000Z"
+  },
+  "wyr_0163": {
+    "youtube_id": "_VoFYqY-osQ",
+    "youtube_url": "https://www.youtube.com/watch?v=_VoFYqY-osQ",
+    "option_a": "Eat only sweet food for a year",
+    "option_b": "Eat only savoury food for a year",
+    "category": "food",
+    "uploaded_at": "2026-06-30T17:48:41Z"
+  },
+  "wyr_0164": {
+    "youtube_id": "0kumoJvsb2M",
+    "youtube_url": "https://www.youtube.com/watch?v=0kumoJvsb2M",
+    "option_a": "Have a job that bores you but pays $300k",
+    "option_b": "Have a job you love that pays $50k",
+    "category": "lifestyle",
+    "uploaded_at": "2026-06-30T17:49:26Z",
+    "publish_at": "2026-06-30T21:48:06.000Z"
+  },
+  "wyr_0165": {
+    "youtube_id": "T9EQyn33EFc",
+    "youtube_url": "https://www.youtube.com/watch?v=T9EQyn33EFc",
+    "option_a": "Be able to run 100m in under 10 seconds",
+    "option_b": "Be able to swim 100m in under 1 minute",
+    "category": "physical",
+    "uploaded_at": "2026-06-30T17:50:11Z",
+    "publish_at": "2026-07-01T01:48:06.000Z"
   }
 }
