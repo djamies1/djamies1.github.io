@@ -1428,5 +1428,31 @@
     "category": "physical",
     "uploaded_at": "2026-06-30T17:50:11Z",
     "publish_at": "2026-07-01T01:48:06.000Z"
+  },
+  "wyr_0166": {
+    "youtube_id": "GxLLXyW2Xhc",
+    "youtube_url": "https://www.youtube.com/watch?v=GxLLXyW2Xhc",
+    "option_a": "Have a perfect poker face at all times",
+    "option_b": "Always know what everyone else is thinking",
+    "category": "social",
+    "uploaded_at": "2026-07-01T17:48:05Z"
+  },
+  "wyr_0167": {
+    "youtube_id": "ARVb3LjguCw",
+    "youtube_url": "https://www.youtube.com/watch?v=ARVb3LjguCw",
+    "option_a": "Have hair that's always perfectly styled without effort",
+    "option_b": "Have skin that's always perfectly clear without effort",
+    "category": "physical",
+    "uploaded_at": "2026-07-01T17:48:51Z",
+    "publish_at": "2026-07-01T21:47:34.000Z"
+  },
+  "wyr_0168": {
+    "youtube_id": "pM42puiKCq8",
+    "youtube_url": "https://www.youtube.com/watch?v=pM42puiKCq8",
+    "option_a": "Only be able to communicate by song",
+    "option_b": "Only be able to communicate by interpretive dance",
+    "category": "absurd",
+    "uploaded_at": "2026-07-01T17:49:35Z",
+    "publish_at": "2026-07-02T01:47:34.000Z"
   }
 }

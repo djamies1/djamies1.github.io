@@ -1428,5 +1428,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-06-30T17:48:05Z",
     "publish_at": "2026-07-01T01:45:54.000Z"
+  },
+  "math_0166": {
+    "youtube_id": "xee7nYdUpvE",
+    "youtube_url": "https://www.youtube.com/watch?v=xee7nYdUpvE",
+    "question": "In a right triangle with legs 3 and 4, what is the hypotenuse?",
+    "answer": "5",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-07-01T17:45:55Z"
+  },
+  "math_0167": {
+    "youtube_id": "b4khT7LVOd4",
+    "youtube_url": "https://www.youtube.com/watch?v=b4khT7LVOd4",
+    "question": "What is the value of π to 4 decimal places?",
+    "answer": "3.1416",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-07-01T17:46:43Z",
+    "publish_at": "2026-07-01T21:45:15.000Z"
+  },
+  "math_0168": {
+    "youtube_id": "F2pjW0-C6jE",
+    "youtube_url": "https://www.youtube.com/watch?v=F2pjW0-C6jE",
+    "question": "How many degrees are in a full rotation?",
+    "answer": "360°",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-07-01T17:47:33Z",
+    "publish_at": "2026-07-02T01:45:15.000Z"
   }
 }
