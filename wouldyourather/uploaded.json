@@ -1454,5 +1454,31 @@
     "category": "absurd",
     "uploaded_at": "2026-07-01T17:49:35Z",
     "publish_at": "2026-07-02T01:47:34.000Z"
+  },
+  "wyr_0169": {
+    "youtube_id": "YQ7CwidYANA",
+    "youtube_url": "https://www.youtube.com/watch?v=YQ7CwidYANA",
+    "option_a": "Live in a perpetual spring",
+    "option_b": "Live in a perpetual autumn",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-02T17:27:17Z"
+  },
+  "wyr_0170": {
+    "youtube_id": "JI5gnxRHNkg",
+    "youtube_url": "https://www.youtube.com/watch?v=JI5gnxRHNkg",
+    "option_a": "Have the ability to see in the dark like a cat",
+    "option_b": "Have the ability to hear like a dog (4× better)",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-02T17:28:04Z",
+    "publish_at": "2026-07-02T21:26:44.000Z"
+  },
+  "wyr_0171": {
+    "youtube_id": "NzweeQVN1Zw",
+    "youtube_url": "https://www.youtube.com/watch?v=NzweeQVN1Zw",
+    "option_a": "Age backwards from 80 to 0",
+    "option_b": "Age normally but live to 200 in full health",
+    "category": "moral",
+    "uploaded_at": "2026-07-02T17:28:48Z",
+    "publish_at": "2026-07-03T01:26:44.000Z"
   }
 }

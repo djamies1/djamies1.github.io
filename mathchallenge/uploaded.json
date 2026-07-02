@@ -1454,5 +1454,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-07-01T17:47:33Z",
     "publish_at": "2026-07-02T01:45:15.000Z"
+  },
+  "math_0169": {
+    "youtube_id": "BsKexGn5mHU",
+    "youtube_url": "https://www.youtube.com/watch?v=BsKexGn5mHU",
+    "question": "What is the square root of 196?",
+    "answer": "14",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-07-02T17:25:07Z"
+  },
+  "math_0170": {
+    "youtube_id": "NSOSQBHgUQo",
+    "youtube_url": "https://www.youtube.com/watch?v=NSOSQBHgUQo",
+    "question": "What is 7 × 8?",
+    "answer": "56",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-07-02T17:25:55Z",
+    "publish_at": "2026-07-02T21:24:24.000Z"
+  },
+  "math_0171": {
+    "youtube_id": "FPQRTxflZ4g",
+    "youtube_url": "https://www.youtube.com/watch?v=FPQRTxflZ4g",
+    "question": "How many sides does an octagon have?",
+    "answer": "8",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-07-02T17:26:43Z",
+    "publish_at": "2026-07-03T01:24:24.000Z"
   }
 }
