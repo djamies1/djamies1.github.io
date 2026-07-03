@@ -1480,5 +1480,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-07-02T17:26:43Z",
     "publish_at": "2026-07-03T01:24:24.000Z"
+  },
+  "math_0172": {
+    "youtube_id": "Xe2mRfY3GsM",
+    "youtube_url": "https://www.youtube.com/watch?v=Xe2mRfY3GsM",
+    "question": "What is the perimeter of a square with side 7?",
+    "answer": "28",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-07-03T17:11:38Z"
+  },
+  "math_0173": {
+    "youtube_id": "1OVyWkHIqOI",
+    "youtube_url": "https://www.youtube.com/watch?v=1OVyWkHIqOI",
+    "question": "What is the only even prime number?",
+    "answer": "2",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-07-03T17:12:29Z",
+    "publish_at": "2026-07-03T21:10:53.000Z"
+  },
+  "math_0174": {
+    "youtube_id": "oVxApczLkHU",
+    "youtube_url": "https://www.youtube.com/watch?v=oVxApczLkHU",
+    "question": "5 + 5 × 5 = ?",
+    "answer": "30",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-03T17:13:16Z",
+    "publish_at": "2026-07-04T01:10:53.000Z"
   }
 }

@@ -1480,5 +1480,31 @@
     "category": "moral",
     "uploaded_at": "2026-07-02T17:28:48Z",
     "publish_at": "2026-07-03T01:26:44.000Z"
+  },
+  "wyr_0172": {
+    "youtube_id": "XOSPY2Puv0k",
+    "youtube_url": "https://www.youtube.com/watch?v=XOSPY2Puv0k",
+    "option_a": "Have an unbreakable immune system",
+    "option_b": "Have a body that heals twice as fast as normal",
+    "category": "physical",
+    "uploaded_at": "2026-07-03T17:14:00Z"
+  },
+  "wyr_0173": {
+    "youtube_id": "_v4TSuL5FfM",
+    "youtube_url": "https://www.youtube.com/watch?v=_v4TSuL5FfM",
+    "option_a": "Be able to communicate telepathically with anyone who consents",
+    "option_b": "Be able to feel the emotions of anyone within 10 metres",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-03T17:14:47Z",
+    "publish_at": "2026-07-03T21:13:17.000Z"
+  },
+  "wyr_0174": {
+    "youtube_id": "U2dIBlpuXos",
+    "youtube_url": "https://www.youtube.com/watch?v=U2dIBlpuXos",
+    "option_a": "Always know the nutritional value of everything you eat",
+    "option_b": "Always know the exact calorie burn of everything you do",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-03T17:15:27Z",
+    "publish_at": "2026-07-04T01:13:17.000Z"
   }
 }
