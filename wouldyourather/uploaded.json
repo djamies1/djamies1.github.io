@@ -1506,5 +1506,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-07-03T17:15:27Z",
     "publish_at": "2026-07-04T01:13:17.000Z"
+  },
+  "wyr_0175": {
+    "youtube_id": "wX_pJquqrtc",
+    "youtube_url": "https://www.youtube.com/watch?v=wX_pJquqrtc",
+    "option_a": "Never feel nervous before an important event",
+    "option_b": "Always feel confident afterwards no matter how it went",
+    "category": "mental",
+    "uploaded_at": "2026-07-04T16:53:06Z"
+  },
+  "wyr_0176": {
+    "youtube_id": "jhDJNTBERNs",
+    "youtube_url": "https://www.youtube.com/watch?v=jhDJNTBERNs",
+    "option_a": "Be able to see colours no human has ever seen",
+    "option_b": "Be able to hear sounds no human has ever heard",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-04T16:53:52Z",
+    "publish_at": "2026-07-04T20:52:32.000Z"
+  },
+  "wyr_0177": {
+    "youtube_id": "Ls-JgtrgZ6U",
+    "youtube_url": "https://www.youtube.com/watch?v=Ls-JgtrgZ6U",
+    "option_a": "Have all your meals delivered perfectly every day for free",
+    "option_b": "Have a cleaner visit your home daily for free",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-04T16:54:37Z",
+    "publish_at": "2026-07-05T00:52:32.000Z"
   }
 }
