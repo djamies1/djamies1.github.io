@@ -355,7 +355,7 @@ const TypingCodeFeature = ({ text }: { text: string }) => {
     <div className="relative mt-3">
       <div className="mb-2 flex items-center gap-2">
         <div className="text-neutral-500 text-xs dark:text-neutral-400">
-          server.ts
+          assistant.log
         </div>
       </div>
       <div
@@ -734,3 +734,6 @@ export default function BentoGrid() {
     </section>
   );
 }
+
+// Exposed for custom grids (the default export above is the demo layout).
+export { BentoCard, type BentoItem };

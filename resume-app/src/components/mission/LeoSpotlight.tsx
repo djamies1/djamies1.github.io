@@ -1,0 +1,204 @@
+import { ChevronRight } from "lucide-react";
+import { lazy, Suspense, useRef, useState } from "react";
+import { motion } from "motion/react";
+import { BentoCard, type BentoItem } from "@/components/kokonutui/bento-grid";
+import MatrixText from "@/components/kokonutui/matrix-text";
+import { SectionHeading } from "@/components/hud/SectionHeading";
+import { RoleDrawer } from "@/components/timeline/RoleDrawer";
+import { useInView } from "@/hooks/use-in-view";
+import { JOBS } from "@/data/resume";
+import type { Job } from "@/data/types";
+
+const KuiperOps = lazy(() => import("@/components/mission/KuiperOps"));
+
+const LEO_JOB = JOBS.find((j) => j.id === "amazon-leo");
+
+/** The eight domains the fin-ops platform unifies (from the résumé). */
+const DOMAIN_ITEMS: BentoItem[] = [
+  {
+    id: "assistant",
+    title: "AI Knowledge Assistant",
+    description:
+      "RAG over hundreds of curated finance documents — automatic source citation, export-control screening. Adopted org-wide across three surfaces.",
+    feature: "typing",
+    typingText:
+      "> query: 'capex variance drivers, June'\n> retrieving… 4 sources matched\n> cite: [FIN-VAR-0626 §2.1] [CAPEX-RPT-06]\n> export-control: PASS ✓\n> answer ready — 2.3s",
+    size: "lg",
+    className: "md:col-span-2 md:row-span-2",
+  },
+  {
+    id: "variance",
+    title: "Variance Commentary",
+    description: "AI-assisted review workflow for month-over-month narrative.",
+    size: "sm",
+  },
+  {
+    id: "pnl",
+    title: "Live P&L Analytics",
+    description: "Real-time profit & loss visibility for the finance org.",
+    size: "sm",
+  },
+  {
+    id: "capex",
+    title: "CapEx Analytics",
+    description: "Capital-expenditure tracking for a satellite constellation.",
+    size: "sm",
+  },
+  {
+    id: "gl",
+    title: "GL Drill-Down",
+    description:
+      "Transaction-level general-ledger analysis across seven dimensions — powering month-end close and PO controllership.",
+    size: "sm",
+  },
+  {
+    id: "planning",
+    title: "Planning Dashboards",
+    description: "Forward-looking planning surfaces for finance leadership.",
+    size: "sm",
+  },
+  {
+    id: "library",
+    title: "Resource Library",
+    description: "Curated, searchable home for the org's financial knowledge.",
+    size: "sm",
+  },
+  {
+    id: "reporting",
+    title: "Reporting",
+    description:
+      "Standardized reporting layer replacing manual spreadsheet processes across the organization.",
+    size: "sm",
+    className: "md:col-span-2",
+  },
+];
+
+const MANIFEST = [
+  "Sole technical owner — a production platform serving a ~130-person finance organization",
+  "Python/Flask web platform unifying eight financial-operations domains",
+  "RAG knowledge assistant with automatic source citation & export-control screening",
+  "Finalist among a 600-person internal hackathon for the reusable AI skill library",
+  "Founded and lead the org's monthly Analytics & AI forum",
+];
+
+const item = {
+  hidden: { opacity: 0, y: 18 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      delay: 0.1 + i * 0.09,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  }),
+};
+
+export function LeoSpotlight() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const globeInView = useInView(sectionRef, "600px");
+  const [dossier, setDossier] = useState<Job | null>(null);
+
+  return (
+    <section
+      className="mx-auto max-w-6xl px-6 py-24"
+      id="mission"
+      ref={sectionRef}
+    >
+      <SectionHeading
+        eyebrow="03 · Current mission"
+        lede="Finance mission control for Amazon's satellite broadband constellation — one engineer, one platform, eight domains."
+        title={
+          <MatrixText
+            charClassName="font-mono text-4xl tracking-tight md:text-5xl"
+            className="text-cream dark:text-cream"
+            initialDelay={400}
+            text="AMAZON LEO"
+          />
+        }
+      />
+
+      <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_1fr]">
+        <div>
+          <ul className="space-y-3.5">
+            {MANIFEST.map((line, i) => (
+              <motion.li
+                className="flex gap-3 text-cream/85 leading-relaxed"
+                custom={i}
+                initial="hidden"
+                key={line.slice(0, 24)}
+                variants={item}
+                viewport={{ once: true, margin: "-80px" }}
+                whileInView="show"
+              >
+                <span
+                  aria-hidden
+                  className="mt-1 font-mono text-gold text-sm"
+                >
+                  ▸
+                </span>
+                {line}
+              </motion.li>
+            ))}
+          </ul>
+
+          <motion.div
+            custom={MANIFEST.length}
+            initial="hidden"
+            variants={item}
+            viewport={{ once: true }}
+            whileInView="show"
+          >
+            <button
+              className="group mt-8 inline-flex items-center gap-2 rounded-lg border border-gold/40 px-5 py-2.5 font-medium text-gold-light text-sm transition-all duration-300 hover:border-gold hover:bg-gold/10"
+              onClick={() => setDossier(LEO_JOB ?? null)}
+              type="button"
+            >
+              Full mission dossier
+              <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </button>
+          </motion.div>
+        </div>
+
+        <div>
+          {globeInView ? (
+            <Suspense fallback={<GlobeSkeleton />}>
+              <KuiperOps />
+            </Suspense>
+          ) : (
+            <GlobeSkeleton />
+          )}
+        </div>
+      </div>
+
+      <div className="mt-16">
+        <p className="eyebrow mb-6">The platform · eight domains</p>
+        <div className="grid gap-4 md:grid-cols-4">
+          {DOMAIN_ITEMS.map((d) => (
+            <div
+              className={d.className ?? "md:col-span-1"}
+              key={d.id}
+            >
+              <BentoCard item={d} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <RoleDrawer job={dossier} onClose={() => setDossier(null)} />
+    </section>
+  );
+}
+
+function GlobeSkeleton() {
+  return (
+    <div className="relative aspect-[1/0.88] w-full overflow-hidden rounded-2xl border border-gold/25 bg-black/40">
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="h-40 w-40 animate-pulse rounded-full border border-gold/30 bg-ink-3" />
+      </div>
+      <p className="absolute bottom-4 w-full text-center text-[0.65rem] text-muted-foreground uppercase tracking-[0.2em]">
+        Initialising orbital display…
+      </p>
+    </div>
+  );
+}

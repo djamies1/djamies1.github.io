@@ -23,6 +23,8 @@ interface LetterState {
 interface MatrixTextProps {
   text?: string;
   className?: string;
+  /** Per-character classes (size/font). Default: mono display sizes. */
+  charClassName?: string;
   initialDelay?: number;
   letterAnimationDuration?: number;
   letterInterval?: number;
@@ -31,6 +33,7 @@ interface MatrixTextProps {
 const MatrixText = ({
   text = "HelloWorld!",
   className,
+  charClassName,
   initialDelay = 200,
   letterAnimationDuration = 500,
   letterInterval = 100,
@@ -126,18 +129,21 @@ const MatrixText = ({
 
   return (
     <div
-      aria-label="Matrix text animation"
+      aria-label={text}
       className={cn(
-        "flex min-h-screen items-center justify-center text-black dark:text-white",
+        "flex items-center text-black dark:text-white",
         className
       )}
     >
-      <div className="flex h-24 items-center justify-center">
-        <div className="flex flex-wrap items-center justify-center">
+      <div className="flex items-center">
+        <div className="flex flex-wrap items-center">
           {letters.map((letter, index) => (
             <motion.div
               animate={letter.isMatrix ? "matrix" : "normal"}
-              className="w-[1ch] overflow-hidden text-center font-mono text-4xl md:text-6xl"
+              className={cn(
+                "w-[1ch] overflow-hidden text-center",
+                charClassName ?? "font-mono text-4xl md:text-6xl"
+              )}
               initial="initial"
               key={`${index}-${letter.char}`}
               style={{

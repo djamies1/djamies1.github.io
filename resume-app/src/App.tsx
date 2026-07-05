@@ -2,6 +2,7 @@ import { CommandDeck } from "@/components/hero/CommandDeck";
 import { HudNav } from "@/components/hud/HudNav";
 import { ScrollProgress } from "@/components/hud/ScrollProgress";
 import { SectionHeading } from "@/components/hud/SectionHeading";
+import { LeoSpotlight } from "@/components/mission/LeoSpotlight";
 import { FlightLog } from "@/components/timeline/FlightLog";
 
 function App() {
@@ -15,17 +16,7 @@ function App() {
 
         <FlightLog />
 
-        {/* 03 · Current mission (Amazon Leo) — built in Phase 6 */}
-        <section className="mx-auto max-w-6xl px-6 py-24" id="mission">
-          <SectionHeading
-            eyebrow="03 · Current mission"
-            lede="Sole technical owner of the financial-operations platform for Amazon's satellite constellation."
-            title="Amazon Leo"
-          />
-          <div className="glass flex h-64 items-center justify-center rounded-2xl text-muted-foreground text-sm">
-            Live constellation globe — Phase 6
-          </div>
-        </section>
+        <LeoSpotlight />
 
         {/* 04 · Capabilities (skills radar) — built in Phase 7 */}
         <section className="mx-auto max-w-6xl px-6 py-24" id="capabilities">
