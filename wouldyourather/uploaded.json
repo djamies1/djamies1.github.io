@@ -1532,5 +1532,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-07-04T16:54:37Z",
     "publish_at": "2026-07-05T00:52:32.000Z"
+  },
+  "wyr_0178": {
+    "youtube_id": "an2bKuM2EbA",
+    "youtube_url": "https://www.youtube.com/watch?v=an2bKuM2EbA",
+    "option_a": "Be able to translate any written language instantly",
+    "option_b": "Be able to translate any spoken language instantly",
+    "category": "skills",
+    "uploaded_at": "2026-07-05T16:56:12Z"
+  },
+  "wyr_0179": {
+    "youtube_id": "BY_iIDDrQHM",
+    "youtube_url": "https://www.youtube.com/watch?v=BY_iIDDrQHM",
+    "option_a": "Have teeth that never need cleaning",
+    "option_b": "Have eyes that never need correction or strain",
+    "category": "physical",
+    "uploaded_at": "2026-07-05T16:57:03Z",
+    "publish_at": "2026-07-05T20:54:52.000Z"
+  },
+  "wyr_0180": {
+    "youtube_id": "jTksm3aBfyo",
+    "youtube_url": "https://www.youtube.com/watch?v=jTksm3aBfyo",
+    "option_a": "Live without social media but be slightly more productive",
+    "option_b": "Keep social media but have twice the self-discipline",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-05T16:58:21Z",
+    "publish_at": "2026-07-06T00:54:52.000Z"
   }
 }

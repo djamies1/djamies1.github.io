@@ -1532,5 +1532,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-07-04T16:52:31Z",
     "publish_at": "2026-07-05T00:50:19.000Z"
+  },
+  "math_0178": {
+    "youtube_id": "HPMnkR0Dztc",
+    "youtube_url": "https://www.youtube.com/watch?v=HPMnkR0Dztc",
+    "question": "3 + 4 × 2 - 1 = ?",
+    "answer": "10",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-05T16:53:11Z"
+  },
+  "math_0179": {
+    "youtube_id": "n0mZM0S2mHo",
+    "youtube_url": "https://www.youtube.com/watch?v=n0mZM0S2mHo",
+    "question": "12 ÷ 4 × 3 = ?",
+    "answer": "9",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-05T16:54:00Z",
+    "publish_at": "2026-07-05T20:52:29.000Z"
+  },
+  "math_0180": {
+    "youtube_id": "mk_q9IynCM4",
+    "youtube_url": "https://www.youtube.com/watch?v=mk_q9IynCM4",
+    "question": "4 + 4 ÷ 4 + 4 = ?",
+    "answer": "9",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-05T16:54:51Z",
+    "publish_at": "2026-07-06T00:52:29.000Z"
   }
 }
