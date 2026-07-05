@@ -2,187 +2,222 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
+@import "@fontsource-variable/playfair-display";
 
 @custom-variant dark (&:is(.dark *));
 
+/* ── Mission-control brand tokens (generate Tailwind utilities) ── */
+@theme {
+  --color-ink: #0e0e0e;
+  --color-ink-2: #151515;
+  --color-ink-3: #1c1c1c;
+  --color-cream: #f5f0e8;
+  --color-gold: #c9a84c;
+  --color-gold-light: #e8d5a3;
+  --color-rust: #c4572a;
+  /* company accents, brightened to read on ink */
+  --color-amazon: #ff9900;
+  --color-pac: #5c8fe6;
+  --color-falck: #e0604a;
+  --color-led: #3ecf7a;
+  --color-ey: #9a9ab0;
+  --font-display: "Playfair Display Variable", "Playfair Display", Georgia,
+    serif;
+}
+
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Geist Variable', sans-serif;
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
-    --color-ring: var(--ring);
-    --color-input: var(--input);
-    --color-border: var(--border);
-    --color-destructive: var(--destructive);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-muted: var(--muted);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-primary: var(--primary);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-popover: var(--popover);
-    --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
-    --color-foreground: var(--foreground);
-    --color-background: var(--background);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
-    --color-chart-scale-pattern-color: var(----chart-scale-pattern-color);
-    --color-chart-scale-05: var(----chart-scale-05);
-    --color-chart-scale-04: var(----chart-scale-04);
-    --color-chart-scale-03: var(----chart-scale-03);
-    --color-chart-scale-02: var(----chart-scale-02);
-    --color-chart-scale-01: var(----chart-scale-01);
-    --color-chart-label: var(----chart-label);
-    --color-chart-marker-foreground: var(----chart-marker-foreground);
-    --color-chart-marker-border: var(----chart-marker-border);
-    --color-chart-marker-background: var(----chart-marker-background);
-    --color-chart-tooltip-muted: var(----chart-tooltip-muted);
-    --color-chart-tooltip-foreground: var(----chart-tooltip-foreground);
-    --color-chart-tooltip-background: var(----chart-tooltip-background);
-    --chart-brush-border: var(----chart-brush-border);
-    --color-chart-grid: var(----chart-grid);
-    --color-chart-crosshair: var(----chart-crosshair);
-    --chart-line-secondary: var(----chart-line-secondary);
-    --chart-line-primary: var(----chart-line-primary);
-    --color-chart-foreground-muted: var(----chart-foreground-muted);
-    --color-chart-foreground: var(----chart-foreground);
-    --color-chart-background: var(----chart-background);
+  --font-heading: var(--font-display);
+  --font-sans: "Geist Variable", sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-    --chart-background: oklch(1 0 0);
-    --chart-foreground: oklch(0.145 0.004 285);
-    --chart-foreground-muted: oklch(0.55 0.014 260);
-    --chart-line-primary: var(--chart-1);
-    --chart-line-secondary: var(--chart-2);
-    --chart-crosshair: oklch(0.4 0.1828 274.34);
-    --chart-grid: oklch(0.9 0 0);
-    --chart-brush-border: var(--chart-grid);
-    --chart-tooltip-background: oklch(0.21 0.006 285 / 0.8);
-    --chart-tooltip-foreground: oklch(0.985 0 0);
-    --chart-tooltip-muted: oklch(0.65 0.01 260);
-    --chart-marker-background: oklch(0.97 0.005 260);
-    --chart-marker-border: oklch(0.85 0.01 260);
-    --chart-marker-foreground: oklch(0.3 0.01 260);
-    --chart-label: oklch(0.45 0.01 260);
-    --chart-scale-01: oklch(0.98 0.003 106);
-    --chart-scale-02: oklch(0.92 0.008 106);
-    --chart-scale-03: oklch(0.82 0.015 106);
-    --chart-scale-04: oklch(0.68 0.02 106);
-    --chart-scale-05: oklch(0.55 0.025 106);
-    --chart-scale-pattern-color: oklch(0.96 0.005 106);
-}
-
+/*
+ * Dark-only theme: ink page, cream text, gold primary.
+ * :root and .dark are intentionally identical — the page never runs light,
+ * but vendored components key their dark: variants off the .dark class.
+ * The --chart-* names below are bklit-ui's contract; keep the names.
+ */
+:root,
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
-    --chart-background: oklch(0.145 0 0);
-    --chart-foreground: oklch(0.45 0 0);
-    --chart-foreground-muted: oklch(0.65 0.01 260);
-    --chart-crosshair: oklch(0.45 0 0);
-    --chart-grid: oklch(0.25 0 0);
-    --chart-brush-border: var(--chart-grid);
-    --chart-marker-background: oklch(0.25 0.01 260);
-    --chart-marker-border: oklch(0.4 0.01 260);
-    --chart-marker-foreground: oklch(0.9 0 0);
-    --chart-label: oklch(0.75 0.01 260);
-    --chart-scale-01: oklch(0.28 0.03 270);
-    --chart-scale-02: oklch(0.38 0.04 270);
-    --chart-scale-03: oklch(0.48 0.05 270);
-    --chart-scale-04: oklch(0.58 0.06 270);
-    --chart-scale-05: oklch(0.68 0.07 270);
-    --chart-scale-pattern-color: oklch(0.145 0 0);
+  --background: #0e0e0e;
+  --foreground: #f5f0e8;
+  --card: #151515;
+  --card-foreground: #f5f0e8;
+  --popover: #181818;
+  --popover-foreground: #f5f0e8;
+  --primary: #c9a84c;
+  --primary-foreground: #0e0e0e;
+  --secondary: #1d1d1d;
+  --secondary-foreground: #f5f0e8;
+  --muted: #1a1a1a;
+  --muted-foreground: #a29a8a;
+  --accent: #221d10;
+  --accent-foreground: #e8d5a3;
+  --destructive: #c4572a;
+  --border: rgba(245, 240, 232, 0.1);
+  --input: rgba(245, 240, 232, 0.14);
+  --ring: rgba(201, 168, 76, 0.6);
+  --chart-1: #c9a84c;
+  --chart-2: #e8d5a3;
+  --chart-3: #c4572a;
+  --chart-4: #8a7a45;
+  --chart-5: #5c5340;
+  --radius: 0.625rem;
+  --sidebar: #151515;
+  --sidebar-foreground: #f5f0e8;
+  --sidebar-primary: #c9a84c;
+  --sidebar-primary-foreground: #0e0e0e;
+  --sidebar-accent: #221d10;
+  --sidebar-accent-foreground: #e8d5a3;
+  --sidebar-border: rgba(245, 240, 232, 0.1);
+  --sidebar-ring: rgba(201, 168, 76, 0.6);
+  /* bklit chart chrome */
+  --chart-background: #0e0e0e;
+  --chart-foreground: rgba(245, 240, 232, 0.55);
+  --chart-foreground-muted: rgba(245, 240, 232, 0.35);
+  --chart-crosshair: rgba(201, 168, 76, 0.5);
+  --chart-grid: rgba(245, 240, 232, 0.07);
+  --chart-brush-border: var(--chart-grid);
+  --chart-marker-background: #1c1c1c;
+  --chart-marker-border: rgba(201, 168, 76, 0.35);
+  --chart-marker-foreground: #f5f0e8;
+  --chart-label: rgba(245, 240, 232, 0.7);
+  --chart-scale-01: #3a3323;
+  --chart-scale-02: #57492b;
+  --chart-scale-03: #7a6436;
+  --chart-scale-04: #a18441;
+  --chart-scale-05: #c9a84c;
+  --chart-scale-pattern-color: #0e0e0e;
+}
+
+/* ── Custom utilities ── */
+
+/* Frosted glass panel used across stat tiles, cards, HUD chrome */
+@utility glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+}
+
+/* Small-caps gold section eyebrow */
+@utility eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-gold);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
-  body {
-    @apply bg-background text-foreground;
-    }
+  }
   html {
     @apply font-sans;
-    }
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  ::selection {
+    background: rgba(201, 168, 76, 0.35);
+    color: #f5f0e8;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0e0e0e;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 168, 76, 0.5);
+  }
+}
+
+/* ── Ambient film grain (ported from the v1 page) ── */
+@keyframes grain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-3%, -6%);
+  }
+  30% {
+    transform: translate(4%, -3%);
+  }
+  50% {
+    transform: translate(-4%, 5%);
+  }
+  70% {
+    transform: translate(5%, 3%);
+  }
+  90% {
+    transform: translate(-3%, 4%);
+  }
+}
+
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: -50%;
+  z-index: 60;
+  width: 200%;
+  height: 200%;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 9s steps(6) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .grain-overlay {
+    animation: none;
+  }
 }
