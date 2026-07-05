@@ -45,15 +45,20 @@ export function CommandDeck() {
 
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 pt-24 pb-10">
         <motion.div {...blockReveal(0.05)}>
-          <span className="glass inline-flex items-center gap-2.5 rounded-full px-4 py-2">
-            <span className="relative flex h-2 w-2">
+          <span className="glass inline-flex max-w-full items-center gap-2.5 rounded-full px-4 py-2">
+            <span className="relative flex h-2 w-2 shrink-0">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
             </span>
             <ShimmeringText
-              className="font-medium text-[0.7rem] tracking-[0.28em] uppercase [--color:#a29a8a] [--shimmering-color:#e8d5a3]"
+              className="hidden font-medium text-[0.7rem] uppercase tracking-[0.28em] sm:inline-flex [--color:#a29a8a] [--shimmering-color:#e8d5a3]"
               duration={2.4}
               text="Mission active · Amazon Leo — Project Kuiper"
+            />
+            <ShimmeringText
+              className="font-medium text-[0.62rem] uppercase tracking-[0.2em] sm:hidden [--color:#a29a8a] [--shimmering-color:#e8d5a3]"
+              duration={2.4}
+              text="Mission active · Amazon Leo"
             />
           </span>
         </motion.div>

@@ -1,28 +1,12 @@
 import { ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
-import { useState } from "react";
-import { RadarChart } from "@/components/charts/radar-chart";
-import { RadarArea } from "@/components/charts/radar-area";
-import { RadarAxis } from "@/components/charts/radar-axis";
-import { RadarGrid } from "@/components/charts/radar-grid";
-import { RadarLabels } from "@/components/charts/radar-labels";
+import { lazy, Suspense, useState } from "react";
 import { SectionHeading } from "@/components/hud/SectionHeading";
 import { SkillDrawer } from "@/components/skills/SkillDrawer";
 import { SKILL_PILLARS, TECH_SKILLS } from "@/data/resume";
 import type { SkillPillar } from "@/data/types";
 
-const RADAR_METRICS = SKILL_PILLARS.map((p) => ({
-  key: p.id,
-  label: p.name,
-}));
-
-const RADAR_DATA = [
-  {
-    label: "Capability",
-    color: "#c9a84c",
-    values: Object.fromEntries(SKILL_PILLARS.map((p) => [p.id, p.radar])),
-  },
-];
+const RadarPanel = lazy(() => import("@/components/skills/RadarPanel"));
 
 const cardReveal = {
   hidden: { opacity: 0, y: 20 },
@@ -50,17 +34,9 @@ export function Capabilities() {
 
       <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,460px)_1fr]">
         <div className="mx-auto w-full max-w-[460px]">
-          <RadarChart
-            data={RADAR_DATA}
-            levels={4}
-            margin={90}
-            metrics={RADAR_METRICS}
-          >
-            <RadarGrid />
-            <RadarAxis />
-            <RadarLabels />
-            <RadarArea index={0} />
-          </RadarChart>
+          <Suspense fallback={<div className="aspect-square w-full" />}>
+            <RadarPanel />
+          </Suspense>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">

@@ -2,14 +2,14 @@ import { createDraggable, type Draggable } from "animejs";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
+  lazy,
+  Suspense,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
-import { Area, AreaChart } from "@/components/charts/area-chart";
-import XAxis from "@/components/charts/x-axis";
 import { SectionHeading } from "@/components/hud/SectionHeading";
 import { RoleDrawer } from "@/components/timeline/RoleDrawer";
 import {
@@ -22,6 +22,8 @@ import {
 import { formatRange } from "@/data/resume";
 import type { Job } from "@/data/types";
 import { cn } from "@/lib/utils";
+
+const CareerChart = lazy(() => import("@/components/timeline/CareerChart"));
 
 /*
  * Rail geometry: the chart plot, tenure bands, and scrubber all use the same
@@ -234,24 +236,15 @@ export function FlightLog() {
           />
         </div>
 
-        <AreaChart
-          animationDuration={reducedMotion ? 0 : 1400}
-          aspectRatio="3.2 / 1"
-          className="relative z-[1]"
-          data={series}
-          margin={{ top: 26, right: EDGE, bottom: 30, left: EDGE }}
-          xDataKey="date"
+        <Suspense
+          fallback={<div className="aspect-[3.2/1] w-full" />}
         >
-          <Area
-            dataKey="scope"
-            fill="#c9a84c"
-            fillOpacity={0.32}
-            gradientToOpacity={0}
-            stroke="#c9a84c"
-            strokeWidth={2}
+          <CareerChart
+            edge={EDGE}
+            reducedMotion={reducedMotion ?? false}
+            series={series}
           />
-          <XAxis numTicks={7} tickMode="domain" />
-        </AreaChart>
+        </Suspense>
 
         {/* scrubber rail overlaying the plot */}
         <div
