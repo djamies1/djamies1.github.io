@@ -4,7 +4,7 @@ import { memo, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 import { useChart, useChartStable } from "./chart-context";
-import { shortDateFmt } from "./chart-formatters";
+import { shortDateFmt, spanAwareDateFmt } from "./chart-formatters";
 import { DEFAULT_Y_DOMAIN_TWEEN_MS } from "./chart-phase";
 import { LINE_LOADING_PULSE_EASE } from "./line-loading-timing";
 
@@ -453,6 +453,7 @@ function buildDomainTicks({
   const startTime = startDate.getTime();
   const endTime = endDate.getTime();
   const timeRange = endTime - startTime;
+  const fmt = spanAwareDateFmt(timeRange);
   const tickCount = Math.max(2, numTicks);
   const seenLabels = new Set<string>();
   const ticks: AxisTick[] = [];
@@ -460,7 +461,7 @@ function buildDomainTicks({
   for (let i = 0; i < tickCount; i++) {
     const t = i / (tickCount - 1);
     const date = new Date(startTime + t * timeRange);
-    const label = shortDateFmt.format(date);
+    const label = fmt.format(date);
     if (seenLabels.has(label)) {
       continue;
     }
