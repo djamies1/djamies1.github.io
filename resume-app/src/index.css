@@ -213,11 +213,30 @@
   animation: grain 9s steps(6) infinite;
 }
 
+/* ── Hero starfield twinkle ── */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.star-twinkle {
+  animation: twinkle 4s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .grain-overlay {
+  .grain-overlay,
+  .star-twinkle {
     animation: none;
+  }
+  .star-twinkle {
+    opacity: 0.4;
   }
 }

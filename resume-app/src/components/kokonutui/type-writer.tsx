@@ -12,6 +12,7 @@
 
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 type TypewriterSequence = {
   text: string;
@@ -28,6 +29,8 @@ type TypewriterTitleProps = {
   deleteSpeed?: number;
   pauseBeforeDelete?: number;
   naturalVariance?: boolean;
+  className?: string;
+  textClassName?: string;
 };
 
 const DEFAULT_SEQUENCES: TypewriterSequence[] = [
@@ -45,6 +48,8 @@ export default function TypewriterTitle({
   deleteSpeed = 30,
   pauseBeforeDelete = 1000,
   naturalVariance = true,
+  className,
+  textClassName,
 }: TypewriterTitleProps) {
   const [displayText, setDisplayText] = useState("");
   const sequenceIndexRef = useRef(0);
@@ -168,11 +173,15 @@ export default function TypewriterTitle({
   ]);
 
   return (
-    <div className="relative mx-auto w-full max-w-4xl py-24">
+    <div className={cn("relative w-full", className)}>
       <div className="relative z-10 flex flex-col items-center justify-center text-center">
         <motion.div
           animate={{ opacity: 1 }}
-          className="flex items-center gap-1 font-mono text-4xl text-black tracking-tight md:text-6xl dark:text-white"
+          className={cn(
+            "flex items-center gap-1 tracking-tight",
+            textClassName ??
+              "font-mono text-4xl text-black md:text-6xl dark:text-white"
+          )}
           initial={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
@@ -183,7 +192,7 @@ export default function TypewriterTitle({
             animate={{
               opacity: [1, 1, 0, 0],
             }}
-            className="inline-block h-[1em] w-[3px] bg-black dark:bg-white"
+            className="inline-block h-[1em] w-[2px] bg-current"
             transition={{
               duration: 1,
               repeat: Number.POSITIVE_INFINITY,

@@ -1,3 +1,4 @@
+import { CommandDeck } from "@/components/hero/CommandDeck";
 import { HudNav } from "@/components/hud/HudNav";
 import { ScrollProgress } from "@/components/hud/ScrollProgress";
 import { SectionHeading } from "@/components/hud/SectionHeading";
@@ -9,21 +10,7 @@ function App() {
       <div aria-hidden className="grain-overlay" />
 
       <main>
-        {/* 01 · Command deck (hero) — built in Phase 4 */}
-        <section
-          className="flex min-h-dvh items-center justify-center"
-          id="deck"
-        >
-          <div className="px-6 text-center">
-            <p className="eyebrow mb-4">Mission active · Amazon Leo</p>
-            <h1 className="font-display text-6xl text-cream tracking-tight md:text-8xl">
-              David Jamieson
-            </h1>
-            <p className="mt-4 text-muted-foreground">
-              Business Intelligence Engineer — command deck under construction
-            </p>
-          </div>
-        </section>
+        <CommandDeck />
 
         {/* 02 · Flight log (career timeline) — built in Phase 5 */}
         <section className="mx-auto max-w-6xl px-6 py-24" id="flight-log">

@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-type ColorVariant = "emerald" | "purple" | "orange";
+type ColorVariant = "emerald" | "purple" | "orange" | "gold";
 
 interface GradientColors {
   dark: {
@@ -30,9 +30,34 @@ interface GradientButtonProps
   label?: string;
   className?: string;
   variant?: ColorVariant;
+  /** When set, renders an <a> instead of a <button>. */
+  href?: string;
+  download?: boolean | string;
+  target?: string;
+  rel?: string;
 }
 
 const gradientColors: Record<ColorVariant, GradientColors> = {
+  gold: {
+    dark: {
+      border: "from-[#c9a84c] via-[#141310] to-[#8a7a45]",
+      overlay: "from-[#c9a84c]/40 via-[#141310] to-[#8a7a45]/30",
+      accent: "from-[#e8d5a3]/10 via-[#141310] to-[#3a3323]/50",
+      text: "from-[#e8d5a3] to-[#c9a84c]",
+      glow: "rgba(201,168,76,0.12)",
+      textGlow: "rgba(201,168,76,0.45)",
+      hover: "from-[#3a3323]/20 via-[#e8d5a3]/10 to-[#3a3323]/20",
+    },
+    light: {
+      border: "from-[#c9a84c] via-[#e8d5a3] to-[#c9a84c]",
+      base: "from-[#faf6ec] via-[#faf6ec]/80 to-[#faf6ec]/90",
+      overlay: "from-[#e8d5a3]/30 via-[#e8d5a3]/20 to-[#c9a84c]/20",
+      accent: "from-[#c9a84c]/20 via-[#e8d5a3]/10 to-[#e8d5a3]/30",
+      text: "from-[#7a6436] to-[#57492b]",
+      glow: "rgba(201,168,76,0.2)",
+      hover: "from-[#e8d5a3]/30 via-[#e8d5a3]/20 to-[#e8d5a3]/30",
+    },
+  },
   emerald: {
     dark: {
       border: "from-[#336C4F] via-[#0C1F21] to-[#0D6437]",
@@ -99,19 +124,52 @@ export default function GradientButton({
   label = "Welcome",
   className,
   variant = "emerald",
+  href,
+  download,
+  target,
+  rel,
   ...props
 }: GradientButtonProps) {
   const colors = gradientColors[variant];
+  const rootClassName = cn(
+    "group relative h-12 overflow-hidden rounded-lg px-4 transition-all duration-500",
+    className
+  );
+
+  const inner = (
+    <GradientButtonInner colors={colors} label={label} />
+  );
+
+  if (href) {
+    return (
+      <a
+        className={cn(buttonVariants({ variant: "ghost" }), rootClassName)}
+        download={download}
+        href={href}
+        rel={rel}
+        target={target}
+      >
+        {inner}
+      </a>
+    );
+  }
 
   return (
-    <Button
-      className={cn(
-        "group relative h-12 overflow-hidden rounded-lg px-4 transition-all duration-500",
-        className
-      )}
-      variant="ghost"
-      {...props}
-    >
+    <Button className={rootClassName} variant="ghost" {...props}>
+      {inner}
+    </Button>
+  );
+}
+
+function GradientButtonInner({
+  colors,
+  label,
+}: {
+  colors: GradientColors;
+  label: string;
+}) {
+  return (
+    <>
       <div
         className={cn(
           "absolute inset-0 rounded-lg bg-linear-to-b p-[2px]",
@@ -187,6 +245,6 @@ export default function GradientButton({
           colors.dark.hover
         )}
       />
-    </Button>
+    </>
   );
 }
