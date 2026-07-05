@@ -1,0 +1,66 @@
+export interface Project {
+  name: string;
+  desc: string;
+  tags: string[];
+}
+
+export interface Metric {
+  /** Short label, e.g. "monthly accesses". */
+  label: string;
+  /** Numeric magnitude used for the in-drawer bar chart. */
+  value: number;
+  /** Rendered form, e.g. "5k+" — falls back to value when absent. */
+  display?: string;
+}
+
+export interface Job {
+  id: string;
+  role: string;
+  company: string;
+  /** Org / programme line, e.g. "Finance · Amazon Leo (Project Kuiper)". */
+  org?: string;
+  location: string;
+  /** ISO date (first of month). */
+  start: string;
+  /** ISO date, or null while the role is active. */
+  end: string | null;
+  /** Tailwind color token name for the company accent (e.g. "amazon"). */
+  accent: string;
+  /** Short badge shown on the card, e.g. "🛰️ Satellite broadband". */
+  highlight?: string;
+  bullets: string[];
+  overview: string;
+  projects: Project[];
+  metrics: Metric[];
+}
+
+export interface SkillPillar {
+  id: string;
+  name: string;
+  icon: string;
+  /** 0–100 for the radar chart. */
+  radar: number;
+  overview: string;
+  bullets: string[];
+}
+
+export interface Cert {
+  name: string;
+  issuer: string;
+  date: string;
+  /** Shown pending user confirmation of the credential. */
+  needsConfirmation?: boolean;
+}
+
+export interface EducationEntry {
+  school: string;
+  detail: string;
+  location: string;
+}
+
+export interface HeroStat {
+  label: string;
+  value: number;
+  suffix?: string;
+  note?: string;
+}
