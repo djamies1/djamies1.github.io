@@ -1558,5 +1558,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-07-05T16:54:51Z",
     "publish_at": "2026-07-06T00:52:29.000Z"
+  },
+  "math_0181": {
+    "youtube_id": "XB2sZQgwCXw",
+    "youtube_url": "https://www.youtube.com/watch?v=XB2sZQgwCXw",
+    "question": "1 + 1 × 1 - 1 ÷ 1 = ?",
+    "answer": "1",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-06T18:04:17Z"
+  },
+  "math_0182": {
+    "youtube_id": "KPSBbsjFeYU",
+    "youtube_url": "https://www.youtube.com/watch?v=KPSBbsjFeYU",
+    "question": "3 + 3 × 3 - 3 ÷ 3 = ?",
+    "answer": "11",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-06T18:05:14Z",
+    "publish_at": "2026-07-06T22:03:28.000Z"
+  },
+  "math_0183": {
+    "youtube_id": "_BxMd3e-VTk",
+    "youtube_url": "https://www.youtube.com/watch?v=_BxMd3e-VTk",
+    "question": "6 + 6 × 6 - 6 ÷ 6 = ?",
+    "answer": "41",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-06T18:06:11Z",
+    "publish_at": "2026-07-07T02:03:28.000Z"
   }
 }

@@ -1558,5 +1558,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-07-05T16:58:21Z",
     "publish_at": "2026-07-06T00:54:52.000Z"
+  },
+  "wyr_0181": {
+    "youtube_id": "n9jaf7c7ySY",
+    "youtube_url": "https://www.youtube.com/watch?v=n9jaf7c7ySY",
+    "option_a": "Have the ability to fix any machine or device by touching it",
+    "option_b": "Have the ability to improve any recipe you cook by instinct",
+    "category": "skills",
+    "uploaded_at": "2026-07-06T18:07:34Z"
+  },
+  "wyr_0182": {
+    "youtube_id": "QJhtut3rAGY",
+    "youtube_url": "https://www.youtube.com/watch?v=QJhtut3rAGY",
+    "option_a": "Always have good luck with small things",
+    "option_b": "Have one big piece of incredible luck per year",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-06T18:08:17Z",
+    "publish_at": "2026-07-06T22:06:12.000Z"
+  },
+  "wyr_0183": {
+    "youtube_id": "oPwhOeXn4XQ",
+    "youtube_url": "https://www.youtube.com/watch?v=oPwhOeXn4XQ",
+    "option_a": "Know the answer to any maths problem instantly",
+    "option_b": "Know the right answer to any moral dilemma instantly",
+    "category": "mental",
+    "uploaded_at": "2026-07-06T18:09:02Z",
+    "publish_at": "2026-07-07T02:06:12.000Z"
   }
 }
