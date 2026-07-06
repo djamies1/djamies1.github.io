@@ -427,6 +427,9 @@ export const TECH_SKILLS = [
   "Power BI",
   "Data Warehousing",
   "ETL",
+  "ERP Data Migration",
+  "Dimensional Modelling",
+  "Row-Level Security",
   "Git",
   "Microsoft Dynamics (NAV, F&O)",
   "MS SQL Data Tools",
@@ -434,6 +437,25 @@ export const TECH_SKILLS = [
   "VBA",
   "Jet Data Manager / Reports",
   "DOMO",
+];
+
+/** Differentiators recruiters should catch in one glance. */
+export const SPECIALTIES = [
+  {
+    icon: "🔁",
+    title: "ERP Data Migration",
+    desc: "Multiple Microsoft Dynamics go-lives at PAC Worldwide — automated, reconciled general- and sub-ledger cutovers between ERP environments, clean from day one.",
+  },
+  {
+    icon: "🤖",
+    title: "Production GenAI",
+    desc: "RAG knowledge assistant and a reusable AI skill library shipped org-wide inside Amazon finance — daily tools with citations and export-control screening, not demos.",
+  },
+  {
+    icon: "🧾",
+    title: "Finance-Native Engineering",
+    desc: "Started as a controller and FP&A manager: month-end close, audit discipline, and controllership are built into how the systems get designed.",
+  },
 ];
 
 export const INTERESTS = [

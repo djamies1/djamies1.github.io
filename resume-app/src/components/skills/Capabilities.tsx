@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { lazy, Suspense, useState } from "react";
 import { SectionHeading } from "@/components/hud/SectionHeading";
 import { SkillDrawer } from "@/components/skills/SkillDrawer";
-import { SKILL_PILLARS, TECH_SKILLS } from "@/data/resume";
+import { SKILL_PILLARS, SPECIALTIES, TECH_SKILLS } from "@/data/resume";
 import type { SkillPillar } from "@/data/types";
 
 const RadarPanel = lazy(() => import("@/components/skills/RadarPanel"));
@@ -27,9 +27,9 @@ export function Capabilities() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-24" id="capabilities">
       <SectionHeading
-        eyebrow="04 · Capabilities"
-        lede="Six disciplines, one operator — from warehouse schemas to RAG pipelines. Open a pillar for the field record."
-        title="Systems check"
+        eyebrow="04 · Skills"
+        lede="Six disciplines, one practitioner — from warehouse schemas to RAG pipelines. Open any pillar for the track record."
+        title="Core capabilities"
       />
 
       <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,460px)_1fr]">
@@ -84,8 +84,39 @@ export function Capabilities() {
         </div>
       </div>
 
-      <div className="mt-14">
-        <p className="eyebrow mb-4">Instrument rack</p>
+      <div className="mt-16">
+        <p className="eyebrow mb-5">Standout strengths</p>
+        <div className="grid gap-4 md:grid-cols-3">
+          {SPECIALTIES.map((s, i) => (
+            <motion.div
+              className="group relative overflow-hidden rounded-xl border border-gold/25 bg-gradient-to-b from-gold/[0.07] to-transparent p-6 transition-colors duration-300 hover:border-gold/50"
+              custom={i}
+              initial="hidden"
+              key={s.title}
+              variants={cardReveal}
+              viewport={{ once: true, margin: "-60px" }}
+              whileInView="show"
+            >
+              <div
+                aria-hidden
+                className="-right-8 -top-8 absolute h-20 w-20 rounded-full bg-gold/[0.08] transition-transform duration-500 group-hover:scale-[2]"
+              />
+              <span aria-hidden className="text-2xl">
+                {s.icon}
+              </span>
+              <h3 className="mt-3 font-display text-gold-light text-xl">
+                {s.title}
+              </h3>
+              <p className="mt-2 text-cream/75 text-sm leading-relaxed">
+                {s.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-12">
+        <p className="eyebrow mb-4">Tools &amp; technologies</p>
         <ul className="flex flex-wrap gap-2">
           {TECH_SKILLS.map((t) => (
             <li

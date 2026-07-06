@@ -53,12 +53,12 @@ export function CommandDeck() {
             <ShimmeringText
               className="hidden font-medium text-[0.7rem] uppercase tracking-[0.28em] sm:inline-flex [--color:#a29a8a] [--shimmering-color:#e8d5a3]"
               duration={2.4}
-              text="Mission active · Amazon Leo — Project Kuiper"
+              text="Amazon · Business Intelligence Engineer"
             />
             <ShimmeringText
               className="font-medium text-[0.62rem] uppercase tracking-[0.2em] sm:hidden [--color:#a29a8a] [--shimmering-color:#e8d5a3]"
               duration={2.4}
-              text="Mission active · Amazon Leo"
+              text="Amazon · BI Engineer"
             />
           </span>
         </motion.div>

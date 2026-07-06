@@ -79,7 +79,7 @@ export function RoleDrawer({ job, onClose }: RoleDrawerProps) {
                   aria-hidden
                   className={`h-2 w-2 rounded-full ${ACCENT_BG[job.accent] ?? "bg-gold"}`}
                 />
-                Mission dossier
+                Role detail
               </p>
               <DrawerTitle className="mt-3 font-display text-3xl text-cream leading-tight">
                 {job.role}
@@ -125,7 +125,7 @@ export function RoleDrawer({ job, onClose }: RoleDrawerProps) {
               className="eyebrow mt-9 mb-4"
               variants={item}
             >
-              Key missions
+              Key projects
             </motion.h3>
             <div className="space-y-4">
               {job.projects.map((p) => (

@@ -155,9 +155,9 @@ export function FlightLog() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading
           className="mb-0 md:mb-0"
-          eyebrow="02 · Flight log"
-          lede="Thirteen years from audit rooms to satellite finance. Drag the needle — or use arrow keys — to replay the trajectory."
-          title="Career telemetry"
+          eyebrow="02 · Experience"
+          lede="Thirteen years from audit rooms to satellite finance. Drag the needle — or use arrow keys — to step through each role."
+          title="Career trajectory"
         />
         <div className="flex items-center gap-3 pb-1">
           <span className="font-display text-2xl text-gold-light tabular-nums">
@@ -192,7 +192,7 @@ export function FlightLog() {
       <div className="glass relative mt-10 hidden rounded-2xl pt-6 pb-2 md:block">
         <div className="pointer-events-none absolute top-5 left-6 z-10">
           <p className="text-[0.65rem] text-muted-foreground uppercase tracking-[0.22em]">
-            Mission scope · stylised index
+            Role scope · stylised index
           </p>
         </div>
         <p className="pointer-events-none absolute top-5 right-6 z-10 font-display text-6xl text-cream/[0.06] leading-none">
@@ -372,7 +372,7 @@ export function FlightLog() {
                 onClick={() => setDrawerJob(activeJob)}
                 type="button"
               >
-                Mission dossier
+                Role details
                 <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </button>
             </div>

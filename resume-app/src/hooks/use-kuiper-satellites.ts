@@ -27,6 +27,12 @@ export interface SatPoint {
   altKm: number;
 }
 
+/* Observer for look-angle telemetry: Kirkland, WA. */
+const OBSERVER_LAT_DEG = 47.68;
+const OBSERVER_LNG_DEG = -122.19;
+/** Minimum elevation above the horizon to count as "in view". */
+const MIN_ELEVATION_DEG = 10;
+
 export type KuiperStatus = "idle" | "loading" | "live" | "offline";
 
 interface SatRecord extends SatPoint {
@@ -89,9 +95,24 @@ function parseTLEs(tleText: string, sat: SatelliteLib): SatRecord[] {
   return sats;
 }
 
-function propagateAll(sats: SatRecord[], sat: SatelliteLib): void {
+interface LookStats {
+  /** Satellites at least MIN_ELEVATION_DEG above the observer's horizon. */
+  visibleCount: number;
+  /** Slant range to the nearest satellite (km), visible or not. */
+  nearestKm: number;
+}
+
+function propagateAll(sats: SatRecord[], sat: SatelliteLib): LookStats {
   const now = new Date();
   const gmst = sat.gstime(now);
+  const observer = {
+    latitude: sat.degreesToRadians(OBSERVER_LAT_DEG),
+    longitude: sat.degreesToRadians(OBSERVER_LNG_DEG),
+    height: 0.02,
+  };
+  let visibleCount = 0;
+  let nearestKm = Number.POSITIVE_INFINITY;
+
   for (const d of sats) {
     try {
       // biome-ignore lint/suspicious/noExplicitAny: satellite.js record type is opaque here
@@ -102,24 +123,43 @@ function propagateAll(sats: SatRecord[], sat: SatelliteLib): void {
         d.lng = sat.radiansToDegrees(geo.longitude);
         d.altKm = geo.height;
         d.alt = geo.height / EARTH_R_KM;
+
+        const ecf = sat.eciToEcf(eci.position, gmst);
+        const look = sat.ecfToLookAngles(observer, ecf);
+        if (look.rangeSat < nearestKm) nearestKm = look.rangeSat;
+        if (sat.radiansToDegrees(look.elevation) >= MIN_ELEVATION_DEG) {
+          visibleCount += 1;
+        }
       }
     } catch {
       /* keep last-known position */
     }
   }
+
+  return {
+    visibleCount,
+    nearestKm: Number.isFinite(nearestKm) ? nearestKm : 0,
+  };
 }
 
 export interface KuiperTelemetry {
   status: KuiperStatus;
   points: SatPoint[];
   count: number;
-  meanAltKm: number;
+  /** Satellites currently ≥10° above the horizon from Kirkland, WA. */
+  visibleCount: number;
+  /** Slant range to the nearest satellite, km. */
+  nearestKm: number;
+  /** Increments on every propagation pass — dependency for per-tick effects. */
+  tick: number;
 }
 
 export function useKuiperSatellites(enabled: boolean): KuiperTelemetry {
   const [status, setStatus] = useState<KuiperStatus>("idle");
   const [points, setPoints] = useState<SatPoint[]>([]);
-  const [meanAltKm, setMeanAltKm] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [nearestKm, setNearestKm] = useState(0);
+  const [tick, setTick] = useState(0);
 
   useEffect(() => {
     if (!enabled) return;
@@ -143,14 +183,12 @@ export function useKuiperSatellites(enabled: boolean): KuiperTelemetry {
         }
 
         const publish = () => {
-          propagateAll(sats, sat);
+          const look = propagateAll(sats, sat);
           const valid = sats.filter((s) => s.altKm > 0);
           setPoints(valid.map(({ satrec: _satrec, ...p }) => p));
-          if (valid.length) {
-            setMeanAltKm(
-              valid.reduce((sum, s) => sum + s.altKm, 0) / valid.length
-            );
-          }
+          setVisibleCount(look.visibleCount);
+          setNearestKm(look.nearestKm);
+          setTick((t) => t + 1);
         };
 
         publish();
@@ -169,5 +207,12 @@ export function useKuiperSatellites(enabled: boolean): KuiperTelemetry {
     };
   }, [enabled]);
 
-  return { status, points, count: points.length, meanAltKm };
+  return {
+    status,
+    points,
+    count: points.length,
+    visibleCount,
+    nearestKm,
+    tick,
+  };
 }

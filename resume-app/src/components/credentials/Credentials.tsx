@@ -22,7 +22,7 @@ export function Credentials() {
       <SectionHeading
         eyebrow="05 · Credentials"
         lede="Formal certifications on the cloud and analytics stack, on top of an accountancy degree — the finance-native foundation."
-        title="Flight certifications"
+        title="Certifications & education"
       />
 
       <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr]">
@@ -97,7 +97,7 @@ export function Credentials() {
             viewport={{ once: true }}
             whileInView="show"
           >
-            <p className="eyebrow mt-8 mb-3">Off-console</p>
+            <p className="eyebrow mt-8 mb-3">Outside of work</p>
             <ul className="flex flex-wrap gap-2">
               {INTERESTS.map((interest) => (
                 <li

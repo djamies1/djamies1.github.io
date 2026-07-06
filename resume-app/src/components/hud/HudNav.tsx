@@ -11,10 +11,10 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const SECTIONS = [
-  { id: "deck", label: "Deck", icon: SquareTerminal },
-  { id: "flight-log", label: "Flight Log", icon: Rocket },
-  { id: "mission", label: "Mission", icon: Satellite },
-  { id: "capabilities", label: "Capabilities", icon: Radar },
+  { id: "deck", label: "Top", icon: SquareTerminal },
+  { id: "flight-log", label: "Experience", icon: Rocket },
+  { id: "mission", label: "Amazon Leo", icon: Satellite },
+  { id: "capabilities", label: "Skills", icon: Radar },
   { id: "credentials", label: "Credentials", icon: Award },
   { id: "contact", label: "Contact", icon: Mail },
 ] as const;

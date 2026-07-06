@@ -19,11 +19,11 @@ export function ContactPanel() {
         >
           <p className="eyebrow">06 · Contact</p>
           <h2 className="mt-4 font-display text-5xl text-cream tracking-tight md:text-6xl">
-            Open channel.
+            Let's connect.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground leading-relaxed">
             Building something at the intersection of finance, data, and AI?
-            The line is live.
+            I'd love to hear about it.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">

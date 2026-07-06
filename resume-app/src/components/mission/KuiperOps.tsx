@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Globe, { type GlobeMethods } from "react-globe.gl";
+import * as THREE from "three";
 import { LiveLineChart } from "@/components/charts/live-line-chart";
 import { LiveLine } from "@/components/charts/live-line";
-import { LiveXAxis } from "@/components/charts/live-x-axis";
 import {
   type SatPoint,
   useKuiperSatellites,
@@ -10,9 +10,14 @@ import {
 
 /*
  * Lazy-loaded operations panel: WebGL globe with live-propagated Kuiper
- * satellites + a streaming mean-altitude telemetry strip. Everything heavy
- * (three.js, react-globe.gl, satellite.js) stays inside this chunk.
+ * satellites + a HUD telemetry overlay. Satellites render as ONE
+ * THREE.Points cloud whose position buffer is rewritten in place each
+ * propagation tick — the globe never rebuilds meshes, so rotation stays
+ * perfectly smooth. Everything heavy (three.js, react-globe.gl,
+ * satellite.js) stays inside this chunk.
  */
+
+const MAX_SATS = 4096;
 
 interface TelemetrySample {
   time: number;
@@ -27,7 +32,7 @@ function HudCorners() {
         (pos) => (
           <span
             aria-hidden
-            className={`pointer-events-none absolute h-5 w-5 border-gold/70 border-t-2 border-l-2 ${pos}`}
+            className={`pointer-events-none absolute z-10 h-5 w-5 border-gold/70 border-t-2 border-l-2 ${pos}`}
             key={pos}
           />
         )
@@ -39,9 +44,37 @@ function HudCorners() {
 export default function KuiperOps() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
+  const satCloudRef = useRef<THREE.Points | null>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
-  const { status, points, count, meanAltKm } = useKuiperSatellites(true);
+  const { status, points, count, visibleCount, nearestKm, tick } =
+    useKuiperSatellites(true);
   const [samples, setSamples] = useState<TelemetrySample[]>([]);
+
+  // One stable item + stable factory — globe.gl must build the Points object
+  // exactly once. A new function identity per render would make it re-digest
+  // the layer every state tick, orphaning the cloud (visible as flicker).
+  const satLayerData = useMemo(() => [{ id: "kuiper-sat-cloud" }], []);
+  const buildSatCloud = useCallback(() => {
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(new Float32Array(MAX_SATS * 3), 3)
+    );
+    geometry.setDrawRange(0, 0);
+    const material = new THREE.PointsMaterial({
+      color: 0xe8d5a3,
+      size: 4,
+      sizeAttenuation: false,
+      transparent: true,
+      opacity: 0.95,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    const cloud = new THREE.Points(geometry, material);
+    cloud.frustumCulled = false;
+    satCloudRef.current = cloud;
+    return cloud;
+  }, []);
 
   // Track container size for the canvas.
   useEffect(() => {
@@ -49,22 +82,43 @@ export default function KuiperOps() {
     if (!el) return;
     const ro = new ResizeObserver(([entry]) => {
       const { width } = entry.contentRect;
-      setSize({ w: Math.round(width), h: Math.round(width * 0.88) });
+      setSize({ w: Math.round(width), h: Math.round(width * 0.92) });
     });
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
 
-  // Accumulate telemetry samples as propagation ticks arrive.
+  // Rewrite the point cloud's position buffer on every propagation tick.
   useEffect(() => {
-    if (meanAltKm <= 0) return;
+    const globe = globeRef.current;
+    const cloud = satCloudRef.current;
+    if (!globe || !cloud || points.length === 0) return;
+    const attr = cloud.geometry.getAttribute(
+      "position"
+    ) as THREE.BufferAttribute;
+    const n = Math.min(points.length, MAX_SATS);
+    for (let i = 0; i < n; i++) {
+      const p = points[i];
+      const { x, y, z } = globe.getCoords(p.lat, p.lng, p.alt);
+      attr.setXYZ(i, x, y, z);
+    }
+    attr.needsUpdate = true;
+    cloud.geometry.setDrawRange(0, n);
+    cloud.geometry.computeBoundingSphere();
+  }, [points]);
+
+  // Feed the "in view from Kirkland" series once per propagation tick —
+  // keyed on tick, not the count, which often repeats between passes.
+  useEffect(() => {
+    if (status !== "live" || tick === 0) return;
     setSamples((prev) =>
       [
         ...prev,
-        { time: Math.floor(Date.now() / 1000), value: meanAltKm },
+        { time: Math.floor(Date.now() / 1000), value: visibleCount },
       ].slice(-48)
     );
-  }, [meanAltKm]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tick, status]);
 
   const statusLabel =
     status === "live"
@@ -74,16 +128,14 @@ export default function KuiperOps() {
         : "acquiring signal…";
 
   return (
-    <div className="relative">
+    <div>
       <div
         className="relative overflow-hidden rounded-2xl border border-gold/25 bg-black/40"
         ref={wrapRef}
       >
         <HudCorners />
 
-        <div
-          className="pointer-events-none absolute top-3 left-4 z-10 flex items-center gap-2"
-        >
+        <div className="pointer-events-none absolute top-3 left-4 z-10 flex items-center gap-2">
           <span
             className={`h-1.5 w-1.5 rounded-full ${
               status === "live"
@@ -107,6 +159,8 @@ export default function KuiperOps() {
                 atmosphereAltitude={0.18}
                 atmosphereColor="#c9a84c"
                 backgroundColor="rgba(0,0,0,0)"
+                customLayerData={satLayerData}
+                customThreeObject={buildSatCloud}
                 enablePointerInteraction={false}
                 globeImageUrl={`${import.meta.env.BASE_URL}earth-dark.jpg`}
                 height={size.h}
@@ -121,48 +175,64 @@ export default function KuiperOps() {
                   controls.enableRotate = false;
                   g.pointOfView({ altitude: 2.3 });
                 }}
-                pointAltitude="alt"
-                pointColor={() => "rgba(232,213,163,0.85)"}
-                pointLat="lat"
-                pointLng="lng"
-                pointRadius={0.14}
-                pointsData={points as object[]}
-                pointsMerge={false}
                 ref={globeRef}
                 width={size.w}
               />
             )}
           </div>
         )}
+
+        {/* HUD telemetry overlay — inside the frame, no layout gap below */}
+        {status === "live" && (
+          <div className="absolute inset-x-0 bottom-0 z-10 border-gold/20 border-t bg-ink/70 backdrop-blur-md">
+            <div className="flex items-center gap-4 px-4 py-2.5">
+              <div className="shrink-0">
+                <p className="text-[0.58rem] text-muted-foreground uppercase tracking-[0.18em]">
+                  In view · Kirkland WA
+                </p>
+                <p className="font-display text-2xl text-gold-light leading-none">
+                  {visibleCount}
+                </p>
+              </div>
+              <div className="min-w-0 flex-1 overflow-hidden">
+                {samples.length >= 2 && (
+                  <LiveLineChart
+                    data={samples}
+                    exaggerate
+                    lerpSpeed={0.06}
+                    margin={{ top: 6, right: 34, bottom: 4, left: 2 }}
+                    style={{ height: 56 }}
+                    value={visibleCount}
+                    window={144}
+                  >
+                    <LiveLine
+                      dataKey="value"
+                      dotSize={3}
+                      formatValue={(v) => `${Math.round(v)}`}
+                      stroke="#c9a84c"
+                    />
+                  </LiveLineChart>
+                )}
+              </div>
+              <div className="shrink-0 text-right">
+                <p className="text-[0.58rem] text-muted-foreground uppercase tracking-[0.18em]">
+                  Nearest sat
+                </p>
+                <p className="font-display text-gold-light text-lg leading-none">
+                  {Math.round(nearestKm).toLocaleString()}{" "}
+                  <span className="text-[0.65rem] text-muted-foreground">
+                    km
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
-      {status === "live" && samples.length >= 2 && (
-        <div className="glass mt-3 rounded-xl px-4 pt-3 pb-1">
-          <p className="text-[0.62rem] text-muted-foreground uppercase tracking-[0.2em]">
-            Mean constellation altitude · km
-          </p>
-          <LiveLineChart
-            className="h-24"
-            data={samples}
-            lerpSpeed={0.06}
-            margin={{ top: 10, right: 52, bottom: 18, left: 8 }}
-            value={meanAltKm}
-            window={144}
-          >
-            <LiveLine
-              dataKey="value"
-              formatValue={(v) => `${Math.round(v)} km`}
-              stroke="#c9a84c"
-            />
-            <LiveXAxis />
-          </LiveLineChart>
-        </div>
-      )}
-      {status === "live" && (
-        <p className="mt-2 text-right text-[0.62rem] text-muted-foreground/70">
-          Live TLE data · Celestrak · propagated in-browser with satellite.js
-        </p>
-      )}
+      <p className="mt-2 text-right text-[0.62rem] text-muted-foreground/70">
+        Live TLE data · Celestrak · propagated in-browser with satellite.js
+      </p>
     </div>
   );
 }

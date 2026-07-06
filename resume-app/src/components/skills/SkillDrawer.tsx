@@ -84,7 +84,7 @@ export function SkillDrawer({ pillar, onClose }: SkillDrawerProps) {
             </motion.div>
 
             <motion.h3 className="eyebrow mt-9 mb-4" variants={item}>
-              Field record
+              Track record
             </motion.h3>
             <ul className="space-y-3">
               {pillar.bullets.map((b) => (

@@ -106,8 +106,8 @@ export function LeoSpotlight() {
       ref={sectionRef}
     >
       <SectionHeading
-        eyebrow="03 · Current mission"
-        lede="Finance mission control for Amazon's satellite broadband constellation — one engineer, one platform, eight domains."
+        eyebrow="03 · Current role"
+        lede="The finance analytics platform behind Amazon's satellite broadband constellation (Project Kuiper) — one engineer, one platform, eight domains."
         title={
           <MatrixText
             charClassName="font-mono text-4xl tracking-tight md:text-5xl"
@@ -154,7 +154,7 @@ export function LeoSpotlight() {
               onClick={() => setDossier(LEO_JOB ?? null)}
               type="button"
             >
-              Full mission dossier
+              Full role details
               <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
             </button>
           </motion.div>
