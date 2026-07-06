@@ -1,12 +1,13 @@
+import { animate, utils } from "animejs";
 import { ChevronRight } from "lucide-react";
-import { lazy, Suspense, useRef, useState } from "react";
-import { motion } from "motion/react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { BentoCard, type BentoItem } from "@/components/kokonutui/bento-grid";
 import MatrixText from "@/components/kokonutui/matrix-text";
 import { SectionHeading } from "@/components/hud/SectionHeading";
 import { RoleDrawer } from "@/components/timeline/RoleDrawer";
 import { useInView } from "@/hooks/use-in-view";
-import { JOBS } from "@/data/resume";
+import { JOBS, LEO_KPIS } from "@/data/resume";
 import type { Job } from "@/data/types";
 
 const KuiperOps = lazy(() => import("@/components/mission/KuiperOps"));
@@ -19,7 +20,7 @@ const DOMAIN_ITEMS: BentoItem[] = [
     id: "assistant",
     title: "AI Knowledge Assistant",
     description:
-      "RAG over hundreds of curated finance documents — automatic source citation, export-control screening. Adopted org-wide across three surfaces.",
+      "RAG over hundreds of curated documents — cited, screened, adopted org-wide.",
     feature: "typing",
     typingText:
       "> query: 'capex variance drivers, June'\n> retrieving… 4 sources matched\n> cite: [FIN-VAR-0626 §2.1] [CAPEX-RPT-06]\n> export-control: PASS ✓\n> answer ready — 2.3s",
@@ -48,7 +49,7 @@ const DOMAIN_ITEMS: BentoItem[] = [
     id: "gl",
     title: "GL Drill-Down",
     description:
-      "Transaction-level general-ledger analysis across seven dimensions — powering month-end close and PO controllership.",
+      "Transaction-level ledger analysis across seven dimensions.",
     size: "sm",
   },
   {
@@ -67,18 +68,10 @@ const DOMAIN_ITEMS: BentoItem[] = [
     id: "reporting",
     title: "Reporting",
     description:
-      "Standardized reporting layer replacing manual spreadsheet processes across the organization.",
+      "Standardized reporting replacing manual spreadsheet processes.",
     size: "sm",
     className: "md:col-span-2",
   },
-];
-
-const MANIFEST = [
-  "Sole technical owner — a production platform serving a ~130-person finance organization",
-  "Python/Flask web platform unifying eight financial-operations domains",
-  "RAG knowledge assistant with automatic source citation & export-control screening",
-  "Finalist among a 600-person internal hackathon for the reusable AI skill library",
-  "Founded and lead the org's monthly Analytics & AI forum",
 ];
 
 const item = {
@@ -93,6 +86,56 @@ const item = {
     },
   }),
 };
+
+/** Count-up KPI tiles — the whole Leo story in four numbers. */
+function LeoKpis() {
+  const rootRef = useRef<HTMLDListElement>(null);
+  const inView = useInView(rootRef, "-60px");
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root || !inView) return;
+    const nodes = root.querySelectorAll<HTMLElement>("[data-count]");
+    if (reducedMotion) {
+      for (const el of nodes) el.textContent = el.dataset.count ?? "";
+      return;
+    }
+    const animations = Array.from(nodes, (el, i) => {
+      const target = Number(el.dataset.count);
+      const proxy = { n: 0 };
+      return animate(proxy, {
+        n: target,
+        duration: 1400,
+        delay: 200 + i * 130,
+        ease: "outExpo",
+        modifier: utils.round(0),
+        onUpdate: () => {
+          el.textContent = String(proxy.n);
+        },
+      });
+    });
+    return () => {
+      for (const a of animations) a.cancel();
+    };
+  }, [inView, reducedMotion]);
+
+  return (
+    <dl className="grid grid-cols-2 gap-3" ref={rootRef}>
+      {LEO_KPIS.map((kpi) => (
+        <div className="glass rounded-xl px-5 py-4" key={kpi.label}>
+          <dd className="font-display text-3xl text-gold-light md:text-4xl">
+            {kpi.prefix ?? ""}
+            <span data-count={kpi.value}>0</span>
+          </dd>
+          <dt className="mt-1 text-[0.68rem] text-muted-foreground uppercase tracking-[0.16em]">
+            {kpi.label}
+          </dt>
+        </div>
+      ))}
+    </dl>
+  );
+}
 
 export function LeoSpotlight() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -120,37 +163,43 @@ export function LeoSpotlight() {
 
       <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_1fr]">
         <div>
-          <ul className="space-y-3.5">
-            {MANIFEST.map((line, i) => (
-              <motion.li
-                className="flex gap-3 text-cream/85 leading-relaxed"
-                custom={i}
-                initial="hidden"
-                key={line.slice(0, 24)}
-                variants={item}
-                viewport={{ once: true, margin: "-80px" }}
-                whileInView="show"
-              >
-                <span
-                  aria-hidden
-                  className="mt-1 font-mono text-gold text-sm"
-                >
-                  ▸
-                </span>
-                {line}
-              </motion.li>
-            ))}
-          </ul>
+          <motion.p
+            className="max-w-xl text-cream/85 text-lg leading-relaxed"
+            custom={0}
+            initial="hidden"
+            variants={item}
+            viewport={{ once: true, margin: "-80px" }}
+            whileInView="show"
+          >
+            Sole technical owner of a production Python/Flask analytics
+            platform — with a RAG knowledge assistant adopted org-wide.
+          </motion.p>
 
           <motion.div
-            custom={MANIFEST.length}
+            className="mt-7"
+            custom={1}
+            initial="hidden"
+            variants={item}
+            viewport={{ once: true, margin: "-80px" }}
+            whileInView="show"
+          >
+            <LeoKpis />
+          </motion.div>
+
+          <motion.div
+            custom={2}
             initial="hidden"
             variants={item}
             viewport={{ once: true }}
             whileInView="show"
           >
+            <p className="mt-5 text-muted-foreground text-sm leading-relaxed">
+              Also founded the org's monthly Analytics &amp; AI forum, and
+              serve as primary technical advisor to partner engineering and
+              data teams.
+            </p>
             <button
-              className="group mt-8 inline-flex items-center gap-2 rounded-lg border border-gold/40 px-5 py-2.5 font-medium text-gold-light text-sm transition-all duration-300 hover:border-gold hover:bg-gold/10"
+              className="group mt-6 inline-flex items-center gap-2 rounded-lg border border-gold/40 px-5 py-2.5 font-medium text-gold-light text-sm transition-all duration-300 hover:border-gold hover:bg-gold/10"
               onClick={() => setDossier(LEO_JOB ?? null)}
               type="button"
             >

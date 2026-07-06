@@ -28,6 +28,8 @@ export interface Job {
   accent: string;
   /** Short badge shown on the card, e.g. "🛰️ Satellite broadband". */
   highlight?: string;
+  /** One-line card summary — the only prose on the landing surface. */
+  tagline: string;
   bullets: string[];
   overview: string;
   projects: Project[];

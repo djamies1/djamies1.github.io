@@ -65,6 +65,8 @@ export const JOBS: Job[] = [
     end: null,
     accent: "amazon",
     highlight: "🛰️ Satellite broadband · Finance",
+    tagline:
+      "Built and run the finance org's production analytics platform — solo — for Amazon's satellite constellation.",
     bullets: [
       "Sole technical owner for a ~130-person finance organization: designed, built, and operate a production financial-operations web platform (Python/Flask) unifying eight domains — variance commentary with AI-assisted review, live P&L and capital-expenditure analytics, an AI knowledge assistant, a resource library, planning dashboards, and reporting.",
       "Built and launched an AI-powered financial knowledge assistant using retrieval-augmented generation over hundreds of curated documents, with automatic source citation and export-control screening — adopted org-wide and accessible in-app, via a hosted agent, and inside analysts' local AI tools.",
@@ -112,6 +114,8 @@ export const JOBS: Job[] = [
     start: "2022-03-01",
     end: "2025-07-01",
     accent: "amazon",
+    tagline:
+      "Compensation analytics at Amazon scale — range review tooling, cost modelers, and self-serve NLQ for 100+ users.",
     bullets: [
       "Designed a company-wide compensation range review tool — a heavily utilized dashboard shaped through weekly managed workgroup sessions, user-acceptance testing, and launch demos.",
       "Created compensation cost modelers to simulate the implications of potential policy changes — highly customizable scenario builders enabling quick, flexible modeling.",
@@ -157,6 +161,8 @@ export const JOBS: Job[] = [
     start: "2020-04-01",
     end: "2022-02-01",
     accent: "pac",
+    tagline:
+      "Built PAC's first data warehouse and BI stack from scratch — Power BI, ML forecasting, ERP bridges.",
     bullets: [
       "Created, managed, and scaled the company data warehouse — pipeline development, data cleansing, incremental loads, execution scheduling, security, and error handling.",
       "Built primary financial reporting with Power BI, Jet Reports, and Excel/VBA alongside the CFO and business-unit stakeholders.",
@@ -195,6 +201,8 @@ export const JOBS: Job[] = [
     start: "2017-10-01",
     end: "2020-04-01",
     accent: "pac",
+    tagline:
+      "Ran FP&A with the CFO and pivoted the finance function toward analytics — creating the BI role I then filled.",
     bullets: [
       "Partnered with the CFO and executive leadership on financial insight and reporting for a global packaging manufacturer.",
       "Built a cross-department budgeting system feeding a consolidated set of financials.",
@@ -224,6 +232,8 @@ export const JOBS: Job[] = [
     start: "2015-08-01",
     end: "2017-09-01",
     accent: "falck",
+    tagline:
+      "Forecasting and cost analysis across a multi-site healthcare operator.",
     bullets: [
       "Delivered financial analysis and reporting for a multi-site healthcare services organisation.",
       "Developed forecasting models supporting cost management across multiple business units.",
@@ -248,6 +258,8 @@ export const JOBS: Job[] = [
     start: "2014-06-01",
     end: "2014-08-01",
     accent: "ey",
+    tagline:
+      "Big Four assurance internship — where the audit-grade discipline started.",
     bullets: [
       "Supported audit engagements at a Big Four firm.",
       "Built the disciplined, detail-first approach to financial data that underpins every analytics role since.",
@@ -271,6 +283,8 @@ export const JOBS: Job[] = [
     start: "2013-05-01",
     end: "2015-07-01",
     accent: "led",
+    tagline:
+      "First role out of school: built a startup's entire finance function from zero.",
     bullets: [
       "Managed full-cycle accounting and financial control for a growing LED lighting manufacturer.",
       "Hands-on across every facet of a small-business finance function — AR, AP, payroll, reporting.",
@@ -439,23 +453,36 @@ export const TECH_SKILLS = [
   "DOMO",
 ];
 
-/** Differentiators recruiters should catch in one glance. */
+/** Differentiators recruiters should catch in one glance — one line each. */
 export const SPECIALTIES = [
   {
     icon: "🔁",
     title: "ERP Data Migration",
-    desc: "Multiple Microsoft Dynamics go-lives at PAC Worldwide — automated, reconciled general- and sub-ledger cutovers between ERP environments, clean from day one.",
+    desc: "Multi-entity Microsoft Dynamics go-lives — automated, reconciled ledger cutovers.",
   },
   {
     icon: "🤖",
     title: "Production GenAI",
-    desc: "RAG knowledge assistant and a reusable AI skill library shipped org-wide inside Amazon finance — daily tools with citations and export-control screening, not demos.",
+    desc: "RAG assistant + AI skill library shipped org-wide inside Amazon finance.",
   },
   {
     icon: "🧾",
     title: "Finance-Native Engineering",
-    desc: "Started as a controller and FP&A manager: month-end close, audit discipline, and controllership are built into how the systems get designed.",
+    desc: "Controller-turned-engineer — close, audit, and controllership built in.",
   },
+  {
+    icon: "🤝",
+    title: "Program & Stakeholder Leadership",
+    desc: "Weekly workgroups, UAT programs, launch demos, and a monthly Analytics & AI forum.",
+  },
+];
+
+/** Landing-surface KPIs for the current role — counts animate on view. */
+export const LEO_KPIS = [
+  { value: 130, prefix: "~", label: "person finance org served" },
+  { value: 8, label: "platform domains unified" },
+  { value: 600, label: "hackathon field — finalist" },
+  { value: 7, label: "GL drill-down dimensions" },
 ];
 
 export const INTERESTS = [

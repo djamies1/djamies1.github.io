@@ -86,7 +86,7 @@ export function Capabilities() {
 
       <div className="mt-16">
         <p className="eyebrow mb-5">Standout strengths</p>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {SPECIALTIES.map((s, i) => (
             <motion.div
               className="group relative overflow-hidden rounded-xl border border-gold/25 bg-gradient-to-b from-gold/[0.07] to-transparent p-6 transition-colors duration-300 hover:border-gold/50"

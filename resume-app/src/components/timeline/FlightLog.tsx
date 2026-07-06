@@ -319,7 +319,7 @@ export function FlightLog() {
       </div>
 
       {/* ── Active role card ── */}
-      <div className="relative mt-6 min-h-[290px] md:mt-8">
+      <div className="relative mt-6 min-h-[230px] md:mt-8">
         <AnimatePresence mode="wait">
           <motion.article
             animate={{ opacity: 1, y: 0 }}
@@ -377,26 +377,18 @@ export function FlightLog() {
               </button>
             </div>
 
-            <ul className="mt-5 max-w-3xl space-y-2.5">
-              {activeJob.bullets.slice(0, 3).map((b) => (
-                <li
-                  className="flex gap-3 text-cream/80 text-sm leading-relaxed"
-                  key={b.slice(0, 40)}
-                >
-                  <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold/70" />
-                  {b}
-                </li>
-              ))}
-            </ul>
+            <p className="mt-4 max-w-3xl text-cream/80 leading-relaxed">
+              {activeJob.tagline}
+            </p>
 
             {activeJob.metrics.length > 0 && (
-              <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+              <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-3">
                 {activeJob.metrics.slice(0, 4).map((m) => (
                   <div key={m.label}>
-                    <dd className="font-display text-gold-light text-xl">
+                    <dd className="font-display text-2xl text-gold-light">
                       {m.display ?? m.value}
                     </dd>
-                    <dt className="text-[0.65rem] text-muted-foreground uppercase tracking-[0.16em]">
+                    <dt className="mt-0.5 text-[0.65rem] text-muted-foreground uppercase tracking-[0.16em]">
                       {m.label}
                     </dt>
                   </div>
