@@ -82,6 +82,31 @@ export function buildScopeSeries(): ScopePoint[] {
   return points;
 }
 
+/** Date at a 0–1 fraction of the career domain. */
+export function dateAtFrac(frac: number): Date {
+  const start = DOMAIN_START.getTime();
+  const end = domainEnd().getTime();
+  return new Date(start + Math.min(1, Math.max(0, frac)) * (end - start));
+}
+
+/**
+ * The role held at a given date — the EY internship wins during its summer
+ * window, otherwise the latest-starting primary role.
+ */
+export function jobAtDate(date: Date): Job | undefined {
+  const active = TIMELINE_JOBS.filter(
+    (j) => jobStart(j) <= date && date <= jobEnd(j)
+  );
+  return active.find((j) => j.id === "ey") ?? active.at(-1);
+}
+
+/** Scope-series points falling inside a job's tenure (for sparklines). */
+export function seriesForJob(series: ScopePoint[], job: Job): ScopePoint[] {
+  const start = job.start;
+  const end = job.end ?? "9999-12-31";
+  return series.filter((p) => p.date >= start && p.date <= end);
+}
+
 export interface TenureBand {
   job: Job;
   left: number; // 0–1

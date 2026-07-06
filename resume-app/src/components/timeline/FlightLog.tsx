@@ -12,11 +12,15 @@ import {
 } from "react";
 import { SectionHeading } from "@/components/hud/SectionHeading";
 import { RoleDrawer } from "@/components/timeline/RoleDrawer";
+import { TenureSparkline } from "@/components/timeline/TenureSparkline";
 import {
   buildBands,
   buildScopeSeries,
+  dateAtFrac,
   fracOf,
+  jobAtDate,
   jobMidFrac,
+  seriesForJob,
   TIMELINE_JOBS,
 } from "@/components/timeline/career-data";
 import { formatRange } from "@/data/resume";
@@ -58,16 +62,23 @@ export function FlightLog() {
 
   const [activeIdx, setActiveIdx] = useState(jobs.length - 1);
   const [drawerJob, setDrawerJob] = useState<Job | null>(null);
+  const [hover, setHover] = useState<{ x: number; date: Date } | null>(null);
   const reducedMotion = useReducedMotion();
 
   const railRef = useRef<HTMLDivElement>(null);
   const needleRef = useRef<HTMLDivElement>(null);
   const draggableRef = useRef<Draggable | null>(null);
   const snapsRef = useRef<number[]>([]);
+  const draggingRef = useRef(false);
   const activeRef = useRef(activeIdx);
   activeRef.current = activeIdx;
 
   const activeJob = jobs[activeIdx];
+  const sparkPoints = useMemo(
+    () => seriesForJob(series, activeJob),
+    [series, activeJob]
+  );
+  const hoverJob = hover ? jobAtDate(hover.date) : undefined;
 
   /** Move the needle to a role (programmatic: keys, chips, band clicks). */
   const goTo = useCallback((idx: number) => {
@@ -111,6 +122,13 @@ export function FlightLog() {
         x: { snap: snaps },
         containerFriction: 1,
         releaseEase: "outExpo",
+        onGrab: () => {
+          draggingRef.current = true;
+          setHover(null);
+        },
+        onRelease: () => {
+          draggingRef.current = false;
+        },
         onUpdate: (self) => {
           const idx = nearest(self.x);
           if (idx !== activeRef.current) setActiveIdx(idx);
@@ -255,6 +273,20 @@ export function FlightLog() {
           aria-valuetext={`${activeJob.role}, ${activeJob.company}, ${formatRange(activeJob)}`}
           className="absolute inset-y-0 right-0 left-0 z-10 focus-visible:outline-none"
           onKeyDown={onRailKeyDown}
+          onPointerLeave={() => setHover(null)}
+          onPointerMove={(e) => {
+            // Hover ghost: which role was held at the hovered moment.
+            if (draggingRef.current || e.pointerType === "touch") return;
+            const rail = railRef.current;
+            if (!rail) return;
+            const rect = rail.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const frac = Math.min(
+              1,
+              Math.max(0, (x - EDGE) / (rect.width - EDGE * 2))
+            );
+            setHover({ x, date: dateAtFrac(frac) });
+          }}
           onPointerDown={(e) => {
             // Click anywhere on the rail jumps to the nearest role; the
             // needle itself is handled by the anime.js draggable.
@@ -279,6 +311,43 @@ export function FlightLog() {
           role="slider"
           tabIndex={0}
         >
+          {/* hover ghost — hairline + role-at-this-moment label */}
+          {hover && hoverJob && (
+            <div aria-hidden className="pointer-events-none">
+              <div
+                className="absolute inset-y-8 w-px bg-cream/25"
+                style={{ left: hover.x }}
+              />
+              <div
+                className="-translate-x-1/2 absolute top-10 flex items-center gap-2 whitespace-nowrap rounded-lg border border-white/10 bg-ink-2/95 px-3 py-1.5 shadow-[0_6px_24px_rgba(0,0,0,0.5)] backdrop-blur-sm"
+                style={{
+                  left: Math.min(
+                    Math.max(hover.x, 130),
+                    (railRef.current?.clientWidth ?? 800) - 130
+                  ),
+                }}
+              >
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full"
+                  style={{ background: ACCENT_HEX[hoverJob.accent] }}
+                />
+                <span className="font-mono text-[0.62rem] text-muted-foreground">
+                  {hover.date.toLocaleDateString("en-US", {
+                    month: "short",
+                    year: "numeric",
+                  })}
+                </span>
+                <span className="text-cream text-xs">
+                  {hoverJob.role}
+                  <span className="text-muted-foreground">
+                    {" "}
+                    · {hoverJob.company}
+                  </span>
+                </span>
+              </div>
+            </div>
+          )}
+
           <div
             className="group absolute inset-y-0 cursor-grab active:cursor-grabbing"
             ref={needleRef}
@@ -367,14 +436,21 @@ export function FlightLog() {
                   ) : null}
                 </p>
               </div>
-              <button
-                className="group inline-flex shrink-0 items-center gap-2 rounded-lg border border-gold/40 px-5 py-2.5 font-medium text-gold-light text-sm transition-all duration-300 hover:border-gold hover:bg-gold/10"
-                onClick={() => setDrawerJob(activeJob)}
-                type="button"
-              >
-                Role details
-                <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </button>
+              <div className="flex shrink-0 flex-col items-end gap-3">
+                <button
+                  className="group inline-flex items-center gap-2 rounded-lg border border-gold/40 px-5 py-2.5 font-medium text-gold-light text-sm transition-all duration-300 hover:border-gold hover:bg-gold/10"
+                  onClick={() => setDrawerJob(activeJob)}
+                  type="button"
+                >
+                  Role details
+                  <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </button>
+                <TenureSparkline
+                  accent={ACCENT_HEX[activeJob.accent] ?? "#c9a84c"}
+                  jobId={activeJob.id}
+                  points={sparkPoints}
+                />
+              </div>
             </div>
 
             <p className="mt-4 max-w-3xl text-cream/80 leading-relaxed">
