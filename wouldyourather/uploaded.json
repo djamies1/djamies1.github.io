@@ -1584,5 +1584,31 @@
     "category": "mental",
     "uploaded_at": "2026-07-06T18:09:02Z",
     "publish_at": "2026-07-07T02:06:12.000Z"
+  },
+  "wyr_0184": {
+    "youtube_id": "POSZ99EoNVQ",
+    "youtube_url": "https://www.youtube.com/watch?v=POSZ99EoNVQ",
+    "option_a": "Live 10 years longer but age normally",
+    "option_b": "Stop ageing at 35 for 10 extra years then continue",
+    "category": "physical",
+    "uploaded_at": "2026-07-07T17:52:52Z"
+  },
+  "wyr_0185": {
+    "youtube_id": "0SR0d2PLwhg",
+    "youtube_url": "https://www.youtube.com/watch?v=0SR0d2PLwhg",
+    "option_a": "Have a supercomputer available 24/7 for personal use",
+    "option_b": "Have a team of 5 expert assistants for any task 24/7",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-07T17:53:40Z",
+    "publish_at": "2026-07-07T21:52:20.000Z"
+  },
+  "wyr_0186": {
+    "youtube_id": "E-9iomadDtI",
+    "youtube_url": "https://www.youtube.com/watch?v=E-9iomadDtI",
+    "option_a": "Be able to type 200 words per minute",
+    "option_b": "Never make a typo again",
+    "category": "skills",
+    "uploaded_at": "2026-07-07T17:54:23Z",
+    "publish_at": "2026-07-08T01:52:20.000Z"
   }
 }
