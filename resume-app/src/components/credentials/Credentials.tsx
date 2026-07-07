@@ -1,7 +1,26 @@
-import { Award, GraduationCap } from "lucide-react";
+import {
+  Award,
+  BookOpen,
+  Gamepad2,
+  GraduationCap,
+  type LucideIcon,
+  Mountain,
+  Plane,
+  Sprout,
+  Waves,
+} from "lucide-react";
 import { motion } from "motion/react";
 import { SectionHeading } from "@/components/hud/SectionHeading";
 import { CERTS, EDUCATION, INTERESTS } from "@/data/resume";
+
+const INTEREST_ICONS: Record<string, LucideIcon> = {
+  "Fantasy & sci-fi": BookOpen,
+  Hiking: Mountain,
+  Gaming: Gamepad2,
+  "Paddle boarding": Waves,
+  Traveling: Plane,
+  Gardening: Sprout,
+};
 
 const reveal = {
   hidden: { opacity: 0, y: 18 },
@@ -21,7 +40,7 @@ export function Credentials() {
     <section className="mx-auto max-w-6xl px-6 py-24" id="credentials">
       <SectionHeading
         eyebrow="05 · Background"
-        lede="An accountancy degree and a data warehousing certificate underpin the engineering. The finance-native foundation came first."
+        lede="Accounting degree from ASU, then a UW certificate in data warehousing once the work turned toward engineering."
         title="Education & certifications"
       />
 
@@ -94,15 +113,20 @@ export function Credentials() {
           >
             <p className="eyebrow mb-3">Outside of work</p>
             <ul className="flex flex-wrap gap-2">
-              {INTERESTS.map((interest) => (
-                <li
-                  className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-cream/75 text-xs"
-                  key={interest.label}
-                >
-                  <span aria-hidden>{interest.icon}</span>
-                  {interest.label}
-                </li>
-              ))}
+              {INTERESTS.map((interest) => {
+                const Icon = INTEREST_ICONS[interest.label];
+                return (
+                  <li
+                    className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-cream/75 text-xs"
+                    key={interest.label}
+                  >
+                    {Icon ? (
+                      <Icon aria-hidden className="h-3.5 w-3.5 text-gold/70" />
+                    ) : null}
+                    {interest.label}
+                  </li>
+                );
+              })}
             </ul>
           </motion.div>
         </div>

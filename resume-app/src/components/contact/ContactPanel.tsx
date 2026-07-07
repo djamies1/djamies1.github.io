@@ -19,11 +19,10 @@ export function ContactPanel() {
         >
           <p className="eyebrow">06 · Contact</p>
           <h2 className="mt-4 font-display text-5xl text-cream tracking-tight md:text-6xl">
-            Let's connect.
+            Get in touch
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground leading-relaxed">
-            Building something at the intersection of finance, data, and AI?
-            I'd love to hear about it.
+            Email is the fastest way to reach me. LinkedIn works too.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
@@ -52,7 +51,7 @@ export function ContactPanel() {
               href={`${import.meta.env.BASE_URL}DavidJamieson-Resume.pdf`}
             >
               <FileDown className="h-4 w-4" />
-              Résumé PDF
+              Resume (PDF)
             </a>
           </div>
         </motion.div>
@@ -60,9 +59,8 @@ export function ContactPanel() {
 
       <footer className="mt-14 space-y-2 text-center">
         <p className="text-muted-foreground/80 text-xs leading-relaxed">
-          Designed and built by {PERSON.name} with React, TypeScript,
-          Tailwind, anime.js, Motion, and WebGL. Live Kuiper telemetry via
-          Celestrak.
+          Designed and built by {PERSON.name} with React, TypeScript, and a
+          few too many animation libraries.
         </p>
         <p className="text-[0.68rem] text-muted-foreground/50">
           © {new Date().getFullYear()} {PERSON.name} · Kirkland, WA

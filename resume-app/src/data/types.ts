@@ -26,7 +26,7 @@ export interface Job {
   end: string | null;
   /** Tailwind color token name for the company accent (e.g. "amazon"). */
   accent: string;
-  /** Short badge shown on the card, e.g. "🛰️ Satellite broadband". */
+  /** Short badge shown on the card, e.g. "Satellite broadband". */
   highlight?: string;
   /** One-line card summary — the only prose on the landing surface. */
   tagline: string;
@@ -39,7 +39,6 @@ export interface Job {
 export interface SkillPillar {
   id: string;
   name: string;
-  icon: string;
   /** 0–100 for the radar chart. */
   radar: number;
   overview: string;

@@ -174,7 +174,7 @@ export function FlightLog() {
         <SectionHeading
           className="mb-0 md:mb-0"
           eyebrow="02 · Experience"
-          lede="Thirteen years from audit rooms to satellite finance. Drag the needle, or use the arrow keys, to step through each role."
+          lede="Every role since 2013, plotted by scope. Drag the needle or use the arrow keys to step through them."
           title="Career trajectory"
         />
         <div className="flex items-center gap-3 pb-1">
@@ -187,7 +187,7 @@ export function FlightLog() {
           </span>
           <button
             aria-label="Previous role"
-            className="glass rounded-full p-2.5 text-cream transition-colors hover:text-gold disabled:opacity-30"
+            className="glass rounded-full p-3 text-cream transition-colors hover:text-gold disabled:opacity-30"
             disabled={activeIdx === 0}
             onClick={() => goTo(activeIdx - 1)}
             type="button"
@@ -196,7 +196,7 @@ export function FlightLog() {
           </button>
           <button
             aria-label="Next role"
-            className="glass rounded-full p-2.5 text-cream transition-colors hover:text-gold disabled:opacity-30"
+            className="glass rounded-full p-3 text-cream transition-colors hover:text-gold disabled:opacity-30"
             disabled={activeIdx === jobs.length - 1}
             onClick={() => goTo(activeIdx + 1)}
             type="button"
@@ -210,7 +210,7 @@ export function FlightLog() {
       <div className="glass relative mt-8 hidden rounded-2xl pt-5 pb-1 md:block">
         <div className="pointer-events-none absolute top-5 left-6 z-10">
           <p className="text-[0.65rem] text-muted-foreground uppercase tracking-[0.22em]">
-            Role scope · stylised index
+            Role scope (illustrative)
           </p>
         </div>
         <p className="pointer-events-none absolute top-4 right-6 z-10 font-display text-5xl text-cream/[0.06] leading-none">
@@ -351,7 +351,7 @@ export function FlightLog() {
           <div
             className="group absolute inset-y-0 cursor-grab active:cursor-grabbing"
             ref={needleRef}
-            style={{ width: NEEDLE_W }}
+            style={{ width: NEEDLE_W, touchAction: "none" }}
           >
             <div className="-translate-x-1/2 absolute inset-y-3 left-1/2 w-px bg-gradient-to-b from-gold via-gold/70 to-transparent" />
             <div
@@ -372,7 +372,7 @@ export function FlightLog() {
         {jobs.map((job, i) => (
           <button
             className={cn(
-              "shrink-0 rounded-full border px-3.5 py-1.5 text-xs transition-colors",
+              "min-h-[40px] shrink-0 rounded-full border px-4 py-2 text-xs transition-colors",
               i === activeIdx
                 ? "border-gold bg-gold/15 text-gold-light"
                 : "border-white/12 text-muted-foreground"

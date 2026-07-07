@@ -7,6 +7,7 @@ import {
   DrawerDescription,
   DrawerTitle,
 } from "@/components/ui/drawer";
+import { PillarIcon } from "@/components/skills/pillar-icons";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import type { SkillPillar } from "@/data/types";
 
@@ -45,21 +46,21 @@ export function SkillDrawer({ pillar, onClose }: SkillDrawerProps) {
         {pillar ? (
           <motion.div
             animate="show"
-            className="overflow-y-auto px-6 pt-4 pb-10 md:px-8 md:pt-8"
+            className="overflow-y-auto overscroll-contain px-6 pt-4 pb-10 md:px-8 md:pt-8"
             initial="hidden"
             variants={listStagger}
           >
             <DrawerClose
               aria-label="Close capability details"
-              className="absolute top-4 right-4 rounded-full p-2 text-muted-foreground transition-colors hover:bg-white/5 hover:text-cream"
+              className="absolute top-3 right-3 z-10 rounded-full p-2.5 text-muted-foreground transition-colors hover:bg-white/5 hover:text-cream"
             >
               <X className="h-5 w-5" />
             </DrawerClose>
 
             <motion.header variants={item}>
-              <p className="eyebrow">Capability deep-dive</p>
+              <p className="eyebrow">Skill detail</p>
               <DrawerTitle className="mt-3 flex items-center gap-3 font-display text-3xl text-cream leading-tight">
-                <span aria-hidden>{pillar.icon}</span>
+                <PillarIcon className="h-6 w-6 text-gold" id={pillar.id} />
                 {pillar.name}
               </DrawerTitle>
               <div className="mt-4 flex items-center gap-3">
@@ -84,7 +85,7 @@ export function SkillDrawer({ pillar, onClose }: SkillDrawerProps) {
             </motion.div>
 
             <motion.h3 className="eyebrow mt-9 mb-4" variants={item}>
-              Track record
+              Where I've used it
             </motion.h3>
             <ul className="space-y-3">
               {pillar.bullets.map((b) => (

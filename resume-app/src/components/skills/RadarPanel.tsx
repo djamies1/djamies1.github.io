@@ -21,7 +21,8 @@ const RADAR_DATA = [
 interface RadarPanelProps {
   /** Pillar id currently hovered (label, vertex, or card). */
   hoverKey: string | null;
-  onHoverKey: (key: string | null) => void;
+  /** Omit on touch devices to disable label hover targets. */
+  onHoverKey?: (key: string | null) => void;
 }
 
 /** Lazy-loaded bklit radar of the six capability pillars, hover-aware. */

@@ -62,13 +62,13 @@ export function RoleDrawer({ job, onClose }: RoleDrawerProps) {
         {job ? (
           <motion.div
             animate="show"
-            className="overflow-y-auto px-6 pt-4 pb-10 md:px-8 md:pt-8"
+            className="overflow-y-auto overscroll-contain px-6 pt-4 pb-10 md:px-8 md:pt-8"
             initial="hidden"
             variants={listStagger}
           >
             <DrawerClose
               aria-label="Close role details"
-              className="absolute top-4 right-4 rounded-full p-2 text-muted-foreground transition-colors hover:bg-white/5 hover:text-cream"
+              className="absolute top-3 right-3 z-10 rounded-full p-2.5 text-muted-foreground transition-colors hover:bg-white/5 hover:text-cream"
             >
               <X className="h-5 w-5" />
             </DrawerClose>
@@ -121,12 +121,14 @@ export function RoleDrawer({ job, onClose }: RoleDrawerProps) {
               </motion.dl>
             )}
 
-            <motion.h3
-              className="eyebrow mt-9 mb-4"
-              variants={item}
-            >
-              Key projects
-            </motion.h3>
+            {job.projects.length > 0 && (
+              <motion.h3
+                className="eyebrow mt-9 mb-4"
+                variants={item}
+              >
+                Key projects
+              </motion.h3>
+            )}
             <div className="space-y-4">
               {job.projects.map((p) => (
                 <motion.article

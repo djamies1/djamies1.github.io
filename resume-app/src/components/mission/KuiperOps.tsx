@@ -124,8 +124,8 @@ export default function KuiperOps() {
     status === "live"
       ? `${count} satellites · live`
       : status === "offline"
-        ? "telemetry offline"
-        : "acquiring signal…";
+        ? "feed unavailable"
+        : "fetching TLE data…";
 
   return (
     <div>
@@ -282,7 +282,7 @@ function OfflineFallback({ height }: { height: number }) {
         />
       </svg>
       <p className="text-muted-foreground text-xs uppercase tracking-[0.2em]">
-        Telemetry offline. Orbital display in standby.
+        Live satellite feed unavailable
       </p>
     </div>
   );

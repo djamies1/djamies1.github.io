@@ -89,7 +89,7 @@ export function LeoSpotlight() {
     >
       <SectionHeading
         eyebrow="03 · Current role"
-        lede="The finance analytics platform behind Amazon's satellite broadband constellation, Project Kuiper. One platform, eight domains."
+        lede="The finance org behind Amazon's satellite broadband program runs its day-to-day operations on a platform I built and maintain."
         title={
           <MatrixText
             charClassName="font-mono text-4xl tracking-tight md:text-5xl"
@@ -110,9 +110,9 @@ export function LeoSpotlight() {
             viewport={{ once: true, margin: "-80px" }}
             whileInView="show"
           >
-            I design, build, and operate the finance org's production
-            Python/Flask analytics platform, including a RAG knowledge
-            assistant adopted org-wide.
+            I built the finance org's operations platform in Python and Flask,
+            and I run it day to day. The newest piece is a RAG knowledge
+            assistant now in use across the org.
           </motion.p>
 
           <motion.div
@@ -134,9 +134,9 @@ export function LeoSpotlight() {
             whileInView="show"
           >
             <p className="mt-5 text-muted-foreground text-sm leading-relaxed">
-              Also founded the org's monthly Analytics &amp; AI forum, and
-              serve as primary technical advisor to partner engineering and
-              data teams.
+              I also run the org's monthly analytics and AI forum, and handle
+              most of the technical back-and-forth with partner engineering
+              and data teams.
             </p>
             <button
               className="group mt-6 inline-flex items-center gap-2 rounded-lg border border-gold/40 px-5 py-2.5 font-medium text-gold-light text-sm transition-all duration-300 hover:border-gold hover:bg-gold/10"
@@ -172,7 +172,7 @@ function GlobeSkeleton() {
         <div className="h-40 w-40 animate-pulse rounded-full border border-gold/30 bg-ink-3" />
       </div>
       <p className="absolute bottom-4 w-full text-center text-[0.65rem] text-muted-foreground uppercase tracking-[0.2em]">
-        Initialising orbital display…
+        Loading orbital view…
       </p>
     </div>
   );

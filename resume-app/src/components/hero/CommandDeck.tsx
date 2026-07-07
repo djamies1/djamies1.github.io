@@ -113,7 +113,7 @@ export function CommandDeck() {
             className="h-12 px-6"
             download
             href={`${import.meta.env.BASE_URL}DavidJamieson-Resume.pdf`}
-            label="Download résumé"
+            label="Download resume"
             variant="gold"
           />
           <a
