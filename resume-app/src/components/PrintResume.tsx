@@ -30,7 +30,7 @@ export function PrintResume() {
         {JOBS.map((job) => (
           <article className="mt-4" key={job.id}>
             <h3 className="font-semibold text-sm">
-              {job.role} — {job.company}
+              {job.role} · {job.company}
             </h3>
             <p className="text-xs">
               {job.org ? `${job.org} · ` : ""}
@@ -61,7 +61,7 @@ export function PrintResume() {
         <ul className="mt-2 space-y-1 text-xs">
           {CERTS.map((c) => (
             <li key={c.name}>
-              {c.name} — {c.issuer} ({c.date})
+              {c.name} · {c.issuer} ({c.date})
             </li>
           ))}
         </ul>
@@ -74,7 +74,7 @@ export function PrintResume() {
         <ul className="mt-2 space-y-1 text-xs">
           {EDUCATION.map((e) => (
             <li key={e.school}>
-              <span className="font-semibold">{e.school}</span> — {e.detail} (
+              <span className="font-semibold">{e.school}</span>: {e.detail} (
               {e.location})
             </li>
           ))}

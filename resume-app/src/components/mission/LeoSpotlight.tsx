@@ -2,7 +2,6 @@ import { animate, utils } from "animejs";
 import { ChevronRight } from "lucide-react";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { BentoCard, type BentoItem } from "@/components/kokonutui/bento-grid";
 import MatrixText from "@/components/kokonutui/matrix-text";
 import { SectionHeading } from "@/components/hud/SectionHeading";
 import { RoleDrawer } from "@/components/timeline/RoleDrawer";
@@ -13,66 +12,6 @@ import type { Job } from "@/data/types";
 const KuiperOps = lazy(() => import("@/components/mission/KuiperOps"));
 
 const LEO_JOB = JOBS.find((j) => j.id === "amazon-leo");
-
-/** The eight domains the fin-ops platform unifies (from the résumé). */
-const DOMAIN_ITEMS: BentoItem[] = [
-  {
-    id: "assistant",
-    title: "AI Knowledge Assistant",
-    description:
-      "RAG over hundreds of curated documents — cited, screened, adopted org-wide.",
-    feature: "typing",
-    typingText:
-      "> query: 'capex variance drivers, June'\n> retrieving… 4 sources matched\n> cite: [FIN-VAR-0626 §2.1] [CAPEX-RPT-06]\n> export-control: PASS ✓\n> answer ready — 2.3s",
-    size: "lg",
-    className: "md:col-span-2 md:row-span-2",
-  },
-  {
-    id: "variance",
-    title: "Variance Commentary",
-    description: "AI-assisted review workflow for month-over-month narrative.",
-    size: "sm",
-  },
-  {
-    id: "pnl",
-    title: "Live P&L Analytics",
-    description: "Real-time profit & loss visibility for the finance org.",
-    size: "sm",
-  },
-  {
-    id: "capex",
-    title: "CapEx Analytics",
-    description: "Capital-expenditure tracking for a satellite constellation.",
-    size: "sm",
-  },
-  {
-    id: "gl",
-    title: "GL Drill-Down",
-    description:
-      "Transaction-level ledger analysis across seven dimensions.",
-    size: "sm",
-  },
-  {
-    id: "planning",
-    title: "Planning Dashboards",
-    description: "Forward-looking planning surfaces for finance leadership.",
-    size: "sm",
-  },
-  {
-    id: "library",
-    title: "Resource Library",
-    description: "Curated, searchable home for the org's financial knowledge.",
-    size: "sm",
-  },
-  {
-    id: "reporting",
-    title: "Reporting",
-    description:
-      "Standardized reporting replacing manual spreadsheet processes.",
-    size: "sm",
-    className: "md:col-span-2",
-  },
-];
 
 const item = {
   hidden: { opacity: 0, y: 18 },
@@ -150,7 +89,7 @@ export function LeoSpotlight() {
     >
       <SectionHeading
         eyebrow="03 · Current role"
-        lede="The finance analytics platform behind Amazon's satellite broadband constellation (Project Kuiper) — one engineer, one platform, eight domains."
+        lede="The finance analytics platform behind Amazon's satellite broadband constellation, Project Kuiper. One platform, eight domains."
         title={
           <MatrixText
             charClassName="font-mono text-4xl tracking-tight md:text-5xl"
@@ -171,8 +110,9 @@ export function LeoSpotlight() {
             viewport={{ once: true, margin: "-80px" }}
             whileInView="show"
           >
-            Sole technical owner of a production Python/Flask analytics
-            platform — with a RAG knowledge assistant adopted org-wide.
+            I design, build, and operate the finance org's production
+            Python/Flask analytics platform, including a RAG knowledge
+            assistant adopted org-wide.
           </motion.p>
 
           <motion.div
@@ -217,20 +157,6 @@ export function LeoSpotlight() {
           ) : (
             <GlobeSkeleton />
           )}
-        </div>
-      </div>
-
-      <div className="mt-16">
-        <p className="eyebrow mb-6">The platform · eight domains</p>
-        <div className="grid gap-4 md:grid-cols-4">
-          {DOMAIN_ITEMS.map((d) => (
-            <div
-              className={d.className ?? "md:col-span-1"}
-              key={d.id}
-            >
-              <BentoCard item={d} />
-            </div>
-          ))}
         </div>
       </div>
 

@@ -282,7 +282,7 @@ function OfflineFallback({ height }: { height: number }) {
         />
       </svg>
       <p className="text-muted-foreground text-xs uppercase tracking-[0.2em]">
-        Telemetry offline — orbital display in standby
+        Telemetry offline. Orbital display in standby.
       </p>
     </div>
   );

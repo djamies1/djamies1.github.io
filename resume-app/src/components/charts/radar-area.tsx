@@ -18,6 +18,8 @@ export interface RadarAreaProps {
   showStroke?: boolean;
   /** Show glow effect on hover. Default: true */
   showGlow?: boolean;
+  /** Metric key whose vertex renders emphasized (halo + larger dot). */
+  highlightedMetricKey?: string | null;
   /** Additional class name */
   className?: string;
 }
@@ -38,6 +40,7 @@ const RadarPoint = memo(function RadarPoint({
   target,
   color,
   isHovered,
+  isEmphasized,
   metricKey,
   enterComplete,
 }: {
@@ -45,23 +48,36 @@ const RadarPoint = memo(function RadarPoint({
   target: { x: number; y: number };
   color: string;
   isHovered: boolean;
+  /** Per-metric emphasis (e.g. the hovered discipline). */
+  isEmphasized: boolean;
   metricKey: string;
   enterComplete: boolean;
 }) {
   const cx = useTransform(mountProgress, (t) => target.x * t);
   const cy = useTransform(mountProgress, (t) => target.y * t);
+  const r = isEmphasized ? 6.5 : isHovered ? 6 : 4;
 
   if (enterComplete) {
     return (
-      <circle
-        cx={target.x}
-        cy={target.y}
-        fill={color}
-        key={metricKey}
-        r={isHovered ? 6 : 4}
-        stroke={radarCssVars.background}
-        strokeWidth={2}
-      />
+      <g key={metricKey}>
+        {isEmphasized ? (
+          <circle
+            cx={target.x}
+            cy={target.y}
+            fill={color}
+            opacity={0.25}
+            r={12}
+          />
+        ) : null}
+        <circle
+          cx={target.x}
+          cy={target.y}
+          fill={color}
+          r={r}
+          stroke={radarCssVars.background}
+          strokeWidth={2}
+        />
+      </g>
     );
   }
 
@@ -71,7 +87,7 @@ const RadarPoint = memo(function RadarPoint({
       cy={cy}
       fill={color}
       key={metricKey}
-      r={isHovered ? 6 : 4}
+      r={r}
       stroke={radarCssVars.background}
       strokeWidth={2}
       transition={{
@@ -88,6 +104,7 @@ export const RadarArea = memo(function RadarArea({
   showPoints = true,
   showStroke = true,
   showGlow = true,
+  highlightedMetricKey = null,
   className = "",
 }: RadarAreaProps) {
   const {
@@ -208,6 +225,7 @@ export const RadarArea = memo(function RadarArea({
             <RadarPoint
               color={color}
               enterComplete={enterComplete}
+              isEmphasized={highlightedMetricKey === metric.key}
               isHovered={isHovered}
               key={metric.key}
               metricKey={metric.key}

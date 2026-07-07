@@ -18,14 +18,24 @@ const RADAR_DATA = [
   },
 ];
 
-/** Lazy-loaded bklit radar of the six capability pillars. */
-export default function RadarPanel() {
+interface RadarPanelProps {
+  /** Pillar id currently hovered (label, vertex, or card). */
+  hoverKey: string | null;
+  onHoverKey: (key: string | null) => void;
+}
+
+/** Lazy-loaded bklit radar of the six capability pillars, hover-aware. */
+export default function RadarPanel({ hoverKey, onHoverKey }: RadarPanelProps) {
   return (
     <RadarChart data={RADAR_DATA} levels={4} margin={90} metrics={RADAR_METRICS}>
       <RadarGrid />
       <RadarAxis />
-      <RadarLabels />
-      <RadarArea index={0} />
+      <RadarLabels
+        highlightedKey={hoverKey}
+        interactive
+        onMetricHover={onHoverKey}
+      />
+      <RadarArea highlightedMetricKey={hoverKey} index={0} />
     </RadarChart>
   );
 }

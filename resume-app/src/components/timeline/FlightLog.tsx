@@ -174,7 +174,7 @@ export function FlightLog() {
         <SectionHeading
           className="mb-0 md:mb-0"
           eyebrow="02 · Experience"
-          lede="Thirteen years from audit rooms to satellite finance. Drag the needle — or use arrow keys — to step through each role."
+          lede="Thirteen years from audit rooms to satellite finance. Drag the needle, or use the arrow keys, to step through each role."
           title="Career trajectory"
         />
         <div className="flex items-center gap-3 pb-1">

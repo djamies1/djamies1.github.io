@@ -60,8 +60,9 @@ export function ContactPanel() {
 
       <footer className="mt-14 space-y-2 text-center">
         <p className="text-muted-foreground/80 text-xs leading-relaxed">
-          Designed &amp; built by {PERSON.name} — React, TypeScript, Tailwind,
-          anime.js, Motion, WebGL. Live Kuiper telemetry via Celestrak.
+          Designed and built by {PERSON.name} with React, TypeScript,
+          Tailwind, anime.js, Motion, and WebGL. Live Kuiper telemetry via
+          Celestrak.
         </p>
         <p className="text-[0.68rem] text-muted-foreground/50">
           © {new Date().getFullYear()} {PERSON.name} · Kirkland, WA

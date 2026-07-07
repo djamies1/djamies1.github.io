@@ -1,10 +1,11 @@
 import { ChevronRight } from "lucide-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { lazy, Suspense, useState } from "react";
 import { SectionHeading } from "@/components/hud/SectionHeading";
 import { SkillDrawer } from "@/components/skills/SkillDrawer";
 import { SKILL_PILLARS, SPECIALTIES, TECH_SKILLS } from "@/data/resume";
 import type { SkillPillar } from "@/data/types";
+import { cn } from "@/lib/utils";
 
 const RadarPanel = lazy(() => import("@/components/skills/RadarPanel"));
 
@@ -23,30 +24,83 @@ const cardReveal = {
 
 export function Capabilities() {
   const [openPillar, setOpenPillar] = useState<SkillPillar | null>(null);
+  const [hoverKey, setHoverKey] = useState<string | null>(null);
+  const hoverPillar = SKILL_PILLARS.find((p) => p.id === hoverKey) ?? null;
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-24" id="capabilities">
       <SectionHeading
         eyebrow="04 · Skills"
-        lede="Six disciplines, one practitioner — from warehouse schemas to RAG pipelines. Open any pillar for the track record."
+        lede="Six disciplines, one practitioner, from warehouse schemas to RAG pipelines. Open any pillar for the track record."
         title="Core capabilities"
       />
 
-      <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,460px)_1fr]">
+      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,460px)_1fr]">
         <div className="mx-auto w-full max-w-[460px]">
           <Suspense fallback={<div className="aspect-square w-full" />}>
-            <RadarPanel />
+            <RadarPanel hoverKey={hoverKey} onHoverKey={setHoverKey} />
           </Suspense>
+
+          {/* hover context readout, synced with radar + cards */}
+          <div className="mt-2 hidden min-h-[128px] lg:block">
+            <AnimatePresence mode="wait">
+              {hoverPillar ? (
+                <motion.div
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-xl border border-gold/30 bg-gold/[0.06] p-5"
+                  exit={{ opacity: 0, y: -6 }}
+                  initial={{ opacity: 0, y: 8 }}
+                  key={hoverPillar.id}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span aria-hidden className="text-lg">
+                      {hoverPillar.icon}
+                    </span>
+                    <h4 className="font-display text-gold-light text-lg">
+                      {hoverPillar.name}
+                    </h4>
+                    <span className="ml-auto font-mono text-gold-light/80 text-sm tabular-nums">
+                      {hoverPillar.radar}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-cream/80 text-sm leading-relaxed">
+                    {hoverPillar.overview}
+                  </p>
+                  <p className="mt-2 text-[0.68rem] text-muted-foreground uppercase tracking-[0.14em]">
+                    Click for the full track record
+                  </p>
+                </motion.div>
+              ) : (
+                <motion.p
+                  animate={{ opacity: 1 }}
+                  className="px-1 pt-3 text-center text-muted-foreground/70 text-xs uppercase tracking-[0.18em]"
+                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0 }}
+                  key="hint"
+                  transition={{ duration: 0.2 }}
+                >
+                  Hover a discipline · click for the full track record
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
           {SKILL_PILLARS.map((pillar, i) => (
             <motion.button
-              className="group glass rounded-xl p-5 text-left transition-colors duration-300 hover:border-gold/50"
+              className={cn(
+                "group glass rounded-xl p-5 text-left transition-all duration-300 hover:border-gold/50",
+                hoverKey === pillar.id &&
+                  "border-gold/60 shadow-[0_0_24px_rgba(201,168,76,0.15)]"
+              )}
               custom={i}
               initial="hidden"
               key={pillar.id}
               onClick={() => setOpenPillar(pillar)}
+              onMouseEnter={() => setHoverKey(pillar.id)}
+              onMouseLeave={() => setHoverKey(null)}
               type="button"
               variants={cardReveal}
               viewport={{ once: true, margin: "-60px" }}

@@ -10,8 +10,9 @@ import type {
  * ════════════════════════════════════════════════════════════════
  * SINGLE SOURCE OF TRUTH for all résumé content.
  * Rendered by the page, the build-time JSON-LD, and the <noscript>
- * fallback — edit here, never in components.
+ * fallback. Edit here, never in components.
  * Content mirrors davidjmn_resume.docx (2026). No phone number.
+ * Style rule: no em dashes in any user-visible string.
  * ════════════════════════════════════════════════════════════════
  */
 
@@ -32,7 +33,7 @@ export const PERSON = {
     "Finance-native data engineer",
   ],
   summary:
-    "BI engineer at Amazon Leo — sole technical owner of the finance org's production analytics platform. Thirteen years across accounting, FP&A, data engineering, and applied AI.",
+    "BI engineer at Amazon Leo, building and operating the finance org's production analytics platform. Thirteen years across accounting, FP&A, data engineering, and applied AI.",
 };
 
 export const yearsInData = () =>
@@ -66,16 +67,16 @@ export const JOBS: Job[] = [
     accent: "amazon",
     highlight: "🛰️ Satellite broadband · Finance",
     tagline:
-      "Built and run the finance org's production analytics platform — solo — for Amazon's satellite constellation.",
+      "Built and run the finance org's production analytics platform for Amazon's satellite constellation.",
     bullets: [
-      "Sole technical owner for a ~130-person finance organization: designed, built, and operate a production financial-operations web platform (Python/Flask) unifying eight domains — variance commentary with AI-assisted review, live P&L and capital-expenditure analytics, an AI knowledge assistant, a resource library, planning dashboards, and reporting.",
-      "Built and launched an AI-powered financial knowledge assistant using retrieval-augmented generation over hundreds of curated documents, with automatic source citation and export-control screening — adopted org-wide and accessible in-app, via a hosted agent, and inside analysts' local AI tools.",
-      "Co-created and led the pre-launch quality audit of a reusable AI skill library now used across the broader finance organization; finalist among a 600-person internal hackathon.",
+      "Sole technical owner for a ~130-person finance organization: designed, built, and operate a production financial-operations web platform (Python/Flask) unifying eight domains, from variance commentary with AI-assisted review and live P&L and capital-expenditure analytics to an AI knowledge assistant, a resource library, planning dashboards, and reporting.",
+      "Built and launched an AI-powered financial knowledge assistant using retrieval-augmented generation over hundreds of curated documents, with automatic source citation and export-control screening. Adopted org-wide and accessible in-app, via a hosted agent, and inside analysts' local AI tools.",
+      "Co-created and led the pre-launch quality audit of a reusable AI skill library now used across the broader finance organization. Finalist among a 600-person internal hackathon.",
       "Replaced a manual spreadsheet process with an interactive general-ledger analytics dashboard offering transaction-level drill-down across seven dimensions for month-end close and purchase-order controllership.",
-      "Primary technical advisor bridging finance and adjacent engineering, data, and platform orgs; established and lead a monthly Analytics & AI forum driving AI adoption across the organization.",
+      "Primary technical advisor bridging finance and adjacent engineering, data, and platform orgs. Established and lead a monthly Analytics & AI forum driving AI adoption across the organization.",
     ],
     overview:
-      "Embedded in the Amazon Leo finance org as its sole technical owner — designing, building, and operating the production platform that runs financial operations for a ~130-person organization, at the intersection of satellite broadband and applied AI.",
+      "Embedded in the Amazon Leo finance org, designing, building, and operating the production platform that runs financial operations for a roughly 130-person organization, at the intersection of satellite broadband and applied AI.",
     projects: [
       {
         name: "Financial-Operations Platform",
@@ -84,24 +85,24 @@ export const JOBS: Job[] = [
       },
       {
         name: "RAG Knowledge Assistant",
-        desc: "Retrieval-augmented generation over hundreds of curated finance documents with automatic source citation and export-control screening. Adopted org-wide across three surfaces: in-app, a hosted agent, and analysts' local AI tools.",
+        desc: "Retrieval-augmented generation over hundreds of curated finance documents, with automatic source citation and export-control screening. Adopted org-wide across three surfaces: in-app, a hosted agent, and analysts' local AI tools.",
         tags: ["RAG", "AWS Bedrock", "LLM", "Prompt Engineering", "Python"],
       },
       {
         name: "Reusable AI Skill Library",
-        desc: "Co-created a library of reusable AI skills standardizing and accelerating analysts' AI workflows across the broader finance organization; led its pre-launch quality audit. Finalist among a 600-person internal hackathon.",
+        desc: "Co-created a library of reusable AI skills that standardizes and accelerates analysts' AI workflows across the broader finance organization, and led its pre-launch quality audit. Finalist among a 600-person internal hackathon.",
         tags: ["GenAI", "Enablement", "Quality Audit"],
       },
       {
         name: "General-Ledger Drill-Down",
-        desc: "Interactive GL analytics dashboard replacing a manual spreadsheet process — transaction-level drill-down across seven dimensions supporting month-end close and purchase-order controllership.",
+        desc: "Interactive GL analytics dashboard that replaced a manual spreadsheet process. Transaction-level drill-down across seven dimensions supports month-end close and purchase-order controllership.",
         tags: ["SQL", "Dashboarding", "Controllership"],
       },
     ],
     metrics: [
       { label: "finance org served", value: 130, display: "~130 people" },
       { label: "platform domains unified", value: 8, display: "8" },
-      { label: "hackathon field (finalist)", value: 600, display: "600" },
+      { label: "hackathon field, finalist", value: 600, display: "600" },
       { label: "GL drill-down dimensions", value: 7, display: "7" },
     ],
   },
@@ -115,29 +116,29 @@ export const JOBS: Job[] = [
     end: "2025-07-01",
     accent: "amazon",
     tagline:
-      "Compensation analytics at Amazon scale — range review tooling, cost modelers, and self-serve NLQ for 100+ users.",
+      "Compensation analytics at Amazon scale: range review tooling, cost modelers, and self-serve NLQ for 100+ users.",
     bullets: [
-      "Designed a company-wide compensation range review tool — a heavily utilized dashboard shaped through weekly managed workgroup sessions, user-acceptance testing, and launch demos.",
-      "Created compensation cost modelers to simulate the implications of potential policy changes — highly customizable scenario builders enabling quick, flexible modeling.",
-      "Led implementation of a machine-learning-powered natural-language querying tool across an organization of 100+ users; on a team of 3, maintained a dashboard suite with 5k+ monthly accesses across 600+ users.",
-      "Developed dynamic, finely grained data security for 10k+ managers and built and maintained ETL pipelines on a Redshift data warehouse — SQL, refresh scheduling, dependency management, and data-quality inspection.",
+      "Designed a company-wide compensation range review tool, a heavily utilized dashboard shaped through weekly managed workgroup sessions, user-acceptance testing, and launch demos.",
+      "Created compensation cost modelers to simulate the implications of potential policy changes: highly customizable scenario builders that enable quick, flexible modeling.",
+      "Led implementation of a machine-learning-powered natural-language querying tool across an organization of 100+ users. On a team of 3, maintained a dashboard suite with 5k+ monthly accesses across 600+ users.",
+      "Developed dynamic, finely grained data security for 10k+ managers and built ETL pipelines on a Redshift data warehouse, covering SQL, refresh scheduling, dependency management, and data-quality inspection.",
     ],
     overview:
-      "BI engineer for Amazon's compensation org — building the analytics and modeling tools behind company-wide pay decisions, on a three-person team serving hundreds of users at Amazon scale.",
+      "BI engineer for Amazon's compensation org, building the analytics and modeling tools behind company-wide pay decisions on a three-person team serving hundreds of users at Amazon scale.",
     projects: [
       {
         name: "Compensation Range Review Tool",
-        desc: "Company-wide dashboard for reviewing compensation ranges — designed through weekly managed workgroups, hardened with UAT, and launched with stakeholder demos.",
+        desc: "Company-wide dashboard for reviewing compensation ranges. Designed through weekly managed workgroups, hardened with UAT, and launched with stakeholder demos.",
         tags: ["QuickSight", "UAT", "Stakeholder Management"],
       },
       {
         name: "Compensation Cost Modelers",
-        desc: "Customizable scenario builders simulating the cost implications of proposed policy changes — fast, flexible what-if modeling for compensation planners.",
+        desc: "Customizable scenario builders that simulate the cost implications of proposed policy changes. Fast, flexible what-if modeling for compensation planners.",
         tags: ["Scenario Analysis", "Financial Modelling", "SQL"],
       },
       {
         name: "Natural-Language Querying Rollout",
-        desc: "Led the implementation of an ML-powered NLQ tool across 100+ users — improving speed to insight and reducing strain on BI resources.",
+        desc: "Led the implementation of an ML-powered NLQ tool across 100+ users, improving speed to insight and reducing strain on BI resources.",
         tags: ["NLQ", "QuickSight Q", "Change Management"],
       },
       {
@@ -162,24 +163,24 @@ export const JOBS: Job[] = [
     end: "2022-02-01",
     accent: "pac",
     tagline:
-      "Built PAC's first data warehouse and BI stack from scratch — Power BI, ML forecasting, ERP bridges.",
+      "Built PAC's first data warehouse and BI stack from scratch: Power BI, ML forecasting, and ERP bridges.",
     bullets: [
-      "Created, managed, and scaled the company data warehouse — pipeline development, data cleansing, incremental loads, execution scheduling, security, and error handling.",
+      "Created, managed, and scaled the company data warehouse, covering pipeline development, data cleansing, incremental loads, execution scheduling, security, and error handling.",
       "Built primary financial reporting with Power BI, Jet Reports, and Excel/VBA alongside the CFO and business-unit stakeholders.",
-      "Migrated data between ERP systems for multiple go-lives — automated, scalable ETL transferring general and sub-ledgers between environments.",
+      "Migrated data between ERP systems for multiple go-lives, with automated, scalable ETL transferring general and sub-ledgers between environments.",
       "Developed a cross-department budgeting system feeding consolidated financials, and aided sales forecasting with a machine-learning sales algorithm.",
     ],
     overview:
-      "First dedicated BI role at PAC Worldwide — built the company's data infrastructure largely from scratch, moving a finance-heavy organisation toward data-driven decisions across operations, sales, and supply chain.",
+      "First dedicated BI role at PAC Worldwide. Built the company's data infrastructure largely from scratch and moved a finance-heavy organisation toward data-driven decisions across operations, sales, and supply chain.",
     projects: [
       {
         name: "Enterprise Data Warehouse",
-        desc: "Designed and scaled PAC's data warehouse end-to-end — source mapping, dimensional modelling, incremental loads, scheduling, security, and error handling, with a Power BI semantic layer on top.",
+        desc: "Designed and scaled PAC's data warehouse end to end: source mapping, dimensional modelling, incremental loads, scheduling, security, and error handling, with a Power BI semantic layer on top.",
         tags: ["SQL Server", "Power BI", "Data Modelling", "ETL"],
       },
       {
         name: "ERP Migration Automation",
-        desc: "Automated multi-entity Microsoft Dynamics ERP data migrations across several go-lives — scalable ETL moving general and sub-ledger data cleanly between environments.",
+        desc: "Automated multi-entity Microsoft Dynamics ERP data migrations across several go-lives. Scalable ETL moved general and sub-ledger data cleanly between environments.",
         tags: ["MS Dynamics", "ETL", "SQL", "Data Migration"],
       },
       {
@@ -202,23 +203,23 @@ export const JOBS: Job[] = [
     end: "2020-04-01",
     accent: "pac",
     tagline:
-      "Ran FP&A with the CFO and pivoted the finance function toward analytics — creating the BI role I then filled.",
+      "Ran FP&A with the CFO and pivoted the finance function toward analytics, creating the BI role I then filled.",
     bullets: [
       "Partnered with the CFO and executive leadership on financial insight and reporting for a global packaging manufacturer.",
       "Built a cross-department budgeting system feeding a consolidated set of financials.",
-      "Began the finance function's shift toward analytics — the pivot that created the dedicated BI Developer role.",
+      "Began the finance function's shift toward analytics, the pivot that created the dedicated BI Developer role.",
     ],
     overview:
-      "Three years leading FP&A at PAC Worldwide — partnering with the CFO on planning infrastructure and steering the finance function toward data-driven analytics. This role directly led to the BI Developer position.",
+      "Three years leading FP&A at PAC Worldwide, partnering with the CFO on planning infrastructure and steering the finance function toward data-driven analytics. This role directly led to the BI Developer position.",
     projects: [
       {
         name: "Collaborative Budgeting System",
-        desc: "Cross-departmental budgeting tool feeding one consolidated set of financials — replacing disconnected spreadsheets with a unified model all department heads could contribute to.",
+        desc: "Cross-departmental budgeting tool feeding one consolidated set of financials. It replaced disconnected spreadsheets with a unified model all department heads could contribute to.",
         tags: ["Excel", "VBA", "FP&A", "Budgeting"],
       },
       {
         name: "Analytics-First Pivot",
-        desc: "Drove the tooling and culture shift from static reporting to interactive analytics — early Power BI and DOMO work that justified a dedicated BI hire.",
+        desc: "Drove the tooling and culture shift from static reporting to interactive analytics, with early Power BI and DOMO work that justified a dedicated BI hire.",
         tags: ["Power BI", "DOMO", "Change Management"],
       },
     ],
@@ -237,14 +238,14 @@ export const JOBS: Job[] = [
     bullets: [
       "Delivered financial analysis and reporting for a multi-site healthcare services organisation.",
       "Developed forecasting models supporting cost management across multiple business units.",
-      "Presented insights to operational leadership — sharpening the stakeholder communication that defines every role since.",
+      "Presented insights to operational leadership, sharpening the stakeholder communication that defines every role since.",
     ],
     overview:
-      "Financial analyst in a complex multi-site healthcare services organisation — forecasting models, variance analysis, and reporting for operational leadership across business units.",
+      "Financial analyst in a complex multi-site healthcare services organisation: forecasting models, variance analysis, and reporting for operational leadership across business units.",
     projects: [
       {
         name: "Cost Management Forecasting",
-        desc: "Forecasting models supporting cost management across Falck USA business units — monthly variance analysis, scenario planning, and operational reporting.",
+        desc: "Forecasting models supporting cost management across Falck USA business units, with monthly variance analysis, scenario planning, and operational reporting.",
         tags: ["Excel", "Forecasting", "Cost Analysis"],
       },
     ],
@@ -259,17 +260,17 @@ export const JOBS: Job[] = [
     end: "2014-08-01",
     accent: "ey",
     tagline:
-      "Big Four assurance internship — where the audit-grade discipline started.",
+      "Big Four assurance internship, where the audit-grade discipline started.",
     bullets: [
       "Supported audit engagements at a Big Four firm.",
       "Built the disciplined, detail-first approach to financial data that underpins every analytics role since.",
     ],
     overview:
-      "Assurance internship at a Big Four firm — a formative summer inside enterprise financial controls and the rigour of audit-grade numbers.",
+      "Assurance internship at a Big Four firm: a formative summer inside enterprise financial controls and the rigour of audit-grade numbers.",
     projects: [
       {
         name: "Assurance Engagements",
-        desc: "Supported audit teams across client engagements — enterprise financial controls, compliance frameworks, and audit discipline.",
+        desc: "Supported audit teams across client engagements, learning enterprise financial controls, compliance frameworks, and audit discipline.",
         tags: ["Audit", "Financial Controls", "Compliance"],
       },
     ],
@@ -287,15 +288,15 @@ export const JOBS: Job[] = [
       "First role out of school: built a startup's entire finance function from zero.",
     bullets: [
       "Managed full-cycle accounting and financial control for a growing LED lighting manufacturer.",
-      "Hands-on across every facet of a small-business finance function — AR, AP, payroll, reporting.",
+      "Hands-on across every facet of a small-business finance function: AR, AP, payroll, and reporting.",
       "Built the financial reporting foundation that supported rapid product expansion.",
     ],
     overview:
-      "First role out of school — Controller at a fast-growing LED lighting startup, building the finance function from the ground up.",
+      "First role out of school, as Controller at a fast-growing LED lighting startup, building the finance function from the ground up.",
     projects: [
       {
         name: "Financial Infrastructure Build",
-        desc: "Full-cycle accounting and reporting infrastructure — AR, AP, payroll, management reporting, and audit-ready records through rapid product expansion.",
+        desc: "Full-cycle accounting and reporting infrastructure covering AR, AP, payroll, management reporting, and audit-ready records through rapid product expansion.",
         tags: ["Full-Cycle Accounting", "QuickBooks", "Excel"],
       },
     ],
@@ -310,11 +311,11 @@ export const SKILL_PILLARS: SkillPillar[] = [
     icon: "🗄️",
     radar: 92,
     overview:
-      "Data pipelines are a product, not plumbing — they need reliability, observability, and the same discipline as user-facing software. That's the lens on every pipeline I build.",
+      "Data pipelines are a product, not plumbing. They need reliability, observability, and the same discipline as user-facing software, and that's the lens on every pipeline I build.",
     bullets: [
-      "Built and operate the data layer of the Amazon Leo finance platform — the pipelines behind live P&L, capex analytics, and planning dashboards for a ~130-person org.",
-      "Engineered dynamic row-level security spanning 10k+ Amazon managers with ETL pipelines on Redshift — refresh scheduling, dependency management, data-quality inspection.",
-      "Created, managed, and scaled PAC Worldwide's data warehouse end-to-end: incremental loads, execution scheduling, security, and error handling.",
+      "Built and operate the data layer of the Amazon Leo finance platform: the pipelines behind live P&L, capex analytics, and planning dashboards for a ~130-person org.",
+      "Engineered dynamic row-level security spanning 10k+ Amazon managers, with Redshift ETL pipelines covering refresh scheduling, dependency management, and data-quality inspection.",
+      "Created, managed, and scaled PAC Worldwide's data warehouse end to end: incremental loads, execution scheduling, security, and error handling.",
       "Automated multi-entity ERP data migrations across several go-lives, moving general and sub-ledger data cleanly between environments.",
     ],
   },
@@ -324,12 +325,12 @@ export const SKILL_PILLARS: SkillPillar[] = [
     icon: "📊",
     radar: 95,
     overview:
-      "Good BI isn't pretty charts — it's making the right decision obvious at a glance. I design for the decision-maker, not the data engineer.",
+      "Good BI isn't pretty charts. It's making the right decision obvious at a glance, and I design for the decision-maker rather than the data engineer.",
     bullets: [
-      "Replaced a manual spreadsheet process with an interactive general-ledger dashboard — transaction-level drill-down across seven dimensions for month-end close.",
-      "On a team of 3, maintained an Amazon dashboard suite with 5k+ monthly accesses across 600+ users; designed the company-wide compensation range review tool.",
+      "Replaced a manual spreadsheet process with an interactive general-ledger dashboard: transaction-level drill-down across seven dimensions for month-end close.",
+      "On a team of 3, maintained an Amazon dashboard suite with 5k+ monthly accesses across 600+ users, and designed the company-wide compensation range review tool.",
       "Led an ML-powered natural-language querying rollout to 100+ users, improving speed to insight and reducing strain on BI resources.",
-      "Built PAC Worldwide's primary financial reporting in Power BI, Jet Reports, and Excel/VBA, directly with the CFO.",
+      "Built PAC Worldwide's primary financial reporting in Power BI, Jet Reports, and Excel/VBA, working directly with the CFO.",
     ],
   },
   {
@@ -338,11 +339,11 @@ export const SKILL_PILLARS: SkillPillar[] = [
     icon: "🐍",
     radar: 88,
     overview:
-      "Python is the connective tissue of my stack — production Flask platforms, ETL, and LLM applications, not just notebooks. Shipped and maintained beats clever and abandoned.",
+      "Python is the connective tissue of my stack: production Flask platforms, ETL, and LLM applications rather than notebooks. Shipped and maintained beats clever and abandoned.",
     bullets: [
       "Designed, built, and operate a production Python/Flask financial-operations platform unifying eight domains for the Amazon Leo finance org.",
-      "Built a RAG-powered financial knowledge assistant over hundreds of curated documents — automatic source citation, export-control screening, org-wide adoption.",
-      "Co-created a reusable AI skill library standardizing analysts' AI workflows across finance; finalist among a 600-person internal hackathon.",
+      "Built a RAG-powered financial knowledge assistant over hundreds of curated documents, with automatic source citation, export-control screening, and org-wide adoption.",
+      "Co-created a reusable AI skill library that standardizes analysts' AI workflows across finance. Finalist among a 600-person internal hackathon.",
       "Supported PAC Worldwide sales forecasting with BI solutions built on a machine-learning sales algorithm.",
     ],
   },
@@ -352,12 +353,12 @@ export const SKILL_PILLARS: SkillPillar[] = [
     icon: "☁️",
     radar: 85,
     overview:
-      "I build on AWS at Amazon's own scale — production systems serving hundreds of daily users inside one of the world's largest cloud environments.",
+      "I build on AWS at Amazon's own scale: production systems serving hundreds of daily users inside one of the world's largest cloud environments.",
     bullets: [
       "AWS Bedrock for the RAG knowledge assistant and AI-assisted review workflows in the Leo finance platform.",
       "Redshift data warehousing: ETL pipelines, refresh scheduling, dependency management, and performance-conscious SQL at enterprise scale.",
-      "QuickSight administration — row-level security design and the NLQ (QuickSight Q) rollout across 100+ users.",
-      "AWS Certified Cloud Practitioner; daily production work across the AWS analytics stack.",
+      "QuickSight administration, including row-level security design and the NLQ (QuickSight Q) rollout across 100+ users.",
+      "AWS Certified Cloud Practitioner, with daily production work across the AWS analytics stack.",
     ],
   },
   {
@@ -366,12 +367,12 @@ export const SKILL_PILLARS: SkillPillar[] = [
     icon: "💼",
     radar: 95,
     overview:
-      "I started as an accountant — so I know exactly what finance teams need from their data, and where most BI tools fall short. That foundation is the differentiator.",
+      "I started as an accountant, so I know exactly what finance teams need from their data and where most BI tools fall short. That foundation is the differentiator.",
     bullets: [
-      "Run variance commentary, live P&L, and capital-expenditure analytics for the Amazon Leo finance org — the platform behind month-end close and controllership.",
-      "Built compensation cost modelers simulating policy-change implications — customizable scenario builders for Amazon-wide planning.",
-      "Three years as FP&A Manager reporting to PAC Worldwide's CFO: consolidated budgeting, multi-entity financials.",
-      "EY assurance grounding: enterprise financial controls, audit standards, and the discipline of numbers that must be exactly right.",
+      "Run variance commentary, live P&L, and capital-expenditure analytics for the Amazon Leo finance org: the platform behind month-end close and controllership.",
+      "Built compensation cost modelers simulating policy-change implications, with customizable scenario builders used in Amazon-wide planning.",
+      "Three years as FP&A Manager reporting to PAC Worldwide's CFO: consolidated budgeting and multi-entity financials.",
+      "EY assurance grounding in enterprise financial controls, audit standards, and the discipline of numbers that must be exactly right.",
     ],
   },
   {
@@ -380,10 +381,10 @@ export const SKILL_PILLARS: SkillPillar[] = [
     icon: "⚙️",
     radar: 80,
     overview:
-      "Most analysts work around ERP systems; I build bridges into them. Understanding the source data model at schema level changes everything.",
+      "Most analysts work around ERP systems. I build bridges into them, because understanding the source data model at schema level changes everything.",
     bullets: [
       "Led multi-entity Microsoft Dynamics (NAV, F&O) migrations at PAC Worldwide with automated, reconciled ETL between ERP environments.",
-      "Built live reporting bridges from Dynamics into Power BI and Jet Reports — operational source-of-truth to executive dashboards without duplication.",
+      "Built live reporting bridges from Dynamics into Power BI and Jet Reports, connecting the operational source of truth to executive dashboards without duplication.",
       "Jet Data Manager / Jet Reports implementation connecting the Dynamics GL to formatted financial statements.",
       "Power Platform workflows automating manual close processes and eliminating error-prone spreadsheet hand-offs.",
     ],
@@ -422,7 +423,7 @@ export const EDUCATION: EducationEntry[] = [
     location: "Seattle, WA",
   },
   {
-    school: "Arizona State University — W. P. Carey School of Business",
+    school: "Arizona State University, W. P. Carey School of Business",
     detail: "Bachelor of Science, Accountancy",
     location: "Tempe, AZ",
   },
@@ -453,22 +454,22 @@ export const TECH_SKILLS = [
   "DOMO",
 ];
 
-/** Differentiators recruiters should catch in one glance — one line each. */
+/** Differentiators recruiters should catch in one glance. One line each. */
 export const SPECIALTIES = [
   {
     icon: "🔁",
     title: "ERP Data Migration",
-    desc: "Multi-entity Microsoft Dynamics go-lives — automated, reconciled ledger cutovers.",
+    desc: "Multi-entity Microsoft Dynamics go-lives with automated, reconciled ledger cutovers.",
   },
   {
     icon: "🤖",
     title: "Production GenAI",
-    desc: "RAG assistant + AI skill library shipped org-wide inside Amazon finance.",
+    desc: "RAG assistant and AI skill library shipped org-wide inside Amazon finance.",
   },
   {
     icon: "🧾",
     title: "Finance-Native Engineering",
-    desc: "Controller-turned-engineer — close, audit, and controllership built in.",
+    desc: "Controller-turned-engineer with close, audit, and controllership built in.",
   },
   {
     icon: "🤝",
@@ -477,11 +478,11 @@ export const SPECIALTIES = [
   },
 ];
 
-/** Landing-surface KPIs for the current role — counts animate on view. */
+/** Landing-surface KPIs for the current role. Counts animate on view. */
 export const LEO_KPIS = [
   { value: 130, prefix: "~", label: "person finance org served" },
   { value: 8, label: "platform domains unified" },
-  { value: 600, label: "hackathon field — finalist" },
+  { value: 600, label: "hackathon field, finalist" },
   { value: 7, label: "GL drill-down dimensions" },
 ];
 
@@ -494,12 +495,12 @@ export const INTERESTS = [
   { icon: "🌱", label: "Gardening" },
 ];
 
-/** "Jul 2025 — Present" style range for display. */
+/** "Jul 2025 – Present" style range for display (en dash by convention). */
 export function formatRange(job: Job): string {
   const fmt = (iso: string) =>
     new Date(`${iso}T00:00:00`).toLocaleDateString("en-US", {
       month: "short",
       year: "numeric",
     });
-  return `${fmt(job.start)} — ${job.end ? fmt(job.end) : "Present"}`;
+  return `${fmt(job.start)} – ${job.end ? fmt(job.end) : "Present"}`;
 }
