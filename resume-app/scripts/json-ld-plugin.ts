@@ -60,7 +60,7 @@ function buildNoscript(): string {
   const jobs = JOBS.map(
     (j) => `
       <article>
-        <h3>${esc(j.role)} — ${esc(j.company)}</h3>
+        <h3>${esc(j.role)} · ${esc(j.company)}</h3>
         <p>${esc(j.org ?? "")} · ${esc(j.location)} · ${esc(formatRange(j))}</p>
         <ul>${j.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
       </article>`
@@ -75,10 +75,10 @@ function buildNoscript(): string {
     <section><h2>Professional Experience</h2>${jobs}</section>
     <section><h2>Skills</h2><p>${TECH_SKILLS.map(esc).join(" · ")}</p></section>
     <section><h2>Certifications</h2><ul>${CERTS.map(
-      (c) => `<li>${esc(c.name)} — ${esc(c.issuer)} (${esc(c.date)})</li>`
+      (c) => `<li>${esc(c.name)} · ${esc(c.issuer)} (${esc(c.date)})</li>`
     ).join("")}</ul></section>
     <section><h2>Education</h2><ul>${EDUCATION.map(
-      (e) => `<li>${esc(e.school)} — ${esc(e.detail)}</li>`
+      (e) => `<li>${esc(e.school)}: ${esc(e.detail)}</li>`
     ).join("")}</ul></section>`;
 }
 
