@@ -18,10 +18,10 @@ export default function CareerChart({
   return (
     <AreaChart
       animationDuration={reducedMotion ? 0 : 1400}
-      aspectRatio="3.2 / 1"
+      aspectRatio="4.4 / 1"
       className="relative z-[1]"
       data={series}
-      margin={{ top: 26, right: edge, bottom: 30, left: edge }}
+      margin={{ top: 22, right: edge, bottom: 28, left: edge }}
       xDataKey="date"
     >
       <Area

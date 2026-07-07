@@ -207,13 +207,13 @@ export function FlightLog() {
       </div>
 
       {/* ── Chart + scrubber (desktop) ── */}
-      <div className="glass relative mt-10 hidden rounded-2xl pt-6 pb-2 md:block">
+      <div className="glass relative mt-8 hidden rounded-2xl pt-5 pb-1 md:block">
         <div className="pointer-events-none absolute top-5 left-6 z-10">
           <p className="text-[0.65rem] text-muted-foreground uppercase tracking-[0.22em]">
             Role scope · stylised index
           </p>
         </div>
-        <p className="pointer-events-none absolute top-5 right-6 z-10 font-display text-6xl text-cream/[0.06] leading-none">
+        <p className="pointer-events-none absolute top-4 right-6 z-10 font-display text-5xl text-cream/[0.06] leading-none">
           {activeYear}
         </p>
 
@@ -255,7 +255,7 @@ export function FlightLog() {
         </div>
 
         <Suspense
-          fallback={<div className="aspect-[3.2/1] w-full" />}
+          fallback={<div className="aspect-[4.4/1] w-full" />}
         >
           <CareerChart
             edge={EDGE}
@@ -388,7 +388,7 @@ export function FlightLog() {
       </div>
 
       {/* ── Active role card ── */}
-      <div className="relative mt-6 min-h-[230px] md:mt-8">
+      <div className="relative mt-5 min-h-[230px] md:mt-6">
         <AnimatePresence mode="wait">
           <motion.article
             animate={{ opacity: 1, y: 0 }}
