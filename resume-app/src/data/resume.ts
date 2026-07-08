@@ -299,11 +299,18 @@ export const JOBS: Job[] = [
   },
 ];
 
+/*
+ * Pillar scores are years of hands-on use, from the career timeline:
+ * finance since 2013 (Controller), BI since the 2018 PAC analytics
+ * push, data engineering and Python since the 2020 warehouse build,
+ * ERP work during the PAC years, AWS since joining Amazon in 2022.
+ */
 export const SKILL_PILLARS: SkillPillar[] = [
   {
     id: "data-engineering",
     name: "Data Engineering",
-    radar: 92,
+    years: 6,
+    since: "since 2020",
     overview:
       "Warehouse design, ETL, and the operational side: scheduling, dependencies, data quality, and access control. Most of this work has been on Redshift and SQL Server.",
     bullets: [
@@ -316,7 +323,8 @@ export const SKILL_PILLARS: SkillPillar[] = [
   {
     id: "bi-visualisation",
     name: "BI & Visualization",
-    radar: 95,
+    years: 8,
+    since: "since 2018",
     overview:
       "Dashboards and reporting for finance and HR audiences, mostly in QuickSight and Power BI. I spend the effort on sensible defaults and drill-downs that answer the follow-up question.",
     bullets: [
@@ -329,7 +337,8 @@ export const SKILL_PILLARS: SkillPillar[] = [
   {
     id: "python-ml-genai",
     name: "Python, AI & GenAI",
-    radar: 88,
+    years: 6,
+    since: "since 2020",
     overview:
       "Flask apps, ETL scripts, and LLM features: RAG, prompt pipelines, and AI-assisted review. Everything listed here is running in production, not sitting in a notebook.",
     bullets: [
@@ -342,7 +351,8 @@ export const SKILL_PILLARS: SkillPillar[] = [
   {
     id: "cloud-aws",
     name: "Cloud (AWS)",
-    radar: 85,
+    years: 4,
+    since: "since 2022",
     overview:
       "Day-to-day work in Redshift, QuickSight, and Bedrock inside Amazon, plus the certifications to back it up.",
     bullets: [
@@ -355,7 +365,8 @@ export const SKILL_PILLARS: SkillPillar[] = [
   {
     id: "financial-analytics",
     name: "Financial Analytics",
-    radar: 95,
+    years: 13,
+    since: "since 2013",
     overview:
       "P&L, capex, variance, and close. I did the accounting and FP&A jobs before the engineering ones, which keeps the requirements conversations short.",
     bullets: [
@@ -368,7 +379,8 @@ export const SKILL_PILLARS: SkillPillar[] = [
   {
     id: "systems-erp",
     name: "Systems & ERP",
-    radar: 80,
+    years: 4,
+    since: "at PAC Worldwide",
     overview:
       "Microsoft Dynamics data models, ledger migrations between ERP environments, and reporting bridges into Power BI and Jet Reports.",
     bullets: [
@@ -379,6 +391,11 @@ export const SKILL_PILLARS: SkillPillar[] = [
     ],
   },
 ];
+
+/** Longest pillar tenure; normalizes the radar and the card bars. */
+export const PILLAR_MAX_YEARS = Math.max(
+  ...SKILL_PILLARS.map((p) => p.years)
+);
 
 export const CERTS: Cert[] = [
   {

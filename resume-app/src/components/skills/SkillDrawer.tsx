@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/drawer";
 import { PillarIcon } from "@/components/skills/pillar-icons";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { PILLAR_MAX_YEARS } from "@/data/resume";
 import type { SkillPillar } from "@/data/types";
 
 const listStagger = {
@@ -66,15 +67,22 @@ export function SkillDrawer({ pillar, onClose }: SkillDrawerProps) {
               <div className="mt-4 flex items-center gap-3">
                 <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/8">
                   <motion.div
-                    animate={{ width: `${pillar.radar}%` }}
+                    animate={{
+                      width: `${(pillar.years / PILLAR_MAX_YEARS) * 100}%`,
+                    }}
                     className="h-full rounded-full bg-gradient-to-r from-gold to-gold-light"
                     initial={{ width: 0 }}
                     transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
                   />
                 </div>
-                <span className="font-display text-gold-light text-lg">
-                  {pillar.radar}
-                </span>
+                <div className="text-right">
+                  <span className="font-display text-gold-light text-lg">
+                    {pillar.years} yrs
+                  </span>
+                  <p className="text-[0.65rem] text-muted-foreground">
+                    {pillar.since}
+                  </p>
+                </div>
               </div>
             </motion.header>
 

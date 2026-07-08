@@ -39,8 +39,10 @@ export interface Job {
 export interface SkillPillar {
   id: string;
   name: string;
-  /** 0–100 for the radar chart. */
-  radar: number;
+  /** Years of hands-on use — the radar axis and card bars plot this. */
+  years: number;
+  /** Short provenance note, e.g. "since 2020". */
+  since: string;
   overview: string;
   bullets: string[];
 }

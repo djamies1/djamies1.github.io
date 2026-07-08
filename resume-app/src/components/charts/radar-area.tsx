@@ -20,6 +20,8 @@ export interface RadarAreaProps {
   showGlow?: boolean;
   /** Metric key whose vertex renders emphasized (halo + larger dot). */
   highlightedMetricKey?: string | null;
+  /** Per-metric value chip shown beside the emphasized vertex. */
+  pointLabels?: Record<string, string>;
   /** Additional class name */
   className?: string;
 }
@@ -41,6 +43,7 @@ const RadarPoint = memo(function RadarPoint({
   color,
   isHovered,
   isEmphasized,
+  emphasisLabel,
   metricKey,
   enterComplete,
 }: {
@@ -50,6 +53,8 @@ const RadarPoint = memo(function RadarPoint({
   isHovered: boolean;
   /** Per-metric emphasis (e.g. the hovered discipline). */
   isEmphasized: boolean;
+  /** Value chip rendered above the vertex while emphasized. */
+  emphasisLabel?: string;
   metricKey: string;
   enterComplete: boolean;
 }) {
@@ -77,6 +82,22 @@ const RadarPoint = memo(function RadarPoint({
           stroke={radarCssVars.background}
           strokeWidth={2}
         />
+        {isEmphasized && emphasisLabel ? (
+          <text
+            fill="#e8d5a3"
+            fontSize={11}
+            fontWeight={700}
+            paintOrder="stroke"
+            stroke="#141414"
+            strokeWidth={4}
+            style={{ pointerEvents: "none" }}
+            textAnchor="middle"
+            x={target.x}
+            y={target.y - 17}
+          >
+            {emphasisLabel}
+          </text>
+        ) : null}
       </g>
     );
   }
@@ -105,6 +126,7 @@ export const RadarArea = memo(function RadarArea({
   showStroke = true,
   showGlow = true,
   highlightedMetricKey = null,
+  pointLabels,
   className = "",
 }: RadarAreaProps) {
   const {
@@ -224,6 +246,7 @@ export const RadarArea = memo(function RadarArea({
           return (
             <RadarPoint
               color={color}
+              emphasisLabel={pointLabels?.[metric.key]}
               enterComplete={enterComplete}
               isEmphasized={highlightedMetricKey === metric.key}
               isHovered={isHovered}

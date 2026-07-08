@@ -7,12 +7,17 @@ import {
   Users,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { SectionHeading } from "@/components/hud/SectionHeading";
 import { PillarIcon } from "@/components/skills/pillar-icons";
 import { SkillDrawer } from "@/components/skills/SkillDrawer";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { SKILL_PILLARS, SPECIALTIES, TECH_SKILLS } from "@/data/resume";
+import {
+  PILLAR_MAX_YEARS,
+  SKILL_PILLARS,
+  SPECIALTIES,
+  TECH_SKILLS,
+} from "@/data/resume";
 import type { SkillPillar } from "@/data/types";
 import { cn } from "@/lib/utils";
 
@@ -46,11 +51,33 @@ export function Capabilities() {
   // re-render can swallow the tap, so we skip the handlers entirely.
   const canHover = useMediaQuery("(hover: hover) and (pointer: fine)");
 
+  // Leaving a hover target starts a short grace timer instead of clearing
+  // immediately, so the pointer can travel into the context panel (itself
+  // clickable) without the panel vanishing en route.
+  const clearTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hoverOn = (key: string) => {
+    if (clearTimer.current) clearTimeout(clearTimer.current);
+    clearTimer.current = null;
+    setHoverKey(key);
+  };
+  const hoverOff = () => {
+    if (clearTimer.current) clearTimeout(clearTimer.current);
+    clearTimer.current = setTimeout(() => setHoverKey(null), 280);
+  };
+  useEffect(
+    () => () => {
+      if (clearTimer.current) clearTimeout(clearTimer.current);
+    },
+    []
+  );
+  const openById = (id: string) =>
+    setOpenPillar(SKILL_PILLARS.find((p) => p.id === id) ?? null);
+
   return (
     <section className="mx-auto max-w-6xl px-6 py-24" id="capabilities">
       <SectionHeading
         eyebrow="04 · Skills"
-        lede="Self-assessed scores, so read them as relative strengths. Click any card for the work behind the number."
+        lede="Each axis is years of hands-on use, so the shape is the career: finance first, engineering layered on top. Click any discipline for the work behind it."
         title="What I do"
       />
 
@@ -59,7 +86,12 @@ export function Capabilities() {
           <Suspense fallback={<div className="aspect-square w-full" />}>
             <RadarPanel
               hoverKey={hoverKey}
-              onHoverKey={canHover ? setHoverKey : undefined}
+              onHoverKey={
+                canHover
+                  ? (key) => (key ? hoverOn(key) : hoverOff())
+                  : undefined
+              }
+              onOpenPillar={openById}
             />
           </Suspense>
 
@@ -67,13 +99,17 @@ export function Capabilities() {
           <div className="mt-2 hidden min-h-[128px] lg:block">
             <AnimatePresence mode="wait">
               {hoverPillar ? (
-                <motion.div
+                <motion.button
                   animate={{ opacity: 1, y: 0 }}
-                  className="rounded-xl border border-gold/30 bg-gold/[0.06] p-5"
+                  className="w-full rounded-xl border border-gold/30 bg-gold/[0.06] p-5 text-left transition-colors duration-200 hover:border-gold/60"
                   exit={{ opacity: 0, y: -6 }}
                   initial={{ opacity: 0, y: 8 }}
                   key={hoverPillar.id}
+                  onClick={() => setOpenPillar(hoverPillar)}
+                  onMouseEnter={() => hoverOn(hoverPillar.id)}
+                  onMouseLeave={hoverOff}
                   transition={{ duration: 0.2 }}
+                  type="button"
                 >
                   <div className="flex items-center gap-2.5">
                     <PillarIcon
@@ -84,7 +120,11 @@ export function Capabilities() {
                       {hoverPillar.name}
                     </h4>
                     <span className="ml-auto font-mono text-gold-light/80 text-sm tabular-nums">
-                      {hoverPillar.radar}
+                      {hoverPillar.years} yrs
+                      <span className="text-muted-foreground">
+                        {" "}
+                        · {hoverPillar.since}
+                      </span>
                     </span>
                   </div>
                   <p className="mt-2 text-cream/80 text-sm leading-relaxed">
@@ -93,7 +133,7 @@ export function Capabilities() {
                   <p className="mt-2 text-[0.68rem] text-muted-foreground uppercase tracking-[0.14em]">
                     Click for details
                   </p>
-                </motion.div>
+                </motion.button>
               ) : (
                 <motion.p
                   animate={{ opacity: 1 }}
@@ -103,7 +143,7 @@ export function Capabilities() {
                   key="hint"
                   transition={{ duration: 0.2 }}
                 >
-                  Hover a card to preview it here
+                  Hover to compare · click to open
                 </motion.p>
               )}
             </AnimatePresence>
@@ -122,8 +162,8 @@ export function Capabilities() {
               initial="hidden"
               key={pillar.id}
               onClick={() => setOpenPillar(pillar)}
-              onMouseEnter={canHover ? () => setHoverKey(pillar.id) : undefined}
-              onMouseLeave={canHover ? () => setHoverKey(null) : undefined}
+              onMouseEnter={canHover ? () => hoverOn(pillar.id) : undefined}
+              onMouseLeave={canHover ? hoverOff : undefined}
               type="button"
               variants={cardReveal}
               viewport={{ once: true, margin: "-60px" }}
@@ -147,11 +187,13 @@ export function Capabilities() {
                       ease: "easeOut",
                     }}
                     viewport={{ once: true }}
-                    whileInView={{ width: `${pillar.radar}%` }}
+                    whileInView={{
+                      width: `${(pillar.years / PILLAR_MAX_YEARS) * 100}%`,
+                    }}
                   />
                 </div>
                 <span className="font-mono text-[0.7rem] text-gold-light/80 tabular-nums">
-                  {pillar.radar}
+                  {pillar.years} yrs
                 </span>
               </div>
             </motion.button>
