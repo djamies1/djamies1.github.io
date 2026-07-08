@@ -89,7 +89,7 @@ export function LeoSpotlight() {
     >
       <SectionHeading
         eyebrow="03 · Current role"
-        lede="The finance org behind Amazon's satellite broadband program runs its day-to-day operations on a platform I built and maintain."
+        lede="Business intelligence for the finance org behind Amazon's satellite broadband program: the data and analytics behind its reporting, and the AI tools I've built alongside."
         title={
           <MatrixText
             charClassName="font-mono text-4xl tracking-tight md:text-5xl"
@@ -110,9 +110,10 @@ export function LeoSpotlight() {
             viewport={{ once: true, margin: "-80px" }}
             whileInView="show"
           >
-            I built the finance org's operations platform in Python and Flask,
-            and I run it day to day. The newest piece is a RAG knowledge
-            assistant now in use across the org.
+            My work here is data and analytics for the finance org: the
+            reporting behind close, P&amp;L, and capex. As AI opened up new
+            tooling, I also built a Python/Flask app and a RAG knowledge
+            assistant the org now leans on.
           </motion.p>
 
           <motion.div

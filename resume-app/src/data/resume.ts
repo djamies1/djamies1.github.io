@@ -30,12 +30,12 @@ export const PERSON = {
   site: "https://djamies1.github.io/resume/",
   taglines: [
     "Business Intelligence Engineer",
+    "Data & analytics for finance",
     "Accountant turned engineer",
-    "Data platforms for finance teams",
-    "LLM apps in production",
+    "Building with AI in production",
   ],
   summary:
-    "Business intelligence engineer at Amazon Leo. I started in accounting, moved through FP&A and data engineering, and now build and run the finance org's analytics platform and AI tooling.",
+    "Business intelligence engineer at Amazon Leo, working in data and analytics for the finance org. Thirteen years from accounting through FP&A and data engineering, lately using AI to build tools that reach past the usual dashboard.",
 };
 
 export const yearsInData = () =>
@@ -69,20 +69,20 @@ export const JOBS: Job[] = [
     accent: "amazon",
     highlight: "Satellite broadband · Finance",
     tagline:
-      "Built and run the analytics platform for the finance org behind Amazon's satellite constellation.",
+      "Data and analytics for the finance org behind Amazon's satellite constellation, plus the AI tools I've built on top.",
     bullets: [
-      "Sole technical owner of the finance org's web platform (Python/Flask), built for roughly 130 people. It covers eight areas of financial operations, including variance commentary with AI-assisted review, live P&L and capital-expenditure reporting, planning dashboards, and an AI knowledge assistant.",
-      "Built the knowledge assistant on retrieval-augmented generation over several hundred curated documents, with source citations and export-control screening. It started in-app and now also runs as a hosted agent and inside analysts' local AI tools.",
-      "Co-created a library of reusable AI skills for the wider finance organization and ran its pre-launch quality audit. Finalist in an internal hackathon with about 600 entrants.",
-      "Replaced a manual spreadsheet process with a general-ledger dashboard that drills from summary to transaction level across seven dimensions, used for month-end close and purchase-order controllership.",
-      "Main technical contact between finance and the neighboring engineering and data teams. Run a monthly analytics and AI forum for the org.",
+      "Own the finance org's core analytics and reporting: variance commentary, live P&L, and capital-expenditure views that carry through month-end close and purchase-order controllership.",
+      "Replaced a manual spreadsheet process with a general-ledger dashboard that drills from summary down to individual transactions across seven dimensions.",
+      "As AI opened up new tooling, built a Python/Flask web app that brings several of the org's workflows into one place for roughly 130 people: variance commentary, planning, reporting, and an AI assistant. Sole technical owner.",
+      "Built the AI knowledge assistant on retrieval-augmented generation over several hundred curated documents, with source citations and export-control screening. Co-created a reusable AI skill library for the wider finance org, a finalist in an internal hackathon with about 600 entrants.",
+      "Main technical contact between finance and the neighboring engineering and data teams, and I run the org's monthly analytics and AI forum.",
     ],
     overview:
-      "I sit inside the Amazon Leo finance org and build the software it runs on: a Python/Flask platform handling financial operations for about 130 people. The newer half of the job is applied AI, including a RAG assistant the org has adopted.",
+      "I'm the BI engineer for the Amazon Leo finance org: the analytics, reporting, and data behind month-end close, P&L, and capex. Alongside that core work, I've used AI to build tools the team now leans on, including a Flask platform and a RAG knowledge assistant.",
     projects: [
       {
         name: "Financial-Operations Platform",
-        desc: "Python/Flask web app that puts the finance org's operations in one place: variance commentary with AI-assisted review, live P&L and capex reporting, planning dashboards, a resource library, and the AI assistant.",
+        desc: "A Python/Flask web app I built as AI made this kind of tooling reachable for a BI engineer. It brings several finance workflows into one place: variance commentary with AI-assisted review, live P&L and capex views, planning dashboards, a resource library, and the AI assistant.",
         tags: ["Python", "Flask", "AWS", "P&L Analytics", "CapEx"],
       },
       {
@@ -340,9 +340,9 @@ export const SKILL_PILLARS: SkillPillar[] = [
     years: 6,
     since: "since 2020",
     overview:
-      "Flask apps, ETL scripts, and LLM features: RAG, prompt pipelines, and AI-assisted review. Everything listed here is running in production, not sitting in a notebook.",
+      "The AI-enabled side of the BI work: Flask apps, ETL scripts, and LLM features like RAG, prompt pipelines, and AI-assisted review. Everything here is running in production, not sitting in a notebook.",
     bullets: [
-      "Built and run a production Python/Flask platform handling financial operations for the Amazon Leo finance org.",
+      "Built a Python/Flask web app for the Amazon Leo finance org that brings several workflows and an AI assistant into one place.",
       "Built a RAG knowledge assistant over several hundred curated documents, with source citations and export-control screening, now used across the org.",
       "Co-created a reusable AI skill library for the wider finance organization. Finalist in an internal hackathon with about 600 entrants.",
       "Supported PAC Worldwide's sales forecasting with a machine-learning model.",
