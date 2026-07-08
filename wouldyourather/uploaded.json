@@ -1610,5 +1610,31 @@
     "category": "skills",
     "uploaded_at": "2026-07-07T17:54:23Z",
     "publish_at": "2026-07-08T01:52:20.000Z"
+  },
+  "wyr_0187": {
+    "youtube_id": "A4-uFChM81Y",
+    "youtube_url": "https://www.youtube.com/watch?v=A4-uFChM81Y",
+    "option_a": "Have a photographic memory but be unable to form new habits",
+    "option_b": "Form any new habit in 3 days but forget details quickly",
+    "category": "mental",
+    "uploaded_at": "2026-07-08T17:21:20Z"
+  },
+  "wyr_0188": {
+    "youtube_id": "8z0AG1BkXK4",
+    "youtube_url": "https://www.youtube.com/watch?v=8z0AG1BkXK4",
+    "option_a": "Have a second home anywhere in the world",
+    "option_b": "Have the ability to travel anywhere instantly for free but only for day trips",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-08T17:22:06Z",
+    "publish_at": "2026-07-08T21:19:51.000Z"
+  },
+  "wyr_0189": {
+    "youtube_id": "x-flg8dozMk",
+    "youtube_url": "https://www.youtube.com/watch?v=x-flg8dozMk",
+    "option_a": "Be respected by everyone but loved by no one",
+    "option_b": "Be loved by many but respected by few",
+    "category": "social",
+    "uploaded_at": "2026-07-08T17:22:47Z",
+    "publish_at": "2026-07-09T01:19:51.000Z"
   }
 }

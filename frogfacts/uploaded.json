@@ -1278,5 +1278,25 @@
     "fact": "Some frog species breed explosively, with thousands of individuals gathering at a single location over just a few nights.",
     "uploaded_at": "2026-07-07T18:01:13Z",
     "publish_at": "2026-07-08T05:56:39.000Z"
+  },
+  "frog_0193": {
+    "youtube_id": "UT-2cVBDDcM",
+    "youtube_url": "https://www.youtube.com/watch?v=UT-2cVBDDcM",
+    "fact": "The tailed frog of western North America is the only frog known to achieve internal fertilization using a tail-like appendage.",
+    "uploaded_at": "2026-07-08T17:26:40Z"
+  },
+  "frog_0194": {
+    "youtube_id": "j59broRt39c",
+    "youtube_url": "https://www.youtube.com/watch?v=j59broRt39c",
+    "fact": "The tailed frog's tadpoles have specialized sucker mouths that allow them to cling to rocks in fast-flowing mountain streams.",
+    "uploaded_at": "2026-07-08T17:28:17Z",
+    "publish_at": "2026-07-08T23:24:59.000Z"
+  },
+  "frog_0195": {
+    "youtube_id": "PTf1-fkTsrA",
+    "youtube_url": "https://www.youtube.com/watch?v=PTf1-fkTsrA",
+    "fact": "The crab-eating frog of Southeast Asia is one of the very few amphibians capable of surviving in brackish coastal water.",
+    "uploaded_at": "2026-07-08T17:30:03Z",
+    "publish_at": "2026-07-09T05:24:59.000Z"
   }
 }

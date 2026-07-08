@@ -1610,5 +1610,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-07-07T17:52:19Z",
     "publish_at": "2026-07-08T01:49:56.000Z"
+  },
+  "math_0187": {
+    "youtube_id": "90Y08tNaR3Y",
+    "youtube_url": "https://www.youtube.com/watch?v=90Y08tNaR3Y",
+    "question": "0.5 × 0.5 = ?",
+    "answer": "0.25",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-08T17:17:28Z"
+  },
+  "math_0188": {
+    "youtube_id": "7zyv7brX4tw",
+    "youtube_url": "https://www.youtube.com/watch?v=7zyv7brX4tw",
+    "question": "1 ÷ 0.5 = ?",
+    "answer": "2",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-08T17:18:21Z",
+    "publish_at": "2026-07-08T21:16:45.000Z"
+  },
+  "math_0189": {
+    "youtube_id": "H7IM5Bxu25E",
+    "youtube_url": "https://www.youtube.com/watch?v=H7IM5Bxu25E",
+    "question": "50 - 10 × 2 = ?",
+    "answer": "30",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-08T17:19:50Z",
+    "publish_at": "2026-07-09T01:16:45.000Z"
   }
 }
