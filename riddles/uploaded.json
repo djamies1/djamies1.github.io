@@ -1882,5 +1882,28 @@
     "answer": "Iron ore.",
     "uploaded_at": "2026-07-08T17:24:58Z",
     "publish_at": "2026-07-09T05:22:51.000Z"
+  },
+  "rdl_0247": {
+    "youtube_id": "6sYB4v8mN1A",
+    "youtube_url": "https://www.youtube.com/watch?v=6sYB4v8mN1A",
+    "question": "You will find me with four legs, but no hair. People ride me for hours, but I don't go anywhere. Without needing to be tugged, jerked or turned on, I always manage to be ready for work. What am I?",
+    "answer": "A desk.",
+    "uploaded_at": "2026-07-09T17:50:45Z"
+  },
+  "rdl_0248": {
+    "youtube_id": "QZj7bYsQcW4",
+    "youtube_url": "https://www.youtube.com/watch?v=QZj7bYsQcW4",
+    "question": "What is the best key to a good dinner?",
+    "answer": "A tur-key.",
+    "uploaded_at": "2026-07-09T17:51:32Z",
+    "publish_at": "2026-07-09T23:50:02.000Z"
+  },
+  "rdl_0249": {
+    "youtube_id": "J3nxvU7zaJs",
+    "youtube_url": "https://www.youtube.com/watch?v=J3nxvU7zaJs",
+    "question": "Robert and David were preparing to have a water balloon fight. \"No Fair\" cried Robert, \"You have 3 times as many as I do!\" David said \"Fine!\" and gave Robert 10 more balloons. \"Still not fair!\" argued Robert, \"You still have twice as many as I do.\" How many more balloons must David give Robert for them to have the same number?",
+    "answer": "David must give Robert another 20 water balloons, giving them each 60. Robert started with 30 water balloons and David with 90.",
+    "uploaded_at": "2026-07-09T17:52:15Z",
+    "publish_at": "2026-07-10T05:50:02.000Z"
   }
 }

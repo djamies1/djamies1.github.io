@@ -1636,5 +1636,31 @@
     "category": "social",
     "uploaded_at": "2026-07-08T17:22:47Z",
     "publish_at": "2026-07-09T01:19:51.000Z"
+  },
+  "wyr_0190": {
+    "youtube_id": "jUyfEnpjzc4",
+    "youtube_url": "https://www.youtube.com/watch?v=jUyfEnpjzc4",
+    "option_a": "Have a personal trainer who guarantees results",
+    "option_b": "Have a therapist who guarantees mental clarity",
+    "category": "mental",
+    "uploaded_at": "2026-07-09T17:48:29Z"
+  },
+  "wyr_0191": {
+    "youtube_id": "5ejWViAzjaM",
+    "youtube_url": "https://www.youtube.com/watch?v=5ejWViAzjaM",
+    "option_a": "Never lose your keys or phone again",
+    "option_b": "Always remember every person's name after meeting them once",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-09T17:49:15Z",
+    "publish_at": "2026-07-09T21:47:55.000Z"
+  },
+  "wyr_0192": {
+    "youtube_id": "DarNXFkclNw",
+    "youtube_url": "https://www.youtube.com/watch?v=DarNXFkclNw",
+    "option_a": "Have the ability to make any plant grow anywhere",
+    "option_b": "Have the ability to make it rain whenever you need it",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-09T17:49:58Z",
+    "publish_at": "2026-07-10T01:47:55.000Z"
   }
 }
