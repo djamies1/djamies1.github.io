@@ -86,18 +86,22 @@ export function CommandDeck() {
 
         <motion.div
           {...blockReveal(0.75)}
-          className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2"
+          className="mt-5 flex flex-col items-start gap-2 md:flex-row md:flex-wrap md:items-center md:gap-x-5 md:gap-y-2"
         >
-          <TypewriterTitle
-            className="w-auto"
-            sequences={PERSON.taglines.map((text, i) => ({
-              text,
-              deleteAfter: i < PERSON.taglines.length - 1 || true,
-            }))}
-            startDelay={1400}
-            textClassName="font-sans text-lg md:text-2xl text-gold-light/90 tracking-normal"
-            typingSpeed={42}
-          />
+          {/* Fixed one-line height so the rotating tagline never reflows the
+              hero as it clears and retypes. */}
+          <div className="flex h-8 items-center md:h-9">
+            <TypewriterTitle
+              className="w-auto"
+              sequences={PERSON.taglines.map((text, i) => ({
+                text,
+                deleteAfter: i < PERSON.taglines.length - 1 || true,
+              }))}
+              startDelay={1400}
+              textClassName="whitespace-nowrap font-sans text-lg md:text-2xl text-gold-light/90 tracking-normal"
+              typingSpeed={42}
+            />
+          </div>
           <span className="hidden h-1 w-1 rounded-full bg-gold/50 md:block" />
           <p className="flex items-center gap-1.5 text-muted-foreground text-sm md:text-base">
             <MapPin aria-hidden className="h-4 w-4 text-gold" />
