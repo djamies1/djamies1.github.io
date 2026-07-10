@@ -1662,5 +1662,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-07-09T17:49:58Z",
     "publish_at": "2026-07-10T01:47:55.000Z"
+  },
+  "wyr_0193": {
+    "youtube_id": "eKv3LNtbpKc",
+    "youtube_url": "https://www.youtube.com/watch?v=eKv3LNtbpKc",
+    "option_a": "Be able to speak every language fluently",
+    "option_b": "Be able to play every musical instrument perfectly",
+    "category": "skills",
+    "uploaded_at": "2026-07-10T17:42:43Z"
+  },
+  "wyr_0194": {
+    "youtube_id": "N8G9QMOM6HQ",
+    "youtube_url": "https://www.youtube.com/watch?v=N8G9QMOM6HQ",
+    "option_a": "Have perfect aim with anything you throw",
+    "option_b": "Never miss a shot in any sport you play",
+    "category": "skills",
+    "uploaded_at": "2026-07-10T17:43:33Z",
+    "publish_at": "2026-07-10T21:42:08.000Z"
+  },
+  "wyr_0195": {
+    "youtube_id": "E7PGEylBnb0",
+    "youtube_url": "https://www.youtube.com/watch?v=E7PGEylBnb0",
+    "option_a": "Be able to speed read 10x faster",
+    "option_b": "Have a perfect photographic memory",
+    "category": "skills",
+    "uploaded_at": "2026-07-10T17:44:19Z",
+    "publish_at": "2026-07-11T01:42:08.000Z"
   }
 }

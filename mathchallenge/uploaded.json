@@ -1662,5 +1662,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-07-09T17:47:54Z",
     "publish_at": "2026-07-10T01:45:35.000Z"
+  },
+  "math_0193": {
+    "youtube_id": "M8ldqWX3GQ8",
+    "youtube_url": "https://www.youtube.com/watch?v=M8ldqWX3GQ8",
+    "question": "5 × 4 ÷ 2 × 3 = ?",
+    "answer": "30",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-10T17:40:28Z"
+  },
+  "math_0194": {
+    "youtube_id": "Cnac8EZ0nvU",
+    "youtube_url": "https://www.youtube.com/watch?v=Cnac8EZ0nvU",
+    "question": "2 + 4 × (3 - 1) = ?",
+    "answer": "10",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-10T17:41:18Z",
+    "publish_at": "2026-07-10T21:39:49.000Z"
+  },
+  "math_0195": {
+    "youtube_id": "7NxCjc_e2Jo",
+    "youtube_url": "https://www.youtube.com/watch?v=7NxCjc_e2Jo",
+    "question": "10 × 10 ÷ 10 + 10 = ?",
+    "answer": "20",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-10T17:42:07Z",
+    "publish_at": "2026-07-11T01:39:49.000Z"
   }
 }
