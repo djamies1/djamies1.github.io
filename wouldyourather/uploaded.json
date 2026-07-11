@@ -1688,5 +1688,31 @@
     "category": "skills",
     "uploaded_at": "2026-07-10T17:44:19Z",
     "publish_at": "2026-07-11T01:42:08.000Z"
+  },
+  "wyr_0196": {
+    "youtube_id": "YDJT41XVvQU",
+    "youtube_url": "https://www.youtube.com/watch?v=YDJT41XVvQU",
+    "option_a": "Be an expert chef who can cook any dish",
+    "option_b": "Be able to eat anything without getting full or gaining weight",
+    "category": "skills",
+    "uploaded_at": "2026-07-11T16:43:39Z"
+  },
+  "wyr_0197": {
+    "youtube_id": "mNoWHlX2Iu8",
+    "youtube_url": "https://www.youtube.com/watch?v=mNoWHlX2Iu8",
+    "option_a": "Be able to type 200 words per minute perfectly",
+    "option_b": "Be able to write code fluently in any programming language",
+    "category": "skills",
+    "uploaded_at": "2026-07-11T16:44:24Z",
+    "publish_at": "2026-07-11T20:43:05.000Z"
+  },
+  "wyr_0198": {
+    "youtube_id": "D_OGSRrjxRM",
+    "youtube_url": "https://www.youtube.com/watch?v=D_OGSRrjxRM",
+    "option_a": "Always know when someone is lying to you",
+    "option_b": "Be able to convince anyone of anything you say",
+    "category": "skills",
+    "uploaded_at": "2026-07-11T16:45:10Z",
+    "publish_at": "2026-07-12T00:43:05.000Z"
   }
 }

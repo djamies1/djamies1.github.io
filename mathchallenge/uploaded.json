@@ -1688,5 +1688,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-07-10T17:42:07Z",
     "publish_at": "2026-07-11T01:39:49.000Z"
+  },
+  "math_0196": {
+    "youtube_id": "fbj9VOfZea8",
+    "youtube_url": "https://www.youtube.com/watch?v=fbj9VOfZea8",
+    "question": "3 × (4 + 2) - 2 × 5 = ?",
+    "answer": "8",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-11T16:41:28Z"
+  },
+  "math_0197": {
+    "youtube_id": "Q0hXRR1jYhY",
+    "youtube_url": "https://www.youtube.com/watch?v=Q0hXRR1jYhY",
+    "question": "8 - (2 × 3) + 4 = ?",
+    "answer": "6",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-11T16:42:18Z",
+    "publish_at": "2026-07-11T20:40:47.000Z"
+  },
+  "math_0198": {
+    "youtube_id": "UvvFxdlvkH8",
+    "youtube_url": "https://www.youtube.com/watch?v=UvvFxdlvkH8",
+    "question": "10 + 10 × 0 + 10 = ?",
+    "answer": "20",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-11T16:43:04Z",
+    "publish_at": "2026-07-12T00:40:47.000Z"
   }
 }
