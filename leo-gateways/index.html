@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Amazon Leo — Ground Gateway Network</title>
+  <meta name="description" content="Interactive globe of the Amazon Leo ground gateway network — active and planned gateway sites worldwide. Simulated telemetry, dummy data.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+
+  <!-- NOTE: this page uses ES modules + fetch — serve over http(s); file:// will not work. -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css">
+
+  <!-- Classic scripts load before deferred modules — globals guaranteed available -->
+  <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.46.1/dist/globe.gl.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+  <script type="module" src="./js/main.js"></script>
+</head>
+<body>
+
+  <!-- ── Globe canvas host ─────────────────────────────────────────────── -->
+  <div id="globe"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- ── Top HUD: title block + filters ────────────────────────────────── -->
+  <header class="hud-top glass">
+    <div class="title-block">
+      <p class="eyebrow">AMAZON LEO</p>
+      <h1>GROUND GATEWAY NETWORK</h1>
+      <p class="statusline">
+        <span class="led" aria-hidden="true"></span>
+        <span id="utcClock" class="mono">UTC --:--:--</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="mono">LINK NOMINAL</span>
+      </p>
+    </div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Filter by region">
+        <button type="button" class="seg-btn is-active" data-region="ALL" aria-pressed="true">ALL</button>
+        <button type="button" class="seg-btn" data-region="AMERICAS" aria-pressed="false">AMERICAS</button>
+        <button type="button" class="seg-btn" data-region="EMEA" aria-pressed="false">EMEA</button>
+        <button type="button" class="seg-btn" data-region="APAC" aria-pressed="false">APAC</button>
+      </div>
+      <div class="select-wrap">
+        <label class="visually-hidden" for="countrySelect">Filter by country</label>
+        <select id="countrySelect"></select>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Bottom-left: legend ───────────────────────────────────────────── -->
+  <div class="hud-legend glass">
+    <p class="legend-title">NETWORK LEGEND</p>
+    <p class="legend-row"><span class="dot-sample dot-active" aria-hidden="true"></span>ACTIVE — IN SERVICE</p>
+    <p class="legend-row"><span class="dot-sample dot-planned" aria-hidden="true"></span>PLANNED — RFS PENDING</p>
+  </div>
+
+  <!-- ── Bottom-right: counts + scope ──────────────────────────────────── -->
+  <div class="hud-counts glass">
+    <span class="corner c-tl" aria-hidden="true"></span><span class="corner c-tr" aria-hidden="true"></span>
+    <span class="corner c-br" aria-hidden="true"></span><span class="corner c-bl" aria-hidden="true"></span>
+    <div class="counts-row">
+      <div class="count">
+        <span id="countActive" class="count-num">—</span>
+        <span class="count-label">ACTIVE</span>
+      </div>
+      <div class="count-divider" aria-hidden="true"></div>
+      <div class="count">
+        <span id="countPlanned" class="count-num count-num--planned">—</span>
+        <span class="count-label">PLANNED</span>
+      </div>
+    </div>
+    <p id="scopeLine" class="scope-line mono">SCOPE: GLOBAL</p>
+  </div>
+
+  <!-- ── Hover tooltip (single instance, repositioned) ─────────────────── -->
+  <div id="tooltip" class="tooltip glass" hidden>
+    <p id="ttName" class="tt-name"></p>
+    <p id="ttLoc" class="tt-loc mono"></p>
+    <p class="tt-row"><span id="ttStatus" class="chip"></span><span id="ttRfs" class="tt-rfs mono"></span></p>
+  </div>
+
+  <!-- ── Gateway detail card ───────────────────────────────────────────── -->
+  <aside id="detailCard" class="detail-card glass" hidden role="dialog" aria-labelledby="cardName">
+    <span class="corner c-tl" aria-hidden="true"></span><span class="corner c-tr" aria-hidden="true"></span>
+    <span class="corner c-br" aria-hidden="true"></span><span class="corner c-bl" aria-hidden="true"></span>
+
+    <div class="card-head">
+      <span id="cardCode" class="chip chip-code mono"></span>
+      <span id="cardStatus" class="chip"></span>
+      <button type="button" id="cardClose" class="card-close" aria-label="Close gateway details">×</button>
+    </div>
+
+    <h2 id="cardName" class="card-name"></h2>
+    <p id="cardLoc" class="card-loc mono"></p>
+
+    <div id="dishStage" class="dish-stage" aria-hidden="true"></div>
+
+    <dl class="spec-grid">
+      <div class="spec"><dt>COORDINATES</dt><dd id="specCoords" class="mono"></dd></div>
+      <div class="spec"><dt>ANTENNAS</dt><dd id="specAntennas" class="mono"></dd></div>
+      <div class="spec"><dt>CAPACITY</dt><dd id="specCapacity" class="mono"></dd></div>
+      <div class="spec"><dt>CONNECTED SATS</dt><dd id="specSats" class="mono"></dd></div>
+      <div class="spec"><dt>RFS DATE</dt><dd id="specRfs" class="mono"></dd></div>
+      <div class="spec"><dt>REGION</dt><dd id="specRegion" class="mono"></dd></div>
+    </dl>
+
+    <p id="cardNotes" class="card-notes"></p>
+    <p class="card-foot mono">TELEMETRY SIMULATED · DUMMY DATA</p>
+  </aside>
+
+  <!-- ── Animated satellite dish (cloned into the card on each open) ───── -->
+  <template id="dishTemplate">
+    <svg class="dish" viewBox="0 0 220 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- ground -->
+      <path class="d-draw d-ground" d="M18,148 H202" pathLength="1"/>
+      <!-- pedestal: mast, A-frame feet, equipment cabinet -->
+      <path class="d-draw d-mast" d="M85,148 V116" pathLength="1"/>
+      <path class="d-draw d-mast" d="M73,148 L85,133" pathLength="1"/>
+      <path class="d-draw d-mast" d="M97,148 L85,133" pathLength="1"/>
+      <rect class="d-draw d-cab" x="118" y="134" width="14" height="14" rx="1.5" pathLength="1"/>
+      <path class="d-draw d-cab" d="M118,140 H132" pathLength="1"/>
+      <circle class="d-led" cx="125" cy="144.5" r="1.8"/>
+      <!-- dish head: crescent reflector in profile, boresight 45° up-right
+           toward the satellite. .dish-rock carries the slow tracking sway;
+           the uplink arcs ride inside it so the beam tracks the dish. -->
+      <g class="dish-head">
+        <g class="dish-rock">
+          <circle class="d-draw d-pivot" cx="85" cy="113" r="3.5" pathLength="1"/>
+          <path class="d-draw d-strut" d="M85,113 L72,97" pathLength="1"/>
+          <path class="d-draw d-strut" d="M85,113 L101,105" pathLength="1"/>
+          <path class="d-draw d-bowl" d="M108,104 Q56,110 62,58 Q68,98 108,104" pathLength="1"/>
+          <path class="d-draw d-arm" d="M108,104 L107,61" pathLength="1"/>
+          <circle class="d-draw d-lnb" cx="107" cy="58" r="3" pathLength="1"/>
+          <!-- uplink signal arcs (feed → satellite) -->
+          <path class="d-arc d-arc1" d="M109.8,43.2 A16,16 0 0 1 122.8,56.2"/>
+          <path class="d-arc d-arc2" d="M111.7,32.4 A27,27 0 0 1 133.6,54.3"/>
+          <path class="d-arc d-arc3" d="M113.6,21.6 A38,38 0 0 1 144.4,52.4"/>
+        </g>
+      </g>
+      <!-- satellite -->
+      <g class="d-sat">
+        <rect class="d-draw d-satbody" x="144" y="10.5" width="14" height="9" rx="1.5" pathLength="1"/>
+        <path class="d-draw d-satpanel" d="M130,15 H142" pathLength="1"/>
+        <path class="d-draw d-satpanel" d="M158,15 H170" pathLength="1"/>
+        <circle class="d-satdot" cx="151" cy="23" r="1.5"/>
+      </g>
+    </svg>
+  </template>
+
+  <!-- ── Loading veil ──────────────────────────────────────────────────── -->
+  <div id="veil" class="veil">
+    <div class="veil-inner">
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="veil-text mono">ACQUIRING GROUND SEGMENT…</p>
+    </div>
+  </div>
+
+</body>
+</html>
