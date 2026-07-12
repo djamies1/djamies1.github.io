@@ -1714,5 +1714,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-07-11T16:43:04Z",
     "publish_at": "2026-07-12T00:40:47.000Z"
+  },
+  "math_0199": {
+    "youtube_id": "XcXXk5yNJl4",
+    "youtube_url": "https://www.youtube.com/watch?v=XcXXk5yNJl4",
+    "question": "3 × 7 - 4 × 5 = ?",
+    "answer": "1",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-12T16:43:48Z"
+  },
+  "math_0200": {
+    "youtube_id": "TyUm45kCAuE",
+    "youtube_url": "https://www.youtube.com/watch?v=TyUm45kCAuE",
+    "question": "6 × 6 ÷ 6 × 6 = ?",
+    "answer": "36",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-12T16:44:36Z",
+    "publish_at": "2026-07-12T20:43:11.000Z"
+  },
+  "math_0201": {
+    "youtube_id": "rtyVv24xb9o",
+    "youtube_url": "https://www.youtube.com/watch?v=rtyVv24xb9o",
+    "question": "1000 + 40 + 1000 + 30 + 1000 + 20 + 1000 + 10 = ?",
+    "answer": "4100",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-12T16:45:22Z",
+    "publish_at": "2026-07-13T00:43:11.000Z"
   }
 }

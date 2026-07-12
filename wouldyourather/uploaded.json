@@ -1714,5 +1714,31 @@
     "category": "skills",
     "uploaded_at": "2026-07-11T16:45:10Z",
     "publish_at": "2026-07-12T00:43:05.000Z"
+  },
+  "wyr_0199": {
+    "youtube_id": "G-nx7ZUQ6js",
+    "youtube_url": "https://www.youtube.com/watch?v=G-nx7ZUQ6js",
+    "option_a": "Be fluent in all programming languages",
+    "option_b": "Have complete mastery over every art form",
+    "category": "skills",
+    "uploaded_at": "2026-07-12T16:45:58Z"
+  },
+  "wyr_0200": {
+    "youtube_id": "r2pdKD_ABg8",
+    "youtube_url": "https://www.youtube.com/watch?v=r2pdKD_ABg8",
+    "option_a": "Be immune to all diseases",
+    "option_b": "Never need to sleep",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-12T16:46:43Z",
+    "publish_at": "2026-07-12T20:45:23.000Z"
+  },
+  "wyr_0201": {
+    "youtube_id": "Q98mcqwBzxc",
+    "youtube_url": "https://www.youtube.com/watch?v=Q98mcqwBzxc",
+    "option_a": "Have the ability to breathe underwater",
+    "option_b": "Be able to survive in outer space without a suit",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-12T16:47:27Z",
+    "publish_at": "2026-07-13T00:45:23.000Z"
   }
 }

@@ -1951,5 +1951,28 @@
     "answer": "A cloud.",
     "uploaded_at": "2026-07-11T16:47:24Z",
     "publish_at": "2026-07-12T04:45:14.000Z"
+  },
+  "rdl_0256": {
+    "youtube_id": "awFsZTQIROs",
+    "youtube_url": "https://www.youtube.com/watch?v=awFsZTQIROs",
+    "question": "If there are fifteen crows on a fence and the farmer shoots a third of them, how many crows are left?",
+    "answer": "None. The rest of the crows flew away when they heard the gunshot.",
+    "uploaded_at": "2026-07-12T16:48:12Z"
+  },
+  "rdl_0257": {
+    "youtube_id": "s5WorrE88dc",
+    "youtube_url": "https://www.youtube.com/watch?v=s5WorrE88dc",
+    "question": "If two's company and three's a crowd, what are four and five?",
+    "answer": "Four and five is nine.",
+    "uploaded_at": "2026-07-12T16:48:57Z",
+    "publish_at": "2026-07-12T22:47:31.000Z"
+  },
+  "rdl_0258": {
+    "youtube_id": "5vW0qQrTBpQ",
+    "youtube_url": "https://www.youtube.com/watch?v=5vW0qQrTBpQ",
+    "question": "In a tunnel of darkness lies a beast of iron. It can only attack when pulled back. What is it?",
+    "answer": "A bullet.",
+    "uploaded_at": "2026-07-12T16:49:42Z",
+    "publish_at": "2026-07-13T04:47:31.000Z"
   }
 }
