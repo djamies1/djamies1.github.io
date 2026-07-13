@@ -351,16 +351,53 @@ body {
   color: var(--ink-low);
 }
 
-/* ---------- responsive (mobile pass completed in M6) ---------- */
+/* ---------- drawing chip (replaces the cropped title block on phones) ---------- */
+.dwg-chip {
+  display: none;
+  position: absolute; top: 10px; left: 12px;
+  padding: 5px 10px;
+  font-size: 0.56rem; letter-spacing: 0.18em;
+  color: var(--ink-mid);
+  border: 1px solid var(--ink-dim); border-radius: 2px;
+  background: rgba(7, 28, 57, 0.55);
+}
+
+/* ---------- responsive ---------- */
 @media (max-width: 900px) {
   .panel {
     top: auto; right: 12px; left: 12px; bottom: 12px;
     width: auto; max-height: 42svh; overflow-y: auto;
+    padding: 14px 16px 12px;
   }
+  .panel h2 { font-size: 1.12rem; margin-bottom: 8px; }
+  .panel--bl { left: 12px; bottom: 12px; }
   .rail { display: none; }
+  .dwg-chip { display: block; }
+  /* margin annotations don't survive the slice crop — panels carry the info */
+  #anno > g, #x-labels, #detail-a, #da-mark { display: none !important; }
 }
 
-/* ---------- reduced motion (full static branch wired in M6) ---------- */
+/* ---------- reduced motion: static exploded poster ---------- */
 @media (prefers-reduced-motion: reduce) {
   .cover .cue::after { animation: none; opacity: 1; }
 }
+.is-static .stage { height: auto; }
+.is-static #bp {
+  position: static;
+  width: 100%; height: min(92svh, 860px);
+  will-change: auto;
+}
+.is-static .panels {
+  position: static;
+  pointer-events: auto;
+  display: grid; gap: 14px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 28px clamp(16px, 4vw, 48px) 12px;
+}
+.is-static .panel {
+  position: static;
+  visibility: visible;
+  width: auto; max-height: none;
+}
+.is-static .rail, .is-static .sr-scene, .is-static .dwg-chip { display: none; }

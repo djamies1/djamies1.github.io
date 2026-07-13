@@ -39,9 +39,35 @@ export function scrollToScene(i) {
   window.scrollTo({ top: y, behavior: 'smooth' });
 }
 
+/* Portrait phones crop the sheet (slice) and can't afford margin
+   annotations, so scenes recenter on the vehicle axis at looser zooms. */
+export const MOBILE_MQ = '(max-width: 900px) and (orientation: portrait)';
+const CAM_MOBILE = {
+  full:       { px: 800, py: 500, z: 1.0 },
+  fairing:    { px: 800, py: 185, z: 2.1 },
+  payload:    { px: 800, py: 186, z: 2.4 },
+  gs2:        { px: 800, py: 285, z: 1.9 },
+  interstage: { px: 800, py: 452, z: 2.3 },
+  gs1:        { px: 800, py: 655, z: 1.55 },
+  engines:    { px: 800, py: 838, z: 1.9 },
+  exploded:   { px: 800, py: 454, z: 0.8 },
+};
+let CAMS = CAM;
+
 export function initTimeline({ onProgress } = {}) {
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ ignoreMobileResize: true });
+  worldEl = document.getElementById('world');
+
+  /* gsap.matchMedia rebuilds the whole timeline (and reverts every set())
+     when the breakpoint flips — camera presets swap with it */
+  const mm = gsap.matchMedia();
+  mm.add(MOBILE_MQ, () => build(true, onProgress));
+  mm.add('(min-width: 901px), (orientation: landscape)', () => build(false, onProgress));
+}
+
+function build(isMobile, onProgress) {
+  CAMS = isMobile ? CAM_MOBILE : CAM;
 
   /* Initial states are applied here, not in CSS: without JS the page
      remains a finished static drawing. */
@@ -55,7 +81,6 @@ export function initTimeline({ onProgress } = {}) {
      dash-hidden — so they hide via opacity as well */
   gsap.set(['#dims text', '#dims .dash-ext', '#dims .dr', '#titleblock text', '#notes text'], { autoAlpha: 0 });
   gsap.set('.panel', { autoAlpha: 0, y: 24 });
-  worldEl = document.getElementById('world');
   applyCam();
 
   const cfg = window.ROCKET_BP_CONFIG || {};
@@ -85,7 +110,26 @@ export function initTimeline({ onProgress } = {}) {
   sceneExploded(tl);
   tl.to({}, { duration: 0.5 }, 99.5);   // hard end at 100
 
-  return tl;
+  /* matchMedia reverts gsap state, but the camera writes a raw attribute —
+     reset it by hand when this context tears down */
+  return () => {
+    st = null;
+    Object.assign(cam, { px: 800, py: 500, z: 1 });
+    applyCam();
+  };
+}
+
+/* Reduced motion: no pin, no scrub — render the exploded poster once. */
+export function buildStaticPoster() {
+  worldEl = document.getElementById('world');
+  const P = matchMedia(MOBILE_MQ).matches ? CAM_MOBILE : CAM;
+  for (const [id, y] of Object.entries(EXPLODE.groups)) gsap.set('#' + id, { y });
+  gsap.set('#fairing-l', { ...EXPLODE.halves['fairing-l'], autoAlpha: 0.85 });
+  gsap.set('#fairing-r', { ...EXPLODE.halves['fairing-r'], autoAlpha: 0.85 });
+  gsap.set(['#x-labels g', '#gs2-cut', '#gs1-cut'], { autoAlpha: 1 });
+  gsap.set('#be3u-dash', { autoAlpha: 0 });
+  gsap.set('#be3u-solid', { autoAlpha: 1 });
+  setCam(P.exploded);
 }
 
 /* ---------- scene 0 · 0–14 · the sheet draws itself ---------- */
@@ -119,7 +163,7 @@ function sceneFairing(tl) {
   tl.addLabel('fairing', 14)
     .to('#panel-0', { autoAlpha: 0, y: -18, duration: 0.8 }, 14)
     .to('#dims', { autoAlpha: 0, duration: 1.0 }, 14.2)
-    .to(cam, camTo(CAM.fairing, 3.2), 14.2)
+    .to(cam, camTo(CAMS.fairing, 3.2), 14.2)
     /* halves hinge outward about their base attach points */
     .to('#fairing-l', { rotation: -12, x: -18, y: -6, svgOrigin: '786 245', duration: 2.6, ease: 'power2.inOut' }, 17.0)
     .to('#fairing-r', { rotation: 12, x: 18, y: -6, svgOrigin: '814 245', duration: 2.6, ease: 'power2.inOut' }, 17.0)
@@ -135,7 +179,7 @@ function scenePayload(tl) {
   tl.addLabel('payload', 26)
     .to('#panel-1', { autoAlpha: 0, y: -18, duration: 0.8 }, 26)
     .to('#lead-fairing', { autoAlpha: 0, duration: 0.5 }, 26)
-    .to(cam, camTo(CAM.payload, 3.0), 26.2)
+    .to(cam, camTo(CAMS.payload, 3.0), 26.2)
     /* halves park wide and dim so the stack owns the frame */
     .to('#fairing-l', { rotation: -20, x: -55, y: -14, svgOrigin: '786 245', duration: 2.8, ease: 'power2.inOut' }, 26.2)
     .to('#fairing-r', { rotation: 20, x: 55, y: -14, svgOrigin: '814 245', duration: 2.8, ease: 'power2.inOut' }, 26.2)
@@ -159,7 +203,7 @@ function sceneGs2(tl) {
   tl.addLabel('gs2', 40)
     .to('#panel-2', { autoAlpha: 0, y: -18, duration: 0.8 }, 40)
     .to('#lead-payload', { autoAlpha: 0, duration: 0.5 }, 40)
-    .to(cam, camTo(CAM.gs2, 3.0), 40.2)
+    .to(cam, camTo(CAMS.gs2, 3.0), 40.2)
     /* staging gap: everything above the interstage lifts together */
     .to(['#asm-fairing', '#asm-payload', '#asm-gs2'],
       { y: STAGING_LIFT, duration: 2.8, ease: 'power2.inOut' }, 40.4)
@@ -181,7 +225,7 @@ function sceneInterstage(tl) {
   tl.addLabel('interstage', 51)
     .to('#panel-3', { autoAlpha: 0, y: -18, duration: 0.8 }, 51)
     .to('#lead-gs2', { autoAlpha: 0, duration: 0.5 }, 51)
-    .to(cam, camTo(CAM.interstage, 2.8), 51.2)
+    .to(cam, camTo(CAMS.interstage, 2.8), 51.2)
     .to(['#fin-l', '#fin-r'], { stroke: '#7ce9ff', duration: 1.0 }, 52.6)
     .to('#lead-interstage', { autoAlpha: 1, duration: 0.5 }, 53.2)
     .fromTo('#lead-interstage path',
@@ -196,7 +240,7 @@ function sceneGs1(tl) {
     .to('#panel-4', { autoAlpha: 0, y: -18, duration: 0.8 }, 59)
     .to('#lead-interstage', { autoAlpha: 0, duration: 0.5 }, 59)
     .to(['#fin-l', '#fin-r'], { stroke: 'rgba(233,242,255,0.92)', duration: 0.8 }, 59)
-    .to(cam, camTo(CAM.gs1, 3.0), 59.2)
+    .to(cam, camTo(CAMS.gs1, 3.0), 59.2)
     .to('#gs1-cut', { autoAlpha: 1, duration: 0.4 }, 60.6)
     .fromTo('#clip-gs1-r', { attr: { height: 0 } }, { attr: { height: 328 }, duration: 2.6 }, 60.7)
     .to(['#strake-l', '#strake-r'], { stroke: '#7ce9ff', duration: 1.0 }, 62.2)
@@ -213,7 +257,7 @@ function sceneEngines(tl) {
     .to('#panel-5', { autoAlpha: 0, y: -18, duration: 0.8 }, 71)
     .to('#lead-gs1', { autoAlpha: 0, duration: 0.5 }, 71)
     .to(['#strake-l', '#strake-r'], { stroke: 'rgba(233,242,255,0.92)', duration: 0.8 }, 71)
-    .to(cam, camTo(CAM.engines, 3.0), 71.2)
+    .to(cam, camTo(CAMS.engines, 3.0), 71.2)
     .to('#da-mark', { autoAlpha: 1, duration: 0.8 }, 72.8)
     .to('#detail-a', { autoAlpha: 1, duration: 0.8 }, 73.6)
     .to('#da-engines .dr', { strokeDashoffset: 0, duration: 2.0, stagger: 0.12 }, 74.0)
@@ -236,7 +280,7 @@ function sceneExploded(tl) {
     .to(['#da-mark', '#detail-a'], { autoAlpha: 0, duration: 1.0 }, 83)
     .to('#be4-row path, #be4-row ellipse', { stroke: 'rgba(233,242,255,0.55)', duration: 0.8 }, 83)
     /* pull back while every assembly separates along the centerline */
-    .to(cam, camTo(CAM.exploded, 4.2), 83.4)
+    .to(cam, camTo(CAMS.exploded, 4.2), 83.4)
     .to('#asm-fairing', { y: G['asm-fairing'], duration: 4.0, ease: 'power2.inOut' }, 83.6)
     .to('#asm-payload', { y: G['asm-payload'], duration: 4.0, ease: 'power2.inOut' }, 83.6)
     .to('#asm-gs2', { y: G['asm-gs2'], duration: 4.0, ease: 'power2.inOut' }, 83.6)
@@ -260,7 +304,7 @@ function sceneExploded(tl) {
     .to('#asm-payload > path, #asm-payload > line', { stroke: 'rgba(233,242,255,0.55)', duration: 1.4 }, 94.0)
     .to('#be3u-solid', { autoAlpha: 0, duration: 0.8 }, 95.6)
     .to('#be3u-dash', { autoAlpha: 1, duration: 0.8 }, 95.7)
-    .to(cam, camTo(CAM.full, 2.6), 95.4)
+    .to(cam, camTo(CAMS.full, 2.6), 95.4)
     .to('#dims', { autoAlpha: 1, duration: 1.2 }, 96.8)
     /* released: the rev stamp thunks down, summary card in */
     .fromTo('#stamp',
