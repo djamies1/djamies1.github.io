@@ -7,15 +7,28 @@
 
 import { CAM, EXPLODE, STAGING_LIFT, SCENES, SCROLL_VH } from './data.js';
 
-/* world transform that centers world point (px,py) on the sheet
-   center (800,500) at zoom z. svgOrigin (not transformOrigin):
-   GSAP treats transformOrigin as bbox-relative for SVG elements. */
-const camVars = ({ px, py, z }) => ({
-  x: 800 - z * px,
-  y: 500 - z * py,
-  scale: z,
-  svgOrigin: '0 0',
-});
+/* Camera: tween a plain {px,py,z} object and write the matrix attribute
+   directly. GSAP's transform shorthands resolve origins against the
+   element's bbox — and #world's bbox mutates as components move, which
+   drifts the cached origin. A raw matrix has no origin at all.
+   px,py = world point centered on the sheet (800,500); z = zoom. */
+const cam = { px: 800, py: 500, z: 1 };
+let worldEl = null;
+function applyCam() {
+  worldEl.setAttribute(
+    'transform',
+    `matrix(${cam.z},0,0,${cam.z},${800 - cam.z * cam.px},${500 - cam.z * cam.py})`
+  );
+}
+const camTo = (preset, duration) =>
+  ({ ...preset, duration, ease: 'power2.inOut', onUpdate: applyCam });
+
+/* one-shot camera set for the reduced-motion static poster */
+export function setCam(preset) {
+  worldEl = worldEl || document.getElementById('world');
+  Object.assign(cam, preset);
+  applyCam();
+}
 
 let st = null;
 
@@ -35,14 +48,15 @@ export function initTimeline({ onProgress } = {}) {
   gsap.set('#bp .dr', { strokeDashoffset: 1.02 });
   gsap.set(
     ['#zones', '#titleblock', '#notes', '#grid-1', '#grid-2', '#centerline',
-     '#be3u-dash', '#tiers', '#tier-shelves'],
+     '#be3u-dash', '#tiers g', '#tier-shelves'],
     { autoAlpha: 0 }
   );
   /* dim lines carry arrow markers, which paint even when the stroke is
      dash-hidden — so they hide via opacity as well */
   gsap.set(['#dims text', '#dims .dash-ext', '#dims .dr', '#titleblock text', '#notes text'], { autoAlpha: 0 });
   gsap.set('.panel', { autoAlpha: 0, y: 24 });
-  gsap.set('#world', { svgOrigin: '0 0' });
+  worldEl = document.getElementById('world');
+  applyCam();
 
   const cfg = window.ROCKET_BP_CONFIG || {};
   const tl = gsap.timeline({
@@ -92,7 +106,7 @@ function sceneDraw(tl) {
     .to('#vehicle .ln-mid.dr, #vehicle .ln-low.dr, #vehicle .ln-dim.dr',
       { strokeDashoffset: 0, duration: 2.6, stagger: 0.05 }, 5.6)
     .to('#be3u-dash', { autoAlpha: 1, duration: 0.9 }, 8.8)
-    .to(['#tiers', '#tier-shelves'], { autoAlpha: 0.4, duration: 1.0 }, 9.0)
+    .to(['#tiers g', '#tier-shelves'], { autoAlpha: 0.4, duration: 1.0 }, 9.0)
     .to('#dims .dash-ext', { autoAlpha: 1, duration: 0.9 }, 9.4)
     .to('#dims .dr', { autoAlpha: 1, duration: 0.2 }, 9.55)
     .to('#dims .dr', { strokeDashoffset: 0, duration: 1.7, stagger: 0.3 }, 9.6)
@@ -100,17 +114,44 @@ function sceneDraw(tl) {
     .to('#panel-0', { autoAlpha: 1, y: 0, duration: 1.4, ease: 'power2.out' }, 12.0);
 }
 
-/* ---------- scene 1 · 14–26 · fairing (M3) ---------- */
+/* ---------- scene 1 · 14–26 · fairing hinges open ---------- */
 function sceneFairing(tl) {
   tl.addLabel('fairing', 14)
     .to('#panel-0', { autoAlpha: 0, y: -18, duration: 0.8 }, 14)
     .to('#dims', { autoAlpha: 0, duration: 1.0 }, 14.2)
-    .to('#world', { ...camVars(CAM.fairing), duration: 3.2, ease: 'power2.inOut' }, 14.2);
+    .to(cam, camTo(CAM.fairing, 3.2), 14.2)
+    /* halves hinge outward about their base attach points */
+    .to('#fairing-l', { rotation: -12, x: -18, y: -6, svgOrigin: '786 245', duration: 2.6, ease: 'power2.inOut' }, 17.0)
+    .to('#fairing-r', { rotation: 12, x: 18, y: -6, svgOrigin: '814 245', duration: 2.6, ease: 'power2.inOut' }, 17.0)
+    .to('#lead-fairing', { autoAlpha: 1, duration: 0.5 }, 19.4)
+    .fromTo('#lead-fairing path',
+      { strokeDasharray: 1.02, strokeDashoffset: 1.02 },
+      { strokeDashoffset: 0, duration: 1.2 }, 19.5)
+    .to('#panel-1', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 20.4);
 }
 
-/* ---------- scene 2 · 26–40 · payload hero (M3) ---------- */
+/* ---------- scene 2 · 26–40 · payload hero: the Leo stack lights up ---------- */
 function scenePayload(tl) {
-  tl.addLabel('payload', 26);
+  tl.addLabel('payload', 26)
+    .to('#panel-1', { autoAlpha: 0, y: -18, duration: 0.8 }, 26)
+    .to('#lead-fairing', { autoAlpha: 0, duration: 0.5 }, 26)
+    .to(cam, camTo(CAM.payload, 3.0), 26.2)
+    /* halves park wide and dim so the stack owns the frame */
+    .to('#fairing-l', { rotation: -20, x: -55, y: -14, svgOrigin: '786 245', duration: 2.8, ease: 'power2.inOut' }, 26.2)
+    .to('#fairing-r', { rotation: 20, x: 55, y: -14, svgOrigin: '814 245', duration: 2.8, ease: 'power2.inOut' }, 26.2)
+    .to(['#fairing-l', '#fairing-r'], { autoAlpha: 0.3, duration: 2.0 }, 26.6)
+    /* dispenser goes signal-cyan, tiers light top-down */
+    .to('#asm-payload path, #asm-payload line', { stroke: '#7ce9ff', duration: 1.2 }, 28.6)
+    .to('#tier-shelves', { autoAlpha: 1, duration: 0.8 }, 28.6)
+    .to('#tier-1', { autoAlpha: 1, duration: 1.0 }, 28.8)
+    .to('#tier-2', { autoAlpha: 1, duration: 1.0 }, 29.9)
+    .to('#tier-3', { autoAlpha: 1, duration: 1.0 }, 31.0)
+    .to('#tier-4', { autoAlpha: 1, duration: 1.0 }, 32.1)
+    .to('#lead-payload', { autoAlpha: 1, duration: 0.5 }, 31.4)
+    .fromTo('#lead-payload path',
+      { strokeDasharray: 1.02, strokeDashoffset: 1.02 },
+      { strokeDashoffset: 0, duration: 1.1 }, 31.5)
+    .to('#panel-2', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 32.6);
 }
 
 /* ---------- scene 3 · 40–51 · GS2 (M4) ---------- */
