@@ -147,7 +147,7 @@ export const PANELS = [
       ['Expended', 'GS2 + fairing'],
       ['Liftoff mass class', 'Heavy-lift'],
     ],
-    note: 'Scroll back up to reassemble the vehicle — or continue below for the full specification table.',
+    note: 'Hit replay — or scroll back — to run the breakdown again.',
   },
 ];
 

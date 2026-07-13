@@ -29,6 +29,41 @@ js/ui.js      panels / progress rail / outro table, all rendered from data.js
 js/main.js    boot order: geometry → UI → fonts.ready → timeline (or static poster)
 ```
 
+## Two run modes
+
+**Scroll mode (default)** — the full-page scrollytelling piece. The cover has an
+"AUTO-PLAY THE BREAKDOWN" button and the stage has a transport cluster
+(restart / prev / play-pause / next) that smoothly drives the scroll for you
+(~52 s full run); any real user input (wheel, touch, key, click outside the controls)
+hands control straight back to manual scrolling.
+
+**Player mode (`?mode=player`)** — built for dashboard widgets and fixed-size panels.
+No scrolling at all: the same master timeline is time-driven with transport controls
+and a scene-ticked progress bar. Works at **any** container size — a 380 px sidebar
+column gets the narrow layout (cropped sheet, bottom-sheet panels, top-right controls)
+automatically, because the media queries evaluate against the iframe's own viewport.
+
+| URL param | Effect |
+|---|---|
+| `mode=player` | enables player mode |
+| `autoplay` | starts playing immediately (otherwise parks on a poster frame — drawn vehicle + overview panel) |
+| `loop` | repeats forever with a ~2.6 s hold on the finished sheet |
+| `speed=N` | timeScale; default `2` ≈ 50 s per run (`1.5` ≈ 67 s, `3` ≈ 33 s) |
+
+All params can also be set via `window.ROCKET_BP_CONFIG = { mode, autoplay, loop, speed }`
+before the module loads (for native mounts).
+
+**Dashboard sidebar snippet (the launch-dashboard case):**
+
+```html
+<iframe src=".../rocket-blueprint/index.html?mode=player&autoplay=1&loop=1"
+        title="New Glenn — animated blueprint"
+        style="display:block; width:100%; height:660px; border:0"></iframe>
+```
+
+`embed.html` is a working mock of exactly this: a dashboard grid with the widget in a
+400 px sticky sidebar, plus the full-page scroll embed below it.
+
 ## ⚠️ Embedding into the work app
 
 **Preferred: iframe (this is bulletproof).**
@@ -39,10 +74,11 @@ js/main.js    boot order: geometry → UI → fonts.ready → timeline (or stati
         style="display:block; width:100%; height:100vh; border:0"></iframe>
 ```
 
-- **The iframe MUST be viewport-sized (e.g. `height:100vh`) so it scrolls internally.**
-  **Never use an auto-height / "seamless" iframe that grows to content height — the page
-  inside would have no scroll, ScrollTrigger would never fire, and the piece stays frozen
-  on the cover.** This is the number-one integration mistake.
+- **Scroll mode: the iframe MUST be viewport-sized (e.g. `height:100vh`) so it scrolls
+  internally. Never use an auto-height / "seamless" iframe that grows to content height —
+  the page inside would have no scroll, ScrollTrigger would never fire, and the piece
+  stays frozen on the cover.** This is the number-one integration mistake.
+  (**Player mode has no such constraint** — any fixed size works; that's what it's for.)
 - An iframe is its own browsing context, so the pinning (`position: fixed`) is immune to
   any `transform`/`filter` on the host app's ancestors. React apps can wrap this in a
   plain component that renders the iframe.
@@ -64,12 +100,18 @@ misbehaves inside iframes.
 
 ## How the animation works
 
-- **One master timeline (duration 100) + one ScrollTrigger**, pinning `.stage` for
-  ~9 viewport-heights (`SCROLL_VH` in `data.js`). Scene labels sit at the fractions in
-  `SCENES`. Everything — camera, component motion, dash draws, HTML panel in/outs — is a
-  tween on that timeline, so reverse-scrubbing is correct by construction. No snap
-  (momentum + iframes fight it); the right-edge rail gives precise navigation. If snap is
-  ever wanted: `snap: { snapTo: 'labelsDirectional', duration: {min:.15,max:.5} }`.
+- **One master timeline (duration 100)**. In scroll mode a single ScrollTrigger scrubs
+  it while pinning `.stage` for ~9 viewport-heights (`SCROLL_VH` in `data.js`); in player
+  mode the same timeline is simply played with `timeScale(speed)` (paused/looped per
+  params) — that's the whole difference between the modes. Scene labels sit at the
+  fractions in `SCENES`. Everything — camera, component motion, dash draws, HTML panel
+  in/outs — is a tween on that timeline, so reverse-scrubbing is correct by construction.
+  No snap (momentum + iframes fight it); the rail and transport prev/next give precise
+  navigation. If snap is ever wanted:
+  `snap: { snapTo: 'labelsDirectional', duration: {min:.15,max:.5} }`.
+- **Scroll-mode auto-play** tweens the scroll position itself (`startAutoScroll` in
+  `timeline.js`) — note it must call `scrollTo` with `behavior:'instant'` because the
+  page's CSS `scroll-behavior:smooth` would otherwise swallow per-frame scroll writes.
 - **Camera** = transform of the `#world` group; the sheet chrome (`#sheet`) never zooms.
   The camera tweens a plain `{px,py,z}` object and writes a raw `matrix()` attribute
   (`applyCam`). **Don't refactor this to GSAP `x/y/scale` shorthands**: GSAP resolves

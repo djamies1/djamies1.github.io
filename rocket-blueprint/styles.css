@@ -129,6 +129,23 @@ body {
   border: 1px solid var(--ink-dim);
   padding: 6px 12px; border-radius: 2px;
 }
+.cover-play {
+  display: inline-flex; align-items: center; gap: 11px;
+  margin-top: clamp(22px, 4vh, 34px);
+  padding: 13px 24px;
+  background: var(--signal-dim);
+  border: 1px solid rgba(124, 233, 255, 0.45);
+  border-radius: 3px;
+  color: var(--signal);
+  font: 500 0.72rem var(--font-mono); letter-spacing: 0.24em;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s;
+}
+.cover-play svg { width: 12px; height: 12px; fill: currentColor; }
+.cover-play:hover, .cover-play:focus-visible { background: rgba(34, 211, 238, 0.26); border-color: var(--signal); }
+.cover-play:focus-visible { outline: 1px solid var(--signal); outline-offset: 3px; }
+.is-static .cover-play { display: none; }
+
 .cover .cue {
   position: absolute; left: 50%; bottom: clamp(26px, 5vh, 48px);
   transform: translateX(-50%);
@@ -279,6 +296,45 @@ body {
   transform: rotate(45deg) scale(1.5);
 }
 
+/* ---------- transport controls + progress bar ---------- */
+.controls {
+  position: absolute; left: 50%; bottom: 16px;
+  transform: translateX(-50%);
+  display: flex; gap: 8px;
+  z-index: 6;
+}
+.controls button {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 12px;
+  background: rgba(7, 28, 57, 0.68);
+  border: 1px solid var(--ink-dim); border-radius: 3px;
+  color: var(--ink-mid);
+  font: 500 0.6rem var(--font-mono); letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.controls button:hover, .controls button:focus-visible { border-color: var(--signal); color: var(--ink-hi); }
+.controls button:focus-visible { outline: 1px solid var(--signal); outline-offset: 2px; }
+.controls svg { width: 11px; height: 11px; fill: currentColor; }
+.controls .ctl-play { border-color: rgba(124, 233, 255, 0.4); color: var(--signal); }
+
+.progressbar {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 3px; z-index: 6;
+  background: rgba(233, 242, 255, 0.07);
+}
+.progressbar b {
+  display: block; height: 100%; width: 0;
+  background: var(--signal-deep); opacity: 0.85;
+}
+.progressbar i {
+  position: absolute; top: 0; bottom: 0; width: 1px;
+  background: rgba(233, 242, 255, 0.22);
+}
+
+/* player mode: the stage IS the page (dashboard widgets, iframes of any size) */
+.is-player .cover, .is-player .outro, .is-player .skip { display: none; }
+
 /* screen-reader scene announcements */
 .sr-scene {
   position: absolute; width: 1px; height: 1px;
@@ -375,6 +431,10 @@ body {
   .dwg-chip { display: block; }
   /* margin annotations don't survive the slice crop — panels carry the info */
   #anno > g, #x-labels, #detail-a, #da-mark { display: none !important; }
+  /* bottom is panel territory on small screens — transport moves up top */
+  .controls { left: auto; right: 12px; bottom: auto; top: 10px; transform: none; }
+  .controls button { padding: 7px 9px; }
+  .controls .ctl-label { display: none; }
 }
 
 /* ---------- reduced motion: static exploded poster ---------- */
@@ -400,4 +460,5 @@ body {
   visibility: visible;
   width: auto; max-height: none;
 }
-.is-static .rail, .is-static .sr-scene, .is-static .dwg-chip { display: none; }
+.is-static .rail, .is-static .sr-scene, .is-static .dwg-chip,
+.is-static .controls, .is-static .progressbar { display: none; }

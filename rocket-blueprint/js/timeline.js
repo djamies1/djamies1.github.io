@@ -31,12 +31,81 @@ export function setCam(preset) {
 }
 
 let st = null;
+let tlRef = null;
+let MODE = 'scroll';
+let OPTS = { autoplay: false, loop: false, speed: 2 };
+let started = false;           // player: first Play restarts from 0 (poster frame pre-seeks)
+const POSTER = 0.138;          // fully drawn overview + panel, the paused-widget first frame
 
 export function scrollToScene(i) {
   if (!st) return;
   const t0 = SCENES[i].t[0];
   const y = st.start + (st.end - st.start) * (Math.min(t0 + 1.2, 99) / 100);
   window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+/* ---------- player-mode transport (drives the timeline with time) ---------- */
+export const playerApi = {
+  isPlaying: () => !!tlRef && !tlRef.paused(),
+  toggle() {
+    if (!tlRef) return false;
+    if (tlRef.paused()) {
+      if (!started) { started = true; tlRef.play(0); }
+      else tlRef.play();
+      return true;
+    }
+    tlRef.pause();
+    return false;
+  },
+  restart() {
+    if (!tlRef) return;
+    started = true;
+    tlRef.play(0);
+  },
+  goto(i) {
+    if (!tlRef) return;
+    started = true;
+    const [t0, t1] = SCENES[i].t;
+    tlRef.seek((t0 + t1) / 2, false);
+  },
+  step(dir, current) {
+    this.goto(Math.max(0, Math.min(SCENES.length - 1, current + dir)));
+  },
+};
+
+/* ---------- scroll-mode auto-play (tweens the scroll position;
+   any real user input hands control back) ---------- */
+const AUTOSCROLL_SECS = 52;
+const INPUT_EVENTS = ['wheel', 'touchstart', 'keydown', 'mousedown'];
+let scrollTween = null;
+let autoStopCb = null;
+function cancelOnInput(e) {
+  if (e.target && e.target.closest && e.target.closest('.controls, .cover-play, .rail')) return;
+  stopAutoScroll();
+}
+export const isAutoScrolling = () => !!scrollTween;
+export function startAutoScroll(onStop) {
+  if (!st || scrollTween) return false;
+  const span = st.end - st.start;
+  const dur = Math.max(1, (st.end - window.scrollY) / span * AUTOSCROLL_SECS);
+  const proxy = { y: window.scrollY };
+  autoStopCb = onStop || null;
+  scrollTween = gsap.to(proxy, {
+    y: st.end, duration: dur, ease: 'none',
+    /* behavior:'instant' — the page's scroll-behavior:smooth would turn every
+       per-frame scrollTo into its own easing animation and the page never moves */
+    onUpdate: () => window.scrollTo({ top: proxy.y, behavior: 'instant' }),
+    onComplete: stopAutoScroll,
+  });
+  INPUT_EVENTS.forEach((ev) => addEventListener(ev, cancelOnInput, { passive: true }));
+  return true;
+}
+export function stopAutoScroll() {
+  if (!scrollTween) return;
+  scrollTween.kill();
+  scrollTween = null;
+  INPUT_EVENTS.forEach((ev) => removeEventListener(ev, cancelOnInput));
+  if (autoStopCb) autoStopCb();
 }
 
 /* Portrait phones crop the sheet (slice) and can't afford margin
@@ -54,9 +123,13 @@ const CAM_MOBILE = {
 };
 let CAMS = CAM;
 
-export function initTimeline({ onProgress } = {}) {
-  gsap.registerPlugin(ScrollTrigger);
-  ScrollTrigger.config({ ignoreMobileResize: true });
+export function initTimeline({ onProgress, mode = 'scroll', autoplay = false, loop = false, speed = 2 } = {}) {
+  MODE = mode;
+  OPTS = { autoplay, loop, speed };
+  if (window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true });
+  }
   worldEl = document.getElementById('world');
 
   /* gsap.matchMedia rebuilds the whole timeline (and reverts every set())
@@ -83,22 +156,37 @@ function build(isMobile, onProgress) {
   gsap.set('.panel', { autoAlpha: 0, y: 24 });
   applyCam();
 
-  const cfg = window.ROCKET_BP_CONFIG || {};
-  const tl = gsap.timeline({
-    defaults: { ease: 'none' },
-    scrollTrigger: {
-      trigger: '.stage',
-      start: 'top top',
-      end: () => '+=' + window.innerHeight * SCROLL_VH,
-      pin: true,
-      anticipatePin: 1,
-      scrub: matchMedia('(hover: none)').matches ? 0.5 : 0.75,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => onProgress && onProgress(self.progress * 100),
-      ...cfg,
-    },
-  });
-  st = tl.scrollTrigger;
+  let tl;
+  if (MODE === 'player') {
+    /* time-driven: no pin, no scrub — the transport controls own the playhead */
+    tl = gsap.timeline({
+      defaults: { ease: 'none' },
+      paused: true,
+      repeat: OPTS.loop ? -1 : 0,
+      repeatDelay: 2.6,
+      onUpdate: () => onProgress && onProgress(tl.progress() * 100),
+    });
+    tl.timeScale(OPTS.speed);
+    st = null;
+  } else {
+    const cfg = window.ROCKET_BP_CONFIG || {};
+    tl = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: '.stage',
+        start: 'top top',
+        end: () => '+=' + window.innerHeight * SCROLL_VH,
+        pin: true,
+        anticipatePin: 1,
+        scrub: matchMedia('(hover: none)').matches ? 0.5 : 0.75,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => onProgress && onProgress(self.progress * 100),
+        ...cfg,
+      },
+    });
+    st = tl.scrollTrigger;
+  }
+  tlRef = tl;
 
   sceneDraw(tl);
   sceneFairing(tl);
@@ -110,10 +198,18 @@ function build(isMobile, onProgress) {
   sceneExploded(tl);
   tl.to({}, { duration: 0.5 }, 99.5);   // hard end at 100
 
+  if (MODE === 'player') {
+    started = false;
+    if (OPTS.autoplay) { started = true; tl.play(0); }
+    else tl.progress(POSTER).pause();   // poster frame: drawn vehicle + overview panel
+  }
+
   /* matchMedia reverts gsap state, but the camera writes a raw attribute —
      reset it by hand when this context tears down */
   return () => {
     st = null;
+    tlRef = null;
+    started = false;
     Object.assign(cam, { px: 800, py: 500, z: 1 });
     applyCam();
   };
