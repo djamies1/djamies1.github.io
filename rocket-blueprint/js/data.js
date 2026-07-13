@@ -14,7 +14,7 @@ export const CAM = {
   gs2:        { px: 800,  py: 278, z: 2.5 },   // upper stack lifted −60 by now
   interstage: { px: 800,  py: 452, z: 3.2 },
   gs1:        { px: 800,  py: 650, z: 1.8 },
-  engines:    { px: 1030, py: 820, z: 2.2 },   // frames aft module + DETAIL A inset
+  engines:    { px: 985,  py: 830, z: 2.2 },   // frames aft module + DETAIL A inset
   exploded:   { px: 800,  py: 454, z: 0.78 },
 };
 

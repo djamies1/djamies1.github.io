@@ -154,24 +154,76 @@ function scenePayload(tl) {
     .to('#panel-2', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 32.6);
 }
 
-/* ---------- scene 3 · 40–51 · GS2 (M4) ---------- */
+/* ---------- scene 3 · 40–51 · GS2 separates, hydrolox cutaway ---------- */
 function sceneGs2(tl) {
-  tl.addLabel('gs2', 40);
+  tl.addLabel('gs2', 40)
+    .to('#panel-2', { autoAlpha: 0, y: -18, duration: 0.8 }, 40)
+    .to('#lead-payload', { autoAlpha: 0, duration: 0.5 }, 40)
+    .to(cam, camTo(CAM.gs2, 3.0), 40.2)
+    /* staging gap: everything above the interstage lifts together */
+    .to(['#asm-fairing', '#asm-payload', '#asm-gs2'],
+      { y: STAGING_LIFT, duration: 2.8, ease: 'power2.inOut' }, 40.4)
+    /* hidden-line BE-3U bells become solid now that they're exposed */
+    .to('#be3u-dash', { autoAlpha: 0, duration: 0.9 }, 42.6)
+    .to('#be3u-solid', { autoAlpha: 1, duration: 0.9 }, 42.7)
+    /* section cutaway: hatch reveals top-down via clip rect */
+    .to('#gs2-cut', { autoAlpha: 1, duration: 0.4 }, 43.2)
+    .fromTo('#clip-gs2-r', { attr: { height: 0 } }, { attr: { height: 172 }, duration: 2.2 }, 43.3)
+    .to('#lead-gs2', { autoAlpha: 1, duration: 0.5 }, 44.8)
+    .fromTo('#lead-gs2 path',
+      { strokeDasharray: 1.02, strokeDashoffset: 1.02 },
+      { strokeDashoffset: 0, duration: 1.2, stagger: 0.3 }, 44.9)
+    .to('#panel-3', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 46.0);
 }
 
-/* ---------- scene 4 · 51–59 · interstage (M4) ---------- */
+/* ---------- scene 4 · 51–59 · forward module + fins ---------- */
 function sceneInterstage(tl) {
-  tl.addLabel('interstage', 51);
+  tl.addLabel('interstage', 51)
+    .to('#panel-3', { autoAlpha: 0, y: -18, duration: 0.8 }, 51)
+    .to('#lead-gs2', { autoAlpha: 0, duration: 0.5 }, 51)
+    .to(cam, camTo(CAM.interstage, 2.8), 51.2)
+    .to(['#fin-l', '#fin-r'], { stroke: '#7ce9ff', duration: 1.0 }, 52.6)
+    .to('#lead-interstage', { autoAlpha: 1, duration: 0.5 }, 53.2)
+    .fromTo('#lead-interstage path',
+      { strokeDasharray: 1.02, strokeDashoffset: 1.02 },
+      { strokeDashoffset: 0, duration: 1.1, stagger: 0.3 }, 53.3)
+    .to('#panel-4', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 54.4);
 }
 
-/* ---------- scene 5 · 59–71 · GS1 (M4) ---------- */
+/* ---------- scene 5 · 59–71 · GS1 booster, tanks + strakes ---------- */
 function sceneGs1(tl) {
-  tl.addLabel('gs1', 59);
+  tl.addLabel('gs1', 59)
+    .to('#panel-4', { autoAlpha: 0, y: -18, duration: 0.8 }, 59)
+    .to('#lead-interstage', { autoAlpha: 0, duration: 0.5 }, 59)
+    .to(['#fin-l', '#fin-r'], { stroke: 'rgba(233,242,255,0.92)', duration: 0.8 }, 59)
+    .to(cam, camTo(CAM.gs1, 3.0), 59.2)
+    .to('#gs1-cut', { autoAlpha: 1, duration: 0.4 }, 60.6)
+    .fromTo('#clip-gs1-r', { attr: { height: 0 } }, { attr: { height: 328 }, duration: 2.6 }, 60.7)
+    .to(['#strake-l', '#strake-r'], { stroke: '#7ce9ff', duration: 1.0 }, 62.2)
+    .to('#lead-gs1', { autoAlpha: 1, duration: 0.5 }, 62.8)
+    .fromTo('#lead-gs1 path',
+      { strokeDasharray: 1.02, strokeDashoffset: 1.02 },
+      { strokeDashoffset: 0, duration: 1.2, stagger: 0.35 }, 62.9)
+    .to('#panel-5', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 64.4);
 }
 
-/* ---------- scene 6 · 71–83 · engines + DETAIL A (M4) ---------- */
+/* ---------- scene 6 · 71–83 · aft module, 7× BE-4, DETAIL A ---------- */
 function sceneEngines(tl) {
-  tl.addLabel('engines', 71);
+  tl.addLabel('engines', 71)
+    .to('#panel-5', { autoAlpha: 0, y: -18, duration: 0.8 }, 71)
+    .to('#lead-gs1', { autoAlpha: 0, duration: 0.5 }, 71)
+    .to(['#strake-l', '#strake-r'], { stroke: 'rgba(233,242,255,0.92)', duration: 0.8 }, 71)
+    .to(cam, camTo(CAM.engines, 3.0), 71.2)
+    .to('#da-mark', { autoAlpha: 1, duration: 0.8 }, 72.8)
+    .to('#detail-a', { autoAlpha: 1, duration: 0.8 }, 73.6)
+    .to('#da-engines .dr', { strokeDashoffset: 0, duration: 2.0, stagger: 0.12 }, 74.0)
+    .to('#be4-row path, #be4-row ellipse', { stroke: '#7ce9ff', duration: 1.0 }, 74.6)
+    .to('#da-legs .dr', { strokeDashoffset: 0, duration: 1.4, stagger: 0.1 }, 76.0)
+    .to('#lead-engines', { autoAlpha: 1, duration: 0.5 }, 76.6)
+    .fromTo('#lead-engines path',
+      { strokeDasharray: 1.02, strokeDashoffset: 1.02 },
+      { strokeDashoffset: 0, duration: 1.1, stagger: 0.3 }, 76.7)
+    .to('#panel-6', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 77.8);
 }
 
 /* ---------- scene 7 · 83–100 · full explode, reassemble, stamp (M5) ---------- */
