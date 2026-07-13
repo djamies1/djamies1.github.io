@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Embed demo — New Glenn blueprint in an iframe</title>
+<style>
+  /* This page demonstrates the ONE supported iframe pattern:
+     a viewport-height iframe that scrolls internally.
+     Never size the iframe to its content height — ScrollTrigger
+     needs internal scroll to drive the animation. */
+  * { margin: 0; box-sizing: border-box; }
+  body { font: 15px/1.6 system-ui, sans-serif; background: #10151d; color: #dfe7f2; }
+  .host-bar {
+    padding: 14px 24px;
+    background: #1a2230; border-bottom: 1px solid #2c3a52;
+    font-weight: 600; letter-spacing: 0.02em;
+  }
+  .host-bar span { opacity: 0.55; font-weight: 400; }
+  iframe.blueprint {
+    display: block;
+    width: 100%;
+    height: 100vh;   /* viewport-sized — REQUIRED */
+    border: 0;
+  }
+  .host-content { padding: 48px 24px; max-width: 640px; margin: 0 auto; opacity: 0.8; }
+</style>
+</head>
+<body>
+  <div class="host-bar">HOST APP CHROME <span>— everything below the bar is the embedded blueprint</span></div>
+  <iframe class="blueprint" src="./index.html" title="New Glenn launch vehicle — animated blueprint"></iframe>
+  <div class="host-content">
+    <p>Host-app content continues after the embed. The blueprint scrolls and pins entirely
+    inside its own iframe, so the host page's layout, transforms, and scroll behavior
+    can't break it.</p>
+  </div>
+</body>
+</html>
