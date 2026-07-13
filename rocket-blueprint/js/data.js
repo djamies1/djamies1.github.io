@@ -18,16 +18,23 @@ export const CAM = {
   exploded:   { px: 800,  py: 454, z: 0.78 },
 };
 
-/* Full exploded-view offsets (world units, applied to asm wrappers only).
+/* Full exploded-view offsets (world units). Groups take a shared y lift;
+   the fairing halves carry extra x/rotation on top of their group
+   (total fairing offset = groups['asm-fairing'] + halves y = −185).
    Home = all zeros → reassembly is a tween back to 0. */
 export const EXPLODE = {
-  'fairing-l':      { x: -115, y: -185, rotation: -9 },
-  'fairing-r':      { x:  115, y: -185, rotation:  9 },
-  'asm-payload':    { x: 0, y: -120, rotation: 0 },
-  'asm-gs2':        { x: 0, y:  -70, rotation: 0 },
-  'asm-interstage': { x: 0, y:  -32, rotation: 0 },
-  'asm-gs1':        { x: 0, y:    0, rotation: 0 },
-  'asm-aft':        { x: 0, y:   74, rotation: 0 },
+  groups: {
+    'asm-fairing': -120,
+    'asm-payload': -120,
+    'asm-gs2': -70,
+    'asm-interstage': -32,
+    'asm-gs1': 0,
+    'asm-aft': 74,
+  },
+  halves: {
+    'fairing-l': { x: -115, y: -65, rotation: -12 },
+    'fairing-r': { x:  115, y: -65, rotation:  12 },
+  },
 };
 
 /* Staging-gap lift applied when GS2 separates (scene 3 onward). */
@@ -148,10 +155,10 @@ export const PANELS = [
    (base geometry + EXPLODE offsets). side L: elbow→col at x 560 (text-end);
    side R: elbow→col at x 1040 (text-start). */
 export const XLABELS = [
-  { id: 'xl-fairing', side: 'L', ax: 676, ay: 30,  ex: 600, ey: 10,  t: 'PAYLOAD FAIRING',    s: '2-PC COMPOSITE' },
+  { id: 'xl-fairing', side: 'L', ax: 648, ay: 2,   ex: 600, ey: 10,  t: 'PAYLOAD FAIRING',    s: '2-PC COMPOSITE' },
   { id: 'xl-payload', side: 'R', ax: 822, ay: 49,  ex: 960, ey: 20,  t: 'LEO SATELLITE STACK', s: '48 SATELLITES · LN-01' },
   { id: 'xl-gs2',     side: 'L', ax: 772, ay: 268, ex: 620, ey: 240, t: 'SECOND STAGE — GS2', s: '2× BE-3U · LH2 / LOX' },
-  { id: 'xl-inter',   side: 'R', ax: 846, ay: 425, ex: 980, ey: 410, t: 'FORWARD MODULE',     s: '4× ACTUATED FINS' },
+  { id: 'xl-inter',   side: 'R', ax: 848, ay: 425, ex: 980, ey: 410, t: 'FORWARD MODULE',     s: '4× ACTUATED FINS' },
   { id: 'xl-gs1',     side: 'L', ax: 772, ay: 650, ex: 620, ey: 640, t: 'FIRST STAGE — GS1',  s: '57.5 m · 25+ FLIGHTS' },
   { id: 'xl-aft',     side: 'R', ax: 836, ay: 930, ex: 980, ey: 918, t: 'AFT MODULE',         s: '6 LEGS · Ø 8.5 m SKIRT' },
   { id: 'xl-be4',     side: 'L', ax: 778, ay: 968, ex: 620, ey: 972, t: 'BE-4 × 7',           s: '19,928 kN LIFTOFF' },

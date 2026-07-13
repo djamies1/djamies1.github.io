@@ -141,7 +141,7 @@ function scenePayload(tl) {
     .to('#fairing-r', { rotation: 20, x: 55, y: -14, svgOrigin: '814 245', duration: 2.8, ease: 'power2.inOut' }, 26.2)
     .to(['#fairing-l', '#fairing-r'], { autoAlpha: 0.3, duration: 2.0 }, 26.6)
     /* dispenser goes signal-cyan, tiers light top-down */
-    .to('#asm-payload path, #asm-payload line', { stroke: '#7ce9ff', duration: 1.2 }, 28.6)
+    .to('#asm-payload > path, #asm-payload > line', { stroke: '#7ce9ff', duration: 1.2 }, 28.6)
     .to('#tier-shelves', { autoAlpha: 1, duration: 0.8 }, 28.6)
     .to('#tier-1', { autoAlpha: 1, duration: 1.0 }, 28.8)
     .to('#tier-2', { autoAlpha: 1, duration: 1.0 }, 29.9)
@@ -226,7 +226,45 @@ function sceneEngines(tl) {
     .to('#panel-6', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 77.8);
 }
 
-/* ---------- scene 7 · 83–100 · full explode, reassemble, stamp (M5) ---------- */
+/* ---------- scene 7 · 83–100 · full explode → labels → reassemble → stamp ---------- */
 function sceneExploded(tl) {
-  tl.addLabel('exploded', 83);
+  const G = EXPLODE.groups;
+  const H = EXPLODE.halves;
+  tl.addLabel('exploded', 83)
+    .to('#panel-6', { autoAlpha: 0, y: -18, duration: 0.8 }, 83)
+    .to('#lead-engines', { autoAlpha: 0, duration: 0.5 }, 83)
+    .to(['#da-mark', '#detail-a'], { autoAlpha: 0, duration: 1.0 }, 83)
+    .to('#be4-row path, #be4-row ellipse', { stroke: 'rgba(233,242,255,0.55)', duration: 0.8 }, 83)
+    /* pull back while every assembly separates along the centerline */
+    .to(cam, camTo(CAM.exploded, 4.2), 83.4)
+    .to('#asm-fairing', { y: G['asm-fairing'], duration: 4.0, ease: 'power2.inOut' }, 83.6)
+    .to('#asm-payload', { y: G['asm-payload'], duration: 4.0, ease: 'power2.inOut' }, 83.6)
+    .to('#asm-gs2', { y: G['asm-gs2'], duration: 4.0, ease: 'power2.inOut' }, 83.6)
+    .to('#asm-interstage', { y: G['asm-interstage'], duration: 4.0, ease: 'power2.inOut' }, 83.6)
+    .to('#asm-aft', { y: G['asm-aft'], duration: 4.0, ease: 'power2.inOut' }, 83.6)
+    .to('#fairing-l', { ...H['fairing-l'], autoAlpha: 0.8, duration: 4.0, ease: 'power2.inOut' }, 83.6)
+    .to('#fairing-r', { ...H['fairing-r'], autoAlpha: 0.8, duration: 4.0, ease: 'power2.inOut' }, 83.6)
+    /* the money shot: seven leader labels sweep in */
+    .to('#x-labels g', { autoAlpha: 1, duration: 0.6, stagger: 0.28 }, 87.4)
+    .fromTo('#x-labels path',
+      { strokeDasharray: 1.02, strokeDashoffset: 1.02 },
+      { strokeDashoffset: 0, duration: 1.0, stagger: 0.28 }, 87.5)
+    /* reassembly */
+    .to('#x-labels g', { autoAlpha: 0, duration: 0.8 }, 92.6)
+    .to(['#asm-fairing', '#asm-payload', '#asm-gs2', '#asm-interstage', '#asm-aft'],
+      { y: 0, duration: 3.2, ease: 'power2.inOut' }, 93.4)
+    .to(['#fairing-l', '#fairing-r'],
+      { x: 0, y: 0, rotation: 0, autoAlpha: 1, duration: 3.2, ease: 'power2.inOut' }, 93.4)
+    .to(['#gs2-cut', '#gs1-cut'], { autoAlpha: 0, duration: 1.2 }, 93.6)
+    .to(['#tiers g', '#tier-shelves'], { autoAlpha: 0.4, duration: 1.4 }, 94.0)
+    .to('#asm-payload > path, #asm-payload > line', { stroke: 'rgba(233,242,255,0.55)', duration: 1.4 }, 94.0)
+    .to('#be3u-solid', { autoAlpha: 0, duration: 0.8 }, 95.6)
+    .to('#be3u-dash', { autoAlpha: 1, duration: 0.8 }, 95.7)
+    .to(cam, camTo(CAM.full, 2.6), 95.4)
+    .to('#dims', { autoAlpha: 1, duration: 1.2 }, 96.8)
+    /* released: the rev stamp thunks down, summary card in */
+    .fromTo('#stamp',
+      { autoAlpha: 0, scale: 1.6, transformOrigin: '50% 50%' },
+      { autoAlpha: 1, scale: 1, duration: 1.2, ease: 'power3.out' }, 97.9)
+    .to('#panel-7', { autoAlpha: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 97.9);
 }

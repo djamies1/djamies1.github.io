@@ -117,7 +117,7 @@ function buildXLabels() {
     const anchor = L.side === 'L' ? 'end' : 'start';
     const tx = L.side === 'L' ? col - 4 : col + 4;
     el('circle', { cx: L.ax, cy: L.ay, r: 2.6, fill: 'var(--signal)', stroke: 'none' }, g);
-    el('path', { d: `M${L.ax} ${L.ay} L${L.ex} ${L.ey} H${col}`, class: 'ln-acc', 'stroke-width': 1.1 }, g);
+    el('path', { d: `M${L.ax} ${L.ay} L${L.ex} ${L.ey} H${col}`, class: 'ln-acc', 'stroke-width': 1.1, pathLength: '1' }, g);
     txt({ x: tx, y: L.ey - 5, 'font-size': 15, 'text-anchor': anchor, class: 't-hi t-500', 'letter-spacing': '0.14em' }, L.t, g);
     txt({ x: tx, y: L.ey + 11, 'font-size': 9.5, 'text-anchor': anchor, class: 't-low', 'letter-spacing': '0.12em' }, L.s, g);
   }
