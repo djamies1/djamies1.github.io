@@ -1,12 +1,25 @@
 /* ============================================================
    main.js — boot.
-   Order: generated geometry → UI shells → fonts settle →
-   timeline + ScrollTrigger (M2+). Reduced-motion gets a static
-   exploded poster instead of a scrub timeline (M6).
+   Order: generated geometry → UI from data.js → fonts settle →
+   timeline + ScrollTrigger. Reduced motion (or missing GSAP)
+   falls back to the static drawing (full poster branch in M6).
    ============================================================ */
 
 import { buildDrawing } from './drawing.js';
+import { buildUI, announceScene } from './ui.js';
+import { initTimeline, scrollToScene } from './timeline.js';
 
 buildDrawing();
+buildUI(scrollToScene);
 
-/* Timeline boot lands in M2. */
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (!reduced && window.gsap && window.ScrollTrigger) {
+  document.fonts.ready.then(() => {
+    initTimeline({ onProgress: announceScene });
+    ScrollTrigger.refresh();
+  });
+} else {
+  document.body.classList.add('is-static');
+  /* M6: static exploded poster + panels re-flowed into the document */
+}

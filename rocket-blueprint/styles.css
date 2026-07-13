@@ -173,6 +173,8 @@ body {
 #bp .ln-dim { stroke: var(--ink-dim); stroke-width: 0.55; }
 #bp .ln-acc { stroke: var(--signal); }
 #bp marker path { fill: var(--ink-mid); stroke: none; }
+#bp #grid-1 { fill: url(#gmin); stroke: none; }
+#bp #grid-2 { fill: url(#gmaj); stroke: none; }
 #bp .fill-hatch-a { fill: url(#hatch-a); }
 #bp .fill-hatch-b { fill: url(#hatch-b); }
 
@@ -238,6 +240,11 @@ body {
 .panel dd {
   font: 500 0.78rem/1.55 var(--font-mono);
   color: var(--ink-hi); text-align: right;
+}
+.panel--bl {
+  top: auto; right: auto;
+  left: clamp(18px, 3.5vw, 56px);
+  bottom: clamp(48px, 9vh, 88px);
 }
 .panel .note {
   margin-top: 12px; padding-top: 10px;
