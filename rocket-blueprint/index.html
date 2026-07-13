@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New Glenn — General Arrangement</title>
+<meta name="description" content="Blueprint-style animated breakdown of the New Glenn launch vehicle — stages, engines, fairing, and the Amazon Leo satellite stack.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b2749'/%3E%3Cpath d='M16 4c3 3.5 4 8 4 12v8h-8v-8c0-4 1-8.5 4-12z' fill='none' stroke='%23e9f2ff' stroke-width='1.4'/%3E%3Cpath d='M12 20l-3 5m14-5l3 5' stroke='%23e9f2ff' stroke-width='1.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<a class="skip" href="#specs">Skip animation — view specifications</a>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <p class="eyebrow mono">LAUNCH VEHICLE FAMILIARIZATION · GENERAL ARRANGEMENT</p>
+  <h1>NEW&nbsp;GLENN</h1>
+  <p class="sub">Heavy-lift, partially reusable, two-stage orbital launch vehicle — drawn to scale from public figures and taken apart piece by piece.</p>
+  <p class="chips mono"><span>DWG&nbsp;NG-LV-098</span><span>SCALE&nbsp;1:100</span><span>REV&nbsp;B</span><span>SHEET&nbsp;1&nbsp;OF&nbsp;1</span></p>
+  <p class="cue mono">SCROLL TO BEGIN</p>
+</header>
+
+<!-- ============ PINNED STAGE ============ -->
+<section class="stage" aria-label="Animated blueprint of the New Glenn launch vehicle">
+
+<svg id="bp" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <defs>
+    <pattern id="gmin" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M10 0H0V10" fill="none" stroke="var(--grid-minor)" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gmaj" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0V50" fill="none" stroke="var(--grid-major)" stroke-width="0.6"/>
+    </pattern>
+    <pattern id="hatch-a" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="rgba(233,242,255,0.20)" stroke-width="0.8"/>
+    </pattern>
+    <pattern id="hatch-b" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="rgba(124,233,255,0.26)" stroke-width="0.8"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="1.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 5 L10 1.4 L10 8.6 Z" fill="var(--ink-mid)" stroke="none"/>
+    </marker>
+    <clipPath id="frame-clip"><rect x="56" y="56" width="1488" height="888"/></clipPath>
+    <clipPath id="clip-gs2"><rect id="clip-gs2-r" x="774" y="254" width="52" height="172"/></clipPath>
+    <clipPath id="clip-gs1"><rect id="clip-gs1-r" x="774" y="494" width="52" height="328"/></clipPath>
+    <symbol id="sym-sat" overflow="visible">
+      <rect x="0" y="0" width="11" height="15" rx="1" style="fill:none;stroke:var(--ink-mid);stroke-width:0.9;stroke-linejoin:round"/>
+      <line x1="2.5" y1="3.6" x2="8.5" y2="3.6" style="stroke:var(--ink-dim);stroke-width:0.55;stroke-linecap:round"/>
+      <line x1="2.5" y1="6.8" x2="8.5" y2="6.8" style="stroke:var(--ink-dim);stroke-width:0.55;stroke-linecap:round"/>
+      <line x1="5.5" y1="15" x2="5.5" y2="17.4" style="stroke:var(--ink-dim);stroke-width:0.55;stroke-linecap:round"/>
+    </symbol>
+  </defs>
+
+  <!-- ================= SHEET (never transforms) ================= -->
+  <g id="sheet">
+    <rect id="grid-1" x="56" y="56" width="1488" height="888" fill="url(#gmin)"/>
+    <rect id="grid-2" x="56" y="56" width="1488" height="888" fill="url(#gmaj)"/>
+    <rect id="frame-outer" class="ln-low dr" pathLength="1" x="24" y="24" width="1552" height="952"/>
+    <rect id="frame-inner" class="ln-mid dr" pathLength="1" x="56" y="56" width="1488" height="888"/>
+    <g id="zones"></g>
+
+    <g id="titleblock">
+      <rect class="ln-mid dr" pathLength="1" x="1156" y="856" width="388" height="88"/>
+      <path class="ln-low dr" pathLength="1" d="M1156 884 H1544 M1156 914 H1544 M1306 884 V914 M1386 884 V914 M1246 914 V944 M1360 914 V944 M1440 914 V944"/>
+      <text x="1162" y="867" font-size="5.8" class="t-low" letter-spacing="0.18em">TITLE</text>
+      <text x="1162" y="879" font-size="9.5" class="t-hi t-500">NEW GLENN — LAUNCH VEHICLE · GENERAL ARRANGEMENT</text>
+      <text x="1162" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">DWG NO</text>
+      <text x="1162" y="908" font-size="10" class="t-hi t-500">NG-LV-098</text>
+      <text x="1312" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SIZE</text>
+      <text x="1312" y="908" font-size="10" class="t-hi t-500">E</text>
+      <text x="1392" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SCALE</text>
+      <text x="1392" y="908" font-size="10" class="t-hi t-500">1:100</text>
+      <text x="1162" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">REV</text>
+      <text x="1162" y="938" font-size="10" class="t-hi t-500">B</text>
+      <text x="1252" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">SHEET</text>
+      <text x="1252" y="938" font-size="10" class="t-hi t-500">1 OF 1</text>
+      <text x="1366" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">UNITS</text>
+      <text x="1366" y="938" font-size="10" class="t-hi t-500">m</text>
+      <text x="1446" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">DATE</text>
+      <text x="1446" y="938" font-size="10" class="t-hi t-500">2026-07</text>
+    </g>
+
+    <g id="notes">
+      <text x="68" y="886" font-size="6" class="t-mid" letter-spacing="0.22em">GENERAL NOTES</text>
+      <text x="68" y="900" font-size="7" class="t-low">1. REPRESENTATIVE GEOMETRY — NOT FOR ENGINEERING USE.</text>
+      <text x="68" y="912" font-size="7" class="t-low">2. DIMENSIONS &amp; FIGURES FROM PUBLIC SOURCES, JUL 2026.</text>
+      <text x="68" y="924" font-size="7" class="t-low">3. LEO DISPENSER DEPICTION REPRESENTATIVE.</text>
+      <text x="68" y="936" font-size="7" class="t-low">4. ALL LINEAR DIMENSIONS IN METRES.</text>
+    </g>
+
+    <g id="stamp" transform="translate(1258 788) rotate(-7)">
+      <rect x="-128" y="-26" width="256" height="52" rx="3" class="ln-acc" stroke-width="1.6"/>
+      <rect x="-122" y="-20" width="244" height="40" rx="2" class="ln-acc" stroke-width="0.5" opacity="0.55"/>
+      <text x="0" y="-1" font-size="15" text-anchor="middle" class="t-acc t-500" letter-spacing="0.26em">REV B — RELEASED</text>
+      <text x="0" y="13" font-size="6" text-anchor="middle" class="t-acc" letter-spacing="0.2em" opacity="0.75">GENERAL ARRANGEMENT · FOR REFERENCE ONLY</text>
+    </g>
+  </g>
+
+  <!-- ================= WORLD (camera target) ================= -->
+  <g id="world-clip" clip-path="url(#frame-clip)">
+    <g id="world">
+
+      <line id="centerline" class="ln-dim cl" x1="800" y1="96" x2="800" y2="910"/>
+
+      <g id="vehicle">
+
+        <!-- FAIRING · y 108–245 · two halves parting at x=800 -->
+        <g id="asm-fairing">
+          <g id="fairing-l">
+            <path class="ln-hi dr" pathLength="1" d="M800 108 C789 111.5 781 122 776.8 143 C773.8 158 772 175 772 192 L772 245 L799.4 245"/>
+            <line class="ln-low dr" pathLength="1" x1="799.4" y1="113" x2="799.4" y2="245"/>
+            <path class="ln-low dr" pathLength="1" d="M772.6 152 H799.4 M772.6 206 H799.4"/>
+            <circle class="ln-low dr" pathLength="1" cx="786" cy="224" r="3.5"/>
+          </g>
+          <g id="fairing-r">
+            <path class="ln-hi dr" pathLength="1" d="M800 108 C811 111.5 819 122 823.2 143 C826.2 158 828 175 828 192 L828 245 L800.6 245"/>
+            <line class="ln-low dr" pathLength="1" x1="800.6" y1="113" x2="800.6" y2="245"/>
+            <path class="ln-low dr" pathLength="1" d="M827.4 152 H800.6 M827.4 206 H800.6"/>
+          </g>
+        </g>
+
+        <!-- PAYLOAD · Amazon Leo 4-tier dispenser stack (representative) -->
+        <g id="asm-payload">
+          <path class="ln-mid dr" pathLength="1" d="M794 134 Q800 129 806 134 M794 134 V226 M806 134 V226"/>
+          <g id="tier-shelves"></g>
+          <g id="tiers">
+            <g id="tier-1"></g><g id="tier-2"></g><g id="tier-3"></g><g id="tier-4"></g>
+          </g>
+          <path class="ln-mid dr" pathLength="1" d="M794 226 L778 242 M806 226 L822 242"/>
+          <line class="ln-low dr" pathLength="1" x1="778" y1="242" x2="822" y2="242"/>
+        </g>
+
+        <!-- GS2 · second stage · y 245–432 -->
+        <g id="asm-gs2">
+          <path class="ln-hi dr" pathLength="1" d="M772 245 V432 M828 245 V432"/>
+          <path class="ln-mid dr" pathLength="1" d="M772 245 H828 M772 432 H828"/>
+          <path class="ln-dim dr" pathLength="1" d="M772 252 H828 M772 300 H828 M772 360 H828 M772 424 H828"/>
+          <g id="gs2-cut" clip-path="url(#clip-gs2)">
+            <path class="fill-hatch-a ln-low" d="M776 274 C776 262 786 256 800 256 C814 256 824 262 824 274 L824 350 C824 362 814 368 800 368 C786 368 776 362 776 350 Z"/>
+            <path class="fill-hatch-b ln-low" d="M776 392 C776 382 786 377 800 377 C814 377 824 382 824 392 L824 406 C824 416 814 421 800 421 C786 421 776 416 776 406 Z"/>
+          </g>
+          <g id="be3u-dash">
+            <path class="ln-mid dash-hid" d="M783 433 C781.5 446 780 458 779 466 M793 433 C794.5 446 796 458 797 466"/>
+            <ellipse class="ln-mid dash-hid" cx="788" cy="466" rx="9" ry="2.8"/>
+            <path class="ln-mid dash-hid" d="M807 433 C805.5 446 804 458 803 466 M817 433 C818.5 446 820 458 821 466"/>
+            <ellipse class="ln-mid dash-hid" cx="812" cy="466" rx="9" ry="2.8"/>
+          </g>
+          <g id="be3u-solid" opacity="0">
+            <path class="ln-mid" d="M783 433 C781.5 446 780 458 779 466 M793 433 C794.5 446 796 458 797 466"/>
+            <ellipse class="ln-mid" cx="788" cy="466" rx="9" ry="2.8"/>
+            <path class="ln-mid" d="M807 433 C805.5 446 804 458 803 466 M817 433 C818.5 446 820 458 821 466"/>
+            <ellipse class="ln-mid" cx="812" cy="466" rx="9" ry="2.8"/>
+            <path class="ln-low" d="M780 438 H796 M804 438 H820"/>
+          </g>
+        </g>
+
+        <!-- INTERSTAGE / GS1 FORWARD MODULE · y 432–488 · 4 fins (2 shown) -->
+        <g id="asm-interstage">
+          <path class="ln-hi dr" pathLength="1" d="M772 432 V488 M828 432 V488"/>
+          <path class="ln-mid dr" pathLength="1" d="M772 488 H828"/>
+          <path class="ln-dim dr" pathLength="1" d="M772 446 H828 M772 480 H828"/>
+          <path id="fin-l" class="ln-hi dr" pathLength="1" d="M772 437 L752 451 L752 472 L772 478"/>
+          <path class="ln-low dr" pathLength="1" d="M772 444 L758 455"/>
+          <path id="fin-r" class="ln-hi dr" pathLength="1" d="M828 437 L848 451 L848 472 L828 478"/>
+          <path class="ln-low dr" pathLength="1" d="M828 444 L842 455"/>
+          <rect class="ln-low dr" pathLength="1" x="774" y="452" width="6" height="8"/>
+          <rect class="ln-low dr" pathLength="1" x="774" y="464" width="6" height="6"/>
+        </g>
+
+        <!-- GS1 · first stage · y 488–828 -->
+        <g id="asm-gs1">
+          <path class="ln-hi dr" pathLength="1" d="M772 488 V828 M828 488 V828"/>
+          <path class="ln-low dr" pathLength="1" d="M772 496 H828 M772 688 H828 M772 692 H828"/>
+          <path class="ln-dim dr" pathLength="1" d="M772 560 H828 M772 620 H828 M772 760 H828"/>
+          <path class="ln-mid dr" pathLength="1" d="M772 828 H828"/>
+          <g id="gs1-cut" clip-path="url(#clip-gs1)">
+            <path class="fill-hatch-b ln-low" d="M776 516 C776 504 786 498 800 498 C814 498 824 504 824 516 L824 668 C824 680 814 686 800 686 C786 686 776 680 776 668 Z"/>
+            <path class="fill-hatch-a ln-low" d="M776 712 C776 700 786 696 800 696 C814 696 824 700 824 712 L824 800 C824 812 814 818 800 818 C786 818 776 812 776 800 Z"/>
+          </g>
+          <path id="strake-l" class="ln-hi dr" pathLength="1" d="M772 732 C761 770 756 818 756 866 L765 889"/>
+          <path class="ln-low dr" pathLength="1" d="M772 746 C765 778 761 820 761 860"/>
+          <path id="strake-r" class="ln-hi dr" pathLength="1" d="M828 732 C839 770 844 818 844 866 L835 889"/>
+          <path class="ln-low dr" pathLength="1" d="M828 746 C835 778 839 820 839 860"/>
+        </g>
+
+        <!-- AFT MODULE · skirt flare to ⌀8.5 m · 6 legs (2 shown) · 7× BE-4 -->
+        <g id="asm-aft">
+          <path class="ln-hi dr" pathLength="1" d="M772 828 L767 856 L766 892 M828 828 L833 856 L834 892"/>
+          <line class="ln-hi dr" pathLength="1" x1="766" y1="892" x2="834" y2="892"/>
+          <path class="ln-low dr" pathLength="1" d="M770.2 845 H829.8 M767.5 872 H832.5"/>
+          <g id="legs-stowed">
+            <path class="ln-mid dr" pathLength="1" d="M770 812 L764.5 886 M775 812 L769.5 886 M764.5 886 H769.5"/>
+            <path class="ln-mid dr" pathLength="1" d="M830 812 L835.5 886 M825 812 L830.5 886 M830.5 886 H835.5"/>
+          </g>
+          <g id="be4-row"></g>
+        </g>
+      </g>
+
+      <!-- DIMENSIONS (sheet-scale views only) -->
+      <g id="dims">
+        <path class="ln-dim dash-ext" d="M795 108 H650 M761 892 H650"/>
+        <path class="ln-mid dr" pathLength="1" d="M650 113 V887" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text transform="translate(639 500) rotate(-90)" text-anchor="middle" font-size="13" class="t-hi t-500" letter-spacing="0.14em">98 m</text>
+        <text transform="translate(661 500) rotate(-90)" text-anchor="middle" font-size="7" class="t-low" letter-spacing="0.18em">[ 322 FT ]</text>
+
+        <path class="ln-dim dash-ext" d="M772 186 V98 M828 186 V98"/>
+        <path class="ln-mid dr" pathLength="1" d="M777 102 H823" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="800" y="92" text-anchor="middle" font-size="11" class="t-hi t-500" letter-spacing="0.1em">Ø 7.0 m</text>
+
+        <path class="ln-dim dash-ext" d="M806 110 H916 M830 245 H916 M830 432 H916 M836 892 H916"/>
+        <path class="ln-mid dr" pathLength="1" d="M912 115 V240" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <path class="ln-mid dr" pathLength="1" d="M912 250 V427" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <path class="ln-mid dr" pathLength="1" d="M912 437 V887" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="924" y="173" font-size="8" class="t-low" letter-spacing="0.16em">FAIRING</text>
+        <text x="924" y="333" font-size="9" class="t-hi t-500" letter-spacing="0.1em">GS2</text>
+        <text x="924" y="345" font-size="8" class="t-mid">23.4 m</text>
+        <text x="924" y="655" font-size="9" class="t-hi t-500" letter-spacing="0.1em">GS1</text>
+        <text x="924" y="667" font-size="8" class="t-mid">57.5 m</text>
+      </g>
+
+      <!-- SCENE ANNOTATIONS (leader lines; revealed per scene) -->
+      <g id="anno">
+        <g id="lead-fairing">
+          <circle cx="823" cy="158" r="1.3" fill="var(--signal)" stroke="none"/>
+          <path class="ln-acc" stroke-width="0.5" d="M823 158 L862 138 H906"/>
+          <text x="909" y="140.5" font-size="4.4" class="t-hi t-500" letter-spacing="0.16em">PAYLOAD FAIRING</text>
+          <text x="909" y="147.5" font-size="3.2" class="t-low" letter-spacing="0.14em">2-PC COMPOSITE · Ø 7.0 m</text>
+        </g>
+        <g id="lead-payload">
+          <circle cx="822" cy="169" r="1.1" fill="var(--signal)" stroke="none"/>
+          <path class="ln-acc" stroke-width="0.45" d="M822 169 L858 152 H899"/>
+          <text x="902" y="154" font-size="3.8" class="t-hi t-500" letter-spacing="0.16em">LEO SATELLITE STACK</text>
+          <text x="902" y="160" font-size="2.8" class="t-low" letter-spacing="0.14em">48 SATS · 4 TIERS · 12 PER TIER</text>
+        </g>
+        <g id="lead-gs2">
+          <circle cx="824" cy="300" r="1.5" fill="var(--signal)" stroke="none"/>
+          <path class="ln-acc" stroke-width="0.55" d="M824 300 L872 276 H914"/>
+          <text x="918" y="278.5" font-size="5" class="t-hi t-500" letter-spacing="0.16em">SECOND STAGE — GS2</text>
+          <text x="918" y="286.5" font-size="3.6" class="t-low" letter-spacing="0.14em">2× BE-3U · RESTARTABLE</text>
+          <path class="ln-acc" stroke-width="0.4" d="M776 252 H770 M776 339 H770"/>
+          <text x="767" y="253.8" font-size="3.6" text-anchor="end" class="t-mid" letter-spacing="0.12em">LH2 TANK</text>
+          <text x="767" y="340.8" font-size="3.6" text-anchor="end" class="t-mid" letter-spacing="0.12em">LOX TANK</text>
+        </g>
+        <g id="lead-interstage">
+          <circle cx="752" cy="462" r="1.2" fill="var(--signal)" stroke="none"/>
+          <path class="ln-acc" stroke-width="0.45" d="M752 462 L706 440 H664"/>
+          <text x="660" y="437" font-size="3.9" text-anchor="end" class="t-hi t-500" letter-spacing="0.16em">FORWARD MODULE</text>
+          <text x="660" y="443.5" font-size="3" text-anchor="end" class="t-low" letter-spacing="0.14em">4× ACTUATED FINS · HOUSES BE-3U</text>
+          <path class="ln-acc" stroke-width="0.4" d="M828 456 L862 456"/>
+          <text x="865" y="457.6" font-size="3" class="t-low" letter-spacing="0.14em">UMBILICALS</text>
+        </g>
+        <g id="lead-gs1">
+          <circle cx="776" cy="590" r="2" fill="var(--signal)" stroke="none"/>
+          <path class="ln-acc" stroke-width="0.7" d="M776 590 L700 570 H652"/>
+          <text x="648" y="566" font-size="6.9" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">LOX TANK</text>
+          <text x="648" y="578" font-size="5" text-anchor="end" class="t-low" letter-spacing="0.12em">~ 850 m³</text>
+          <circle cx="776" cy="756" r="2" fill="var(--signal)" stroke="none"/>
+          <path class="ln-acc" stroke-width="0.7" d="M776 756 L700 776 H652"/>
+          <text x="648" y="772" font-size="6.9" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">LNG TANK</text>
+          <text x="648" y="784" font-size="5" text-anchor="end" class="t-low" letter-spacing="0.12em">~ 710 m³</text>
+          <circle cx="842" cy="842" r="2" fill="var(--signal)" stroke="none"/>
+          <path class="ln-acc" stroke-width="0.7" d="M842 842 L900 860 H948"/>
+          <text x="952" y="856" font-size="6.9" class="t-hi t-500" letter-spacing="0.14em">STRAKE — 2 PL</text>
+          <text x="952" y="868" font-size="5" class="t-low" letter-spacing="0.12em">REUSABLE · 25+ FLIGHTS</text>
+        </g>
+        <g id="lead-engines">
+          <circle cx="767" cy="884" r="1.6" fill="var(--signal)" stroke="none"/>
+          <path class="ln-acc" stroke-width="0.55" d="M767 884 L800 918 H844"/>
+          <text x="848" y="920" font-size="4.5" class="t-hi t-500" letter-spacing="0.14em">LANDING GEAR — 6 PL</text>
+          <circle cx="810" cy="907" r="1.6" fill="var(--signal)" stroke="none"/>
+          <path class="ln-acc" stroke-width="0.55" d="M810 907 L862 938 H906"/>
+          <text x="910" y="936.5" font-size="5.7" class="t-hi t-500" letter-spacing="0.14em">BE-4 × 7</text>
+          <text x="910" y="945" font-size="4" class="t-low" letter-spacing="0.12em">OX-RICH STAGED COMBUSTION · LNG / LOX</text>
+        </g>
+      </g>
+
+      <!-- DETAIL A · aft view inset · drawn at 2× world scale (1:50) -->
+      <g id="da-mark">
+        <circle class="ln-low dash-ext" cx="800" cy="866" r="52"/>
+        <circle class="ln-acc" stroke-width="0.6" cx="856" cy="834" r="7"/>
+        <text x="856" y="837" text-anchor="middle" font-size="7" class="t-acc t-500">A</text>
+        <path class="ln-low dash-ext" d="M863 832 L1154 706"/>
+      </g>
+      <g id="detail-a">
+        <path class="ln-dim cl" d="M1250 596 V804 M1146 700 H1354"/>
+        <circle class="ln-mid" cx="1250" cy="700" r="92"/>
+        <circle class="ln-hi" cx="1250" cy="700" r="68"/>
+        <circle class="ln-low" cx="1250" cy="700" r="60"/>
+        <circle class="ln-dim dash-ext" cx="1250" cy="700" r="38"/>
+        <g id="da-engines"></g>
+        <g id="da-legs"></g>
+        <text x="1250" y="817" text-anchor="middle" font-size="6.4" class="t-hi t-500" letter-spacing="0.24em">DETAIL A</text>
+        <text x="1250" y="827" text-anchor="middle" font-size="4.2" class="t-low" letter-spacing="0.18em">AFT VIEW · SCALE 1:50 · 7× BE-4 · 6× LANDING GEAR</text>
+      </g>
+
+      <!-- EXPLODED-VIEW LABELS (generated; positions assume full EXPLODE offsets) -->
+      <g id="x-labels"></g>
+
+    </g>
+  </g>
+</svg>
+
+  <div class="panels"></div>
+  <nav class="rail" aria-label="Blueprint sections"></nav>
+  <div class="sr-scene" aria-live="polite"></div>
+</section>
+
+<!-- ============ OUTRO ============ -->
+<article class="outro" id="specs">
+  <p class="eyebrow mono">GENERAL SPECIFICATIONS · PUBLIC FIGURES</p>
+  <h2>New Glenn, on paper</h2>
+  <p class="lede">Every figure in the drawing above, in one place. Sourced from public Blue Origin materials and reporting as of July 2026 — the geometry is representative, drawn for familiarization rather than engineering use.</p>
+  <div id="spec-table"></div>
+  <div class="component-notes" id="component-notes"></div>
+  <p class="provenance" id="provenance"></p>
+</article>
+
+<script src="./vendor/gsap.min.js"></script>
+<script src="./vendor/ScrollTrigger.min.js"></script>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>
