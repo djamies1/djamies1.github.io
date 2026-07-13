@@ -1740,5 +1740,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-07-12T16:47:27Z",
     "publish_at": "2026-07-13T00:45:23.000Z"
+  },
+  "wyr_0202": {
+    "youtube_id": "8epvSyj1sLQ",
+    "youtube_url": "https://www.youtube.com/watch?v=8epvSyj1sLQ",
+    "option_a": "Control the weather",
+    "option_b": "Control gravity",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-13T17:50:17Z"
+  },
+  "wyr_0203": {
+    "youtube_id": "n3x5DAh2is8",
+    "youtube_url": "https://www.youtube.com/watch?v=n3x5DAh2is8",
+    "option_a": "Have superhuman strength (lift 100 tons)",
+    "option_b": "Have superhuman speed (run at 1000 mph)",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-13T17:51:03Z",
+    "publish_at": "2026-07-13T21:49:42.000Z"
+  },
+  "wyr_0204": {
+    "youtube_id": "JLhvgQQxvMk",
+    "youtube_url": "https://www.youtube.com/watch?v=JLhvgQQxvMk",
+    "option_a": "Be able to copy any skill after watching it once",
+    "option_b": "Be able to learn any subject in a single day",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-13T17:51:48Z",
+    "publish_at": "2026-07-14T01:49:42.000Z"
   }
 }

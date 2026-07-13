@@ -1974,5 +1974,28 @@
     "answer": "A bullet.",
     "uploaded_at": "2026-07-12T16:49:42Z",
     "publish_at": "2026-07-13T04:47:31.000Z"
+  },
+  "rdl_0259": {
+    "youtube_id": "-QJaZYlEtDY",
+    "youtube_url": "https://www.youtube.com/watch?v=-QJaZYlEtDY",
+    "question": "Why is a farm-yard like a hotel?",
+    "answer": "It is generally patronized by gobblers.",
+    "uploaded_at": "2026-07-13T17:52:31Z"
+  },
+  "rdl_0260": {
+    "youtube_id": "oEWCChkp1S0",
+    "youtube_url": "https://www.youtube.com/watch?v=oEWCChkp1S0",
+    "question": "In what year did Christmas Day and New Year's Day fall in the same year?",
+    "answer": "It happens every year.",
+    "uploaded_at": "2026-07-13T17:53:16Z",
+    "publish_at": "2026-07-13T23:51:52.000Z"
+  },
+  "rdl_0261": {
+    "youtube_id": "G0IT_5daN1s",
+    "youtube_url": "https://www.youtube.com/watch?v=G0IT_5daN1s",
+    "question": "Is an old hundred-dollar bill better than a new one?",
+    "answer": "Well, it's worth 99 more dollars.",
+    "uploaded_at": "2026-07-13T17:54:02Z",
+    "publish_at": "2026-07-14T05:51:52.000Z"
   }
 }
