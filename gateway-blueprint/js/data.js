@@ -45,7 +45,7 @@ export const EXPLODE = {
   },
   parts: {
     'radome':   { x: -135, y: -150, rotation: -10 },  // lifted aside like a lid
-    'rack-row': { x: 170,  y: 0,    rotation: 0 },    // racks slide out of the shelter
+    'rack-row': { x: 235,  y: 0,    rotation: 0 },    // racks slide clear of the shelter
     'sh-roof':  { x: 0,    y: -44,  rotation: 0 },
     'ttc-dish': { x: -85,  y: -25,  rotation: 0 },
   },
@@ -169,7 +169,7 @@ export const XLABELS = [
   { id: 'xl-pedestal', side: 'R', ax: 830,  ay: 585, ex: 1000, ey: 560, t: 'EL-OVER-AZ PEDESTAL', s: 'TRACKS EVERY PASS — GENERIC' },
   { id: 'xl-ttc',      side: 'L', ax: 538,  ay: 562, ex: 500,  ey: 590, t: 'TT&C ANTENNA', col: 460, s: 'TELEMETRY · TRACKING · COMMAND' },
   { id: 'xl-shelter',  side: 'L', ax: 664,  ay: 760, ex: 590,  ey: 780, t: 'EQUIPMENT SHELTER',   s: 'BASEBAND · TIMING · POWER — GENERIC' },
-  { id: 'xl-racks',    side: 'R', ax: 1052, ay: 744, ex: 1096, ey: 716, t: 'BASEBAND RACKS', col: 1150, s: 'PROMETHEUS — SAME SILICON AS THE FLEET' },
+  { id: 'xl-racks',    side: 'R', ax: 1085, ay: 744, ex: 1110, ey: 716, t: 'BASEBAND RACKS', col: 1150, s: 'PROMETHEUS — SAME SILICON AS THE FLEET' },
   { id: 'xl-net',      side: 'R', ax: 944,  ay: 862, ex: 1096, ey: 838, t: 'BACKHAUL PATH', col: 1150, s: 'GATEWAY → PoP → FIBER → AWS' },
 ];
 
