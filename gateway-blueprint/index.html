@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amazon Leo Ground Gateway — Generic Systems Breakdown</title>
+<meta name="description" content="Blueprint-style animated breakdown of a generic Amazon Leo ground gateway (GGT) — tracking antenna, Ka-band feeder link, Prometheus baseband, PoP and AWS backhaul. Public sources only. No real locations.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b2749'/%3E%3Cpath d='M8 13 Q16 21 24 13' fill='none' stroke='%23e9f2ff' stroke-width='1.5'/%3E%3Cpath d='M16 17 V24 M11 24 H21' stroke='%23e9f2ff' stroke-width='1.4'/%3E%3Cpath d='M16 15 L16 8' stroke='%237ce9ff' stroke-width='1' stroke-dasharray='2 1.6'/%3E%3Ccircle cx='16' cy='6' r='1.6' fill='%237ce9ff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<a class="skip" href="#specs">Skip animation — view specifications</a>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <p class="eyebrow mono">GROUND SEGMENT FAMILIARIZATION · GENERIC SYSTEMS BREAKDOWN</p>
+  <h1>GROUND&nbsp;GATEWAY</h1>
+  <p class="sub">The constellation’s off-ramp: a tracking antenna, a rack of custom silicon, and a fiber path into AWS — a generic Amazon&nbsp;Leo ground gateway (GGT), assembled from public information and taken apart piece by piece.</p>
+  <p class="notice mono"><strong>PUBLIC SOURCES ONLY.</strong> This is a generic representation compiled from public information (Jul&nbsp;2026). It is not derived from any internal schematic, documentation, or export-controlled (ITAR/EAR) technical data. No real site locations are depicted. Not to scale. Not for engineering use.</p>
+  <p class="chips mono"><span>DWG&nbsp;LEO-GGT-GEN-001</span><span>SCALE&nbsp;NTS</span><span>REV&nbsp;P</span><span>PUBLIC&nbsp;SOURCES&nbsp;·&nbsp;JUL&nbsp;2026</span></p>
+  <button class="cover-play" type="button">
+    <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 1.4 L10.6 6 L2.2 10.6 Z"/></svg>
+    AUTO-PLAY THE BREAKDOWN
+  </button>
+  <p class="cue mono">OR SCROLL AT YOUR OWN PACE</p>
+</header>
+
+<!-- ============ PINNED STAGE ============ -->
+<section class="stage" aria-label="Animated blueprint of a generic Amazon Leo ground gateway">
+
+<svg id="bp" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <defs>
+    <pattern id="gmin" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M10 0H0V10" fill="none" stroke="var(--grid-minor)" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gmaj" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0V50" fill="none" stroke="var(--grid-major)" stroke-width="0.6"/>
+    </pattern>
+    <pattern id="hatch-a" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="rgba(233,242,255,0.20)" stroke-width="0.8"/>
+    </pattern>
+    <pattern id="hatch-b" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="rgba(124,233,255,0.26)" stroke-width="0.8"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="1.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 5 L10 1.4 L10 8.6 Z" fill="var(--ink-mid)" stroke="none"/>
+    </marker>
+    <clipPath id="frame-clip"><rect x="56" y="56" width="1488" height="888"/></clipPath>
+    <!-- shelter cutaway reveal: rect height grows 0 → 92 -->
+    <clipPath id="clip-sh"><rect id="clip-sh-r" x="700" y="702" width="200" height="0"/></clipPath>
+    <!-- LEO satellite glyph (inline styles: <use> shadow trees ignore doc CSS) -->
+    <symbol id="sym-sat" overflow="visible">
+      <rect x="0" y="0" width="22" height="13" style="fill:none;stroke:var(--ink-mid);stroke-width:0.9;stroke-linejoin:round"/>
+      <rect x="-17" y="3.5" width="13" height="6" style="fill:none;stroke:var(--ink-dim);stroke-width:0.7;stroke-linejoin:round"/>
+      <rect x="26" y="3.5" width="13" height="6" style="fill:none;stroke:var(--ink-dim);stroke-width:0.7;stroke-linejoin:round"/>
+      <line x1="11" y1="13" x2="11" y2="17.5" style="stroke:var(--ink-dim);stroke-width:0.7;stroke-linecap:round"/>
+    </symbol>
+  </defs>
+
+  <!-- ================= SHEET (never transforms) ================= -->
+  <g id="sheet">
+    <rect id="grid-1" x="56" y="56" width="1488" height="888" fill="url(#gmin)"/>
+    <rect id="grid-2" x="56" y="56" width="1488" height="888" fill="url(#gmaj)"/>
+    <rect id="frame-outer" class="ln-low dr" pathLength="1" x="24" y="24" width="1552" height="952"/>
+    <rect id="frame-inner" class="ln-mid dr" pathLength="1" x="56" y="56" width="1488" height="888"/>
+    <g id="zones"></g>
+
+    <g id="titleblock">
+      <rect class="ln-mid dr" pathLength="1" x="1156" y="856" width="388" height="88"/>
+      <path class="ln-low dr" pathLength="1" d="M1156 884 H1544 M1156 914 H1544 M1306 884 V914 M1386 884 V914 M1246 914 V944 M1360 914 V944 M1440 914 V944"/>
+      <text x="1162" y="867" font-size="5.8" class="t-low" letter-spacing="0.18em">TITLE</text>
+      <text x="1162" y="879" font-size="8.4" class="t-hi t-500">AMAZON LEO GROUND GATEWAY (GGT) — GENERIC BREAKDOWN</text>
+      <text x="1162" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">DWG NO</text>
+      <text x="1162" y="908" font-size="10" class="t-hi t-500">LEO-GGT-GEN-001</text>
+      <text x="1312" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SIZE</text>
+      <text x="1312" y="908" font-size="10" class="t-hi t-500">E</text>
+      <text x="1392" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SCALE</text>
+      <text x="1392" y="908" font-size="10" class="t-hi t-500">NTS</text>
+      <text x="1162" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">REV</text>
+      <text x="1162" y="938" font-size="10" class="t-hi t-500">P — PUBLIC</text>
+      <text x="1252" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">SHEET</text>
+      <text x="1252" y="938" font-size="10" class="t-hi t-500">1 OF 1</text>
+      <text x="1366" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">UNITS</text>
+      <text x="1366" y="938" font-size="10" class="t-hi t-500">—</text>
+      <text x="1446" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">DATE</text>
+      <text x="1446" y="938" font-size="10" class="t-hi t-500">2026-07</text>
+    </g>
+
+    <g id="notes">
+      <text x="68" y="872" font-size="6" class="t-mid" letter-spacing="0.22em">GENERAL NOTES</text>
+      <text x="68" y="886" font-size="7" class="t-low">1. GENERIC LEO GROUND GATEWAY — REPRESENTATIVE ONLY.</text>
+      <text x="68" y="898" font-size="7" class="t-low">2. COMPILED SOLELY FROM PUBLIC SOURCES, JUL 2026.</text>
+      <text x="68" y="910" font-size="7" class="t-low">3. NOT DERIVED FROM INTERNAL OR EXPORT-CONTROLLED DATA.</text>
+      <text x="68" y="922" font-size="7" class="t-low">4. NOT TO SCALE (NTS). NOT FOR ENGINEERING USE.</text>
+      <text x="68" y="934" font-size="7" class="t-low">5. SITE PLAN TYPICAL — NO REAL LOCATION DEPICTED.</text>
+    </g>
+
+    <g id="stamp" transform="translate(1258 788) rotate(-7)">
+      <rect x="-128" y="-26" width="256" height="52" rx="3" class="ln-acc" stroke-width="1.6"/>
+      <rect x="-122" y="-20" width="244" height="40" rx="2" class="ln-acc" stroke-width="0.5" opacity="0.55"/>
+      <text x="0" y="-1" font-size="15" text-anchor="middle" class="t-acc t-500" letter-spacing="0.26em">PUBLIC DATA ONLY</text>
+      <text x="0" y="13" font-size="6" text-anchor="middle" class="t-acc" letter-spacing="0.2em" opacity="0.75">GENERIC REPRESENTATION · NO INTERNAL DATA</text>
+    </g>
+  </g>
+
+  <!-- ================= WORLD (camera target) ================= -->
+  <g id="world-clip" clip-path="url(#frame-clip)">
+    <g id="world">
+
+      <line id="centerline" class="ln-dim cl" x1="800" y1="100" x2="800" y2="840"/>
+
+      <!-- LEO pass arc (circle about the trunnion pivot 800,505 — carriers stay glued to it) -->
+      <g id="orbit">
+        <path class="ln-low dash-ext" d="M495 299 A 368 368 0 0 0 1105 299"/>
+        <path class="ln-dim" d="M1050 232 L1062 242 L1050 252"/>
+        <text x="1085" y="322" font-size="6" class="t-low" letter-spacing="0.16em">LEO PASS — 590–630 KM SHELL</text>
+      </g>
+
+      <!-- satellite carriers: each rotates about (800,505); glyph authored at zenith -->
+      <g id="car-a"><use href="#sym-sat" transform="translate(789 130.5)"/></g>
+      <g id="car-b"><use href="#sym-sat" transform="translate(789 130.5)"/></g>
+
+      <!-- feeder beam (rotates with the dish about 800,505) -->
+      <g id="beam">
+        <path class="ln-acc" stroke-width="0.55" marker-end="url(#arr)" d="M796 372 V156"/>
+        <path class="ln-acc" stroke-width="0.55" marker-end="url(#arr)" d="M804 156 V372"/>
+        <text x="786" y="256" font-size="5.5" text-anchor="end" class="t-acc" letter-spacing="0.12em">TX 27.5–30.0 GHZ</text>
+        <text x="786" y="264" font-size="3.6" text-anchor="end" class="t-low" letter-spacing="0.12em">EARTH-TO-SPACE · FCC 20-102</text>
+        <text x="814" y="256" font-size="5.5" class="t-acc" letter-spacing="0.12em">RX 17.7–20.2 GHZ</text>
+        <text x="814" y="264" font-size="3.6" class="t-low" letter-spacing="0.12em">SPACE-TO-EARTH · FCC 20-102</text>
+      </g>
+
+      <!-- rain cell (rf scene furniture; lines generated) -->
+      <g id="rain"><g id="rain-lines"></g></g>
+
+      <!-- ============ THE SITE ============ -->
+      <g id="site">
+
+        <!-- RADOME · phantom convention (shown open) -->
+        <g id="radome">
+          <path class="ln-low dash-ext" d="M660 598 A 178 178 0 1 0 940 598"/>
+          <path class="ln-low" d="M660 598 H940"/>
+          <path class="ln-dim dash-ext" d="M660 598 V640 M940 598 V640"/>
+        </g>
+
+        <!-- DISH ASSEMBLY · authored boresight-up; #dish-tilt rotates about (800,505) -->
+        <g id="asm-dishmount">
+          <g id="dish-tilt">
+            <path class="ln-hi dr" pathLength="1" d="M695 419 Q800 503 905 419"/>
+            <path class="ln-mid dr" pathLength="1" d="M695 415 Q800 499 905 415"/>
+            <path class="ln-low dr" pathLength="1" d="M695 415 V419 M905 415 V419"/>
+            <path class="ln-low dr" pathLength="1" d="M695 419 L800 497 L905 419"/>
+            <circle class="ln-mid dr" pathLength="1" cx="800" cy="497" r="7"/>
+            <path class="ln-mid dr" pathLength="1" d="M718 432 L796 366 M882 432 L804 366"/>
+            <path class="ln-hi dr" pathLength="1" d="M793 354 H807 L803 371 H797 Z"/>
+            <path class="ln-mid dr" pathLength="1" d="M807 505 H818"/>
+            <rect class="ln-mid dr" pathLength="1" x="818" y="498" width="26" height="14"/>
+          </g>
+        </g>
+
+        <!-- PEDESTAL · EL-over-AZ, fixed -->
+        <g id="asm-pedestal">
+          <circle class="ln-hi dr" pathLength="1" cx="800" cy="505" r="9"/>
+          <circle class="ln-low dr" pathLength="1" cx="800" cy="505" r="3"/>
+          <path class="ln-hi dr" pathLength="1" d="M788 512 L782 578 H818 L812 512 Z"/>
+          <ellipse class="ln-mid dr" pathLength="1" cx="800" cy="582" rx="30" ry="5.5"/>
+          <path class="ln-hi dr" pathLength="1" d="M770 582 V602 H830 V582"/>
+          <path class="ln-dim dr" pathLength="1" d="M778 592 V597 M793 592 V597 M807 592 V597 M822 592 V597"/>
+          <path class="ln-mid dr" pathLength="1" d="M764 602 H836"/>
+          <path class="ln-low dr" pathLength="1" d="M772 602 L780 618 M828 602 L820 618"/>
+          <rect class="ln-mid dr" pathLength="1" x="768" y="618" width="64" height="8"/>
+          <path class="ln-dim dr" pathLength="1" d="M780 626 V648 M820 626 V648"/>
+          <rect class="fill-hatch-a ln-mid dr" pathLength="1" x="744" y="640" width="112" height="26"/>
+        </g>
+
+        <!-- grade line + earthwork ticks (generated) -->
+        <g id="grade">
+          <path class="ln-mid dr" pathLength="1" d="M570 640 H1050"/>
+          <g id="grade-ticks"></g>
+        </g>
+
+        <!-- TT&C ANTENNA · smaller, separate role (symbolic) -->
+        <g id="asm-ttc">
+          <rect class="ln-low dr" pathLength="1" x="588" y="632" width="52" height="8"/>
+          <path class="ln-mid dr" pathLength="1" d="M612 632 V606 M620 632 V606 M608 606 H624"/>
+          <g id="ttc-dish">
+            <path class="ln-hi dr" pathLength="1" d="M601 597 Q616 573 641 581"/>
+            <path class="ln-low dr" pathLength="1" d="M616 585 L628 570"/>
+            <circle class="ln-low dr" pathLength="1" cx="629" cy="569" r="2"/>
+            <path class="ln-dim dash-ext" d="M624 578 L586 522"/>
+          </g>
+          <text x="598" y="660" font-size="5.5" class="t-low" letter-spacing="0.2em">TT&amp;C</text>
+        </g>
+
+        <!-- EQUIPMENT SHELTER · section view (generic) -->
+        <g id="asm-shelter">
+          <text id="sh-caption" x="800" y="674" text-anchor="middle" font-size="6" class="t-low" letter-spacing="0.18em">SECTION — EQUIPMENT SHELTER · GENERIC</text>
+          <path id="sh-shell" class="ln-hi dr" pathLength="1" d="M660 692 H940 V802 H660 Z"/>
+          <g id="sh-roof">
+            <path class="ln-mid dr" pathLength="1" d="M654 692 H946"/>
+            <path class="ln-mid dr" pathLength="1" d="M706 692 V684"/>
+            <circle class="ln-mid dr" pathLength="1" cx="706" cy="681" r="3"/>
+          </g>
+          <path class="ln-low dr" pathLength="1" d="M668 786 H932"/>
+          <path class="ln-dim dr" pathLength="1" d="M684 786 V794 M728 786 V794 M772 786 V794 M816 786 V794 M860 786 V794 M904 786 V794"/>
+          <rect class="ln-mid dr" pathLength="1" x="666" y="704" width="24" height="40"/>
+          <path class="ln-dim dr" pathLength="1" d="M670 712 H686 M670 720 H686 M670 728 H686"/>
+          <rect class="ln-mid dr" pathLength="1" x="902" y="714" width="28" height="72"/>
+          <circle class="ln-low dr" pathLength="1" cx="908" cy="752" r="1.5"/>
+          <!-- rack ghosts (hidden-line convention, pre-reveal) -->
+          <g id="sh-hid">
+            <rect class="ln-dim dash-hid" x="754" y="712" width="40" height="74"/>
+            <rect class="ln-dim dash-hid" x="802" y="712" width="40" height="74"/>
+            <path class="ln-dim dash-hid" d="M706 706 H890"/>
+          </g>
+          <!-- cutaway pocket (hatched) + opening frame -->
+          <g id="sh-cut" clip-path="url(#clip-sh)">
+            <rect class="fill-hatch-a ln-low" x="700" y="702" width="200" height="92"/>
+          </g>
+          <rect id="sh-frame" class="ln-mid" x="700" y="702" width="200" height="92"/>
+        </g>
+
+        <!-- BASEBAND RACKS (extractable; clipped by the same reveal; generated) -->
+        <g id="sh-clip-w" clip-path="url(#clip-sh)">
+          <g id="rack-row"></g>
+        </g>
+
+        <!-- BACKHAUL · single-line diagram strip -->
+        <g id="asm-net">
+          <text x="668" y="852" font-size="6" class="t-low" letter-spacing="0.18em">SINGLE-LINE — BACKHAUL PATH · REPRESENTATIVE</text>
+          <path class="ln-dim dash-ext" d="M800 806 V830 H660 V868"/>
+          <rect class="ln-hi dr" pathLength="1" x="636" y="872" width="48" height="40" rx="3"/>
+          <path class="ln-mid dr" pathLength="1" d="M646 898 Q660 882 674 890"/>
+          <path class="ln-low dr" pathLength="1" d="M658 898 V904 M652 904 H664"/>
+          <text x="660" y="924" text-anchor="middle" font-size="6" class="t-hi t-500" letter-spacing="0.14em">GATEWAY</text>
+          <path class="ln-mid dr" pathLength="1" d="M684 892 H756"/>
+          <text x="720" y="886" text-anchor="middle" font-size="3.8" class="t-low" letter-spacing="0.12em">WAVEGUIDE / FIBER</text>
+          <rect class="ln-hi dr" pathLength="1" x="756" y="872" width="52" height="40" rx="3"/>
+          <path class="ln-dim dr" pathLength="1" d="M764 884 H800 M764 892 H800 M764 900 H800"/>
+          <text x="782" y="924" text-anchor="middle" font-size="6" class="t-hi t-500" letter-spacing="0.14em">PoP</text>
+          <text x="782" y="933" text-anchor="middle" font-size="4" class="t-low" letter-spacing="0.12em">POINT OF PRESENCE · COLO</text>
+          <path class="ln-mid dr" pathLength="1" d="M808 892 H840 M840 892 L868 878 M840 892 L868 906"/>
+          <rect class="ln-hi dr" pathLength="1" x="868" y="862" width="76" height="30" rx="4"/>
+          <text x="906" y="880" text-anchor="middle" font-size="5.5" class="t-acc" letter-spacing="0.14em">AWS REGION</text>
+          <rect class="ln-hi dr" pathLength="1" x="868" y="906" width="76" height="26" rx="13"/>
+          <text x="906" y="922" text-anchor="middle" font-size="5.5" class="t-hi" letter-spacing="0.14em">INTERNET</text>
+          <!-- animated flow overlay (backhaul scene) -->
+          <path id="fiber-flow" class="ln-acc dash-hid" stroke-width="0.8" d="M684 892 H756 M808 892 H840 M840 892 L868 878 M840 892 L868 906"/>
+          <!-- alternate site (diversity beat) -->
+          <g id="site-b">
+            <rect class="ln-dim" x="596" y="872" width="40" height="32" rx="3"/>
+            <path class="ln-dim" d="M604 894 Q616 882 628 888"/>
+            <path class="ln-dim dash-ext" d="M636 898 Q700 924 756 900"/>
+            <text x="616" y="922" text-anchor="middle" font-size="4.5" class="t-low" letter-spacing="0.12em">SITE B — DIVERSITY</text>
+          </g>
+        </g>
+      </g>
+
+      <!-- DIMENSIONS · deliberately unvalued (REF): source data not public -->
+      <g id="dims">
+        <path class="ln-dim dash-ext" d="M810 332 H1012 M996 640 H1012"/>
+        <path class="ln-mid dr" pathLength="1" d="M1008 337 V635" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text transform="translate(997 486) rotate(-90)" text-anchor="middle" font-size="9" class="t-hi t-500" letter-spacing="0.14em">OVERALL — REF</text>
+        <text transform="translate(1018 486) rotate(-90)" text-anchor="middle" font-size="6" class="t-low" letter-spacing="0.18em">SOURCE DIMENSIONS NOT PUBLIC</text>
+        <path class="ln-dim dash-ext" d="M660 806 V826 M940 806 V826"/>
+        <path class="ln-mid dr" pathLength="1" d="M665 822 H935" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="800" y="816" text-anchor="middle" font-size="7" class="t-hi t-500" letter-spacing="0.12em">SHELTER — REF</text>
+      </g>
+
+      <!-- SCENE ANNOTATIONS (leader lines; revealed per scene) -->
+      <g id="anno">
+        <g id="lead-antenna">
+          <circle cx="708" cy="430" r="1.4" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.5" d="M708 430 L654 400 H626"/>
+          <text x="623" y="398" font-size="5" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">PARABOLIC REFLECTOR — GENERIC</text>
+          <text x="623" y="405.5" font-size="3.4" text-anchor="end" class="t-low" letter-spacing="0.12em">PRODUCTION DESIGN NOT PUBLIC</text>
+          <circle cx="625" cy="480" r="1.2" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.45" d="M625 480 L600 462 H580"/>
+          <text x="577" y="460" font-size="4.5" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">RADOME — PHANTOM</text>
+          <text x="577" y="467" font-size="3.2" text-anchor="end" class="t-low" letter-spacing="0.12em">TYPICAL PROTECTION · REPRESENTATIVE</text>
+          <circle cx="905" cy="419" r="1.4" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.5" d="M905 419 L952 366 H972"/>
+          <text x="975" y="364" font-size="5" class="t-hi t-500" letter-spacing="0.14em">2.4 M TRACKERS — PROTOFLIGHT ERA</text>
+          <text x="975" y="371.5" font-size="3.4" class="t-low" letter-spacing="0.12em">FCC ELS FILINGS · PRODUCTION NOT PUBLIC</text>
+        </g>
+        <g id="lead-tracking">
+          <circle cx="800" cy="505" r="1.4" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.5" d="M800 505 L724 542 H694"/>
+          <text x="691" y="540" font-size="4.5" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">EL AXIS — TRUNNION</text>
+          <text x="691" y="547" font-size="3.2" text-anchor="end" class="t-low" letter-spacing="0.12em">DISH PIVOTS TO TRACK</text>
+          <circle cx="830" cy="585" r="1.4" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.5" d="M830 585 L888 622 H916"/>
+          <text x="919" y="624" font-size="4.5" class="t-hi t-500" letter-spacing="0.14em">AZ BEARING</text>
+          <text x="919" y="631" font-size="3.2" class="t-low" letter-spacing="0.12em">EL-OVER-AZ MOUNT — GENERIC</text>
+          <text id="ho-note" x="545" y="300" font-size="5" class="t-acc t-500" letter-spacing="0.16em">HANDOVER — NEXT SAT RISING</text>
+        </g>
+        <g id="lead-rf">
+          <circle cx="804" cy="310" r="1.4" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.5" d="M804 310 L872 282 H904"/>
+          <text x="907" y="284" font-size="5" class="t-hi t-500" letter-spacing="0.14em">ENCRYPTED — AES-256</text>
+          <text x="907" y="291.5" font-size="3.4" class="t-low" letter-spacing="0.12em">END-TO-END, SPACE TO CLOUD</text>
+          <circle cx="778" cy="216" r="1.4" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.5" d="M778 216 L700 198 H672"/>
+          <text x="669" y="196" font-size="4.5" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">RAIN FADE — KA BAND</text>
+          <text x="669" y="203" font-size="3.2" text-anchor="end" class="t-low" letter-spacing="0.12em">HEAVY CELLS ATTENUATE THE LINK</text>
+        </g>
+        <g id="lead-shelter">
+          <circle cx="774" cy="748" r="1.4" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.5" d="M774 748 L724 838 H694"/>
+          <text x="691" y="836" font-size="5" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">PROMETHEUS BASEBAND</text>
+          <text x="691" y="843.5" font-size="3.4" text-anchor="end" class="t-low" letter-spacing="0.12em">SAME SILICON AS SATELLITES &amp; TERMINALS</text>
+          <circle cx="706" cy="681" r="1.2" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.45" d="M706 681 L662 664 H638"/>
+          <text x="635" y="662" font-size="4.5" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">GNSS TIMING</text>
+          <text x="635" y="669" font-size="3.2" text-anchor="end" class="t-low" letter-spacing="0.12em">DISCIPLINES THE NETWORK CLOCK</text>
+          <circle cx="726" cy="770" r="1.2" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.45" d="M726 770 L688 812 H664"/>
+          <text x="661" y="810" font-size="4" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">POWER / UPS — GENERIC</text>
+        </g>
+        <g id="lead-backhaul">
+          <circle cx="944" cy="877" r="1.4" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.5" d="M944 877 L990 848 H994"/>
+          <text x="997" y="846" font-size="5" class="t-hi t-500" letter-spacing="0.14em">DIRECT TO AWS (D2A)</text>
+          <text x="997" y="853.5" font-size="3.4" class="t-low" letter-spacing="0.12em">TRANSIT GW / DIRECT CONNECT GW</text>
+          <text x="997" y="860.5" font-size="3.4" class="t-low" letter-spacing="0.12em">PNI AT MAJOR COLOS</text>
+        </g>
+        <g id="lead-network">
+          <circle cx="620" cy="585" r="1.4" fill="var(--signal)" stroke="none"/>
+          <path pathLength="1" class="ln-acc" stroke-width="0.5" d="M620 585 L585 620 H560"/>
+          <text x="557" y="618" font-size="5" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">TT&amp;C ANTENNAS</text>
+          <text x="557" y="625.5" font-size="3.4" text-anchor="end" class="t-low" letter-spacing="0.12em">TELEMETRY · COMMAND — SEPARATE FLEET</text>
+          <text x="1030" y="700" font-size="5" class="t-hi t-500" letter-spacing="0.14em">300+ GATEWAY STATIONS PLANNED</text>
+          <text x="1030" y="707.5" font-size="3.4" class="t-low" letter-spacing="0.12em">REVEALED AT RE:INVENT 2025 — SIX CONTINENTS</text>
+          <text x="1030" y="722" font-size="4.2" class="t-low" letter-spacing="0.12em">OISL MESH — TRAFFIC MAY ARRIVE VIA A DISTANT GATEWAY</text>
+          <text x="1030" y="736" font-size="4.2" class="t-low" letter-spacing="0.12em">BACKHAUL PARTNERS — VERIZON · VODAFONE · NTT/JSAT</text>
+        </g>
+      </g>
+
+      <!-- DETAIL A · feed geometry (prime focus, generic) -->
+      <g id="da-mark">
+        <circle class="ln-low dash-ext" cx="800" cy="364" r="24"/>
+        <circle class="ln-acc" stroke-width="0.6" cx="900" cy="320" r="7"/>
+        <text x="900" y="323" text-anchor="middle" font-size="7" class="t-acc t-500">A</text>
+        <path class="ln-low dash-ext" d="M906 325 L1042 452"/>
+      </g>
+      <g id="detail-a">
+        <path class="ln-dim cl" d="M1130 366 V574 M1026 470 H1234"/>
+        <circle class="ln-mid" cx="1130" cy="470" r="92"/>
+        <path class="ln-hi" d="M1076 500 Q1130 546 1184 500"/>
+        <path class="ln-dim dash-ext" d="M1130 523 V400"/>
+        <path class="ln-acc" stroke-width="0.6" d="M1124 452 H1136 M1130 446 V458"/>
+        <circle class="ln-acc" stroke-width="0.6" cx="1130" cy="452" r="2"/>
+        <path class="ln-mid" d="M1124 444 H1136 L1133 458 H1127 Z"/>
+        <path class="ln-acc dash-hid" stroke-width="0.5" d="M1094 388 V516 M1130 388 V440 M1166 388 V516"/>
+        <path class="ln-acc" stroke-width="0.5" d="M1094 516 L1126 454 M1166 516 L1134 454"/>
+        <path class="ln-dim" d="M1086 400 H1102 M1122 400 H1138 M1158 400 H1174 M1086 412 H1102 M1122 412 H1138 M1158 412 H1174"/>
+        <circle cx="1166" cy="470" r="1.4" fill="var(--signal)" stroke="none"/>
+        <path class="ln-acc" stroke-width="0.5" d="M1166 470 L1204 434 H1224"/>
+        <text x="1227" y="432" font-size="4.5" class="t-hi t-500" letter-spacing="0.14em">PLANE WAVE</text>
+        <text x="1227" y="439" font-size="3.2" class="t-low" letter-spacing="0.12em">REFLECTS TO FOCUS</text>
+        <circle cx="1134" cy="452" r="1.4" fill="var(--signal)" stroke="none"/>
+        <path class="ln-acc" stroke-width="0.5" d="M1134 452 L1076 420 H1054"/>
+        <text x="1051" y="418" font-size="4.5" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">FEED AT FOCUS</text>
+        <text x="1051" y="425" font-size="3.2" text-anchor="end" class="t-low" letter-spacing="0.12em">KA-BAND · GENERIC</text>
+        <text x="1130" y="592" text-anchor="middle" font-size="6.4" class="t-hi t-500" letter-spacing="0.24em">DETAIL A</text>
+        <text x="1130" y="602" text-anchor="middle" font-size="4.2" class="t-low" letter-spacing="0.18em">PRIME-FOCUS GEOMETRY · GENERIC</text>
+      </g>
+
+      <!-- DETAIL B · typical site plan (no real location) -->
+      <g id="db-mark">
+        <circle class="ln-low dash-ext" cx="800" cy="622" r="30"/>
+        <circle class="ln-acc" stroke-width="0.6" cx="676" cy="664" r="7"/>
+        <text x="676" y="667" text-anchor="middle" font-size="7" class="t-acc t-500">B</text>
+        <path class="ln-low dash-ext" d="M670 660 L575 495"/>
+      </g>
+      <g id="detail-b">
+        <path class="ln-dim cl" d="M500 316 V524 M396 420 H604"/>
+        <circle class="ln-mid" cx="500" cy="420" r="95"/>
+        <rect class="ln-low" x="432" y="356" width="136" height="118" rx="2"/>
+        <circle class="ln-hi" cx="462" cy="390" r="14"/>
+        <path class="ln-dim" d="M456 390 H468 M462 384 V396"/>
+        <circle class="ln-hi" cx="500" cy="378" r="14"/>
+        <path class="ln-dim" d="M494 378 H506 M500 372 V384"/>
+        <circle class="ln-hi" cx="538" cy="390" r="14"/>
+        <path class="ln-dim" d="M532 390 H544 M538 384 V396"/>
+        <rect class="ln-mid" x="456" y="432" width="56" height="24"/>
+        <path class="ln-low" d="M512 440 H518"/>
+        <path class="ln-dim dash-hid" d="M462 404 L470 432 M500 392 L496 430 M538 404 L512 436"/>
+        <path class="ln-mid" d="M576 356 V332"/>
+        <path d="M576 332 L572 340 H580 Z" fill="var(--ink-mid)" stroke="none"/>
+        <text x="576" y="326" text-anchor="middle" font-size="6" class="t-hi t-500">N</text>
+        <circle cx="462" cy="380" r="1.2" fill="var(--signal)" stroke="none"/>
+        <path class="ln-acc" stroke-width="0.45" d="M462 380 L448 368 H436"/>
+        <text x="433" y="366" font-size="4" text-anchor="end" class="t-hi t-500" letter-spacing="0.12em">ANTENNA PAD — TYP</text>
+        <circle cx="484" cy="444" r="1.2" fill="var(--signal)" stroke="none"/>
+        <path class="ln-acc" stroke-width="0.45" d="M484 444 L466 486 H448"/>
+        <text x="445" y="488" font-size="4" text-anchor="end" class="t-hi t-500" letter-spacing="0.12em">SHELTER</text>
+        <text x="500" y="542" text-anchor="middle" font-size="6.4" class="t-hi t-500" letter-spacing="0.24em">DETAIL B</text>
+        <text x="500" y="552" text-anchor="middle" font-size="4.2" class="t-low" letter-spacing="0.18em">TYPICAL SITE PLAN — LOCATION GENERIC</text>
+      </g>
+
+      <!-- EXPLODED-VIEW LABELS (generated; positions assume full EXPLODE offsets) -->
+      <g id="x-labels"></g>
+
+    </g>
+  </g>
+</svg>
+
+  <div class="panels"></div>
+  <nav class="rail" aria-label="Blueprint sections"></nav>
+  <div class="sr-scene" aria-live="polite"></div>
+  <div class="dwg-chip mono" aria-hidden="true">PUBLIC SOURCES · REPRESENTATIVE · NTS</div>
+</section>
+
+<!-- ============ OUTRO ============ -->
+<article class="outro" id="specs">
+  <p class="eyebrow mono">GENERAL SPECIFICATIONS · PUBLIC FIGURES ONLY</p>
+  <h2>The ground gateway, on paper</h2>
+  <p class="lede">Every figure above, in one place — compiled from Amazon’s public posts, filings and press coverage as of July 2026. The drawing itself is a <strong>generic</strong> LEO ground gateway: not to scale, no real location, not derived from any internal source, and drawn for familiarization only.</p>
+  <div id="spec-table"></div>
+  <div class="component-notes" id="component-notes"></div>
+  <p class="provenance" id="provenance"></p>
+</article>
+
+<script src="./vendor/gsap.min.js"></script>
+<script src="./vendor/ScrollTrigger.min.js"></script>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>
