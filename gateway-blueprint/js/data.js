@@ -27,7 +27,7 @@ export const CAM = {
   antenna:  { px: 900, py: 478, z: 1.85 },  // dish + radome + DETAIL A inset
   tracking: { px: 800, py: 400, z: 1.3 },   // sky arc + dish sweep
   rf:       { px: 800, py: 330, z: 1.65 },  // feeder beam close-up (cam pans to rfB mid-scene)
-  rfB:      { px: 760, py: 600, z: 1.35 },  // diversity beat: site B in the strip
+  rfB:      { px: 760, py: 610, z: 1.3 },   // diversity beat: site B in the strip
   shelter:  { px: 800, py: 742, z: 2.3 },
   backhaul: { px: 800, py: 858, z: 2.35 },
   network:  { px: 800, py: 505, z: 1.02 },  // wide pull: whole site + DETAIL B site plan
