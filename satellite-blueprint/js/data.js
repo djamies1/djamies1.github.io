@@ -165,8 +165,8 @@ export const XLABELS = [
   { id: 'xl-bus',   side: 'R', ax: 904,  ay: 668, ex: 986,  ey: 680, t: 'BUS STRUCTURE',       s: 'TRAPEZOIDAL · MIRROR FILM' },
   { id: 'xl-av',    side: 'L', ax: 543,  ay: 640, ex: 526,  ey: 640, t: 'AVIONICS — PROMETHEUS', col: 520, s: 'UP TO 1 TBPS PER SATELLITE' },
   { id: 'xl-nadir', side: 'L', ax: 700,  ay: 892, ex: 622,  ey: 916, t: 'PHASED-ARRAY DECK',   s: 'KA-BAND · Ø ~30 CM TYP' },
-  { id: 'xl-oisl',  side: 'R', ax: 1028, ay: 566, ex: 1076, ey: 552, t: 'OISL TERMINALS', col: 1150, s: '100 GBPS LASER MESH' },
-  { id: 'xl-prop',  side: 'R', ax: 1094, ay: 528, ex: 1130, ey: 594, t: 'PROPULSION MODULE', col: 1150, s: 'KRYPTON HALL-EFFECT' },
+  { id: 'xl-oisl',  side: 'R', ax: 1028, ay: 566, ex: 1090, ey: 600, t: 'OISL TERMINALS', col: 1150, s: '100 GBPS LASER MESH' },
+  { id: 'xl-prop',  side: 'R', ax: 1094, ay: 528, ex: 1130, ey: 500, t: 'PROPULSION MODULE', col: 1150, s: 'KRYPTON HALL-EFFECT' },
 ];
 
 /* Outro: full spec table + per-component prose (also the a11y content). */
