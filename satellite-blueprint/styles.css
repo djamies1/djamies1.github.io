@@ -455,8 +455,9 @@ body {
   .rail { display: none; }
   /* margin annotations don't survive the slice crop — panels carry the info */
   #anno > g, #x-labels, #detail-a, #da-mark, #detail-b, #db-mark { display: none !important; }
-  /* bottom is panel territory on small screens — transport moves up top */
-  .controls { left: auto; right: 12px; bottom: auto; top: 10px; transform: none; }
+  /* bottom is panel territory on small screens — transport moves up top,
+     below the full-width compliance chip */
+  .controls { left: auto; right: 12px; bottom: auto; top: 44px; transform: none; }
   .controls button { padding: 7px 9px; }
   .controls .ctl-label { display: none; }
 }
