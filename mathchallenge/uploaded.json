@@ -1766,5 +1766,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-07-13T17:49:42Z",
     "publish_at": "2026-07-14T01:47:28.000Z"
+  },
+  "math_0205": {
+    "youtube_id": "T9rQLAUdu8M",
+    "youtube_url": "https://www.youtube.com/watch?v=T9rQLAUdu8M",
+    "question": "20% of 150 = ?",
+    "answer": "30",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-14T17:01:11Z"
+  },
+  "math_0206": {
+    "youtube_id": "Sf5kaT2y7Dc",
+    "youtube_url": "https://www.youtube.com/watch?v=Sf5kaT2y7Dc",
+    "question": "25% of 80 = ?",
+    "answer": "20",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-14T17:02:43Z",
+    "publish_at": "2026-07-14T21:00:32.000Z"
+  },
+  "math_0207": {
+    "youtube_id": "iIUgDo5RWdU",
+    "youtube_url": "https://www.youtube.com/watch?v=iIUgDo5RWdU",
+    "question": "100 - 99 + 98 - 97 + 96 - 95 = ?",
+    "answer": "3",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-14T17:03:31Z",
+    "publish_at": "2026-07-15T01:00:32.000Z"
   }
 }

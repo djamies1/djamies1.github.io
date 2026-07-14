@@ -1766,5 +1766,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-07-13T17:51:48Z",
     "publish_at": "2026-07-14T01:49:42.000Z"
+  },
+  "wyr_0205": {
+    "youtube_id": "njZWypwluco",
+    "youtube_url": "https://www.youtube.com/watch?v=njZWypwluco",
+    "option_a": "Have the power to heal others instantly",
+    "option_b": "Have the power to restore any object to its original condition",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-14T17:04:04Z"
+  },
+  "wyr_0206": {
+    "youtube_id": "DLaMBMosO8g",
+    "youtube_url": "https://www.youtube.com/watch?v=DLaMBMosO8g",
+    "option_a": "Live in a penthouse in the world's most exciting city",
+    "option_b": "Live in a cabin in the most beautiful natural landscape on Earth",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-14T17:04:55Z",
+    "publish_at": "2026-07-14T21:03:32.000Z"
+  },
+  "wyr_0207": {
+    "youtube_id": "3lTzTCTv_5k",
+    "youtube_url": "https://www.youtube.com/watch?v=3lTzTCTv_5k",
+    "option_a": "Work from home forever",
+    "option_b": "Travel to a new country every week for work",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-14T17:05:39Z",
+    "publish_at": "2026-07-15T01:03:32.000Z"
   }
 }
