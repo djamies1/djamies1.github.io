@@ -270,7 +270,7 @@ function sceneDraw(tl) {
        network strip → indoor unit → roofline → mount → panel */
     .to('#terminal .ln-hi.dr',
       { strokeDashoffset: 0, duration: 3.6, stagger: { each: 0.2, from: 'end' } }, 3.4)
-    .to('#terminal .ln-mid.dr, #terminal .ln-low.dr, #terminal .ln-dim.dr',
+    .to('#terminal .ln-mid.dr, #terminal .ln-low.dr, #terminal .ln-dim.dr, #terminal .ln-acc.dr',
       { strokeDashoffset: 0, duration: 2.6, stagger: 0.04 }, 5.6)
     /* dashed conventions sketch in: cover phantom, hidden internals, cable */
     .to(['#terminal .dash-ext', '#terminal .dash-hid'], { autoAlpha: 1, duration: 0.9 }, 8.2)
