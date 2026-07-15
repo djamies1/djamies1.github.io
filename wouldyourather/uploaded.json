@@ -1792,5 +1792,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-07-14T17:05:39Z",
     "publish_at": "2026-07-15T01:03:32.000Z"
+  },
+  "wyr_0208": {
+    "youtube_id": "WbB53U35aCU",
+    "youtube_url": "https://www.youtube.com/watch?v=WbB53U35aCU",
+    "option_a": "Have unlimited free time but no money",
+    "option_b": "Have unlimited money but only 1 hour of free time per day",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-15T17:05:43Z"
+  },
+  "wyr_0209": {
+    "youtube_id": "H6e1ZJtVgX4",
+    "youtube_url": "https://www.youtube.com/watch?v=H6e1ZJtVgX4",
+    "option_a": "Live without the internet for a year",
+    "option_b": "Live without air conditioning or heating for a year",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-15T17:06:29Z",
+    "publish_at": "2026-07-15T21:05:09.000Z"
+  },
+  "wyr_0210": {
+    "youtube_id": "bOYNzLs3LjU",
+    "youtube_url": "https://www.youtube.com/watch?v=bOYNzLs3LjU",
+    "option_a": "Only be able to wear one outfit forever",
+    "option_b": "Only be able to eat one meal forever",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-15T17:07:15Z",
+    "publish_at": "2026-07-16T01:05:09.000Z"
   }
 }

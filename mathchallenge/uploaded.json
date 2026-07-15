@@ -1792,5 +1792,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-07-14T17:03:31Z",
     "publish_at": "2026-07-15T01:00:32.000Z"
+  },
+  "math_0208": {
+    "youtube_id": "1cmwYtrt0Fc",
+    "youtube_url": "https://www.youtube.com/watch?v=1cmwYtrt0Fc",
+    "question": "5! ÷ 4! = ?",
+    "answer": "5",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-15T17:03:25Z"
+  },
+  "math_0209": {
+    "youtube_id": "8TGnqzhUXbk",
+    "youtube_url": "https://www.youtube.com/watch?v=8TGnqzhUXbk",
+    "question": "2 × (3 + 4) - 2 × 3 = ?",
+    "answer": "8",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-15T17:04:16Z",
+    "publish_at": "2026-07-15T21:02:42.000Z"
+  },
+  "math_0210": {
+    "youtube_id": "bibHdSCoGAM",
+    "youtube_url": "https://www.youtube.com/watch?v=bibHdSCoGAM",
+    "question": "40% of 75 = ?",
+    "answer": "30",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-15T17:05:09Z",
+    "publish_at": "2026-07-16T01:02:42.000Z"
   }
 }
