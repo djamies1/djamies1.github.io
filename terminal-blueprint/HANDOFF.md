@@ -55,7 +55,7 @@ Serve the folder over http (ES modules). Two modes, one build:
 | `index.html?mode=player` | player | poster frame, click ▶ to play |
 | `index.html?mode=player&autoplay=1&loop=1` | player | dashboard widget, plays itself |
 
-Player params: `autoplay`, `loop`, `speed` (timeScale, default 2 ≈ 50 s run).
+Player params: `autoplay`, `loop`, `speed` (timeScale, default 1.25 ≈ 80 s run).
 A global `window.UT_BP_CONFIG = { mode, autoplay, loop, speed }` sets the same
 options without query strings. Reduced-motion (or missing GSAP) renders a
 static exploded poster in either mode.
@@ -132,6 +132,16 @@ drawn in scene 0 — `.ln-hi/.ln-mid/.ln-low/.ln-dim/.ln-acc` all need to be in 
 draw tweens or an accent path stays invisible. Dashed conventions
 (`.dash-hid`, `.dash-ext`, `.cl`) fade in, never dash-draw. No SVG filters;
 grids/hatch are `<pattern>`s; `<use>`/`<symbol>` children carry inline styles.
+
+### Readability (polish pass)
+
+Diagram labels are authored in small world units, so `js/main.js` enlarges every
+`#bp text` by `TEXT_SCALE` (1.4) at boot — the title block grows ×1.15 (it lives in a
+fixed drafting box) and the finale stamp is left as-is. Tune the constant there, not the
+per-label `font-size`s. The scene cards (`.panel`) are bumped in `styles.css`. For
+auto-play readability each card now fades in as its scene's camera settles (not at the
+scene tail) and holds until the next scene, and the defaults are `speed` 1.25 /
+`AUTOSCROLL_SECS` 80 — so every card stays up long enough to read (~5 s).
 
 ## Responsive / a11y
 

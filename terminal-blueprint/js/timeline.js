@@ -51,7 +51,7 @@ const tilt = (deg, duration, ease = 'power2.inOut') =>
 let st = null;
 let tlRef = null;
 let MODE = 'scroll';
-let OPTS = { autoplay: false, loop: false, speed: 2 };
+let OPTS = { autoplay: false, loop: false, speed: 1.25 };
 let started = false;           // player: first Play restarts from 0 (poster frame pre-seeks)
 const POSTER = 0.138;          // fully drawn terminal + overview panel, the paused-widget first frame
 
@@ -93,7 +93,7 @@ export const playerApi = {
 
 /* ---------- scroll-mode auto-play (tweens the scroll position;
    any real user input hands control back) ---------- */
-const AUTOSCROLL_SECS = 52;
+const AUTOSCROLL_SECS = 80;
 const INPUT_EVENTS = ['wheel', 'touchstart', 'keydown', 'mousedown'];
 let scrollTween = null;
 let autoStopCb = null;
@@ -141,7 +141,7 @@ const CAM_MOBILE = {
 };
 let CAMS = CAM;
 
-export function initTimeline({ onProgress, mode = 'scroll', autoplay = false, loop = false, speed = 2 } = {}) {
+export function initTimeline({ onProgress, mode = 'scroll', autoplay = false, loop = false, speed = 1.25 } = {}) {
   MODE = mode;
   OPTS = { autoplay, loop, speed };
   if (window.ScrollTrigger) {
@@ -283,7 +283,7 @@ function sceneDraw(tl) {
     .to('#dims .dr', { autoAlpha: 1, duration: 0.2 }, 9.55)
     .to('#dims .dr', { strokeDashoffset: 0, duration: 1.7, stagger: 0.3 }, 9.6)
     .to('#dims text', { autoAlpha: 1, duration: 0.9, stagger: 0.12 }, 10.8)
-    .to('#panel-0', { autoAlpha: 1, y: 0, duration: 1.4, ease: 'power2.out' }, 12.0);
+    .to('#panel-0', { autoAlpha: 1, y: 0, duration: 1.4, ease: 'power2.out' }, 10.6);
 }
 
 /* ---------- scene 1 · 14–26 · the phased array: elements, one aperture ---------- */
@@ -303,7 +303,7 @@ function sceneArray(tl) {
     .fromTo('#lead-array path',
       { strokeDasharray: 1.02, strokeDashoffset: 1.02 },
       { strokeDashoffset: 0, duration: 1.1, stagger: 0.28 }, 20.5)
-    .to('#panel-1', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 21.8)
+    .to('#panel-1', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 19.5)
     .to('#array-pcb .ln-hi', { stroke: 'rgba(233,242,255,0.92)', duration: 1.0 }, 24.6);
 }
 
@@ -338,7 +338,7 @@ function sceneSteer(tl) {
     .to('#wavefront', rot(-20, 0.6), 33.3)
     .to('#phase-strip', tilt(-10, 0.6), 33.3)
     .to('#beam', { autoAlpha: 1, duration: 0.4 }, 34.0)
-    .to('#panel-2', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 34.6)
+    .to('#panel-2', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 30.0)
     /* tracking resumes on the new satellite; the old one sets */
     .to('#car-b', { rotation: -12, svgOrigin: PIVOT, duration: 2.6, ease: 'none' }, 34.9)
     .to('#beam', { rotation: -12, svgOrigin: PIVOT, duration: 2.6, ease: 'none' }, 34.9)
@@ -372,7 +372,7 @@ function sceneLink(tl) {
     .to('#beam', { autoAlpha: 0.4, duration: 0.35 }, 43.6)
     .to('#beam', { autoAlpha: 1, duration: 0.9 }, 44.4)
     .to('#obstruction', { autoAlpha: 0, duration: 1.0 }, 46.0)
-    .to('#panel-3', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 46.6);
+    .to('#panel-3', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 42.0);
 }
 
 /* ---------- scene 4 · 49–60 · into the home: the indoor unit opens ---------- */
@@ -391,7 +391,7 @@ function sceneIndoor(tl) {
     .fromTo('#lead-indoor path',
       { strokeDasharray: 1.02, strokeDashoffset: 1.02 },
       { strokeDashoffset: 0, duration: 1.1, stagger: 0.3 }, 54.7)
-    .to('#panel-4', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 55.8);
+    .to('#panel-4', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 53.5);
 }
 
 /* ---------- scene 5 · 60–71 · three terminals: DETAIL B ---------- */
@@ -407,7 +407,7 @@ function sceneModels(tl) {
     .fromTo('#detail-b rect',
       { strokeDasharray: 1.02, strokeDashoffset: 1.02 },
       { strokeDashoffset: 0, duration: 1.2, stagger: 0.5 }, 63.6)
-    .to('#panel-5', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 66.4);
+    .to('#panel-5', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 64.5);
 }
 
 /* ---------- scene 6 · 71–82 · end to end: terminal → sat → gateway → cloud ---------- */
@@ -424,7 +424,7 @@ function sceneNetwork(tl) {
     .fromTo('#lead-network path',
       { strokeDasharray: 1.02, strokeDashoffset: 1.02 },
       { strokeDashoffset: 0, duration: 1.1 }, 75.7)
-    .to('#panel-6', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 78.2);
+    .to('#panel-6', { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power2.out' }, 75.5);
 }
 
 /* ---------- scene 7 · 82–100 · full explode → labels → reassemble → stamp ---------- */
@@ -468,5 +468,5 @@ function sceneExploded(tl) {
     .fromTo('#stamp',
       { autoAlpha: 0, scale: 1.6, transformOrigin: '50% 50%' },
       { autoAlpha: 1, scale: 1, duration: 1.2, ease: 'power3.out' }, 97.9)
-    .to('#panel-7', { autoAlpha: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 97.9);
+    .to('#panel-7', { autoAlpha: 1, y: 0, duration: 1.2, ease: 'power2.out' }, 96.5);
 }

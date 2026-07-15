@@ -179,7 +179,7 @@ export const XLABELS = [
   { id: 'xl-thermal', side: 'L', ax: 726, ay: 466, ex: 596,  ey: 452, t: 'THERMAL PLATE',       s: 'HEAT SPREADER — GENERIC' },
   { id: 'xl-base',    side: 'L', ax: 726, ay: 506, ex: 596,  ey: 524, t: 'BASEPLATE / CHASSIS',  s: 'MOUNT INTERFACE — GENERIC' },
   { id: 'xl-mount',   side: 'R', ax: 800, ay: 604, ex: 1002, ey: 586, t: 'MOUNT — FIXED',        s: 'NO MOVING PARTS · BEAM STEERS IN SILICON' },
-  { id: 'xl-router',  side: 'R', ax: 1030, ay: 742, ex: 1092, ey: 716, col: 1150, t: 'INDOOR UNIT', s: 'Wi-Fi ROUTER · SINGLE CABLE (DATA + POWER)' },
+  { id: 'xl-router',  side: 'R', ax: 1030, ay: 742, ex: 1092, ey: 716, col: 1150, t: 'INDOOR UNIT', s: 'Wi-Fi ROUTER · SINGLE CABLE' },
 ];
 
 /* Outro: full spec table + per-component prose (also the a11y content). */

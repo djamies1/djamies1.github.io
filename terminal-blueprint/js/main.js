@@ -6,7 +6,7 @@
      hands control back)
    · player (?mode=player) — no scroll at all; the timeline is
      time-driven with transport controls. Params: autoplay, loop,
-     speed (timeScale, default 2 ≈ 50 s run). Built for embedding
+     speed (timeScale, default 1.25 ≈ 80 s run). Built for embedding
      at any size, e.g. a dashboard sidebar iframe.
    Reduced motion (or missing GSAP) renders the static exploded
    poster in either mode.
@@ -25,12 +25,26 @@ const mode = q.get('mode') || CFG.mode || 'scroll';
 const opts = {
   autoplay: q.has('autoplay') || !!CFG.autoplay,
   loop: q.has('loop') || !!CFG.loop,
-  speed: parseFloat(q.get('speed') || CFG.speed) || 2,
+  speed: parseFloat(q.get('speed') || CFG.speed) || 1.25,
 };
 const isPlayer = mode === 'player';
 if (isPlayer) document.body.classList.add('is-player');
 
 buildDrawing();
+
+/* Enlarge the SVG diagram labels for readability. Labels are authored in tiny
+   world units (viewBox 1600×1000), so scaling only <text> (not a group) grows
+   the type relative to the line work. The title block sits in a fixed drafting
+   box, so it grows gently; the finale stamp is already the largest text — leave it. */
+const TEXT_SCALE = 1.4, TITLEBLOCK_SCALE = 1.15;
+document.querySelectorAll('#bp text').forEach((t) => {
+  if (t.closest('#stamp')) return;
+  const fs = parseFloat(t.getAttribute('font-size'));
+  if (!fs) return;
+  const k = t.closest('#titleblock') ? TITLEBLOCK_SCALE : TEXT_SCALE;
+  t.setAttribute('font-size', +(fs * k).toFixed(2));
+});
+
 buildUI((i) => (isPlayer ? playerApi.goto(i) : scrollToScene(i)));
 
 /* transport: same UI, mode-specific backend */
