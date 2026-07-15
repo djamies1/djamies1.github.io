@@ -53,7 +53,7 @@ js/main.js    boot order: geometry → UI → fonts.ready → timeline (or stati
 **Scroll mode (default)** — the full-page scrollytelling piece (the sub-tab
 version). The cover has an "AUTO-PLAY THE BREAKDOWN" button and the stage has a
 transport cluster (restart / prev / play-pause / next) that smoothly drives the
-scroll for you (~52 s full run); any real user input (wheel, touch, key, click
+scroll for you (~80 s full run); any real user input (wheel, touch, key, click
 outside the controls) hands control straight back to manual scrolling.
 
 **Player mode (`?mode=player`)** — built for dashboard widgets and fixed-size
@@ -67,7 +67,7 @@ media queries evaluate against the iframe's own viewport.
 | `mode=player` | enables player mode |
 | `autoplay` | starts playing immediately (otherwise parks on a poster frame — drawn craft + overview panel) |
 | `loop` | repeats forever with a ~2.6 s hold on the finished sheet |
-| `speed=N` | timeScale; default `2` ≈ 50 s per run (`1.5` ≈ 67 s, `3` ≈ 33 s) |
+| `speed=N` | timeScale; default `1.25` ≈ 80 s per run (`2` ≈ 50 s, `3` ≈ 33 s) |
 
 All params can also be set via `window.SAT_BP_CONFIG = { mode, autoplay, loop, speed }`
 before the module loads (for native mounts).
@@ -151,6 +151,16 @@ and misbehaves inside iframes.
 - **Camera presets** exist per breakpoint (`CAM` desktop / `CAM_MOBILE` portrait
   ≤900px) and the whole timeline rebuilds through `gsap.matchMedia` when the
   breakpoint flips.
+
+## Readability (polish pass)
+
+Diagram labels are authored in small world units, so `js/main.js` enlarges every
+`#bp text` by `TEXT_SCALE` (1.4) at boot — the title block grows ×1.15 (it lives in a
+fixed drafting box) and the finale stamp is left as-is. Tune the constant there, not the
+per-label `font-size`s. The scene cards (`.panel`) are bumped in `styles.css`. For
+auto-play readability each card now fades in as its scene's camera settles (not at the
+scene tail) and holds until the next scene, and the defaults are `speed` 1.25 /
+`AUTOSCROLL_SECS` 80 — so every card stays up long enough to read (~5 s).
 
 ## Responsive, reduced motion, a11y
 
