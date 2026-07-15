@@ -399,6 +399,8 @@ function sceneModels(tl) {
   tl.addLabel('models', 60)
     .to('#panel-4', { autoAlpha: 0, y: -18, duration: 0.8 }, 60)
     .to('#lead-indoor', { autoAlpha: 0, duration: 0.5 }, 60)
+    /* the panned camera would throw the indoor caption onto the title block */
+    .to('#in-caption', { autoAlpha: 0, duration: 0.6 }, 60)
     .to(cam, camTo(CAMS.models, 3.0), 60.2)
     .to('#db-mark', { autoAlpha: 1, duration: 0.7 }, 62.6)
     .to('#detail-b', { autoAlpha: 1, duration: 0.9 }, 63.3)
