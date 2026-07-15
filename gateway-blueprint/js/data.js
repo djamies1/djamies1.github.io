@@ -169,7 +169,7 @@ export const XLABELS = [
   { id: 'xl-pedestal', side: 'R', ax: 830,  ay: 585, ex: 1000, ey: 560, t: 'EL-OVER-AZ PEDESTAL', s: 'TRACKS EVERY PASS — GENERIC' },
   { id: 'xl-ttc',      side: 'L', ax: 538,  ay: 562, ex: 500,  ey: 590, t: 'TT&C ANTENNA', col: 460, s: 'TELEMETRY · TRACKING · COMMAND' },
   { id: 'xl-shelter',  side: 'L', ax: 664,  ay: 760, ex: 590,  ey: 780, t: 'EQUIPMENT SHELTER',   s: 'BASEBAND · TIMING · POWER — GENERIC' },
-  { id: 'xl-racks',    side: 'R', ax: 1085, ay: 744, ex: 1110, ey: 716, t: 'BASEBAND RACKS', col: 1150, s: 'PROMETHEUS — SAME SILICON AS THE FLEET' },
+  { id: 'xl-racks',    side: 'R', ax: 1085, ay: 744, ex: 1110, ey: 716, t: 'BASEBAND RACKS', col: 1150, s: 'PROMETHEUS — FLEET SILICON' },
   { id: 'xl-net',      side: 'R', ax: 944,  ay: 862, ex: 1096, ey: 838, t: 'BACKHAUL PATH', col: 1150, s: 'GATEWAY → PoP → FIBER → AWS' },
 ];
 
