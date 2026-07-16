@@ -1818,5 +1818,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-07-15T17:07:15Z",
     "publish_at": "2026-07-16T01:05:09.000Z"
+  },
+  "wyr_0211": {
+    "youtube_id": "hLqr4n7TsgI",
+    "youtube_url": "https://www.youtube.com/watch?v=hLqr4n7TsgI",
+    "option_a": "Have a personal butler for the rest of your life",
+    "option_b": "Have a personal chef for the rest of your life",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-16T17:04:38Z"
+  },
+  "wyr_0212": {
+    "youtube_id": "O2nmqsjBhHI",
+    "youtube_url": "https://www.youtube.com/watch?v=O2nmqsjBhHI",
+    "option_a": "Be incredibly popular but have no close friends",
+    "option_b": "Have one absolutely perfect best friend but be ignored by everyone else",
+    "category": "social",
+    "uploaded_at": "2026-07-16T17:05:24Z",
+    "publish_at": "2026-07-16T21:04:04.000Z"
+  },
+  "wyr_0213": {
+    "youtube_id": "rvSH4oA7P_c",
+    "youtube_url": "https://www.youtube.com/watch?v=rvSH4oA7P_c",
+    "option_a": "Always say exactly what you think",
+    "option_b": "Always know the perfect thing to say in any situation",
+    "category": "social",
+    "uploaded_at": "2026-07-16T17:06:09Z",
+    "publish_at": "2026-07-17T01:04:04.000Z"
   }
 }

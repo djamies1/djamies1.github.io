@@ -1818,5 +1818,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-07-15T17:05:09Z",
     "publish_at": "2026-07-16T01:02:42.000Z"
+  },
+  "math_0211": {
+    "youtube_id": "blNEEyB6k50",
+    "youtube_url": "https://www.youtube.com/watch?v=blNEEyB6k50",
+    "question": "3 × 4 + 8 ÷ 2 = ?",
+    "answer": "16",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-16T17:01:32Z"
+  },
+  "math_0212": {
+    "youtube_id": "VTOq7G-rYa8",
+    "youtube_url": "https://www.youtube.com/watch?v=VTOq7G-rYa8",
+    "question": "(3 + 4) × (8 - 3) = ?",
+    "answer": "35",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-16T17:03:12Z",
+    "publish_at": "2026-07-16T21:00:49.000Z"
+  },
+  "math_0213": {
+    "youtube_id": "djWZq-QzxB0",
+    "youtube_url": "https://www.youtube.com/watch?v=djWZq-QzxB0",
+    "question": "50 ÷ (2 + 3) × 4 = ?",
+    "answer": "40",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-07-16T17:04:04Z",
+    "publish_at": "2026-07-17T01:00:49.000Z"
   }
 }
