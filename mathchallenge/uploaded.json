@@ -1844,5 +1844,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-07-16T17:04:04Z",
     "publish_at": "2026-07-17T01:00:49.000Z"
+  },
+  "math_0214": {
+    "youtube_id": "IMy2JYLwy3Y",
+    "youtube_url": "https://www.youtube.com/watch?v=IMy2JYLwy3Y",
+    "question": "1, 4, 9, 16, 25, ___ = ?",
+    "answer": "36",
+    "category": "sequence",
+    "uploaded_at": "2026-07-17T16:58:31Z"
+  },
+  "math_0215": {
+    "youtube_id": "grm7Ti2SOBE",
+    "youtube_url": "https://www.youtube.com/watch?v=grm7Ti2SOBE",
+    "question": "1, 1, 2, 3, 5, 8, 13, ___ = ?",
+    "answer": "21",
+    "category": "sequence",
+    "uploaded_at": "2026-07-17T17:00:10Z",
+    "publish_at": "2026-07-17T20:57:11.000Z"
+  },
+  "math_0216": {
+    "youtube_id": "9v1DQvq51t0",
+    "youtube_url": "https://www.youtube.com/watch?v=9v1DQvq51t0",
+    "question": "2, 3, 5, 7, 11, 13, ___ = ?",
+    "answer": "17",
+    "category": "sequence",
+    "uploaded_at": "2026-07-17T17:01:40Z",
+    "publish_at": "2026-07-18T00:57:11.000Z"
   }
 }

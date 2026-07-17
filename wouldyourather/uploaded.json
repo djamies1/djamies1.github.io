@@ -1844,5 +1844,31 @@
     "category": "social",
     "uploaded_at": "2026-07-16T17:06:09Z",
     "publish_at": "2026-07-17T01:04:04.000Z"
+  },
+  "wyr_0214": {
+    "youtube_id": "hllDfgDk-oA",
+    "youtube_url": "https://www.youtube.com/watch?v=hllDfgDk-oA",
+    "option_a": "Never have to make small talk again",
+    "option_b": "Always have something interesting to say to anyone",
+    "category": "social",
+    "uploaded_at": "2026-07-17T17:02:24Z"
+  },
+  "wyr_0215": {
+    "youtube_id": "IRLAK45SuCQ",
+    "youtube_url": "https://www.youtube.com/watch?v=IRLAK45SuCQ",
+    "option_a": "Have your dream partner but no friends",
+    "option_b": "Have the best friend group ever but never find a romantic partner",
+    "category": "social",
+    "uploaded_at": "2026-07-17T17:03:10Z",
+    "publish_at": "2026-07-17T21:01:41.000Z"
+  },
+  "wyr_0216": {
+    "youtube_id": "0VJlViUBSns",
+    "youtube_url": "https://www.youtube.com/watch?v=0VJlViUBSns",
+    "option_a": "Be able to run a marathon without training or fatigue",
+    "option_b": "Be able to lift twice your body weight effortlessly",
+    "category": "physical",
+    "uploaded_at": "2026-07-17T17:03:54Z",
+    "publish_at": "2026-07-18T01:01:41.000Z"
   }
 }
