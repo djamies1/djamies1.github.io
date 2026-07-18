@@ -1870,5 +1870,31 @@
     "category": "sequence",
     "uploaded_at": "2026-07-17T17:01:40Z",
     "publish_at": "2026-07-18T00:57:11.000Z"
+  },
+  "math_0217": {
+    "youtube_id": "BvwCJopi6tU",
+    "youtube_url": "https://www.youtube.com/watch?v=BvwCJopi6tU",
+    "question": "1, 3, 6, 10, 15, ___ = ?",
+    "answer": "21",
+    "category": "sequence",
+    "uploaded_at": "2026-07-18T16:43:07Z"
+  },
+  "math_0218": {
+    "youtube_id": "VysG4AZ0bok",
+    "youtube_url": "https://www.youtube.com/watch?v=VysG4AZ0bok",
+    "question": "1, 8, 27, 64, 125, ___ = ?",
+    "answer": "216",
+    "category": "sequence",
+    "uploaded_at": "2026-07-18T16:43:53Z",
+    "publish_at": "2026-07-18T20:42:29.000Z"
+  },
+  "math_0219": {
+    "youtube_id": "uSEOVhUiLg0",
+    "youtube_url": "https://www.youtube.com/watch?v=uSEOVhUiLg0",
+    "question": "2, 4, 8, 16, 32, ___ = ?",
+    "answer": "64",
+    "category": "sequence",
+    "uploaded_at": "2026-07-18T16:44:40Z",
+    "publish_at": "2026-07-19T00:42:29.000Z"
   }
 }

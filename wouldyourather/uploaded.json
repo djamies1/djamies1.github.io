@@ -1870,5 +1870,31 @@
     "category": "physical",
     "uploaded_at": "2026-07-17T17:03:54Z",
     "publish_at": "2026-07-18T01:01:41.000Z"
+  },
+  "wyr_0217": {
+    "youtube_id": "kNWJQVMIKTw",
+    "youtube_url": "https://www.youtube.com/watch?v=kNWJQVMIKTw",
+    "option_a": "Have six-pack abs always without exercise",
+    "option_b": "Have perfect teeth without ever needing dental work",
+    "category": "physical",
+    "uploaded_at": "2026-07-18T16:45:15Z"
+  },
+  "wyr_0218": {
+    "youtube_id": "1EcqC-P43TU",
+    "youtube_url": "https://www.youtube.com/watch?v=1EcqC-P43TU",
+    "option_a": "Be naturally gifted at every sport you try",
+    "option_b": "Be naturally gifted at every creative hobby you try",
+    "category": "physical",
+    "uploaded_at": "2026-07-18T16:46:01Z",
+    "publish_at": "2026-07-18T20:44:40.000Z"
+  },
+  "wyr_0219": {
+    "youtube_id": "TvQnbWB0m84",
+    "youtube_url": "https://www.youtube.com/watch?v=TvQnbWB0m84",
+    "option_a": "Every time you sneeze you teleport to a random location on Earth",
+    "option_b": "Every time you laugh you grow 1cm taller permanently",
+    "category": "absurd",
+    "uploaded_at": "2026-07-18T16:46:45Z",
+    "publish_at": "2026-07-19T00:44:40.000Z"
   }
 }
