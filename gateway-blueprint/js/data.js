@@ -51,16 +51,19 @@ export const EXPLODE = {
   },
 };
 
-/* Scenes: t = [start,end] on a 0–100 timeline; panel = index into PANELS. */
+/* Scenes drive the rail + progress bar. t = [start,end] as a 0–100 % of the
+   VISIBLE run. The draw-on intro is pre-rolled (see START in timeline.js) so the
+   widget lands already-drawn at the first component scene; scrolling pans into it.
+   These % are the master timeline's scene bounds (14→100) remapped to 0→100.
+   panel = index into PANELS. */
 export const SCENES = [
-  { id: 'draw',     t: [0, 14],   title: 'Site elevation',       panel: 0 },
-  { id: 'antenna',  t: [14, 26],  title: 'The gateway antenna',  panel: 1 },
-  { id: 'tracking', t: [26, 38],  title: 'Tracking a pass',      panel: 2 },
-  { id: 'rf',       t: [38, 49],  title: 'The feeder link',      panel: 3 },
-  { id: 'shelter',  t: [49, 60],  title: 'Inside the shelter',   panel: 4 },
-  { id: 'backhaul', t: [60, 71],  title: 'Backhaul to the cloud', panel: 5 },
-  { id: 'network',  t: [71, 82],  title: 'Fleet & TT&C',         panel: 6 },
-  { id: 'exploded', t: [82, 100], title: 'Full breakdown',       panel: 7 },
+  { id: 'antenna',  t: [0, 14.0],    title: 'The dish',              panel: 1 },
+  { id: 'tracking', t: [14.0, 27.9], title: 'Following a satellite', panel: 2 },
+  { id: 'rf',       t: [27.9, 40.7], title: 'The link to space',     panel: 3 },
+  { id: 'shelter',  t: [40.7, 53.5], title: 'Inside the building',   panel: 4 },
+  { id: 'backhaul', t: [53.5, 66.3], title: 'On to the cloud',       panel: 5 },
+  { id: 'network',  t: [66.3, 79.1], title: 'A global network',      panel: 6 },
+  { id: 'exploded', t: [79.1, 100],  title: 'Every part',            panel: 7 },
 ];
 
 /* Scroll length of the pinned stage, in viewport-heights. */
@@ -68,94 +71,84 @@ export const SCROLL_VH = 9;
 
 export const PANELS = [
   {
-    eyebrow: 'SHEET 1 · SITE ELEVATION',
-    title: 'Amazon Leo ground gateway',
+    eyebrow: 'AMAZON LEO · GROUND STATION',
+    title: 'Amazon Leo ground station',
     rows: [
-      ['Role', 'Space ↔ internet & cloud'],
-      ['Planned', '300+ stations globally'],
-      ['Feeder link', 'Ka-band'],
-      ['Backhaul', 'PoP → fiber → AWS'],
-      ['Siting', 'Often remote'],
+      ['What it is', 'A dish that talks to space'],
+      ['Job', 'Connects satellites to the internet'],
+      ['Planned', '300+ worldwide'],
     ],
-    note: 'A generic representation from public figures only — production gateway hardware and site layouts aren’t public, and no real location is depicted. Deliberately NTS.',
+    note: 'A ground station links the satellites overhead to the internet and cloud. An illustration from public information only — no real location is shown, and it’s not to scale.',
   },
   {
-    eyebrow: 'SCENE 01 · THE ANTENNA',
-    title: 'Gateway antenna',
+    eyebrow: 'THE DISH',
+    title: 'The dish',
     rows: [
-      ['Type', 'Parabolic tracker (rep.)'],
-      ['Protection', 'Radome — typ.'],
-      ['Protoflight', '2.4 m dishes (FCC ELS)'],
-      ['Production', 'Not public'],
+      ['Type', 'A steerable satellite dish'],
+      ['Cover', 'A dome shields it from weather'],
+      ['Shown', 'Generic — not a real design'],
     ],
-    note: 'The protoflight campaign used 2.4 m tracking dishes per FCC filings. Production antenna design, size and count per site are not public — this dish is generic.',
+    note: 'A large dish antenna, usually under a protective dome. Its exact size and design aren’t public, so the one drawn here is generic.',
   },
   {
-    eyebrow: 'SCENE 02 · TRACKING',
-    title: 'Tracking a pass',
+    eyebrow: 'FOLLOWING A SATELLITE',
+    title: 'Following a satellite',
     rows: [
-      ['Mount', 'EL over AZ (generic)'],
-      ['Pass', 'Minutes per satellite'],
-      ['Handover', 'Continuous'],
-      ['Fleet', 'Next sat always rising'],
+      ['Speed', 'Satellites cross in minutes'],
+      ['So', 'The dish swivels to follow'],
+      ['Handover', 'Passes to the next one'],
     ],
-    note: 'LEO satellites race across the sky, horizon to horizon, in minutes. Gateway antennas track each pass and hand traffic to the next satellite without dropping it.',
+    note: 'Low satellites race across the sky in minutes, so the dish is never still — it tracks each pass, then swings back to catch the next satellite rising.',
   },
   {
-    eyebrow: 'SCENE 03 · FEEDER LINK',
-    title: 'Ka-band feeder link',
+    eyebrow: 'THE LINK TO SPACE',
+    title: 'The link to space',
     rows: [
-      ['Uplink', '27.5–30.0 GHz'],
-      ['Downlink', '17.7–20.2 GHz'],
-      ['Grant', 'FCC 20-102'],
-      ['Security', 'AES-256 end-to-end'],
-      ['Weather', 'Diversity + mesh'],
+      ['Direction', 'Two-way radio to satellites'],
+      ['Security', 'Encrypted end to end'],
+      ['Bad weather', 'Traffic shifts to another site'],
     ],
-    note: 'Heavy rain attenuates Ka-band. If a site fades, traffic can shift to another gateway — via the ground network and the optical mesh in orbit.',
+    note: 'A high-capacity two-way radio link to the satellites. Heavy rain can weaken it, so the network can shift traffic to another ground station.',
   },
   {
-    eyebrow: 'SCENE 04 · EQUIPMENT SHELTER',
-    title: 'Inside the shelter',
+    eyebrow: 'INSIDE THE BUILDING',
+    title: 'Inside the building',
     rows: [
-      ['Baseband', 'Prometheus — same silicon'],
-      ['Timing', 'GNSS-disciplined'],
-      ['Power', 'UPS — generic'],
-      ['Layout', 'Generic section'],
+      ['Runs on', 'Prometheus — Amazon’s chip'],
+      ['Same chip', 'Across the whole network'],
+      ['Also', 'Power and timing gear'],
     ],
-    note: 'The same custom ASIC family that flies on the satellites and sits in customer terminals also runs the gateway — one silicon design, ground to orbit.',
+    note: 'The equipment inside runs on Prometheus, the same custom Amazon chip used on the satellites and in customer terminals — one design, ground to orbit.',
   },
   {
-    eyebrow: 'SCENE 05 · BACKHAUL',
-    title: 'To the cloud',
+    eyebrow: 'ON TO THE CLOUD',
+    title: 'On to the cloud',
     rows: [
-      ['Path', 'Gateway → PoP → fiber'],
-      ['Cloud', 'Direct to AWS (D2A)'],
-      ['Private', 'PNI at major colos'],
-      ['Encryption', 'AES-256'],
+      ['Path', 'Station → fiber → internet'],
+      ['Cloud', 'Connects straight to AWS'],
+      ['Encryption', 'End to end'],
     ],
-    note: 'Each gateway talks to a Point of Presence that connects into fiber internet and AWS — enterprises can land traffic straight in their VPC via Transit or Direct Connect gateways.',
+    note: 'From the station, traffic joins fiber internet and connects to AWS — businesses can route it straight into their own cloud.',
   },
   {
-    eyebrow: 'SCENE 06 · FLEET & TT&C',
-    title: 'A global ground fleet',
+    eyebrow: 'A GLOBAL NETWORK',
+    title: 'A global network',
     rows: [
-      ['Stations', '300+ planned'],
-      ['TT&C', 'Separate antenna fleet'],
-      ['Mesh', 'OISL reroute in space'],
-      ['Backhaul for', 'Verizon · Vodafone · NTT/JSAT'],
+      ['Scale', '300+ stations planned'],
+      ['Where', 'Six continents'],
+      ['Also used by', 'Verizon · Vodafone · NTT'],
     ],
-    note: 'Gateways carry customer data; separate TT&C antennas keep the satellites healthy. Telcos use the same gateways to backhaul rural 4G/5G towers.',
+    note: 'More than 300 ground stations are planned worldwide. Phone companies like Verizon, Vodafone and NTT also use them to reach remote cell towers.',
   },
   {
-    eyebrow: 'SCENE 07 · FULL BREAKDOWN',
-    title: 'One gateway, opened up',
+    eyebrow: 'EVERY PART',
+    title: 'Every part, laid out',
     rows: [
-      ['Data', 'Public sources only'],
-      ['Geometry', 'Generic — NTS'],
-      ['Derived from', 'No internal material'],
-      ['Locations', 'None depicted'],
+      ['Based on', 'Public information only'],
+      ['Drawing', 'Not to scale'],
+      ['Location', 'None shown'],
     ],
-    note: 'Hit replay — or scroll back — to run the breakdown again.',
+    note: 'Hit replay — or scroll back — to run it again.',
   },
 ];
 
@@ -163,14 +156,14 @@ export const PANELS = [
    (base geometry + EXPLODE offsets). side L: elbow→col (text-end);
    side R: elbow→col (text-start). col overrides the default 560/1040. */
 export const XLABELS = [
-  { id: 'xl-radome',   side: 'L', ax: 620,  ay: 262, ex: 574,  ey: 240, t: 'RADOME',              s: 'WEATHER PROTECTION · PHANTOM — TYP' },
-  { id: 'xl-feed',     side: 'R', ax: 800,  ay: 284, ex: 1000, ey: 260, t: 'FEED — PRIME FOCUS',  s: 'GEOMETRY GENERIC' },
-  { id: 'xl-dish',     side: 'R', ax: 905,  ay: 341, ex: 1000, ey: 322, t: 'PARABOLIC REFLECTOR', s: 'TRACKING FEEDER ANTENNA — GENERIC' },
-  { id: 'xl-pedestal', side: 'R', ax: 830,  ay: 585, ex: 1000, ey: 560, t: 'EL-OVER-AZ PEDESTAL', s: 'TRACKS EVERY PASS — GENERIC' },
-  { id: 'xl-ttc',      side: 'L', ax: 538,  ay: 562, ex: 500,  ey: 590, t: 'TT&C ANTENNA', col: 460, s: 'TELEMETRY · TRACKING · COMMAND' },
-  { id: 'xl-shelter',  side: 'L', ax: 664,  ay: 760, ex: 590,  ey: 780, t: 'EQUIPMENT SHELTER',   s: 'BASEBAND · TIMING · POWER — GENERIC' },
-  { id: 'xl-racks',    side: 'R', ax: 1085, ay: 744, ex: 1110, ey: 716, t: 'BASEBAND RACKS', col: 1150, s: 'PROMETHEUS — FLEET SILICON' },
-  { id: 'xl-net',      side: 'R', ax: 944,  ay: 862, ex: 1096, ey: 838, t: 'BACKHAUL PATH', col: 1150, s: 'GATEWAY → PoP → FIBER → AWS' },
+  { id: 'xl-radome',   side: 'L', ax: 620,  ay: 262, ex: 574,  ey: 240, t: 'WEATHER DOME',    s: 'SHIELDS THE DISH' },
+  { id: 'xl-feed',     side: 'R', ax: 800,  ay: 284, ex: 1000, ey: 260, t: 'SIGNAL PICKUP',   s: 'AT THE FOCUS' },
+  { id: 'xl-dish',     side: 'R', ax: 905,  ay: 341, ex: 1000, ey: 322, t: 'THE DISH',        s: 'STEERABLE · GENERIC' },
+  { id: 'xl-pedestal', side: 'R', ax: 830,  ay: 585, ex: 1000, ey: 560, t: 'STEERABLE MOUNT', s: 'FOLLOWS EVERY PASS' },
+  { id: 'xl-ttc',      side: 'L', ax: 538,  ay: 562, ex: 500,  ey: 590, t: 'CONTROL ANTENNA', col: 460, s: 'KEEPS SATELLITES HEALTHY' },
+  { id: 'xl-shelter',  side: 'L', ax: 664,  ay: 760, ex: 590,  ey: 780, t: 'EQUIPMENT BUILDING', s: 'BRAINS · POWER · TIMING' },
+  { id: 'xl-racks',    side: 'R', ax: 1085, ay: 744, ex: 1110, ey: 716, t: 'THE ELECTRONICS', col: 1150, s: 'PROMETHEUS — NETWORK CHIP' },
+  { id: 'xl-net',      side: 'R', ax: 944,  ay: 862, ex: 1096, ey: 838, t: 'TO THE CLOUD', col: 1150, s: 'STATION → FIBER → AWS' },
 ];
 
 /* Outro: full spec table + per-component prose (also the a11y content). */
