@@ -249,7 +249,7 @@ body {
   position: absolute;
   top: clamp(18px, 6vh, 64px);
   right: clamp(18px, 3.5vw, 56px);
-  width: min(400px, 40vw);
+  width: min(430px, 42vw);
   visibility: hidden;
   pointer-events: none;
   background: linear-gradient(165deg, rgba(10, 31, 61, 0.88), rgba(6, 20, 42, 0.74));
@@ -265,21 +265,21 @@ body {
 .panel::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
 .panel::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
 .panel .eyebrow {
-  font: 500 0.68rem var(--font-mono); letter-spacing: 0.26em;
+  font: 500 0.74rem var(--font-mono); letter-spacing: 0.26em;
   color: var(--signal); margin-bottom: 8px;
 }
 .panel h2 {
-  font: 700 1.5rem/1.15 var(--font-display);
+  font: 700 1.68rem/1.12 var(--font-display);
   letter-spacing: 0.01em; color: var(--ink-hi);
   margin-bottom: 12px;
 }
 .panel dl { display: grid; grid-template-columns: auto 1fr; gap: 5px 18px; }
 .panel dt {
-  font: 400 0.72rem/1.7 var(--font-mono); letter-spacing: 0.14em;
+  font: 400 0.80rem/1.7 var(--font-mono); letter-spacing: 0.14em;
   color: var(--ink-low); text-transform: uppercase;
 }
 .panel dd {
-  font: 500 0.92rem/1.5 var(--font-mono);
+  font: 500 1.02rem/1.5 var(--font-mono);
   color: var(--ink-hi); text-align: right;
 }
 .panel--bl {
@@ -290,7 +290,7 @@ body {
 .panel .note {
   margin-top: 12px; padding-top: 10px;
   border-top: 1px dashed var(--ink-dim);
-  font: 400 0.85rem/1.6 var(--font-display);
+  font: 400 0.94rem/1.55 var(--font-display);
   color: var(--ink-mid);
 }
 
@@ -437,20 +437,86 @@ body {
   position: absolute; top: 10px; left: 12px;
   z-index: 5;
   padding: 5px 10px;
-  font-size: 0.64rem; letter-spacing: 0.18em;
+  font-size: 0.70rem; letter-spacing: 0.18em;
   color: var(--ink-mid);
   border: 1px solid var(--ink-dim); border-radius: 2px;
   background: rgba(7, 28, 57, 0.55);
 }
 
 /* ---------- responsive ---------- */
+/* small persistent hint, off to the side (top-right, mirrors the compliance chip) */
+.stage-hint {
+  position: absolute; top: 10px; right: 12px; z-index: 5;
+  padding: 5px 10px; border-radius: 3px;
+  font-size: 0.62rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--ink-low);
+  background: rgba(7, 28, 57, 0.5); border: 1px solid var(--ink-dim);
+  pointer-events: none;
+}
+.is-static .stage-hint { display: none; }
+@media (max-width: 900px) { .stage-hint { display: none; } }
+
+/* landing affordance: prominent play button + a hint that you can scroll instead.
+   pointer-events:none on the wrapper so only the button is clickable and the
+   transport bar underneath still works; fades out on first interaction. */
+.startcue {
+  position: absolute; inset: 0; z-index: 6;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+.startcue.is-playing { opacity: 0; visibility: hidden; }   /* hidden only while auto-playing */
+/* after the first scroll the landing hint calms down, but the play button stays
+   available at any scroll position (smaller + dimmer, brightens on hover) */
+.startcue.is-engaged { gap: 0; }
+.startcue.is-engaged .startcue-note { opacity: 0; }
+.startcue.is-engaged .startcue-play {
+  width: 58px; height: 58px; opacity: 0.66; animation: none;
+  box-shadow: 0 0 0 5px rgba(34, 211, 238, 0.06);
+}
+.startcue.is-engaged .startcue-play:hover,
+.startcue.is-engaged .startcue-play:focus-visible { opacity: 1; }
+.startcue-play {
+  pointer-events: auto;
+  width: 88px; height: 88px; border-radius: 50%;
+  display: grid; place-items: center;
+  color: var(--signal);
+  background: rgba(6, 20, 42, 0.55);
+  border: 1.5px solid var(--signal);
+  box-shadow: 0 0 0 7px rgba(34, 211, 238, 0.07);
+  backdrop-filter: blur(3px);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease,
+              width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+.startcue-play svg { width: 30px; height: 30px; fill: currentColor; margin-left: 5px; }
+.startcue-play:hover, .startcue-play:focus-visible {
+  background: rgba(34, 211, 238, 0.22); transform: scale(1.06);
+  box-shadow: 0 0 0 10px rgba(34, 211, 238, 0.12); outline: none;
+}
+.startcue-note {
+  font: 500 0.74rem var(--font-mono); letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ink-mid);
+  background: rgba(6, 20, 42, 0.5); padding: 5px 12px; border-radius: 4px;
+  backdrop-filter: blur(2px);
+  transition: opacity 0.4s ease;
+}
+.is-static .startcue { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .startcue-play { animation: cuepulse 2.6s ease-in-out infinite; }
+  @keyframes cuepulse {
+    0%, 100% { box-shadow: 0 0 0 7px rgba(34, 211, 238, 0.06); }
+    50%      { box-shadow: 0 0 0 12px rgba(34, 211, 238, 0.14); }
+  }
+}
+
 @media (max-width: 900px) {
   .panel {
     top: auto; right: 12px; left: 12px; bottom: 12px;
-    width: auto; max-height: 46svh; overflow-y: auto;
+    width: auto; max-height: 50svh; overflow-y: auto;
     padding: 14px 16px 12px;
   }
-  .panel h2 { font-size: 1.3rem; margin-bottom: 8px; }
+  .panel h2 { font-size: 1.44rem; margin-bottom: 8px; }
   .panel--bl { left: 12px; bottom: 12px; }
   .rail { display: none; }
   /* margin annotations don't survive the slice crop — panels carry the info */

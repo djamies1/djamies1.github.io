@@ -46,17 +46,19 @@ export const EXPLODE = {
   },
 };
 
-/* Scenes: label = timeline label; t = [start,end] on a 0–100 timeline;
-   rail/aria naming; panel = index into PANELS. */
+/* Scenes drive the rail + progress bar. t = [start,end] as a 0–100 % of the
+   VISIBLE run. The draw-on intro is pre-rolled (see START in timeline.js) so the
+   widget lands already-drawn at the first component scene; scrolling pans into it.
+   These % are the master timeline's scene bounds (14→100) remapped to 0→100.
+   panel = index into PANELS. */
 export const SCENES = [
-  { id: 'draw',     t: [0, 14],   title: 'General arrangement',  panel: 0 },
-  { id: 'bus',      t: [14, 25],  title: 'Bus & structure',      panel: 1 },
-  { id: 'array',    t: [25, 38],  title: 'Ka-band phased array', panel: 2 },
-  { id: 'oisl',     t: [38, 49],  title: 'Optical mesh links',   panel: 3 },
-  { id: 'avionics', t: [49, 59],  title: 'Avionics — Prometheus', panel: 4 },
-  { id: 'power',    t: [59, 70],  title: 'Power & solar wing',   panel: 5 },
-  { id: 'prop',     t: [70, 82],  title: 'Propulsion & ADCS',    panel: 6 },
-  { id: 'exploded', t: [82, 100], title: 'Full breakdown',       panel: 7 },
+  { id: 'bus',      t: [0, 12.8],    title: 'The satellite body',   panel: 1 },
+  { id: 'array',    t: [12.8, 27.9], title: 'The antennas',         panel: 2 },
+  { id: 'oisl',     t: [27.9, 40.7], title: 'Laser links in space', panel: 3 },
+  { id: 'avionics', t: [40.7, 52.3], title: 'The onboard brain',    panel: 4 },
+  { id: 'power',    t: [52.3, 65.1], title: 'Solar power',          panel: 5 },
+  { id: 'prop',     t: [65.1, 79.1], title: 'Staying in orbit',     panel: 6 },
+  { id: 'exploded', t: [79.1, 100],  title: 'Every part',           panel: 7 },
 ];
 
 /* Scroll length of the pinned stage, in viewport-heights. */
@@ -64,95 +66,84 @@ export const SCROLL_VH = 9;
 
 export const PANELS = [
   {
-    eyebrow: 'SHEET 1 · GENERAL ARRANGEMENT',
+    eyebrow: 'AMAZON LEO · SATELLITE',
     title: 'Amazon Leo satellite',
     rows: [
-      ['Class', 'LEO broadband'],
-      ['Design life', '7 years'],
-      ['Mass', '~540–570 kg (est.)'],
-      ['Orbit shells', '590 / 610 / 630 km'],
-      ['Disposal', 'Fully demisable'],
+      ['What it is', 'A broadband satellite'],
+      ['Orbit', 'Low — about 600 km up'],
+      ['Fleet', '3,236 satellites'],
     ],
-    note: 'A generic representation from public figures only — real dimensions and layout aren’t public, so this sheet is deliberately NTS.',
+    note: 'One of thousands of satellites that beam internet down to Earth. An illustration from public information only — real dimensions aren’t public, so it’s deliberately not to scale.',
   },
   {
-    eyebrow: 'SCENE 01 · BUS & STRUCTURE',
-    title: 'Spacecraft bus',
+    eyebrow: 'THE BODY',
+    title: 'The satellite body',
     rows: [
-      ['Form', 'Trapezoidal bus'],
-      ['Brightness', 'Dielectric mirror film'],
-      ['Deployment', 'Wax-actuated releases'],
-      ['Thermal', 'Radiators (generic)'],
+      ['Shape', 'Packs tightly for launch'],
+      ['Coating', 'Dims its glare for astronomers'],
+      ['Life', 'About 7 years'],
     ],
-    note: 'The mirror film scatters sunlight away from Earth so the satellite appears dimmer to ground-based astronomy.',
+    note: 'The main body holds everything together. A mirror-like film scatters sunlight away from Earth so the satellite is less visible to ground telescopes.',
   },
   {
-    eyebrow: 'SCENE 02 · KA-BAND PHASED ARRAY',
-    title: 'Phased-array antennas',
+    eyebrow: 'THE ANTENNAS',
+    title: 'The antennas',
     rows: [
-      ['Band', 'Ka'],
-      ['Receive', '18–20 GHz'],
-      ['Transmit', '28–30 GHz'],
-      ['Aperture', 'Ø ~30 cm'],
-      ['Steering', 'Electronic — no gimbals'],
-      ['Peak service', '1 Gbps (Leo Ultra)'],
+      ['How', 'Flat antennas, no dishes'],
+      ['Aim by', 'Electronics — no motors'],
+      ['Shown', 'Illustrative, not the real layout'],
     ],
-    note: 'Hundreds of tiny elements shift phase to steer beams instantly between users — no moving parts. Antenna count shown is representative.',
+    note: 'Flat antennas send and receive to customers and ground stations, aiming their beams electronically. The pattern drawn here is illustrative only.',
   },
   {
-    eyebrow: 'SCENE 03 · OPTICAL MESH',
-    title: 'Inter-satellite links',
+    eyebrow: 'IN ORBIT · LASER LINKS',
+    title: 'Laser links in space',
     rows: [
-      ['Link', 'Infrared laser'],
-      ['Rate', 'Up to 100 Gbps'],
-      ['Reach', 'Up to ~2,600 km'],
-      ['Role', 'Orbital mesh backbone'],
+      ['How', 'Laser beams between satellites'],
+      ['Speed', 'Up to 100 Gbps per link'],
+      ['Why', 'Reaches distant ground stations'],
     ],
-    note: 'When no gateway is in view, traffic hops satellite-to-satellite across the mesh until one is — moving data at light speed in vacuum.',
+    note: 'When no ground station is in view, a satellite passes traffic to its neighbours by laser — building a high-speed network across the sky at the speed of light.',
   },
   {
-    eyebrow: 'SCENE 04 · AVIONICS',
-    title: 'Prometheus SoC',
+    eyebrow: 'THE BRAIN',
+    title: 'The onboard brain',
     rows: [
-      ['Processor', 'Custom Amazon silicon'],
-      ['Throughput', 'Up to 1 Tbps / satellite'],
-      ['Combines', 'Base station + modem + backhaul'],
-      ['Fleet-wide', 'Same chip family on the ground'],
+      ['Runs on', 'Prometheus — Amazon’s chip'],
+      ['Same chip', 'Across the whole network'],
+      ['Handles', 'All the traffic onboard'],
     ],
-    note: 'One ASIC design runs the satellites, the customer terminals and the gateway antennas — the whole network speaks the same silicon.',
+    note: 'A custom Amazon chip called Prometheus runs the satellite — the same chip family used in the ground stations and customer terminals, so the whole network speaks one design.',
   },
   {
-    eyebrow: 'SCENE 05 · POWER',
-    title: 'Solar wing',
+    eyebrow: 'POWER',
+    title: 'Solar power',
     rows: [
-      ['Array', 'Deployable, sun-tracking'],
-      ['Storage', 'Battery module'],
-      ['Eclipse ops', 'Battery-powered'],
-      ['Detail', 'Cell layout representative'],
+      ['Power', 'A solar wing that tracks the Sun'],
+      ['Storage', 'Batteries for the dark side'],
+      ['Orbit', 'Circles Earth every ~95 min'],
     ],
-    note: 'The wing articulates to track the Sun through each ~95-minute orbit; batteries carry the load through Earth’s shadow.',
+    note: 'A solar wing turns to follow the Sun and charges batteries that carry the satellite through the shadow on the night side of each orbit.',
   },
   {
-    eyebrow: 'SCENE 06 · PROPULSION & ADCS',
-    title: 'Krypton Hall thruster',
+    eyebrow: 'STAYING IN ORBIT',
+    title: 'Staying in orbit',
     rows: [
-      ['Thruster', 'Hall-effect (in-house)'],
-      ['Propellant', 'Krypton'],
-      ['Station-keeping', 'Within ±9 km'],
-      ['Duties', 'Raise · maintain · deorbit'],
-      ['Attitude', 'Star trackers · RWs · GNSS'],
+      ['Engine', 'A small electric thruster'],
+      ['Jobs', 'Holds orbit · dodges debris'],
+      ['End of life', 'Steers down to burn up'],
     ],
-    note: 'Electric propulsion raises the orbit, dodges debris and — at end of life — deorbits the craft for a controlled, complete burn-up.',
+    note: 'A gentle electric thruster nudges the satellite: raising its orbit, holding position, avoiding debris, and — at the end of life — steering it down to burn up completely.',
   },
   {
-    eyebrow: 'SCENE 07 · FULL BREAKDOWN',
-    title: 'Seven assemblies',
+    eyebrow: 'EVERY PART',
+    title: 'Every part, laid out',
     rows: [
-      ['Data', 'Public sources only'],
-      ['Geometry', 'Generic — NTS'],
-      ['Derived from', 'No internal material'],
+      ['Based on', 'Public information only'],
+      ['Drawing', 'Not to scale'],
+      ['Layout', 'Representative only'],
     ],
-    note: 'Hit replay — or scroll back — to run the breakdown again.',
+    note: 'Hit replay — or scroll back — to run it again.',
   },
 ];
 
@@ -160,13 +151,13 @@ export const PANELS = [
    (base geometry + EXPLODE offsets). side L: elbow→col (text-end);
    side R: elbow→col (text-start). col overrides the default 560/1040. */
 export const XLABELS = [
-  { id: 'xl-wing',  side: 'L', ax: 725,  ay: 150, ex: 640,  ey: 150, t: 'SOLAR WING',          s: 'DEPLOYABLE · SUN-TRACKING' },
-  { id: 'xl-adcs',  side: 'R', ax: 846,  ay: 504, ex: 986,  ey: 462, t: 'ATTITUDE CONTROL',    s: 'STAR TRACKERS · RWs · GNSS' },
-  { id: 'xl-bus',   side: 'R', ax: 904,  ay: 668, ex: 986,  ey: 680, t: 'BUS STRUCTURE',       s: 'TRAPEZOIDAL · MIRROR FILM' },
-  { id: 'xl-av',    side: 'L', ax: 543,  ay: 640, ex: 526,  ey: 640, t: 'AVIONICS — PROMETHEUS', col: 520, s: 'UP TO 1 TBPS PER SATELLITE' },
-  { id: 'xl-nadir', side: 'L', ax: 700,  ay: 892, ex: 622,  ey: 916, t: 'PHASED-ARRAY DECK',   s: 'KA-BAND · Ø ~30 CM TYP' },
-  { id: 'xl-oisl',  side: 'R', ax: 1028, ay: 566, ex: 1090, ey: 600, t: 'OISL TERMINALS', col: 1150, s: '100 GBPS LASER MESH' },
-  { id: 'xl-prop',  side: 'R', ax: 1094, ay: 528, ex: 1130, ey: 500, t: 'PROPULSION MODULE', col: 1150, s: 'KRYPTON HALL-EFFECT' },
+  { id: 'xl-wing',  side: 'L', ax: 725,  ay: 150, ex: 640,  ey: 150, t: 'SOLAR WING',       s: 'FOLLOWS THE SUN' },
+  { id: 'xl-adcs',  side: 'R', ax: 846,  ay: 504, ex: 986,  ey: 462, t: 'POINTING CONTROL', s: 'KEEPS ANTENNAS ON TARGET' },
+  { id: 'xl-bus',   side: 'R', ax: 904,  ay: 668, ex: 986,  ey: 680, t: 'THE BODY',         s: 'HOLDS IT TOGETHER' },
+  { id: 'xl-av',    side: 'L', ax: 543,  ay: 640, ex: 526,  ey: 640, t: 'PROMETHEUS CHIP', col: 520, s: 'THE ONBOARD BRAIN' },
+  { id: 'xl-nadir', side: 'L', ax: 700,  ay: 892, ex: 622,  ey: 916, t: 'THE ANTENNAS',     s: 'FLAT · REPRESENTATIVE LAYOUT' },
+  { id: 'xl-oisl',  side: 'R', ax: 1028, ay: 566, ex: 1090, ey: 600, t: 'LASER LINKS', col: 1150, s: 'SATELLITE-TO-SATELLITE · 100 GBPS' },
+  { id: 'xl-prop',  side: 'R', ax: 1094, ay: 528, ex: 1130, ey: 500, t: 'ELECTRIC THRUSTER', col: 1150, s: 'HOLDS ORBIT · AVOIDS DEBRIS' },
 ];
 
 /* Outro: full spec table + per-component prose (also the a11y content). */

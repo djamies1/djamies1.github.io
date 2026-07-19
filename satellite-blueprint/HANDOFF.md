@@ -152,15 +152,25 @@ and misbehaves inside iframes.
   ≤900px) and the whole timeline rebuilds through `gsap.matchMedia` when the
   breakpoint flips.
 
-## Readability (polish pass)
+## Readability & embeddable-widget restructure (v2 — Leo Finance)
 
-Diagram labels are authored in small world units, so `js/main.js` enlarges every
-`#bp text` by `TEXT_SCALE` (1.4) at boot — the title block grows ×1.15 (it lives in a
-fixed drafting box) and the finale stamp is left as-is. Tune the constant there, not the
-per-label `font-size`s. The scene cards (`.panel`) are bumped in `styles.css`. For
-auto-play readability each card now fades in as its scene's camera settles (not at the
-scene tail) and holds until the next scene, and the defaults are `speed` 1.25 /
-`AUTOSCROLL_SECS` 80 — so every card stays up long enough to read (~5 s).
+Shown to a **non-technical finance audience**, so the copy is plain-language: the scene
+cards (`PANELS`), leader labels (`XLABELS`) and on-diagram annotations avoid specs/units/
+acronyms and keep only a few headline numbers. The detailed spec appendix (`SPEC_TABLE` /
+`COMPONENT_NOTES`) still lives in `js/data.js` but is no longer rendered. Compliance caveats
+(public-sources / representative / NTS / stamp) are unchanged.
+
+Diagram labels are enlarged at boot in `js/main.js` — `TEXT_SCALE` 1.65 (title block ×1.20,
+finale stamp left as-is); tune the constant, not the per-label `font-size`s. Scene cards
+(`.panel`) are bumped in `styles.css`. Pace: `speed` 1.0 / `AUTOSCROLL_SECS` 104 (~6–8 s/card).
+
+The page is a **self-contained widget**: the cover header and outro appendix are stripped
+from `index.html` (`buildOutro()` no longer called); the pinned `.stage` carries its own
+transport + on-sheet compliance. The **draw-on intro is dropped** — the widget lands at
+`START = 14` (first component scene, fully drawn) and the first scroll/play pans into it;
+`SCENES` in `js/data.js` are the master bounds (14→100) remapped to 0→100. A **start cue**
+(`.startcue`) overlays a persistent play button + "scroll to explore" hint that plays from
+the current scroll position and only hides while auto-playing.
 
 ## Responsive, reduced motion, a11y
 
