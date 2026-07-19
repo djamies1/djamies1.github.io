@@ -88,7 +88,7 @@ const INPUT_EVENTS = ['wheel', 'touchstart', 'keydown', 'mousedown'];
 let scrollTween = null;
 let autoStopCb = null;
 function cancelOnInput(e) {
-  if (e.target && e.target.closest && e.target.closest('.controls, .cover-play, .rail')) return;
+  if (e.target && e.target.closest && e.target.closest('.controls, .startcue-play, .rail')) return;
   stopAutoScroll();
 }
 export const isAutoScrolling = () => !!scrollTween;
@@ -130,6 +130,21 @@ const CAM_MOBILE = {
   exploded: { px: 810, py: 468, z: 0.72 },
 };
 let CAMS = CAM;
+
+/* ---------- documentary spotlight ----------
+   Each component scene dims every non-focus assembly so the camera's subject
+   carries the frame. Dims tween stroke-/fill-opacity ATTRIBUTES — never
+   opacity/autoAlpha — so they can't fight the reveal choreography, and any
+   child's own opacity animation still multiplies through. Desktop only: the
+   mobile slice crop reframes scenes and hides the detail insets. */
+const DIM = 0.32, SOFT = 0.55;
+const SPOT_GROUPS = ['#asm-wing', '#asm-bus', '#asm-oisl', '#asm-prop', '#asm-nadir'];
+function spot(tl, at, focus, dur = 1.6) {
+  for (const sel of SPOT_GROUPS) {
+    const v = focus[sel] ?? DIM;
+    tl.to(sel, { attr: { 'stroke-opacity': v, 'fill-opacity': v }, duration: dur, ease: 'power2.inOut' }, at);
+  }
+}
 
 export function initTimeline({ onProgress, mode = 'scroll', autoplay = false, loop = false, speed = 1.0 } = {}) {
   MODE = mode;
@@ -180,6 +195,17 @@ function build(isMobile, onProgress) {
   scenePower(tl);
   sceneProp(tl);
   sceneExploded(tl);
+
+  if (!isMobile) {
+    gsap.set(SPOT_GROUPS, { attr: { 'stroke-opacity': 1, 'fill-opacity': 1 } });
+    spot(tl, 14.4, { '#asm-bus': 1 });                              // bus & structure
+    spot(tl, 25.4, { '#asm-nadir': 1, '#asm-bus': SOFT });          // the antenna deck + beams
+    spot(tl, 38.4, { '#asm-oisl': 1, '#asm-bus': SOFT });           // laser links
+    spot(tl, 49.4, { '#asm-bus': 1 });                              // avionics bay opens in the bus
+    spot(tl, 59.4, { '#asm-wing': 1, '#asm-bus': SOFT });           // the wing tracks the sun
+    spot(tl, 70.4, { '#asm-prop': 1, '#asm-bus': SOFT });           // thruster + DETAIL A
+    spot(tl, 82.2, Object.fromEntries(SPOT_GROUPS.map((s) => [s, 1]))); // explode: all lit
+  }
   tl.to({}, { duration: 0.5 }, 99.5);   // hard end at 100
 
   if (MODE === 'player') {
