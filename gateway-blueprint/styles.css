@@ -76,121 +76,19 @@ body {
 
 .mono { font-family: var(--font-mono); }
 
-/* ---------- skip link ---------- */
-.skip {
-  position: absolute; left: 12px; top: -64px; z-index: 60;
-  padding: 10px 16px;
-  background: var(--paper-0); color: var(--ink);
-  border: 1px solid var(--panel-border); border-radius: var(--panel-radius);
-  font: 500 0.8rem var(--font-mono); letter-spacing: 0.06em;
-  text-decoration: none;
-  transition: top 0.2s var(--ease-out);
-}
-.skip:focus-visible { top: 12px; outline: 1px solid var(--signal); outline-offset: 2px; }
-
-/* ---------- cover ---------- */
-.cover {
-  min-height: 100svh;
-  display: grid; place-content: center; justify-items: start;
-  padding: clamp(24px, 6vw, 96px);
-  position: relative;
-  background-image:
-    linear-gradient(var(--grid-minor) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px),
-    linear-gradient(var(--grid-major) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px);
-  background-size: 12px 12px, 12px 12px, 60px 60px, 60px 60px;
-}
-.cover::after {  /* sheet corner marks */
-  content: ""; position: absolute; inset: clamp(14px, 3vw, 40px);
-  border: 1px solid var(--ink-dim); pointer-events: none;
-}
-.cover .eyebrow {
-  font: 500 clamp(0.6rem, 1.1vw, 0.72rem) var(--font-mono);
-  letter-spacing: 0.32em; color: var(--signal);
-  margin-bottom: clamp(16px, 3vh, 28px);
-}
-.cover h1 {
-  font-weight: 700;
-  font-size: clamp(2.6rem, 9vw, 8rem);
-  line-height: 0.92; letter-spacing: -0.015em;
-  color: var(--ink-hi);
-}
-.cover .sub {
-  margin-top: clamp(16px, 3vh, 26px);
-  max-width: 52ch;
-  font-weight: 500; font-size: clamp(0.95rem, 1.6vw, 1.1rem);
-  line-height: 1.55; color: var(--ink-mid);
-}
-/* THE compliance notice — deliberately loud, drafting-flavored */
-.cover .notice {
-  position: relative;
-  margin-top: clamp(18px, 3.5vh, 30px);
-  max-width: 66ch;
-  padding: 14px 18px 13px;
-  border: 1px solid rgba(124, 233, 255, 0.4);
-  background: var(--signal-dim);
-  font: 400 0.7rem/1.75 var(--font-mono); letter-spacing: 0.05em;
-  color: var(--ink-mid);
-}
-.cover .notice strong {
-  font-weight: 500; color: var(--signal); letter-spacing: 0.14em;
-}
-.cover .notice::before, .cover .notice::after {  /* corner ticks */
-  content: ""; position: absolute; width: 12px; height: 12px;
-  border-color: var(--signal); border-style: solid;
-}
-.cover .notice::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
-.cover .notice::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
-.cover .chips {
-  margin-top: clamp(20px, 4vh, 32px);
-  display: flex; flex-wrap: wrap; gap: 10px;
-}
-.cover .chips span {
-  font: 400 0.66rem var(--font-mono); letter-spacing: 0.14em;
-  color: var(--ink-mid);
-  border: 1px solid var(--ink-dim);
-  padding: 6px 12px; border-radius: 2px;
-}
-.cover-play {
-  display: inline-flex; align-items: center; gap: 11px;
-  margin-top: clamp(22px, 4vh, 34px);
-  padding: 13px 24px;
-  background: var(--signal-dim);
-  border: 1px solid rgba(124, 233, 255, 0.45);
-  border-radius: 3px;
-  color: var(--signal);
-  font: 500 0.72rem var(--font-mono); letter-spacing: 0.24em;
-  cursor: pointer;
-  transition: background 0.25s, border-color 0.25s;
-}
-.cover-play svg { width: 12px; height: 12px; fill: currentColor; }
-.cover-play:hover, .cover-play:focus-visible { background: rgba(34, 211, 238, 0.26); border-color: var(--signal); }
-.cover-play:focus-visible { outline: 1px solid var(--signal); outline-offset: 3px; }
-.is-static .cover-play { display: none; }
-
-.cover .cue {
-  position: absolute; left: 50%; bottom: clamp(26px, 5vh, 48px);
-  transform: translateX(-50%);
-  font: 400 0.62rem var(--font-mono); letter-spacing: 0.3em;
-  color: var(--ink-low); white-space: nowrap;
-}
-.cover .cue::after {
-  content: ""; display: block; width: 1px; height: 34px;
-  margin: 10px auto 0; background: linear-gradient(var(--ink-low), transparent);
-  animation: cue-drop 2.2s var(--ease-out) infinite;
-}
-@keyframes cue-drop {
-  0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
-  35% { transform: scaleY(1); opacity: 1; }
-  100% { transform: scaleY(1); opacity: 0; }
-}
+/* (cover / outro / skip-link CSS removed in the v3 design pass — those
+   sections left the DOM in the v2 embeddable-widget restructure) */
 
 /* ---------- stage ---------- */
+/* Materialize gently once fonts are ready (dashboard-embed polish). The hide is
+   gated on .is-booting — added only by JS — so the no-JS static drawing never hides. */
+html.is-booting .stage { opacity: 0; }
+html.is-ready .stage { opacity: 1; }
 .stage {
   position: relative;
   height: 100svh;
   overflow: hidden;
+  transition: opacity 0.7s var(--ease-out);
 }
 #bp {
   position: absolute; inset: 0;
@@ -199,6 +97,13 @@ body {
   will-change: transform;
   pointer-events: none;
   user-select: none;
+}
+/* sheet depth: a gentle corner falloff over the line work, under every UI layer
+   (it sits between #bp and .panels in the DOM — no z-index games needed) */
+.stage-vignette {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: radial-gradient(115% 88% at 50% 44%, transparent 58%, rgba(3, 12, 28, 0.3) 100%);
 }
 
 /* --- SVG line-work classes (world units; strokes scale with camera zoom) --- */
@@ -268,6 +173,19 @@ body {
   font: 500 0.74rem var(--font-mono); letter-spacing: 0.26em;
   color: var(--signal); margin-bottom: 8px;
 }
+.panel .eyebrow::before {  /* drafting tick */
+  content: ""; display: inline-block;
+  width: 16px; height: 1px;
+  background: var(--signal); opacity: 0.75;
+  margin-right: 9px; vertical-align: 4px;
+}
+.panel .panel-num {  /* ghost chapter numeral */
+  position: absolute; top: 11px; right: 14px;
+  font: 700 1.85rem/1 var(--font-mono);
+  color: var(--signal); opacity: 0.15;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
 .panel h2 {
   font: 700 1.68rem/1.12 var(--font-display);
   letter-spacing: 0.01em; color: var(--ink-hi);
@@ -302,6 +220,7 @@ body {
   z-index: 5;
 }
 .rail button {
+  position: relative;
   width: 22px; height: 22px;
   display: grid; place-items: center;
   background: none; border: none; cursor: pointer;
@@ -318,6 +237,22 @@ body {
 .rail button.is-active::before {
   background: var(--signal);
   transform: rotate(45deg) scale(1.5);
+}
+.rail button::after {  /* hover tooltip: the section title */
+  content: attr(data-title);
+  position: absolute; right: 26px; top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  white-space: nowrap;
+  font: 500 0.62rem var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-hi);
+  background: rgba(7, 28, 57, 0.85);
+  border: 1px solid var(--ink-dim); border-radius: 2px;
+  padding: 4px 9px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s var(--ease-out), transform 0.25s var(--ease-out);
+}
+.rail button:hover::after, .rail button:focus-visible::after {
+  opacity: 1; transform: translateY(-50%) translateX(0);
 }
 
 /* ---------- transport controls + progress bar ---------- */
@@ -356,80 +291,10 @@ body {
   background: rgba(233, 242, 255, 0.22);
 }
 
-/* player mode: the stage IS the page (dashboard widgets, iframes of any size) */
-.is-player .cover, .is-player .outro, .is-player .skip { display: none; }
-
 /* screen-reader scene announcements */
 .sr-scene {
   position: absolute; width: 1px; height: 1px;
   overflow: hidden; clip-path: inset(50%);
-}
-
-/* ---------- outro ---------- */
-.outro {
-  position: relative;
-  max-width: 920px;
-  margin: 0 auto;
-  padding: clamp(64px, 12vh, 140px) clamp(20px, 5vw, 48px) clamp(80px, 14vh, 160px);
-}
-.outro .eyebrow {
-  font: 500 0.64rem var(--font-mono); letter-spacing: 0.3em;
-  color: var(--signal); margin-bottom: 14px;
-}
-.outro h2 {
-  font: 700 clamp(1.8rem, 4.5vw, 2.8rem)/1.05 var(--font-display);
-  color: var(--ink-hi);
-  margin-bottom: 12px;
-}
-.outro .lede {
-  max-width: 62ch;
-  font-size: clamp(0.92rem, 1.5vw, 1.02rem); line-height: 1.65;
-  color: var(--ink-mid);
-  margin-bottom: clamp(32px, 6vh, 56px);
-}
-.outro .lede strong { color: var(--ink-hi); }
-.outro table {
-  width: 100%; border-collapse: collapse;
-  font-family: var(--font-mono); font-size: 0.8rem;
-}
-.outro caption {
-  text-align: left;
-  font: 500 0.62rem var(--font-mono); letter-spacing: 0.22em;
-  color: var(--ink-low);
-  padding-bottom: 10px;
-}
-.outro th {
-  text-align: left; font-weight: 400;
-  font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--ink-low);
-  border-bottom: 1px solid var(--panel-border);
-  padding: 8px 14px 8px 0;
-}
-.outro td {
-  padding: 9px 14px 9px 0;
-  border-bottom: 1px dashed var(--ink-dim);
-  color: var(--ink-mid); vertical-align: top;
-}
-.outro td:first-child { color: var(--ink-hi); font-weight: 500; white-space: nowrap; }
-.outro .component-notes { margin-top: clamp(36px, 7vh, 64px); display: grid; gap: 22px; }
-.outro .component-notes h3 {
-  font: 700 1.02rem var(--font-display); color: var(--ink-hi);
-  margin-bottom: 5px;
-}
-.outro .component-notes .tag {
-  font: 400 0.58rem var(--font-mono); letter-spacing: 0.2em; color: var(--signal);
-  display: block; margin-bottom: 6px;
-}
-.outro .component-notes p {
-  font-size: 0.86rem; line-height: 1.65; color: var(--ink-mid);
-  max-width: 68ch;
-}
-.outro .provenance {
-  margin-top: clamp(40px, 8vh, 72px);
-  padding-top: 18px;
-  border-top: 1px solid var(--panel-border);
-  font: 400 0.66rem/1.8 var(--font-mono); letter-spacing: 0.04em;
-  color: var(--ink-low);
 }
 
 /* ---------- compliance chip (ALWAYS visible on the stage, all breakpoints) ---------- */
@@ -442,6 +307,20 @@ body {
   border: 1px solid var(--ink-dim); border-radius: 2px;
   background: rgba(7, 28, 57, 0.55);
 }
+
+/* ---------- current-scene HUD (bottom-left, mirrors the drafting chip) ---------- */
+.scene-hud {
+  position: absolute; left: 14px; bottom: 13px; z-index: 5;
+  display: flex; align-items: baseline; gap: 10px;
+  font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-mid);
+  pointer-events: none;
+}
+.scene-hud .scene-hud-num {
+  font-weight: 500; color: var(--signal); letter-spacing: 0.12em;
+}
+.is-static .scene-hud { display: none; }
+@media (max-width: 900px) { .scene-hud { display: none; } }
 
 /* ---------- responsive ---------- */
 /* small persistent hint, off to the side (top-right, mirrors the compliance chip) */
@@ -529,9 +408,6 @@ body {
 }
 
 /* ---------- reduced motion: static exploded poster ---------- */
-@media (prefers-reduced-motion: reduce) {
-  .cover .cue::after { animation: none; opacity: 1; }
-}
 .is-static .stage { height: auto; }
 .is-static #bp {
   position: static;
