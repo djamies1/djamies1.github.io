@@ -40,17 +40,19 @@ export const EXPLODE = {
 /* Staging-gap lift applied when GS2 separates (scene 3 onward). */
 export const STAGING_LIFT = -60;
 
-/* Scenes: label = timeline label; t = [start,end] on a 0–100 timeline;
-   rail/aria naming; panel = index into PANELS. */
+/* Scenes drive the rail + progress bar. t = [start,end] as a 0–100 % of the
+   VISIBLE run. The draw-on intro is pre-rolled (see START in timeline.js) so the
+   widget lands already-drawn at the first component scene; scrolling pans into it.
+   These % are the master timeline's scene bounds (14→100) remapped to 0→100.
+   panel = index into PANELS. */
 export const SCENES = [
-  { id: 'draw',       t: [0, 14],   title: 'General arrangement', panel: 0 },
-  { id: 'fairing',    t: [14, 26],  title: 'Payload fairing',     panel: 1 },
-  { id: 'payload',    t: [26, 40],  title: 'Amazon Leo stack',    panel: 2 },
-  { id: 'gs2',        t: [40, 51],  title: 'Second stage GS2',    panel: 3 },
-  { id: 'interstage', t: [51, 59],  title: 'Forward module',      panel: 4 },
-  { id: 'gs1',        t: [59, 71],  title: 'First stage GS1',     panel: 5 },
-  { id: 'engines',    t: [71, 83],  title: 'Aft module & BE-4',   panel: 6 },
-  { id: 'exploded',   t: [83, 100], title: 'Full breakdown',      panel: 7 },
+  { id: 'fairing',    t: [0, 14.0],    title: 'The nose cone',          panel: 1 },
+  { id: 'payload',    t: [14.0, 30.2], title: 'The satellites onboard', panel: 2 },
+  { id: 'gs2',        t: [30.2, 43.0], title: 'The upper stage',        panel: 3 },
+  { id: 'interstage', t: [43.0, 52.3], title: 'Steering it home',       panel: 4 },
+  { id: 'gs1',        t: [52.3, 66.3], title: 'The booster',            panel: 5 },
+  { id: 'engines',    t: [66.3, 80.2], title: 'Seven main engines',     panel: 6 },
+  { id: 'exploded',   t: [80.2, 100],  title: 'Every part',             panel: 7 },
 ];
 
 /* Scroll length of the pinned stage, in viewport-heights. */
@@ -58,96 +60,84 @@ export const SCROLL_VH = 9;
 
 export const PANELS = [
   {
-    eyebrow: 'SHEET 1 · GENERAL ARRANGEMENT',
+    eyebrow: 'BLUE ORIGIN · NEW GLENN',
     title: 'New Glenn',
     rows: [
-      ['Height', '98 m · 322 ft'],
-      ['Diameter', '7.0 m'],
-      ['Stages', '2'],
-      ['To LEO', '45,000 kg'],
-      ['To GTO', '13,600 kg'],
+      ['What it is', 'A heavy-lift rocket'],
+      ['Height', '98 m — a 30-storey building'],
+      ['Launches', 'Amazon Leo satellites'],
     ],
-    note: 'Heavy-lift, partially reusable. Named for Mercury astronaut John Glenn, the first American to orbit the Earth.',
+    note: 'The heavy-lift rocket that carries Amazon Leo satellites to orbit — partly reusable, and named for astronaut John Glenn. An illustration from public information only, not to scale.',
   },
   {
-    eyebrow: 'SCENE 01 · PAYLOAD FAIRING',
-    title: 'Payload fairing',
+    eyebrow: 'THE NOSE CONE',
+    title: 'The nose cone',
     rows: [
-      ['Diameter', '7.0 m'],
-      ['Construction', '2-pc composite'],
-      ['Usable volume', '~2× a 5 m fairing'],
+      ['Job', 'Protects the satellites'],
+      ['Made of', 'Two clamshell halves'],
+      ['Then', 'Splits off in space'],
     ],
-    note: 'Shields the payload through max-Q, then the halves jettison once the vehicle is above the discernible atmosphere.',
+    note: 'A wide protective shell over the satellites for the ride up through the atmosphere. Once above the air, the two halves split open and drop away.',
   },
   {
-    eyebrow: 'SCENE 02 · AMAZON LEO STACK',
-    title: 'Leo satellite stack',
+    eyebrow: 'THE PAYLOAD',
+    title: 'The satellites onboard',
     rows: [
-      ['Satellites', '48'],
-      ['Dispenser', '4-tier · 12 per tier'],
-      ['Mission', 'LN-01 configuration'],
-      ['Contract', 'First of 24 launches'],
+      ['This launch', '48 Amazon Leo satellites'],
+      ['Stacked', 'Four tiers on a carrier'],
+      ['Part of', '24 launches booked'],
     ],
-    note: 'Amazon Leo’s largest single payload to date. Dispenser depiction is representative — the flight design isn’t public.',
+    note: 'This rocket’s biggest single load: 48 Leo satellites stacked on a carrier — the first of two dozen New Glenn launches booked for the network. The carrier drawn here is illustrative.',
   },
   {
-    eyebrow: 'SCENE 03 · SECOND STAGE',
-    title: 'GS2',
+    eyebrow: 'THE UPPER STAGE',
+    title: 'The upper stage',
     rows: [
-      ['Length', '23.4 m'],
-      ['Engines', '2× BE-3U'],
-      ['Propellant', 'LH2 + LOX'],
-      ['Thrust (vac)', '1,779 kN'],
-      ['Specific impulse', '445 s'],
-      ['Burn time', '644 s'],
+      ['Its job', 'Carries the satellites to orbit'],
+      ['Where', 'Fires in space, above the air'],
+      ['Reused?', 'No — the one part used once'],
     ],
-    note: 'Expendable, restartable hydrolox stage — relights to circularize and to place multi-orbit payloads.',
+    note: 'Once the booster drops away, this smaller top stage carries the satellites the rest of the way — and can restart its engines to place them in exactly the right orbit.',
   },
   {
-    eyebrow: 'SCENE 04 · FORWARD MODULE',
-    title: 'Interstage',
+    eyebrow: 'BRINGING THE BOOSTER BACK',
+    title: 'Steering it home',
     rows: [
-      ['Houses', '2× BE-3U nozzles'],
-      ['Fins', '4× actuated'],
-      ['Also carries', 'Ground umbilicals'],
+      ['Four fins', 'Steer it through re-entry'],
+      ['Like', 'Flying it back like a glider'],
+      ['Goal', 'Land the booster to reuse it'],
     ],
-    note: 'The four forward fins steer the returning booster through re-entry — flying it like a glider back to the landing vessel.',
+    note: 'Four fins near the top of the booster steer it through the fiery return, flying the empty booster back toward a landing so it can be used again.',
   },
   {
-    eyebrow: 'SCENE 05 · FIRST STAGE',
-    title: 'GS1',
+    eyebrow: 'THE BOOSTER',
+    title: 'The booster',
     rows: [
-      ['Length', '57.5 m'],
-      ['Propellant', 'LNG + LOX'],
-      ['LOX tank', '~850 m³'],
-      ['LNG tank', '~710 m³'],
-      ['Strakes', '2 aft'],
-      ['Rated for', '25+ flights'],
+      ['The big part', 'Does the heavy lifting'],
+      ['Lands', 'Upright on a ship at sea'],
+      ['Reused', '25+ flights'],
     ],
-    note: 'The booster flies back to a vertical landing on the sea platform Jacklyn, ~600 km downrange in the Atlantic.',
+    note: 'The tall lower stage does the heavy lifting off the pad, then flies back to land upright on a ship at sea — built to fly 25 or more times.',
   },
   {
-    eyebrow: 'SCENE 06 · AFT MODULE & ENGINES',
-    title: 'BE-4 × 7',
+    eyebrow: 'THE ENGINES',
+    title: 'Seven main engines',
     rows: [
-      ['Engines', '7× BE-4'],
-      ['Cycle', 'Ox-rich staged combustion'],
-      ['Liftoff thrust', '19,928 kN'],
-      ['Per engine', '~2,850 kN'],
-      ['Burn time', '~190 s'],
-      ['Landing gear', '6 legs, stowed'],
+      ['Count', '7 at the base'],
+      ['Fuel', 'Natural gas + oxygen'],
+      ['Landing', '3 relight to touch down'],
     ],
-    note: 'The Ø8.5 m skirt shields the cluster through re-entry. Three engines relight for the landing burn.',
+    note: 'Seven big engines fire together at liftoff. A protective skirt shields them on the way back, and three relight to set the booster down gently.',
   },
   {
-    eyebrow: 'SCENE 07 · FULL BREAKDOWN',
-    title: 'Seven assemblies',
+    eyebrow: 'EVERY PART',
+    title: 'Every part, laid out',
     rows: [
-      ['Reused', 'GS1 booster'],
-      ['Expended', 'GS2 + fairing'],
-      ['Liftoff mass class', 'Heavy-lift'],
+      ['Reused', 'The booster'],
+      ['Used once', 'Upper stage + nose cone'],
+      ['Drawing', 'Illustrative · not to scale'],
     ],
-    note: 'Hit replay — or scroll back — to run the breakdown again.',
+    note: 'Hit replay — or scroll back — to run it again.',
   },
 ];
 
@@ -155,13 +145,13 @@ export const PANELS = [
    (base geometry + EXPLODE offsets). side L: elbow→col at x 560 (text-end);
    side R: elbow→col at x 1040 (text-start). */
 export const XLABELS = [
-  { id: 'xl-fairing', side: 'L', ax: 648, ay: 2,   ex: 600, ey: 10,  t: 'PAYLOAD FAIRING',    s: '2-PC COMPOSITE' },
-  { id: 'xl-payload', side: 'R', ax: 822, ay: 49,  ex: 960, ey: 20,  t: 'LEO SATELLITE STACK', s: '48 SATELLITES · LN-01' },
-  { id: 'xl-gs2',     side: 'L', ax: 772, ay: 268, ex: 620, ey: 240, t: 'SECOND STAGE — GS2', s: '2× BE-3U · LH2 / LOX' },
-  { id: 'xl-inter',   side: 'R', ax: 848, ay: 425, ex: 980, ey: 410, t: 'FORWARD MODULE',     s: '4× ACTUATED FINS' },
-  { id: 'xl-gs1',     side: 'L', ax: 772, ay: 650, ex: 620, ey: 640, t: 'FIRST STAGE — GS1',  s: '57.5 m · 25+ FLIGHTS' },
-  { id: 'xl-aft',     side: 'R', ax: 836, ay: 930, ex: 980, ey: 918, t: 'AFT MODULE',         s: '6 LEGS · Ø 8.5 m SKIRT' },
-  { id: 'xl-be4',     side: 'L', ax: 778, ay: 968, ex: 620, ey: 972, t: 'BE-4 × 7',           s: '19,928 kN LIFTOFF' },
+  { id: 'xl-fairing', side: 'L', ax: 648, ay: 2,   ex: 600, ey: 10,  t: 'NOSE CONE',      s: 'PROTECTS THE SATELLITES' },
+  { id: 'xl-payload', side: 'R', ax: 822, ay: 49,  ex: 960, ey: 20,  t: 'THE SATELLITES', s: '48 ONBOARD · STACKED IN TIERS' },
+  { id: 'xl-gs2',     side: 'L', ax: 772, ay: 268, ex: 620, ey: 240, t: 'UPPER STAGE',    s: 'CARRIES SATS TO ORBIT' },
+  { id: 'xl-inter',   side: 'R', ax: 848, ay: 425, ex: 980, ey: 410, t: 'STEERING FINS',  s: 'FLY THE BOOSTER HOME' },
+  { id: 'xl-gs1',     side: 'L', ax: 772, ay: 650, ex: 620, ey: 640, t: 'THE BOOSTER',    s: 'LANDS UPRIGHT · REUSED 25+ TIMES' },
+  { id: 'xl-aft',     side: 'R', ax: 836, ay: 930, ex: 980, ey: 918, t: 'ENGINE BAY',     s: 'LANDING LEGS + HEAT SKIRT' },
+  { id: 'xl-be4',     side: 'L', ax: 778, ay: 968, ex: 620, ey: 972, t: 'SEVEN ENGINES',  s: 'FIRE AT LIFTOFF' },
 ];
 
 /* Outro: full spec table + per-component prose (also the a11y content). */

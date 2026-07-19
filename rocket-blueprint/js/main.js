@@ -6,7 +6,7 @@
      hands control back)
    · player (?mode=player) — no scroll at all; the timeline is
      time-driven with transport controls. Params: autoplay, loop,
-     speed (timeScale, default 1.25 ≈ 80 s run). Built for embedding
+     speed (timeScale, default 1.0 ≈ 100 s run). Built for embedding
      at any size, e.g. a dashboard sidebar iframe.
    Reduced motion (or missing GSAP) renders the static exploded
    poster in either mode.
@@ -25,7 +25,7 @@ const mode = q.get('mode') || CFG.mode || 'scroll';
 const opts = {
   autoplay: q.has('autoplay') || !!CFG.autoplay,
   loop: q.has('loop') || !!CFG.loop,
-  speed: parseFloat(q.get('speed') || CFG.speed) || 1.25,
+  speed: parseFloat(q.get('speed') || CFG.speed) || 1.0,
 };
 const isPlayer = mode === 'player';
 if (isPlayer) document.body.classList.add('is-player');
@@ -36,7 +36,7 @@ buildDrawing();
    world units (viewBox 1600×1000), so scaling only <text> (not a group) grows
    the type relative to the line work. The title block sits in a fixed drafting
    box, so it grows gently; the finale stamp is already the largest text — leave it. */
-const TEXT_SCALE = 1.4, TITLEBLOCK_SCALE = 1.15;
+const TEXT_SCALE = 1.65, TITLEBLOCK_SCALE = 1.20;
 document.querySelectorAll('#bp text').forEach((t) => {
   if (t.closest('#stamp')) return;
   const fs = parseFloat(t.getAttribute('font-size'));
@@ -47,15 +47,26 @@ document.querySelectorAll('#bp text').forEach((t) => {
 
 buildUI((i) => (isPlayer ? playerApi.goto(i) : scrollToScene(i)));
 
+/* landing / persistent play affordance — defined before the controls so both the
+   transport and the on-stage cue drive it. The cue's play button stays available at
+   ANY scroll position (it only hides while actually auto-playing), and it plays from
+   wherever you've scrolled to. */
+const startCue = document.querySelector('.startcue');
+const engageCue = () => startCue && startCue.classList.add('is-engaged');
+function reflectPlay(playing) {
+  setPlayState(playing);
+  if (startCue) { startCue.classList.add('is-engaged'); startCue.classList.toggle('is-playing', playing); }
+}
+
 /* transport: same UI, mode-specific backend */
 buildControls({
   onToggle: () => {
-    if (isPlayer) setPlayState(playerApi.toggle());
-    else if (isAutoScrolling()) stopAutoScroll();
-    else setPlayState(startAutoScroll(() => setPlayState(false)));
+    if (isPlayer) reflectPlay(playerApi.toggle());
+    else if (isAutoScrolling()) stopAutoScroll();          // stop → autoStop cb → reflectPlay(false)
+    else reflectPlay(startAutoScroll(() => reflectPlay(false)));
   },
   onRestart: () => {
-    if (isPlayer) { playerApi.restart(); setPlayState(true); }
+    if (isPlayer) { playerApi.restart(); reflectPlay(true); }
     else { stopAutoScroll(); scrollToScene(0); }
   },
   onPrev: () => {
@@ -64,7 +75,7 @@ buildControls({
   },
   onNext: () => {
     if (isPlayer) playerApi.step(1, getActiveScene());
-    else { stopAutoScroll(); scrollToScene(Math.min(7, getActiveScene() + 1)); }
+    else { stopAutoScroll(); scrollToScene(Math.min(6, getActiveScene() + 1)); }
   },
 });
 
@@ -97,10 +108,17 @@ function onProgress(p) {
   setProgress(p);
 }
 
-/* scroll mode: the cover's big button plays the piece hands-free */
-const coverPlay = document.querySelector('.cover-play');
-if (coverPlay) {
-  coverPlay.addEventListener('click', () => {
-    setPlayState(startAutoScroll(() => setPlayState(false)));
+/* wire the cue: its play button plays from the CURRENT position and is always
+   available (only hidden mid-playback); the "scroll" hint calms down once you
+   start scrolling. Player mode has no scroll; autoplay starts already playing. */
+if (startCue) {
+  const note = startCue.querySelector('.startcue-note');
+  if (isPlayer && note) note.textContent = 'Press play';
+  if (opts.autoplay) startCue.classList.add('is-engaged', 'is-playing');
+  startCue.querySelector('.startcue-play').addEventListener('click', () => {
+    if (isPlayer) { playerApi.restart(); reflectPlay(true); }
+    else reflectPlay(startAutoScroll(() => reflectPlay(false)));
   });
+  ['wheel', 'keydown', 'touchstart', 'scroll'].forEach((ev) =>
+    addEventListener(ev, engageCue, { passive: true, once: true }));
 }

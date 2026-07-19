@@ -33,9 +33,17 @@ export function setCam(preset) {
 let st = null;
 let tlRef = null;
 let MODE = 'scroll';
-let OPTS = { autoplay: false, loop: false, speed: 1.25 };
+let OPTS = { autoplay: false, loop: false, speed: 1.0 };
 let started = false;           // player: first Play restarts from 0 (poster frame pre-seeks)
-const POSTER = 0.138;          // fully drawn overview + panel, the paused-widget first frame
+/* The draw-on intro (master t 0–START) is pre-rolled: seeking past it builds the
+   finished sheet, but the widget LANDS at START — the start of the first component
+   scene, fully drawn — and never dwells on the boring stroke-by-stroke draw. From
+   there the first scroll/play pans into the component and its card appears, so
+   scrolling produces obvious motion right away. Progress is reported/consumed in the
+   VISIBLE range [START,100] → 0–100 %, so the rail/progress bar/transport skip it. */
+const START = 14;
+const toVisible = (t) => ((t - START) / (tlRef.duration() - START)) * 100;
+const fromVisible = (v) => START + (v / 100) * (tlRef.duration() - START);
 
 export function scrollToScene(i) {
   if (!st) return;
@@ -50,7 +58,7 @@ export const playerApi = {
   toggle() {
     if (!tlRef) return false;
     if (tlRef.paused()) {
-      if (!started) { started = true; tlRef.play(0); }
+      if (!started) { started = true; tlRef.play(START); }
       else tlRef.play();
       return true;
     }
@@ -60,13 +68,13 @@ export const playerApi = {
   restart() {
     if (!tlRef) return;
     started = true;
-    tlRef.play(0);
+    tlRef.play(START);
   },
   goto(i) {
     if (!tlRef) return;
     started = true;
     const [t0, t1] = SCENES[i].t;
-    tlRef.seek((t0 + t1) / 2, false);
+    tlRef.seek(fromVisible((t0 + t1) / 2), false);
   },
   step(dir, current) {
     this.goto(Math.max(0, Math.min(SCENES.length - 1, current + dir)));
@@ -75,7 +83,7 @@ export const playerApi = {
 
 /* ---------- scroll-mode auto-play (tweens the scroll position;
    any real user input hands control back) ---------- */
-const AUTOSCROLL_SECS = 80;
+const AUTOSCROLL_SECS = 104;
 const INPUT_EVENTS = ['wheel', 'touchstart', 'keydown', 'mousedown'];
 let scrollTween = null;
 let autoStopCb = null;
@@ -123,7 +131,7 @@ const CAM_MOBILE = {
 };
 let CAMS = CAM;
 
-export function initTimeline({ onProgress, mode = 'scroll', autoplay = false, loop = false, speed = 1.25 } = {}) {
+export function initTimeline({ onProgress, mode = 'scroll', autoplay = false, loop = false, speed = 1.0 } = {}) {
   MODE = mode;
   OPTS = { autoplay, loop, speed };
   if (window.ScrollTrigger) {
@@ -156,36 +164,11 @@ function build(isMobile, onProgress) {
   gsap.set('.panel', { autoAlpha: 0, y: 24 });
   applyCam();
 
-  let tl;
-  if (MODE === 'player') {
-    /* time-driven: no pin, no scrub — the transport controls own the playhead */
-    tl = gsap.timeline({
-      defaults: { ease: 'none' },
-      paused: true,
-      repeat: OPTS.loop ? -1 : 0,
-      repeatDelay: 2.6,
-      onUpdate: () => onProgress && onProgress(tl.progress() * 100),
-    });
-    tl.timeScale(OPTS.speed);
-    st = null;
-  } else {
-    const cfg = window.ROCKET_BP_CONFIG || {};
-    tl = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: {
-        trigger: '.stage',
-        start: 'top top',
-        end: () => '+=' + window.innerHeight * SCROLL_VH,
-        pin: true,
-        anticipatePin: 1,
-        scrub: matchMedia('(hover: none)').matches ? 0.5 : 0.75,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => onProgress && onProgress(self.progress * 100),
-        ...cfg,
-      },
-    });
-    st = tl.scrollTrigger;
-  }
+  /* Build the whole timeline PAUSED with no ScrollTrigger. The draw-on intro and
+     the pan into the first component live at t < START; seeking past them builds
+     the finished, zoomed-in sheet, but neither mode dwells there — both land at
+     START and treat [START,end] as the visible run. */
+  const tl = gsap.timeline({ defaults: { ease: 'none' }, paused: true });
   tlRef = tl;
 
   sceneDraw(tl);
@@ -199,9 +182,34 @@ function build(isMobile, onProgress) {
   tl.to({}, { duration: 0.5 }, 99.5);   // hard end at 100
 
   if (MODE === 'player') {
+    /* time-driven: the transport owns the playhead; progress reported in visible % */
+    tl.repeat(OPTS.loop ? -1 : 0).repeatDelay(3.2).timeScale(OPTS.speed);
+    tl.eventCallback('onUpdate', () => onProgress && onProgress(toVisible(tl.time())));
+    st = null;
     started = false;
-    if (OPTS.autoplay) { started = true; tl.play(0); }
-    else tl.progress(POSTER).pause();   // poster frame: drawn vehicle + overview panel
+    if (OPTS.autoplay) { started = true; tl.play(START); }
+    else tl.time(START).pause();          // poster: landed on the first component
+  } else {
+    /* scroll: a proxy playhead maps scroll 0→1 onto master t START→end, so the
+       pinned scrub starts on the first component and the intro is unreachable */
+    const cfg = window.ROCKET_BP_CONFIG || {};
+    const head = { t: START };
+    const scrub = gsap.to(head, {
+      t: tl.duration(), ease: 'none', paused: true,
+      onUpdate: () => { tl.time(head.t); onProgress && onProgress(toVisible(head.t)); },
+    });
+    st = ScrollTrigger.create({
+      animation: scrub,
+      trigger: '.stage',
+      start: 'top top',
+      end: () => '+=' + window.innerHeight * SCROLL_VH,
+      pin: true,
+      anticipatePin: 1,
+      scrub: matchMedia('(hover: none)').matches ? 0.5 : 0.75,
+      invalidateOnRefresh: true,
+      ...cfg,
+    });
+    tl.time(START);                       // first paint lands on the component
   }
 
   /* matchMedia reverts gsap state, but the camera writes a raw attribute —
@@ -250,8 +258,9 @@ function sceneDraw(tl) {
     .to('#dims .dash-ext', { autoAlpha: 1, duration: 0.9 }, 9.4)
     .to('#dims .dr', { autoAlpha: 1, duration: 0.2 }, 9.55)
     .to('#dims .dr', { strokeDashoffset: 0, duration: 1.7, stagger: 0.3 }, 9.6)
-    .to('#dims text', { autoAlpha: 1, duration: 0.9, stagger: 0.12 }, 10.8)
-    .to('#panel-0', { autoAlpha: 1, y: 0, duration: 1.4, ease: 'power2.out' }, 10.6);
+    .to('#dims text', { autoAlpha: 1, duration: 0.9, stagger: 0.12 }, 10.8);
+  /* panel-0 (overview card) intentionally never fades in — the widget lands on
+     the first component (scene 1), so the overview intro card is dropped. */
 }
 
 /* ---------- scene 1 · 14–26 · fairing hinges open ---------- */

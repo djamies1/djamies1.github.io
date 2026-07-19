@@ -4,26 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>New Glenn — General Arrangement</title>
-<meta name="description" content="Blueprint-style animated breakdown of the New Glenn launch vehicle — stages, engines, fairing, and the Amazon Leo satellite stack.">
+<meta name="description" content="A simple animated walkthrough of New Glenn — the heavy-lift rocket that carries Amazon Leo satellites to orbit. Built from public information; illustrative and drawn for familiarization.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b2749'/%3E%3Cpath d='M16 4c3 3.5 4 8 4 12v8h-8v-8c0-4 1-8.5 4-12z' fill='none' stroke='%23e9f2ff' stroke-width='1.4'/%3E%3Cpath d='M12 20l-3 5m14-5l3 5' stroke='%23e9f2ff' stroke-width='1.4'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
-<a class="skip" href="#specs">Skip animation — view specifications</a>
-
-<!-- ============ COVER ============ -->
-<header class="cover">
-  <p class="eyebrow mono">LAUNCH VEHICLE FAMILIARIZATION · GENERAL ARRANGEMENT</p>
-  <h1>NEW&nbsp;GLENN</h1>
-  <p class="sub">Heavy-lift, partially reusable, two-stage orbital launch vehicle — drawn to scale from public figures and taken apart piece by piece.</p>
-  <p class="chips mono"><span>DWG&nbsp;NG-LV-098</span><span>SCALE&nbsp;1:100</span><span>REV&nbsp;B</span><span>SHEET&nbsp;1&nbsp;OF&nbsp;1</span></p>
-  <button class="cover-play" type="button">
-    <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 1.4 L10.6 6 L2.2 10.6 Z"/></svg>
-    AUTO-PLAY THE BREAKDOWN
-  </button>
-  <p class="cue mono">OR SCROLL AT YOUR OWN PACE</p>
-</header>
+<!-- Cover stripped: this page is a self-contained, embeddable blueprint widget.
+     Compliance lives ON the sheet (persistent chip, title-block general notes,
+     the finale stamp). -->
 
 <!-- ============ PINNED STAGE ============ -->
 <section class="stage" aria-label="Animated blueprint of the New Glenn launch vehicle">
@@ -210,16 +199,16 @@
 
         <path class="ln-dim dash-ext" d="M772 186 V98 M828 186 V98"/>
         <path class="ln-mid dr" pathLength="1" d="M777 102 H823" marker-start="url(#arr)" marker-end="url(#arr)"/>
-        <text x="800" y="92" text-anchor="middle" font-size="11" class="t-hi t-500" letter-spacing="0.1em">Ø 7.0 m</text>
+        <text x="800" y="92" text-anchor="middle" font-size="11" class="t-hi t-500" letter-spacing="0.1em">7 m WIDE</text>
 
         <path class="ln-dim dash-ext" d="M806 110 H916 M830 245 H916 M830 432 H916 M836 892 H916"/>
         <path class="ln-mid dr" pathLength="1" d="M912 115 V240" marker-start="url(#arr)" marker-end="url(#arr)"/>
         <path class="ln-mid dr" pathLength="1" d="M912 250 V427" marker-start="url(#arr)" marker-end="url(#arr)"/>
         <path class="ln-mid dr" pathLength="1" d="M912 437 V887" marker-start="url(#arr)" marker-end="url(#arr)"/>
-        <text x="924" y="173" font-size="8" class="t-low" letter-spacing="0.16em">FAIRING</text>
-        <text x="924" y="333" font-size="9" class="t-hi t-500" letter-spacing="0.1em">GS2</text>
+        <text x="924" y="173" font-size="8" class="t-low" letter-spacing="0.16em">NOSE CONE</text>
+        <text x="924" y="333" font-size="9" class="t-hi t-500" letter-spacing="0.1em">UPPER STAGE</text>
         <text x="924" y="345" font-size="8" class="t-mid">23.4 m</text>
-        <text x="924" y="655" font-size="9" class="t-hi t-500" letter-spacing="0.1em">GS1</text>
+        <text x="924" y="655" font-size="9" class="t-hi t-500" letter-spacing="0.1em">BOOSTER</text>
         <text x="924" y="667" font-size="8" class="t-mid">57.5 m</text>
       </g>
 
@@ -228,54 +217,54 @@
         <g id="lead-fairing">
           <circle cx="854" cy="203" r="1.3" fill="var(--signal)" stroke="none"/>
           <path pathLength="1" class="ln-acc" stroke-width="0.5" d="M854 203 L878 192 H899"/>
-          <text x="902" y="194" font-size="4.4" class="t-hi t-500" letter-spacing="0.16em">PAYLOAD FAIRING</text>
-          <text x="902" y="201" font-size="3.2" class="t-low" letter-spacing="0.14em">2-PC COMPOSITE · Ø 7.0 m</text>
+          <text x="902" y="194" font-size="4.4" class="t-hi t-500" letter-spacing="0.16em">NOSE CONE</text>
+          <text x="902" y="201" font-size="3.2" class="t-low" letter-spacing="0.14em">PROTECTS THE SATELLITES</text>
         </g>
         <g id="lead-payload">
           <circle cx="822" cy="215" r="1.1" fill="var(--signal)" stroke="none"/>
           <path pathLength="1" class="ln-acc" stroke-width="0.45" d="M822 215 L858 198 H878"/>
-          <text x="881" y="200" font-size="3.8" class="t-hi t-500" letter-spacing="0.16em">LEO SATELLITE STACK</text>
-          <text x="881" y="206" font-size="2.8" class="t-low" letter-spacing="0.14em">48 SATS · 4 TIERS · 12 PER TIER</text>
+          <text x="881" y="200" font-size="3.8" class="t-hi t-500" letter-spacing="0.16em">THE SATELLITES</text>
+          <text x="881" y="206" font-size="2.8" class="t-low" letter-spacing="0.14em">48 ONBOARD · STACKED IN TIERS</text>
         </g>
         <g id="lead-gs2">
           <circle cx="824" cy="330" r="1.5" fill="var(--signal)" stroke="none"/>
           <path pathLength="1" class="ln-acc" stroke-width="0.55" d="M824 330 L872 306 H912"/>
-          <text x="915" y="308" font-size="5" class="t-hi t-500" letter-spacing="0.16em">SECOND STAGE — GS2</text>
-          <text x="915" y="316" font-size="3.6" class="t-low" letter-spacing="0.14em">2× BE-3U · RESTARTABLE</text>
+          <text x="915" y="308" font-size="5" class="t-hi t-500" letter-spacing="0.16em">UPPER STAGE</text>
+          <text x="915" y="316" font-size="3.6" class="t-low" letter-spacing="0.14em">RESTARTS IN SPACE</text>
           <path pathLength="1" class="ln-acc" stroke-width="0.4" d="M776 252 H770 M776 339 H770"/>
-          <text x="767" y="253.8" font-size="3.6" text-anchor="end" class="t-mid" letter-spacing="0.12em">LH2 TANK</text>
-          <text x="767" y="340.8" font-size="3.6" text-anchor="end" class="t-mid" letter-spacing="0.12em">LOX TANK</text>
+          <text x="767" y="253.8" font-size="3.6" text-anchor="end" class="t-mid" letter-spacing="0.12em">FUEL TANK</text>
+          <text x="767" y="340.8" font-size="3.6" text-anchor="end" class="t-mid" letter-spacing="0.12em">OXYGEN TANK</text>
         </g>
         <g id="lead-interstage">
           <circle cx="848" cy="462" r="1.2" fill="var(--signal)" stroke="none"/>
           <path pathLength="1" class="ln-acc" stroke-width="0.45" d="M848 462 L872 472 H886"/>
-          <text x="889" y="474" font-size="3.9" class="t-hi t-500" letter-spacing="0.16em">FORWARD MODULE</text>
-          <text x="889" y="480.5" font-size="3" class="t-low" letter-spacing="0.14em">4× ACTUATED FINS · HOUSES BE-3U</text>
+          <text x="889" y="474" font-size="3.9" class="t-hi t-500" letter-spacing="0.16em">STEERING FINS</text>
+          <text x="889" y="480.5" font-size="3" class="t-low" letter-spacing="0.14em">FLY THE BOOSTER HOME</text>
           <path pathLength="1" class="ln-acc" stroke-width="0.4" d="M774 456 L745 444 H714"/>
-          <text x="711" y="446" font-size="3" text-anchor="end" class="t-low" letter-spacing="0.14em">UMBILICALS</text>
+          <text x="711" y="446" font-size="3" text-anchor="end" class="t-low" letter-spacing="0.14em">GROUND LINES</text>
         </g>
         <g id="lead-gs1">
           <circle cx="776" cy="590" r="2" fill="var(--signal)" stroke="none"/>
           <path pathLength="1" class="ln-acc" stroke-width="0.7" d="M776 590 L700 570 H652"/>
-          <text x="648" y="566" font-size="6.9" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">LOX TANK</text>
-          <text x="648" y="578" font-size="5" text-anchor="end" class="t-low" letter-spacing="0.12em">~ 850 m³</text>
+          <text x="648" y="566" font-size="6.9" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">OXYGEN TANK</text>
+          <text x="648" y="578" font-size="5" text-anchor="end" class="t-low" letter-spacing="0.12em">LIQUID OXYGEN</text>
           <circle cx="776" cy="756" r="2" fill="var(--signal)" stroke="none"/>
           <path pathLength="1" class="ln-acc" stroke-width="0.7" d="M776 756 L700 776 H652"/>
-          <text x="648" y="772" font-size="6.9" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">LNG TANK</text>
-          <text x="648" y="784" font-size="5" text-anchor="end" class="t-low" letter-spacing="0.12em">~ 710 m³</text>
+          <text x="648" y="772" font-size="6.9" text-anchor="end" class="t-hi t-500" letter-spacing="0.14em">FUEL TANK</text>
+          <text x="648" y="784" font-size="5" text-anchor="end" class="t-low" letter-spacing="0.12em">NATURAL GAS</text>
           <circle cx="842" cy="842" r="2" fill="var(--signal)" stroke="none"/>
           <path pathLength="1" class="ln-acc" stroke-width="0.7" d="M842 842 L900 800 H930"/>
-          <text x="934" y="796" font-size="6.9" class="t-hi t-500" letter-spacing="0.14em">STRAKE — 2 PL</text>
-          <text x="934" y="808" font-size="5" class="t-low" letter-spacing="0.12em">REUSABLE · 25+ FLIGHTS</text>
+          <text x="934" y="796" font-size="6.9" class="t-hi t-500" letter-spacing="0.14em">FINS</text>
+          <text x="934" y="808" font-size="5" class="t-low" letter-spacing="0.12em">REUSED 25+ TIMES</text>
         </g>
         <g id="lead-engines">
           <circle cx="767" cy="884" r="1.6" fill="var(--signal)" stroke="none"/>
           <path pathLength="1" class="ln-acc" stroke-width="0.55" d="M767 884 L800 918 H844"/>
-          <text x="848" y="920" font-size="4.5" class="t-hi t-500" letter-spacing="0.14em">LANDING GEAR — 6 PL</text>
+          <text x="848" y="920" font-size="4.5" class="t-hi t-500" letter-spacing="0.14em">LANDING LEGS</text>
           <circle cx="810" cy="907" r="1.6" fill="var(--signal)" stroke="none"/>
           <path pathLength="1" class="ln-acc" stroke-width="0.55" d="M810 907 L862 938 H906"/>
-          <text x="910" y="936.5" font-size="5.7" class="t-hi t-500" letter-spacing="0.14em">BE-4 × 7</text>
-          <text x="910" y="945" font-size="4" class="t-low" letter-spacing="0.12em">OX-RICH STAGED COMBUSTION · LNG / LOX</text>
+          <text x="910" y="936.5" font-size="5.7" class="t-hi t-500" letter-spacing="0.14em">SEVEN ENGINES</text>
+          <text x="910" y="945" font-size="4" class="t-low" letter-spacing="0.12em">FIRE TOGETHER AT LIFTOFF</text>
         </g>
       </g>
 
@@ -295,7 +284,7 @@
         <g id="da-engines"></g>
         <g id="da-legs"></g>
         <text x="1250" y="817" text-anchor="middle" font-size="6.4" class="t-hi t-500" letter-spacing="0.24em">DETAIL A</text>
-        <text x="1250" y="827" text-anchor="middle" font-size="4.2" class="t-low" letter-spacing="0.18em">AFT VIEW · SCALE 1:50 · 7× BE-4 · 6× LANDING GEAR</text>
+        <text x="1250" y="827" text-anchor="middle" font-size="4.2" class="t-low" letter-spacing="0.18em">FROM BELOW · 7 ENGINES + LEGS</text>
       </g>
 
       <!-- EXPLODED-VIEW LABELS (generated; positions assume full EXPLODE offsets) -->
@@ -309,17 +298,19 @@
   <nav class="rail" aria-label="Blueprint sections"></nav>
   <div class="sr-scene" aria-live="polite"></div>
   <div class="dwg-chip mono" aria-hidden="true">NG-LV-098 · REV B · 1:100</div>
+  <p class="stage-hint mono" aria-hidden="true">Scroll to animate · or click play</p>
+
+  <!-- landing affordance: prominent play + scroll hint; fades on first interaction -->
+  <div class="startcue" aria-hidden="true">
+    <button class="startcue-play" type="button" aria-label="Play the walkthrough">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+    </button>
+    <p class="startcue-note">Press play — or scroll to explore</p>
+  </div>
 </section>
 
-<!-- ============ OUTRO ============ -->
-<article class="outro" id="specs">
-  <p class="eyebrow mono">GENERAL SPECIFICATIONS · PUBLIC FIGURES</p>
-  <h2>New Glenn, on paper</h2>
-  <p class="lede">Every figure in the drawing above, in one place. Sourced from public Blue Origin materials and reporting as of July 2026 — the geometry is representative, drawn for familiarization rather than engineering use.</p>
-  <div id="spec-table"></div>
-  <div class="component-notes" id="component-notes"></div>
-  <p class="provenance" id="provenance"></p>
-</article>
+<!-- Outro stripped: the detailed spec appendix (SPEC_TABLE / COMPONENT_NOTES /
+     PROVENANCE) still lives in js/data.js if it's ever needed again. -->
 
 <script src="./vendor/gsap.min.js"></script>
 <script src="./vendor/ScrollTrigger.min.js"></script>
