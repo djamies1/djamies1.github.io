@@ -133,15 +133,46 @@ draw tweens or an accent path stays invisible. Dashed conventions
 (`.dash-hid`, `.dash-ext`, `.cl`) fade in, never dash-draw. No SVG filters;
 grids/hatch are `<pattern>`s; `<use>`/`<symbol>` children carry inline styles.
 
-### Readability (polish pass)
+### Readability & audience (v2 — Leo Finance)
 
-Diagram labels are authored in small world units, so `js/main.js` enlarges every
-`#bp text` by `TEXT_SCALE` (1.4) at boot — the title block grows ×1.15 (it lives in a
-fixed drafting box) and the finale stamp is left as-is. Tune the constant there, not the
-per-label `font-size`s. The scene cards (`.panel`) are bumped in `styles.css`. For
-auto-play readability each card now fades in as its scene's camera settles (not at the
-scene tail) and holds until the next scene, and the defaults are `speed` 1.25 /
-`AUTOSCROLL_SECS` 80 — so every card stays up long enough to read (~5 s).
+This suite is shown to a **non-technical finance audience**, so the copy is plain-language and
+high-level: the scene cards (`PANELS`), leader labels (`XLABELS`) and on-diagram annotations
+avoid specs/units/acronyms and keep only a few headline numbers (e.g. up to 1 Gbps, under
+$400, under 50 ms, 3,236 satellites). The engineering detail lives in the outro appendix
+(`SPEC_TABLE` / `COMPONENT_NOTES`, lightly de-jargoned), and the compliance caveats
+(public-sources / representative-lattice / NTS / `PUBLIC DATA ONLY` stamp) are unchanged.
+
+Diagram labels are authored in small world units, so `js/main.js` enlarges every `#bp text`
+by `TEXT_SCALE` (1.65) at boot — the title block grows ×1.20 (fixed drafting box) and the
+finale stamp is left as-is. Tune the constant there, not the per-label `font-size`s. Scene
+cards (`.panel`) are bumped in `styles.css`. For auto-play readability each card fades in as
+its scene's camera settles and holds until the next scene; defaults are `speed` 1.0 /
+`AUTOSCROLL_SECS` 104 — so every card stays up ~6–8 s.
+
+### Embeddable-widget restructure
+
+This piece is meant to be dropped straight into another app as **just the blueprint
+square** — the cover header and the outro spec appendix are removed from `index.html`
+(`buildOutro()` is no longer called; the appendix data still lives in `js/data.js`). The
+page is the pinned `.stage` alone, carrying its own transport (play/prev/next + progress)
+and the on-sheet compliance (persistent chip, title-block general notes, `PUBLIC DATA ONLY`
+stamp).
+
+The **draw-on intro is dropped**: the widget lands already-drawn at the start of the first
+component scene, then the first scroll/play pans into the component (so scrolling produces
+obvious motion right away — landing *settled* left a dead zone). Mechanically the master
+timeline is unchanged — the stroke-by-stroke draw still exists at `t < START` (`START = 14`
+in `timeline.js`) so seeking past it builds the finished sheet — but both modes start at
+`START` and treat `[START,100]` as the visible run. Scroll uses a proxy playhead that maps
+scroll 0→1 onto master `t START→100`; player plays from `START`; progress is reported in
+visible % so the rail/progress bar ignore the intro. `SCENES` in `js/data.js` are the master
+scene bounds (14→100) remapped to 0→100 and no longer list the draw scene. To restore the
+full intro, set `START = 0` and re-add the draw scene to `SCENES`.
+
+A **start cue** (`.startcue` in `index.html` / `styles.css`, wired in `js/main.js`) overlays
+the landing: a prominent play button plus a "scroll to explore" hint (mono, cyan). Click
+plays hands-free; it fades on the first interaction (`pointerdown/wheel/keydown/touch/scroll`).
+In player mode the note drops the scroll hint; with `autoplay` it's dismissed immediately.
 
 ## Responsive / a11y
 

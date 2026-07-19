@@ -61,16 +61,19 @@ export const EXPLODE = {
   },
 };
 
-/* Scenes: t = [start,end] on a 0–100 timeline; panel = index into PANELS. */
+/* Scenes drive the rail + progress bar. t = [start,end] as a 0–100 % of the
+   VISIBLE run. The draw-on intro is pre-rolled (see START in timeline.js) so the
+   widget lands already-drawn at the first component scene; scrolling pans into it.
+   These % are the master timeline's scene bounds (14→100) remapped to 0→100.
+   panel = index into PANELS. */
 export const SCENES = [
-  { id: 'draw',     t: [0, 14],   title: 'Terminal elevation',    panel: 0 },
-  { id: 'array',    t: [14, 26],  title: 'The phased array',      panel: 1 },
-  { id: 'steer',    t: [26, 38],  title: 'Steering the beam',     panel: 2 },
-  { id: 'link',     t: [38, 49],  title: 'The user link',         panel: 3 },
-  { id: 'indoor',   t: [49, 60],  title: 'Into the home',         panel: 4 },
-  { id: 'models',   t: [60, 71],  title: 'Three terminals',       panel: 5 },
-  { id: 'network',  t: [71, 82],  title: 'End to end',            panel: 6 },
-  { id: 'exploded', t: [82, 100], title: 'Full breakdown',        panel: 7 },
+  { id: 'array',    t: [0, 14.0],    title: 'The flat antenna',      panel: 1 },
+  { id: 'steer',    t: [14.0, 27.9], title: 'Aiming without moving', panel: 2 },
+  { id: 'link',     t: [27.9, 40.7], title: 'The link to space',     panel: 3 },
+  { id: 'indoor',   t: [40.7, 53.5], title: 'Into the home',         panel: 4 },
+  { id: 'models',   t: [53.5, 66.3], title: 'Three sizes',           panel: 5 },
+  { id: 'network',  t: [66.3, 79.1], title: 'From you to the cloud', panel: 6 },
+  { id: 'exploded', t: [79.1, 100],  title: 'Every part',            panel: 7 },
 ];
 
 /* Scroll length of the pinned stage, in viewport-heights. */
@@ -78,94 +81,84 @@ export const SCROLL_VH = 9;
 
 export const PANELS = [
   {
-    eyebrow: 'SHEET 1 · TERMINAL ELEVATION',
-    title: 'Amazon Leo customer terminal',
+    eyebrow: 'AMAZON LEO · CUSTOMER TERMINAL',
+    title: 'The customer terminal',
     rows: [
-      ['Role', 'Space ↔ home / office'],
-      ['Antenna', 'Flat phased array'],
-      ['Steering', 'Electronic — no moving parts'],
-      ['User link', 'Ka-band'],
-      ['Family', 'Nano · Pro · Ultra'],
+      ['What it is', 'The customer’s antenna'],
+      ['Links', 'Home ↔ space'],
+      ['Sizes', 'Nano · Pro · Ultra'],
     ],
-    note: 'A generic representation from public figures only. The array lattice is illustrative — not an actual element count or geometry — and nothing here is derived from internal or export-controlled data. Deliberately NTS.',
+    note: 'The flat antenna a customer installs to join the satellite network. This is an illustration built from public information only — not a real Amazon drawing, and deliberately not to scale.',
   },
   {
-    eyebrow: 'SCENE 01 · THE ARRAY',
-    title: 'A phased-array face',
+    eyebrow: 'THE ANTENNA',
+    title: 'A flat antenna, no dish',
     rows: [
-      ['Elements', 'Hundreds per aperture'],
-      ['Apertures', 'Tx + Rx in one lattice'],
-      ['Breakthrough', 'Single aperture, 2020'],
-      ['Depiction', 'Representative lattice'],
+      ['Not', 'A moving dish'],
+      ['But', 'A flat panel'],
+      ['Made of', 'Hundreds of tiny antennas'],
     ],
-    note: 'Hundreds of tiny antennas share one aperture. Amazon’s 2020 breakthrough folded transmit and receive into a single lattice — hard in Ka-band, where the two bands sit far apart. The grid drawn here is illustrative only.',
+    note: 'Instead of a dish, the terminal is a flat panel packed with hundreds of tiny antennas working together. The pattern drawn here is illustrative only.',
   },
   {
-    eyebrow: 'SCENE 02 · BEAM STEERING',
-    title: 'Steered in silicon',
+    eyebrow: 'AIMING THE SIGNAL',
+    title: 'It aims without moving',
     rows: [
-      ['Method', 'Per-element phase'],
       ['Moving parts', 'None'],
-      ['Tracking', 'Follows each pass'],
-      ['Handover', 'Re-steers in a blink'],
+      ['Aims by', 'Electronics'],
+      ['Handover', 'Instant'],
     ],
-    note: 'The panel never moves. Shifting the phase across the elements tilts the combined beam, so it can follow a satellite across the sky — then jump to the next one electronically, with no mechanical slew.',
+    note: 'The panel never moves. It steers its signal electronically to follow a satellite across the sky, then switches to the next one in a blink — nothing mechanical to turn.',
   },
   {
-    eyebrow: 'SCENE 03 · USER LINK',
-    title: 'The Ka-band user link',
+    eyebrow: 'THE LINK TO SPACE',
+    title: 'The link to space',
     rows: [
-      ['Receive', '18–20 GHz'],
-      ['Transmit', '28–30 GHz'],
-      ['Security', 'AES-256 end-to-end'],
-      ['Latency', '< 50 ms'],
-      ['Weather', 'Adapts, not drops'],
+      ['Direction', 'Two-way'],
+      ['Delay', 'Under 50 ms'],
+      ['Security', 'Encrypted'],
     ],
-    note: 'The terminal receives around 18–20 GHz and transmits around 28–30 GHz. Rain and obstructions attenuate Ka-band, so the link adapts its coding and rate rather than dropping the connection.',
+    note: 'A fast two-way radio link to the satellite passing overhead. In heavy rain the link adapts to stay connected rather than dropping.',
   },
   {
-    eyebrow: 'SCENE 04 · INTO THE HOME',
+    eyebrow: 'INTO THE HOME',
     title: 'Into the home',
     rows: [
-      ['Indoor unit', 'Wi-Fi router'],
-      ['Cabling', 'Single cable — data + power'],
-      ['Baseband', 'Prometheus — same silicon'],
-      ['Output', 'Wi-Fi to devices'],
+      ['Indoors', 'A Wi-Fi router'],
+      ['One cable', 'Data + power'],
+      ['Runs on', 'Prometheus chip'],
     ],
-    note: 'One cable carries data and power between the outdoor panel and an indoor Wi-Fi unit. The terminal runs on Prometheus — the same custom baseband chip family used in the satellites and ground gateways.',
+    note: 'A single cable links the outdoor panel to an indoor Wi-Fi unit. It runs on Prometheus — the same custom Amazon chip used across the satellites and ground stations.',
   },
   {
-    eyebrow: 'SCENE 05 · THREE TERMINALS',
+    eyebrow: 'THE FAMILY',
     title: 'One family, three sizes',
     rows: [
-      ['Nano', '~7 in · 100 Mbps · portable'],
-      ['Pro', '~11 in · 400 Mbps · < $400'],
-      ['Ultra', '~20×30 in · up to 1 Gbps'],
-      ['Shared', 'Phased array + Prometheus'],
+      ['Nano', 'Portable'],
+      ['Pro', 'Under $400'],
+      ['Ultra', 'Up to 1 Gbps'],
     ],
-    note: 'Three published terminals share the same phased-array approach: the portable Nano, the standard Pro, and the enterprise-grade Ultra (up to 1 Gbps down / 400 up). Sizes and speeds are Amazon’s own figures.',
+    note: 'Three models share the same flat-antenna design: the portable Nano, the everyday Pro, and the high-capacity Ultra for business and government.',
   },
   {
-    eyebrow: 'SCENE 06 · END TO END',
-    title: 'Terminal to cloud',
+    eyebrow: 'THE BIG PICTURE',
+    title: 'From you to the cloud',
     rows: [
-      ['Hop 1', 'Terminal ↔ satellite'],
-      ['In space', 'OISL mesh (100 Gbps)'],
-      ['Ground', 'Gateway → PoP → fiber'],
-      ['Cloud', 'AWS / internet'],
+      ['Up', 'To a satellite'],
+      ['Across', 'By laser'],
+      ['Down', 'Ground station → cloud'],
     ],
-    note: 'The panel links up to a satellite at 590–630 km; the optical mesh can carry traffic across the constellation to a distant gateway, which lands it on fiber, the internet and AWS — under 50 ms end to end.',
+    note: 'Your signal goes up to a satellite, can hop across the network by laser, and comes down at a ground station that connects to the internet and AWS — all in under 50 ms.',
   },
   {
-    eyebrow: 'SCENE 07 · FULL BREAKDOWN',
-    title: 'One terminal, opened up',
+    eyebrow: 'THE WHOLE TERMINAL',
+    title: 'Every part, laid out',
     rows: [
-      ['Data', 'Public sources only'],
-      ['Geometry', 'Generic — NTS'],
-      ['Lattice', 'Illustrative — not actual'],
-      ['Derived from', 'No internal material'],
+      ['Based on', 'Public info only'],
+      ['Drawing', 'Not to scale'],
+      ['Antenna', 'Representative only'],
     ],
-    note: 'Hit replay — or scroll back — to run the breakdown again.',
+    note: 'Hit replay — or scroll back — to run it again.',
   },
 ];
 
@@ -173,13 +166,13 @@ export const PANELS = [
    (base geometry + EXPLODE offsets). side L: elbow→col (text-end);
    side R: elbow→col (text-start). col overrides the default 560/1040. */
 export const XLABELS = [
-  { id: 'xl-cover',   side: 'L', ax: 726, ay: 300, ex: 596,  ey: 280, t: 'RADOME / COVER',      s: 'WEATHER SKIN — TYP' },
-  { id: 'xl-array',   side: 'R', ax: 872, ay: 356, ex: 1002, ey: 336, t: 'PHASED-ARRAY PCB',    s: 'REPRESENTATIVE LATTICE — NOT ACTUAL COUNT' },
-  { id: 'xl-prom',    side: 'R', ax: 838, ay: 430, ex: 1002, ey: 412, t: 'PROMETHEUS BASEBAND', s: 'SAME SILICON AS SATELLITES & GATEWAYS' },
-  { id: 'xl-thermal', side: 'L', ax: 726, ay: 466, ex: 596,  ey: 452, t: 'THERMAL PLATE',       s: 'HEAT SPREADER — GENERIC' },
-  { id: 'xl-base',    side: 'L', ax: 726, ay: 506, ex: 596,  ey: 524, t: 'BASEPLATE / CHASSIS',  s: 'MOUNT INTERFACE — GENERIC' },
-  { id: 'xl-mount',   side: 'R', ax: 800, ay: 604, ex: 1002, ey: 586, t: 'MOUNT — FIXED',        s: 'NO MOVING PARTS · BEAM STEERS IN SILICON' },
-  { id: 'xl-router',  side: 'R', ax: 1030, ay: 742, ex: 1092, ey: 716, col: 1150, t: 'INDOOR UNIT', s: 'Wi-Fi ROUTER · SINGLE CABLE' },
+  { id: 'xl-cover',   side: 'L', ax: 726, ay: 300, ex: 596,  ey: 280, t: 'WEATHER COVER',       s: 'PROTECTS THE ANTENNA' },
+  { id: 'xl-array',   side: 'R', ax: 872, ay: 356, ex: 1002, ey: 336, t: 'THE FLAT ANTENNA',    s: 'REPRESENTATIVE — NOT ACTUAL LAYOUT' },
+  { id: 'xl-prom',    side: 'R', ax: 838, ay: 430, ex: 1002, ey: 412, t: 'PROMETHEUS CHIP',     s: 'SAME CHIP ACROSS THE NETWORK' },
+  { id: 'xl-thermal', side: 'L', ax: 726, ay: 466, ex: 596,  ey: 452, t: 'COOLING PLATE',       s: 'CARRIES HEAT AWAY' },
+  { id: 'xl-base',    side: 'L', ax: 726, ay: 506, ex: 596,  ey: 524, t: 'BASE / CHASSIS',       s: 'THE BODY IT MOUNTS TO' },
+  { id: 'xl-mount',   side: 'R', ax: 800, ay: 604, ex: 1002, ey: 586, t: 'FIXED MOUNT',          s: 'NEVER MOVES · AIMS ELECTRONICALLY' },
+  { id: 'xl-router',  side: 'R', ax: 1030, ay: 742, ex: 1092, ey: 716, col: 1150, t: 'INDOOR UNIT', s: 'Wi-Fi ROUTER · ONE CABLE' },
 ];
 
 /* Outro: full spec table + per-component prose (also the a11y content). */
@@ -197,7 +190,7 @@ export const SPEC_TABLE = {
     ['User link', 'Ka-band · Rx ~18–20 GHz · Tx ~28–30 GHz', 'Customer-terminal figures per Amazon Science; within the FCC Ka grant'],
     ['Baseband', 'Prometheus custom SoC', 'Same silicon family as the satellites and ground gateways'],
     ['Security', 'AES-256, end-to-end', 'Encrypted terminal ↔ satellite ↔ cloud'],
-    ['End to end', 'Terminal → satellite → mesh → gateway → AWS / internet', 'OISL mesh (100 Gbps) can route via a distant gateway; < 50 ms latency'],
+    ['End to end', 'Terminal → satellite → mesh → gateway → AWS / internet', 'Optical (laser) mesh, 100 Gbps, can route via a distant gateway; under 50 ms latency'],
     ['Constellation', '3,236 satellites · 98 planes · 590/610/630 km', 'Terminals track passes across this LEO shell'],
   ],
 };

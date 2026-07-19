@@ -136,5 +136,4 @@ export function announceScene(progress100) {
 export function buildUI(scrollToScene) {
   buildPanels();
   buildRail(scrollToScene);
-  buildOutro();
 }
