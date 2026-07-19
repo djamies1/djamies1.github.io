@@ -1896,5 +1896,31 @@
     "category": "sequence",
     "uploaded_at": "2026-07-18T16:44:40Z",
     "publish_at": "2026-07-19T00:42:29.000Z"
+  },
+  "math_0220": {
+    "youtube_id": "MskvLodPMPo",
+    "youtube_url": "https://www.youtube.com/watch?v=MskvLodPMPo",
+    "question": "1, 2, 4, 7, 11, 16, ___ = ?",
+    "answer": "22",
+    "category": "sequence",
+    "uploaded_at": "2026-07-19T16:42:59Z"
+  },
+  "math_0221": {
+    "youtube_id": "w7c-ovrlcW8",
+    "youtube_url": "https://www.youtube.com/watch?v=w7c-ovrlcW8",
+    "question": "3, 6, 12, 24, 48, ___ = ?",
+    "answer": "96",
+    "category": "sequence",
+    "uploaded_at": "2026-07-19T16:43:46Z",
+    "publish_at": "2026-07-19T20:42:16.000Z"
+  },
+  "math_0222": {
+    "youtube_id": "Y0I1lGeGIeI",
+    "youtube_url": "https://www.youtube.com/watch?v=Y0I1lGeGIeI",
+    "question": "1, 3, 9, 27, 81, ___ = ?",
+    "answer": "243",
+    "category": "sequence",
+    "uploaded_at": "2026-07-19T16:44:32Z",
+    "publish_at": "2026-07-20T00:42:16.000Z"
   }
 }
