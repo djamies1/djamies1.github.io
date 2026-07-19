@@ -88,7 +88,7 @@ const INPUT_EVENTS = ['wheel', 'touchstart', 'keydown', 'mousedown'];
 let scrollTween = null;
 let autoStopCb = null;
 function cancelOnInput(e) {
-  if (e.target && e.target.closest && e.target.closest('.controls, .cover-play, .rail')) return;
+  if (e.target && e.target.closest && e.target.closest('.controls, .startcue-play, .rail')) return;
   stopAutoScroll();
 }
 export const isAutoScrolling = () => !!scrollTween;
@@ -130,6 +130,21 @@ const CAM_MOBILE = {
   exploded:   { px: 800, py: 454, z: 0.8 },
 };
 let CAMS = CAM;
+
+/* ---------- documentary spotlight ----------
+   Each component scene dims every non-focus assembly so the camera's subject
+   carries the frame. Dims tween stroke-/fill-opacity ATTRIBUTES — never
+   opacity/autoAlpha — so they can't fight the reveal choreography, and any
+   child's own opacity animation still multiplies through. Desktop only: the
+   mobile slice crop reframes scenes and hides the detail insets. */
+const DIM = 0.32, SOFT = 0.55;
+const SPOT_GROUPS = ['#asm-fairing', '#asm-payload', '#asm-gs2', '#asm-interstage', '#asm-gs1', '#asm-aft'];
+function spot(tl, at, focus, dur = 1.6) {
+  for (const sel of SPOT_GROUPS) {
+    const v = focus[sel] ?? DIM;
+    tl.to(sel, { attr: { 'stroke-opacity': v, 'fill-opacity': v }, duration: dur, ease: 'power2.inOut' }, at);
+  }
+}
 
 export function initTimeline({ onProgress, mode = 'scroll', autoplay = false, loop = false, speed = 1.0 } = {}) {
   MODE = mode;
@@ -179,6 +194,17 @@ function build(isMobile, onProgress) {
   sceneGs1(tl);
   sceneEngines(tl);
   sceneExploded(tl);
+
+  if (!isMobile) {
+    gsap.set(SPOT_GROUPS, { attr: { 'stroke-opacity': 1, 'fill-opacity': 1 } });
+    spot(tl, 14.4, { '#asm-fairing': 1, '#asm-payload': SOFT });   // fairing opens on the stack
+    spot(tl, 26.4, { '#asm-payload': 1, '#asm-fairing': 1 });       // halves self-dim in-scene
+    spot(tl, 40.4, { '#asm-gs2': 1, '#asm-payload': SOFT, '#asm-fairing': SOFT }); // staging gap
+    spot(tl, 51.4, { '#asm-interstage': 1, '#asm-gs2': SOFT });     // forward module + fins
+    spot(tl, 59.4, { '#asm-gs1': 1, '#asm-interstage': SOFT });     // the booster
+    spot(tl, 71.4, { '#asm-aft': 1, '#asm-gs1': SOFT });            // seven engines
+    spot(tl, 83.2, Object.fromEntries(SPOT_GROUPS.map((s) => [s, 1]))); // explode: all lit
+  }
   tl.to({}, { duration: 0.5 }, 99.5);   // hard end at 100
 
   if (MODE === 'player') {

@@ -19,6 +19,7 @@ function buildPanels() {
     const el = h('section', 'panel', root);
     el.id = `panel-${i}`;
     if (i === PANELS.length - 1) el.classList.add('panel--bl');
+    h('span', 'panel-num', el, String(i).padStart(2, '0'));
     h('p', 'eyebrow', el, p.eyebrow);
     h('h2', null, el, p.title);
     const dl = h('dl', null, el);
@@ -37,6 +38,7 @@ function buildRail(scrollToScene) {
     const b = h('button', null, rail);
     b.type = 'button';
     b.setAttribute('aria-label', `Go to section: ${s.title}`);
+    b.dataset.title = s.title;
     b.addEventListener('click', () => scrollToScene(i));
     return b;
   });
@@ -131,6 +133,13 @@ export function announceScene(progress100) {
   });
   const live = document.querySelector('.sr-scene');
   if (live) live.textContent = SCENES[idx].title;
+  const num = document.querySelector('.scene-hud-num');
+  const title = document.querySelector('.scene-hud-title');
+  if (num && title) {
+    num.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(SCENES.length).padStart(2, '0')}`;
+    title.textContent = SCENES[idx].title;
+    title.animate?.([{ opacity: 0.25 }, { opacity: 1 }], { duration: 380, easing: 'ease-out' });
+  }
 }
 
 export function buildUI(scrollToScene) {
