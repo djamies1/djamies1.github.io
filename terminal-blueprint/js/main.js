@@ -30,6 +30,10 @@ const opts = {
 const isPlayer = mode === 'player';
 if (isPlayer) document.body.classList.add('is-player');
 
+/* gate the stage's load-in fade: is-booting hides, is-ready fades it in once
+   fonts have settled (added in BOTH boot paths below) */
+document.documentElement.classList.add('is-booting');
+
 buildDrawing();
 
 /* Enlarge the SVG diagram labels for readability. Labels are authored in tiny
@@ -94,12 +98,15 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!reduced && window.gsap && (isPlayer || window.ScrollTrigger)) {
   document.fonts.ready.then(() => {
+    document.documentElement.classList.add('is-ready');
     initTimeline({ onProgress: onProgress, mode, ...opts });
     if (window.ScrollTrigger && !isPlayer) ScrollTrigger.refresh();
     if (isPlayer && opts.autoplay) setPlayState(true);
+    onProgress(0);   // seed the rail + scene HUD before any input
   });
 } else {
   document.body.classList.add('is-static');
+  document.documentElement.classList.add('is-ready');
   if (window.gsap) buildStaticPoster();
 }
 

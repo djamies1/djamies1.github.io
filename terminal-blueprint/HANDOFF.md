@@ -192,3 +192,29 @@ disclaimer surfaces, scrub 8-panel exclusivity + end-identity + reverse residue,
 the steer-lock assertion, per-scene dwell shots, mobile/reduced-motion/a11y, and
 the final content audit. **Only ever `git add terminal-blueprint`** — the repo
 has unrelated working-tree changes.
+
+## Design pass (v3 — professional polish)
+
+- **Documentary spotlight**: each component scene dims every non-focus assembly
+  (`stroke-opacity`/`fill-opacity` ATTRIBUTE tweens — never `opacity`/`autoAlpha`, so
+  they can't fight the reveal choreography; children's own opacity animations multiply
+  through). Focus maps live at the bottom of `build()` in `js/timeline.js`
+  (`SPOT_GROUPS` + `spot()` calls; `DIM 0.32`, `SOFT 0.55`). Desktop only — the mobile
+  slice crop reframes scenes. The finale relights everything before the explode.
+- **Scene HUD**: `.scene-hud` (bottom-left) shows `NN / NN — Scene title`, driven from
+  `announceScene()` in `js/ui.js`; seeded at boot via `onProgress(0)` in `js/main.js`.
+- **Rail tooltips**: hover/focus a rail dot shows the section title
+  (`data-title` + CSS `::after`).
+- **Card polish**: ghost chapter numeral (`.panel-num`, top-right) + a signal-cyan
+  drafting tick before each eyebrow.
+- **Load-in fade**: `html.is-booting` hides the stage, `html.is-ready` (added once
+  `document.fonts.ready` resolves, in both boot paths) fades it in — smooth
+  materialize inside dashboard iframes; no-JS static fallback never hides.
+- **Sheet depth**: `.stage-vignette` div (between `#bp` and `.panels`) adds a gentle
+  corner falloff under all UI layers.
+- **Cleanup**: dead cover / outro / skip-link CSS removed (their DOM left in v2);
+  autoscroll's input-guard now whitelists `.startcue-play` (was the defunct
+  `.cover-play`); `embed.html` speed guidance corrected (speed is a multiplier,
+  1 ≈ 100 s; lower = slower).
+- Verified: scratchpad `v3.mjs` (18 checks: fade/HUD/tooltips/numerals/spotlight
+  dim–relight both scrub directions/player poster) + `wv.mjs` regression — all green.
