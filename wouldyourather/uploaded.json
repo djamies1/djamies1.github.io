@@ -1922,5 +1922,31 @@
     "category": "absurd",
     "uploaded_at": "2026-07-19T16:46:41Z",
     "publish_at": "2026-07-20T00:44:32.000Z"
+  },
+  "wyr_0223": {
+    "youtube_id": "DXMC-qC6U2g",
+    "youtube_url": "https://www.youtube.com/watch?v=DXMC-qC6U2g",
+    "option_a": "Save one person you love from certain death",
+    "option_b": "Save 100 strangers from certain death",
+    "category": "moral",
+    "uploaded_at": "2026-07-20T17:19:29Z"
+  },
+  "wyr_0224": {
+    "youtube_id": "72HbKp3iBkU",
+    "youtube_url": "https://www.youtube.com/watch?v=72HbKp3iBkU",
+    "option_a": "Know the exact day you will die",
+    "option_b": "Know the exact cause of your death but not when",
+    "category": "moral",
+    "uploaded_at": "2026-07-20T17:20:14Z",
+    "publish_at": "2026-07-20T21:18:54.000Z"
+  },
+  "wyr_0225": {
+    "youtube_id": "icyt-p-e510",
+    "youtube_url": "https://www.youtube.com/watch?v=icyt-p-e510",
+    "option_a": "Have the power to end all war but lose all your memories",
+    "option_b": "Keep your memories but the world continues as it is",
+    "category": "moral",
+    "uploaded_at": "2026-07-20T17:20:58Z",
+    "publish_at": "2026-07-21T01:18:54.000Z"
   }
 }

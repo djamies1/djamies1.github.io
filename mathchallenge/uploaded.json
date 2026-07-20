@@ -1922,5 +1922,31 @@
     "category": "sequence",
     "uploaded_at": "2026-07-19T16:44:32Z",
     "publish_at": "2026-07-20T00:42:16.000Z"
+  },
+  "math_0223": {
+    "youtube_id": "Ta21rxBHrGw",
+    "youtube_url": "https://www.youtube.com/watch?v=Ta21rxBHrGw",
+    "question": "0, 1, 3, 6, 10, ___ = ?",
+    "answer": "15",
+    "category": "sequence",
+    "uploaded_at": "2026-07-20T17:17:16Z"
+  },
+  "math_0224": {
+    "youtube_id": "p6yEvB58uK0",
+    "youtube_url": "https://www.youtube.com/watch?v=p6yEvB58uK0",
+    "question": "1, 2, 6, 24, 120, ___ = ?",
+    "answer": "720",
+    "category": "sequence",
+    "uploaded_at": "2026-07-20T17:18:04Z",
+    "publish_at": "2026-07-20T21:16:37.000Z"
+  },
+  "math_0225": {
+    "youtube_id": "ViAql_Py_rM",
+    "youtube_url": "https://www.youtube.com/watch?v=ViAql_Py_rM",
+    "question": "2, 5, 11, 23, 47, ___ = ?",
+    "answer": "95",
+    "category": "sequence",
+    "uploaded_at": "2026-07-20T17:18:53Z",
+    "publish_at": "2026-07-21T01:16:37.000Z"
   }
 }
