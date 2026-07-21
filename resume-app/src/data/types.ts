@@ -67,3 +67,15 @@ export interface HeroStat {
   suffix?: string;
   note?: string;
 }
+
+export interface BlueprintProject {
+  id: string;
+  /** Tab word, e.g. "Launch". */
+  label: string;
+  /** Root-absolute path to the standalone project, e.g. "/rocket-blueprint/". */
+  path: string;
+  /** iframe title — adapted from that project's own embed.html. */
+  embedTitle: string;
+  /** One short sentence, no disclaimer text (that lives once, outside the loop). */
+  caption: string;
+}

@@ -4,6 +4,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import MatrixText from "@/components/kokonutui/matrix-text";
 import { SectionHeading } from "@/components/hud/SectionHeading";
+import { BlueprintShowcase } from "@/components/mission/BlueprintShowcase";
 import { RoleDrawer } from "@/components/timeline/RoleDrawer";
 import { useInView } from "@/hooks/use-in-view";
 import { JOBS, LEO_KPIS } from "@/data/resume";
@@ -160,6 +161,8 @@ export function LeoSpotlight() {
           )}
         </div>
       </div>
+
+      <BlueprintShowcase />
 
       <RoleDrawer job={dossier} onClose={() => setDossier(null)} />
     </section>
