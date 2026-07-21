@@ -272,20 +272,49 @@ html.is-ready .stage { opacity: 1; }
 .controls button:focus-visible { outline: 1px solid var(--signal); outline-offset: 2px; }
 .controls svg { width: 11px; height: 11px; fill: currentColor; }
 .controls .ctl-play { border-color: rgba(124, 233, 255, 0.4); color: var(--signal); }
+.controls .ctl-speed {
+  align-self: center;
+  padding: 0 2px;
+  min-width: 2.2em;
+  font: 500 0.58rem var(--font-mono); letter-spacing: 0.1em;
+  color: var(--ink-low);
+  text-align: center;
+  user-select: none;
+}
 
+/* a taller invisible hit-zone (easy to click/tap) around a thin visible
+   track, which thickens on hover/focus — the click/drag-to-seek target is
+   the whole bar, not just the 3px line */
 .progressbar {
   position: absolute; left: 0; right: 0; bottom: 0;
-  height: 3px; z-index: 6;
+  height: 14px; z-index: 6;
+  cursor: pointer;
+  touch-action: none;
+}
+.progressbar::before {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 3px;
   background: rgba(233, 242, 255, 0.07);
+  transition: height 0.15s ease;
 }
 .progressbar b {
-  display: block; height: 100%; width: 0;
+  position: absolute; left: 0; bottom: 0;
+  display: block; height: 3px; width: 0;
   background: var(--signal-deep); opacity: 0.85;
+  transition: height 0.15s ease;
+  pointer-events: none;
 }
 .progressbar i {
-  position: absolute; top: 0; bottom: 0; width: 1px;
+  position: absolute; bottom: 0; width: 1px; height: 3px;
   background: rgba(233, 242, 255, 0.22);
+  pointer-events: none;
+  transition: height 0.15s ease;
 }
+.progressbar:hover::before, .progressbar:focus-visible::before,
+.progressbar:hover b, .progressbar:focus-visible b,
+.progressbar:hover i, .progressbar:focus-visible i { height: 6px; }
+.progressbar:focus-visible { outline: 1px solid var(--signal); outline-offset: -2px; }
 
 /* screen-reader scene announcements */
 .sr-scene {
@@ -399,8 +428,9 @@ html.is-ready .stage { opacity: 1; }
   #anno > g, #x-labels, #detail-a, #da-mark { display: none !important; }
   /* bottom is panel territory on small screens — transport moves up top */
   .controls { left: auto; right: 12px; bottom: auto; top: 10px; transform: none; }
-  .controls button { padding: 7px 9px; }
+  .controls button { padding: 6px 7px; }
   .controls .ctl-label { display: none; }
+  .controls .ctl-speed { display: none; }  /* icons alone still communicate FF/REW; saves width on a crowded row */
 }
 
 /* ---------- reduced motion: static exploded poster ---------- */
