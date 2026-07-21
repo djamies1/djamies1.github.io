@@ -1948,5 +1948,31 @@
     "category": "sequence",
     "uploaded_at": "2026-07-20T17:18:53Z",
     "publish_at": "2026-07-21T01:16:37.000Z"
+  },
+  "math_0226": {
+    "youtube_id": "890H3jXGRLs",
+    "youtube_url": "https://www.youtube.com/watch?v=890H3jXGRLs",
+    "question": "16, 8, 4, 2, 1, ___ = ?",
+    "answer": "0.5",
+    "category": "sequence",
+    "uploaded_at": "2026-07-21T17:06:36Z"
+  },
+  "math_0227": {
+    "youtube_id": "rq6IpQYPKNk",
+    "youtube_url": "https://www.youtube.com/watch?v=rq6IpQYPKNk",
+    "question": "3, 1, 4, 1, 5, 9, 2, 6, ___ = ?",
+    "answer": "5",
+    "category": "sequence",
+    "uploaded_at": "2026-07-21T17:07:34Z",
+    "publish_at": "2026-07-21T21:05:49.000Z"
+  },
+  "math_0228": {
+    "youtube_id": "Ni3SMdyKSKY",
+    "youtube_url": "https://www.youtube.com/watch?v=Ni3SMdyKSKY",
+    "question": "31, 28, 31, 30, 31, 30, ___ = ?",
+    "answer": "31",
+    "category": "sequence",
+    "uploaded_at": "2026-07-21T17:08:26Z",
+    "publish_at": "2026-07-22T01:05:49.000Z"
   }
 }

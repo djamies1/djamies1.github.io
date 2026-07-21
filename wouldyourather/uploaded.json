@@ -1948,5 +1948,31 @@
     "category": "moral",
     "uploaded_at": "2026-07-20T17:20:58Z",
     "publish_at": "2026-07-21T01:18:54.000Z"
+  },
+  "wyr_0226": {
+    "youtube_id": "8DpEVwBJJ8A",
+    "youtube_url": "https://www.youtube.com/watch?v=8DpEVwBJJ8A",
+    "option_a": "Everything you eat tastes like your favourite food",
+    "option_b": "You can eat absolutely anything without any negative health effects",
+    "category": "food",
+    "uploaded_at": "2026-07-21T17:09:01Z"
+  },
+  "wyr_0227": {
+    "youtube_id": "YzGqkpZnmK8",
+    "youtube_url": "https://www.youtube.com/watch?v=YzGqkpZnmK8",
+    "option_a": "Never eat sugar again",
+    "option_b": "Never eat salt again",
+    "category": "food",
+    "uploaded_at": "2026-07-21T17:09:43Z",
+    "publish_at": "2026-07-21T21:08:27.000Z"
+  },
+  "wyr_0228": {
+    "youtube_id": "7JMtN4VGZno",
+    "youtube_url": "https://www.youtube.com/watch?v=7JMtN4VGZno",
+    "option_a": "Only drink water for a year",
+    "option_b": "Only eat one type of cuisine for a year",
+    "category": "food",
+    "uploaded_at": "2026-07-21T17:10:28Z",
+    "publish_at": "2026-07-22T01:08:27.000Z"
   }
 }
