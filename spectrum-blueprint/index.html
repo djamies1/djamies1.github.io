@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amazon Leo — Radio Spectrum &amp; Licensing (Generic Overview)</title>
+<meta name="description" content="A simple animated walkthrough of how radio spectrum works, which bands Amazon Leo uses and why, and how satellite spectrum gets licensed. Built from public FCC and ITU information only; schematic and not to scale.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b2749'/%3E%3Cpath d='M3 20 Q7 8 11 20 T19 20 T27 20' fill='none' stroke='%237ce9ff' stroke-width='1.6'/%3E%3Cpath d='M3 26h26' stroke='%23e9f2ff' stroke-width='1.2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<!-- Cover stripped: this page is a self-contained, embeddable blueprint widget.
+     Compliance lives ON the sheet (persistent chip, title-block general notes,
+     PUBLIC DATA ONLY stamp). Content is 100% public FCC / ITU record. -->
+
+<!-- ============ PINNED STAGE ============ -->
+<section class="stage" aria-label="Animated blueprint of how Amazon Leo uses the radio spectrum">
+
+<svg id="bp" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <defs>
+    <pattern id="gmin" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M10 0H0V10" fill="none" stroke="var(--grid-minor)" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gmaj" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0V50" fill="none" stroke="var(--grid-major)" stroke-width="0.6"/>
+    </pattern>
+    <pattern id="hatch-a" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="rgba(233,242,255,0.20)" stroke-width="0.8"/>
+    </pattern>
+    <pattern id="hatch-b" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(124,233,255,0.30)" stroke-width="0.8"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="1.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 5 L10 1.4 L10 8.6 Z" fill="var(--ink-mid)" stroke="none"/>
+    </marker>
+    <marker id="arr-acc" viewBox="0 0 10 10" refX="1.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0 5 L10 1.4 L10 8.6 Z" fill="var(--signal)" stroke="none"/>
+    </marker>
+    <clipPath id="frame-clip"><rect x="56" y="56" width="1488" height="888"/></clipPath>
+  </defs>
+
+  <!-- ================= SHEET (never transforms) ================= -->
+  <g id="sheet">
+    <rect id="grid-1" x="56" y="56" width="1488" height="888" fill="url(#gmin)"/>
+    <rect id="grid-2" x="56" y="56" width="1488" height="888" fill="url(#gmaj)"/>
+    <rect id="frame-outer" class="ln-low dr" pathLength="1" x="24" y="24" width="1552" height="952"/>
+    <rect id="frame-inner" class="ln-mid dr" pathLength="1" x="56" y="56" width="1488" height="888"/>
+    <g id="zones"></g>
+
+    <g id="titleblock">
+      <rect class="ln-mid dr" pathLength="1" x="1156" y="856" width="388" height="88"/>
+      <path class="ln-low dr" pathLength="1" d="M1156 884 H1544 M1156 914 H1544 M1306 884 V914 M1386 884 V914 M1246 914 V944 M1360 914 V944 M1440 914 V944"/>
+      <text x="1162" y="867" font-size="5.8" class="t-low" letter-spacing="0.18em">TITLE</text>
+      <text x="1162" y="879" font-size="8.4" class="t-hi t-500">AMAZON LEO — RADIO SPECTRUM &amp; LICENSING</text>
+      <text x="1162" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">DWG NO</text>
+      <text x="1162" y="908" font-size="10" class="t-hi t-500">LEO-RF-SPEC-001</text>
+      <text x="1312" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SIZE</text>
+      <text x="1312" y="908" font-size="10" class="t-hi t-500">E</text>
+      <text x="1392" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SCALE</text>
+      <text x="1392" y="908" font-size="10" class="t-hi t-500">NTS</text>
+      <text x="1162" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">REV</text>
+      <text x="1162" y="938" font-size="10" class="t-hi t-500">P — PUBLIC</text>
+      <text x="1252" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">SHEET</text>
+      <text x="1252" y="938" font-size="10" class="t-hi t-500">1 OF 1</text>
+      <text x="1366" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">UNITS</text>
+      <text x="1366" y="938" font-size="10" class="t-hi t-500">GHz</text>
+      <text x="1446" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">DATE</text>
+      <text x="1446" y="938" font-size="10" class="t-hi t-500">2026-07</text>
+    </g>
+
+    <g id="notes">
+      <text x="68" y="886" font-size="6" class="t-mid" letter-spacing="0.22em">GENERAL NOTES</text>
+      <text x="68" y="900" font-size="7" class="t-low">1. RADIO-SPECTRUM &amp; LICENSING OVERVIEW — REPRESENTATIVE.</text>
+      <text x="68" y="912" font-size="7" class="t-low">2. COMPILED SOLELY FROM PUBLIC SOURCES (FCC / ITU), JUL 2026.</text>
+      <text x="68" y="924" font-size="7" class="t-low">3. NOT DERIVED FROM INTERNAL OR EXPORT-CONTROLLED DATA.</text>
+      <text x="68" y="936" font-size="7" class="t-low">4. FREQUENCY AXIS SCHEMATIC · NOT TO SCALE.</text>
+    </g>
+
+    <g id="stamp" transform="translate(408 512) rotate(-7)">
+      <rect x="-128" y="-26" width="256" height="52" rx="3" class="ln-acc" stroke-width="1.6"/>
+      <rect x="-122" y="-20" width="244" height="40" rx="2" class="ln-acc" stroke-width="0.5" opacity="0.55"/>
+      <text x="0" y="-1" font-size="15" text-anchor="middle" class="t-acc t-500" letter-spacing="0.24em">PUBLIC DATA ONLY</text>
+      <text x="0" y="13" font-size="6" text-anchor="middle" class="t-acc" letter-spacing="0.16em" opacity="0.75">FCC &amp; ITU FILINGS · NO INTERNAL DATA</text>
+    </g>
+  </g>
+
+  <!-- ================= WORLD (camera target) ================= -->
+  <g id="world-clip" clip-path="url(#frame-clip)">
+    <g id="world">
+
+      <!-- ============ TOP MOTIF · waves compress as frequency rises ============ -->
+      <g id="wave">
+        <path id="wave-rf" class="ln-acc dr" pathLength="1" stroke-width="1.1" d=""/>
+        <path class="ln-dim dash-ext" d="M150 214 H960"/>
+        <text x="150" y="120" font-size="8" class="t-hi t-500" letter-spacing="0.16em">ONE FAMILY OF WAVES</text>
+        <text x="150" y="132" font-size="5.6" class="t-low" letter-spacing="0.14em">LONG WAVELENGTH · LOW FREQUENCY</text>
+        <text x="960" y="120" font-size="5.6" class="t-acc" text-anchor="end" letter-spacing="0.14em">SHORT WAVELENGTH · HIGH FREQUENCY →</text>
+      </g>
+
+      <!-- ============ EM SPECTRUM REFERENCE · the one rainbow (scene 1) ============ -->
+      <g id="em-ref">
+        <rect class="ln-low" x="214" y="300" width="360" height="150" rx="3"/>
+        <text x="234" y="322" font-size="7" class="t-hi t-500" letter-spacing="0.16em">THE ELECTROMAGNETIC SPECTRUM</text>
+        <text x="234" y="333" font-size="4.8" class="t-low" letter-spacing="0.12em">RADIO AND LIGHT ARE THE SAME THING AT DIFFERENT FREQUENCIES</text>
+        <!-- full-span bar: radio to micro to IR to visible to UV/X -->
+        <rect class="ln-dim" x="234" y="346" width="320" height="18"/>
+        <g id="em-strip"></g>
+        <text x="234" y="380" font-size="4.6" class="t-low" letter-spacing="0.1em">RADIO</text>
+        <text x="300" y="380" font-size="4.6" class="t-acc" letter-spacing="0.1em">MICROWAVE</text>
+        <text x="372" y="380" font-size="4.6" class="t-low" letter-spacing="0.1em">INFRARED</text>
+        <text x="474" y="380" font-size="4.6" class="t-low" letter-spacing="0.1em">VISIBLE</text>
+        <text x="524" y="380" font-size="4.6" class="t-low" letter-spacing="0.1em">UV · X</text>
+        <!-- pointer: the whole chart below lives in this microwave sliver -->
+        <path class="ln-acc dash-ext" stroke-width="0.6" d="M320 364 L320 402 L470 402"/>
+        <text x="332" y="398" font-size="5.4" class="t-acc t-500" letter-spacing="0.1em">THE CHART BELOW IS THIS SLIVER — MICROWAVE RADIO</text>
+        <text x="234" y="432" font-size="4.8" class="t-low" letter-spacing="0.1em">Visible light is a tiny slice. Satellites work far to the left, in radio.</text>
+      </g>
+
+      <!-- ============ THE FREQUENCY AXIS (draw-on) ============ -->
+      <g id="axis">
+        <line id="axis-rf" class="ln-hi dr" pathLength="1" x1="150" y1="640" x2="952" y2="640"/>
+        <line id="axis-opt" class="ln-hi dr" pathLength="1" x1="1150" y1="640" x2="1472" y2="640"/>
+        <!-- scale break // -->
+        <path id="axis-break" class="ln-mid dr" pathLength="1" d="M968 632 L980 648 M986 632 L998 648"/>
+        <g id="axis-ticks"></g>
+        <text x="150" y="694" font-size="6" class="t-mid" letter-spacing="0.2em">FREQUENCY  (GHz, log scale)  →</text>
+        <text x="1150" y="694" font-size="6" class="t-mid" letter-spacing="0.16em">OPTICAL / INFRARED</text>
+      </g>
+
+      <!-- ============ BAND BRACKETS (generated from BANDS) ============ -->
+      <g id="bands"></g>
+
+      <!-- ============ RAIN-FADE MINI-PLOT (scene 4) ============ -->
+      <g id="rainfade">
+        <rect class="ln-low" x="700" y="298" width="330" height="216" rx="3"/>
+        <text x="716" y="320" font-size="7" class="t-hi t-500" letter-spacing="0.14em">RAIN FADE vs FREQUENCY</text>
+        <text x="716" y="331" font-size="4.6" class="t-low" letter-spacing="0.1em">HIGHER BAND = MORE BANDWIDTH, BUT MORE RAIN LOSS</text>
+        <!-- plot axes -->
+        <path class="ln-mid" d="M724 344 V498 H1012" />
+        <text transform="translate(716 424) rotate(-90)" text-anchor="middle" font-size="5" class="t-low" letter-spacing="0.14em">SIGNAL LOSS IN RAIN →</text>
+        <text x="868" y="510" text-anchor="middle" font-size="5" class="t-low" letter-spacing="0.14em">FREQUENCY →</text>
+        <!-- the curve rises to the right -->
+        <path id="rainfade-curve" class="ln-acc dr" pathLength="1" stroke-width="1.2" d="M726 492 C812 486 856 470 892 440 C936 404 972 372 1006 352"/>
+        <!-- markers -->
+        <g id="rf-ku">
+          <circle cx="792" cy="482" r="2.4" fill="var(--ink)" stroke="none"/>
+          <path class="ln-dim dash-ext" d="M792 482 V498"/>
+          <text x="792" y="470" text-anchor="middle" font-size="5.4" class="t-hi t-500">Ku</text>
+          <text x="792" y="463" text-anchor="middle" font-size="3.8" class="t-low">ROBUST</text>
+        </g>
+        <g id="rf-ka">
+          <circle cx="888" cy="444" r="2.8" fill="var(--signal)" stroke="none"/>
+          <path class="ln-acc dash-ext" stroke-width="0.6" d="M888 444 V498"/>
+          <text x="888" y="432" text-anchor="middle" font-size="6" class="t-acc t-500">Ka</text>
+          <text x="888" y="425" text-anchor="middle" font-size="3.8" class="t-acc">LEO</text>
+        </g>
+        <g id="rf-qv">
+          <circle cx="978" cy="366" r="2.4" fill="var(--ink)" stroke="none"/>
+          <text x="984" y="360" font-size="5.4" class="t-hi t-500">Q/V</text>
+          <text x="984" y="353" font-size="3.8" class="t-low">SEVERE FADE</text>
+        </g>
+        <text x="716" y="504" font-size="4.4" class="t-low">Leo answers rain fade with a low orbit (short path) and coding that adapts in real time.</text>
+      </g>
+
+      <!-- ============ DETAIL A · Ka BAND ALLOCATION (scene 3) ============ -->
+      <g id="ka-detail">
+        <rect class="ln-mid" x="212" y="702" width="562" height="126" rx="3"/>
+        <text x="230" y="724" font-size="7.4" class="t-hi t-500" letter-spacing="0.14em">DETAIL A — Ka BAND, AS AMAZON LEO USES IT</text>
+        <text x="230" y="735" font-size="4.6" class="t-low" letter-spacing="0.1em">PUBLIC FCC ALLOCATIONS · Ø ~30 cm ELECTRONICALLY-STEERED PHASED ARRAYS</text>
+        <!-- expanded linear strip 17 to 30 GHz -->
+        <line class="ln-mid" x1="240" y1="792" x2="742" y2="792"/>
+        <path class="ln-dim" d="M240 792 V798 M356 792 V798 M549 792 V798 M742 792 V798"/>
+        <text x="240" y="808" text-anchor="middle" font-size="4.8" class="t-low">17</text>
+        <text x="356" y="808" text-anchor="middle" font-size="4.8" class="t-low">20</text>
+        <text x="549" y="808" text-anchor="middle" font-size="4.8" class="t-low">25</text>
+        <text x="742" y="808" text-anchor="middle" font-size="4.8" class="t-low">30 GHz</text>
+        <!-- downlink blocks 17.7-18.6, 18.8-20.2 -->
+        <rect id="ka-dl1" class="ln-acc fill-hatch-b" x="267" y="762" width="34" height="30"/>
+        <rect id="ka-dl2" class="ln-acc fill-hatch-b" x="309" y="762" width="54" height="30"/>
+        <text x="315" y="753" text-anchor="middle" font-size="5" class="t-acc t-500" letter-spacing="0.06em">DOWNLINK ↓</text>
+        <!-- uplink block 27.5-30 -->
+        <rect id="ka-ul" class="ln-acc fill-hatch-b" x="644" y="762" width="96" height="30"/>
+        <text x="692" y="753" text-anchor="middle" font-size="5" class="t-acc t-500" letter-spacing="0.06em">UPLINK ↑</text>
+        <!-- gateway feeder ticks -->
+        <path class="ln-low" d="M332 760 V792 M344 760 V792 M705 760 V792 M721 760 V792"/>
+        <text x="500" y="822" text-anchor="middle" font-size="4.2" class="t-low">Split bands keep the satellite's transmit and receive from talking over each other.</text>
+      </g>
+
+      <!-- ============ DUPLEX + FREQUENCY REUSE (scene 5) ============ -->
+      <g id="duplex">
+        <rect class="ln-mid" x="812" y="694" width="392" height="192" rx="3"/>
+        <text x="830" y="716" font-size="7.4" class="t-hi t-500" letter-spacing="0.14em">ONE LINK, TWO DIRECTIONS</text>
+        <!-- satellite (top-right) + ground station (bottom-left) -->
+        <rect class="ln-hi" x="1120" y="726" width="30" height="18"/>
+        <path class="ln-low" d="M1112 730 H1120 M1150 730 H1158 M1112 740 H1120 M1150 740 H1158"/>
+        <text x="1135" y="722" text-anchor="middle" font-size="4.6" class="t-low">SATELLITE</text>
+        <path class="ln-hi" d="M846 812 L866 780 L886 812 Z"/>
+        <text x="866" y="826" text-anchor="middle" font-size="4.6" class="t-low">GROUND STATION</text>
+        <!-- up / down arrows -->
+        <path class="ln-acc" stroke-width="0.9" marker-end="url(#arr-acc)" d="M872 780 L1120 738"/>
+        <text transform="translate(986 748) rotate(-9.6)" text-anchor="middle" font-size="5" class="t-acc t-500">UP · 27.5–30 GHz</text>
+        <path class="ln-acc" stroke-width="0.9" marker-end="url(#arr-acc)" d="M1122 748 L884 792"/>
+        <text transform="translate(1006 782) rotate(-10.5)" text-anchor="middle" font-size="5" class="t-acc t-500">DOWN · 17.7–20.2 GHz</text>
+        <!-- reuse strip -->
+        <path class="ln-dim dash-ext" d="M830 852 H1186"/>
+        <ellipse class="ln-acc" cx="884" cy="852" rx="20" ry="6"/>
+        <ellipse class="ln-acc" cx="930" cy="852" rx="20" ry="6"/>
+        <ellipse class="ln-acc" cx="976" cy="852" rx="20" ry="6"/>
+        <text x="884" y="854" text-anchor="middle" font-size="4" class="t-acc">Ka</text>
+        <text x="930" y="854" text-anchor="middle" font-size="4" class="t-acc">Ka</text>
+        <text x="976" y="854" text-anchor="middle" font-size="4" class="t-acc">Ka</text>
+        <text x="1012" y="850" font-size="4.6" class="t-hi t-500">SAME BAND REUSED PER SPOT BEAM</text>
+        <text x="1012" y="858" font-size="4" class="t-low">separate beams on the ground → far more total capacity</text>
+      </g>
+
+      <!-- ============ OPTICAL CROSSLINKS (scene 6) ============ -->
+      <g id="optical">
+        <rect class="ln-laser" x="1176" y="694" width="296" height="150" rx="3"/>
+        <text x="1194" y="716" font-size="7.4" class="t-laser t-500" letter-spacing="0.14em">BEYOND RADIO — LASER CROSSLINKS</text>
+        <!-- two satellites + a laser beam -->
+        <rect class="ln-hi" x="1206" y="748" width="26" height="16"/>
+        <rect class="ln-hi" x="1416" y="748" width="26" height="16"/>
+        <path id="laser-beam" class="ln-laser dr" pathLength="1" stroke-width="1.3" d="M1232 756 H1416"/>
+        <circle cx="1232" cy="756" r="2.4" fill="var(--laser)" stroke="none"/>
+        <circle cx="1416" cy="756" r="2.4" fill="var(--laser)" stroke="none"/>
+        <text x="1324" y="748" text-anchor="middle" font-size="5.4" class="t-laser t-500">~193 THz (1550 nm) · ~100 Gbps</text>
+        <text x="1194" y="792" font-size="5" class="t-hi t-500" letter-spacing="0.1em">LIGHT, NOT RADIO —</text>
+        <text x="1194" y="804" font-size="4.6" class="t-low" letter-spacing="0.08em">so no spectrum license, no congestion,</text>
+        <text x="1194" y="814" font-size="4.6" class="t-low" letter-spacing="0.08em">and enormous bandwidth between satellites.</text>
+        <text x="1194" y="832" font-size="4.4" class="t-laser" letter-spacing="0.08em">Radio to the ground · light in the sky.</text>
+      </g>
+
+      <!-- ============ LICENSING STACK (scene 7) ============ -->
+      <g id="license">
+        <text x="1118" y="150" font-size="8" class="t-hi t-500" letter-spacing="0.16em">HOW SPECTRUM GETS LICENSED</text>
+        <text x="1118" y="162" font-size="4.8" class="t-low" letter-spacing="0.1em">NOBODY OWNS THE AIR — YOU ARE GRANTED THE RIGHT TO USE A SLICE</text>
+        <g id="license-boxes"></g>
+        <!-- EPFD guardrail: NGSO must duck below a line to protect the GSO arc -->
+        <g id="epfd-mini">
+          <path class="ln-dim dash-ext" d="M1440 322 A70 70 0 0 1 1440 462"/>
+          <text x="1454" y="396" font-size="4.4" class="t-low" transform="rotate(90 1454 396)">GSO ARC</text>
+          <path class="ln-acc" stroke-width="0.7" d="M1392 360 h34 M1392 372 h34 M1392 384 h34"/>
+          <text x="1390" y="352" text-anchor="end" font-size="4" class="t-acc">STAY BELOW →</text>
+        </g>
+        <!-- milestone timeline near the last box -->
+        <g id="milestones">
+          <line class="ln-mid" x1="1122" y1="556" x2="1430" y2="556"/>
+          <path class="ln-dim" d="M1122 552 V560 M1276 552 V560 M1430 552 V560"/>
+          <text x="1122" y="570" font-size="4.4" class="t-low">GRANT</text>
+          <text x="1276" y="570" text-anchor="middle" font-size="4.4" class="t-hi t-500">50% · 6 YRS</text>
+          <text x="1430" y="570" text-anchor="end" font-size="4.4" class="t-hi t-500">100% · 9 YRS</text>
+          <circle cx="1276" cy="556" r="2.2" fill="var(--signal)" stroke="none"/>
+          <text x="1122" y="582" font-size="4.2" class="t-acc">Kuiper's condition: 1,618 satellites up by July 2026 — or the license is at risk.</text>
+        </g>
+      </g>
+
+      <!-- ============ SCENE LEADERS (revealed per scene) ============ -->
+      <g id="anno">
+        <g id="lead-opt">
+          <circle cx="1335" cy="612" r="1.6" fill="var(--laser)" stroke="none"/>
+          <path pathLength="1" class="ln-laser" stroke-width="0.6" d="M1335 612 L1335 668 L1392 668"/>
+          <text x="1396" y="670" font-size="5" class="t-laser t-500" letter-spacing="0.12em">A DIFFERENT TOOL</text>
+        </g>
+      </g>
+
+    </g>
+  </g>
+</svg>
+
+  <div class="stage-vignette" aria-hidden="true"></div>
+  <div class="panels"></div>
+  <nav class="rail" aria-label="Blueprint sections"></nav>
+  <div class="sr-scene" aria-live="polite"></div>
+  <div class="dwg-chip mono" aria-hidden="true">PUBLIC SOURCES · FCC / ITU · NTS</div>
+  <p class="stage-hint mono" aria-hidden="true">Scroll to animate · or click play</p>
+  <p class="scene-hud mono" aria-hidden="true"><b class="scene-hud-num"></b><span class="scene-hud-title"></span></p>
+
+  <!-- landing affordance: prominent play + scroll hint; fades on first interaction -->
+  <div class="startcue" aria-hidden="true">
+    <button class="startcue-play" type="button" aria-label="Play the walkthrough">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+    </button>
+    <p class="startcue-note">Press play — or scroll to explore</p>
+  </div>
+</section>
+
+<script src="./vendor/gsap.min.js"></script>
+<script src="./vendor/ScrollTrigger.min.js"></script>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>
