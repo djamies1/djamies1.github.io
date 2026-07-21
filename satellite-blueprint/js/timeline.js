@@ -45,11 +45,37 @@ const START = 14;
 const toVisible = (t) => ((t - START) / (tlRef.duration() - START)) * 100;
 const fromVisible = (v) => START + (v / 100) * (tlRef.duration() - START);
 
+/* the scrub-wrapper tween (below, in build()) — hoisted to module scope so
+   explicit jumps can drive its progress directly, bypassing ScrollTrigger's
+   own scrub-smoothing (see jumpToPercent) */
+let headTween = null;
+
+/* Explicit navigation (rail dots, prev/next, the progress bar) jumps
+   straight to the target — no watching the camera pan through whatever's
+   in between. Setting BOTH the scroll position AND the wrapped scrub
+   tween's progress in the same call is what makes this instant and
+   reliable: ScrollTrigger's `scrub` option smooths how its animation
+   chases the RAW scroll-derived progress (tuned for organic wheel
+   scrolling), so if we only moved window.scrollY and waited, a rapid
+   second click would read a scene index that hadn't caught up yet and
+   silently retarget the same scene instead of advancing. Driving
+   headTween.progress() directly skips that lag entirely. */
+function jumpToPercent(targetPct) {
+  if (!st || !headTween) return;
+  if (isAutoScrolling()) stopAutoScroll();
+  const clamped = Math.min(Math.max(targetPct, 0), 99.5);
+  window.scrollTo({ top: st.start + (st.end - st.start) * (clamped / 100), behavior: 'instant' });
+  headTween.progress(clamped / 100, false);
+}
 export function scrollToScene(i) {
-  if (!st) return;
-  const t0 = SCENES[i].t[0];
-  const y = st.start + (st.end - st.start) * (Math.min(t0 + 1.2, 99) / 100);
-  window.scrollTo({ top: y, behavior: 'smooth' });
+  const idx = Math.max(0, Math.min(SCENES.length - 1, i));
+  jumpToPercent(Math.min(SCENES[idx].t[0] + 1.2, 99));
+}
+/* progress-bar click/drag calls this directly with the exact pointer
+   position — same instant mechanism, arbitrary percent instead of a
+   scene's landing point */
+export function scrubToPercent(pct) {
+  jumpToPercent(pct);
 }
 
 /* ---------- player-mode transport (drives the timeline with time) ---------- */
@@ -79,6 +105,15 @@ export const playerApi = {
   step(dir, current) {
     this.goto(Math.max(0, Math.min(SCENES.length - 1, current + dir)));
   },
+  scrub(percentVisible) {
+    if (!tlRef) return;
+    started = true;
+    tlRef.seek(fromVisible(Math.min(Math.max(percentVisible, 0), 100)), false);
+  },
+  setSpeed(mult) {
+    OPTS.speed = mult;
+    if (tlRef) tlRef.timeScale(mult);
+  },
 };
 
 /* ---------- scroll-mode auto-play (tweens the scroll position;
@@ -87,6 +122,7 @@ const AUTOSCROLL_SECS = 104;
 const INPUT_EVENTS = ['wheel', 'touchstart', 'keydown', 'mousedown'];
 let scrollTween = null;
 let autoStopCb = null;
+let scrollSpeedMult = 1;
 function cancelOnInput(e) {
   if (e.target && e.target.closest && e.target.closest('.controls, .startcue-play, .rail')) return;
   stopAutoScroll();
@@ -105,6 +141,7 @@ export function startAutoScroll(onStop) {
     onUpdate: () => window.scrollTo({ top: proxy.y, behavior: 'instant' }),
     onComplete: stopAutoScroll,
   });
+  scrollTween.timeScale(scrollSpeedMult);
   INPUT_EVENTS.forEach((ev) => addEventListener(ev, cancelOnInput, { passive: true }));
   return true;
 }
@@ -114,6 +151,12 @@ export function stopAutoScroll() {
   scrollTween = null;
   INPUT_EVENTS.forEach((ev) => removeEventListener(ev, cancelOnInput));
   if (autoStopCb) autoStopCb();
+}
+/* remembered for the next startAutoScroll() call, and applied live to one
+   already running (FF/REW while scroll-mode autoplay is in progress) */
+export function setScrollSpeed(mult) {
+  scrollSpeedMult = mult;
+  if (scrollTween) scrollTween.timeScale(mult);
 }
 
 /* Portrait phones crop the sheet (slice) and can't afford margin
@@ -221,12 +264,12 @@ function build(isMobile, onProgress) {
        pinned scrub starts on the first component and the intro is unreachable */
     const cfg = window.SAT_BP_CONFIG || {};
     const head = { t: START };
-    const scrub = gsap.to(head, {
+    headTween = gsap.to(head, {
       t: tl.duration(), ease: 'none', paused: true,
       onUpdate: () => { tl.time(head.t); onProgress && onProgress(toVisible(head.t)); },
     });
     st = ScrollTrigger.create({
-      animation: scrub,
+      animation: headTween,
       trigger: '.stage',
       start: 'top top',
       end: () => '+=' + window.innerHeight * SCROLL_VH,
@@ -245,6 +288,7 @@ function build(isMobile, onProgress) {
     st = null;
     tlRef = null;
     started = false;
+    headTween = null;
     Object.assign(cam, { px: 800, py: 500, z: 1 });
     applyCam();
   };

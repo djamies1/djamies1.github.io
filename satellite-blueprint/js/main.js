@@ -13,10 +13,10 @@
    ============================================================ */
 
 import { buildDrawing } from './drawing.js';
-import { buildUI, buildControls, announceScene, getActiveScene, setPlayState, setProgress } from './ui.js';
+import { buildUI, buildControls, announceScene, getActiveScene, setPlayState, setProgress, setSpeedLabel } from './ui.js';
 import {
   initTimeline, buildStaticPoster, MOBILE_MQ,
-  scrollToScene, playerApi, startAutoScroll, stopAutoScroll, isAutoScrolling,
+  scrollToScene, scrubToPercent, setScrollSpeed, playerApi, startAutoScroll, stopAutoScroll, isAutoScrolling,
 } from './timeline.js';
 
 const q = new URLSearchParams(location.search);
@@ -62,6 +62,22 @@ function reflectPlay(playing) {
   if (startCue) { startCue.classList.add('is-engaged'); startCue.classList.toggle('is-playing', playing); }
 }
 
+/* fast-forward / rewind: an old-player-style speed cycle. Applied live to
+   whichever engine currently owns the timeline — the player timeline's own
+   timeScale, or the scroll-mode autoplay tween's rate — and remembered for
+   next time either way. Starts on whichever tier is closest to a `speed=`
+   query-param override, so that still means something once FF/REW exist. */
+const SPEED_TIERS = [0.5, 1, 1.5, 2, 3];
+let speedIdx = SPEED_TIERS.reduce(
+  (best, v, i) => (Math.abs(v - opts.speed) < Math.abs(SPEED_TIERS[best] - opts.speed) ? i : best), 1
+);
+function applySpeed() {
+  const mult = SPEED_TIERS[speedIdx];
+  setSpeedLabel(`${mult}×`);
+  if (isPlayer) playerApi.setSpeed(mult);
+  else setScrollSpeed(mult);
+}
+
 /* transport: same UI, mode-specific backend */
 buildControls({
   onToggle: () => {
@@ -81,7 +97,11 @@ buildControls({
     if (isPlayer) playerApi.step(1, getActiveScene());
     else { stopAutoScroll(); scrollToScene(Math.min(6, getActiveScene() + 1)); }
   },
+  onRew: () => { speedIdx = Math.max(0, speedIdx - 1); applySpeed(); },
+  onFF: () => { speedIdx = Math.min(SPEED_TIERS.length - 1, speedIdx + 1); applySpeed(); },
+  onScrub: (pct) => { if (isPlayer) playerApi.scrub(pct); else scrubToPercent(pct); },
 });
+applySpeed();
 
 /* portrait-narrow viewports crop the sheet instead of letterboxing it */
 const bp = document.getElementById('bp');
