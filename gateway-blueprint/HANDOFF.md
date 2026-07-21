@@ -280,3 +280,35 @@ audit **including a no-real-locations grep** of the content files.
   1 ≈ 100 s; lower = slower).
 - Verified: scratchpad `v3.mjs` (18 checks: fade/HUD/tooltips/numerals/spotlight
   dim–relight both scrub directions/player poster) + `wv.mjs` regression — all green.
+
+## Transport upgrade (v4 — fast nav, FF/REW, scrubbable progress bar)
+
+- **Prev/Next now jump instantly and reliably.** Root cause of the old "takes
+  several clicks" feel: `ScrollTrigger`'s `scrub: 0.75` option smooths how its
+  wrapped animation chases the raw scroll-derived progress (tuned for organic
+  wheel-scrolling) — so a rapid second click used to read a scene index that
+  hadn't caught up yet and silently retarget the same scene. Fix: the wrapped
+  scrub tween is hoisted to module scope as `headTween`, and explicit jumps
+  (`scrollToScene`/`scrubToPercent`, called by rail dots, prev/next, and the
+  progress bar) now drive `headTween.progress(x, false)` directly alongside
+  `window.scrollTo(...)`, bypassing the smoothing lag entirely. See
+  `jumpToPercent` in `js/timeline.js`.
+- **FF / REW**: two new transport buttons cycle a shared speed multiplier
+  (`SPEED_TIERS = [0.5, 1, 1.5, 2, 3]` in `js/main.js`) with a live "1×"
+  readout. Applied to whichever engine owns playback — `tl.timeScale()` in
+  player mode (`playerApi.setSpeed`), or the scroll-mode autoplay tween's
+  rate (`timeline.js`'s `setScrollSpeed`, applied live via `.timeScale()` to
+  a running tween and remembered for the next `startAutoScroll()` call).
+  Starts on whichever tier is closest to a `speed=` query-param override.
+- **Progress bar is now a real scrubber**: `role="slider"`, click/drag
+  anywhere to seek (pointer capture keeps tracking off-element), ArrowLeft/
+  Right/Home/End keyboard support, `aria-valuenow`. Taller invisible hit-zone
+  (14px) around a thin visible track (3px, thickens to 6px on hover/focus) —
+  the interactive target is the whole bar, not just the line.
+- Mobile: FF/REW buttons stay (icons only); the numeric speed label hides to
+  save width on the now 6-button + label row.
+- Verified: scratchpad `transport-v4.mjs` (22 checks per project: rapid-click
+  chaining both directions, clamping at both ends, rail still works, FF/REW
+  in both modes with a real measured-rate speedup check not just the label,
+  scrub click/drag/keyboard, hover-thicken, aria) — all green ×4, plus the
+  full v2 (`wv.mjs`) and v3 (`v3.mjs`) regression suites still green ×4.
