@@ -1974,5 +1974,31 @@
     "category": "food",
     "uploaded_at": "2026-07-21T17:10:28Z",
     "publish_at": "2026-07-22T01:08:27.000Z"
+  },
+  "wyr_0229": {
+    "youtube_id": "RsjNwY5lkvg",
+    "youtube_url": "https://www.youtube.com/watch?v=RsjNwY5lkvg",
+    "option_a": "Get $1,000 every time you eat a vegetable you hate",
+    "option_b": "Get $100 every time you eat something delicious",
+    "category": "food",
+    "uploaded_at": "2026-07-22T17:08:05Z"
+  },
+  "wyr_0230": {
+    "youtube_id": "amjcbjuAn0Y",
+    "youtube_url": "https://www.youtube.com/watch?v=amjcbjuAn0Y",
+    "option_a": "Be able to pause time for 1 hour per day",
+    "option_b": "Be able to go back in time 1 minute, unlimited times",
+    "category": "mental",
+    "uploaded_at": "2026-07-22T17:08:54Z",
+    "publish_at": "2026-07-22T21:07:31.000Z"
+  },
+  "wyr_0231": {
+    "youtube_id": "mmzCQIgCbBw",
+    "youtube_url": "https://www.youtube.com/watch?v=mmzCQIgCbBw",
+    "option_a": "Have a brain that never forgets anything ever",
+    "option_b": "Have a brain that can perfectly estimate any probability or chance",
+    "category": "mental",
+    "uploaded_at": "2026-07-22T17:09:35Z",
+    "publish_at": "2026-07-23T01:07:31.000Z"
   }
 }

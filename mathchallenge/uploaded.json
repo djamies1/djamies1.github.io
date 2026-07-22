@@ -1974,5 +1974,31 @@
     "category": "sequence",
     "uploaded_at": "2026-07-21T17:08:26Z",
     "publish_at": "2026-07-22T01:05:49.000Z"
+  },
+  "math_0229": {
+    "youtube_id": "GcES2CRxYBE",
+    "youtube_url": "https://www.youtube.com/watch?v=GcES2CRxYBE",
+    "question": "5, 6, 5, 4, 5, 6, 5, ___ = ?",
+    "answer": "4",
+    "category": "sequence",
+    "uploaded_at": "2026-07-22T17:05:55Z"
+  },
+  "math_0230": {
+    "youtube_id": "HGebWlcLxGI",
+    "youtube_url": "https://www.youtube.com/watch?v=HGebWlcLxGI",
+    "question": "7, 10, 8, 11, 9, 12, ___ = ?",
+    "answer": "10",
+    "category": "sequence",
+    "uploaded_at": "2026-07-22T17:06:42Z",
+    "publish_at": "2026-07-22T21:05:17.000Z"
+  },
+  "math_0231": {
+    "youtube_id": "9JETHP9xOpY",
+    "youtube_url": "https://www.youtube.com/watch?v=9JETHP9xOpY",
+    "question": "2, 6, 12, 20, 30, ___ = ?",
+    "answer": "42",
+    "category": "sequence",
+    "uploaded_at": "2026-07-22T17:07:30Z",
+    "publish_at": "2026-07-23T01:05:17.000Z"
   }
 }
