@@ -2000,5 +2000,31 @@
     "category": "sequence",
     "uploaded_at": "2026-07-22T17:07:30Z",
     "publish_at": "2026-07-23T01:05:17.000Z"
+  },
+  "math_0232": {
+    "youtube_id": "pM2qBPNtZcA",
+    "youtube_url": "https://www.youtube.com/watch?v=pM2qBPNtZcA",
+    "question": "1, 3, 7, 15, 31, ___ = ?",
+    "answer": "63",
+    "category": "sequence",
+    "uploaded_at": "2026-07-23T17:08:04Z"
+  },
+  "math_0233": {
+    "youtube_id": "8sz8q2KUoFA",
+    "youtube_url": "https://www.youtube.com/watch?v=8sz8q2KUoFA",
+    "question": "100, 91, 83, 76, 70, ___ = ?",
+    "answer": "65",
+    "category": "sequence",
+    "uploaded_at": "2026-07-23T17:08:53Z",
+    "publish_at": "2026-07-23T21:07:28.000Z"
+  },
+  "math_0234": {
+    "youtube_id": "Izi-9goZjMU",
+    "youtube_url": "https://www.youtube.com/watch?v=Izi-9goZjMU",
+    "question": "1, 4, 13, 40, 121, ___ = ?",
+    "answer": "364",
+    "category": "sequence",
+    "uploaded_at": "2026-07-23T17:09:41Z",
+    "publish_at": "2026-07-24T01:07:28.000Z"
   }
 }
