@@ -2026,5 +2026,31 @@
     "category": "mental",
     "uploaded_at": "2026-07-23T17:11:45Z",
     "publish_at": "2026-07-24T01:09:41.000Z"
+  },
+  "wyr_0235": {
+    "youtube_id": "UExR2_8pU70",
+    "youtube_url": "https://www.youtube.com/watch?v=UExR2_8pU70",
+    "option_a": "Be able to hear any conversation happening anywhere in the world right now",
+    "option_b": "Be able to see any place in the world as if you were standing there",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-24T17:22:09Z"
+  },
+  "wyr_0236": {
+    "youtube_id": "uPIUtI2mHmU",
+    "youtube_url": "https://www.youtube.com/watch?v=uPIUtI2mHmU",
+    "option_a": "Always arrive exactly on time no matter what",
+    "option_b": "Never have to wait in any queue or line again",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-24T17:22:55Z",
+    "publish_at": "2026-07-24T21:21:35.000Z"
+  },
+  "wyr_0237": {
+    "youtube_id": "S5fRyX9Ke3I",
+    "youtube_url": "https://www.youtube.com/watch?v=S5fRyX9Ke3I",
+    "option_a": "Have a robot do all your household chores",
+    "option_b": "Have a personal assistant manage all your admin and emails",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-24T17:23:37Z",
+    "publish_at": "2026-07-25T01:21:35.000Z"
   }
 }
