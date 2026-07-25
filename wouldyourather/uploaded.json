@@ -2052,5 +2052,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-07-24T17:23:37Z",
     "publish_at": "2026-07-25T01:21:35.000Z"
+  },
+  "wyr_0238": {
+    "youtube_id": "PUK5WspHTXs",
+    "youtube_url": "https://www.youtube.com/watch?v=PUK5WspHTXs",
+    "option_a": "Be able to instantly translate any written text you see",
+    "option_b": "Be able to instantly understand any spoken language you hear",
+    "category": "skills",
+    "uploaded_at": "2026-07-25T16:46:04Z"
+  },
+  "wyr_0239": {
+    "youtube_id": "gQKysrmHguI",
+    "youtube_url": "https://www.youtube.com/watch?v=gQKysrmHguI",
+    "option_a": "Have a supercomputer-level brain but look average",
+    "option_b": "Look like the most beautiful person in the world but have average intelligence",
+    "category": "mental",
+    "uploaded_at": "2026-07-25T16:46:46Z",
+    "publish_at": "2026-07-25T20:45:28.000Z"
+  },
+  "wyr_0240": {
+    "youtube_id": "X3UZVrALND4",
+    "youtube_url": "https://www.youtube.com/watch?v=X3UZVrALND4",
+    "option_a": "Be able to speak every language fluently",
+    "option_b": "Be able to play every musical instrument perfectly",
+    "category": "skills",
+    "uploaded_at": "2026-07-25T16:47:31Z",
+    "publish_at": "2026-07-26T00:45:28.000Z"
   }
 }

@@ -2250,5 +2250,28 @@
     "answer": "Four. You will have a pair of one color or another.",
     "uploaded_at": "2026-07-24T17:25:56Z",
     "publish_at": "2026-07-25T05:23:40.000Z"
+  },
+  "rdl_0295": {
+    "youtube_id": "cspAToWwKvA",
+    "youtube_url": "https://www.youtube.com/watch?v=cspAToWwKvA",
+    "question": "If 10 bags of jelly beans and 6 licorice sticks cost $1, and 10 licorice sticks and 6 jelly bean bags cost 92 cents. How much does one licorice stick cost?",
+    "answer": "5 cents while Jelly bean bags cost 7 cents.",
+    "uploaded_at": "2026-07-25T16:48:17Z"
+  },
+  "rdl_0296": {
+    "youtube_id": "HNLdHkgBA9Q",
+    "youtube_url": "https://www.youtube.com/watch?v=HNLdHkgBA9Q",
+    "question": "If a stopper and a bottle cost $2.10 and the bottle costs $2.00 more than the stopper. Then what does the stopper cost?",
+    "answer": "Five Cents.",
+    "uploaded_at": "2026-07-25T16:49:00Z",
+    "publish_at": "2026-07-25T22:47:34.000Z"
+  },
+  "rdl_0297": {
+    "youtube_id": "p_ijvpPxrq4",
+    "youtube_url": "https://www.youtube.com/watch?v=p_ijvpPxrq4",
+    "question": "Robert and David played several golf matches against each other in a week. They played for a pizza at each match, but no pizzas were purchased until the end of the week. If at any time Robert and David had the same number of wins, those pizzas were canceled. Robert won four matches (but no pizzas), and David won three pizzas. How many rounds of golf were played?",
+    "answer": "Eleven, David won 7 matches, 4 to cancel out Robert's 4 wins, and 3 more to win the pizzas.",
+    "uploaded_at": "2026-07-25T16:49:47Z",
+    "publish_at": "2026-07-26T04:47:34.000Z"
   }
 }

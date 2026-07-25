@@ -2052,5 +2052,31 @@
     "category": "sequence",
     "uploaded_at": "2026-07-24T17:21:34Z",
     "publish_at": "2026-07-25T01:19:30.000Z"
+  },
+  "math_0238": {
+    "youtube_id": "MyW-_Bcbxjk",
+    "youtube_url": "https://www.youtube.com/watch?v=MyW-_Bcbxjk",
+    "question": "1, 10, 100, 1000, ___ = ?",
+    "answer": "10000",
+    "category": "sequence",
+    "uploaded_at": "2026-07-25T16:43:50Z"
+  },
+  "math_0239": {
+    "youtube_id": "RnrIqCLjP9k",
+    "youtube_url": "https://www.youtube.com/watch?v=RnrIqCLjP9k",
+    "question": "2, 10, 30, 68, 130, ___ = ?",
+    "answer": "222",
+    "category": "sequence",
+    "uploaded_at": "2026-07-25T16:44:39Z",
+    "publish_at": "2026-07-25T20:43:12.000Z"
+  },
+  "math_0240": {
+    "youtube_id": "QmBwZFHx56M",
+    "youtube_url": "https://www.youtube.com/watch?v=QmBwZFHx56M",
+    "question": "A bat and ball cost $1.10. The bat costs $1 more. How much is the ball?",
+    "answer": "$0.05",
+    "category": "trick_question",
+    "uploaded_at": "2026-07-25T16:45:28Z",
+    "publish_at": "2026-07-26T00:43:12.000Z"
   }
 }
