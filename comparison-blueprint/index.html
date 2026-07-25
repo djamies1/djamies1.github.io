@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LEO Broadband — Two Architectures (Public Comparison)</title>
+<meta name="description" content="A neutral, public side-by-side of the two big low-Earth-orbit broadband networks — Amazon Leo and Starlink — across constellation, spectrum, terminals, optical mesh, ground integration and launch. Built from public sources for both operators; schematic, not to scale, as of Jul 2026.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b2749'/%3E%3Cline x1='16' y1='6' x2='16' y2='26' stroke='%23e9f2ff' stroke-width='1.2'/%3E%3Crect x='5' y='11' width='7' height='10' fill='none' stroke='%237ce9ff' stroke-width='1.5'/%3E%3Crect x='20' y='11' width='7' height='10' fill='none' stroke='%23e9f2ff' stroke-width='1.5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<!-- Cover stripped: self-contained, embeddable blueprint widget. Compliance lives
+     ON the sheet (persistent chip, title-block notes, PUBLIC DATA ONLY stamp).
+     Neutral public comparison of both operators; no internal data, no logos. -->
+
+<!-- ============ PINNED STAGE ============ -->
+<section class="stage" aria-label="Animated blueprint comparing the Amazon Leo and Starlink low-orbit broadband architectures">
+
+<svg id="bp" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <defs>
+    <pattern id="gmin" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M10 0H0V10" fill="none" stroke="var(--grid-minor)" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gmaj" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0V50" fill="none" stroke="var(--grid-major)" stroke-width="0.6"/>
+    </pattern>
+    <clipPath id="frame-clip"><rect x="56" y="56" width="1488" height="888"/></clipPath>
+  </defs>
+
+  <!-- ================= SHEET (never transforms) ================= -->
+  <g id="sheet">
+    <rect id="grid-1" x="56" y="56" width="1488" height="888" fill="url(#gmin)"/>
+    <rect id="grid-2" x="56" y="56" width="1488" height="888" fill="url(#gmaj)"/>
+    <rect id="frame-outer" class="ln-low dr" pathLength="1" x="24" y="24" width="1552" height="952"/>
+    <rect id="frame-inner" class="ln-mid dr" pathLength="1" x="56" y="56" width="1488" height="888"/>
+    <g id="zones"></g>
+
+    <g id="titleblock">
+      <rect class="ln-mid dr" pathLength="1" x="1156" y="856" width="388" height="88"/>
+      <path class="ln-low dr" pathLength="1" d="M1156 884 H1544 M1156 914 H1544 M1306 884 V914 M1386 884 V914 M1246 914 V944 M1360 914 V944 M1440 914 V944"/>
+      <text x="1162" y="867" font-size="5.8" class="t-low" letter-spacing="0.18em">TITLE</text>
+      <text x="1162" y="879" font-size="8.4" class="t-hi t-500">LEO BROADBAND — TWO ARCHITECTURES</text>
+      <text x="1162" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">DWG NO</text>
+      <text x="1162" y="908" font-size="10" class="t-hi t-500">LEO-CMP-001</text>
+      <text x="1312" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SIZE</text>
+      <text x="1312" y="908" font-size="10" class="t-hi t-500">E</text>
+      <text x="1392" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SCALE</text>
+      <text x="1392" y="908" font-size="10" class="t-hi t-500">NTS</text>
+      <text x="1162" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">REV</text>
+      <text x="1162" y="938" font-size="10" class="t-hi t-500">P — PUBLIC</text>
+      <text x="1252" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">SHEET</text>
+      <text x="1252" y="938" font-size="10" class="t-hi t-500">1 OF 1</text>
+      <text x="1366" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">BASIS</text>
+      <text x="1366" y="938" font-size="10" class="t-hi t-500">PUBLIC</text>
+      <text x="1446" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">DATE</text>
+      <text x="1446" y="938" font-size="10" class="t-hi t-500">2026-07</text>
+    </g>
+
+    <g id="notes">
+      <text x="68" y="886" font-size="6" class="t-mid" letter-spacing="0.22em">GENERAL NOTES</text>
+      <text x="68" y="900" font-size="7" class="t-low">1. LEO-BROADBAND PUBLIC COMPARISON — REPRESENTATIVE, NEUTRAL.</text>
+      <text x="68" y="912" font-size="7" class="t-low">2. PUBLIC SOURCES, BOTH OPERATORS (FCC/ITU · PRESS · ANALYST), JUL 2026.</text>
+      <text x="68" y="924" font-size="7" class="t-low">3. NO INTERNAL OR EXPORT-CONTROLLED DATA · NO COMPANY LOGOS.</text>
+      <text x="68" y="936" font-size="7" class="t-low">4. FIGURES APPROXIMATE · MOVE FAST · AS OF JUL 2026 · NTS.</text>
+    </g>
+
+    <g id="stamp" transform="translate(452 566) rotate(-7)">
+      <rect x="-140" y="-26" width="280" height="52" rx="3" class="ln-acc" stroke-width="1.6"/>
+      <rect x="-134" y="-20" width="268" height="40" rx="2" class="ln-acc" stroke-width="0.5" opacity="0.55"/>
+      <text x="0" y="-1" font-size="15" text-anchor="middle" class="t-acc t-500" letter-spacing="0.22em">PUBLIC DATA ONLY</text>
+      <text x="0" y="13" font-size="6" text-anchor="middle" class="t-acc" letter-spacing="0.14em" opacity="0.75">PUBLIC COMPARISON · NO INTERNAL DATA</text>
+    </g>
+  </g>
+
+  <!-- ================= WORLD (camera target) ================= -->
+  <g id="world-clip" clip-path="url(#frame-clip)">
+    <g id="world">
+      <!-- all generated by drawing.js from data.js ROWS -->
+      <g id="divider"></g>
+      <g id="headers"></g>
+      <g id="rows"></g>
+
+      <!-- recap summary line (revealed scene 7) -->
+      <g id="anno">
+        <g id="lead-recap">
+          <text x="800" y="900" text-anchor="middle" font-size="8" class="t-hi t-500" letter-spacing="0.12em">SAME SKY, TWO BETS</text>
+          <text x="800" y="913" text-anchor="middle" font-size="5.2" class="t-low" letter-spacing="0.05em">Amazon: AWS-integrated, enterprise-first, cheaper terminals · SpaceX: scale, first-mover, owns the rocket</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
+
+  <div class="stage-vignette" aria-hidden="true"></div>
+  <div class="panels"></div>
+  <nav class="rail" aria-label="Blueprint sections"></nav>
+  <div class="sr-scene" aria-live="polite"></div>
+  <div class="dwg-chip mono" aria-hidden="true">PUBLIC COMPARISON · FCC / PRESS · NTS</div>
+  <p class="stage-hint mono" aria-hidden="true">Scroll to animate · or click play</p>
+  <p class="scene-hud mono" aria-hidden="true"><b class="scene-hud-num"></b><span class="scene-hud-title"></span></p>
+
+  <div class="startcue" aria-hidden="true">
+    <button class="startcue-play" type="button" aria-label="Play the walkthrough">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+    </button>
+    <p class="startcue-note">Press play — or scroll to explore</p>
+  </div>
+</section>
+
+<script src="./vendor/gsap.min.js"></script>
+<script src="./vendor/ScrollTrigger.min.js"></script>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>
