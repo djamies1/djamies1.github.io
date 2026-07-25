@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amazon Leo — Constellation Deployment (Generic Overview)</title>
+<meta name="description" content="A simple animated walkthrough of how Amazon Leo's 3,236-satellite constellation gets built: the largest commercial launch procurement in history, racing the FCC's use-it-or-lose-it deployment deadlines. Built from public launch and FCC records only; schematic, approximate, as of Jul 2026.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b2749'/%3E%3Cpath d='M5 26 Q14 24 18 14 T27 6' fill='none' stroke='%237ce9ff' stroke-width='1.8'/%3E%3Cpath d='M22 5 V27' stroke='%23e9f2ff' stroke-width='1' stroke-dasharray='2 2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<!-- Cover stripped: self-contained, embeddable blueprint widget. Compliance lives ON
+     the sheet (persistent chip, title-block notes, PUBLIC DATA ONLY stamp). Content is
+     100% public launch / FCC record; figures approximate, as of Jul 2026. -->
+
+<section class="stage" aria-label="Animated blueprint of the Amazon Leo constellation deployment against its FCC deadlines">
+
+<svg id="bp" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <defs>
+    <pattern id="gmin" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M10 0H0V10" fill="none" stroke="var(--grid-minor)" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gmaj" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0V50" fill="none" stroke="var(--grid-major)" stroke-width="0.6"/>
+    </pattern>
+    <marker id="arr-acc" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+      <path d="M0 1.4 L10 5 L0 8.6 Z" fill="var(--signal)" stroke="none"/>
+    </marker>
+    <clipPath id="frame-clip"><rect x="56" y="56" width="1488" height="888"/></clipPath>
+  </defs>
+
+  <g id="sheet">
+    <rect id="grid-1" x="56" y="56" width="1488" height="888" fill="url(#gmin)"/>
+    <rect id="grid-2" x="56" y="56" width="1488" height="888" fill="url(#gmaj)"/>
+    <rect id="frame-outer" class="ln-low dr" pathLength="1" x="24" y="24" width="1552" height="952"/>
+    <rect id="frame-inner" class="ln-mid dr" pathLength="1" x="56" y="56" width="1488" height="888"/>
+    <g id="zones"></g>
+
+    <g id="titleblock">
+      <rect class="ln-mid dr" pathLength="1" x="1156" y="856" width="388" height="88"/>
+      <path class="ln-low dr" pathLength="1" d="M1156 884 H1544 M1156 914 H1544 M1306 884 V914 M1386 884 V914 M1246 914 V944 M1360 914 V944 M1440 914 V944"/>
+      <text x="1162" y="867" font-size="5.8" class="t-low" letter-spacing="0.18em">TITLE</text>
+      <text x="1162" y="879" font-size="8.4" class="t-hi t-500">AMAZON LEO — CONSTELLATION DEPLOYMENT</text>
+      <text x="1162" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">DWG NO</text>
+      <text x="1162" y="908" font-size="10" class="t-hi t-500">LEO-DEPLOY-001</text>
+      <text x="1312" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SIZE</text>
+      <text x="1312" y="908" font-size="10" class="t-hi t-500">E</text>
+      <text x="1392" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SCALE</text>
+      <text x="1392" y="908" font-size="10" class="t-hi t-500">NTS</text>
+      <text x="1162" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">REV</text>
+      <text x="1162" y="938" font-size="10" class="t-hi t-500">P — PUBLIC</text>
+      <text x="1252" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">SHEET</text>
+      <text x="1252" y="938" font-size="10" class="t-hi t-500">1 OF 1</text>
+      <text x="1366" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">BASIS</text>
+      <text x="1366" y="938" font-size="10" class="t-hi t-500">PUBLIC</text>
+      <text x="1446" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">DATE</text>
+      <text x="1446" y="938" font-size="10" class="t-hi t-500">2026-07</text>
+    </g>
+
+    <g id="notes">
+      <text x="68" y="886" font-size="6" class="t-mid" letter-spacing="0.22em">GENERAL NOTES</text>
+      <text x="68" y="900" font-size="7" class="t-low">1. CONSTELLATION-DEPLOYMENT OVERVIEW — REPRESENTATIVE.</text>
+      <text x="68" y="912" font-size="7" class="t-low">2. PUBLIC LAUNCH &amp; FCC RECORD · TRACKERS · JUL 2026.</text>
+      <text x="68" y="924" font-size="7" class="t-low">3. NOT DERIVED FROM INTERNAL OR EXPORT-CONTROLLED DATA.</text>
+      <text x="68" y="936" font-size="7" class="t-low">4. BURN-UP CHART SCHEMATIC · FIGURES APPROXIMATE · NTS.</text>
+    </g>
+
+    <g id="stamp" transform="translate(470 470) rotate(-7)">
+      <rect x="-136" y="-26" width="272" height="52" rx="3" class="ln-acc" stroke-width="1.6"/>
+      <rect x="-130" y="-20" width="260" height="40" rx="2" class="ln-acc" stroke-width="0.5" opacity="0.55"/>
+      <text x="0" y="-1" font-size="15" text-anchor="middle" class="t-acc t-500" letter-spacing="0.22em">PUBLIC DATA ONLY</text>
+      <text x="0" y="13" font-size="6" text-anchor="middle" class="t-acc" letter-spacing="0.14em" opacity="0.75">PUBLIC LAUNCH RECORD · NO INTERNAL DATA</text>
+    </g>
+  </g>
+
+  <g id="world-clip" clip-path="url(#frame-clip)">
+    <g id="world">
+
+      <!-- ============ CHART SKELETON (draws scene 0) ============ -->
+      <g id="chart">
+        <path id="axis-x" class="ln-hi dr" pathLength="1" d="M190 720 H1430"/>
+        <path id="axis-y" class="ln-hi dr" pathLength="1" d="M190 720 V250"/>
+        <!-- FCC gate horizontals -->
+        <path class="ln-acc dash-ext" stroke-width="0.7" d="M190 285 H1430"/>
+        <path class="ln-acc dash-ext" stroke-width="0.7" d="M190 503 H1430"/>
+        <!-- deadline verticals -->
+        <path class="ln-mid dash-ext" d="M707 250 V720"/>
+        <path class="ln-mid dash-ext" d="M1327 250 V720"/>
+      </g>
+      <g id="axis-ticks"></g>
+
+      <!-- ============ SCENE 1 · TARGET (100% line) ============ -->
+      <g id="lbl-target">
+        <circle cx="1327" cy="286" r="3.2" class="ln-acc" stroke-width="0.9"/>
+        <text x="198" y="280" font-size="7" class="t-acc t-500" letter-spacing="0.1em">100% · 3,236 SATELLITES</text>
+        <text x="198" y="290" font-size="4.8" class="t-low">the full authorized fleet</text>
+      </g>
+
+      <!-- ============ SCENE 2 · CLOCK (gates + deadlines) ============ -->
+      <g id="lbl-clock">
+        <text x="198" y="498" font-size="7" class="t-acc t-500" letter-spacing="0.1em">50% · 1,618 SATELLITES</text>
+        <text x="713" y="268" font-size="6" class="t-hi t-500" letter-spacing="0.08em">FCC · 50% BY JUL 2026</text>
+        <text x="1321" y="268" text-anchor="end" font-size="6" class="t-hi t-500" letter-spacing="0.08em">100% BY JUL 2029</text>
+        <text x="1422" y="662" text-anchor="end" font-size="5.4" class="t-low" letter-spacing="0.08em">USE IT OR LOSE IT — DEPLOY ON TIME OR LOSE THE LICENCE</text>
+      </g>
+
+      <!-- launch-manifest legend (scene 3, drawing.js) -->
+      <g id="manifest"></g>
+
+      <!-- ============ SCENE 4 · REQUIRED CURVE + RAMP ============ -->
+      <g id="curve-req">
+        <path class="ln-hi dr" pathLength="1" stroke-width="1.3" d="M190 715 C400 707 570 610 707 503 C920 400 1150 322 1327 286"/>
+        <text x="1040" y="352" font-size="6" class="t-hi t-500" letter-spacing="0.06em">REQUIRED (FCC MILESTONE)</text>
+      </g>
+      <g id="lbl-ramp">
+        <text x="226" y="636" font-size="5.6" class="t-low">first production launches · 2025</text>
+        <text x="226" y="650" font-size="6" class="t-acc t-500">Apr 2026 · 3 launches / 26 days</text>
+        <text x="226" y="660" font-size="5" class="t-low">cadence target 20+/yr → 30+/yr</text>
+      </g>
+
+      <!-- ============ SCENE 5 · ACTUAL CURVE + GAP ============ -->
+      <g id="curve-act">
+        <path class="ln-acc dr" pathLength="1" stroke-width="1.3" d="M190 718 C380 715 560 700 707 680"/>
+        <path class="ln-acc dash-ext" stroke-width="1.0" d="M707 680 C950 615 1160 470 1327 372"/>
+        <circle cx="707" cy="680" r="3" class="ln-acc" stroke-width="0.9"/>
+        <text x="500" y="708" font-size="6" class="t-acc t-500">ACTUAL — public trackers</text>
+        <text x="726" y="672" font-size="5.4" class="t-low">~300 · Jul 2026</text>
+        <text x="1120" y="446" font-size="4.8" class="t-low">projection if cadence ramps</text>
+      </g>
+      <g id="gap">
+        <path class="ln-mid" d="M700 503 H714 M700 680 H714 M707 503 V680" marker-end="url(#arr-acc)"/>
+        <text x="694" y="600" text-anchor="end" font-size="6" class="t-hi t-500">SHORTFALL</text>
+        <text x="694" y="610" text-anchor="end" font-size="4.8" class="t-low">vs the 50% milestone</text>
+        <text x="694" y="620" text-anchor="end" font-size="5.4" class="t-acc t-500">→ FCC extension requested</text>
+      </g>
+
+      <!-- ============ SCENE 6 · FEEDER ============ -->
+      <g id="lbl-feeder">
+        <rect class="ln-low" x="214" y="748" width="360" height="66" rx="3"/>
+        <text x="232" y="770" font-size="7" class="t-hi t-500" letter-spacing="0.1em">PRODUCTION FEEDER — KIRKLAND, WA</text>
+        <text x="232" y="784" font-size="5.4" class="t-low">up to 5 satellites / day · ~1,000 / year</text>
+        <text x="232" y="798" font-size="5.4" class="t-low">production + launch capacity set the ceiling on fleet growth</text>
+      </g>
+
+      <!-- ============ SCENE 7 · RECAP ============ -->
+      <g id="anno">
+        <g id="lead-recap">
+          <text x="200" y="150" font-size="8.4" class="t-hi t-500" letter-spacing="0.12em">A RACE AGAINST THE CLOCK</text>
+          <text x="200" y="163" font-size="5.2" class="t-low" letter-spacing="0.05em">~$10B+ committed · the largest commercial launch procurement in history,</text>
+          <text x="200" y="173" font-size="5.2" class="t-low" letter-spacing="0.05em">racing a use-it-or-lose-it FCC deadline. Public figures, approximate.</text>
+        </g>
+      </g>
+
+    </g>
+  </g>
+</svg>
+
+  <div class="stage-vignette" aria-hidden="true"></div>
+  <div class="panels"></div>
+  <nav class="rail" aria-label="Blueprint sections"></nav>
+  <div class="sr-scene" aria-live="polite"></div>
+  <div class="dwg-chip mono" aria-hidden="true">PUBLIC SOURCES · FCC / LAUNCH RECORD · NTS</div>
+  <p class="stage-hint mono" aria-hidden="true">Scroll to animate · or click play</p>
+  <p class="scene-hud mono" aria-hidden="true"><b class="scene-hud-num"></b><span class="scene-hud-title"></span></p>
+
+  <div class="startcue" aria-hidden="true">
+    <button class="startcue-play" type="button" aria-label="Play the walkthrough">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+    </button>
+    <p class="startcue-note">Press play — or scroll to explore</p>
+  </div>
+</section>
+
+<script src="./vendor/gsap.min.js"></script>
+<script src="./vendor/ScrollTrigger.min.js"></script>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

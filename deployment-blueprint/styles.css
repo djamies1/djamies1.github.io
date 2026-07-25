@@ -1,0 +1,468 @@
+/* ============================================================
+   AMAZON LEO — CONSTELLATION DEPLOYMENT
+   Blueprint scrollytelling · sibling of ../constellation-blueprint
+   (deliberately the same design language — they live as
+   adjacent tabs). Deep cyanotype field, white line work, cyan
+   signal accents. A burn-up chart of the fleet vs the FCC clock.
+   PUBLIC LAUNCH / FCC RECORD ONLY (figures approximate, as of
+   Jul 2026) — see index/notes.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('./fonts/space-grotesk-latin-500.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('./fonts/space-grotesk-latin-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('./fonts/ibm-plex-mono-latin-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('./fonts/ibm-plex-mono-latin-500.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* cyanotype paper */
+  --paper-0: #071c39;                       /* vignette edge */
+  --paper:   #0b2749;                       /* field */
+  --paper-1: #103157;                       /* center lift */
+  /* ink (line work) */
+  --ink:     #e9f2ff;
+  --ink-hi:  rgba(233, 242, 255, 0.92);
+  --ink-mid: rgba(233, 242, 255, 0.55);
+  --ink-low: rgba(233, 242, 255, 0.30);
+  --ink-dim: rgba(233, 242, 255, 0.17);
+  /* signal accents (shared family with leo-gateways / rocket-blueprint) */
+  --signal:      #7ce9ff;
+  --signal-deep: #22d3ee;
+  --signal-dim:  rgba(34, 211, 238, 0.16);
+  /* the one warm accent, reserved for optical / laser (radio → light) */
+  --laser:       #f6b054;
+  /* grid */
+  --grid-minor: rgba(233, 242, 255, 0.045);
+  --grid-major: rgba(233, 242, 255, 0.085);
+  /* panels */
+  --panel-border: rgba(233, 242, 255, 0.18);
+  --panel-radius: 4px;
+  /* type */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  background:
+    radial-gradient(120% 90% at 50% 40%, var(--paper-1) 0%, var(--paper) 48%, var(--paper-0) 100%)
+    var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--signal-dim); color: var(--ink); }
+
+.mono { font-family: var(--font-mono); }
+
+/* (cover / outro / skip-link CSS removed in the v3 design pass — those
+   sections left the DOM in the v2 embeddable-widget restructure) */
+
+/* ---------- stage ---------- */
+/* Materialize gently once fonts are ready (dashboard-embed polish). The hide is
+   gated on .is-booting — added only by JS — so the no-JS static drawing never hides. */
+html.is-booting .stage { opacity: 0; }
+html.is-ready .stage { opacity: 1; }
+.stage {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  transition: opacity 0.7s var(--ease-out);
+}
+#bp {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: block;
+  will-change: transform;
+  pointer-events: none;
+  user-select: none;
+}
+/* sheet depth: a gentle corner falloff over the line work, under every UI layer
+   (it sits between #bp and .panels in the DOM — no z-index games needed) */
+.stage-vignette {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: radial-gradient(115% 88% at 50% 44%, transparent 58%, rgba(3, 12, 28, 0.3) 100%);
+}
+
+/* --- SVG line-work classes (world units; strokes scale with camera zoom) --- */
+#bp path, #bp line, #bp rect, #bp circle, #bp ellipse, #bp polyline {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#bp .ln-hi  { stroke: var(--ink-hi);  stroke-width: 1.4; }
+#bp .ln-mid { stroke: var(--ink-mid); stroke-width: 0.9; }
+#bp .ln-low { stroke: var(--ink-low); stroke-width: 0.6; }
+#bp .ln-dim { stroke: var(--ink-dim); stroke-width: 0.55; }
+#bp .ln-acc { stroke: var(--signal); }
+#bp .ln-laser { stroke: var(--laser); }
+#bp marker path { fill: var(--ink-mid); stroke: none; }
+#bp #grid-1 { fill: url(#gmin); stroke: none; }
+#bp #grid-2 { fill: url(#gmaj); stroke: none; }
+#bp .fill-hatch-a { fill: url(#hatch-a); }
+#bp .fill-hatch-b { fill: url(#hatch-b); }
+#bp .elems-fill { fill: url(#elems); }
+
+/* drawable paths (scene-0 draw-on): dasharray slightly >1 kills Safari end-cap dots.
+   Default state is fully drawn — GSAP sets offsets at boot (progressive enhancement). */
+#bp .dr { stroke-dasharray: 1.02; stroke-dashoffset: 0; }
+
+/* dashed conventions (these fade in — never dash-drawn) */
+#bp .dash-hid { stroke-dasharray: 2.4 1.9; }               /* hidden geometry */
+#bp .dash-ext { stroke-dasharray: 5 4; }                   /* dim extension / detail mark */
+#bp .cl { stroke-dasharray: 16 5 3 5; }                    /* centerline: long-short-long */
+
+/* --- SVG text --- */
+#bp text {
+  font-family: var(--font-mono);
+  fill: var(--ink-mid);
+  stroke: none;
+  letter-spacing: 0.08em;
+}
+#bp .t-hi   { fill: var(--ink-hi); }
+#bp .t-low  { fill: var(--ink-low); }
+#bp .t-acc  { fill: var(--signal); }
+#bp .t-laser { fill: var(--laser); }
+#bp .t-500  { font-weight: 500; }
+
+/* pieces revealed mid-timeline start hidden (JS-independent base drawing stays clean) */
+#lbl-target, #lbl-clock, #manifest, #curve-req, #lbl-ramp,
+#curve-act, #gap, #lbl-feeder, #anno > g, #stamp { opacity: 0; }
+
+/* ---------- callout panels ---------- */
+.panels { position: absolute; inset: 0; pointer-events: none; }
+.panel {
+  position: absolute;
+  top: clamp(18px, 6vh, 64px);
+  right: clamp(18px, 3.5vw, 56px);
+  width: min(430px, 42vw);
+  visibility: hidden;
+  pointer-events: none;
+  background: linear-gradient(165deg, rgba(10, 31, 61, 0.88), rgba(6, 20, 42, 0.74));
+  border: 1px solid var(--panel-border);
+  border-radius: var(--panel-radius);
+  padding: 18px 20px 16px;
+  backdrop-filter: blur(8px);
+}
+.panel::before, .panel::after {  /* drafting corner ticks */
+  content: ""; position: absolute; width: 14px; height: 14px;
+  border-color: var(--signal); border-style: solid;
+}
+.panel::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+.panel::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+.panel .eyebrow {
+  font: 500 0.74rem var(--font-mono); letter-spacing: 0.26em;
+  color: var(--signal); margin-bottom: 8px;
+}
+.panel .eyebrow::before {  /* drafting tick */
+  content: ""; display: inline-block;
+  width: 16px; height: 1px;
+  background: var(--signal); opacity: 0.75;
+  margin-right: 9px; vertical-align: 4px;
+}
+.panel .panel-num {  /* ghost chapter numeral */
+  position: absolute; top: 11px; right: 14px;
+  font: 700 1.85rem/1 var(--font-mono);
+  color: var(--signal); opacity: 0.15;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+.panel h2 {
+  font: 700 1.68rem/1.12 var(--font-display);
+  letter-spacing: 0.01em; color: var(--ink-hi);
+  margin-bottom: 12px;
+}
+.panel dl { display: grid; grid-template-columns: auto 1fr; gap: 5px 18px; }
+.panel dt {
+  font: 400 0.80rem/1.7 var(--font-mono); letter-spacing: 0.14em;
+  color: var(--ink-low); text-transform: uppercase;
+}
+.panel dd {
+  font: 500 1.02rem/1.5 var(--font-mono);
+  color: var(--ink-hi); text-align: right;
+}
+.panel--bl {
+  top: auto; right: auto;
+  left: clamp(18px, 3.5vw, 56px);
+  bottom: clamp(48px, 9vh, 88px);
+}
+.panel .note {
+  margin-top: 12px; padding-top: 10px;
+  border-top: 1px dashed var(--ink-dim);
+  font: 400 0.94rem/1.55 var(--font-display);
+  color: var(--ink-mid);
+}
+
+/* ---------- progress rail ---------- */
+.rail {
+  position: absolute; right: clamp(8px, 1.2vw, 18px); top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 10px;
+  z-index: 5;
+}
+.rail button {
+  position: relative;
+  width: 22px; height: 22px;
+  display: grid; place-items: center;
+  background: none; border: none; cursor: pointer;
+  padding: 0;
+}
+.rail button::before {
+  content: ""; width: 5px; height: 5px;
+  background: var(--ink-low);
+  transform: rotate(45deg);
+  transition: background 0.25s, transform 0.25s var(--ease-out);
+}
+.rail button:hover::before, .rail button:focus-visible::before { background: var(--ink-hi); }
+.rail button:focus-visible { outline: 1px solid var(--signal); outline-offset: 1px; }
+.rail button.is-active::before {
+  background: var(--signal);
+  transform: rotate(45deg) scale(1.5);
+}
+.rail button::after {  /* hover tooltip: the section title */
+  content: attr(data-title);
+  position: absolute; right: 26px; top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  white-space: nowrap;
+  font: 500 0.62rem var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-hi);
+  background: rgba(7, 28, 57, 0.85);
+  border: 1px solid var(--ink-dim); border-radius: 2px;
+  padding: 4px 9px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s var(--ease-out), transform 0.25s var(--ease-out);
+}
+.rail button:hover::after, .rail button:focus-visible::after {
+  opacity: 1; transform: translateY(-50%) translateX(0);
+}
+
+/* ---------- transport controls + progress bar ---------- */
+.controls {
+  position: absolute; left: 50%; bottom: 16px;
+  transform: translateX(-50%);
+  display: flex; gap: 8px;
+  z-index: 6;
+}
+.controls button {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 12px;
+  background: rgba(7, 28, 57, 0.68);
+  border: 1px solid var(--ink-dim); border-radius: 3px;
+  color: var(--ink-mid);
+  font: 500 0.6rem var(--font-mono); letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.controls button:hover, .controls button:focus-visible { border-color: var(--signal); color: var(--ink-hi); }
+.controls button:focus-visible { outline: 1px solid var(--signal); outline-offset: 2px; }
+.controls svg { width: 11px; height: 11px; fill: currentColor; }
+.controls .ctl-play { border-color: rgba(124, 233, 255, 0.4); color: var(--signal); }
+.controls .ctl-speed {
+  align-self: center;
+  padding: 0 2px;
+  min-width: 2.2em;
+  font: 500 0.58rem var(--font-mono); letter-spacing: 0.1em;
+  color: var(--ink-low);
+  text-align: center;
+  user-select: none;
+}
+
+/* a taller invisible hit-zone (easy to click/tap) around a thin visible
+   track, which thickens on hover/focus — the click/drag-to-seek target is
+   the whole bar, not just the 3px line */
+.progressbar {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 14px; z-index: 6;
+  cursor: pointer;
+  touch-action: none;
+}
+.progressbar::before {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 3px;
+  background: rgba(233, 242, 255, 0.07);
+  transition: height 0.15s ease;
+}
+.progressbar b {
+  position: absolute; left: 0; bottom: 0;
+  display: block; height: 3px; width: 0;
+  background: var(--signal-deep); opacity: 0.85;
+  transition: height 0.15s ease;
+  pointer-events: none;
+}
+.progressbar i {
+  position: absolute; bottom: 0; width: 1px; height: 3px;
+  background: rgba(233, 242, 255, 0.22);
+  pointer-events: none;
+  transition: height 0.15s ease;
+}
+.progressbar:hover::before, .progressbar:focus-visible::before,
+.progressbar:hover b, .progressbar:focus-visible b,
+.progressbar:hover i, .progressbar:focus-visible i { height: 6px; }
+.progressbar:focus-visible { outline: 1px solid var(--signal); outline-offset: -2px; }
+
+/* screen-reader scene announcements */
+.sr-scene {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip-path: inset(50%);
+}
+
+/* ---------- compliance chip (ALWAYS visible on the stage, all breakpoints) ---------- */
+.dwg-chip {
+  position: absolute; top: 10px; left: 12px;
+  z-index: 5;
+  padding: 5px 10px;
+  font-size: 0.70rem; letter-spacing: 0.18em;
+  color: var(--ink-mid);
+  border: 1px solid var(--ink-dim); border-radius: 2px;
+  background: rgba(7, 28, 57, 0.55);
+}
+
+/* ---------- current-scene HUD (bottom-left, mirrors the drafting chip) ---------- */
+.scene-hud {
+  position: absolute; left: 14px; bottom: 13px; z-index: 5;
+  display: flex; align-items: baseline; gap: 10px;
+  font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-mid);
+  pointer-events: none;
+}
+.scene-hud .scene-hud-num {
+  font-weight: 500; color: var(--signal); letter-spacing: 0.12em;
+}
+.is-static .scene-hud { display: none; }
+@media (max-width: 900px) { .scene-hud { display: none; } }
+
+/* ---------- responsive ---------- */
+/* small persistent hint, off to the side (top-right, mirrors the compliance chip) */
+.stage-hint {
+  position: absolute; top: 10px; right: 12px; z-index: 5;
+  padding: 5px 10px; border-radius: 3px;
+  font-size: 0.62rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--ink-low);
+  background: rgba(7, 28, 57, 0.5); border: 1px solid var(--ink-dim);
+  pointer-events: none;
+}
+.is-static .stage-hint { display: none; }
+@media (max-width: 900px) { .stage-hint { display: none; } }
+
+/* landing affordance: prominent play button + a hint that you can scroll instead.
+   pointer-events:none on the wrapper so only the button is clickable and the
+   transport bar underneath still works; fades out on first interaction. */
+.startcue {
+  position: absolute; inset: 0; z-index: 6;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+.startcue.is-playing { opacity: 0; visibility: hidden; }   /* hidden only while auto-playing */
+/* after the first scroll the landing hint calms down, but the play button stays
+   available at any scroll position (smaller + dimmer, brightens on hover) */
+.startcue.is-engaged { gap: 0; }
+.startcue.is-engaged .startcue-note { opacity: 0; }
+.startcue.is-engaged .startcue-play {
+  width: 58px; height: 58px; opacity: 0.66; animation: none;
+  box-shadow: 0 0 0 5px rgba(34, 211, 238, 0.06);
+}
+.startcue.is-engaged .startcue-play:hover,
+.startcue.is-engaged .startcue-play:focus-visible { opacity: 1; }
+.startcue-play {
+  pointer-events: auto;
+  width: 88px; height: 88px; border-radius: 50%;
+  display: grid; place-items: center;
+  color: var(--signal);
+  background: rgba(6, 20, 42, 0.55);
+  border: 1.5px solid var(--signal);
+  box-shadow: 0 0 0 7px rgba(34, 211, 238, 0.07);
+  backdrop-filter: blur(3px);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease,
+              width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+.startcue-play svg { width: 30px; height: 30px; fill: currentColor; margin-left: 5px; }
+.startcue-play:hover, .startcue-play:focus-visible {
+  background: rgba(34, 211, 238, 0.22); transform: scale(1.06);
+  box-shadow: 0 0 0 10px rgba(34, 211, 238, 0.12); outline: none;
+}
+.startcue-note {
+  font: 500 0.74rem var(--font-mono); letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ink-mid);
+  background: rgba(6, 20, 42, 0.5); padding: 5px 12px; border-radius: 4px;
+  backdrop-filter: blur(2px);
+  transition: opacity 0.4s ease;
+}
+.is-static .startcue { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .startcue-play { animation: cuepulse 2.6s ease-in-out infinite; }
+  @keyframes cuepulse {
+    0%, 100% { box-shadow: 0 0 0 7px rgba(34, 211, 238, 0.06); }
+    50%      { box-shadow: 0 0 0 12px rgba(34, 211, 238, 0.14); }
+  }
+}
+
+@media (max-width: 900px) {
+  .panel {
+    top: auto; right: 12px; left: 12px; bottom: 12px;
+    width: auto; max-height: 50svh; overflow-y: auto;
+    padding: 14px 16px 12px;
+  }
+  .panel h2 { font-size: 1.44rem; margin-bottom: 8px; }
+  .panel--bl { left: 12px; bottom: 12px; }
+  .rail { display: none; }
+  /* margin annotations don't survive the slice crop — panels carry the info */
+  #anno > g, #manifest, #lbl-ramp, #lbl-feeder { display: none !important; }
+  /* bottom is panel territory on small screens — transport moves up top,
+     below the full-width compliance chip */
+  .controls { left: auto; right: 12px; bottom: auto; top: 44px; transform: none; }
+  .controls button { padding: 6px 7px; }
+  .controls .ctl-label { display: none; }
+  .controls .ctl-speed { display: none; }  /* icons alone still communicate FF/REW; saves width on a crowded row */
+}
+
+/* ---------- reduced motion: static exploded poster ---------- */
+.is-static .stage { height: auto; }
+.is-static #bp {
+  position: static;
+  width: 100%; height: min(92svh, 860px);
+  will-change: auto;
+}
+.is-static .panels {
+  position: static;
+  pointer-events: auto;
+  display: grid; gap: 14px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 28px clamp(16px, 4vw, 48px) 12px;
+}
+.is-static .panel {
+  position: static;
+  visibility: visible;
+  width: auto; max-height: none;
+}
+.is-static .rail, .is-static .sr-scene,
+.is-static .controls, .is-static .progressbar { display: none; }
+.is-static .dwg-chip { position: fixed; }
