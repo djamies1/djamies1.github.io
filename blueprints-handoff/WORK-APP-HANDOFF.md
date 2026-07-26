@@ -1,7 +1,7 @@
 # Blueprint animations → production app: handoff
 
 **For:** the coding agent working in the production app.
-**Goal:** embed five self-contained "blueprint" animations into the app's views as
+**Goal:** embed eleven self-contained "blueprint" animations into the app's views as
 auto-playing widgets with built-in **play / fast-forward / scrub** controls — the same
 way they're embedded in the personal résumé site. **No rewrite required:** each blueprint
 is a static folder you drop in and load in an `<iframe>`.
@@ -14,7 +14,7 @@ only read one section, read **[3] The embed contract**.
 
 ## [0] TL;DR (the 60-second version)
 
-1. Get the five `*-blueprint/` folders (§1) and drop them into the app's static assets,
+1. Get the eleven `*-blueprint/` folders (§1) and drop them into the app's static assets,
    e.g. `public/blueprints/rocket-blueprint/`, …
 2. Render an iframe pointing at each one in **player mode**:
    ```html
@@ -33,7 +33,7 @@ only read one section, read **[3] The embed contract**.
 
 ---
 
-## [1] The five blueprints
+## [1] The eleven blueprints
 
 Each is a cyanotype engineering-drawing animation (inline SVG + GSAP), part of one matched
 set. All content is **public** (FCC / ITU regulatory record, trade press) — representative,
@@ -46,6 +46,12 @@ schematic, not internal.
 | `gateway` | `gateway-blueprint/` | Gateway | The ground stations that link the constellation to the internet. | https://djamies1.github.io/gateway-blueprint/ |
 | `terminal` | `terminal-blueprint/` | Terminal | How a customer's terminal finds and locks onto a satellite pass. | https://djamies1.github.io/terminal-blueprint/ |
 | `spectrum` | `spectrum-blueprint/` | Spectrum | The invisible layer: the radio bands Leo runs on, and how they're licensed. | https://djamies1.github.io/spectrum-blueprint/ |
+| `constellation` | `constellation-blueprint/` | Constellation | Three shells, 98 planes, and a laser mesh — the whole network in orbit. | https://djamies1.github.io/constellation-blueprint/ |
+| `datapath` | `datapath-blueprint/` | Data path | One packet's round trip: terminal → satellite → laser mesh → gateway → AWS. | https://djamies1.github.io/datapath-blueprint/ |
+| `latency` | `latency-blueprint/` | Why LEO | Why it all flies low: altitude sets latency, and the trade-offs that follow. | https://djamies1.github.io/latency-blueprint/ |
+| `deployment` | `deployment-blueprint/` | Deployment | Building 3,236 satellites against a use-it-or-lose-it FCC deadline. | https://djamies1.github.io/deployment-blueprint/ |
+| `comparison` | `comparison-blueprint/` | vs Starlink | Amazon Leo and Starlink, side by side (public comparison). | https://djamies1.github.io/comparison-blueprint/ |
+| `economics` | `economics-blueprint/` | Economics | The rough economics of the bet — public estimates only, illustrative. | https://djamies1.github.io/economics-blueprint/ |
 
 **Each folder is self-contained and has _no build step_:**
 
@@ -70,10 +76,10 @@ these safe to serve inside a locked-down corporate app behind a strict CSP.
 
 The blueprints live in a **public** GitHub repo: **`djamies1/djamies1.github.io`**
 (branch `main`). *(This handoff document lives in the same repo, under
-`blueprints-handoff/`.)* Two ways to get just the five folders — pick whichever your
+`blueprints-handoff/`.)* Two ways to get just the eleven folders — pick whichever your
 environment allows.
 
-### (a) Primary — pull only the five folders from the public repo
+### (a) Primary — pull only the eleven folders from the public repo
 
 `degit` grabs a subfolder with no git history — one command per blueprint, straight into
 the app's static dir:
@@ -84,6 +90,12 @@ npx degit djamies1/djamies1.github.io/satellite-blueprint public/blueprints/sate
 npx degit djamies1/djamies1.github.io/gateway-blueprint   public/blueprints/gateway-blueprint
 npx degit djamies1/djamies1.github.io/terminal-blueprint  public/blueprints/terminal-blueprint
 npx degit djamies1/djamies1.github.io/spectrum-blueprint  public/blueprints/spectrum-blueprint
+npx degit djamies1/djamies1.github.io/constellation-blueprint public/blueprints/constellation-blueprint
+npx degit djamies1/djamies1.github.io/datapath-blueprint      public/blueprints/datapath-blueprint
+npx degit djamies1/djamies1.github.io/latency-blueprint       public/blueprints/latency-blueprint
+npx degit djamies1/djamies1.github.io/deployment-blueprint    public/blueprints/deployment-blueprint
+npx degit djamies1/djamies1.github.io/comparison-blueprint    public/blueprints/comparison-blueprint
+npx degit djamies1/djamies1.github.io/economics-blueprint     public/blueprints/economics-blueprint
 ```
 
 Or a git **sparse checkout** (no `degit`, keeps you off the rest of the repo):
@@ -92,18 +104,18 @@ Or a git **sparse checkout** (no `degit`, keeps you off the rest of the repo):
 git clone --no-checkout --depth 1 https://github.com/djamies1/djamies1.github.io.git
 cd djamies1.github.io
 git sparse-checkout init --cone
-git sparse-checkout set rocket-blueprint satellite-blueprint gateway-blueprint terminal-blueprint spectrum-blueprint
+git sparse-checkout set rocket-blueprint satellite-blueprint gateway-blueprint terminal-blueprint spectrum-blueprint constellation-blueprint datapath-blueprint latency-blueprint deployment-blueprint comparison-blueprint economics-blueprint
 git checkout main
-# then copy the five folders wherever you host static assets
+# then copy the eleven folders wherever you host static assets
 ```
 
-> Only take these five folders — **not** the whole repo (it also contains unrelated
+> Only take these eleven folders — **not** the whole repo (it also contains unrelated
 > personal projects). Nothing needs building; these are final static files.
 
 ### (b) Fallback — one-file download (no git / npm needed)
 
 If `degit` or `git` isn't available in the work environment, grab the pre-built bundle —
-the same five folders in one spec-compliant zip (forward-slash paths, ~0.7 MB) — straight
+the same eleven folders in one spec-compliant zip (forward-slash paths, ~1.5 MB) — straight
 from the repo over HTTPS, then unzip into your static dir:
 
 ```bash
@@ -164,7 +176,9 @@ the sheet gracefully instead of shrinking the type.
   fully-labeled poster** automatically. No extra work on your side.
 - Optional JS override instead of query params: each folder reads a `window.<PREFIX>_BP_CONFIG`
   object if present (`{ mode, autoplay, loop, speed }`). Prefix per folder:
-  `ROCKET_BP_CONFIG`, `SAT_BP_CONFIG`, `GGT_BP_CONFIG`, `UT_BP_CONFIG`, `SPEC_BP_CONFIG`.
+  `ROCKET_BP_CONFIG`, `SAT_BP_CONFIG`, `GGT_BP_CONFIG`, `UT_BP_CONFIG`, `SPEC_BP_CONFIG`,
+  `CON_BP_CONFIG`, `PATH_BP_CONFIG`, `LAT_BP_CONFIG`, `DEP_BP_CONFIG`, `CMP_BP_CONFIG`,
+  `ECON_BP_CONFIG`.
   You almost certainly won't need this — query params are simpler.
 
 ---
@@ -179,6 +193,12 @@ public/blueprints/satellite-blueprint/
 public/blueprints/gateway-blueprint/
 public/blueprints/terminal-blueprint/
 public/blueprints/spectrum-blueprint/
+public/blueprints/constellation-blueprint/
+public/blueprints/datapath-blueprint/
+public/blueprints/latency-blueprint/
+public/blueprints/deployment-blueprint/
+public/blueprints/comparison-blueprint/
+public/blueprints/economics-blueprint/
 ```
 
 The iframe `src` then becomes
@@ -198,7 +218,7 @@ The iframe `src` then becomes
 ## [5] React integration
 
 Mirror of the résumé site. Two patterns: a minimal single embed, and the tabbed showcase
-(all five). Both are dependency-light (plain React) — add your design system on top.
+(all eleven). Both are dependency-light (plain React) — add your design system on top.
 
 ### 5.1 Shared data + helper
 
@@ -228,6 +248,24 @@ export const BLUEPRINTS: BlueprintProject[] = [
   { id: "spectrum",  label: "Spectrum",  path: "/blueprints/spectrum-blueprint/",
     embedTitle: "How Amazon Leo uses radio spectrum — animated blueprint (auto-playing)",
     caption: "The invisible layer: the radio bands Leo runs on, and how they're licensed." },
+  { id: "constellation", label: "Constellation", path: "/blueprints/constellation-blueprint/",
+    embedTitle: "How the Amazon Leo constellation forms one network — animated blueprint (auto-playing)",
+    caption: "Three shells, 98 planes, and a laser mesh — the whole network in orbit." },
+  { id: "datapath", label: "Data path", path: "/blueprints/datapath-blueprint/",
+    embedTitle: "How data travels end-to-end on Amazon Leo — animated blueprint (auto-playing)",
+    caption: "One packet's round trip: terminal → satellite → laser mesh → gateway → AWS." },
+  { id: "latency", label: "Why LEO", path: "/blueprints/latency-blueprint/",
+    embedTitle: "Why low Earth orbit lowers latency and needs a constellation — animated blueprint (auto-playing)",
+    caption: "Why it all flies low: altitude sets latency, and the trade-offs that follow." },
+  { id: "deployment", label: "Deployment", path: "/blueprints/deployment-blueprint/",
+    embedTitle: "How Amazon Leo gets deployed against the FCC clock — animated blueprint (auto-playing)",
+    caption: "Building 3,236 satellites against a use-it-or-lose-it FCC deadline." },
+  { id: "comparison", label: "vs Starlink", path: "/blueprints/comparison-blueprint/",
+    embedTitle: "Amazon Leo vs Starlink — a public architecture comparison, animated blueprint (auto-playing)",
+    caption: "Two bets on the same idea: Amazon Leo and Starlink, side by side." },
+  { id: "economics", label: "Economics", path: "/blueprints/economics-blueprint/",
+    embedTitle: "The rough public economics of a LEO network — animated blueprint (auto-playing)",
+    caption: "The shape of the bet: heavy capex now, recurring revenue later. Public estimates only." },
 ];
 
 // player-mode URL for a given folder
@@ -303,7 +341,7 @@ export function BlueprintEmbed({ path, title }: { path: string; title: string })
 />
 ```
 
-### 5.4 Pattern B — tabbed showcase (all five, like the résumé)
+### 5.4 Pattern B — tabbed showcase (all eleven, like the résumé)
 
 ```tsx
 import { useId, useRef, useState } from "react";
@@ -392,7 +430,7 @@ Minimal CSS to make it functional (style to taste):
 
 **Behaviors to preserve (each matters):**
 
-- **Lazy mount** (`useInView`) — don't mount five heavy iframes on page load.
+- **Lazy mount** (`useInView`) — don't mount eleven heavy iframes on page load.
 - **One iframe at a time** — render only the active tab's frame.
 - **Keyed remount** (`key={active.id}`) — switching tabs restarts the player cleanly.
 - `loading="lazy"`, a real `title`, and `rel="noopener"` on the link-out.
@@ -435,7 +473,7 @@ After wiring each embed:
       speed; **Prev/Next** jump whole scenes; the **progress bar** scrubs by click, drag,
       and arrow keys.
 - [ ] Container is **8:5**; no letterboxing; no horizontal scrollbar.
-- [ ] All **five** embeds load and switch correctly (tabbed showcase: exactly one iframe
+- [ ] All **eleven** embeds load and switch correctly (tabbed showcase: exactly one iframe
       in the DOM at a time; switching tabs restarts the player).
 - [ ] **DevTools → Network, filtered to the iframe: zero external/third-party requests**
       (everything is same-origin under `/blueprints/…`). This is the CSP-safety check.
@@ -459,7 +497,7 @@ python -m http.server 8123
   viewport-height iframe and won't behave in a fixed card.
 - **Copy each folder whole.** Relative asset paths mean the folder is portable, but only
   with its `js/ vendor/ fonts/` subfolders intact.
-- **Don't mount all five at once** — lazy-mount, one iframe at a time. Five simultaneous
+- **Don't mount all eleven at once** — lazy-mount, one iframe at a time. Eleven simultaneous
   GSAP timelines is wasteful.
 - **Keyed remount on tab switch**, or the player won't reset to the start of the new sheet.
 - **Reference `index.html` explicitly** in `src` rather than relying on directory-index
@@ -480,12 +518,15 @@ dependency-light §5.4 above does the same job without them.
 `blueprint-icons.tsx`:
 
 ```tsx
-import { AudioLines, MonitorSmartphone, RadioTower, Rocket, Satellite,
+import { AudioLines, CalendarClock, CircleDollarSign, Gauge, GitCompare,
+         MonitorSmartphone, Orbit, RadioTower, Rocket, Satellite, Waypoints,
          type LucideIcon } from "lucide-react";
 
 const BLUEPRINT_ICONS: Record<string, LucideIcon> = {
   rocket: Rocket, satellite: Satellite, gateway: RadioTower,
   terminal: MonitorSmartphone, spectrum: AudioLines,
+  constellation: Orbit, datapath: Waypoints, deployment: CalendarClock,
+  latency: Gauge, comparison: GitCompare, economics: CircleDollarSign,
 };
 
 export function BlueprintIcon({ id, className }: { id: string; className?: string }) {
@@ -518,7 +559,7 @@ export function BlueprintShowcase() {
   return (
     <div className="mt-16">
       <p className="eyebrow mb-5">The blueprints</p>
-      <p>Five interactive blueprints I designed and built to explain the machine behind the numbers.</p>
+      <p>Eleven interactive blueprints I designed and built to explain the machine behind the numbers.</p>
 
       <div role="tablist" aria-label="Blueprint project" className="inline-flex flex-wrap gap-1 rounded-full p-1.5">
         {BLUEPRINTS.map((project) => {
@@ -588,5 +629,6 @@ function BlueprintFrame({ project }) {
 - **Scroll src:** `<folder>/index.html` (viewport-height iframe only)
 - **Aspect ratio:** 8 : 5
 - **Config globals:** `ROCKET_BP_CONFIG`, `SAT_BP_CONFIG`, `GGT_BP_CONFIG`, `UT_BP_CONFIG`,
-  `SPEC_BP_CONFIG`
+  `SPEC_BP_CONFIG`, `CON_BP_CONFIG`, `PATH_BP_CONFIG`, `LAT_BP_CONFIG`, `DEP_BP_CONFIG`,
+  `CMP_BP_CONFIG`, `ECON_BP_CONFIG`
 - **Runtime deps:** none external — GSAP + fonts are vendored inside each folder.
