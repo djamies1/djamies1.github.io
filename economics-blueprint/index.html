@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amazon Leo — Economics (Public Estimates, Illustrative)</title>
+<meta name="description" content="A simple animated walkthrough of the rough economics of a LEO broadband network: heavy upfront capex (satellites, launch, terminals) repaid over years by recurring revenue and AWS pull-through. Built ENTIRELY from public analyst and press estimates — illustrative, not Amazon internal figures; schematic and not to scale, as of Jul 2026.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b2749'/%3E%3Cpath d='M4 13 H28' stroke='%23e9f2ff' stroke-width='0.8' stroke-dasharray='2 2'/%3E%3Cpath d='M5 12 C8 22 12 24 16 18 C20 12 24 8 27 5' fill='none' stroke='%237ce9ff' stroke-width='1.8'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<!-- Cover stripped: self-contained, embeddable blueprint widget. Compliance is
+     load-bearing here: persistent chip + disclaimer band + title-block notes +
+     PUBLIC DATA ONLY stamp. EVERY figure is a public analyst/press estimate —
+     ILLUSTRATIVE, NOT Amazon internal figures. -->
+
+<section class="stage" aria-label="Animated blueprint of the rough public economics of a LEO broadband network — illustrative estimates only">
+
+<svg id="bp" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <defs>
+    <pattern id="gmin" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M10 0H0V10" fill="none" stroke="var(--grid-minor)" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gmaj" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0V50" fill="none" stroke="var(--grid-major)" stroke-width="0.6"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 1.4 L10 5 L0 8.6 Z" fill="var(--ink-mid)" stroke="none"/>
+    </marker>
+    <marker id="arr-acc" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+      <path d="M0 1.4 L10 5 L0 8.6 Z" fill="var(--signal)" stroke="none"/>
+    </marker>
+    <clipPath id="frame-clip"><rect x="56" y="56" width="1488" height="888"/></clipPath>
+  </defs>
+
+  <g id="sheet">
+    <rect id="grid-1" x="56" y="56" width="1488" height="888" fill="url(#gmin)"/>
+    <rect id="grid-2" x="56" y="56" width="1488" height="888" fill="url(#gmaj)"/>
+    <rect id="frame-outer" class="ln-low dr" pathLength="1" x="24" y="24" width="1552" height="952"/>
+    <rect id="frame-inner" class="ln-mid dr" pathLength="1" x="56" y="56" width="1488" height="888"/>
+    <g id="zones"></g>
+
+    <g id="titleblock">
+      <rect class="ln-mid dr" pathLength="1" x="1156" y="856" width="388" height="88"/>
+      <path class="ln-low dr" pathLength="1" d="M1156 884 H1544 M1156 914 H1544 M1306 884 V914 M1386 884 V914 M1246 914 V944 M1360 914 V944 M1440 914 V944"/>
+      <text x="1162" y="867" font-size="5.8" class="t-low" letter-spacing="0.18em">TITLE</text>
+      <text x="1162" y="879" font-size="8.4" class="t-hi t-500">AMAZON LEO — ECONOMICS (PUBLIC ESTIMATES)</text>
+      <text x="1162" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">DWG NO</text>
+      <text x="1162" y="908" font-size="10" class="t-hi t-500">LEO-ECON-001</text>
+      <text x="1312" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SIZE</text>
+      <text x="1312" y="908" font-size="10" class="t-hi t-500">E</text>
+      <text x="1392" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SCALE</text>
+      <text x="1392" y="908" font-size="10" class="t-hi t-500">NTS</text>
+      <text x="1162" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">REV</text>
+      <text x="1162" y="938" font-size="10" class="t-hi t-500">P — PUBLIC</text>
+      <text x="1252" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">BASIS</text>
+      <text x="1252" y="938" font-size="9.5" class="t-hi t-500">EST.</text>
+      <text x="1366" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">TYPE</text>
+      <text x="1366" y="938" font-size="8.5" class="t-hi t-500">ILLUSTR.</text>
+      <text x="1446" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">DATE</text>
+      <text x="1446" y="938" font-size="10" class="t-hi t-500">2026-07</text>
+    </g>
+
+    <g id="notes">
+      <text x="68" y="880" font-size="6" class="t-mid" letter-spacing="0.22em">GENERAL NOTES</text>
+      <text x="68" y="894" font-size="7" class="t-low">1. LEO ECONOMICS — ILLUSTRATIVE, ORDER-OF-MAGNITUDE.</text>
+      <text x="68" y="906" font-size="7" class="t-low">2. EVERY FIGURE IS A PUBLIC ANALYST / PRESS ESTIMATE.</text>
+      <text x="68" y="918" font-size="7" class="t-low">3. NOT AMAZON INTERNAL FIGURES · NOT TO BE RECONCILED WITH INTERNAL DATA.</text>
+      <text x="68" y="930" font-size="7" class="t-low">4. NOT DERIVED FROM INTERNAL OR EXPORT-CONTROLLED DATA · NTS · AS OF JUL 2026.</text>
+    </g>
+
+    <g id="stamp" transform="translate(452 566) rotate(-7)">
+      <rect x="-146" y="-26" width="292" height="52" rx="3" class="ln-acc" stroke-width="1.6"/>
+      <rect x="-140" y="-20" width="280" height="40" rx="2" class="ln-acc" stroke-width="0.5" opacity="0.55"/>
+      <text x="0" y="-1" font-size="14" text-anchor="middle" class="t-acc t-500" letter-spacing="0.18em">PUBLIC DATA ONLY</text>
+      <text x="0" y="13" font-size="6" text-anchor="middle" class="t-acc" letter-spacing="0.12em" opacity="0.78">PUBLIC ESTIMATES · NOT AMAZON FIGURES</text>
+    </g>
+  </g>
+
+  <g id="world-clip" clip-path="url(#frame-clip)">
+    <g id="world">
+
+      <!-- ============ MONEY-FLOW SPINE + ASSET (scene 0) ============ -->
+      <g id="spine">
+        <path class="ln-mid dr" pathLength="1" marker-end="url(#arr)" d="M362 444 H408"/>
+        <path class="ln-mid dr" pathLength="1" marker-end="url(#arr)" d="M702 444 H742"/>
+        <path class="ln-mid dr" pathLength="1" marker-end="url(#arr)" d="M872 444 H888"/>
+        <path class="ln-mid dr" pathLength="1" marker-end="url(#arr)" d="M1122 444 H1148"/>
+        <rect class="ln-hi dr" pathLength="1" x="744" y="416" width="126" height="58" rx="3"/>
+        <text x="807" y="440" text-anchor="middle" font-size="6.4" class="t-hi t-500" letter-spacing="0.08em">THE FLEET</text>
+        <text x="807" y="454" text-anchor="middle" font-size="6" class="t-acc t-500">3,236 sats</text>
+        <text x="807" y="466" text-anchor="middle" font-size="4.4" class="t-low">the asset</text>
+      </g>
+
+      <!-- ============ DISCLAIMER BAND (scene 1) ============ -->
+      <g id="disclaimer">
+        <rect class="ln-acc" x="486" y="182" width="628" height="62" rx="4" stroke-width="1.1"/>
+        <text x="800" y="208" text-anchor="middle" font-size="8" class="t-acc t-500" letter-spacing="0.1em">ILLUSTRATIVE — PUBLIC ANALYST &amp; PRESS ESTIMATES ONLY</text>
+        <text x="800" y="226" text-anchor="middle" font-size="6.2" class="t-hi t-500" letter-spacing="0.12em">NOT AMAZON FIGURES · NOT INTERNAL DATA · AS OF JUL 2026</text>
+      </g>
+
+      <!-- ============ SCENE 2 · CAPITAL IN ============ -->
+      <g id="capex">
+        <rect class="ln-low" x="150" y="384" width="210" height="120" rx="3"/>
+        <text x="168" y="406" font-size="6.6" class="t-hi t-500" letter-spacing="0.1em">CAPITAL IN</text>
+        <path class="ln-dim" d="M164 414 H346"/>
+        <text x="168" y="442" font-size="14" class="t-acc t-500">&gt;$10B</text>
+        <text x="168" y="456" font-size="5.4" class="t-low">committed (public reports)</text>
+        <text x="168" y="474" font-size="6.2" class="t-hi t-500">+~$1B in 2026</text>
+        <text x="168" y="486" font-size="5" class="t-low">heavy, front-loaded</text>
+      </g>
+
+      <!-- ============ SCENE 3 · BUILD (cost stack) ============ -->
+      <g id="build">
+        <rect class="ln-low" x="410" y="384" width="290" height="120" rx="3"/>
+        <text x="428" y="406" font-size="6.6" class="t-hi t-500" letter-spacing="0.1em">BUILD — WHERE IT GOES</text>
+        <path class="ln-dim" d="M424 414 H686"/>
+        <text x="428" y="434" font-size="6.4" class="t-hi t-500">~1,000</text><text x="510" y="434" font-size="5.6" class="t-low">satellites / yr · Kirkland</text>
+        <text x="428" y="452" font-size="6.4" class="t-hi t-500">~83</text><text x="510" y="452" font-size="5.6" class="t-low">launches · largest buy ever</text>
+        <text x="428" y="470" font-size="6.4" class="t-acc t-500">sub-$400</text><text x="510" y="470" font-size="5.6" class="t-low">terminals → sub-$200 at scale</text>
+        <text x="428" y="490" font-size="4.8" class="t-low">the three big cost buckets</text>
+      </g>
+
+      <!-- ============ SCENE 4 · TERMINAL UNIT ============ -->
+      <g id="unit">
+        <rect class="ln-low" x="440" y="528" width="330" height="140" rx="3"/>
+        <text x="458" y="550" font-size="6.6" class="t-hi t-500" letter-spacing="0.1em">THE TERMINAL UNIT — RAZOR &amp; BLADES</text>
+        <path class="ln-dim" d="M454 558 H756"/>
+        <text x="458" y="580" font-size="6.2" class="t-hi t-500">MAKE</text><text x="540" y="580" font-size="5.6" class="t-low">sub-$400 to produce (Pro)</text>
+        <text x="458" y="600" font-size="6.2" class="t-acc t-500">SELL</text><text x="540" y="600" font-size="5.6" class="t-low">at / below cost — subsidised</text>
+        <text x="458" y="620" font-size="6.2" class="t-hi t-500">RECOUP</text><text x="540" y="620" font-size="5.6" class="t-low">over months of service</text>
+        <path class="ln-dim" d="M454 632 H756"/>
+        <text x="458" y="652" font-size="5.6" class="t-acc t-500">cheaper terminal → more subscribers</text>
+        <path class="ln-dim dash-ext" stroke-width="0.6" d="M560 528 L560 476"/>
+      </g>
+
+      <!-- ============ SCENE 5 · SERVICE + REVENUE ============ -->
+      <g id="service">
+        <rect class="ln-low" x="890" y="384" width="230" height="120" rx="3"/>
+        <text x="908" y="406" font-size="6.6" class="t-hi t-500" letter-spacing="0.1em">SERVICE</text>
+        <path class="ln-dim" d="M904 414 H1106"/>
+        <text x="908" y="434" font-size="5.8" class="t-low">subscribers × ARPU</text>
+        <text x="908" y="454" font-size="8" class="t-acc t-500">~$50–100 / mo</text>
+        <text x="908" y="466" font-size="5" class="t-low">consumer target (reports)</text>
+        <text x="908" y="486" font-size="6" class="t-hi t-500">+ enterprise · AWS</text>
+      </g>
+      <g id="revenue">
+        <rect class="ln-low" x="1150" y="384" width="230" height="120" rx="3"/>
+        <text x="1168" y="406" font-size="6.6" class="t-hi t-500" letter-spacing="0.1em">REVENUE</text>
+        <path class="ln-dim" d="M1164 414 H1366"/>
+        <text x="1168" y="440" font-size="12" class="t-acc t-500">~$20B / yr</text>
+        <text x="1168" y="454" font-size="5.4" class="t-low">by 2030 (public reports)</text>
+        <text x="1168" y="474" font-size="6" class="t-hi t-500">recurring · growing</text>
+        <text x="1168" y="488" font-size="5" class="t-low">AWS pull-through = margin story</text>
+      </g>
+
+      <!-- ============ SCENE 6 · MARKET (TAM) ============ -->
+      <g id="market">
+        <rect class="ln-acc" x="1150" y="520" width="290" height="82" rx="3" stroke-width="0.8"/>
+        <text x="1168" y="542" font-size="6.6" class="t-acc t-500" letter-spacing="0.1em">THE MARKET (TAM)</text>
+        <text x="1168" y="564" font-size="9" class="t-hi t-500">~$61B by 2030</text>
+        <text x="1168" y="578" font-size="5.4" class="t-low">satellite broadband · analyst estimate</text>
+        <text x="1168" y="592" font-size="5.4" class="t-low">Leo share aim 25–35% · Starlink ~$11.4B ’25 (context)</text>
+      </g>
+
+      <!-- ============ SCENE 7 · THE BET (J-curve) ============ -->
+      <g id="jcurve">
+        <text x="200" y="686" font-size="7" class="t-hi t-500" letter-spacing="0.1em">THE SHAPE OF THE BET — ILLUSTRATIVE</text>
+        <path class="ln-dim dash-ext" d="M200 726 H1380"/>
+        <text x="1384" y="728" font-size="5" class="t-low">break-even</text>
+        <path class="ln-acc dr" pathLength="1" stroke-width="1.3" d="M200 718 C380 776 520 782 680 752 C880 714 1120 648 1380 606"/>
+        <text x="470" y="792" text-anchor="middle" font-size="5.6" class="t-hi t-500">SPEND — capex now</text>
+        <text x="1120" y="632" text-anchor="middle" font-size="5.6" class="t-acc t-500">EARN — recurring + AWS, later</text>
+        <text x="800" y="792" text-anchor="middle" font-size="5" class="t-low" letter-spacing="0.2em">TIME →</text>
+      </g>
+
+      <!-- ============ SCENE 7 · RECAP LEAD ============ -->
+      <g id="anno">
+        <g id="lead-recap">
+          <text x="200" y="150" font-size="8.4" class="t-hi t-500" letter-spacing="0.12em">SPEND NOW, EARN LATER</text>
+          <text x="200" y="163" font-size="5.2" class="t-low" letter-spacing="0.05em">a deep early spend that recurring revenue + AWS pull-through are meant to</text>
+          <text x="200" y="173" font-size="5.2" class="t-low" letter-spacing="0.05em">repay over years — an infrastructure J-curve. Illustrative; public estimates only.</text>
+        </g>
+      </g>
+
+    </g>
+  </g>
+</svg>
+
+  <div class="stage-vignette" aria-hidden="true"></div>
+  <div class="panels"></div>
+  <nav class="rail" aria-label="Blueprint sections"></nav>
+  <div class="sr-scene" aria-live="polite"></div>
+  <div class="dwg-chip mono" aria-hidden="true">PUBLIC ESTIMATES · NOT AMAZON FIGURES</div>
+  <p class="stage-hint mono" aria-hidden="true">Scroll to animate · or click play</p>
+  <p class="scene-hud mono" aria-hidden="true"><b class="scene-hud-num"></b><span class="scene-hud-title"></span></p>
+
+  <div class="startcue" aria-hidden="true">
+    <button class="startcue-play" type="button" aria-label="Play the walkthrough">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+    </button>
+    <p class="startcue-note">Press play — or scroll to explore</p>
+  </div>
+</section>
+
+<script src="./vendor/gsap.min.js"></script>
+<script src="./vendor/ScrollTrigger.min.js"></script>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>
