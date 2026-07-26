@@ -23,7 +23,7 @@ const captionSwap = {
 };
 
 /**
- * Tabbed showcase for the five standalone "blueprint" scrollytelling projects
+ * Tabbed showcase for the eleven standalone "blueprint" scrollytelling projects
  * (cyanotype SVG + GSAP, sibling folders at the repo root, not part of this
  * app). Each tab embeds that project's own player-mode iframe untouched
  * (autoplay, loop, no scroll) — the frame around it is this site's chrome,
@@ -51,7 +51,7 @@ export function BlueprintShowcase() {
     >
       <p className="eyebrow mb-5">The blueprints</p>
       <p className="max-w-2xl text-cream/85 text-lg leading-relaxed">
-        Five interactive blueprints I designed and built to explain the
+        Eleven interactive blueprints I designed and built to explain the
         machine behind the numbers above.
       </p>
 

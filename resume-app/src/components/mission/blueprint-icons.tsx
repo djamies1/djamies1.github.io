@@ -1,10 +1,16 @@
 import {
   AudioLines,
+  CalendarClock,
+  CircleDollarSign,
+  Gauge,
+  GitCompare,
   type LucideIcon,
   MonitorSmartphone,
+  Orbit,
   RadioTower,
   Rocket,
   Satellite,
+  Waypoints,
 } from "lucide-react";
 
 /** Lucide icon per blueprint project id (data stays icon-free). */
@@ -14,6 +20,12 @@ const BLUEPRINT_ICONS: Record<string, LucideIcon> = {
   gateway: RadioTower,
   terminal: MonitorSmartphone,
   spectrum: AudioLines,
+  constellation: Orbit,
+  datapath: Waypoints,
+  deployment: CalendarClock,
+  latency: Gauge,
+  comparison: GitCompare,
+  economics: CircleDollarSign,
 };
 
 export function BlueprintIcon({
