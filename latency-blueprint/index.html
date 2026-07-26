@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why Low Earth Orbit — Geometry &amp; Latency (Generic Overview)</title>
+<meta name="description" content="A simple animated walkthrough of why satellite internet moved to low orbit: how altitude sets latency (LEO ~20-40 ms vs GEO ~500-700 ms) and coverage, and why a small, fast-moving footprint means you need a whole constellation. Generic public physics; schematic and not to scale.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b2749'/%3E%3Cpath d='M4 26 Q16 20 28 26' fill='none' stroke='%23e9f2ff' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='8' r='1.9' fill='%237ce9ff'/%3E%3Cpath d='M16 23 V11' stroke='%237ce9ff' stroke-width='1' stroke-dasharray='2 1.5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<!-- Cover stripped: self-contained, embeddable blueprint widget. Compliance lives ON
+     the sheet (persistent chip, title-block notes, PUBLIC DATA ONLY stamp). Generic
+     public physics; Amazon Leo appears only as a LEO system at ~590 km. -->
+
+<section class="stage" aria-label="Animated blueprint of why low Earth orbit lowers latency and needs a constellation">
+
+<svg id="bp" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <defs>
+    <pattern id="gmin" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M10 0H0V10" fill="none" stroke="var(--grid-minor)" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gmaj" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0V50" fill="none" stroke="var(--grid-major)" stroke-width="0.6"/>
+    </pattern>
+    <marker id="arr-acc" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+      <path d="M0 1.4 L10 5 L0 8.6 Z" fill="var(--signal)" stroke="none"/>
+    </marker>
+    <clipPath id="frame-clip"><rect x="56" y="56" width="1488" height="888"/></clipPath>
+  </defs>
+
+  <g id="sheet">
+    <rect id="grid-1" x="56" y="56" width="1488" height="888" fill="url(#gmin)"/>
+    <rect id="grid-2" x="56" y="56" width="1488" height="888" fill="url(#gmaj)"/>
+    <rect id="frame-outer" class="ln-low dr" pathLength="1" x="24" y="24" width="1552" height="952"/>
+    <rect id="frame-inner" class="ln-mid dr" pathLength="1" x="56" y="56" width="1488" height="888"/>
+    <g id="zones"></g>
+
+    <g id="titleblock">
+      <rect class="ln-mid dr" pathLength="1" x="1156" y="856" width="388" height="88"/>
+      <path class="ln-low dr" pathLength="1" d="M1156 884 H1544 M1156 914 H1544 M1306 884 V914 M1386 884 V914 M1246 914 V944 M1360 914 V944 M1440 914 V944"/>
+      <text x="1162" y="867" font-size="5.8" class="t-low" letter-spacing="0.18em">TITLE</text>
+      <text x="1162" y="879" font-size="8.4" class="t-hi t-500">WHY LOW EARTH ORBIT — GEOMETRY &amp; LATENCY</text>
+      <text x="1162" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">DWG NO</text>
+      <text x="1162" y="908" font-size="10" class="t-hi t-500">LEO-WHY-LEO-001</text>
+      <text x="1312" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SIZE</text>
+      <text x="1312" y="908" font-size="10" class="t-hi t-500">E</text>
+      <text x="1392" y="895" font-size="5.8" class="t-low" letter-spacing="0.18em">SCALE</text>
+      <text x="1392" y="908" font-size="10" class="t-hi t-500">NTS</text>
+      <text x="1162" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">REV</text>
+      <text x="1162" y="938" font-size="10" class="t-hi t-500">P — PUBLIC</text>
+      <text x="1252" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">SHEET</text>
+      <text x="1252" y="938" font-size="10" class="t-hi t-500">1 OF 1</text>
+      <text x="1366" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">BASIS</text>
+      <text x="1366" y="938" font-size="10" class="t-hi t-500">PHYSICS</text>
+      <text x="1446" y="925" font-size="5.8" class="t-low" letter-spacing="0.18em">DATE</text>
+      <text x="1446" y="938" font-size="10" class="t-hi t-500">2026-07</text>
+    </g>
+
+    <g id="notes">
+      <text x="68" y="886" font-size="6" class="t-mid" letter-spacing="0.22em">GENERAL NOTES</text>
+      <text x="68" y="900" font-size="7" class="t-low">1. WHY-LEO GEOMETRY &amp; LATENCY OVERVIEW — GENERIC.</text>
+      <text x="68" y="912" font-size="7" class="t-low">2. PUBLIC / TEXTBOOK PHYSICS · PUBLIC INDUSTRY FIGURES.</text>
+      <text x="68" y="924" font-size="7" class="t-low">3. NOT DERIVED FROM INTERNAL OR EXPORT-CONTROLLED DATA.</text>
+      <text x="68" y="936" font-size="7" class="t-low">4. SCHEMATIC · ALTITUDES COMPRESSED · NOT TO SCALE.</text>
+    </g>
+
+    <g id="stamp" transform="translate(430 430) rotate(-7)">
+      <rect x="-130" y="-26" width="260" height="52" rx="3" class="ln-acc" stroke-width="1.6"/>
+      <rect x="-124" y="-20" width="248" height="40" rx="2" class="ln-acc" stroke-width="0.5" opacity="0.55"/>
+      <text x="0" y="-1" font-size="15" text-anchor="middle" class="t-acc t-500" letter-spacing="0.24em">PUBLIC DATA ONLY</text>
+      <text x="0" y="13" font-size="6" text-anchor="middle" class="t-acc" letter-spacing="0.14em" opacity="0.75">PUBLIC PHYSICS · NO INTERNAL DATA</text>
+    </g>
+  </g>
+
+  <g id="world-clip" clip-path="url(#frame-clip)">
+    <g id="world">
+
+      <!-- ============ EARTH SURFACE + GROUND STATION (scene 0) ============ -->
+      <g id="earth">
+        <path class="ln-hi dr" pathLength="1" d="M100 862 Q800 806 1500 862"/>
+        <text x="120" y="882" font-size="5.6" class="t-low" letter-spacing="0.16em">EARTH'S SURFACE</text>
+        <path class="ln-hi" d="M788 812 L800 798 L812 812 Z"/>
+        <path class="ln-mid" d="M800 812 V824"/>
+        <text x="800" y="840" text-anchor="middle" font-size="5.4" class="t-low" letter-spacing="0.14em">YOU · GROUND</text>
+      </g>
+
+      <!-- ============ ALTITUDE LADDER + ORBITS + SATS (scene 0) ============ -->
+      <g id="ladder">
+        <path class="ln-dim dash-ext" d="M800 800 V314"/>
+      </g>
+      <g id="orbits">
+        <g id="orb-geo">
+          <path class="ln-dim dash-ext" d="M300 322 H1300"/>
+          <path class="ln-acc dr" pathLength="1" d="M800 315 L807 322 L800 329 L793 322 Z"/>
+          <path class="ln-low" d="M787 322 H793 M807 322 H813"/>
+        </g>
+        <g id="orb-meo">
+          <path class="ln-dim dash-ext" d="M360 486 H1240"/>
+          <path class="ln-acc dr" pathLength="1" d="M800 479 L807 486 L800 493 L793 486 Z"/>
+          <path class="ln-low" d="M787 486 H793 M807 486 H813"/>
+        </g>
+        <g id="orb-leo">
+          <path class="ln-dim dash-ext" d="M420 660 H1180"/>
+          <path class="ln-acc dr" pathLength="1" d="M800 652 L808 660 L800 668 L792 660 Z"/>
+          <path class="ln-low" d="M786 660 H792 M808 660 H814"/>
+        </g>
+      </g>
+
+      <!-- ============ SCENE 1 · ALTITUDE LABELS ============ -->
+      <g id="alt-labels">
+        <text x="832" y="318" font-size="8" class="t-hi t-500" letter-spacing="0.08em">GEO</text>
+        <text x="832" y="330" font-size="6" class="t-low">35,786 km · geostationary</text>
+        <text x="832" y="482" font-size="8" class="t-hi t-500" letter-spacing="0.08em">MEO</text>
+        <text x="832" y="494" font-size="6" class="t-low">~8,000 km</text>
+        <text x="832" y="656" font-size="8" class="t-acc t-500" letter-spacing="0.08em">LEO</text>
+        <text x="832" y="668" font-size="6" class="t-acc">~590 km · Amazon Leo</text>
+        <text x="200" y="242" font-size="7" class="t-hi t-500" letter-spacing="0.1em">GEO IS ~60× HIGHER THAN LEO</text>
+      </g>
+
+      <!-- ============ SCENE 2 · LATENCY ============ -->
+      <g id="latency">
+        <text x="768" y="326" text-anchor="end" font-size="7" class="t-hi t-500">~500–700 ms</text>
+        <text x="768" y="490" text-anchor="end" font-size="7" class="t-hi t-500">~120–150 ms</text>
+        <text x="768" y="664" text-anchor="end" font-size="7" class="t-acc t-500">~20–40 ms</text>
+        <text x="470" y="250" font-size="7.4" class="t-hi t-500" letter-spacing="0.1em">DISTANCE IS DELAY</text>
+        <text x="470" y="262" font-size="5.4" class="t-low">radio travels at light speed, so the round trip is set by how far up the satellite is</text>
+        <path class="ln-acc dash-ext" stroke-width="0.6" d="M600 258 L740 258 L760 322"/>
+      </g>
+
+      <!-- ============ SCENE 3 · FOOTPRINT (cones) ============ -->
+      <g id="foot">
+        <path class="ln-dim" stroke-width="0.6" d="M800 330 L250 804 M800 330 L1350 804"/>
+        <path class="ln-hi" stroke-width="0.8" d="M250 804 H1350"/>
+        <text x="800" y="884" text-anchor="middle" font-size="6" class="t-hi t-500">GEO SEES ~1/3 OF EARTH — three cover almost all of it</text>
+        <path class="ln-acc" stroke-width="0.8" d="M800 666 L724 804 M800 666 L876 804"/>
+        <path class="ln-acc" stroke-width="1.0" d="M724 804 H876"/>
+        <text x="800" y="768" text-anchor="middle" font-size="5.4" class="t-acc t-500">LEO: a small cell</text>
+      </g>
+
+      <!-- ============ SCENE 4 · MOTION ============ -->
+      <g id="motion">
+        <path class="ln-acc" stroke-width="0.9" marker-end="url(#arr-acc)" d="M812 634 H900"/>
+        <text x="856" y="626" text-anchor="middle" font-size="5.6" class="t-acc t-500">~90–120 min / orbit</text>
+        <text x="856" y="646" text-anchor="middle" font-size="5" class="t-low">LEO races overhead</text>
+        <text x="832" y="344" font-size="5.4" class="t-low">24 h — matches Earth's spin, appears fixed</text>
+      </g>
+
+      <!-- generated: the LEO fleet (scene 5) and the latency scale (scene 6) -->
+      <g id="many-sats"></g>
+      <g id="scale"></g>
+
+      <!-- ============ SCENE 7 · RECAP ============ -->
+      <g id="anno">
+        <g id="lead-recap">
+          <text x="200" y="176" font-size="8.4" class="t-hi t-500" letter-spacing="0.12em">CLOSE, BUT MANY</text>
+          <text x="200" y="189" font-size="5.2" class="t-low" letter-spacing="0.05em">Low orbit buys low latency; the price is a small, fast-moving footprint</text>
+          <text x="200" y="199" font-size="5.2" class="t-low" letter-spacing="0.05em">that only a big constellation can cover. That is the LEO bet.</text>
+        </g>
+      </g>
+
+    </g>
+  </g>
+</svg>
+
+  <div class="stage-vignette" aria-hidden="true"></div>
+  <div class="panels"></div>
+  <nav class="rail" aria-label="Blueprint sections"></nav>
+  <div class="sr-scene" aria-live="polite"></div>
+  <div class="dwg-chip mono" aria-hidden="true">PUBLIC PHYSICS · GENERIC · NTS</div>
+  <p class="stage-hint mono" aria-hidden="true">Scroll to animate · or click play</p>
+  <p class="scene-hud mono" aria-hidden="true"><b class="scene-hud-num"></b><span class="scene-hud-title"></span></p>
+
+  <div class="startcue" aria-hidden="true">
+    <button class="startcue-play" type="button" aria-label="Play the walkthrough">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+    </button>
+    <p class="startcue-note">Press play — or scroll to explore</p>
+  </div>
+</section>
+
+<script src="./vendor/gsap.min.js"></script>
+<script src="./vendor/ScrollTrigger.min.js"></script>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>
