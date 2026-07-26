@@ -2078,5 +2078,31 @@
     "category": "skills",
     "uploaded_at": "2026-07-25T16:47:31Z",
     "publish_at": "2026-07-26T00:45:28.000Z"
+  },
+  "wyr_0241": {
+    "youtube_id": "CcA40jOTV0Y",
+    "youtube_url": "https://www.youtube.com/watch?v=CcA40jOTV0Y",
+    "option_a": "Have a rewind button for your life (1 use per year)",
+    "option_b": "Have a pause button that stops time for 1 hour per day",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-26T16:46:43Z"
+  },
+  "wyr_0242": {
+    "youtube_id": "JWAY-aR6ztQ",
+    "youtube_url": "https://www.youtube.com/watch?v=JWAY-aR6ztQ",
+    "option_a": "Always be 10 minutes early",
+    "option_b": "Always be exactly on time",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-26T16:47:27Z",
+    "publish_at": "2026-07-26T20:46:10.000Z"
+  },
+  "wyr_0243": {
+    "youtube_id": "3CtU3He1faQ",
+    "youtube_url": "https://www.youtube.com/watch?v=3CtU3He1faQ",
+    "option_a": "Have the ability to see 10 minutes into the future",
+    "option_b": "Be able to rewind time by 10 minutes once per day",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-26T16:48:12Z",
+    "publish_at": "2026-07-27T00:46:10.000Z"
   }
 }

@@ -2078,5 +2078,31 @@
     "category": "trick_question",
     "uploaded_at": "2026-07-25T16:45:28Z",
     "publish_at": "2026-07-26T00:43:12.000Z"
+  },
+  "math_0241": {
+    "youtube_id": "TvQhK8511E8",
+    "youtube_url": "https://www.youtube.com/watch?v=TvQhK8511E8",
+    "question": "You're in a race. You pass the person in 2nd. What place are you in?",
+    "answer": "2nd place",
+    "category": "trick_question",
+    "uploaded_at": "2026-07-26T16:44:32Z"
+  },
+  "math_0242": {
+    "youtube_id": "Nc5thgEBUmc",
+    "youtube_url": "https://www.youtube.com/watch?v=Nc5thgEBUmc",
+    "question": "How many months have 28 days?",
+    "answer": "All 12 months",
+    "category": "trick_question",
+    "uploaded_at": "2026-07-26T16:45:20Z",
+    "publish_at": "2026-07-26T20:43:54.000Z"
+  },
+  "math_0243": {
+    "youtube_id": "oSDE7drruPM",
+    "youtube_url": "https://www.youtube.com/watch?v=oSDE7drruPM",
+    "question": "A farmer has 17 sheep. All but 9 die. How many are left?",
+    "answer": "9",
+    "category": "trick_question",
+    "uploaded_at": "2026-07-26T16:46:10Z",
+    "publish_at": "2026-07-27T00:43:54.000Z"
   }
 }
