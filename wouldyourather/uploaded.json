@@ -2104,5 +2104,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-07-26T16:48:12Z",
     "publish_at": "2026-07-27T00:46:10.000Z"
+  },
+  "wyr_0244": {
+    "youtube_id": "tvUevfLjeMw",
+    "youtube_url": "https://www.youtube.com/watch?v=tvUevfLjeMw",
+    "option_a": "Live in a world with no diseases",
+    "option_b": "Live in a world with no war",
+    "category": "world",
+    "uploaded_at": "2026-07-27T17:30:17Z"
+  },
+  "wyr_0245": {
+    "youtube_id": "Z2jpKDhLooo",
+    "youtube_url": "https://www.youtube.com/watch?v=Z2jpKDhLooo",
+    "option_a": "Be able to fly but only at walking speed",
+    "option_b": "Be able to run at 100 mph but only on the ground",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-27T17:31:01Z",
+    "publish_at": "2026-07-27T21:29:41.000Z"
+  },
+  "wyr_0246": {
+    "youtube_id": "8meZXgsR-Hc",
+    "youtube_url": "https://www.youtube.com/watch?v=8meZXgsR-Hc",
+    "option_a": "Only be able to eat hot food",
+    "option_b": "Only be able to eat cold food",
+    "category": "food",
+    "uploaded_at": "2026-07-27T17:31:48Z",
+    "publish_at": "2026-07-28T01:29:41.000Z"
   }
 }

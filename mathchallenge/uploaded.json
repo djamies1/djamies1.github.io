@@ -2104,5 +2104,31 @@
     "category": "trick_question",
     "uploaded_at": "2026-07-26T16:46:10Z",
     "publish_at": "2026-07-27T00:43:54.000Z"
+  },
+  "math_0244": {
+    "youtube_id": "UZ3ClnO5kFw",
+    "youtube_url": "https://www.youtube.com/watch?v=UZ3ClnO5kFw",
+    "question": "You have 10 oranges. You take 3. How many do YOU have?",
+    "answer": "3",
+    "category": "trick_question",
+    "uploaded_at": "2026-07-27T17:28:10Z"
+  },
+  "math_0245": {
+    "youtube_id": "7oZUbx5NYS0",
+    "youtube_url": "https://www.youtube.com/watch?v=7oZUbx5NYS0",
+    "question": "What's half of 2 + 2?",
+    "answer": "3",
+    "category": "trick_question",
+    "uploaded_at": "2026-07-27T17:28:56Z",
+    "publish_at": "2026-07-27T21:27:33.000Z"
+  },
+  "math_0246": {
+    "youtube_id": "fkpNw01F-Hc",
+    "youtube_url": "https://www.youtube.com/watch?v=fkpNw01F-Hc",
+    "question": "How many birthdays does the average person have?",
+    "answer": "1",
+    "category": "trick_question",
+    "uploaded_at": "2026-07-27T17:29:40Z",
+    "publish_at": "2026-07-28T01:27:33.000Z"
   }
 }

@@ -2296,5 +2296,28 @@
     "answer": "Because he is always for getting.",
     "uploaded_at": "2026-07-26T16:50:28Z",
     "publish_at": "2026-07-27T04:48:16.000Z"
+  },
+  "rdl_0301": {
+    "youtube_id": "4V74J3Qf1WQ",
+    "youtube_url": "https://www.youtube.com/watch?v=4V74J3Qf1WQ",
+    "question": "David is throwing Robert a surprise birthday party but he has to stay within his budget. He spent half of his money plus $2.00 on the cake. Half of what he had left plus $2.00 was spent on balloons and streamers. Then he spent half of what he had left plus $1.00 on candy. Now he is out of money, how much did he start with?",
+    "answer": "This one is best solved working backwards, the last part David spent half of what was left plus $1.00 on candy and then was out of money. That means he must have spent $2.00 on Candy as $1.00 was half of what he had using the same logic backwards: $2.00 on candy $6.00 on Balloons and Streamers $12.00 on the cake Total of $20.00.",
+    "uploaded_at": "2026-07-27T17:32:32Z"
+  },
+  "rdl_0302": {
+    "youtube_id": "bU502ikg7wU",
+    "youtube_url": "https://www.youtube.com/watch?v=bU502ikg7wU",
+    "question": "Janie's friends were chipping in to buy her a wedding shower present. At first, 10 friends chipped in, but 2 of them dropped out. Each of the 8 had to chip in another dollar to bring the amount back up. How much money did they plan to collect?",
+    "answer": "$40 (10 at $4, or 8 at $5).",
+    "uploaded_at": "2026-07-27T17:33:17Z",
+    "publish_at": "2026-07-27T23:31:51.000Z"
+  },
+  "rdl_0303": {
+    "youtube_id": "3VUPJXwGZso",
+    "youtube_url": "https://www.youtube.com/watch?v=3VUPJXwGZso",
+    "question": "What does the Easter Bunny do after it takes a shower?",
+    "answer": "He uses a Hare dryer",
+    "uploaded_at": "2026-07-27T17:34:01Z",
+    "publish_at": "2026-07-28T05:31:51.000Z"
   }
 }
