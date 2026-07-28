@@ -2130,5 +2130,31 @@
     "category": "food",
     "uploaded_at": "2026-07-27T17:31:48Z",
     "publish_at": "2026-07-28T01:29:41.000Z"
+  },
+  "wyr_0247": {
+    "youtube_id": "jd8GktTzdS4",
+    "youtube_url": "https://www.youtube.com/watch?v=jd8GktTzdS4",
+    "option_a": "Have a photographic memory",
+    "option_b": "Have perfect math skills",
+    "category": "skills",
+    "uploaded_at": "2026-07-28T17:20:47Z"
+  },
+  "wyr_0248": {
+    "youtube_id": "7VlT7m4JG7g",
+    "youtube_url": "https://www.youtube.com/watch?v=7VlT7m4JG7g",
+    "option_a": "Be able to talk to animals",
+    "option_b": "Be able to talk to plants",
+    "category": "nature",
+    "uploaded_at": "2026-07-28T17:21:33Z",
+    "publish_at": "2026-07-28T21:20:11.000Z"
+  },
+  "wyr_0249": {
+    "youtube_id": "RwXnJikojBw",
+    "youtube_url": "https://www.youtube.com/watch?v=RwXnJikojBw",
+    "option_a": "Know how every movie ends before watching it",
+    "option_b": "Forget every movie you've ever seen so you can rewatch them fresh",
+    "category": "entertainment",
+    "uploaded_at": "2026-07-28T17:22:20Z",
+    "publish_at": "2026-07-29T01:20:11.000Z"
   }
 }
