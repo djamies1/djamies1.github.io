@@ -2156,5 +2156,31 @@
     "category": "entertainment",
     "uploaded_at": "2026-07-28T17:22:20Z",
     "publish_at": "2026-07-29T01:20:11.000Z"
+  },
+  "wyr_0250": {
+    "youtube_id": "E-Ru080GVu4",
+    "youtube_url": "https://www.youtube.com/watch?v=E-Ru080GVu4",
+    "option_a": "Never have to sleep but also never get the pleasure of it",
+    "option_b": "Only need 2 hours of sleep per night and feel fully rested",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-29T17:05:09Z"
+  },
+  "wyr_0251": {
+    "youtube_id": "hMKWsVms0eU",
+    "youtube_url": "https://www.youtube.com/watch?v=hMKWsVms0eU",
+    "option_a": "Be famous for something embarrassing",
+    "option_b": "Be totally unknown but known privately as a great person",
+    "category": "fame",
+    "uploaded_at": "2026-07-29T17:05:56Z",
+    "publish_at": "2026-07-29T21:04:35.000Z"
+  },
+  "wyr_0252": {
+    "youtube_id": "0u7SQMj1pBk",
+    "youtube_url": "https://www.youtube.com/watch?v=0u7SQMj1pBk",
+    "option_a": "Have skin that changes color with your emotions",
+    "option_b": "Have a halo visible only to people who genuinely like you",
+    "category": "abilities",
+    "uploaded_at": "2026-07-29T17:06:41Z",
+    "publish_at": "2026-07-30T01:04:35.000Z"
   }
 }

@@ -2342,5 +2342,28 @@
     "answer": "4 bees and 3 flowers.",
     "uploaded_at": "2026-07-28T17:24:31Z",
     "publish_at": "2026-07-29T05:22:24.000Z"
+  },
+  "rdl_0307": {
+    "youtube_id": "G_ank4PuQDE",
+    "youtube_url": "https://www.youtube.com/watch?v=G_ank4PuQDE",
+    "question": "Why is a man with wooden legs like one who has an even bargain?",
+    "answer": "Because he has nothing to boot.",
+    "uploaded_at": "2026-07-29T17:07:29Z"
+  },
+  "rdl_0308": {
+    "youtube_id": "ODQHFSgYqxc",
+    "youtube_url": "https://www.youtube.com/watch?v=ODQHFSgYqxc",
+    "question": "I have ten or more daughters. I have less than ten daughters. I have at least one daughter. If only one of these statements is true, how many daughters do I have?",
+    "answer": "If I have any daughters, there will always be two statements which are true. Therefore, I have no daughters.",
+    "uploaded_at": "2026-07-29T17:08:12Z",
+    "publish_at": "2026-07-29T23:06:44.000Z"
+  },
+  "rdl_0309": {
+    "youtube_id": "fMe5LNpVP1k",
+    "youtube_url": "https://www.youtube.com/watch?v=fMe5LNpVP1k",
+    "question": "Other than being colors, what do the words orange, silver, and purple have in common?",
+    "answer": "There are no words in the English language that rhyme with them.",
+    "uploaded_at": "2026-07-29T17:08:58Z",
+    "publish_at": "2026-07-30T05:06:44.000Z"
   }
 }
