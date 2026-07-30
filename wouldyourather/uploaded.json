@@ -2182,5 +2182,31 @@
     "category": "abilities",
     "uploaded_at": "2026-07-29T17:06:41Z",
     "publish_at": "2026-07-30T01:04:35.000Z"
+  },
+  "wyr_0253": {
+    "youtube_id": "MniAW6VSeAk",
+    "youtube_url": "https://www.youtube.com/watch?v=MniAW6VSeAk",
+    "option_a": "Be able to breathe underwater",
+    "option_b": "Never need to breathe at all",
+    "category": "superpowers",
+    "uploaded_at": "2026-07-30T17:15:54Z"
+  },
+  "wyr_0254": {
+    "youtube_id": "0ItoGy0luYk",
+    "youtube_url": "https://www.youtube.com/watch?v=0ItoGy0luYk",
+    "option_a": "Have every book ever written downloaded into your brain",
+    "option_b": "Have the skill to write a perfect book on any topic instantly",
+    "category": "knowledge",
+    "uploaded_at": "2026-07-30T17:16:43Z",
+    "publish_at": "2026-07-30T21:15:21.000Z"
+  },
+  "wyr_0255": {
+    "youtube_id": "G-mR_r6tZwE",
+    "youtube_url": "https://www.youtube.com/watch?v=G-mR_r6tZwE",
+    "option_a": "Live without internet for a year",
+    "option_b": "Live without leaving your house for a year",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-30T17:17:25Z",
+    "publish_at": "2026-07-31T01:15:21.000Z"
   }
 }

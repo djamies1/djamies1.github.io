@@ -1718,5 +1718,25 @@
     "fact": "Some frogs can receive sound both through their tympanic membrane and through their lungs, which act as a secondary sound receiver.",
     "uploaded_at": "2026-07-29T17:13:26Z",
     "publish_at": "2026-07-30T05:08:58.000Z"
+  },
+  "frog_0259": {
+    "youtube_id": "q1LjO5COLjE",
+    "youtube_url": "https://www.youtube.com/watch?v=q1LjO5COLjE",
+    "fact": "The pumpkin toadlet of Brazil is one of the few known frogs to fluoresce visibly under ultraviolet light.",
+    "uploaded_at": "2026-07-30T17:21:14Z"
+  },
+  "frog_0260": {
+    "youtube_id": "MArykjQoxao",
+    "youtube_url": "https://www.youtube.com/watch?v=MArykjQoxao",
+    "fact": "The pumpkin toadlet's fluorescence was discovered when researchers examined specimens under UV light during a biofluorescence study.",
+    "uploaded_at": "2026-07-30T17:22:44Z",
+    "publish_at": "2026-07-30T23:19:43.000Z"
+  },
+  "frog_0261": {
+    "youtube_id": "Z0V5-o_A9Uc",
+    "youtube_url": "https://www.youtube.com/watch?v=Z0V5-o_A9Uc",
+    "fact": "Frogs have an unusual visual system that responds strongly to moving targets but is relatively unresponsive to stationary objects.",
+    "uploaded_at": "2026-07-30T17:24:12Z",
+    "publish_at": "2026-07-31T05:19:43.000Z"
   }
 }

@@ -2182,5 +2182,31 @@
     "category": "trick_question",
     "uploaded_at": "2026-07-29T17:04:34Z",
     "publish_at": "2026-07-30T01:02:10.000Z"
+  },
+  "math_0253": {
+    "youtube_id": "Z3QPZoplBf0",
+    "youtube_url": "https://www.youtube.com/watch?v=Z3QPZoplBf0",
+    "question": "What next: 8, 5, 4, 9, 1, 7, 6, 3, 2, ___?",
+    "answer": "0",
+    "category": "trick_question",
+    "uploaded_at": "2026-07-30T17:13:39Z"
+  },
+  "math_0254": {
+    "youtube_id": "Na5l5J111h8",
+    "youtube_url": "https://www.youtube.com/watch?v=Na5l5J111h8",
+    "question": "How many animals of each kind did Moses take on the ark?",
+    "answer": "None — that was Noah",
+    "category": "trick_question",
+    "uploaded_at": "2026-07-30T17:14:32Z",
+    "publish_at": "2026-07-30T21:13:00.000Z"
+  },
+  "math_0255": {
+    "youtube_id": "R_MT6fBQCpo",
+    "youtube_url": "https://www.youtube.com/watch?v=R_MT6fBQCpo",
+    "question": "A plane crashes on the US/Canada border. Where are survivors buried?",
+    "answer": "You don't bury survivors",
+    "category": "trick_question",
+    "uploaded_at": "2026-07-30T17:15:20Z",
+    "publish_at": "2026-07-31T01:13:00.000Z"
   }
 }
