@@ -2208,5 +2208,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-07-30T17:17:25Z",
     "publish_at": "2026-07-31T01:15:21.000Z"
+  },
+  "wyr_0256": {
+    "youtube_id": "GQivVSdeF-M",
+    "youtube_url": "https://www.youtube.com/watch?v=GQivVSdeF-M",
+    "option_a": "Fight one horse-sized duck",
+    "option_b": "Fight 100 duck-sized horses",
+    "category": "absurd",
+    "uploaded_at": "2026-07-31T17:19:51Z"
+  },
+  "wyr_0257": {
+    "youtube_id": "WbC5jRUnWIw",
+    "youtube_url": "https://www.youtube.com/watch?v=WbC5jRUnWIw",
+    "option_a": "Always say what you think",
+    "option_b": "Never be able to lie",
+    "category": "honesty",
+    "uploaded_at": "2026-07-31T17:20:34Z",
+    "publish_at": "2026-07-31T21:19:17.000Z"
+  },
+  "wyr_0258": {
+    "youtube_id": "kZQvlEPFTYs",
+    "youtube_url": "https://www.youtube.com/watch?v=kZQvlEPFTYs",
+    "option_a": "Have a butler for life",
+    "option_b": "Have a personal chef for life",
+    "category": "lifestyle",
+    "uploaded_at": "2026-07-31T17:21:19Z",
+    "publish_at": "2026-08-01T01:19:17.000Z"
   }
 }

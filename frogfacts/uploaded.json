@@ -1738,5 +1738,25 @@
     "fact": "Frogs have an unusual visual system that responds strongly to moving targets but is relatively unresponsive to stationary objects.",
     "uploaded_at": "2026-07-30T17:24:12Z",
     "publish_at": "2026-07-31T05:19:43.000Z"
+  },
+  "frog_0262": {
+    "youtube_id": "npDE27l0s6c",
+    "youtube_url": "https://www.youtube.com/watch?v=npDE27l0s6c",
+    "fact": "The mossy frog of Vietnam plays dead when threatened, lying motionless with its limbs curled until danger passes.",
+    "uploaded_at": "2026-07-31T17:24:39Z"
+  },
+  "frog_0263": {
+    "youtube_id": "kdqmzOBSJFE",
+    "youtube_url": "https://www.youtube.com/watch?v=kdqmzOBSJFE",
+    "fact": "Some frog species produce both airborne calls and substrate vibrations simultaneously when communicating with potential mates.",
+    "uploaded_at": "2026-07-31T17:25:35Z",
+    "publish_at": "2026-07-31T23:23:34.000Z"
+  },
+  "frog_0264": {
+    "youtube_id": "CaTRZAXf3RM",
+    "youtube_url": "https://www.youtube.com/watch?v=CaTRZAXf3RM",
+    "fact": "Frogs of the genus Nanorana on the Tibetan Plateau are among the highest-altitude anurans recorded in the world.",
+    "uploaded_at": "2026-07-31T17:26:30Z",
+    "publish_at": "2026-08-01T05:23:34.000Z"
   }
 }
