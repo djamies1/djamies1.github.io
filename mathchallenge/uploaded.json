@@ -2234,5 +2234,31 @@
     "category": "word_problem",
     "uploaded_at": "2026-07-31T17:19:17Z",
     "publish_at": "2026-08-01T01:17:02.000Z"
+  },
+  "math_0259": {
+    "youtube_id": "oeF5xGvutt4",
+    "youtube_url": "https://www.youtube.com/watch?v=oeF5xGvutt4",
+    "question": "Two fathers and two sons go fishing, catch 3 fish and each gets 1. How?",
+    "answer": "3 people: grandfather, father, son",
+    "category": "trick_question",
+    "uploaded_at": "2026-08-01T16:45:48Z"
+  },
+  "math_0260": {
+    "youtube_id": "qcSZEuv-F7M",
+    "youtube_url": "https://www.youtube.com/watch?v=qcSZEuv-F7M",
+    "question": "What's the sum of all numbers from 1 to 100?",
+    "answer": "5050",
+    "category": "word_problem",
+    "uploaded_at": "2026-08-01T16:46:34Z",
+    "publish_at": "2026-08-01T20:45:10.000Z"
+  },
+  "math_0261": {
+    "youtube_id": "YdjJUr4d1ik",
+    "youtube_url": "https://www.youtube.com/watch?v=YdjJUr4d1ik",
+    "question": "In a family: each son has equal brothers and sisters. Each daughter has twice as many brothers as sisters. How many of each?",
+    "answer": "4 sons, 3 daughters",
+    "category": "logic",
+    "uploaded_at": "2026-08-01T16:47:31Z",
+    "publish_at": "2026-08-02T00:45:10.000Z"
   }
 }

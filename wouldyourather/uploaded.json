@@ -2234,5 +2234,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-07-31T17:21:19Z",
     "publish_at": "2026-08-01T01:19:17.000Z"
+  },
+  "wyr_0259": {
+    "youtube_id": "vPwCZ-_zcio",
+    "youtube_url": "https://www.youtube.com/watch?v=vPwCZ-_zcio",
+    "option_a": "Know the day you will die",
+    "option_b": "Know the cause of your death",
+    "category": "life",
+    "uploaded_at": "2026-08-01T16:48:00Z"
+  },
+  "wyr_0260": {
+    "youtube_id": "UN5alavvI6g",
+    "youtube_url": "https://www.youtube.com/watch?v=UN5alavvI6g",
+    "option_a": "Be able to eat anything without gaining weight",
+    "option_b": "Never get sick again for the rest of your life",
+    "category": "health",
+    "uploaded_at": "2026-08-01T16:48:44Z",
+    "publish_at": "2026-08-01T20:47:32.000Z"
+  },
+  "wyr_0261": {
+    "youtube_id": "opWfMT4HsMM",
+    "youtube_url": "https://www.youtube.com/watch?v=opWfMT4HsMM",
+    "option_a": "Have a 10% chance of winning $10 million",
+    "option_b": "Have a guaranteed $100,000 right now",
+    "category": "money",
+    "uploaded_at": "2026-08-01T16:49:29Z",
+    "publish_at": "2026-08-02T00:47:32.000Z"
   }
 }
