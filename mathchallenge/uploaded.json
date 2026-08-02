@@ -2260,5 +2260,31 @@
     "category": "logic",
     "uploaded_at": "2026-08-01T16:47:31Z",
     "publish_at": "2026-08-02T00:45:10.000Z"
+  },
+  "math_0262": {
+    "youtube_id": "Y-eP-Y622k0",
+    "youtube_url": "https://www.youtube.com/watch?v=Y-eP-Y622k0",
+    "question": "How many squares are on a standard 8×8 chessboard?",
+    "answer": "204",
+    "category": "logic",
+    "uploaded_at": "2026-08-02T16:44:34Z"
+  },
+  "math_0263": {
+    "youtube_id": "G4alfCzpZpQ",
+    "youtube_url": "https://www.youtube.com/watch?v=G4alfCzpZpQ",
+    "question": "How many handshakes if 5 people each shake hands with everyone once?",
+    "answer": "10",
+    "category": "logic",
+    "uploaded_at": "2026-08-02T16:45:28Z",
+    "publish_at": "2026-08-02T20:43:58.000Z"
+  },
+  "math_0264": {
+    "youtube_id": "Q3S_CS9bDJI",
+    "youtube_url": "https://www.youtube.com/watch?v=Q3S_CS9bDJI",
+    "question": "A car does 60 miles at 30 mph and 60 miles at 60 mph. Average speed?",
+    "answer": "40 mph",
+    "category": "logic",
+    "uploaded_at": "2026-08-02T16:46:14Z",
+    "publish_at": "2026-08-03T00:43:58.000Z"
   }
 }

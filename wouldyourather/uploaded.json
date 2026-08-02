@@ -2260,5 +2260,31 @@
     "category": "money",
     "uploaded_at": "2026-08-01T16:49:29Z",
     "publish_at": "2026-08-02T00:47:32.000Z"
+  },
+  "wyr_0262": {
+    "youtube_id": "eA5UEihfGZI",
+    "youtube_url": "https://www.youtube.com/watch?v=eA5UEihfGZI",
+    "option_a": "Be the world's greatest painter",
+    "option_b": "Be the world's greatest writer",
+    "category": "creativity",
+    "uploaded_at": "2026-08-02T16:46:50Z"
+  },
+  "wyr_0263": {
+    "youtube_id": "gsYa4wmjWG8",
+    "youtube_url": "https://www.youtube.com/watch?v=gsYa4wmjWG8",
+    "option_a": "Have the voice of an angel when you sing",
+    "option_b": "Be able to dance like a professional dancer",
+    "category": "arts",
+    "uploaded_at": "2026-08-02T16:47:35Z",
+    "publish_at": "2026-08-02T20:46:15.000Z"
+  },
+  "wyr_0264": {
+    "youtube_id": "3mjjpViRp7k",
+    "youtube_url": "https://www.youtube.com/watch?v=3mjjpViRp7k",
+    "option_a": "Always have a front row seat at every event",
+    "option_b": "Never have to wait in line for anything ever again",
+    "category": "privileges",
+    "uploaded_at": "2026-08-02T16:48:20Z",
+    "publish_at": "2026-08-03T00:46:15.000Z"
   }
 }
