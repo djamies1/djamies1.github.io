@@ -2286,5 +2286,31 @@
     "category": "logic",
     "uploaded_at": "2026-08-02T16:46:14Z",
     "publish_at": "2026-08-03T00:43:58.000Z"
+  },
+  "math_0265": {
+    "youtube_id": "XojkVAuvZSQ",
+    "youtube_url": "https://www.youtube.com/watch?v=XojkVAuvZSQ",
+    "question": "How many cuts to slice a log into 10 equal pieces?",
+    "answer": "9",
+    "category": "logic",
+    "uploaded_at": "2026-08-03T17:47:45Z"
+  },
+  "math_0266": {
+    "youtube_id": "6oii8Mthrv4",
+    "youtube_url": "https://www.youtube.com/watch?v=6oii8Mthrv4",
+    "question": "What two numbers multiply to 48 and add to 14?",
+    "answer": "6 and 8",
+    "category": "logic",
+    "uploaded_at": "2026-08-03T17:48:31Z",
+    "publish_at": "2026-08-03T21:47:07.000Z"
+  },
+  "math_0267": {
+    "youtube_id": "-UBiblBJ5Pk",
+    "youtube_url": "https://www.youtube.com/watch?v=-UBiblBJ5Pk",
+    "question": "The only number equal to the count of its own letters?",
+    "answer": "4",
+    "category": "logic",
+    "uploaded_at": "2026-08-03T17:49:17Z",
+    "publish_at": "2026-08-04T01:47:07.000Z"
   }
 }

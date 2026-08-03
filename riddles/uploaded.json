@@ -2457,5 +2457,28 @@
     "answer": "They are feathers.",
     "uploaded_at": "2026-08-02T16:50:37Z",
     "publish_at": "2026-08-03T04:48:24.000Z"
+  },
+  "rdl_0322": {
+    "youtube_id": "_KyHWv4L9jg",
+    "youtube_url": "https://www.youtube.com/watch?v=_KyHWv4L9jg",
+    "question": "A hundred stones are placed, in a straight line, a yard distant from each other. How many yards must a person walk, who undertakes to pick them up, and place them in a basket stationed one yard from the first stone?",
+    "answer": "In solving this question it is clear that to pick up the first stone and put it into the basket, the person must walk two yards, one in going for the stone and another in returning with it; that for the second stone he must walk four yards, and so on increasing by two as far as the hundredth, when he must walk two hundred yards, so that the sum total will be the product of 202 multiplied by 50, or 10,100 yards. If any one does not see why we multiply 202 by 50 in getting the answer, we refer him to his arithmetic.",
+    "uploaded_at": "2026-08-03T17:52:09Z"
+  },
+  "rdl_0323": {
+    "youtube_id": "qTeQpGlMmnA",
+    "youtube_url": "https://www.youtube.com/watch?v=qTeQpGlMmnA",
+    "question": "A man buys a rope from a woman for $3.00 and hands the woman a $10 bill. The woman goes into the grocery store next door to get change. She returns and gives the man $7.00. After the man leaves, the clerk from the store comes and says, \"Hey, that was a counterfeit bill you gave me.\" The woman gives the clerk a good bill. How much has the woman lost?",
+    "answer": "Seven dollars plus the rope.",
+    "uploaded_at": "2026-08-03T17:52:57Z",
+    "publish_at": "2026-08-03T23:51:31.000Z"
+  },
+  "rdl_0324": {
+    "youtube_id": "4X8DfOPOTwQ",
+    "youtube_url": "https://www.youtube.com/watch?v=4X8DfOPOTwQ",
+    "question": "My first is a part of the day, My last a conductor of light, My whole to take measure of time, Is useful by day and by night. What am I?",
+    "answer": "An Hour-glass.",
+    "uploaded_at": "2026-08-03T17:53:50Z",
+    "publish_at": "2026-08-04T05:51:31.000Z"
   }
 }

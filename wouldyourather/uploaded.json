@@ -2286,5 +2286,31 @@
     "category": "privileges",
     "uploaded_at": "2026-08-02T16:48:20Z",
     "publish_at": "2026-08-03T00:46:15.000Z"
+  },
+  "wyr_0265": {
+    "youtube_id": "om0y1Yb3CKc",
+    "youtube_url": "https://www.youtube.com/watch?v=om0y1Yb3CKc",
+    "option_a": "Be able to teleport but only to places you've been before",
+    "option_b": "Be able to fly but only outdoors and only in daylight",
+    "category": "superpowers",
+    "uploaded_at": "2026-08-03T17:49:54Z"
+  },
+  "wyr_0266": {
+    "youtube_id": "ykYIM_gHbaM",
+    "youtube_url": "https://www.youtube.com/watch?v=ykYIM_gHbaM",
+    "option_a": "Have a pause button that freezes everything around you",
+    "option_b": "Have a fast-forward button that skips boring parts of life",
+    "category": "superpowers",
+    "uploaded_at": "2026-08-03T17:50:40Z",
+    "publish_at": "2026-08-03T21:49:18.000Z"
+  },
+  "wyr_0267": {
+    "youtube_id": "E0VH5aIauY8",
+    "youtube_url": "https://www.youtube.com/watch?v=E0VH5aIauY8",
+    "option_a": "Only be able to wear one color forever",
+    "option_b": "Have your wardrobe randomly chosen for you every morning",
+    "category": "style",
+    "uploaded_at": "2026-08-03T17:51:27Z",
+    "publish_at": "2026-08-04T01:49:18.000Z"
   }
 }
