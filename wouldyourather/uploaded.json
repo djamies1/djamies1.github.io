@@ -2312,5 +2312,31 @@
     "category": "style",
     "uploaded_at": "2026-08-03T17:51:27Z",
     "publish_at": "2026-08-04T01:49:18.000Z"
+  },
+  "wyr_0268": {
+    "youtube_id": "G96DxMS-xcU",
+    "youtube_url": "https://www.youtube.com/watch?v=G96DxMS-xcU",
+    "option_a": "Be able to hear any conversation happening anywhere in the world",
+    "option_b": "Be able to see any place in the world in real time",
+    "category": "superpowers",
+    "uploaded_at": "2026-08-04T17:33:45Z"
+  },
+  "wyr_0269": {
+    "youtube_id": "k8GzGIwalBI",
+    "youtube_url": "https://www.youtube.com/watch?v=k8GzGIwalBI",
+    "option_a": "Have the ability to instantly learn any physical skill",
+    "option_b": "Have the ability to instantly learn any academic subject",
+    "category": "learning",
+    "uploaded_at": "2026-08-04T17:35:14Z",
+    "publish_at": "2026-08-04T21:32:27.000Z"
+  },
+  "wyr_0270": {
+    "youtube_id": "scQrT-RleTo",
+    "youtube_url": "https://www.youtube.com/watch?v=scQrT-RleTo",
+    "option_a": "Be immune to all cold temperatures",
+    "option_b": "Be immune to all heat",
+    "category": "environment",
+    "uploaded_at": "2026-08-04T17:36:44Z",
+    "publish_at": "2026-08-05T01:32:27.000Z"
   }
 }

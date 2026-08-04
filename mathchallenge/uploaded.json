@@ -2312,5 +2312,31 @@
     "category": "logic",
     "uploaded_at": "2026-08-03T17:49:17Z",
     "publish_at": "2026-08-04T01:47:07.000Z"
+  },
+  "math_0268": {
+    "youtube_id": "HuQBx1M-uTs",
+    "youtube_url": "https://www.youtube.com/watch?v=HuQBx1M-uTs",
+    "question": "You flip a coin 10 times and get 10 heads. Odds of heads on next flip?",
+    "answer": "50%",
+    "category": "logic",
+    "uploaded_at": "2026-08-04T17:29:23Z"
+  },
+  "math_0269": {
+    "youtube_id": "2WVVqY6n20c",
+    "youtube_url": "https://www.youtube.com/watch?v=2WVVqY6n20c",
+    "question": "Train A at 60 mph, Train B at 90 mph, 300 miles apart. How long to meet?",
+    "answer": "2 hours",
+    "category": "word_problem",
+    "uploaded_at": "2026-08-04T17:30:54Z",
+    "publish_at": "2026-08-04T21:28:01.000Z"
+  },
+  "math_0270": {
+    "youtube_id": "TKw4Foqy6LU",
+    "youtube_url": "https://www.youtube.com/watch?v=TKw4Foqy6LU",
+    "question": "A grandfather is twice his son's age. His son is twice his grandson's age. Together they're 140. How old is the grandson?",
+    "answer": "20 years old",
+    "category": "word_problem",
+    "uploaded_at": "2026-08-04T17:32:26Z",
+    "publish_at": "2026-08-05T01:28:01.000Z"
   }
 }
