@@ -2338,5 +2338,31 @@
     "category": "environment",
     "uploaded_at": "2026-08-04T17:36:44Z",
     "publish_at": "2026-08-05T01:32:27.000Z"
+  },
+  "wyr_0271": {
+    "youtube_id": "25l_rdXJgFk",
+    "youtube_url": "https://www.youtube.com/watch?v=25l_rdXJgFk",
+    "option_a": "Have unlimited storage in your mind",
+    "option_b": "Have perfect recall of everything you've ever experienced",
+    "category": "mind",
+    "uploaded_at": "2026-08-05T17:24:41Z"
+  },
+  "wyr_0272": {
+    "youtube_id": "H4KGYyZeL7Q",
+    "youtube_url": "https://www.youtube.com/watch?v=H4KGYyZeL7Q",
+    "option_a": "Be the first human to visit Mars",
+    "option_b": "Be the first human to reach the bottom of every ocean trench",
+    "category": "exploration",
+    "uploaded_at": "2026-08-05T17:26:11Z",
+    "publish_at": "2026-08-05T21:23:21.000Z"
+  },
+  "wyr_0273": {
+    "youtube_id": "8qGpcgHqtaA",
+    "youtube_url": "https://www.youtube.com/watch?v=8qGpcgHqtaA",
+    "option_a": "Have a time machine that can only go back in time",
+    "option_b": "Have a time machine that can only go forward in time",
+    "category": "time travel",
+    "uploaded_at": "2026-08-05T17:27:40Z",
+    "publish_at": "2026-08-06T01:23:21.000Z"
   }
 }

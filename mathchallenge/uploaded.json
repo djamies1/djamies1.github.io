@@ -2338,5 +2338,31 @@
     "category": "word_problem",
     "uploaded_at": "2026-08-04T17:32:26Z",
     "publish_at": "2026-08-05T01:28:01.000Z"
+  },
+  "math_0271": {
+    "youtube_id": "HcT5zuSDHSQ",
+    "youtube_url": "https://www.youtube.com/watch?v=HcT5zuSDHSQ",
+    "question": "What is the next prime number after 17?",
+    "answer": "19",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-05T17:20:22Z"
+  },
+  "math_0272": {
+    "youtube_id": "GqRj9fJYpOo",
+    "youtube_url": "https://www.youtube.com/watch?v=GqRj9fJYpOo",
+    "question": "How many degrees are in all angles of a triangle?",
+    "answer": "180°",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-05T17:21:51Z",
+    "publish_at": "2026-08-05T21:19:02.000Z"
+  },
+  "math_0273": {
+    "youtube_id": "2-adxVZSq58",
+    "youtube_url": "https://www.youtube.com/watch?v=2-adxVZSq58",
+    "question": "How many faces does a cube have?",
+    "answer": "6",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-05T17:23:20Z",
+    "publish_at": "2026-08-06T01:19:02.000Z"
   }
 }
