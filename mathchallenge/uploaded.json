@@ -2364,5 +2364,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-08-05T17:23:20Z",
     "publish_at": "2026-08-06T01:19:02.000Z"
+  },
+  "math_0274": {
+    "youtube_id": "9RwlWhegzsQ",
+    "youtube_url": "https://www.youtube.com/watch?v=9RwlWhegzsQ",
+    "question": "What is 2¹⁰?",
+    "answer": "1024",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-07T16:40:28Z"
+  },
+  "math_0275": {
+    "youtube_id": "zSR-9MlvlHQ",
+    "youtube_url": "https://www.youtube.com/watch?v=zSR-9MlvlHQ",
+    "question": "What is the area of a circle with radius 5? (use π≈3.14)",
+    "answer": "78.5",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-07T16:41:19Z",
+    "publish_at": "2026-08-07T20:39:47.000Z"
+  },
+  "math_0276": {
+    "youtube_id": "TuE2Qh4Rdec",
+    "youtube_url": "https://www.youtube.com/watch?v=TuE2Qh4Rdec",
+    "question": "What is 12 × 12?",
+    "answer": "144",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-07T16:42:06Z",
+    "publish_at": "2026-08-08T00:39:47.000Z"
   }
 }

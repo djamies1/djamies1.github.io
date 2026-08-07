@@ -2364,5 +2364,31 @@
     "category": "time travel",
     "uploaded_at": "2026-08-05T17:27:40Z",
     "publish_at": "2026-08-06T01:23:21.000Z"
+  },
+  "wyr_0274": {
+    "youtube_id": "_I2lfaYCyVQ",
+    "youtube_url": "https://www.youtube.com/watch?v=_I2lfaYCyVQ",
+    "option_a": "Sneeze glitter every time you sneeze",
+    "option_b": "Hiccup bubbles every time you hiccup",
+    "category": "absurd",
+    "uploaded_at": "2026-08-07T16:42:42Z"
+  },
+  "wyr_0275": {
+    "youtube_id": "piUIMb-goh0",
+    "youtube_url": "https://www.youtube.com/watch?v=piUIMb-goh0",
+    "option_a": "Be an expert in every sport",
+    "option_b": "Be an expert in every art form",
+    "category": "skills",
+    "uploaded_at": "2026-08-07T16:43:27Z",
+    "publish_at": "2026-08-07T20:42:06.000Z"
+  },
+  "wyr_0276": {
+    "youtube_id": "4oVnga3E26A",
+    "youtube_url": "https://www.youtube.com/watch?v=4oVnga3E26A",
+    "option_a": "Never lose your keys or phone again",
+    "option_b": "Always find parking instantly wherever you go",
+    "category": "convenience",
+    "uploaded_at": "2026-08-07T16:44:10Z",
+    "publish_at": "2026-08-08T00:42:06.000Z"
   }
 }

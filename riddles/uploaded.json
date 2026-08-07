@@ -2526,5 +2526,28 @@
     "answer": "Silence.",
     "uploaded_at": "2026-08-05T17:32:10Z",
     "publish_at": "2026-08-06T05:27:43.000Z"
+  },
+  "rdl_0331": {
+    "youtube_id": "C_AWTuBpsM4",
+    "youtube_url": "https://www.youtube.com/watch?v=C_AWTuBpsM4",
+    "question": "When I am filled I can point the way, When I am empty nothing moves me, I have two skins, one without and one within. What am I?",
+    "answer": "I am a glove.",
+    "uploaded_at": "2026-08-07T16:44:56Z"
+  },
+  "rdl_0332": {
+    "youtube_id": "naTU0K2jc7U",
+    "youtube_url": "https://www.youtube.com/watch?v=naTU0K2jc7U",
+    "question": "John was very tired after a long day of work. He went to bed at 10 p.m., wound his alarm clock, and set it for noon the next day. Since John fell asleep almost immediately, how many hours of sleep did he get before the alarm woke him?",
+    "answer": "Two hours. Wind-up clocks can't be set more than 12 hours in advance.",
+    "uploaded_at": "2026-08-07T16:45:42Z",
+    "publish_at": "2026-08-07T22:44:14.000Z"
+  },
+  "rdl_0333": {
+    "youtube_id": "5W8EYSv4suA",
+    "youtube_url": "https://www.youtube.com/watch?v=5W8EYSv4suA",
+    "question": "An officer wishing to arrange his men in a solid square found by his first arrangement that he had 39 men left over. He then started increasing the number of men on a side by one, but found that 50 additional men would be needed to complete a new square. How many men did the officer have?",
+    "answer": "The officer had 1975 men. When he formed a square measuring 44 by 44, he had 39 men over. When he tried to form a square 45 x 45, he was 50 men short.",
+    "uploaded_at": "2026-08-07T16:46:28Z",
+    "publish_at": "2026-08-08T04:44:14.000Z"
   }
 }
