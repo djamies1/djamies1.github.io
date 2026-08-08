@@ -2390,5 +2390,31 @@
     "category": "convenience",
     "uploaded_at": "2026-08-07T16:44:10Z",
     "publish_at": "2026-08-08T00:42:06.000Z"
+  },
+  "wyr_0277": {
+    "youtube_id": "Ai9hk2GJd2I",
+    "youtube_url": "https://www.youtube.com/watch?v=Ai9hk2GJd2I",
+    "option_a": "Have the power to fix broken relationships with one conversation",
+    "option_b": "Have the power to end any conflict peacefully with one meeting",
+    "category": "social",
+    "uploaded_at": "2026-08-08T16:21:19Z"
+  },
+  "wyr_0278": {
+    "youtube_id": "imfQeb_1ymk",
+    "youtube_url": "https://www.youtube.com/watch?v=imfQeb_1ymk",
+    "option_a": "Be incredibly lucky in games of chance",
+    "option_b": "Be incredibly skilled at strategy games",
+    "category": "games",
+    "uploaded_at": "2026-08-08T16:22:03Z",
+    "publish_at": "2026-08-08T20:20:41.000Z"
+  },
+  "wyr_0279": {
+    "youtube_id": "ZoHhiKE4Kks",
+    "youtube_url": "https://www.youtube.com/watch?v=ZoHhiKE4Kks",
+    "option_a": "Have the ability to make anyone fall asleep instantly",
+    "option_b": "Have the ability to make anyone calm down instantly",
+    "category": "abilities",
+    "uploaded_at": "2026-08-08T16:22:47Z",
+    "publish_at": "2026-08-09T00:20:41.000Z"
   }
 }

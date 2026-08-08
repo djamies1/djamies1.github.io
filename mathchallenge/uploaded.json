@@ -2390,5 +2390,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-08-07T16:42:06Z",
     "publish_at": "2026-08-08T00:39:47.000Z"
+  },
+  "math_0277": {
+    "youtube_id": "vqZ33gzYXdc",
+    "youtube_url": "https://www.youtube.com/watch?v=vqZ33gzYXdc",
+    "question": "What is 1/3 as a percentage?",
+    "answer": "33.3% (repeating)",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-08T16:19:10Z"
+  },
+  "math_0278": {
+    "youtube_id": "is-iesmTiqo",
+    "youtube_url": "https://www.youtube.com/watch?v=is-iesmTiqo",
+    "question": "How many edges does a cube have?",
+    "answer": "12",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-08T16:19:56Z",
+    "publish_at": "2026-08-08T20:18:33.000Z"
+  },
+  "math_0279": {
+    "youtube_id": "B_WalA0TZCw",
+    "youtube_url": "https://www.youtube.com/watch?v=B_WalA0TZCw",
+    "question": "In a right triangle with legs 3 and 4, what is the hypotenuse?",
+    "answer": "5",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-08T16:20:41Z",
+    "publish_at": "2026-08-09T00:18:33.000Z"
   }
 }
