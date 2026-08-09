@@ -2416,5 +2416,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-08-08T16:20:41Z",
     "publish_at": "2026-08-09T00:18:33.000Z"
+  },
+  "math_0280": {
+    "youtube_id": "CML2HcEpJYk",
+    "youtube_url": "https://www.youtube.com/watch?v=CML2HcEpJYk",
+    "question": "What is the value of π to 4 decimal places?",
+    "answer": "3.1416",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-09T16:20:22Z"
+  },
+  "math_0281": {
+    "youtube_id": "PPqJpy0tuKk",
+    "youtube_url": "https://www.youtube.com/watch?v=PPqJpy0tuKk",
+    "question": "How many degrees are in a full rotation?",
+    "answer": "360°",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-09T16:21:08Z",
+    "publish_at": "2026-08-09T20:19:46.000Z"
+  },
+  "math_0282": {
+    "youtube_id": "BwGzYRmzzLg",
+    "youtube_url": "https://www.youtube.com/watch?v=BwGzYRmzzLg",
+    "question": "What is the square root of 196?",
+    "answer": "14",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-09T16:21:53Z",
+    "publish_at": "2026-08-10T00:19:46.000Z"
   }
 }

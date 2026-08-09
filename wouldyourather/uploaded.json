@@ -2416,5 +2416,31 @@
     "category": "abilities",
     "uploaded_at": "2026-08-08T16:22:47Z",
     "publish_at": "2026-08-09T00:20:41.000Z"
+  },
+  "wyr_0280": {
+    "youtube_id": "JQ2ObwtOE7g",
+    "youtube_url": "https://www.youtube.com/watch?v=JQ2ObwtOE7g",
+    "option_a": "Live on a tropical island but with no internet",
+    "option_b": "Live in a busy city with every technology available",
+    "category": "lifestyle",
+    "uploaded_at": "2026-08-09T16:22:29Z"
+  },
+  "wyr_0281": {
+    "youtube_id": "opWvXB8AL-Y",
+    "youtube_url": "https://www.youtube.com/watch?v=opWvXB8AL-Y",
+    "option_a": "Be able to eat anything you want with no health consequences",
+    "option_b": "Be able to go without sleep and feel perfectly fine",
+    "category": "biology",
+    "uploaded_at": "2026-08-09T16:23:13Z",
+    "publish_at": "2026-08-09T20:21:54.000Z"
+  },
+  "wyr_0282": {
+    "youtube_id": "KvK8GDVmpNk",
+    "youtube_url": "https://www.youtube.com/watch?v=KvK8GDVmpNk",
+    "option_a": "Always have a song stuck in your head (you choose which one)",
+    "option_b": "Never be able to get a song out of your head (randomly chosen)",
+    "category": "music",
+    "uploaded_at": "2026-08-09T16:23:58Z",
+    "publish_at": "2026-08-10T00:21:54.000Z"
   }
 }
