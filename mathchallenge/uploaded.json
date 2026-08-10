@@ -2442,5 +2442,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-08-09T16:21:53Z",
     "publish_at": "2026-08-10T00:19:46.000Z"
+  },
+  "math_0283": {
+    "youtube_id": "c6qRjrc00zU",
+    "youtube_url": "https://www.youtube.com/watch?v=c6qRjrc00zU",
+    "question": "What is 7 × 8?",
+    "answer": "56",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-10T16:42:00Z"
+  },
+  "math_0284": {
+    "youtube_id": "eHUsDkMwXJ8",
+    "youtube_url": "https://www.youtube.com/watch?v=eHUsDkMwXJ8",
+    "question": "How many sides does an octagon have?",
+    "answer": "8",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-10T16:42:48Z",
+    "publish_at": "2026-08-10T20:41:20.000Z"
+  },
+  "math_0285": {
+    "youtube_id": "buQ6D-czRL0",
+    "youtube_url": "https://www.youtube.com/watch?v=buQ6D-czRL0",
+    "question": "What is the perimeter of a square with side 7?",
+    "answer": "28",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-10T16:43:34Z",
+    "publish_at": "2026-08-11T00:41:20.000Z"
   }
 }

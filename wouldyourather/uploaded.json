@@ -2442,5 +2442,31 @@
     "category": "music",
     "uploaded_at": "2026-08-09T16:23:58Z",
     "publish_at": "2026-08-10T00:21:54.000Z"
+  },
+  "wyr_0283": {
+    "youtube_id": "gzINiEh6u-Y",
+    "youtube_url": "https://www.youtube.com/watch?v=gzINiEh6u-Y",
+    "option_a": "Be able to read minds but only negative thoughts",
+    "option_b": "Not be able to read minds but know when someone dislikes you",
+    "category": "social",
+    "uploaded_at": "2026-08-10T16:44:10Z"
+  },
+  "wyr_0284": {
+    "youtube_id": "h52DT4-j000",
+    "youtube_url": "https://www.youtube.com/watch?v=h52DT4-j000",
+    "option_a": "Be 4 inches taller than you are",
+    "option_b": "Be 20 pounds lighter than you are",
+    "category": "appearance",
+    "uploaded_at": "2026-08-10T16:44:55Z",
+    "publish_at": "2026-08-10T20:43:35.000Z"
+  },
+  "wyr_0285": {
+    "youtube_id": "iD1abSsKdJI",
+    "youtube_url": "https://www.youtube.com/watch?v=iD1abSsKdJI",
+    "option_a": "Have the internet speed of 1 Gbps forever for free",
+    "option_b": "Never pay for gas or charging for your car again",
+    "category": "money",
+    "uploaded_at": "2026-08-10T16:45:44Z",
+    "publish_at": "2026-08-11T00:43:35.000Z"
   }
 }
