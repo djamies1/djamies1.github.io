@@ -2468,5 +2468,31 @@
     "category": "money",
     "uploaded_at": "2026-08-10T16:45:44Z",
     "publish_at": "2026-08-11T00:43:35.000Z"
+  },
+  "wyr_0286": {
+    "youtube_id": "_-AdPpBbIQo",
+    "youtube_url": "https://www.youtube.com/watch?v=_-AdPpBbIQo",
+    "option_a": "Own a private island",
+    "option_b": "Own a private jet",
+    "category": "luxury",
+    "uploaded_at": "2026-08-11T16:48:19Z"
+  },
+  "wyr_0287": {
+    "youtube_id": "D3K4J8Nb_XM",
+    "youtube_url": "https://www.youtube.com/watch?v=D3K4J8Nb_XM",
+    "option_a": "Be a master hacker with no ethical restrictions",
+    "option_b": "Be a world-class negotiator who never fails",
+    "category": "skills",
+    "uploaded_at": "2026-08-11T16:49:02Z",
+    "publish_at": "2026-08-11T20:47:41.000Z"
+  },
+  "wyr_0288": {
+    "youtube_id": "BbhzoWGrpmA",
+    "youtube_url": "https://www.youtube.com/watch?v=BbhzoWGrpmA",
+    "option_a": "Only be able to drink water for the rest of your life",
+    "option_b": "Only be able to eat one meal per day (any food you want)",
+    "category": "food",
+    "uploaded_at": "2026-08-11T16:49:49Z",
+    "publish_at": "2026-08-12T00:47:41.000Z"
   }
 }

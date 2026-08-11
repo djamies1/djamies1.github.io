@@ -2468,5 +2468,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-08-10T16:43:34Z",
     "publish_at": "2026-08-11T00:41:20.000Z"
+  },
+  "math_0286": {
+    "youtube_id": "4phh5OYa2AM",
+    "youtube_url": "https://www.youtube.com/watch?v=4phh5OYa2AM",
+    "question": "What is the only even prime number?",
+    "answer": "2",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-11T16:46:11Z"
+  },
+  "mc_0001": {
+    "youtube_id": "Gy9EyQTkl6U",
+    "youtube_url": "https://www.youtube.com/watch?v=Gy9EyQTkl6U",
+    "question": "8 + 4 x 2 - 1 = ?",
+    "answer": "15",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-08-11T16:46:56Z",
+    "publish_at": "2026-08-11T20:45:35.000Z"
+  },
+  "mc_0002": {
+    "youtube_id": "UuQp3UPBkhc",
+    "youtube_url": "https://www.youtube.com/watch?v=UuQp3UPBkhc",
+    "question": "20 / 4 + 3 x 2 = ?",
+    "answer": "11",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-08-11T16:47:40Z",
+    "publish_at": "2026-08-12T00:45:35.000Z"
   }
 }
