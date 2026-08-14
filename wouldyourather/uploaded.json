@@ -2546,5 +2546,31 @@
     "category": "magic",
     "uploaded_at": "2026-08-13T16:46:54Z",
     "publish_at": "2026-08-14T00:44:49.000Z"
+  },
+  "wyr_0295": {
+    "youtube_id": "tg9QjvQ8kpA",
+    "youtube_url": "https://www.youtube.com/watch?v=tg9QjvQ8kpA",
+    "option_a": "Be able to communicate with any animal",
+    "option_b": "Be understood by every human regardless of language",
+    "category": "communication",
+    "uploaded_at": "2026-08-14T16:41:26Z"
+  },
+  "wyr_0296": {
+    "youtube_id": "92tQu2f_t8k",
+    "youtube_url": "https://www.youtube.com/watch?v=92tQu2f_t8k",
+    "option_a": "Know every person's true opinion of you",
+    "option_b": "Have every person genuinely like you",
+    "category": "social",
+    "uploaded_at": "2026-08-14T16:42:11Z",
+    "publish_at": "2026-08-14T20:40:52.000Z"
+  },
+  "wyr_0297": {
+    "youtube_id": "PbrsobkyhcM",
+    "youtube_url": "https://www.youtube.com/watch?v=PbrsobkyhcM",
+    "option_a": "Be a professional athlete for 10 years then retire",
+    "option_b": "Be a successful author with 10 bestselling novels",
+    "category": "career",
+    "uploaded_at": "2026-08-14T16:42:56Z",
+    "publish_at": "2026-08-15T00:40:52.000Z"
   }
 }

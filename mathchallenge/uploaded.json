@@ -2546,5 +2546,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-08-13T16:44:48Z",
     "publish_at": "2026-08-14T00:42:43.000Z"
+  },
+  "mc_0009": {
+    "youtube_id": "CWdGYgOkdI8",
+    "youtube_url": "https://www.youtube.com/watch?v=CWdGYgOkdI8",
+    "question": "What comes next? 1, 4, 9, 16, ?",
+    "answer": "25",
+    "category": "sequences",
+    "uploaded_at": "2026-08-14T16:39:19Z"
+  },
+  "mc_0010": {
+    "youtube_id": "D8prEf6ZnKY",
+    "youtube_url": "https://www.youtube.com/watch?v=D8prEf6ZnKY",
+    "question": "What comes next? 2, 6, 18, 54, ?",
+    "answer": "162",
+    "category": "sequences",
+    "uploaded_at": "2026-08-14T16:40:05Z",
+    "publish_at": "2026-08-14T20:38:43.000Z"
+  },
+  "mc_0011": {
+    "youtube_id": "8aOcStO7hSo",
+    "youtube_url": "https://www.youtube.com/watch?v=8aOcStO7hSo",
+    "question": "What comes next? 1, 1, 2, 3, 5, 8, ?",
+    "answer": "13",
+    "category": "sequences",
+    "uploaded_at": "2026-08-14T16:40:51Z",
+    "publish_at": "2026-08-15T00:38:43.000Z"
   }
 }
