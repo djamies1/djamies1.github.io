@@ -2572,5 +2572,31 @@
     "category": "career",
     "uploaded_at": "2026-08-14T16:42:56Z",
     "publish_at": "2026-08-15T00:40:52.000Z"
+  },
+  "wyr_0298": {
+    "youtube_id": "Tg4HahxuoLk",
+    "youtube_url": "https://www.youtube.com/watch?v=Tg4HahxuoLk",
+    "option_a": "Have the ability to stop time but you can't move",
+    "option_b": "Have the ability to move at light speed but time continues normally",
+    "category": "superpowers",
+    "uploaded_at": "2026-08-15T16:13:16Z"
+  },
+  "wyr_0299": {
+    "youtube_id": "hmMzV2zpHMA",
+    "youtube_url": "https://www.youtube.com/watch?v=hmMzV2zpHMA",
+    "option_a": "Eat only foods that taste amazing but smell terrible",
+    "option_b": "Eat only foods that smell amazing but taste terrible",
+    "category": "food",
+    "uploaded_at": "2026-08-15T16:14:01Z",
+    "publish_at": "2026-08-15T20:12:41.000Z"
+  },
+  "wyr_0300": {
+    "youtube_id": "65rfAONKTPM",
+    "youtube_url": "https://www.youtube.com/watch?v=65rfAONKTPM",
+    "option_a": "Have 10 close, lifelong friends",
+    "option_b": "Have 1,000 acquaintances who would help you in a pinch",
+    "category": "relationships",
+    "uploaded_at": "2026-08-15T16:14:46Z",
+    "publish_at": "2026-08-16T00:12:41.000Z"
   }
 }
