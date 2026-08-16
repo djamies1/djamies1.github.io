@@ -2733,5 +2733,28 @@
     "answer": "The world.",
     "uploaded_at": "2026-08-15T16:17:00Z",
     "publish_at": "2026-08-16T04:14:49.000Z"
+  },
+  "rdl_0358": {
+    "youtube_id": "2sab6FwtGAA",
+    "youtube_url": "https://www.youtube.com/watch?v=2sab6FwtGAA",
+    "question": "A butcher has a 36 inch waist around, and he is 5 feet tall. What does he weigh?",
+    "answer": "Meat.",
+    "uploaded_at": "2026-08-16T16:16:29Z"
+  },
+  "rdl_0359": {
+    "youtube_id": "pklwuMr5GLk",
+    "youtube_url": "https://www.youtube.com/watch?v=pklwuMr5GLk",
+    "question": "What kind of story does the Easter Bunny like?",
+    "answer": "One's with hoppy endings!",
+    "uploaded_at": "2026-08-16T16:17:14Z",
+    "publish_at": "2026-08-16T22:15:50.000Z"
+  },
+  "rdl_0360": {
+    "youtube_id": "XPxOLmnKn9I",
+    "youtube_url": "https://www.youtube.com/watch?v=XPxOLmnKn9I",
+    "question": "What do you call the Easter bunny the day after Easter ?",
+    "answer": "Tired!",
+    "uploaded_at": "2026-08-16T16:17:59Z",
+    "publish_at": "2026-08-17T04:15:50.000Z"
   }
 }

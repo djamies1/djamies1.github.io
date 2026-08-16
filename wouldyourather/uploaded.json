@@ -2598,5 +2598,31 @@
     "category": "relationships",
     "uploaded_at": "2026-08-15T16:14:46Z",
     "publish_at": "2026-08-16T00:12:41.000Z"
+  },
+  "wyr_0301": {
+    "youtube_id": "2hxFN1TEMII",
+    "youtube_url": "https://www.youtube.com/watch?v=2hxFN1TEMII",
+    "option_a": "Live 200 years but look old from 40 onward",
+    "option_b": "Live 90 years but look 25 until you die",
+    "category": "life",
+    "uploaded_at": "2026-08-16T16:14:15Z"
+  },
+  "wyr_0302": {
+    "youtube_id": "t9wp_XJy4yo",
+    "youtube_url": "https://www.youtube.com/watch?v=t9wp_XJy4yo",
+    "option_a": "Have a dragon as a pet but it can't fly",
+    "option_b": "Have a unicorn as a pet but it can't do magic",
+    "category": "fantasy",
+    "uploaded_at": "2026-08-16T16:15:00Z",
+    "publish_at": "2026-08-16T20:13:40.000Z"
+  },
+  "wyr_0303": {
+    "youtube_id": "4osHBLlp9tI",
+    "youtube_url": "https://www.youtube.com/watch?v=4osHBLlp9tI",
+    "option_a": "Always win every argument",
+    "option_b": "Always know when someone is lying",
+    "category": "social",
+    "uploaded_at": "2026-08-16T16:15:46Z",
+    "publish_at": "2026-08-17T00:13:40.000Z"
   }
 }
