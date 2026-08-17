@@ -2624,5 +2624,31 @@
     "category": "word",
     "uploaded_at": "2026-08-16T16:13:39Z",
     "publish_at": "2026-08-17T00:11:26.000Z"
+  },
+  "mc_0018": {
+    "youtube_id": "Q0soWJ2qPZk",
+    "youtube_url": "https://www.youtube.com/watch?v=Q0soWJ2qPZk",
+    "question": "A farmer has 17 sheep. All but 9 die. How many remain?",
+    "answer": "9",
+    "category": "word",
+    "uploaded_at": "2026-08-17T16:14:11Z"
+  },
+  "mc_0019": {
+    "youtube_id": "xK23k4v8nZM",
+    "youtube_url": "https://www.youtube.com/watch?v=xK23k4v8nZM",
+    "question": "You have a 3-litre jug and a 5-litre jug. How do you measure exactly 4 litres?",
+    "answer": "Fill 5L, pour into 3L (leaving 2L). Empty 3L. Pour 2L in. Fill 5L again, pour until 3L full (1L goes in). 5L has 4L left.",
+    "category": "word",
+    "uploaded_at": "2026-08-17T16:14:57Z",
+    "publish_at": "2026-08-17T20:13:39.000Z"
+  },
+  "mc_0020": {
+    "youtube_id": "e9vzYwlbSQ0",
+    "youtube_url": "https://www.youtube.com/watch?v=e9vzYwlbSQ0",
+    "question": "A brick weighs 1kg plus half a brick. How much does a brick weigh?",
+    "answer": "2kg",
+    "category": "word",
+    "uploaded_at": "2026-08-17T16:15:41Z",
+    "publish_at": "2026-08-18T00:13:39.000Z"
   }
 }

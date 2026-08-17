@@ -2624,5 +2624,31 @@
     "category": "social",
     "uploaded_at": "2026-08-16T16:15:46Z",
     "publish_at": "2026-08-17T00:13:40.000Z"
+  },
+  "wyr_0304": {
+    "youtube_id": "Bana3YmerUM",
+    "youtube_url": "https://www.youtube.com/watch?v=Bana3YmerUM",
+    "option_a": "Live in the world of your favorite book",
+    "option_b": "Live in the world of your favorite game",
+    "category": "fiction",
+    "uploaded_at": "2026-08-17T16:16:17Z"
+  },
+  "wyr_0305": {
+    "youtube_id": "owQspMBcbRk",
+    "youtube_url": "https://www.youtube.com/watch?v=owQspMBcbRk",
+    "option_a": "Be able to become invisible at will",
+    "option_b": "Be able to read minds at will",
+    "category": "superpowers",
+    "uploaded_at": "2026-08-17T16:17:02Z",
+    "publish_at": "2026-08-17T20:15:42.000Z"
+  },
+  "wyr_0306": {
+    "youtube_id": "ZJ_-ww90yQw",
+    "youtube_url": "https://www.youtube.com/watch?v=ZJ_-ww90yQw",
+    "option_a": "Have a permanent 3-day weekend every week",
+    "option_b": "Have 4 hours cut from every workday but same pay",
+    "category": "work",
+    "uploaded_at": "2026-08-17T16:17:48Z",
+    "publish_at": "2026-08-18T00:15:42.000Z"
   }
 }
