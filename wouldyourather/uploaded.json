@@ -2650,5 +2650,31 @@
     "category": "work",
     "uploaded_at": "2026-08-17T16:17:48Z",
     "publish_at": "2026-08-18T00:15:42.000Z"
+  },
+  "wyr_0307": {
+    "youtube_id": "KVvV5Q53msw",
+    "youtube_url": "https://www.youtube.com/watch?v=KVvV5Q53msw",
+    "option_a": "Age 5 years instantly right now",
+    "option_b": "Go back in age 5 years instantly right now",
+    "category": "age",
+    "uploaded_at": "2026-08-18T16:21:28Z"
+  },
+  "wyr_0308": {
+    "youtube_id": "dLA_T8Ai3Lo",
+    "youtube_url": "https://www.youtube.com/watch?v=dLA_T8Ai3Lo",
+    "option_a": "Taste everything you touch",
+    "option_b": "Hear everything you see",
+    "category": "senses",
+    "uploaded_at": "2026-08-18T16:22:13Z",
+    "publish_at": "2026-08-18T20:20:53.000Z"
+  },
+  "wyr_0309": {
+    "youtube_id": "3K8CRbZJHZs",
+    "youtube_url": "https://www.youtube.com/watch?v=3K8CRbZJHZs",
+    "option_a": "Have a superpower that nobody believes you have",
+    "option_b": "Not have any superpower but everyone believes you do",
+    "category": "superpowers",
+    "uploaded_at": "2026-08-18T16:22:57Z",
+    "publish_at": "2026-08-19T00:20:53.000Z"
   }
 }

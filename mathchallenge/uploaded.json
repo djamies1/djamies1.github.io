@@ -2650,5 +2650,31 @@
     "category": "word",
     "uploaded_at": "2026-08-17T16:15:41Z",
     "publish_at": "2026-08-18T00:13:39.000Z"
+  },
+  "mc_0021": {
+    "youtube_id": "4hmxQwjtDzk",
+    "youtube_url": "https://www.youtube.com/watch?v=4hmxQwjtDzk",
+    "question": "If you're in a race and overtake the person in 2nd place, what position are you in?",
+    "answer": "2nd",
+    "category": "word",
+    "uploaded_at": "2026-08-18T16:19:16Z"
+  },
+  "mc_0022": {
+    "youtube_id": "0Ut6pf9wR34",
+    "youtube_url": "https://www.youtube.com/watch?v=0Ut6pf9wR34",
+    "question": "How many months have 28 days?",
+    "answer": "12",
+    "category": "word",
+    "uploaded_at": "2026-08-18T16:20:04Z",
+    "publish_at": "2026-08-18T20:18:38.000Z"
+  },
+  "mc_0023": {
+    "youtube_id": "jaJeN1g0gZc",
+    "youtube_url": "https://www.youtube.com/watch?v=jaJeN1g0gZc",
+    "question": "A snail is at the bottom of a 10m well. Each day it climbs 3m, each night it slides 2m. How many days to escape?",
+    "answer": "8 days",
+    "category": "word",
+    "uploaded_at": "2026-08-18T16:20:52Z",
+    "publish_at": "2026-08-19T00:18:38.000Z"
   }
 }
