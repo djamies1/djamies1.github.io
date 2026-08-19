@@ -2802,5 +2802,28 @@
     "answer": "A half-dollar, a quarter, four dimes, and four pennies.",
     "uploaded_at": "2026-08-18T16:25:13Z",
     "publish_at": "2026-08-19T04:23:00.000Z"
+  },
+  "rdl_0367": {
+    "youtube_id": "X7fx3Rg_fEY",
+    "youtube_url": "https://www.youtube.com/watch?v=X7fx3Rg_fEY",
+    "question": "What weighs more, a pound of feathers or a pound of stones?",
+    "answer": "The same. They both weigh a pound!",
+    "uploaded_at": "2026-08-19T16:25:01Z"
+  },
+  "rdl_0368": {
+    "youtube_id": "5tewKzpRItU",
+    "youtube_url": "https://www.youtube.com/watch?v=5tewKzpRItU",
+    "question": "What kind of beans can you not grow in a garden?",
+    "answer": "Jelly Beans!",
+    "uploaded_at": "2026-08-19T16:25:46Z",
+    "publish_at": "2026-08-19T22:24:22.000Z"
+  },
+  "rdl_0369": {
+    "youtube_id": "vmQQnUihdFw",
+    "youtube_url": "https://www.youtube.com/watch?v=vmQQnUihdFw",
+    "question": "John bet Tom $100 that he can predict the score of the football game before it starts. Tom agrees but loses the bet. Why did Tom lose the bet?",
+    "answer": "John said the score would be 0-0 and he was right. \"Before\" any football game starts, the score is always 0-0.",
+    "uploaded_at": "2026-08-19T16:26:32Z",
+    "publish_at": "2026-08-20T04:24:22.000Z"
   }
 }

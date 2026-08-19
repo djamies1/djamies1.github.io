@@ -2676,5 +2676,31 @@
     "category": "word",
     "uploaded_at": "2026-08-18T16:20:52Z",
     "publish_at": "2026-08-19T00:18:38.000Z"
+  },
+  "mc_0024": {
+    "youtube_id": "7bFJ7H3JK-A",
+    "youtube_url": "https://www.youtube.com/watch?v=7bFJ7H3JK-A",
+    "question": "If there are 3 apples and you take away 2, how many apples do you have?",
+    "answer": "2",
+    "category": "word",
+    "uploaded_at": "2026-08-19T16:20:06Z"
+  },
+  "mc_0025": {
+    "youtube_id": "5Kr152babRo",
+    "youtube_url": "https://www.youtube.com/watch?v=5Kr152babRo",
+    "question": "A man drives from A to B at 60 km/h, then back at 40 km/h. What is his average speed for the whole trip?",
+    "answer": "48 km/h",
+    "category": "word",
+    "uploaded_at": "2026-08-19T16:21:08Z",
+    "publish_at": "2026-08-19T20:19:14.000Z"
+  },
+  "mc_0026": {
+    "youtube_id": "HmR3hmf1kEc",
+    "youtube_url": "https://www.youtube.com/watch?v=HmR3hmf1kEc",
+    "question": "You have two coins totalling 30 cents. One is not a 10-cent coin. What are they?",
+    "answer": "A 20-cent coin and a 10-cent coin",
+    "category": "logic",
+    "uploaded_at": "2026-08-19T16:22:10Z",
+    "publish_at": "2026-08-20T00:19:14.000Z"
   }
 }

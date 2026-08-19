@@ -2676,5 +2676,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-08-18T16:22:57Z",
     "publish_at": "2026-08-19T00:20:53.000Z"
+  },
+  "wyr_0310": {
+    "youtube_id": "UoCPsHnu4C8",
+    "youtube_url": "https://www.youtube.com/watch?v=UoCPsHnu4C8",
+    "option_a": "Be the best at one thing in the world",
+    "option_b": "Be above average at everything",
+    "category": "skills",
+    "uploaded_at": "2026-08-19T16:22:46Z"
+  },
+  "wyr_0311": {
+    "youtube_id": "EWHBjz0Fv0A",
+    "youtube_url": "https://www.youtube.com/watch?v=EWHBjz0Fv0A",
+    "option_a": "Hiccup every time you lie",
+    "option_b": "Sneeze every time you're about to make a mistake",
+    "category": "quirks",
+    "uploaded_at": "2026-08-19T16:23:31Z",
+    "publish_at": "2026-08-19T20:22:10.000Z"
+  },
+  "wyr_0312": {
+    "youtube_id": "GlEbKODx_yI",
+    "youtube_url": "https://www.youtube.com/watch?v=GlEbKODx_yI",
+    "option_a": "Have a photographic memory but only for useless trivia",
+    "option_b": "Have perfect recall but only for conversations you've had",
+    "category": "memory",
+    "uploaded_at": "2026-08-19T16:24:18Z",
+    "publish_at": "2026-08-20T00:22:10.000Z"
   }
 }
