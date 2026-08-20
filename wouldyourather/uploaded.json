@@ -2702,5 +2702,31 @@
     "category": "memory",
     "uploaded_at": "2026-08-19T16:24:18Z",
     "publish_at": "2026-08-20T00:22:10.000Z"
+  },
+  "wyr_0313": {
+    "youtube_id": "hxMk77rQjiw",
+    "youtube_url": "https://www.youtube.com/watch?v=hxMk77rQjiw",
+    "option_a": "Be able to talk to computers and have them understand you perfectly",
+    "option_b": "Be able to fix any broken object just by touching it",
+    "category": "abilities",
+    "uploaded_at": "2026-08-20T16:23:09Z"
+  },
+  "wyr_0314": {
+    "youtube_id": "FoIZ4G1zgGE",
+    "youtube_url": "https://www.youtube.com/watch?v=FoIZ4G1zgGE",
+    "option_a": "Have a free pass to travel anywhere in the world for 1 year",
+    "option_b": "Have every expense paid in your current city for 1 year",
+    "category": "travel",
+    "uploaded_at": "2026-08-20T16:23:53Z",
+    "publish_at": "2026-08-20T20:22:34.000Z"
+  },
+  "wyr_0315": {
+    "youtube_id": "fR5fF98qfzY",
+    "youtube_url": "https://www.youtube.com/watch?v=fR5fF98qfzY",
+    "option_a": "Always be slightly too cold",
+    "option_b": "Always be slightly too warm",
+    "category": "comfort",
+    "uploaded_at": "2026-08-20T16:24:38Z",
+    "publish_at": "2026-08-21T00:22:34.000Z"
   }
 }
