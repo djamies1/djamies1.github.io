@@ -2728,5 +2728,31 @@
     "category": "comfort",
     "uploaded_at": "2026-08-20T16:24:38Z",
     "publish_at": "2026-08-21T00:22:34.000Z"
+  },
+  "wyr_0316": {
+    "youtube_id": "Cs-tdD-FALs",
+    "youtube_url": "https://www.youtube.com/watch?v=Cs-tdD-FALs",
+    "option_a": "Have a robot assistant that does 50% of your work",
+    "option_b": "Have a human assistant who does 100% of your admin tasks",
+    "category": "work",
+    "uploaded_at": "2026-08-21T16:21:16Z"
+  },
+  "wyr_0317": {
+    "youtube_id": "3uHkKVDOKTQ",
+    "youtube_url": "https://www.youtube.com/watch?v=3uHkKVDOKTQ",
+    "option_a": "Be incredibly charismatic but average in intelligence",
+    "option_b": "Be incredibly intelligent but barely charismatic",
+    "category": "personality",
+    "uploaded_at": "2026-08-21T16:22:01Z",
+    "publish_at": "2026-08-21T20:20:42.000Z"
+  },
+  "wyr_0318": {
+    "youtube_id": "m9S7_WFV6S0",
+    "youtube_url": "https://www.youtube.com/watch?v=m9S7_WFV6S0",
+    "option_a": "Have unlimited battery life on all your devices forever",
+    "option_b": "Have unlimited data and perfect signal everywhere forever",
+    "category": "technology",
+    "uploaded_at": "2026-08-21T16:22:45Z",
+    "publish_at": "2026-08-22T00:20:42.000Z"
   }
 }

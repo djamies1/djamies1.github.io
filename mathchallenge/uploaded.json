@@ -2728,5 +2728,31 @@
     "category": "logic",
     "uploaded_at": "2026-08-20T16:22:33Z",
     "publish_at": "2026-08-21T00:20:25.000Z"
+  },
+  "mc_0030": {
+    "youtube_id": "UEqGbkNXFwM",
+    "youtube_url": "https://www.youtube.com/watch?v=UEqGbkNXFwM",
+    "question": "If you have a match and enter a room with a candle, an oil lamp, and a fireplace, which do you light first?",
+    "answer": "The match",
+    "category": "logic",
+    "uploaded_at": "2026-08-21T16:19:08Z"
+  },
+  "mc_0031": {
+    "youtube_id": "Yzm-lRdpT70",
+    "youtube_url": "https://www.youtube.com/watch?v=Yzm-lRdpT70",
+    "question": "Two fathers and two sons go fishing. They catch exactly 3 fish, one each. How?",
+    "answer": "There are only 3 people: grandfather, father, and son",
+    "category": "logic",
+    "uploaded_at": "2026-08-21T16:19:55Z",
+    "publish_at": "2026-08-21T20:18:32.000Z"
+  },
+  "mc_0032": {
+    "youtube_id": "rXnEjMcwgmU",
+    "youtube_url": "https://www.youtube.com/watch?v=rXnEjMcwgmU",
+    "question": "I have cities but no houses. I have mountains but no trees. I have water but no fish. What am I?",
+    "answer": "A map",
+    "category": "logic",
+    "uploaded_at": "2026-08-21T16:20:41Z",
+    "publish_at": "2026-08-22T00:18:32.000Z"
   }
 }
