@@ -2780,5 +2780,31 @@
     "category": "entertainment",
     "uploaded_at": "2026-08-22T16:14:38Z",
     "publish_at": "2026-08-23T00:12:34.000Z"
+  },
+  "wyr_0322": {
+    "youtube_id": "Mlh9MALTSfg",
+    "youtube_url": "https://www.youtube.com/watch?v=Mlh9MALTSfg",
+    "option_a": "Be a master chef who hates eating",
+    "option_b": "Be someone who loves eating but can't cook at all",
+    "category": "food",
+    "uploaded_at": "2026-08-23T16:14:14Z"
+  },
+  "wyr_0323": {
+    "youtube_id": "J8FNW9_Pmys",
+    "youtube_url": "https://www.youtube.com/watch?v=J8FNW9_Pmys",
+    "option_a": "Have a permanent smile on your face",
+    "option_b": "Have a permanent look of mild confusion on your face",
+    "category": "appearance",
+    "uploaded_at": "2026-08-23T16:14:59Z",
+    "publish_at": "2026-08-23T20:13:39.000Z"
+  },
+  "wyr_0324": {
+    "youtube_id": "Wql63OTdpT8",
+    "youtube_url": "https://www.youtube.com/watch?v=Wql63OTdpT8",
+    "option_a": "Be able to take a 10-second power nap that equals 8 hours of sleep",
+    "option_b": "Be able to eat one pill that gives you a full day's nutrition",
+    "category": "biology",
+    "uploaded_at": "2026-08-23T16:15:43Z",
+    "publish_at": "2026-08-24T00:13:39.000Z"
   }
 }

@@ -2780,5 +2780,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-08-22T16:12:33Z",
     "publish_at": "2026-08-23T00:09:42.000Z"
+  },
+  "mc_0036": {
+    "youtube_id": "dNb1eKrFtec",
+    "youtube_url": "https://www.youtube.com/watch?v=dNb1eKrFtec",
+    "question": "How many degrees are in a right angle?",
+    "answer": "90",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-23T16:12:06Z"
+  },
+  "mc_0037": {
+    "youtube_id": "cvnCpXtC75M",
+    "youtube_url": "https://www.youtube.com/watch?v=cvnCpXtC75M",
+    "question": "What is the perimeter of a square with sides of 7cm?",
+    "answer": "28cm",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-23T16:12:52Z",
+    "publish_at": "2026-08-23T20:11:30.000Z"
+  },
+  "mc_0038": {
+    "youtube_id": "7h3dJdKZZko",
+    "youtube_url": "https://www.youtube.com/watch?v=7h3dJdKZZko",
+    "question": "What is 2^10?",
+    "answer": "1024",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-23T16:13:38Z",
+    "publish_at": "2026-08-24T00:11:30.000Z"
   }
 }
