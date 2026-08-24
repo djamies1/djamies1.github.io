@@ -2806,5 +2806,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-08-23T16:13:38Z",
     "publish_at": "2026-08-24T00:11:30.000Z"
+  },
+  "mc_0039": {
+    "youtube_id": "l4is2hsaErQ",
+    "youtube_url": "https://www.youtube.com/watch?v=l4is2hsaErQ",
+    "question": "What is the area of a circle with radius 5? (use π ≈ 3.14)",
+    "answer": "78.5",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-24T16:24:02Z"
+  },
+  "mc_0040": {
+    "youtube_id": "-Wavbfuzbig",
+    "youtube_url": "https://www.youtube.com/watch?v=-Wavbfuzbig",
+    "question": "A triangle has angles of 45° and 75°. What is the third angle?",
+    "answer": "60°",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-24T16:24:49Z",
+    "publish_at": "2026-08-24T20:23:23.000Z"
+  },
+  "mc_0041": {
+    "youtube_id": "4b_4oWh6o08",
+    "youtube_url": "https://www.youtube.com/watch?v=4b_4oWh6o08",
+    "question": "What is the next prime number after 17?",
+    "answer": "19",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-24T16:25:36Z",
+    "publish_at": "2026-08-25T00:23:23.000Z"
   }
 }

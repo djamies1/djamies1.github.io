@@ -2806,5 +2806,31 @@
     "category": "biology",
     "uploaded_at": "2026-08-23T16:15:43Z",
     "publish_at": "2026-08-24T00:13:39.000Z"
+  },
+  "wyr_0325": {
+    "youtube_id": "M4jprr2J2yM",
+    "youtube_url": "https://www.youtube.com/watch?v=M4jprr2J2yM",
+    "option_a": "Have the strength of 100 people",
+    "option_b": "Have the speed of 100 people combined",
+    "category": "superpowers",
+    "uploaded_at": "2026-08-24T16:26:12Z"
+  },
+  "wyr_0326": {
+    "youtube_id": "4s7uvsg2SeM",
+    "youtube_url": "https://www.youtube.com/watch?v=4s7uvsg2SeM",
+    "option_a": "Be able to speak every programming language fluently",
+    "option_b": "Be able to build any physical thing with your hands perfectly",
+    "category": "skills",
+    "uploaded_at": "2026-08-24T16:26:56Z",
+    "publish_at": "2026-08-24T20:25:36.000Z"
+  },
+  "wyr_0327": {
+    "youtube_id": "C8PR0UNP2u4",
+    "youtube_url": "https://www.youtube.com/watch?v=C8PR0UNP2u4",
+    "option_a": "Never stub your toe again",
+    "option_b": "Never bite your cheek while eating again",
+    "category": "comfort",
+    "uploaded_at": "2026-08-24T16:27:40Z",
+    "publish_at": "2026-08-25T00:25:36.000Z"
   }
 }
