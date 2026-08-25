@@ -2832,5 +2832,31 @@
     "category": "comfort",
     "uploaded_at": "2026-08-24T16:27:40Z",
     "publish_at": "2026-08-25T00:25:36.000Z"
+  },
+  "wyr_0328": {
+    "youtube_id": "uNa6pKTLds8",
+    "youtube_url": "https://www.youtube.com/watch?v=uNa6pKTLds8",
+    "option_a": "Be the funniest person in any room",
+    "option_b": "Be the most interesting person in any room",
+    "category": "personality",
+    "uploaded_at": "2026-08-25T16:27:56Z"
+  },
+  "wyr_0329": {
+    "youtube_id": "n4JWmEpD4Oc",
+    "youtube_url": "https://www.youtube.com/watch?v=n4JWmEpD4Oc",
+    "option_a": "Have the ability to instantly understand any machine",
+    "option_b": "Have the ability to instantly understand any animal",
+    "category": "understanding",
+    "uploaded_at": "2026-08-25T16:28:41Z",
+    "publish_at": "2026-08-25T20:27:24.000Z"
+  },
+  "wyr_0330": {
+    "youtube_id": "LsI7a7QW4b4",
+    "youtube_url": "https://www.youtube.com/watch?v=LsI7a7QW4b4",
+    "option_a": "Be a bird that can't fly",
+    "option_b": "Be a fish that can't swim",
+    "category": "animals",
+    "uploaded_at": "2026-08-25T16:29:26Z",
+    "publish_at": "2026-08-26T00:27:24.000Z"
   }
 }

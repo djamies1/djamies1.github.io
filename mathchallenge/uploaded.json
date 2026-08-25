@@ -2832,5 +2832,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-08-24T16:25:36Z",
     "publish_at": "2026-08-25T00:23:23.000Z"
+  },
+  "mc_0042": {
+    "youtube_id": "iHVsagAhJlU",
+    "youtube_url": "https://www.youtube.com/watch?v=iHVsagAhJlU",
+    "question": "What is 25% of 80?",
+    "answer": "20",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-25T16:25:38Z"
+  },
+  "mc_0043": {
+    "youtube_id": "bfamEjL2uFA",
+    "youtube_url": "https://www.youtube.com/watch?v=bfamEjL2uFA",
+    "question": "How many edges does a cube have?",
+    "answer": "12",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-25T16:26:32Z",
+    "publish_at": "2026-08-25T20:24:55.000Z"
+  },
+  "mc_0044": {
+    "youtube_id": "CLp4T_hvrxg",
+    "youtube_url": "https://www.youtube.com/watch?v=CLp4T_hvrxg",
+    "question": "If a shirt costs $24 after a 20% discount, what was the original price?",
+    "answer": "$30",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-25T16:27:23Z",
+    "publish_at": "2026-08-26T00:24:55.000Z"
   }
 }
