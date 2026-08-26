@@ -2858,5 +2858,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-08-25T16:27:23Z",
     "publish_at": "2026-08-26T00:24:55.000Z"
+  },
+  "mc_0045": {
+    "youtube_id": "oqqHCNli5nw",
+    "youtube_url": "https://www.youtube.com/watch?v=oqqHCNli5nw",
+    "question": "What is the LCM of 4 and 6?",
+    "answer": "12",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-26T16:41:37Z"
+  },
+  "mc_0046": {
+    "youtube_id": "kdFHEK5bTjY",
+    "youtube_url": "https://www.youtube.com/watch?v=kdFHEK5bTjY",
+    "question": "A car travels 240km in 4 hours. What is its average speed?",
+    "answer": "60 km/h",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-26T16:42:54Z",
+    "publish_at": "2026-08-26T20:40:52.000Z"
+  },
+  "mc_0047": {
+    "youtube_id": "N_hXs2d9624",
+    "youtube_url": "https://www.youtube.com/watch?v=N_hXs2d9624",
+    "question": "What is the sum of interior angles in a pentagon?",
+    "answer": "540°",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-26T16:43:50Z",
+    "publish_at": "2026-08-27T00:40:52.000Z"
   }
 }

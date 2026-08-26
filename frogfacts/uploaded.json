@@ -2238,5 +2238,25 @@
     "fact": "Some frogs can change colour slightly based on temperature, light, or mood, similar to chameleons.",
     "uploaded_at": "2026-08-25T16:35:08Z",
     "publish_at": "2026-08-26T04:31:41.000Z"
+  },
+  "frog_0337": {
+    "youtube_id": "oWSt5z_ZZeY",
+    "youtube_url": "https://www.youtube.com/watch?v=oWSt5z_ZZeY",
+    "fact": "The mimic poison frog copies the colour patterns of more toxic species to deter predators without being toxic itself.",
+    "uploaded_at": "2026-08-26T16:51:06Z"
+  },
+  "frog_0338": {
+    "youtube_id": "L9lA4qy9Utk",
+    "youtube_url": "https://www.youtube.com/watch?v=L9lA4qy9Utk",
+    "fact": "Frogs have been found living on every continent except Antarctica.",
+    "uploaded_at": "2026-08-26T16:52:40Z",
+    "publish_at": "2026-08-26T22:49:50.000Z"
+  },
+  "frog_0339": {
+    "youtube_id": "nABsTFzIhYM",
+    "youtube_url": "https://www.youtube.com/watch?v=nABsTFzIhYM",
+    "fact": "The Titicaca water frog never surfaces to breathe — it absorbs all its oxygen through highly wrinkled skin.",
+    "uploaded_at": "2026-08-26T16:54:49Z",
+    "publish_at": "2026-08-27T04:49:50.000Z"
   }
 }

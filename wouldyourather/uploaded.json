@@ -2858,5 +2858,31 @@
     "category": "animals",
     "uploaded_at": "2026-08-25T16:29:26Z",
     "publish_at": "2026-08-26T00:27:24.000Z"
+  },
+  "wyr_0331": {
+    "youtube_id": "18F_bdNXU7o",
+    "youtube_url": "https://www.youtube.com/watch?v=18F_bdNXU7o",
+    "option_a": "Live in a treehouse in a forest",
+    "option_b": "Live on a houseboat on the ocean",
+    "category": "lifestyle",
+    "uploaded_at": "2026-08-26T16:44:22Z"
+  },
+  "wyr_0332": {
+    "youtube_id": "i3TS-W13kmQ",
+    "youtube_url": "https://www.youtube.com/watch?v=i3TS-W13kmQ",
+    "option_a": "Be able to communicate with insects",
+    "option_b": "Be able to communicate with sea creatures",
+    "category": "nature",
+    "uploaded_at": "2026-08-26T16:45:20Z",
+    "publish_at": "2026-08-26T20:43:51.000Z"
+  },
+  "wyr_0333": {
+    "youtube_id": "-M0XqF3sWOk",
+    "youtube_url": "https://www.youtube.com/watch?v=-M0XqF3sWOk",
+    "option_a": "Have the memory of an elephant (never forget anything)",
+    "option_b": "Have the night vision of a cat",
+    "category": "abilities",
+    "uploaded_at": "2026-08-26T16:46:53Z",
+    "publish_at": "2026-08-27T00:43:51.000Z"
   }
 }
