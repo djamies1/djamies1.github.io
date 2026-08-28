@@ -2884,5 +2884,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-08-26T16:43:50Z",
     "publish_at": "2026-08-27T00:40:52.000Z"
+  },
+  "mc_0048": {
+    "youtube_id": "Iw90efmembo",
+    "youtube_url": "https://www.youtube.com/watch?v=Iw90efmembo",
+    "question": "What is 40% of 75?",
+    "answer": "30",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-28T00:40:31Z"
+  },
+  "mc_0049": {
+    "youtube_id": "AfZ_6G9schQ",
+    "youtube_url": "https://www.youtube.com/watch?v=AfZ_6G9schQ",
+    "question": "How many faces does a triangular prism have?",
+    "answer": "5",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-28T00:41:17Z",
+    "publish_at": "2026-08-28T04:39:54.000Z"
+  },
+  "mc_0050": {
+    "youtube_id": "rbEbRuy2yBI",
+    "youtube_url": "https://www.youtube.com/watch?v=rbEbRuy2yBI",
+    "question": "What is -3 x -7?",
+    "answer": "21",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-28T00:42:03Z",
+    "publish_at": "2026-08-28T08:39:54.000Z"
   }
 }

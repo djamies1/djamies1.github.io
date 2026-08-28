@@ -2884,5 +2884,31 @@
     "category": "abilities",
     "uploaded_at": "2026-08-26T16:46:53Z",
     "publish_at": "2026-08-27T00:43:51.000Z"
+  },
+  "wyr_0334": {
+    "youtube_id": "1BPCnAGzUYs",
+    "youtube_url": "https://www.youtube.com/watch?v=1BPCnAGzUYs",
+    "option_a": "Be able to create food from nothing",
+    "option_b": "Be able to make anyone fall asleep instantly",
+    "category": "powers",
+    "uploaded_at": "2026-08-28T00:42:38Z"
+  },
+  "wyr_0335": {
+    "youtube_id": "j2KhrjlAWeU",
+    "youtube_url": "https://www.youtube.com/watch?v=j2KhrjlAWeU",
+    "option_a": "Always have just enough money but never struggle",
+    "option_b": "Have huge wealth but constant financial anxiety",
+    "category": "money",
+    "uploaded_at": "2026-08-28T00:43:23Z",
+    "publish_at": "2026-08-28T04:42:04.000Z"
+  },
+  "wyr_0336": {
+    "youtube_id": "phyXuMi7C34",
+    "youtube_url": "https://www.youtube.com/watch?v=phyXuMi7C34",
+    "option_a": "Be able to record your dreams and replay them",
+    "option_b": "Be able to control your dreams every night (lucid dreaming)",
+    "category": "sleep",
+    "uploaded_at": "2026-08-28T00:44:10Z",
+    "publish_at": "2026-08-28T08:42:04.000Z"
   }
 }
