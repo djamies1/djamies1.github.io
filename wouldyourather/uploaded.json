@@ -2936,5 +2936,31 @@
     "category": "powers",
     "uploaded_at": "2026-08-29T00:17:04Z",
     "publish_at": "2026-08-29T08:14:59.000Z"
+  },
+  "wyr_0340": {
+    "youtube_id": "u0cgeaaoqm0",
+    "youtube_url": "https://www.youtube.com/watch?v=u0cgeaaoqm0",
+    "option_a": "Live in a society where money doesn't exist",
+    "option_b": "Live in a society where no one ever lies",
+    "category": "society",
+    "uploaded_at": "2026-08-29T19:01:04Z"
+  },
+  "wyr_0341": {
+    "youtube_id": "eO26AkXlgKc",
+    "youtube_url": "https://www.youtube.com/watch?v=eO26AkXlgKc",
+    "option_a": "Be able to breathe in space",
+    "option_b": "Be able to survive without food or water indefinitely",
+    "category": "biology",
+    "uploaded_at": "2026-08-29T19:01:47Z",
+    "publish_at": "2026-08-29T23:00:29.000Z"
+  },
+  "wyr_0342": {
+    "youtube_id": "EZKhyXf6sjU",
+    "youtube_url": "https://www.youtube.com/watch?v=EZKhyXf6sjU",
+    "option_a": "Only be able to use one app on your phone forever",
+    "option_b": "Have a phone that never runs out of battery but can't update apps",
+    "category": "technology",
+    "uploaded_at": "2026-08-29T19:02:33Z",
+    "publish_at": "2026-08-30T03:00:29.000Z"
   }
 }
