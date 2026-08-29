@@ -2910,5 +2910,31 @@
     "category": "common_knowledge",
     "uploaded_at": "2026-08-28T00:42:03Z",
     "publish_at": "2026-08-28T08:39:54.000Z"
+  },
+  "mc_0051": {
+    "youtube_id": "AJOjuOWAVys",
+    "youtube_url": "https://www.youtube.com/watch?v=AJOjuOWAVys",
+    "question": "What is the mode of: 3, 5, 3, 7, 9, 3, 5?",
+    "answer": "3",
+    "category": "common_knowledge",
+    "uploaded_at": "2026-08-29T00:13:28Z"
+  },
+  "math_0287": {
+    "youtube_id": "4G8kcTg_N4s",
+    "youtube_url": "https://www.youtube.com/watch?v=4G8kcTg_N4s",
+    "question": "What is 2 + 2 × 2?",
+    "answer": "6",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-08-29T00:14:13Z",
+    "publish_at": "2026-08-29T04:12:52.000Z"
+  },
+  "math_0288": {
+    "youtube_id": "HFM2TA0fIrM",
+    "youtube_url": "https://www.youtube.com/watch?v=HFM2TA0fIrM",
+    "question": "If you have 12 sweets and eat all but 5, how many are left?",
+    "answer": "5",
+    "category": "word_problem",
+    "uploaded_at": "2026-08-29T00:14:58Z",
+    "publish_at": "2026-08-29T08:12:52.000Z"
   }
 }

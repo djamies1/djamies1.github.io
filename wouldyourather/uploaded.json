@@ -2910,5 +2910,31 @@
     "category": "sleep",
     "uploaded_at": "2026-08-28T00:44:10Z",
     "publish_at": "2026-08-28T08:42:04.000Z"
+  },
+  "wyr_0337": {
+    "youtube_id": "OPJkoGmfPMA",
+    "youtube_url": "https://www.youtube.com/watch?v=OPJkoGmfPMA",
+    "option_a": "Have the ability to instantly become an expert in any field you choose once a year",
+    "option_b": "Have the ability to reset any one decision once per year",
+    "category": "life",
+    "uploaded_at": "2026-08-29T00:15:34Z"
+  },
+  "wyr_0338": {
+    "youtube_id": "MCy61Al4M54",
+    "youtube_url": "https://www.youtube.com/watch?v=MCy61Al4M54",
+    "option_a": "Only eat foods from one country for the rest of your life",
+    "option_b": "Only eat foods that are one color for the rest of your life",
+    "category": "food",
+    "uploaded_at": "2026-08-29T00:16:18Z",
+    "publish_at": "2026-08-29T04:14:59.000Z"
+  },
+  "wyr_0339": {
+    "youtube_id": "R1voAI0gjqU",
+    "youtube_url": "https://www.youtube.com/watch?v=R1voAI0gjqU",
+    "option_a": "Have the power to grow any plant instantly",
+    "option_b": "Have the power to heal any wound instantly",
+    "category": "powers",
+    "uploaded_at": "2026-08-29T00:17:04Z",
+    "publish_at": "2026-08-29T08:14:59.000Z"
   }
 }
