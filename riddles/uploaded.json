@@ -3055,5 +3055,28 @@
     "answer": "Only one, because after that it is no longer empty.",
     "uploaded_at": "2026-08-29T19:04:46Z",
     "publish_at": "2026-08-30T07:02:37.000Z"
+  },
+  "rdl_0400": {
+    "youtube_id": "eZ5gtlRArEM",
+    "youtube_url": "https://www.youtube.com/watch?v=eZ5gtlRArEM",
+    "question": "I am your father, but you are not my son. Who are you to me?",
+    "answer": "My daughter.",
+    "uploaded_at": "2026-08-30T18:58:54Z"
+  },
+  "rdl_0401": {
+    "youtube_id": "xGzj8GGtBlU",
+    "youtube_url": "https://www.youtube.com/watch?v=xGzj8GGtBlU",
+    "question": "There are 50 horses and 50 kings riding along an old dirt road. They came to a peach tree with 50 peaches. Each took one, yet there were still 49 left. How is this possible?",
+    "answer": "Each is the name of one of the kings and he's the only one that took one!",
+    "uploaded_at": "2026-08-30T18:59:39Z",
+    "publish_at": "2026-08-31T00:58:14.000Z"
+  },
+  "rdl_0402": {
+    "youtube_id": "PvW9cYsBmdE",
+    "youtube_url": "https://www.youtube.com/watch?v=PvW9cYsBmdE",
+    "question": "There are 2 ducks in front of 2 other ducks. There are 2 ducks behind 2 other ducks. There are 2 ducks beside 2 other ducks. How many ducks are there?",
+    "answer": "Just four, in a square formation.",
+    "uploaded_at": "2026-08-30T19:00:25Z",
+    "publish_at": "2026-08-31T06:58:14.000Z"
   }
 }

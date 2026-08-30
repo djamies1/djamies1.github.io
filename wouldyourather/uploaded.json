@@ -2962,5 +2962,31 @@
     "category": "technology",
     "uploaded_at": "2026-08-29T19:02:33Z",
     "publish_at": "2026-08-30T03:00:29.000Z"
+  },
+  "wyr_0343": {
+    "youtube_id": "2L27psUeXrc",
+    "youtube_url": "https://www.youtube.com/watch?v=2L27psUeXrc",
+    "option_a": "Be able to jump as high as you want but land perfectly safely",
+    "option_b": "Be able to sprint faster than any vehicle",
+    "category": "superpowers",
+    "uploaded_at": "2026-08-30T18:56:40Z"
+  },
+  "wyr_0344": {
+    "youtube_id": "nRDTs8JApWQ",
+    "youtube_url": "https://www.youtube.com/watch?v=nRDTs8JApWQ",
+    "option_a": "Have a secret room in your house that leads to anywhere in the world",
+    "option_b": "Have a secret room in your house that contains anything you need",
+    "category": "magic",
+    "uploaded_at": "2026-08-30T18:57:26Z",
+    "publish_at": "2026-08-30T22:56:05.000Z"
+  },
+  "wyr_0345": {
+    "youtube_id": "Q_5iWqo-fPw",
+    "youtube_url": "https://www.youtube.com/watch?v=Q_5iWqo-fPw",
+    "option_a": "Be the best player in the world at chess",
+    "option_b": "Be the best player in the world at poker",
+    "category": "games",
+    "uploaded_at": "2026-08-30T18:58:11Z",
+    "publish_at": "2026-08-31T02:56:05.000Z"
   }
 }
