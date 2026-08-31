@@ -2988,5 +2988,31 @@
     "category": "games",
     "uploaded_at": "2026-08-30T18:58:11Z",
     "publish_at": "2026-08-31T02:56:05.000Z"
+  },
+  "wyr_0346": {
+    "youtube_id": "H56JnPxExRE",
+    "youtube_url": "https://www.youtube.com/watch?v=H56JnPxExRE",
+    "option_a": "Live in a house that cleans itself",
+    "option_b": "Drive a car that never needs repairs",
+    "category": "convenience",
+    "uploaded_at": "2026-08-31T21:12:53Z"
+  },
+  "wyr_0347": {
+    "youtube_id": "CApOFWbn2No",
+    "youtube_url": "https://www.youtube.com/watch?v=CApOFWbn2No",
+    "option_a": "Have hair that perfectly styles itself every morning",
+    "option_b": "Have teeth that perfectly clean themselves every morning",
+    "category": "appearance",
+    "uploaded_at": "2026-08-31T21:13:39Z",
+    "publish_at": "2026-09-01T01:12:14.000Z"
+  },
+  "wyr_0348": {
+    "youtube_id": "RKyL_RZwNP4",
+    "youtube_url": "https://www.youtube.com/watch?v=RKyL_RZwNP4",
+    "option_a": "Be able to hold your breath for 30 minutes",
+    "option_b": "Be able to run a marathon without getting tired",
+    "category": "fitness",
+    "uploaded_at": "2026-08-31T21:14:22Z",
+    "publish_at": "2026-09-01T05:12:14.000Z"
   }
 }

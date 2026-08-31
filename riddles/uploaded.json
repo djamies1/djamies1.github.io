@@ -3078,5 +3078,28 @@
     "answer": "Just four, in a square formation.",
     "uploaded_at": "2026-08-30T19:00:25Z",
     "publish_at": "2026-08-31T06:58:14.000Z"
+  },
+  "rdl_0403": {
+    "youtube_id": "W1F8cdcm8S4",
+    "youtube_url": "https://www.youtube.com/watch?v=W1F8cdcm8S4",
+    "question": "There is a certain club which is for men only. There are 600 men who belong to this club and 5% of these men wear one earring. Of the other 95% membership, half wear two earrings and the other half wear none. How many earrings are being worn in this club?",
+    "answer": "Six hundred. We know that 5%, or 30 of the men are wearing one earring. Of the other 95%, or 570, we know that half are wearing two earrings and the other half none. This is the same as if they all wore one.",
+    "uploaded_at": "2026-08-31T21:15:08Z"
+  },
+  "rdl_0404": {
+    "youtube_id": "_UWGJNYK_jw",
+    "youtube_url": "https://www.youtube.com/watch?v=_UWGJNYK_jw",
+    "question": "Why is a rose-bud like a promissory note?",
+    "answer": "It matures by falling dew.",
+    "uploaded_at": "2026-08-31T21:15:53Z",
+    "publish_at": "2026-09-01T03:14:25.000Z"
+  },
+  "rdl_0405": {
+    "youtube_id": "MNM3pcRz9Zo",
+    "youtube_url": "https://www.youtube.com/watch?v=MNM3pcRz9Zo",
+    "question": "There are 2 cops parked along a one-way street looking for traffic violations. They spot a taxi driver going in the wrong direction, yet they do nothing. Why?",
+    "answer": "The taxi driver wasn't driving at the time, he was walking.",
+    "uploaded_at": "2026-08-31T21:16:37Z",
+    "publish_at": "2026-09-01T09:14:25.000Z"
   }
 }
