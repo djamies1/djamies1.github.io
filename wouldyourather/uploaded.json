@@ -3014,5 +3014,31 @@
     "category": "fitness",
     "uploaded_at": "2026-08-31T21:14:22Z",
     "publish_at": "2026-09-01T05:12:14.000Z"
+  },
+  "wyr_0349": {
+    "youtube_id": "atYcCmjWcF8",
+    "youtube_url": "https://www.youtube.com/watch?v=atYcCmjWcF8",
+    "option_a": "Have free flights anywhere in the world for life",
+    "option_b": "Have free accommodation at 5-star hotels anywhere for life",
+    "category": "travel",
+    "uploaded_at": "2026-09-04T18:41:47Z"
+  },
+  "wyr_0350": {
+    "youtube_id": "mQjV4w7gZR4",
+    "youtube_url": "https://www.youtube.com/watch?v=mQjV4w7gZR4",
+    "option_a": "Never have to pay for food again",
+    "option_b": "Never have to pay for housing again",
+    "category": "money",
+    "uploaded_at": "2026-09-04T18:42:32Z",
+    "publish_at": "2026-09-04T22:41:16.000Z"
+  },
+  "wyr_0351": {
+    "youtube_id": "4AGY_Zt0uJU",
+    "youtube_url": "https://www.youtube.com/watch?v=4AGY_Zt0uJU",
+    "option_a": "Be able to shrink to the size of an ant",
+    "option_b": "Be able to grow to the size of a building",
+    "category": "size",
+    "uploaded_at": "2026-09-04T18:43:18Z",
+    "publish_at": "2026-09-05T02:41:16.000Z"
   }
 }

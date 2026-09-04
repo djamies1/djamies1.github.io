@@ -3014,5 +3014,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-08-31T21:12:13Z",
     "publish_at": "2026-09-01T05:10:18.000Z"
+  },
+  "math_0298": {
+    "youtube_id": "vhKoZVAn2-Q",
+    "youtube_url": "https://www.youtube.com/watch?v=vhKoZVAn2-Q",
+    "question": "A train travels 60 km in 45 minutes. What is its speed in km/h?",
+    "answer": "80 km/h",
+    "category": "word_problem",
+    "uploaded_at": "2026-09-04T18:39:38Z"
+  },
+  "math_0299": {
+    "youtube_id": "CkYJMkseJP4",
+    "youtube_url": "https://www.youtube.com/watch?v=CkYJMkseJP4",
+    "question": "What is 3/4 ÷ 1/2?",
+    "answer": "3/2 (or 1.5)",
+    "category": "fractions",
+    "uploaded_at": "2026-09-04T18:40:26Z",
+    "publish_at": "2026-09-04T22:39:00.000Z"
+  },
+  "math_0300": {
+    "youtube_id": "9VRanL-jXP8",
+    "youtube_url": "https://www.youtube.com/watch?v=9VRanL-jXP8",
+    "question": "Solve: 2x + 5 = 3x − 4",
+    "answer": "x = 9",
+    "category": "algebra",
+    "uploaded_at": "2026-09-04T18:41:15Z",
+    "publish_at": "2026-09-05T02:39:00.000Z"
   }
 }
