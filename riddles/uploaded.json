@@ -3124,5 +3124,28 @@
     "answer": "A noise, remove the \"eye\" aka \"i\" and you get a nose.",
     "uploaded_at": "2026-09-04T18:45:32Z",
     "publish_at": "2026-09-05T06:43:21.000Z"
+  },
+  "rdl_0409": {
+    "youtube_id": "RfE1EBY13Bo",
+    "youtube_url": "https://www.youtube.com/watch?v=RfE1EBY13Bo",
+    "question": "The following number is the only one of its kind: 8,549,176,320 Can you figure out what is so special about it?",
+    "answer": "It's the only number that has all the digits arranged in alphabetical order.",
+    "uploaded_at": "2026-09-05T17:51:15Z"
+  },
+  "rdl_0410": {
+    "youtube_id": "qwoJ3n97fRM",
+    "youtube_url": "https://www.youtube.com/watch?v=qwoJ3n97fRM",
+    "question": "Six glasses are in a row. The first three are filled with milk, and the last three are empty. By moving only one glass, can you arrange them so that the full and the empty glasses alternate?",
+    "answer": "Pick up the second glass and pour the milk into the fifth glass and then put it back in the second position.",
+    "uploaded_at": "2026-09-05T17:52:00Z",
+    "publish_at": "2026-09-05T23:50:33.000Z"
+  },
+  "rdl_0411": {
+    "youtube_id": "z_kZF_oJ3AY",
+    "youtube_url": "https://www.youtube.com/watch?v=z_kZF_oJ3AY",
+    "question": "Soldiers line up spaced with pride, Two long rows lined side by side. One sole unit can decide If the rows will unite or divide. Tell me, tell me, scream it out. What's the thing I talk about?",
+    "answer": "A zipper.",
+    "uploaded_at": "2026-09-05T17:52:44Z",
+    "publish_at": "2026-09-06T05:50:33.000Z"
   }
 }

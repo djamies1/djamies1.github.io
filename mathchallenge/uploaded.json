@@ -3040,5 +3040,31 @@
     "category": "algebra",
     "uploaded_at": "2026-09-04T18:41:15Z",
     "publish_at": "2026-09-05T02:39:00.000Z"
+  },
+  "math_0301": {
+    "youtube_id": "I01B1SzzljA",
+    "youtube_url": "https://www.youtube.com/watch?v=I01B1SzzljA",
+    "question": "A circle has a radius of 7 cm. What is its area? (Use π ≈ 3.14)",
+    "answer": "153.86 cm²",
+    "category": "geometry",
+    "uploaded_at": "2026-09-05T17:46:51Z"
+  },
+  "math_0302": {
+    "youtube_id": "YbtdkCyKQto",
+    "youtube_url": "https://www.youtube.com/watch?v=YbtdkCyKQto",
+    "question": "A price drops from $80 to $60. What is the percentage decrease?",
+    "answer": "25%",
+    "category": "percentages",
+    "uploaded_at": "2026-09-05T17:47:38Z",
+    "publish_at": "2026-09-05T21:46:14.000Z"
+  },
+  "math_0303": {
+    "youtube_id": "I8SUXVoNLvI",
+    "youtube_url": "https://www.youtube.com/watch?v=I8SUXVoNLvI",
+    "question": "What is the next term: 1, 1, 2, 3, 5, 8, __?",
+    "answer": "13",
+    "category": "sequences",
+    "uploaded_at": "2026-09-05T17:48:23Z",
+    "publish_at": "2026-09-06T01:46:14.000Z"
   }
 }

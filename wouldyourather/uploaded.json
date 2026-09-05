@@ -3040,5 +3040,31 @@
     "category": "size",
     "uploaded_at": "2026-09-04T18:43:18Z",
     "publish_at": "2026-09-05T02:41:16.000Z"
+  },
+  "wyr_0352": {
+    "youtube_id": "iVfw9-07V90",
+    "youtube_url": "https://www.youtube.com/watch?v=iVfw9-07V90",
+    "option_a": "Have a genius IQ but social anxiety",
+    "option_b": "Have an average IQ but perfect social confidence",
+    "category": "personality",
+    "uploaded_at": "2026-09-05T17:49:00Z"
+  },
+  "wyr_0353": {
+    "youtube_id": "WUmsAhsDc6k",
+    "youtube_url": "https://www.youtube.com/watch?v=WUmsAhsDc6k",
+    "option_a": "Be able to predict natural disasters 24 hours before they happen",
+    "option_b": "Be able to reverse any environmental damage instantly",
+    "category": "environment",
+    "uploaded_at": "2026-09-05T17:49:45Z",
+    "publish_at": "2026-09-05T21:48:24.000Z"
+  },
+  "wyr_0354": {
+    "youtube_id": "V0SOvkLSI28",
+    "youtube_url": "https://www.youtube.com/watch?v=V0SOvkLSI28",
+    "option_a": "Have access to every library ever created throughout history",
+    "option_b": "Have access to every lab and scientific instrument ever built",
+    "category": "knowledge",
+    "uploaded_at": "2026-09-05T17:50:30Z",
+    "publish_at": "2026-09-06T01:48:24.000Z"
   }
 }
