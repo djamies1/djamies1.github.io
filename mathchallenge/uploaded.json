@@ -3066,5 +3066,31 @@
     "category": "sequences",
     "uploaded_at": "2026-09-05T17:48:23Z",
     "publish_at": "2026-09-06T01:46:14.000Z"
+  },
+  "math_0304": {
+    "youtube_id": "4v5CceRaIyg",
+    "youtube_url": "https://www.youtube.com/watch?v=4v5CceRaIyg",
+    "question": "You have three boxes. One has gold, two have rocks. You pick Box 1. The host opens Box 3 (rocks). Should you switch?",
+    "answer": "Yes — switch",
+    "category": "probability",
+    "uploaded_at": "2026-09-06T17:51:12Z"
+  },
+  "math_0305": {
+    "youtube_id": "7YfRBqmRbW8",
+    "youtube_url": "https://www.youtube.com/watch?v=7YfRBqmRbW8",
+    "question": "What is 0.1 + 0.2 in pure mathematics?",
+    "answer": "0.3",
+    "category": "logic",
+    "uploaded_at": "2026-09-06T17:52:00Z",
+    "publish_at": "2026-09-06T21:50:33.000Z"
+  },
+  "math_0306": {
+    "youtube_id": "2ITTGA7EHAo",
+    "youtube_url": "https://www.youtube.com/watch?v=2ITTGA7EHAo",
+    "question": "A room has 23 people. What is the probability two share a birthday?",
+    "answer": "About 50%",
+    "category": "probability",
+    "uploaded_at": "2026-09-06T17:52:48Z",
+    "publish_at": "2026-09-07T01:50:33.000Z"
   }
 }

@@ -3066,5 +3066,31 @@
     "category": "knowledge",
     "uploaded_at": "2026-09-05T17:50:30Z",
     "publish_at": "2026-09-06T01:48:24.000Z"
+  },
+  "wyr_0355": {
+    "youtube_id": "w_SkPfNJIiA",
+    "youtube_url": "https://www.youtube.com/watch?v=w_SkPfNJIiA",
+    "option_a": "Be an Olympic gold medalist in swimming",
+    "option_b": "Be an Olympic gold medalist in gymnastics",
+    "category": "sports",
+    "uploaded_at": "2026-09-06T17:53:24Z"
+  },
+  "wyr_0356": {
+    "youtube_id": "DKJ9pRqOpl8",
+    "youtube_url": "https://www.youtube.com/watch?v=DKJ9pRqOpl8",
+    "option_a": "Have eyes in the back of your head",
+    "option_b": "Have a third eye in the middle of your forehead",
+    "category": "body",
+    "uploaded_at": "2026-09-06T17:54:08Z",
+    "publish_at": "2026-09-06T21:52:48.000Z"
+  },
+  "wyr_0357": {
+    "youtube_id": "lO7fsp2gpaY",
+    "youtube_url": "https://www.youtube.com/watch?v=lO7fsp2gpaY",
+    "option_a": "Have the power to make anyone trust you instantly",
+    "option_b": "Have the power to make anyone tell you the truth",
+    "category": "influence",
+    "uploaded_at": "2026-09-06T17:54:53Z",
+    "publish_at": "2026-09-07T01:52:48.000Z"
   }
 }
