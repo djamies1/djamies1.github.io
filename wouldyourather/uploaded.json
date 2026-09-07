@@ -3092,5 +3092,31 @@
     "category": "influence",
     "uploaded_at": "2026-09-06T17:54:53Z",
     "publish_at": "2026-09-07T01:52:48.000Z"
+  },
+  "wyr_0358": {
+    "youtube_id": "UGxZOGdnnAY",
+    "youtube_url": "https://www.youtube.com/watch?v=UGxZOGdnnAY",
+    "option_a": "Spend a week on the ISS in space",
+    "option_b": "Spend a week 2 miles below the ocean surface in a submarine",
+    "category": "exploration",
+    "uploaded_at": "2026-09-07T19:31:16Z"
+  },
+  "wyr_0359": {
+    "youtube_id": "wk8DbdZGXx8",
+    "youtube_url": "https://www.youtube.com/watch?v=wk8DbdZGXx8",
+    "option_a": "Be permanently 10°C (18°F) warmer than everyone around you",
+    "option_b": "Be permanently 10°C (18°F) cooler than everyone around you",
+    "category": "body",
+    "uploaded_at": "2026-09-07T19:32:08Z",
+    "publish_at": "2026-09-07T23:29:57.000Z"
+  },
+  "wyr_0360": {
+    "youtube_id": "Y8R19ykOH0I",
+    "youtube_url": "https://www.youtube.com/watch?v=Y8R19ykOH0I",
+    "option_a": "Have unlimited willpower",
+    "option_b": "Have unlimited creativity",
+    "category": "mental",
+    "uploaded_at": "2026-09-07T19:32:47Z",
+    "publish_at": "2026-09-08T03:29:57.000Z"
   }
 }

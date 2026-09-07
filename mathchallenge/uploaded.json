@@ -3092,5 +3092,31 @@
     "category": "probability",
     "uploaded_at": "2026-09-06T17:52:48Z",
     "publish_at": "2026-09-07T01:50:33.000Z"
+  },
+  "math_0307": {
+    "youtube_id": "5YLa3Ru-6go",
+    "youtube_url": "https://www.youtube.com/watch?v=5YLa3Ru-6go",
+    "question": "What is 10% of 10% of 1000?",
+    "answer": "10",
+    "category": "percentages",
+    "uploaded_at": "2026-09-07T19:28:25Z"
+  },
+  "math_0308": {
+    "youtube_id": "MsLiTHLdaPY",
+    "youtube_url": "https://www.youtube.com/watch?v=MsLiTHLdaPY",
+    "question": "If 5 cats eat 5 mice in 5 minutes, how many cats eat 100 mice in 100 minutes?",
+    "answer": "5 cats",
+    "category": "word_problem",
+    "uploaded_at": "2026-09-07T19:29:10Z",
+    "publish_at": "2026-09-07T23:27:56.000Z"
+  },
+  "math_0309": {
+    "youtube_id": "kW8ib5q9FmM",
+    "youtube_url": "https://www.youtube.com/watch?v=kW8ib5q9FmM",
+    "question": "What is the sum of interior angles of a hexagon?",
+    "answer": "720°",
+    "category": "geometry",
+    "uploaded_at": "2026-09-07T19:29:57Z",
+    "publish_at": "2026-09-08T03:27:56.000Z"
   }
 }
