@@ -3118,5 +3118,31 @@
     "category": "mental",
     "uploaded_at": "2026-09-07T19:32:47Z",
     "publish_at": "2026-09-08T03:29:57.000Z"
+  },
+  "wyr_0361": {
+    "youtube_id": "JlEPTuu-ns0",
+    "youtube_url": "https://www.youtube.com/watch?v=JlEPTuu-ns0",
+    "option_a": "Have a library that auto-restocks with any book you want",
+    "option_b": "Have a kitchen that auto-restocks with any ingredient you want",
+    "category": "home",
+    "uploaded_at": "2026-09-08T19:07:08Z"
+  },
+  "wyr_0362": {
+    "youtube_id": "8zzLHQTkGKM",
+    "youtube_url": "https://www.youtube.com/watch?v=8zzLHQTkGKM",
+    "option_a": "Be able to communicate through music (your thoughts become melody)",
+    "option_b": "Be able to communicate through art (your thoughts become paintings instantly)",
+    "category": "communication",
+    "uploaded_at": "2026-09-08T19:07:53Z",
+    "publish_at": "2026-09-08T23:06:35.000Z"
+  },
+  "wyr_0363": {
+    "youtube_id": "4bgqYbgVIhY",
+    "youtube_url": "https://www.youtube.com/watch?v=4bgqYbgVIhY",
+    "option_a": "Know the lyrics to every song ever written",
+    "option_b": "Know the rules to every game ever created",
+    "category": "knowledge",
+    "uploaded_at": "2026-09-08T19:09:23Z",
+    "publish_at": "2026-09-09T03:06:35.000Z"
   }
 }

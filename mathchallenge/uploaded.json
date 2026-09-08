@@ -3118,5 +3118,31 @@
     "category": "geometry",
     "uploaded_at": "2026-09-07T19:29:57Z",
     "publish_at": "2026-09-08T03:27:56.000Z"
+  },
+  "math_0310": {
+    "youtube_id": "dVQLLHwxztA",
+    "youtube_url": "https://www.youtube.com/watch?v=dVQLLHwxztA",
+    "question": "What is 2⁰?",
+    "answer": "1",
+    "category": "algebra",
+    "uploaded_at": "2026-09-08T19:04:55Z"
+  },
+  "math_0311": {
+    "youtube_id": "MEDBE1U_HZU",
+    "youtube_url": "https://www.youtube.com/watch?v=MEDBE1U_HZU",
+    "question": "What is (−3)²?",
+    "answer": "9",
+    "category": "algebra",
+    "uploaded_at": "2026-09-08T19:05:44Z",
+    "publish_at": "2026-09-08T23:04:16.000Z"
+  },
+  "math_0312": {
+    "youtube_id": "CPBN9eIy5wI",
+    "youtube_url": "https://www.youtube.com/watch?v=CPBN9eIy5wI",
+    "question": "A rectangle has length 12 and width 5. What is the length of its diagonal?",
+    "answer": "13",
+    "category": "geometry",
+    "uploaded_at": "2026-09-08T19:06:34Z",
+    "publish_at": "2026-09-09T03:04:16.000Z"
   }
 }
