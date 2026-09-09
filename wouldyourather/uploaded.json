@@ -3144,5 +3144,31 @@
     "category": "knowledge",
     "uploaded_at": "2026-09-08T19:09:23Z",
     "publish_at": "2026-09-09T03:06:35.000Z"
+  },
+  "wyr_0364": {
+    "youtube_id": "tSC7smouRzw",
+    "youtube_url": "https://www.youtube.com/watch?v=tSC7smouRzw",
+    "option_a": "Have the ability to undo your last spoken sentence",
+    "option_b": "Have the ability to remember exactly what was said in any conversation you've had",
+    "category": "communication",
+    "uploaded_at": "2026-09-09T18:57:58Z"
+  },
+  "wyr_0365": {
+    "youtube_id": "TFEcGXiQLbM",
+    "youtube_url": "https://www.youtube.com/watch?v=TFEcGXiQLbM",
+    "option_a": "Live in a world where all music is free and legal to access",
+    "option_b": "Live in a world where all education is free and accessible to everyone",
+    "category": "world",
+    "uploaded_at": "2026-09-09T18:58:42Z",
+    "publish_at": "2026-09-09T22:57:23.000Z"
+  },
+  "wyr_0366": {
+    "youtube_id": "kN74bvAVu7M",
+    "youtube_url": "https://www.youtube.com/watch?v=kN74bvAVu7M",
+    "option_a": "Be able to lift 10x your body weight",
+    "option_b": "Be able to run 10x your normal speed",
+    "category": "fitness",
+    "uploaded_at": "2026-09-09T18:59:26Z",
+    "publish_at": "2026-09-10T02:57:23.000Z"
   }
 }
