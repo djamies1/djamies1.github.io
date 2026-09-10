@@ -3170,5 +3170,31 @@
     "category": "fitness",
     "uploaded_at": "2026-09-09T18:59:26Z",
     "publish_at": "2026-09-10T02:57:23.000Z"
+  },
+  "wyr_0367": {
+    "youtube_id": "qjOqup462X0",
+    "youtube_url": "https://www.youtube.com/watch?v=qjOqup462X0",
+    "option_a": "Always get a perfect parking spot",
+    "option_b": "Never hit a red light when driving",
+    "category": "driving",
+    "uploaded_at": "2026-09-10T18:50:06Z"
+  },
+  "wyr_0368": {
+    "youtube_id": "5-fWxi3oUrM",
+    "youtube_url": "https://www.youtube.com/watch?v=5-fWxi3oUrM",
+    "option_a": "Have the confidence to do anything once",
+    "option_b": "Have the skill to do everything perfectly without confidence",
+    "category": "personality",
+    "uploaded_at": "2026-09-10T18:50:50Z",
+    "publish_at": "2026-09-10T22:49:32.000Z"
+  },
+  "wyr_0369": {
+    "youtube_id": "TQ3hpAOodJ4",
+    "youtube_url": "https://www.youtube.com/watch?v=TQ3hpAOodJ4",
+    "option_a": "Live in a city that never sleeps",
+    "option_b": "Live in a village that never has crime",
+    "category": "lifestyle",
+    "uploaded_at": "2026-09-10T18:51:34Z",
+    "publish_at": "2026-09-11T02:49:32.000Z"
   }
 }

@@ -3170,5 +3170,31 @@
     "category": "probability",
     "uploaded_at": "2026-09-09T18:57:23Z",
     "publish_at": "2026-09-10T02:55:04.000Z"
+  },
+  "math_0316": {
+    "youtube_id": "UfzSNXEVBj8",
+    "youtube_url": "https://www.youtube.com/watch?v=UfzSNXEVBj8",
+    "question": "Solve: x² = 49",
+    "answer": "x = 7 or x = −7",
+    "category": "algebra",
+    "uploaded_at": "2026-09-10T18:47:54Z"
+  },
+  "math_0317": {
+    "youtube_id": "RnaqKdM8hmQ",
+    "youtube_url": "https://www.youtube.com/watch?v=RnaqKdM8hmQ",
+    "question": "What is 1000 ÷ 8?",
+    "answer": "125",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-09-10T18:48:42Z",
+    "publish_at": "2026-09-10T22:47:15.000Z"
+  },
+  "math_0318": {
+    "youtube_id": "XQ8iEp_g-X8",
+    "youtube_url": "https://www.youtube.com/watch?v=XQ8iEp_g-X8",
+    "question": "How many seconds are in a day?",
+    "answer": "86,400",
+    "category": "word_problem",
+    "uploaded_at": "2026-09-10T18:49:31Z",
+    "publish_at": "2026-09-11T02:47:15.000Z"
   }
 }
