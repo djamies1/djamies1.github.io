@@ -3196,5 +3196,31 @@
     "category": "lifestyle",
     "uploaded_at": "2026-09-10T18:51:34Z",
     "publish_at": "2026-09-11T02:49:32.000Z"
+  },
+  "wyr_0370": {
+    "youtube_id": "gsc_HaURWqI",
+    "youtube_url": "https://www.youtube.com/watch?v=gsc_HaURWqI",
+    "option_a": "Be immune to jet lag",
+    "option_b": "Be immune to hangovers",
+    "category": "lifestyle",
+    "uploaded_at": "2026-09-11T18:52:30Z"
+  },
+  "wyr_0371": {
+    "youtube_id": "KMmuVVh1Ncc",
+    "youtube_url": "https://www.youtube.com/watch?v=KMmuVVh1Ncc",
+    "option_a": "Have a button that skips any awkward silence in conversation",
+    "option_b": "Have a button that ends any conversation politely and instantly",
+    "category": "social",
+    "uploaded_at": "2026-09-11T18:53:16Z",
+    "publish_at": "2026-09-11T22:51:57.000Z"
+  },
+  "wyr_0372": {
+    "youtube_id": "ME2Ikhhd1a8",
+    "youtube_url": "https://www.youtube.com/watch?v=ME2Ikhhd1a8",
+    "option_a": "Always land on your feet like a cat",
+    "option_b": "Always find north like a built-in compass",
+    "category": "abilities",
+    "uploaded_at": "2026-09-11T18:54:01Z",
+    "publish_at": "2026-09-12T02:51:57.000Z"
   }
 }

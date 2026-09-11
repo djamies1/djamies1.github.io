@@ -3196,5 +3196,31 @@
     "category": "word_problem",
     "uploaded_at": "2026-09-10T18:49:31Z",
     "publish_at": "2026-09-11T02:47:15.000Z"
+  },
+  "math_0319": {
+    "youtube_id": "9CFqQ_3LwFY",
+    "youtube_url": "https://www.youtube.com/watch?v=9CFqQ_3LwFY",
+    "question": "What is 7/8 as a percentage?",
+    "answer": "87.5%",
+    "category": "fractions",
+    "uploaded_at": "2026-09-11T18:50:22Z"
+  },
+  "math_0320": {
+    "youtube_id": "kF2W9kABWhw",
+    "youtube_url": "https://www.youtube.com/watch?v=kF2W9kABWhw",
+    "question": "What is the missing number: 2, 6, 18, 54, __?",
+    "answer": "162",
+    "category": "sequences",
+    "uploaded_at": "2026-09-11T18:51:09Z",
+    "publish_at": "2026-09-11T22:49:44.000Z"
+  },
+  "math_0321": {
+    "youtube_id": "QLMCnX5OOJs",
+    "youtube_url": "https://www.youtube.com/watch?v=QLMCnX5OOJs",
+    "question": "Two dice are rolled. What is the probability their sum equals 7?",
+    "answer": "1/6",
+    "category": "probability",
+    "uploaded_at": "2026-09-11T18:51:56Z",
+    "publish_at": "2026-09-12T02:49:44.000Z"
   }
 }
