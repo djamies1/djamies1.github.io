@@ -3222,5 +3222,31 @@
     "category": "probability",
     "uploaded_at": "2026-09-11T18:51:56Z",
     "publish_at": "2026-09-12T02:49:44.000Z"
+  },
+  "math_0322": {
+    "youtube_id": "LevtcFSi9Cw",
+    "youtube_url": "https://www.youtube.com/watch?v=LevtcFSi9Cw",
+    "question": "If a shirt costs $40 after a 20% discount, what was the original price?",
+    "answer": "$50",
+    "category": "percentages",
+    "uploaded_at": "2026-09-12T17:57:27Z"
+  },
+  "math_0323": {
+    "youtube_id": "LUMW_xvG2Kg",
+    "youtube_url": "https://www.youtube.com/watch?v=LUMW_xvG2Kg",
+    "question": "What is the area of a triangle with base 10 and height 6?",
+    "answer": "30 square units",
+    "category": "geometry",
+    "uploaded_at": "2026-09-12T17:58:13Z",
+    "publish_at": "2026-09-12T21:56:51.000Z"
+  },
+  "math_0324": {
+    "youtube_id": "1SHGS40hwfs",
+    "youtube_url": "https://www.youtube.com/watch?v=1SHGS40hwfs",
+    "question": "What is −5 × −5?",
+    "answer": "25",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-09-12T17:58:58Z",
+    "publish_at": "2026-09-13T01:56:51.000Z"
   }
 }

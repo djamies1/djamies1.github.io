@@ -3222,5 +3222,31 @@
     "category": "abilities",
     "uploaded_at": "2026-09-11T18:54:01Z",
     "publish_at": "2026-09-12T02:51:57.000Z"
+  },
+  "wyr_0373": {
+    "youtube_id": "q8fYs-7zkEM",
+    "youtube_url": "https://www.youtube.com/watch?v=q8fYs-7zkEM",
+    "option_a": "Have a conversation with your 10-year-old self",
+    "option_b": "Have a conversation with your 80-year-old self",
+    "category": "life",
+    "uploaded_at": "2026-09-12T17:59:34Z"
+  },
+  "wyr_0374": {
+    "youtube_id": "EeQjtcb19G0",
+    "youtube_url": "https://www.youtube.com/watch?v=EeQjtcb19G0",
+    "option_a": "Work from anywhere in the world but never earn a raise",
+    "option_b": "Earn double your current salary but never be able to work remotely",
+    "category": "work",
+    "uploaded_at": "2026-09-12T18:00:20Z",
+    "publish_at": "2026-09-12T21:58:59.000Z"
+  },
+  "wyr_0375": {
+    "youtube_id": "u9kLs5Ap3p8",
+    "youtube_url": "https://www.youtube.com/watch?v=u9kLs5Ap3p8",
+    "option_a": "Have the ability to clone yourself once",
+    "option_b": "Have the ability to pause your clone",
+    "category": "superpowers",
+    "uploaded_at": "2026-09-12T18:01:05Z",
+    "publish_at": "2026-09-13T01:58:59.000Z"
   }
 }
