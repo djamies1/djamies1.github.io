@@ -3248,5 +3248,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-09-12T18:01:05Z",
     "publish_at": "2026-09-13T01:58:59.000Z"
+  },
+  "wyr_0376": {
+    "youtube_id": "YFMr6R3l2No",
+    "youtube_url": "https://www.youtube.com/watch?v=YFMr6R3l2No",
+    "option_a": "Eat the world's spiciest food for one minute",
+    "option_b": "Eat the world's sourest food for 10 minutes",
+    "category": "food",
+    "uploaded_at": "2026-09-13T18:26:51Z"
+  },
+  "wyr_0377": {
+    "youtube_id": "w5YNEBZZCd8",
+    "youtube_url": "https://www.youtube.com/watch?v=w5YNEBZZCd8",
+    "option_a": "Never have to charge your phone again",
+    "option_b": "Never have your phone die in the middle of something important again",
+    "category": "technology",
+    "uploaded_at": "2026-09-13T18:27:36Z",
+    "publish_at": "2026-09-13T22:26:15.000Z"
+  },
+  "wyr_0378": {
+    "youtube_id": "qVg_S7tQsAQ",
+    "youtube_url": "https://www.youtube.com/watch?v=qVg_S7tQsAQ",
+    "option_a": "Have a clone that does all your chores",
+    "option_b": "Have a clone that goes to all your boring meetings",
+    "category": "work",
+    "uploaded_at": "2026-09-13T18:28:20Z",
+    "publish_at": "2026-09-14T02:26:15.000Z"
   }
 }

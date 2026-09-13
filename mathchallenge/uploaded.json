@@ -3248,5 +3248,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-09-12T17:58:58Z",
     "publish_at": "2026-09-13T01:56:51.000Z"
+  },
+  "math_0325": {
+    "youtube_id": "0ELBNmTHyLs",
+    "youtube_url": "https://www.youtube.com/watch?v=0ELBNmTHyLs",
+    "question": "A jar has 4 red and 6 blue marbles. You pick one at random. What is the probability it's red?",
+    "answer": "2/5",
+    "category": "probability",
+    "uploaded_at": "2026-09-13T18:24:37Z"
+  },
+  "math_0326": {
+    "youtube_id": "hFYDMGpEYUI",
+    "youtube_url": "https://www.youtube.com/watch?v=hFYDMGpEYUI",
+    "question": "Simplify: 2/4 + 3/6",
+    "answer": "1",
+    "category": "fractions",
+    "uploaded_at": "2026-09-13T18:25:27Z",
+    "publish_at": "2026-09-13T22:23:55.000Z"
+  },
+  "math_0327": {
+    "youtube_id": "O_FG8cJKq8A",
+    "youtube_url": "https://www.youtube.com/watch?v=O_FG8cJKq8A",
+    "question": "What is 999 × 999?",
+    "answer": "998,001",
+    "category": "algebra",
+    "uploaded_at": "2026-09-13T18:26:14Z",
+    "publish_at": "2026-09-14T02:23:55.000Z"
   }
 }
