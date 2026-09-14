@@ -3274,5 +3274,31 @@
     "category": "work",
     "uploaded_at": "2026-09-13T18:28:20Z",
     "publish_at": "2026-09-14T02:26:15.000Z"
+  },
+  "wyr_0379": {
+    "youtube_id": "j5yDapgqIxw",
+    "youtube_url": "https://www.youtube.com/watch?v=j5yDapgqIxw",
+    "option_a": "Live a short, incredibly exciting life",
+    "option_b": "Live a long, quietly satisfying life",
+    "category": "life",
+    "uploaded_at": "2026-09-14T20:02:26Z"
+  },
+  "wyr_0380": {
+    "youtube_id": "qZODyiQNmBs",
+    "youtube_url": "https://www.youtube.com/watch?v=qZODyiQNmBs",
+    "option_a": "Have the ability to delete any memory you choose",
+    "option_b": "Have the ability to relive any memory in full detail",
+    "category": "memory",
+    "uploaded_at": "2026-09-14T20:03:13Z",
+    "publish_at": "2026-09-15T00:01:53.000Z"
+  },
+  "wyr_0381": {
+    "youtube_id": "7X_fLlkUzSc",
+    "youtube_url": "https://www.youtube.com/watch?v=7X_fLlkUzSc",
+    "option_a": "Win a Nobel Prize",
+    "option_b": "Win an Oscar",
+    "category": "achievement",
+    "uploaded_at": "2026-09-14T20:03:56Z",
+    "publish_at": "2026-09-15T04:01:53.000Z"
   }
 }

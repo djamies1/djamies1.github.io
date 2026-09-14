@@ -3274,5 +3274,31 @@
     "category": "algebra",
     "uploaded_at": "2026-09-13T18:26:14Z",
     "publish_at": "2026-09-14T02:23:55.000Z"
+  },
+  "math_0328": {
+    "youtube_id": "grYcuKhi7Zs",
+    "youtube_url": "https://www.youtube.com/watch?v=grYcuKhi7Zs",
+    "question": "What comes next: 3, 6, 11, 18, 27, __?",
+    "answer": "38",
+    "category": "sequences",
+    "uploaded_at": "2026-09-14T20:00:16Z"
+  },
+  "math_0329": {
+    "youtube_id": "UMajyN9epi8",
+    "youtube_url": "https://www.youtube.com/watch?v=UMajyN9epi8",
+    "question": "A 10m ladder leans against a wall reaching 8m high. How far is the base from the wall?",
+    "answer": "6 m",
+    "category": "geometry",
+    "uploaded_at": "2026-09-14T20:01:05Z",
+    "publish_at": "2026-09-14T23:59:39.000Z"
+  },
+  "math_0330": {
+    "youtube_id": "0T4aP37IkcM",
+    "youtube_url": "https://www.youtube.com/watch?v=0T4aP37IkcM",
+    "question": "How many times does the digit 1 appear from 1 to 100?",
+    "answer": "21",
+    "category": "logic",
+    "uploaded_at": "2026-09-14T20:01:52Z",
+    "publish_at": "2026-09-15T03:59:39.000Z"
   }
 }
