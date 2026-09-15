@@ -3300,5 +3300,31 @@
     "category": "logic",
     "uploaded_at": "2026-09-14T20:01:52Z",
     "publish_at": "2026-09-15T03:59:39.000Z"
+  },
+  "math_0331": {
+    "youtube_id": "-9al0xb1o04",
+    "youtube_url": "https://www.youtube.com/watch?v=-9al0xb1o04",
+    "question": "What is the LCM of 4 and 6?",
+    "answer": "12",
+    "category": "fractions",
+    "uploaded_at": "2026-09-15T19:20:39Z"
+  },
+  "math_0332": {
+    "youtube_id": "UTs2-AkhTds",
+    "youtube_url": "https://www.youtube.com/watch?v=UTs2-AkhTds",
+    "question": "What is the HCF of 24 and 36?",
+    "answer": "12",
+    "category": "logic",
+    "uploaded_at": "2026-09-15T19:21:28Z",
+    "publish_at": "2026-09-15T23:19:59.000Z"
+  },
+  "math_0333": {
+    "youtube_id": "45ebhAMzhhc",
+    "youtube_url": "https://www.youtube.com/watch?v=45ebhAMzhhc",
+    "question": "Solve: 5(x − 2) = 3x + 4",
+    "answer": "x = 7",
+    "category": "algebra",
+    "uploaded_at": "2026-09-15T19:22:16Z",
+    "publish_at": "2026-09-16T03:19:59.000Z"
   }
 }

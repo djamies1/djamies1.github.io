@@ -3300,5 +3300,31 @@
     "category": "achievement",
     "uploaded_at": "2026-09-14T20:03:56Z",
     "publish_at": "2026-09-15T04:01:53.000Z"
+  },
+  "wyr_0382": {
+    "youtube_id": "YxPabvmPkus",
+    "youtube_url": "https://www.youtube.com/watch?v=YxPabvmPkus",
+    "option_a": "Have a reusable time machine that can only jump 24 hours in any direction",
+    "option_b": "Have a one-time jump that lets you go anywhere in time",
+    "category": "time travel",
+    "uploaded_at": "2026-09-15T19:22:51Z"
+  },
+  "wyr_0383": {
+    "youtube_id": "rpadNTrl0Cc",
+    "youtube_url": "https://www.youtube.com/watch?v=rpadNTrl0Cc",
+    "option_a": "Know every fact about the universe but be unable to share it",
+    "option_b": "Have a modest understanding of things but be an incredible teacher",
+    "category": "knowledge",
+    "uploaded_at": "2026-09-15T19:23:35Z",
+    "publish_at": "2026-09-15T23:22:17.000Z"
+  },
+  "wyr_0384": {
+    "youtube_id": "fAjAq7zm7po",
+    "youtube_url": "https://www.youtube.com/watch?v=fAjAq7zm7po",
+    "option_a": "Have perfect weather every day",
+    "option_b": "Have perfect WiFi everywhere you go",
+    "category": "modern life",
+    "uploaded_at": "2026-09-15T19:24:20Z",
+    "publish_at": "2026-09-16T03:22:17.000Z"
   }
 }
