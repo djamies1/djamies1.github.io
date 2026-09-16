@@ -3326,5 +3326,31 @@
     "category": "modern life",
     "uploaded_at": "2026-09-15T19:24:20Z",
     "publish_at": "2026-09-16T03:22:17.000Z"
+  },
+  "wyr_0385": {
+    "youtube_id": "lU02mhbIvSw",
+    "youtube_url": "https://www.youtube.com/watch?v=lU02mhbIvSw",
+    "option_a": "Always have clean, fresh laundry waiting for you",
+    "option_b": "Always have a hot, freshly cooked meal waiting when you get home",
+    "category": "home",
+    "uploaded_at": "2026-09-16T19:13:01Z"
+  },
+  "wyr_0386": {
+    "youtube_id": "3jAhbDNaq40",
+    "youtube_url": "https://www.youtube.com/watch?v=3jAhbDNaq40",
+    "option_a": "Be able to speak with your past self once a month",
+    "option_b": "Receive a written update from your future self once a month",
+    "category": "time",
+    "uploaded_at": "2026-09-16T19:13:46Z",
+    "publish_at": "2026-09-16T23:12:31.000Z"
+  },
+  "wyr_0387": {
+    "youtube_id": "7mX_uRZo7tg",
+    "youtube_url": "https://www.youtube.com/watch?v=7mX_uRZo7tg",
+    "option_a": "Have a superpower that requires you to spin three times before using it",
+    "option_b": "Have no superpower but be immune to all superpowers",
+    "category": "superpowers",
+    "uploaded_at": "2026-09-16T19:14:31Z",
+    "publish_at": "2026-09-17T03:12:31.000Z"
   }
 }
