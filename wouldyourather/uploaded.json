@@ -3352,5 +3352,31 @@
     "category": "superpowers",
     "uploaded_at": "2026-09-16T19:14:31Z",
     "publish_at": "2026-09-17T03:12:31.000Z"
+  },
+  "wyr_0388": {
+    "youtube_id": "YShtSNR8TB0",
+    "youtube_url": "https://www.youtube.com/watch?v=YShtSNR8TB0",
+    "option_a": "Be stranded on a deserted island with all survival gear but no people",
+    "option_b": "Be stranded on a deserted island with no gear but five other people",
+    "category": "survival",
+    "uploaded_at": "2026-09-17T19:25:34Z"
+  },
+  "wyr_0389": {
+    "youtube_id": "noAV2xPQbAE",
+    "youtube_url": "https://www.youtube.com/watch?v=noAV2xPQbAE",
+    "option_a": "Have a pet dinosaur (herbivore) that listens to you perfectly",
+    "option_b": "Have a mythical creature (any you choose) that has its own opinions",
+    "category": "fantasy",
+    "uploaded_at": "2026-09-17T19:26:19Z",
+    "publish_at": "2026-09-17T23:25:03.000Z"
+  },
+  "wyr_0390": {
+    "youtube_id": "jHwkh57icFM",
+    "youtube_url": "https://www.youtube.com/watch?v=jHwkh57icFM",
+    "option_a": "Have a skill that makes you the best at your current job but nothing else",
+    "option_b": "Have skills that make you above average at any job",
+    "category": "career",
+    "uploaded_at": "2026-09-17T19:27:09Z",
+    "publish_at": "2026-09-18T03:25:03.000Z"
   }
 }
