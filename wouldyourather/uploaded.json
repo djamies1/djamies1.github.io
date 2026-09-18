@@ -3378,5 +3378,31 @@
     "category": "career",
     "uploaded_at": "2026-09-17T19:27:09Z",
     "publish_at": "2026-09-18T03:25:03.000Z"
+  },
+  "wyr_0391": {
+    "youtube_id": "btB9lwGZmVk",
+    "youtube_url": "https://www.youtube.com/watch?v=btB9lwGZmVk",
+    "option_a": "Be able to taste colors",
+    "option_b": "Be able to see sounds",
+    "category": "senses",
+    "uploaded_at": "2026-09-18T18:47:14Z"
+  },
+  "wyr_0392": {
+    "youtube_id": "qQSEsZWR09U",
+    "youtube_url": "https://www.youtube.com/watch?v=qQSEsZWR09U",
+    "option_a": "Have a guaranteed 8 hours of perfect sleep every night",
+    "option_b": "Wake up each morning feeling like you had the best day of your life so far",
+    "category": "wellbeing",
+    "uploaded_at": "2026-09-18T18:47:59Z",
+    "publish_at": "2026-09-18T22:46:40.000Z"
+  },
+  "wyr_0393": {
+    "youtube_id": "RpSk40wtfMQ",
+    "youtube_url": "https://www.youtube.com/watch?v=RpSk40wtfMQ",
+    "option_a": "Live in your favorite decade of history for one year",
+    "option_b": "Spend one year in a future century of your choice",
+    "category": "time travel",
+    "uploaded_at": "2026-09-18T18:48:43Z",
+    "publish_at": "2026-09-19T02:46:40.000Z"
   }
 }

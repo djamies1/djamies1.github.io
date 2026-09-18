@@ -3378,5 +3378,31 @@
     "category": "sequences",
     "uploaded_at": "2026-09-17T19:25:02Z",
     "publish_at": "2026-09-18T03:22:43.000Z"
+  },
+  "math_0340": {
+    "youtube_id": "cZpe8ggo4Io",
+    "youtube_url": "https://www.youtube.com/watch?v=cZpe8ggo4Io",
+    "question": "A bag has 5 balls: 2 red, 3 green. You draw 2 without replacement. What is the probability both are green?",
+    "answer": "3/10",
+    "category": "probability",
+    "uploaded_at": "2026-09-18T18:45:02Z"
+  },
+  "math_0341": {
+    "youtube_id": "PDrnfwf8byI",
+    "youtube_url": "https://www.youtube.com/watch?v=PDrnfwf8byI",
+    "question": "What is 4! (4 factorial)?",
+    "answer": "24",
+    "category": "algebra",
+    "uploaded_at": "2026-09-18T18:45:50Z",
+    "publish_at": "2026-09-18T22:43:38.000Z"
+  },
+  "math_0342": {
+    "youtube_id": "ro4Kl7sOztA",
+    "youtube_url": "https://www.youtube.com/watch?v=ro4Kl7sOztA",
+    "question": "What is 20% of 350?",
+    "answer": "70",
+    "category": "percentages",
+    "uploaded_at": "2026-09-18T18:46:39Z",
+    "publish_at": "2026-09-19T02:43:38.000Z"
   }
 }
