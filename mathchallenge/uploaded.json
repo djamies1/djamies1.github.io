@@ -3404,5 +3404,31 @@
     "category": "percentages",
     "uploaded_at": "2026-09-18T18:46:39Z",
     "publish_at": "2026-09-19T02:43:38.000Z"
+  },
+  "math_0343": {
+    "youtube_id": "OrC1UdbrvEg",
+    "youtube_url": "https://www.youtube.com/watch?v=OrC1UdbrvEg",
+    "question": "A clock shows 3:00. What is the angle between the hands?",
+    "answer": "90°",
+    "category": "geometry",
+    "uploaded_at": "2026-09-19T18:17:30Z"
+  },
+  "math_0344": {
+    "youtube_id": "d7ZX9pEC24I",
+    "youtube_url": "https://www.youtube.com/watch?v=d7ZX9pEC24I",
+    "question": "What is the probability of picking an ace from a standard deck of 52 cards?",
+    "answer": "1/13",
+    "category": "probability",
+    "uploaded_at": "2026-09-19T18:18:59Z",
+    "publish_at": "2026-09-19T22:16:11.000Z"
+  },
+  "math_0345": {
+    "youtube_id": "GuQAzbvu0zM",
+    "youtube_url": "https://www.youtube.com/watch?v=GuQAzbvu0zM",
+    "question": "What is the missing number: 81, 27, 9, 3, __?",
+    "answer": "1",
+    "category": "sequences",
+    "uploaded_at": "2026-09-19T18:20:30Z",
+    "publish_at": "2026-09-20T02:16:11.000Z"
   }
 }

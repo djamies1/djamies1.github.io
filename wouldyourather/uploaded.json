@@ -3404,5 +3404,31 @@
     "category": "time travel",
     "uploaded_at": "2026-09-18T18:48:43Z",
     "publish_at": "2026-09-19T02:46:40.000Z"
+  },
+  "wyr_0394": {
+    "youtube_id": "44I_H3aZog4",
+    "youtube_url": "https://www.youtube.com/watch?v=44I_H3aZog4",
+    "option_a": "Have a magical pen that makes anything you write come true",
+    "option_b": "Have a magical eraser that makes anything you erase cease to exist",
+    "category": "magic",
+    "uploaded_at": "2026-09-19T18:21:49Z"
+  },
+  "wyr_0395": {
+    "youtube_id": "e8KG4SRIgp8",
+    "youtube_url": "https://www.youtube.com/watch?v=e8KG4SRIgp8",
+    "option_a": "Always be the smartest person in the room",
+    "option_b": "Always be surrounded by people smarter than you",
+    "category": "intelligence",
+    "uploaded_at": "2026-09-19T18:23:19Z",
+    "publish_at": "2026-09-19T22:20:30.000Z"
+  },
+  "wyr_0396": {
+    "youtube_id": "-wudMkluWXg",
+    "youtube_url": "https://www.youtube.com/watch?v=-wudMkluWXg",
+    "option_a": "Have the best meal of your life every day",
+    "option_b": "Have the most fun experience of your life every day",
+    "category": "happiness",
+    "uploaded_at": "2026-09-19T18:24:49Z",
+    "publish_at": "2026-09-20T02:20:30.000Z"
   }
 }

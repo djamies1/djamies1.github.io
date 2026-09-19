@@ -2658,5 +2658,25 @@
     "fact": "The river frog of sub-Saharan Africa is the largest frog on the African continent, reaching 12 cm.",
     "uploaded_at": "2026-09-18T18:55:30Z",
     "publish_at": "2026-09-19T06:51:00.000Z"
+  },
+  "frog_0400": {
+    "youtube_id": "QazN6QwkxXk",
+    "youtube_url": "https://www.youtube.com/watch?v=QazN6QwkxXk",
+    "fact": "Frog embryos can detect vibrations from predatory wasps and hatch early to escape before the eggs are eaten.",
+    "uploaded_at": "2026-09-19T18:31:42Z"
+  },
+  "frog_0401": {
+    "youtube_id": "wGWUZLOH8FE",
+    "youtube_url": "https://www.youtube.com/watch?v=wGWUZLOH8FE",
+    "fact": "There are over 7,000 known species of frog, making them the most diverse group of amphibians.",
+    "uploaded_at": "2026-09-19T18:33:52Z",
+    "publish_at": "2026-09-20T00:29:21.000Z"
+  },
+  "frog_0402": {
+    "youtube_id": "LIJiz8tX0mI",
+    "youtube_url": "https://www.youtube.com/watch?v=LIJiz8tX0mI",
+    "fact": "The American bullfrog can eat anything it can fit in its mouth, including birds, bats, and small alligators.",
+    "uploaded_at": "2026-09-19T18:36:06Z",
+    "publish_at": "2026-09-20T06:29:21.000Z"
   }
 }
