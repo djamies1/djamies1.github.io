@@ -3430,5 +3430,31 @@
     "category": "happiness",
     "uploaded_at": "2026-09-19T18:24:49Z",
     "publish_at": "2026-09-20T02:20:30.000Z"
+  },
+  "wyr_0397": {
+    "youtube_id": "p_75YkfovUA",
+    "youtube_url": "https://www.youtube.com/watch?v=p_75YkfovUA",
+    "option_a": "Be able to make anyone forgive you instantly",
+    "option_b": "Be able to make anyone understand your perspective instantly",
+    "category": "relationships",
+    "uploaded_at": "2026-09-20T18:25:57Z"
+  },
+  "wyr_0398": {
+    "youtube_id": "h9wu0ghkDLY",
+    "youtube_url": "https://www.youtube.com/watch?v=h9wu0ghkDLY",
+    "option_a": "Have a magic wand that fixes any technical problem instantly",
+    "option_b": "Have a magic wand that fixes any interpersonal conflict instantly",
+    "category": "problems",
+    "uploaded_at": "2026-09-20T18:26:45Z",
+    "publish_at": "2026-09-20T22:24:40.000Z"
+  },
+  "wyr_0399": {
+    "youtube_id": "3R3lM9qe8TM",
+    "youtube_url": "https://www.youtube.com/watch?v=3R3lM9qe8TM",
+    "option_a": "Have an unlimited budget for one month",
+    "option_b": "Have a moderate but guaranteed income for the rest of your life",
+    "category": "money",
+    "uploaded_at": "2026-09-20T18:27:31Z",
+    "publish_at": "2026-09-21T02:24:40.000Z"
   }
 }

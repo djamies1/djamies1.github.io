@@ -3430,5 +3430,31 @@
     "category": "sequences",
     "uploaded_at": "2026-09-19T18:20:30Z",
     "publish_at": "2026-09-20T02:16:11.000Z"
+  },
+  "math_0346": {
+    "youtube_id": "kSfNd-zyFEE",
+    "youtube_url": "https://www.youtube.com/watch?v=kSfNd-zyFEE",
+    "question": "A 10% increase followed by a 10% decrease — is the final value the same as the original?",
+    "answer": "No — it's 1% less",
+    "category": "percentages",
+    "uploaded_at": "2026-09-20T18:23:06Z"
+  },
+  "math_0347": {
+    "youtube_id": "IuWSqM_gqL8",
+    "youtube_url": "https://www.youtube.com/watch?v=IuWSqM_gqL8",
+    "question": "Solve: x/3 + 4 = 7",
+    "answer": "x = 9",
+    "category": "algebra",
+    "uploaded_at": "2026-09-20T18:23:52Z",
+    "publish_at": "2026-09-20T22:22:28.000Z"
+  },
+  "math_0348": {
+    "youtube_id": "pqaV8hbqhzk",
+    "youtube_url": "https://www.youtube.com/watch?v=pqaV8hbqhzk",
+    "question": "A cube has side length 3 cm. What is its volume?",
+    "answer": "27 cm³",
+    "category": "geometry",
+    "uploaded_at": "2026-09-20T18:24:40Z",
+    "publish_at": "2026-09-21T02:22:28.000Z"
   }
 }
