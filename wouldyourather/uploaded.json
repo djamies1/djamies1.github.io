@@ -3456,5 +3456,31 @@
     "category": "money",
     "uploaded_at": "2026-09-20T18:27:31Z",
     "publish_at": "2026-09-21T02:24:40.000Z"
+  },
+  "wyr_0400": {
+    "youtube_id": "B1VCZ59nYCE",
+    "youtube_url": "https://www.youtube.com/watch?v=B1VCZ59nYCE",
+    "option_a": "Have the ability to speak any language but only in whispers",
+    "option_b": "Have the ability to sing beautifully but only when alone",
+    "category": "abilities",
+    "uploaded_at": "2026-09-21T20:14:41Z"
+  },
+  "wyr_0401": {
+    "youtube_id": "XgXKiQlGo4I",
+    "youtube_url": "https://www.youtube.com/watch?v=XgXKiQlGo4I",
+    "option_a": "Always have fresh breath",
+    "option_b": "Always have soft, clear skin",
+    "category": "appearance",
+    "uploaded_at": "2026-09-21T20:15:27Z",
+    "publish_at": "2026-09-22T00:14:06.000Z"
+  },
+  "wyr_0402": {
+    "youtube_id": "n-jNIdiLBPs",
+    "youtube_url": "https://www.youtube.com/watch?v=n-jNIdiLBPs",
+    "option_a": "Know every cheat code for real life",
+    "option_b": "Be able to save and load your life like a video game",
+    "category": "gaming",
+    "uploaded_at": "2026-09-21T20:16:10Z",
+    "publish_at": "2026-09-22T04:14:06.000Z"
   }
 }

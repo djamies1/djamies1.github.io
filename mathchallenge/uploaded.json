@@ -3456,5 +3456,31 @@
     "category": "geometry",
     "uploaded_at": "2026-09-20T18:24:40Z",
     "publish_at": "2026-09-21T02:22:28.000Z"
+  },
+  "math_0349": {
+    "youtube_id": "IiV7kA2XNl0",
+    "youtube_url": "https://www.youtube.com/watch?v=IiV7kA2XNl0",
+    "question": "What is 12.5% as a fraction?",
+    "answer": "1/8",
+    "category": "fractions",
+    "uploaded_at": "2026-09-21T20:11:45Z"
+  },
+  "math_0350": {
+    "youtube_id": "nxtPUIFE-FI",
+    "youtube_url": "https://www.youtube.com/watch?v=nxtPUIFE-FI",
+    "question": "If you double the radius of a circle, what happens to its area?",
+    "answer": "It quadruples",
+    "category": "geometry",
+    "uploaded_at": "2026-09-21T20:12:33Z",
+    "publish_at": "2026-09-22T00:11:07.000Z"
+  },
+  "math_0351": {
+    "youtube_id": "lOiMQUKT2k4",
+    "youtube_url": "https://www.youtube.com/watch?v=lOiMQUKT2k4",
+    "question": "What is 2 + 2 ÷ 2 × 2?",
+    "answer": "4",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-09-21T20:14:06Z",
+    "publish_at": "2026-09-22T04:11:07.000Z"
   }
 }

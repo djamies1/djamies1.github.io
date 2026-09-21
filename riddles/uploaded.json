@@ -3492,5 +3492,28 @@
     "answer": "Johnny is a clown so he has mastered juggling. When he came to the bridge he juggled the gold, always keeping one piece in the air.",
     "uploaded_at": "2026-09-20T18:29:46Z",
     "publish_at": "2026-09-21T06:27:34.000Z"
+  },
+  "rdl_0457": {
+    "youtube_id": "2fm55U7YAn0",
+    "youtube_url": "https://www.youtube.com/watch?v=2fm55U7YAn0",
+    "question": "If you have two coins which total 35 cents and one of the coins is not a dime, what are the two coins?",
+    "answer": "A quarter and a dime. One coin is not a dime, but the other one is.",
+    "uploaded_at": "2026-09-21T20:16:55Z"
+  },
+  "rdl_0458": {
+    "youtube_id": "iMMxF3DSrvU",
+    "youtube_url": "https://www.youtube.com/watch?v=iMMxF3DSrvU",
+    "question": "Why should doctors attend to window-sashes?",
+    "answer": "Because they have so many panes (pains).",
+    "uploaded_at": "2026-09-21T20:17:40Z",
+    "publish_at": "2026-09-22T02:16:13.000Z"
+  },
+  "rdl_0459": {
+    "youtube_id": "r4O-uJnLHrs",
+    "youtube_url": "https://www.youtube.com/watch?v=r4O-uJnLHrs",
+    "question": "If seven people meet each other and each shakes hands only once with each of the others, how many handshakes will there have been?",
+    "answer": "Twenty one. Most people would think there were 42 handshakes. The first person shakes the hand of 6 others, the second person shakes the hand of 5 remaining people, the third person shakes the hand of 4 remaining people, the fourth person shakes the hand of 3 remaining people, the 5th person shakes the hand of 2 remaining people and the sixth person shakes the hand of 1 remaining person. 6 + 5 + 4 + 3 + 2 + 1 = 21",
+    "uploaded_at": "2026-09-21T20:19:10Z",
+    "publish_at": "2026-09-22T08:16:13.000Z"
   }
 }
