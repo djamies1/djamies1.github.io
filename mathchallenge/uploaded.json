@@ -3482,5 +3482,31 @@
     "category": "order_of_operations",
     "uploaded_at": "2026-09-21T20:14:06Z",
     "publish_at": "2026-09-22T04:11:07.000Z"
+  },
+  "math_0352": {
+    "youtube_id": "myo2XNAXYSk",
+    "youtube_url": "https://www.youtube.com/watch?v=myo2XNAXYSk",
+    "question": "What is the median of: 5, 3, 9, 1, 7?",
+    "answer": "5",
+    "category": "logic",
+    "uploaded_at": "2026-09-22T19:20:44Z"
+  },
+  "math_0353": {
+    "youtube_id": "NRuPwbo_oy0",
+    "youtube_url": "https://www.youtube.com/watch?v=NRuPwbo_oy0",
+    "question": "What is the mean of: 10, 20, 30, 40, 50?",
+    "answer": "30",
+    "category": "logic",
+    "uploaded_at": "2026-09-22T19:21:31Z",
+    "publish_at": "2026-09-22T23:20:06.000Z"
+  },
+  "math_0354": {
+    "youtube_id": "ntGKATackCM",
+    "youtube_url": "https://www.youtube.com/watch?v=ntGKATackCM",
+    "question": "How many diagonals does a pentagon have?",
+    "answer": "5",
+    "category": "geometry",
+    "uploaded_at": "2026-09-22T19:22:18Z",
+    "publish_at": "2026-09-23T03:20:06.000Z"
   }
 }
