@@ -3508,5 +3508,31 @@
     "category": "geometry",
     "uploaded_at": "2026-09-22T19:22:18Z",
     "publish_at": "2026-09-23T03:20:06.000Z"
+  },
+  "math_0355": {
+    "youtube_id": "Vh9X3RBEm_g",
+    "youtube_url": "https://www.youtube.com/watch?v=Vh9X3RBEm_g",
+    "question": "What is 3/5 × 10?",
+    "answer": "6",
+    "category": "fractions",
+    "uploaded_at": "2026-09-23T19:18:05Z"
+  },
+  "math_0356": {
+    "youtube_id": "ZiRGusaJYeI",
+    "youtube_url": "https://www.youtube.com/watch?v=ZiRGusaJYeI",
+    "question": "You invest $1000 at 10% simple interest for 3 years. What is the total amount?",
+    "answer": "$1,300",
+    "category": "percentages",
+    "uploaded_at": "2026-09-23T19:18:51Z",
+    "publish_at": "2026-09-23T23:17:34.000Z"
+  },
+  "math_0357": {
+    "youtube_id": "wN8Edb_YkE4",
+    "youtube_url": "https://www.youtube.com/watch?v=wN8Edb_YkE4",
+    "question": "What is the next term: 1, 4, 9, 16, 25, __?",
+    "answer": "36",
+    "category": "sequences",
+    "uploaded_at": "2026-09-23T19:19:36Z",
+    "publish_at": "2026-09-24T03:17:34.000Z"
   }
 }

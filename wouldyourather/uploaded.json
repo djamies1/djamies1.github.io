@@ -3508,5 +3508,31 @@
     "category": "powers",
     "uploaded_at": "2026-09-22T19:24:24Z",
     "publish_at": "2026-09-23T03:22:18.000Z"
+  },
+  "wyr_0406": {
+    "youtube_id": "_vKwDRxQ9j4",
+    "youtube_url": "https://www.youtube.com/watch?v=_vKwDRxQ9j4",
+    "option_a": "Have the best coffee in the world delivered to you each morning",
+    "option_b": "Have the best night's sleep of your life every single night",
+    "category": "lifestyle",
+    "uploaded_at": "2026-09-23T19:20:12Z"
+  },
+  "wyr_0407": {
+    "youtube_id": "VgyFkVyLvhU",
+    "youtube_url": "https://www.youtube.com/watch?v=VgyFkVyLvhU",
+    "option_a": "Never be bored again",
+    "option_b": "Never be anxious again",
+    "category": "mental health",
+    "uploaded_at": "2026-09-23T19:20:57Z",
+    "publish_at": "2026-09-23T23:19:36.000Z"
+  },
+  "wyr_0408": {
+    "youtube_id": "dYhibKTZvjU",
+    "youtube_url": "https://www.youtube.com/watch?v=dYhibKTZvjU",
+    "option_a": "Have a GPS that always finds the fastest route in real time",
+    "option_b": "Have a personal advisor who is always available and never wrong",
+    "category": "guidance",
+    "uploaded_at": "2026-09-23T19:21:42Z",
+    "publish_at": "2026-09-24T03:19:36.000Z"
   }
 }
