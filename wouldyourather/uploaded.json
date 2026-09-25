@@ -3560,5 +3560,31 @@
     "category": "world",
     "uploaded_at": "2026-09-24T19:39:25Z",
     "publish_at": "2026-09-25T03:37:19.000Z"
+  },
+  "wyr_0412": {
+    "youtube_id": "K-qAuw2kQsI",
+    "youtube_url": "https://www.youtube.com/watch?v=K-qAuw2kQsI",
+    "option_a": "Eat your favorite meal for every meal forever",
+    "option_b": "Have every meal you eat be a different food you've never tried",
+    "category": "food",
+    "uploaded_at": "2026-09-25T19:42:24Z"
+  },
+  "wyr_0413": {
+    "youtube_id": "1WFIZ-x4XJA",
+    "youtube_url": "https://www.youtube.com/watch?v=1WFIZ-x4XJA",
+    "option_a": "Have the ability to make anyone laugh",
+    "option_b": "Have the ability to make anyone cry (happy tears)",
+    "category": "emotional",
+    "uploaded_at": "2026-09-25T19:43:08Z",
+    "publish_at": "2026-09-25T23:41:48.000Z"
+  },
+  "wyr_0414": {
+    "youtube_id": "ZLq11wLke3I",
+    "youtube_url": "https://www.youtube.com/watch?v=ZLq11wLke3I",
+    "option_a": "Be able to see the world in infrared",
+    "option_b": "Be able to hear ultrasonic frequencies",
+    "category": "senses",
+    "uploaded_at": "2026-09-25T19:43:53Z",
+    "publish_at": "2026-09-26T03:41:48.000Z"
   }
 }
