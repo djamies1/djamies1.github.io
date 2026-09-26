@@ -3586,5 +3586,31 @@
     "category": "senses",
     "uploaded_at": "2026-09-25T19:43:53Z",
     "publish_at": "2026-09-26T03:41:48.000Z"
+  },
+  "wyr_0415": {
+    "youtube_id": "24nuv0WloC0",
+    "youtube_url": "https://www.youtube.com/watch?v=24nuv0WloC0",
+    "option_a": "Have a superpower that only works in private",
+    "option_b": "Have no superpower but be world-famous for having one",
+    "category": "fame",
+    "uploaded_at": "2026-09-26T18:50:32Z"
+  },
+  "wyr_0416": {
+    "youtube_id": "wig0hCjmfmo",
+    "youtube_url": "https://www.youtube.com/watch?v=wig0hCjmfmo",
+    "option_a": "Receive a compliment from a stranger every day",
+    "option_b": "Give the perfect compliment that changes someone's life once a month",
+    "category": "social",
+    "uploaded_at": "2026-09-26T18:51:55Z",
+    "publish_at": "2026-09-26T22:49:45.000Z"
+  },
+  "wyr_0417": {
+    "youtube_id": "P3iCPMmaeHQ",
+    "youtube_url": "https://www.youtube.com/watch?v=P3iCPMmaeHQ",
+    "option_a": "Have a robot friend who genuinely cares about you",
+    "option_b": "Have an AI that perfectly predicts your needs before you have them",
+    "category": "technology",
+    "uploaded_at": "2026-09-26T18:52:40Z",
+    "publish_at": "2026-09-27T02:49:45.000Z"
   }
 }
