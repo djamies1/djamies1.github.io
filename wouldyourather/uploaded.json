@@ -3612,5 +3612,31 @@
     "category": "technology",
     "uploaded_at": "2026-09-26T18:52:40Z",
     "publish_at": "2026-09-27T02:49:45.000Z"
+  },
+  "wyr_0418": {
+    "youtube_id": "Nu_18E8U8wU",
+    "youtube_url": "https://www.youtube.com/watch?v=Nu_18E8U8wU",
+    "option_a": "Be able to control the difficulty level of your own life",
+    "option_b": "Be able to add extra lives to your life",
+    "category": "life",
+    "uploaded_at": "2026-09-27T19:25:22Z"
+  },
+  "wyr_0419": {
+    "youtube_id": "qWYKMSfA9Qc",
+    "youtube_url": "https://www.youtube.com/watch?v=qWYKMSfA9Qc",
+    "option_a": "Have the world's most comfortable bed that you never want to leave",
+    "option_b": "Have the world's most comfortable shoes so every step is perfect",
+    "category": "comfort",
+    "uploaded_at": "2026-09-27T19:26:08Z",
+    "publish_at": "2026-09-27T23:24:47.000Z"
+  },
+  "wyr_0420": {
+    "youtube_id": "IzGXkjC95R4",
+    "youtube_url": "https://www.youtube.com/watch?v=IzGXkjC95R4",
+    "option_a": "Be able to generate any document or report perfectly in seconds",
+    "option_b": "Be able to make any decision and always be right",
+    "category": "work",
+    "uploaded_at": "2026-09-27T19:26:52Z",
+    "publish_at": "2026-09-28T03:24:47.000Z"
   }
 }

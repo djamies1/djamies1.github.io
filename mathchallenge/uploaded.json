@@ -3612,5 +3612,31 @@
     "category": "algebra",
     "uploaded_at": "2026-09-26T18:49:44Z",
     "publish_at": "2026-09-27T02:47:31.000Z"
+  },
+  "math_0367": {
+    "youtube_id": "nSJd1PYQXjc",
+    "youtube_url": "https://www.youtube.com/watch?v=nSJd1PYQXjc",
+    "question": "What is 1 − 0.999...?",
+    "answer": "0",
+    "category": "logic",
+    "uploaded_at": "2026-09-27T19:23:16Z"
+  },
+  "math_0368": {
+    "youtube_id": "_kW4bj_Rt9k",
+    "youtube_url": "https://www.youtube.com/watch?v=_kW4bj_Rt9k",
+    "question": "If 3 is added to a number and the result is doubled, you get 16. What is the number?",
+    "answer": "5",
+    "category": "word_problem",
+    "uploaded_at": "2026-09-27T19:24:01Z",
+    "publish_at": "2026-09-27T23:22:43.000Z"
+  },
+  "math_0369": {
+    "youtube_id": "yodlD2EdArk",
+    "youtube_url": "https://www.youtube.com/watch?v=yodlD2EdArk",
+    "question": "What is the next number: 0, 1, 3, 6, 10, 15, __?",
+    "answer": "21",
+    "category": "sequences",
+    "uploaded_at": "2026-09-27T19:24:47Z",
+    "publish_at": "2026-09-28T03:22:43.000Z"
   }
 }
