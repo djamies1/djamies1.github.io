@@ -3638,5 +3638,31 @@
     "category": "sequences",
     "uploaded_at": "2026-09-27T19:24:47Z",
     "publish_at": "2026-09-28T03:22:43.000Z"
+  },
+  "math_0370": {
+    "youtube_id": "pSs2DwLbyFA",
+    "youtube_url": "https://www.youtube.com/watch?v=pSs2DwLbyFA",
+    "question": "What is 11 × 11?",
+    "answer": "121",
+    "category": "algebra",
+    "uploaded_at": "2026-09-28T21:27:43Z"
+  },
+  "math_0371": {
+    "youtube_id": "uSEb8N5fylI",
+    "youtube_url": "https://www.youtube.com/watch?v=uSEb8N5fylI",
+    "question": "Two numbers add to 20 and multiply to 96. What are they?",
+    "answer": "8 and 12",
+    "category": "algebra",
+    "uploaded_at": "2026-09-28T21:28:30Z",
+    "publish_at": "2026-09-29T01:27:04.000Z"
+  },
+  "math_0372": {
+    "youtube_id": "e6FSANNu8gw",
+    "youtube_url": "https://www.youtube.com/watch?v=e6FSANNu8gw",
+    "question": "A regular hexagon can be divided into how many equilateral triangles?",
+    "answer": "6",
+    "category": "geometry",
+    "uploaded_at": "2026-09-28T21:29:17Z",
+    "publish_at": "2026-09-29T05:27:04.000Z"
   }
 }

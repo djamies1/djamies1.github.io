@@ -3638,5 +3638,31 @@
     "category": "work",
     "uploaded_at": "2026-09-27T19:26:52Z",
     "publish_at": "2026-09-28T03:24:47.000Z"
+  },
+  "wyr_0421": {
+    "youtube_id": "Ts2nLe5mWZo",
+    "youtube_url": "https://www.youtube.com/watch?v=Ts2nLe5mWZo",
+    "option_a": "Have a phone that never breaks no matter what you do to it",
+    "option_b": "Have headphones with perfect audio that never break",
+    "category": "technology",
+    "uploaded_at": "2026-09-28T21:29:54Z"
+  },
+  "wyr_0422": {
+    "youtube_id": "UQB1pZwkVKM",
+    "youtube_url": "https://www.youtube.com/watch?v=UQB1pZwkVKM",
+    "option_a": "Have the ability to instantly end a conversation that's going badly",
+    "option_b": "Have the ability to instantly revive a conversation that's dying",
+    "category": "social",
+    "uploaded_at": "2026-09-28T21:30:41Z",
+    "publish_at": "2026-09-29T01:29:18.000Z"
+  },
+  "wyr_0423": {
+    "youtube_id": "mmE7ZYtjWcI",
+    "youtube_url": "https://www.youtube.com/watch?v=mmE7ZYtjWcI",
+    "option_a": "Be able to communicate across any distance with your thoughts",
+    "option_b": "Be able to share an experience with someone across any distance",
+    "category": "connection",
+    "uploaded_at": "2026-09-28T21:31:27Z",
+    "publish_at": "2026-09-29T05:29:18.000Z"
   }
 }
