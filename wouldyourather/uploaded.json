@@ -3664,5 +3664,31 @@
     "category": "connection",
     "uploaded_at": "2026-09-28T21:31:27Z",
     "publish_at": "2026-09-29T05:29:18.000Z"
+  },
+  "wyr_0424": {
+    "youtube_id": "5PD3gskyRZE",
+    "youtube_url": "https://www.youtube.com/watch?v=5PD3gskyRZE",
+    "option_a": "Have perfect pitch (musical)",
+    "option_b": "Have perfect spelling and grammar automatically",
+    "category": "skills",
+    "uploaded_at": "2026-09-29T20:21:13Z"
+  },
+  "wyr_0425": {
+    "youtube_id": "b670D6mVRnE",
+    "youtube_url": "https://www.youtube.com/watch?v=b670D6mVRnE",
+    "option_a": "Live in a house that automatically reorganizes itself to your preference",
+    "option_b": "Live in a neighborhood where everyone looks out for each other",
+    "category": "home",
+    "uploaded_at": "2026-09-29T20:22:01Z",
+    "publish_at": "2026-09-30T00:20:37.000Z"
+  },
+  "wyr_0426": {
+    "youtube_id": "hemZZmHZetQ",
+    "youtube_url": "https://www.youtube.com/watch?v=hemZZmHZetQ",
+    "option_a": "Have a built-in lie detector",
+    "option_b": "Have a built-in calculator",
+    "category": "abilities",
+    "uploaded_at": "2026-09-29T20:22:49Z",
+    "publish_at": "2026-09-30T04:20:37.000Z"
   }
 }

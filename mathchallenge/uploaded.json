@@ -3664,5 +3664,31 @@
     "category": "geometry",
     "uploaded_at": "2026-09-28T21:29:17Z",
     "publish_at": "2026-09-29T05:27:04.000Z"
+  },
+  "math_0373": {
+    "youtube_id": "joubR_yt1XM",
+    "youtube_url": "https://www.youtube.com/watch?v=joubR_yt1XM",
+    "question": "What is 15 × 15?",
+    "answer": "225",
+    "category": "algebra",
+    "uploaded_at": "2026-09-29T20:19:01Z"
+  },
+  "math_0374": {
+    "youtube_id": "V5kUzTiqF6g",
+    "youtube_url": "https://www.youtube.com/watch?v=V5kUzTiqF6g",
+    "question": "How many prime numbers are between 1 and 20?",
+    "answer": "8",
+    "category": "sequences",
+    "uploaded_at": "2026-09-29T20:19:48Z",
+    "publish_at": "2026-09-30T00:18:24.000Z"
+  },
+  "math_0375": {
+    "youtube_id": "VNl7Oxop8Ek",
+    "youtube_url": "https://www.youtube.com/watch?v=VNl7Oxop8Ek",
+    "question": "A rectangle's length is twice its width. Its perimeter is 60. What is the width?",
+    "answer": "10",
+    "category": "word_problem",
+    "uploaded_at": "2026-09-29T20:20:36Z",
+    "publish_at": "2026-09-30T04:18:24.000Z"
   }
 }
