@@ -3690,5 +3690,31 @@
     "category": "word_problem",
     "uploaded_at": "2026-09-29T20:20:36Z",
     "publish_at": "2026-09-30T04:18:24.000Z"
+  },
+  "math_0376": {
+    "youtube_id": "bz2b_jmZlaA",
+    "youtube_url": "https://www.youtube.com/watch?v=bz2b_jmZlaA",
+    "question": "What is the probability of drawing a heart from a standard deck?",
+    "answer": "1/4",
+    "category": "probability",
+    "uploaded_at": "2026-09-30T20:23:49Z"
+  },
+  "math_0377": {
+    "youtube_id": "nzxNV23_8po",
+    "youtube_url": "https://www.youtube.com/watch?v=nzxNV23_8po",
+    "question": "What is 0.75 as a fraction in simplest form?",
+    "answer": "3/4",
+    "category": "fractions",
+    "uploaded_at": "2026-09-30T20:24:39Z",
+    "publish_at": "2026-10-01T00:23:20.000Z"
+  },
+  "math_0378": {
+    "youtube_id": "AdYnanyBMcA",
+    "youtube_url": "https://www.youtube.com/watch?v=AdYnanyBMcA",
+    "question": "What is the cube root of 27?",
+    "answer": "3",
+    "category": "algebra",
+    "uploaded_at": "2026-09-30T20:25:33Z",
+    "publish_at": "2026-10-01T04:23:20.000Z"
   }
 }

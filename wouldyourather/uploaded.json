@@ -3690,5 +3690,31 @@
     "category": "abilities",
     "uploaded_at": "2026-09-29T20:22:49Z",
     "publish_at": "2026-09-30T04:20:37.000Z"
+  },
+  "wyr_0427": {
+    "youtube_id": "wWt9mrSOpOM",
+    "youtube_url": "https://www.youtube.com/watch?v=wWt9mrSOpOM",
+    "option_a": "Be able to skip any line instantly",
+    "option_b": "Always get the best seat wherever you go",
+    "category": "privileges",
+    "uploaded_at": "2026-09-30T20:26:02Z"
+  },
+  "wyr_0428": {
+    "youtube_id": "VCvQUrb2AQ4",
+    "youtube_url": "https://www.youtube.com/watch?v=VCvQUrb2AQ4",
+    "option_a": "Have a memory palace so vivid you never forget directions",
+    "option_b": "Have a social memory so perfect you remember every name and face forever",
+    "category": "memory",
+    "uploaded_at": "2026-09-30T20:26:34Z",
+    "publish_at": "2026-10-01T00:25:33.000Z"
+  },
+  "wyr_0429": {
+    "youtube_id": "j4NiamjouC4",
+    "youtube_url": "https://www.youtube.com/watch?v=j4NiamjouC4",
+    "option_a": "Be 100% honest with everyone for one year",
+    "option_b": "Be completely invisible to one person who you find toxic",
+    "category": "social",
+    "uploaded_at": "2026-09-30T20:27:14Z",
+    "publish_at": "2026-10-01T04:25:33.000Z"
   }
 }
