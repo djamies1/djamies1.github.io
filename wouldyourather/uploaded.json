@@ -3716,5 +3716,31 @@
     "category": "social",
     "uploaded_at": "2026-09-30T20:27:14Z",
     "publish_at": "2026-10-01T04:25:33.000Z"
+  },
+  "wyr_0430": {
+    "youtube_id": "f5YU3J2q3xA",
+    "youtube_url": "https://www.youtube.com/watch?v=f5YU3J2q3xA",
+    "option_a": "Have a great relationship with your family",
+    "option_b": "Have a great relationship with your coworkers",
+    "category": "relationships",
+    "uploaded_at": "2026-10-01T20:42:42Z"
+  },
+  "wyr_0431": {
+    "youtube_id": "oQfKFddJhnY",
+    "youtube_url": "https://www.youtube.com/watch?v=oQfKFddJhnY",
+    "option_a": "Be able to type at 200 words per minute perfectly",
+    "option_b": "Be able to read at 2,000 words per minute with full comprehension",
+    "category": "productivity",
+    "uploaded_at": "2026-10-01T20:43:24Z",
+    "publish_at": "2026-10-02T00:42:18.000Z"
+  },
+  "wyr_0432": {
+    "youtube_id": "hcvRbNNyLQM",
+    "youtube_url": "https://www.youtube.com/watch?v=hcvRbNNyLQM",
+    "option_a": "Always know if food is safe to eat or not",
+    "option_b": "Always know if a person is trustworthy or not",
+    "category": "intuition",
+    "uploaded_at": "2026-10-01T20:43:59Z",
+    "publish_at": "2026-10-02T04:42:18.000Z"
   }
 }

@@ -3716,5 +3716,31 @@
     "category": "algebra",
     "uploaded_at": "2026-09-30T20:25:33Z",
     "publish_at": "2026-10-01T04:23:20.000Z"
+  },
+  "math_0379": {
+    "youtube_id": "QAKA8Uv18u0",
+    "youtube_url": "https://www.youtube.com/watch?v=QAKA8Uv18u0",
+    "question": "A car travels 150 km in 2.5 hours. What is its average speed?",
+    "answer": "60 km/h",
+    "category": "word_problem",
+    "uploaded_at": "2026-10-01T20:39:49Z"
+  },
+  "math_0380": {
+    "youtube_id": "_s7L7o2wuM4",
+    "youtube_url": "https://www.youtube.com/watch?v=_s7L7o2wuM4",
+    "question": "What is 13²?",
+    "answer": "169",
+    "category": "algebra",
+    "uploaded_at": "2026-10-01T20:40:32Z",
+    "publish_at": "2026-10-02T00:38:55.000Z"
+  },
+  "math_0381": {
+    "youtube_id": "tFu1uDWEKL4",
+    "youtube_url": "https://www.youtube.com/watch?v=tFu1uDWEKL4",
+    "question": "A container holds 3.5 litres. How many 250ml cups can be filled?",
+    "answer": "14",
+    "category": "word_problem",
+    "uploaded_at": "2026-10-01T20:42:18Z",
+    "publish_at": "2026-10-02T04:38:55.000Z"
   }
 }
