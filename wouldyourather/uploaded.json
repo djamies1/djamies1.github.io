@@ -3742,5 +3742,31 @@
     "category": "intuition",
     "uploaded_at": "2026-10-01T20:43:59Z",
     "publish_at": "2026-10-02T04:42:18.000Z"
+  },
+  "wyr_0433": {
+    "youtube_id": "4MtQukFpPMc",
+    "youtube_url": "https://www.youtube.com/watch?v=4MtQukFpPMc",
+    "option_a": "Have a pet that can talk but is very sarcastic",
+    "option_b": "Have a pet that can't talk but always knows exactly how you feel",
+    "category": "pets",
+    "uploaded_at": "2026-10-02T20:16:15Z"
+  },
+  "wyr_0434": {
+    "youtube_id": "Jg8Eoip67q8",
+    "youtube_url": "https://www.youtube.com/watch?v=Jg8Eoip67q8",
+    "option_a": "Wake up every morning feeling excited about the day",
+    "option_b": "Go to bed every night feeling satisfied with the day",
+    "category": "wellbeing",
+    "uploaded_at": "2026-10-02T20:17:06Z",
+    "publish_at": "2026-10-03T00:15:46.000Z"
+  },
+  "wyr_0435": {
+    "youtube_id": "LjGpFoucDoU",
+    "youtube_url": "https://www.youtube.com/watch?v=LjGpFoucDoU",
+    "option_a": "Have a pause button for any social situation",
+    "option_b": "Have a rewind button for the last five minutes of any conversation",
+    "category": "social",
+    "uploaded_at": "2026-10-02T20:17:58Z",
+    "publish_at": "2026-10-03T04:15:46.000Z"
   }
 }

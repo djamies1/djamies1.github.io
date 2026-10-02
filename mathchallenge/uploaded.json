@@ -3742,5 +3742,31 @@
     "category": "word_problem",
     "uploaded_at": "2026-10-01T20:42:18Z",
     "publish_at": "2026-10-02T04:38:55.000Z"
+  },
+  "math_0382": {
+    "youtube_id": "ud_Me3N-Jaw",
+    "youtube_url": "https://www.youtube.com/watch?v=ud_Me3N-Jaw",
+    "question": "What is the perimeter of an equilateral triangle with side 8 cm?",
+    "answer": "24 cm",
+    "category": "geometry",
+    "uploaded_at": "2026-10-02T20:14:00Z"
+  },
+  "math_0383": {
+    "youtube_id": "ho4zefUZK3w",
+    "youtube_url": "https://www.youtube.com/watch?v=ho4zefUZK3w",
+    "question": "What is (3 + 4)² − 3² − 4²?",
+    "answer": "24",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-10-02T20:14:48Z",
+    "publish_at": "2026-10-03T00:13:21.000Z"
+  },
+  "math_0384": {
+    "youtube_id": "ScAAjTMMfLc",
+    "youtube_url": "https://www.youtube.com/watch?v=ScAAjTMMfLc",
+    "question": "Solve for n: 4n/5 = 8",
+    "answer": "n = 10",
+    "category": "algebra",
+    "uploaded_at": "2026-10-02T20:15:46Z",
+    "publish_at": "2026-10-03T04:13:21.000Z"
   }
 }
