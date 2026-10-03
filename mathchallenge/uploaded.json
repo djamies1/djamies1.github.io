@@ -3768,5 +3768,31 @@
     "category": "algebra",
     "uploaded_at": "2026-10-02T20:15:46Z",
     "publish_at": "2026-10-03T04:13:21.000Z"
+  },
+  "math_0385": {
+    "youtube_id": "Zt9vVvH_Q-M",
+    "youtube_url": "https://www.youtube.com/watch?v=Zt9vVvH_Q-M",
+    "question": "What is 5/6 − 1/4?",
+    "answer": "7/12",
+    "category": "fractions",
+    "uploaded_at": "2026-10-03T18:53:06Z"
+  },
+  "math_0386": {
+    "youtube_id": "YSXlBCvWTpI",
+    "youtube_url": "https://www.youtube.com/watch?v=YSXlBCvWTpI",
+    "question": "What is the next term: 100, 50, 25, 12.5, __?",
+    "answer": "6.25",
+    "category": "sequences",
+    "uploaded_at": "2026-10-03T18:54:01Z",
+    "publish_at": "2026-10-03T22:52:33.000Z"
+  },
+  "math_0387": {
+    "youtube_id": "qXmeCmw4XuI",
+    "youtube_url": "https://www.youtube.com/watch?v=qXmeCmw4XuI",
+    "question": "How many zeros are in one million?",
+    "answer": "6",
+    "category": "logic",
+    "uploaded_at": "2026-10-03T18:54:54Z",
+    "publish_at": "2026-10-04T02:52:33.000Z"
   }
 }

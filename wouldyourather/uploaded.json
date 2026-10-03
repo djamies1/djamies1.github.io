@@ -3768,5 +3768,31 @@
     "category": "social",
     "uploaded_at": "2026-10-02T20:17:58Z",
     "publish_at": "2026-10-03T04:15:46.000Z"
+  },
+  "wyr_0436": {
+    "youtube_id": "fQx0pPwz1jg",
+    "youtube_url": "https://www.youtube.com/watch?v=fQx0pPwz1jg",
+    "option_a": "Have unlimited access to any concert, show, or event for life",
+    "option_b": "Have unlimited access to any restaurant or food experience for life",
+    "category": "lifestyle",
+    "uploaded_at": "2026-10-03T18:55:26Z"
+  },
+  "wyr_0437": {
+    "youtube_id": "pJxRXUt9BLM",
+    "youtube_url": "https://www.youtube.com/watch?v=pJxRXUt9BLM",
+    "option_a": "Have your rent or mortgage paid for life",
+    "option_b": "Have all your groceries paid for life",
+    "category": "money",
+    "uploaded_at": "2026-10-03T18:56:00Z",
+    "publish_at": "2026-10-03T22:54:54.000Z"
+  },
+  "wyr_0438": {
+    "youtube_id": "IFpdTn6FZ5w",
+    "youtube_url": "https://www.youtube.com/watch?v=IFpdTn6FZ5w",
+    "option_a": "Be able to fall asleep anywhere in 30 seconds",
+    "option_b": "Never feel jet-lagged after any amount of travel",
+    "category": "travel",
+    "uploaded_at": "2026-10-03T18:56:41Z",
+    "publish_at": "2026-10-04T02:54:54.000Z"
   }
 }
