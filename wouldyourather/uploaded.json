@@ -3794,5 +3794,31 @@
     "category": "travel",
     "uploaded_at": "2026-10-03T18:56:41Z",
     "publish_at": "2026-10-04T02:54:54.000Z"
+  },
+  "wyr_0439": {
+    "youtube_id": "zgCho6LARn8",
+    "youtube_url": "https://www.youtube.com/watch?v=zgCho6LARn8",
+    "option_a": "Have the curiosity of a child forever",
+    "option_b": "Have the wisdom of an elder forever",
+    "category": "mindset",
+    "uploaded_at": "2026-10-04T18:55:44Z"
+  },
+  "wyr_0440": {
+    "youtube_id": "GCQkMR7Vt3o",
+    "youtube_url": "https://www.youtube.com/watch?v=GCQkMR7Vt3o",
+    "option_a": "Be able to automatically backup your mind like a computer",
+    "option_b": "Be able to defragment your mind to remove clutter and noise",
+    "category": "mental",
+    "uploaded_at": "2026-10-04T18:56:35Z",
+    "publish_at": "2026-10-04T22:55:03.000Z"
+  },
+  "wyr_0441": {
+    "youtube_id": "M1pLzzvMA60",
+    "youtube_url": "https://www.youtube.com/watch?v=M1pLzzvMA60",
+    "option_a": "Have weather-proof clothing that keeps you comfortable in any climate",
+    "option_b": "Have shoes that eliminate all foot pain forever",
+    "category": "clothing",
+    "uploaded_at": "2026-10-04T18:57:24Z",
+    "publish_at": "2026-10-05T02:55:03.000Z"
   }
 }

@@ -3794,5 +3794,31 @@
     "category": "logic",
     "uploaded_at": "2026-10-03T18:54:54Z",
     "publish_at": "2026-10-04T02:52:33.000Z"
+  },
+  "math_0388": {
+    "youtube_id": "2Rotw9OTq44",
+    "youtube_url": "https://www.youtube.com/watch?v=2Rotw9OTq44",
+    "question": "A shop sells 40 items at $5 profit each, and 20 items at $3 loss each. What is the net profit?",
+    "answer": "$140",
+    "category": "word_problem",
+    "uploaded_at": "2026-10-04T18:53:25Z"
+  },
+  "math_0389": {
+    "youtube_id": "WoSCf-NYX-A",
+    "youtube_url": "https://www.youtube.com/watch?v=WoSCf-NYX-A",
+    "question": "What is the volume of a cylinder with radius 3 and height 5? (π ≈ 3.14)",
+    "answer": "141.3 cubic units",
+    "category": "geometry",
+    "uploaded_at": "2026-10-04T18:54:14Z",
+    "publish_at": "2026-10-04T22:52:45.000Z"
+  },
+  "math_0390": {
+    "youtube_id": "H6CCyXccX4w",
+    "youtube_url": "https://www.youtube.com/watch?v=H6CCyXccX4w",
+    "question": "What is 125% of 80?",
+    "answer": "100",
+    "category": "percentages",
+    "uploaded_at": "2026-10-04T18:55:03Z",
+    "publish_at": "2026-10-05T02:52:45.000Z"
   }
 }
