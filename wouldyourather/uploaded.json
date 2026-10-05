@@ -3820,5 +3820,31 @@
     "category": "clothing",
     "uploaded_at": "2026-10-04T18:57:24Z",
     "publish_at": "2026-10-05T02:55:03.000Z"
+  },
+  "wyr_0442": {
+    "youtube_id": "jufhTFWMdwU",
+    "youtube_url": "https://www.youtube.com/watch?v=jufhTFWMdwU",
+    "option_a": "Know every secret recipe in the world",
+    "option_b": "Know exactly how to fix anything mechanical",
+    "category": "skills",
+    "uploaded_at": "2026-10-05T22:17:27Z"
+  },
+  "wyr_0443": {
+    "youtube_id": "gKWyOhzxHy4",
+    "youtube_url": "https://www.youtube.com/watch?v=gKWyOhzxHy4",
+    "option_a": "Have a career that changes the world",
+    "option_b": "Have relationships that change the people closest to you",
+    "category": "impact",
+    "uploaded_at": "2026-10-05T22:18:21Z",
+    "publish_at": "2026-10-06T02:16:38.000Z"
+  },
+  "wyr_0444": {
+    "youtube_id": "lMMYZTcAc48",
+    "youtube_url": "https://www.youtube.com/watch?v=lMMYZTcAc48",
+    "option_a": "Travel the world for one year with no budget limit",
+    "option_b": "Have the best year of your life exactly where you are with no travel",
+    "category": "travel",
+    "uploaded_at": "2026-10-05T22:19:14Z",
+    "publish_at": "2026-10-06T06:16:38.000Z"
   }
 }
