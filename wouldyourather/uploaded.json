@@ -3846,5 +3846,31 @@
     "category": "travel",
     "uploaded_at": "2026-10-05T22:19:14Z",
     "publish_at": "2026-10-06T06:16:38.000Z"
+  },
+  "wyr_0445": {
+    "youtube_id": "0oP_ojeIaXs",
+    "youtube_url": "https://www.youtube.com/watch?v=0oP_ojeIaXs",
+    "option_a": "Have the ability to heal any sickness but you feel the symptoms while healing",
+    "option_b": "Have the ability to protect anyone from harm but you feel the pain instead",
+    "category": "heroism",
+    "uploaded_at": "2026-10-06T20:42:07Z"
+  },
+  "wyr_0446": {
+    "youtube_id": "itmtL-P_QHc",
+    "youtube_url": "https://www.youtube.com/watch?v=itmtL-P_QHc",
+    "option_a": "Be able to talk to your past self from one year ago",
+    "option_b": "Be able to send a message to your future self one year from now",
+    "category": "time",
+    "uploaded_at": "2026-10-06T20:42:48Z",
+    "publish_at": "2026-10-07T00:41:29.000Z"
+  },
+  "wyr_0447": {
+    "youtube_id": "QO6fGy-O5vU",
+    "youtube_url": "https://www.youtube.com/watch?v=QO6fGy-O5vU",
+    "option_a": "Have the social skills of the most charismatic person you know",
+    "option_b": "Have the work ethic of the most disciplined person you know",
+    "category": "growth",
+    "uploaded_at": "2026-10-06T20:43:30Z",
+    "publish_at": "2026-10-07T04:41:29.000Z"
   }
 }

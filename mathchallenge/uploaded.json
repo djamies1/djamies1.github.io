@@ -3846,5 +3846,31 @@
     "category": "probability",
     "uploaded_at": "2026-10-05T22:16:38Z",
     "publish_at": "2026-10-06T06:14:12.000Z"
+  },
+  "math_0394": {
+    "youtube_id": "LYmICt5_1VU",
+    "youtube_url": "https://www.youtube.com/watch?v=LYmICt5_1VU",
+    "question": "Solve: 7 − 2x = 1",
+    "answer": "x = 3",
+    "category": "algebra",
+    "uploaded_at": "2026-10-06T20:38:20Z"
+  },
+  "math_0395": {
+    "youtube_id": "LaIphZKPKyI",
+    "youtube_url": "https://www.youtube.com/watch?v=LaIphZKPKyI",
+    "question": "What is 8/3 as a mixed number?",
+    "answer": "2 and 2/3",
+    "category": "fractions",
+    "uploaded_at": "2026-10-06T20:40:39Z",
+    "publish_at": "2026-10-07T00:37:46.000Z"
+  },
+  "math_0396": {
+    "youtube_id": "dBG1dN3z-Kk",
+    "youtube_url": "https://www.youtube.com/watch?v=dBG1dN3z-Kk",
+    "question": "A snail travels 3 metres per hour. How long to travel 7.5 metres?",
+    "answer": "2.5 hours",
+    "category": "word_problem",
+    "uploaded_at": "2026-10-06T20:41:28Z",
+    "publish_at": "2026-10-07T04:37:46.000Z"
   }
 }
