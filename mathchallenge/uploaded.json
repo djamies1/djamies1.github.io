@@ -3872,5 +3872,31 @@
     "category": "word_problem",
     "uploaded_at": "2026-10-06T20:41:28Z",
     "publish_at": "2026-10-07T04:37:46.000Z"
+  },
+  "math_0397": {
+    "youtube_id": "SpIJvJYFDKg",
+    "youtube_url": "https://www.youtube.com/watch?v=SpIJvJYFDKg",
+    "question": "What is 2³ × 2²?",
+    "answer": "32",
+    "category": "algebra",
+    "uploaded_at": "2026-10-07T20:53:25Z"
+  },
+  "math_0398": {
+    "youtube_id": "DI5gr8AkDrs",
+    "youtube_url": "https://www.youtube.com/watch?v=DI5gr8AkDrs",
+    "question": "A clock ticks every 5 seconds. How many ticks in one hour?",
+    "answer": "720",
+    "category": "word_problem",
+    "uploaded_at": "2026-10-07T20:54:14Z",
+    "publish_at": "2026-10-08T00:52:46.000Z"
+  },
+  "math_0399": {
+    "youtube_id": "6Z3GoXrR5VA",
+    "youtube_url": "https://www.youtube.com/watch?v=6Z3GoXrR5VA",
+    "question": "What is the area of a parallelogram with base 9 and height 4?",
+    "answer": "36 square units",
+    "category": "geometry",
+    "uploaded_at": "2026-10-07T20:55:02Z",
+    "publish_at": "2026-10-08T04:52:46.000Z"
   }
 }
