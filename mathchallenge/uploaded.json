@@ -3898,5 +3898,22 @@
     "category": "geometry",
     "uploaded_at": "2026-10-07T20:55:02Z",
     "publish_at": "2026-10-08T04:52:46.000Z"
+  },
+  "math_0400": {
+    "youtube_id": "o6exo9g2od4",
+    "youtube_url": "https://www.youtube.com/watch?v=o6exo9g2od4",
+    "question": "What is 6² ÷ (2 + 4)?",
+    "answer": "6",
+    "category": "order_of_operations",
+    "uploaded_at": "2026-10-08T20:55:00Z"
+  },
+  "math_0401": {
+    "youtube_id": "KN-BTQEj0kA",
+    "youtube_url": "https://www.youtube.com/watch?v=KN-BTQEj0kA",
+    "question": "What percent is 3 out of 12?",
+    "answer": "25%",
+    "category": "percentages",
+    "uploaded_at": "2026-10-08T20:55:48Z",
+    "publish_at": "2026-10-09T00:54:20.000Z"
   }
 }
