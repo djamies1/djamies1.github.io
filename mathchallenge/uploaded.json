@@ -3915,5 +3915,22 @@
     "category": "percentages",
     "uploaded_at": "2026-10-08T20:55:48Z",
     "publish_at": "2026-10-09T00:54:20.000Z"
+  },
+  "math_0402": {
+    "youtube_id": "Ic-io8Yr9lQ",
+    "youtube_url": "https://www.youtube.com/watch?v=Ic-io8Yr9lQ",
+    "question": "What is the next term: 1, 2, 6, 24, 120, __?",
+    "answer": "720",
+    "category": "sequences",
+    "uploaded_at": "2026-10-09T20:24:07Z"
+  },
+  "math_0403": {
+    "youtube_id": "LgnYhW49r3M",
+    "youtube_url": "https://www.youtube.com/watch?v=LgnYhW49r3M",
+    "question": "Two parallel lines are cut by a transversal. Alternate interior angles are always...?",
+    "answer": "Equal",
+    "category": "geometry",
+    "uploaded_at": "2026-10-09T20:24:54Z",
+    "publish_at": "2026-10-10T00:23:29.000Z"
   }
 }

@@ -3898,5 +3898,31 @@
     "category": "communication",
     "uploaded_at": "2026-10-07T20:57:17Z",
     "publish_at": "2026-10-08T04:55:03.000Z"
+  },
+  "wyr_0451": {
+    "youtube_id": "ovRoEzqPu0o",
+    "youtube_url": "https://www.youtube.com/watch?v=ovRoEzqPu0o",
+    "option_a": "Have a friendship group that challenges you to grow",
+    "option_b": "Have a friendship group that accepts you completely as you are",
+    "category": "relationships",
+    "uploaded_at": "2026-10-09T20:26:12Z"
+  },
+  "wyr_0452": {
+    "youtube_id": "6cexVPB2rJ0",
+    "youtube_url": "https://www.youtube.com/watch?v=6cexVPB2rJ0",
+    "option_a": "Be able to remember every dream you've ever had",
+    "option_b": "Be able to choose the topic of every dream you'll have",
+    "category": "dreams",
+    "uploaded_at": "2026-10-09T20:26:49Z",
+    "publish_at": "2026-10-10T00:25:38.000Z"
+  },
+  "wyr_0453": {
+    "youtube_id": "Jx4XBZL4wwg",
+    "youtube_url": "https://www.youtube.com/watch?v=Jx4XBZL4wwg",
+    "option_a": "Have every piece of clothing you own fit perfectly forever",
+    "option_b": "Always have the exact right outfit for every occasion materialize when you need it",
+    "category": "clothing",
+    "uploaded_at": "2026-10-09T20:27:37Z",
+    "publish_at": "2026-10-10T04:25:38.000Z"
   }
 }
