@@ -3924,5 +3924,31 @@
     "category": "clothing",
     "uploaded_at": "2026-10-09T20:27:37Z",
     "publish_at": "2026-10-10T04:25:38.000Z"
+  },
+  "wyr_0454": {
+    "youtube_id": "VN9FWB8FB3M",
+    "youtube_url": "https://www.youtube.com/watch?v=VN9FWB8FB3M",
+    "option_a": "Have the ability to generate any piece of music instantly with your mind",
+    "option_b": "Have the ability to generate any visual artwork instantly with your mind",
+    "category": "creativity",
+    "uploaded_at": "2026-10-10T19:38:32Z"
+  },
+  "wyr_0455": {
+    "youtube_id": "jnNIABfCgWg",
+    "youtube_url": "https://www.youtube.com/watch?v=jnNIABfCgWg",
+    "option_a": "Have a superpower that grows stronger the more you use it",
+    "option_b": "Have a superpower that starts at maximum but weakens with use",
+    "category": "superpowers",
+    "uploaded_at": "2026-10-10T19:39:23Z",
+    "publish_at": "2026-10-10T23:37:53.000Z"
+  },
+  "wyr_0456": {
+    "youtube_id": "yOwiYJTDPxQ",
+    "youtube_url": "https://www.youtube.com/watch?v=yOwiYJTDPxQ",
+    "option_a": "Live in a world where all energy is free and clean",
+    "option_b": "Live in a world where all fresh water is unlimited and free",
+    "category": "world",
+    "uploaded_at": "2026-10-10T19:40:13Z",
+    "publish_at": "2026-10-11T03:37:53.000Z"
   }
 }
