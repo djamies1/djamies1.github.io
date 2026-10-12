@@ -3976,5 +3976,31 @@
     "category": "memory",
     "uploaded_at": "2026-10-11T19:50:07Z",
     "publish_at": "2026-10-12T03:47:59.000Z"
+  },
+  "wyr_0460": {
+    "youtube_id": "FXdWue2Jv2s",
+    "youtube_url": "https://www.youtube.com/watch?v=FXdWue2Jv2s",
+    "option_a": "Be the world's most productive person",
+    "option_b": "Be the world's most creative person",
+    "category": "achievement",
+    "uploaded_at": "2026-10-12T22:40:19Z"
+  },
+  "wyr_0461": {
+    "youtube_id": "o10huHC2zF8",
+    "youtube_url": "https://www.youtube.com/watch?v=o10huHC2zF8",
+    "option_a": "Have a home library with every book ever written",
+    "option_b": "Have a home theater with every movie ever made",
+    "category": "entertainment",
+    "uploaded_at": "2026-10-12T22:40:57Z",
+    "publish_at": "2026-10-13T02:39:34.000Z"
+  },
+  "wyr_0462": {
+    "youtube_id": "GHoAiOADh1s",
+    "youtube_url": "https://www.youtube.com/watch?v=GHoAiOADh1s",
+    "option_a": "Be able to feel zero pain ever again",
+    "option_b": "Be able to never feel physical exhaustion again",
+    "category": "biology",
+    "uploaded_at": "2026-10-12T22:41:45Z",
+    "publish_at": "2026-10-13T06:39:34.000Z"
   }
 }
