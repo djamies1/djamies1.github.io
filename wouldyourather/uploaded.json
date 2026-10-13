@@ -4002,5 +4002,31 @@
     "category": "biology",
     "uploaded_at": "2026-10-12T22:41:45Z",
     "publish_at": "2026-10-13T06:39:34.000Z"
+  },
+  "wyr_0463": {
+    "youtube_id": "HekCy8YsUVk",
+    "youtube_url": "https://www.youtube.com/watch?v=HekCy8YsUVk",
+    "option_a": "Have your ideal body forever without exercise",
+    "option_b": "Love exercising so much you do it every day with joy",
+    "category": "fitness",
+    "uploaded_at": "2026-10-13T20:53:54Z"
+  },
+  "wyr_0464": {
+    "youtube_id": "zF6lHV1YxkA",
+    "youtube_url": "https://www.youtube.com/watch?v=zF6lHV1YxkA",
+    "option_a": "Be able to build anything from memory without instructions",
+    "option_b": "Be able to fix anything that's broken just by examining it",
+    "category": "skills",
+    "uploaded_at": "2026-10-13T20:54:44Z",
+    "publish_at": "2026-10-14T00:53:14.000Z"
+  },
+  "wyr_0465": {
+    "youtube_id": "Wc3X_3JmJbA",
+    "youtube_url": "https://www.youtube.com/watch?v=Wc3X_3JmJbA",
+    "option_a": "Have a voice that's impossible to ignore",
+    "option_b": "Have a presence that commands attention without speaking",
+    "category": "charisma",
+    "uploaded_at": "2026-10-13T20:55:35Z",
+    "publish_at": "2026-10-14T04:53:14.000Z"
   }
 }
