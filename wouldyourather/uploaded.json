@@ -4028,5 +4028,31 @@
     "category": "charisma",
     "uploaded_at": "2026-10-13T20:55:35Z",
     "publish_at": "2026-10-14T04:53:14.000Z"
+  },
+  "wyr_0466": {
+    "youtube_id": "wqeBcTRB-j4",
+    "youtube_url": "https://www.youtube.com/watch?v=wqeBcTRB-j4",
+    "option_a": "Be able to make plants grow anywhere instantly",
+    "option_b": "Be able to purify any polluted water instantly",
+    "category": "environment",
+    "uploaded_at": "2026-10-14T19:49:43Z"
+  },
+  "wyr_0467": {
+    "youtube_id": "Igj3k48OEOc",
+    "youtube_url": "https://www.youtube.com/watch?v=Igj3k48OEOc",
+    "option_a": "Have a dog that understands every word you say",
+    "option_b": "Have a cat that reveals its emotions clearly and honestly",
+    "category": "pets",
+    "uploaded_at": "2026-10-14T19:50:36Z",
+    "publish_at": "2026-10-14T23:49:00.000Z"
+  },
+  "wyr_0468": {
+    "youtube_id": "s1t6e3_Hmeg",
+    "youtube_url": "https://www.youtube.com/watch?v=s1t6e3_Hmeg",
+    "option_a": "Live in a world where all music sounds live and real",
+    "option_b": "Live in a world where all food tastes perfect every time",
+    "category": "senses",
+    "uploaded_at": "2026-10-14T19:51:31Z",
+    "publish_at": "2026-10-15T03:49:00.000Z"
   }
 }
