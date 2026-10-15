@@ -4021,5 +4021,28 @@
     "answer": "Bob and Dick bought a dog.",
     "uploaded_at": "2026-10-14T19:54:01Z",
     "publish_at": "2026-10-15T07:51:34.000Z"
+  },
+  "rdl_0526": {
+    "youtube_id": "-q7K5pNOEOQ",
+    "youtube_url": "https://www.youtube.com/watch?v=-q7K5pNOEOQ",
+    "question": "How can you make the following equation true by drawing only one straight line: 5+5+5=550? Can you figure it out?",
+    "answer": "Draw a line on the first plus sign that turns it into a 4! The equation then becomes true: 545+5=550. You could also change the equal symbol to a crossed out equal symbol which means \"not equal to\".",
+    "uploaded_at": "2026-10-15T19:36:59Z"
+  },
+  "rdl_0527": {
+    "youtube_id": "wb7bVKBN6uA",
+    "youtube_url": "https://www.youtube.com/watch?v=wb7bVKBN6uA",
+    "question": "What letters of the alphabet come too late for supper?",
+    "answer": "Those that come after T.",
+    "uploaded_at": "2026-10-15T19:38:09Z",
+    "publish_at": "2026-10-16T01:36:17.000Z"
+  },
+  "rdl_0528": {
+    "youtube_id": "IXK0ihxp7VI",
+    "youtube_url": "https://www.youtube.com/watch?v=IXK0ihxp7VI",
+    "question": "Carlos was out walking one day. He met his father-in-law's only daughter's mother-in-law. What did Carlos call her?",
+    "answer": "He called her Mom!",
+    "uploaded_at": "2026-10-15T19:38:50Z",
+    "publish_at": "2026-10-16T07:36:17.000Z"
   }
 }

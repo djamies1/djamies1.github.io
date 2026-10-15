@@ -4054,5 +4054,31 @@
     "category": "senses",
     "uploaded_at": "2026-10-14T19:51:31Z",
     "publish_at": "2026-10-15T03:49:00.000Z"
+  },
+  "wyr_0469": {
+    "youtube_id": "5SPkKE1pMkE",
+    "youtube_url": "https://www.youtube.com/watch?v=5SPkKE1pMkE",
+    "option_a": "Have a smart home that knows everything you need",
+    "option_b": "Have a smart car that drives perfectly and handles all logistics",
+    "category": "technology",
+    "uploaded_at": "2026-10-15T19:34:28Z"
+  },
+  "wyr_0470": {
+    "youtube_id": "8KIWiELdedg",
+    "youtube_url": "https://www.youtube.com/watch?v=8KIWiELdedg",
+    "option_a": "Be able to live underwater permanently with no downsides",
+    "option_b": "Be able to live in space permanently with no downsides",
+    "category": "habitat",
+    "uploaded_at": "2026-10-15T19:35:21Z",
+    "publish_at": "2026-10-15T23:33:57.000Z"
+  },
+  "wyr_0471": {
+    "youtube_id": "7o8_XpT2Ub8",
+    "youtube_url": "https://www.youtube.com/watch?v=7o8_XpT2Ub8",
+    "option_a": "Never feel loneliness again",
+    "option_b": "Never feel jealousy again",
+    "category": "emotions",
+    "uploaded_at": "2026-10-15T19:36:13Z",
+    "publish_at": "2026-10-16T03:33:57.000Z"
   }
 }
