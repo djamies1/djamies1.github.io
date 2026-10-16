@@ -4080,5 +4080,31 @@
     "category": "emotions",
     "uploaded_at": "2026-10-15T19:36:13Z",
     "publish_at": "2026-10-16T03:33:57.000Z"
+  },
+  "wyr_0472": {
+    "youtube_id": "ll8sFFZXQM8",
+    "youtube_url": "https://www.youtube.com/watch?v=ll8sFFZXQM8",
+    "option_a": "Have a skill that's more valuable than any degree",
+    "option_b": "Have a degree from any institution you choose for free",
+    "category": "education",
+    "uploaded_at": "2026-10-16T19:07:26Z"
+  },
+  "wyr_0473": {
+    "youtube_id": "ZmNY6iOqr0k",
+    "youtube_url": "https://www.youtube.com/watch?v=ZmNY6iOqr0k",
+    "option_a": "Be able to slow down time around you when stressed",
+    "option_b": "Be able to speed up time around you when bored",
+    "category": "time",
+    "uploaded_at": "2026-10-16T19:08:02Z",
+    "publish_at": "2026-10-16T23:06:56.000Z"
+  },
+  "wyr_0474": {
+    "youtube_id": "Zhc2lcyV99M",
+    "youtube_url": "https://www.youtube.com/watch?v=Zhc2lcyV99M",
+    "option_a": "Have a collection of every artifact in human history",
+    "option_b": "Have access to every piece of knowledge in human history",
+    "category": "history",
+    "uploaded_at": "2026-10-16T19:08:49Z",
+    "publish_at": "2026-10-17T03:06:56.000Z"
   }
 }
