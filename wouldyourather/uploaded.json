@@ -4132,5 +4132,31 @@
     "category": "social",
     "uploaded_at": "2026-10-17T18:03:50Z",
     "publish_at": "2026-10-18T02:01:26.000Z"
+  },
+  "wyr_0478": {
+    "youtube_id": "NQ4EkU8tkv4",
+    "youtube_url": "https://www.youtube.com/watch?v=NQ4EkU8tkv4",
+    "option_a": "Have perfect emotional regulation",
+    "option_b": "Have perfect physical health for life",
+    "category": "health",
+    "uploaded_at": "2026-10-18T18:21:20Z"
+  },
+  "wyr_0479": {
+    "youtube_id": "P6jaH8ORoZs",
+    "youtube_url": "https://www.youtube.com/watch?v=P6jaH8ORoZs",
+    "option_a": "Be able to communicate your exact feelings to anyone without misunderstanding",
+    "option_b": "Be able to understand anyone's feelings exactly, even unexpressed ones",
+    "category": "empathy",
+    "uploaded_at": "2026-10-18T18:22:05Z",
+    "publish_at": "2026-10-18T22:20:43.000Z"
+  },
+  "wyr_0480": {
+    "youtube_id": "3cttoLBCGMA",
+    "youtube_url": "https://www.youtube.com/watch?v=3cttoLBCGMA",
+    "option_a": "Have a job that makes you famous",
+    "option_b": "Have a job that makes you wealthy",
+    "category": "career",
+    "uploaded_at": "2026-10-18T18:23:00Z",
+    "publish_at": "2026-10-19T02:20:43.000Z"
   }
 }
