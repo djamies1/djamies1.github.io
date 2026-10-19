@@ -4158,5 +4158,31 @@
     "category": "career",
     "uploaded_at": "2026-10-18T18:23:00Z",
     "publish_at": "2026-10-19T02:20:43.000Z"
+  },
+  "wyr_0481": {
+    "youtube_id": "BfHPY_U0SLY",
+    "youtube_url": "https://www.youtube.com/watch?v=BfHPY_U0SLY",
+    "option_a": "Always have perfect weather at your location",
+    "option_b": "Always find the perfect temperature inside any building you enter",
+    "category": "comfort",
+    "uploaded_at": "2026-10-19T20:48:12Z"
+  },
+  "wyr_0482": {
+    "youtube_id": "L-lUv1_cNd0",
+    "youtube_url": "https://www.youtube.com/watch?v=L-lUv1_cNd0",
+    "option_a": "Have the ability to experience any culture instantly and fully",
+    "option_b": "Have the ability to speak and understand every living language fluently",
+    "category": "culture",
+    "uploaded_at": "2026-10-19T20:49:18Z",
+    "publish_at": "2026-10-20T00:47:30.000Z"
+  },
+  "wyr_0483": {
+    "youtube_id": "5nyGjs7LZz8",
+    "youtube_url": "https://www.youtube.com/watch?v=5nyGjs7LZz8",
+    "option_a": "Spend one year as the most powerful leader in the world",
+    "option_b": "Spend one year as the most successful artist in the world",
+    "category": "achievement",
+    "uploaded_at": "2026-10-19T20:50:00Z",
+    "publish_at": "2026-10-20T04:47:30.000Z"
   }
 }
