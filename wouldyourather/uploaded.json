@@ -4184,5 +4184,31 @@
     "category": "achievement",
     "uploaded_at": "2026-10-19T20:50:00Z",
     "publish_at": "2026-10-20T04:47:30.000Z"
+  },
+  "wyr_0484": {
+    "youtube_id": "hs3qa1Q97is",
+    "youtube_url": "https://www.youtube.com/watch?v=hs3qa1Q97is",
+    "option_a": "Have the patience of a saint",
+    "option_b": "Have the determination of a champion",
+    "category": "character",
+    "uploaded_at": "2026-10-20T19:42:30Z"
+  },
+  "wyr_0485": {
+    "youtube_id": "jBa2XYM4HSU",
+    "youtube_url": "https://www.youtube.com/watch?v=jBa2XYM4HSU",
+    "option_a": "Live in a house that's perfectly organized automatically",
+    "option_b": "Have a schedule that manages itself and is always optimized",
+    "category": "productivity",
+    "uploaded_at": "2026-10-20T19:43:07Z",
+    "publish_at": "2026-10-20T23:42:01.000Z"
+  },
+  "wyr_0486": {
+    "youtube_id": "McSKeQMrSYs",
+    "youtube_url": "https://www.youtube.com/watch?v=McSKeQMrSYs",
+    "option_a": "Have a genius sibling who helps you with everything",
+    "option_b": "Have a genius best friend who inspires you constantly",
+    "category": "relationships",
+    "uploaded_at": "2026-10-20T19:43:52Z",
+    "publish_at": "2026-10-21T03:42:01.000Z"
   }
 }
