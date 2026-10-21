@@ -4210,5 +4210,31 @@
     "category": "relationships",
     "uploaded_at": "2026-10-20T19:43:52Z",
     "publish_at": "2026-10-21T03:42:01.000Z"
+  },
+  "wyr_0487": {
+    "youtube_id": "HLxqdgIy7R4",
+    "youtube_url": "https://www.youtube.com/watch?v=HLxqdgIy7R4",
+    "option_a": "Be able to experience any historical event as a spectator",
+    "option_b": "Be able to meet any historical figure for one conversation",
+    "category": "history",
+    "uploaded_at": "2026-10-21T19:46:33Z"
+  },
+  "wyr_0488": {
+    "youtube_id": "A0Z5Etv82ao",
+    "youtube_url": "https://www.youtube.com/watch?v=A0Z5Etv82ao",
+    "option_a": "Have an alarm system in your head that warns you of danger",
+    "option_b": "Have a social radar that tells you who to trust in any group",
+    "category": "survival",
+    "uploaded_at": "2026-10-21T19:47:54Z",
+    "publish_at": "2026-10-21T23:45:49.000Z"
+  },
+  "wyr_0489": {
+    "youtube_id": "Ro-ty25xMbI",
+    "youtube_url": "https://www.youtube.com/watch?v=Ro-ty25xMbI",
+    "option_a": "Have a wardrobe that updates with every new fashion trend automatically",
+    "option_b": "Have a timeless personal style that always looks perfect regardless of trend",
+    "category": "style",
+    "uploaded_at": "2026-10-21T19:48:36Z",
+    "publish_at": "2026-10-22T03:45:49.000Z"
   }
 }
