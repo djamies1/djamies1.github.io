@@ -4236,5 +4236,31 @@
     "category": "style",
     "uploaded_at": "2026-10-21T19:48:36Z",
     "publish_at": "2026-10-22T03:45:49.000Z"
+  },
+  "wyr_0490": {
+    "youtube_id": "r8qjNYzS24g",
+    "youtube_url": "https://www.youtube.com/watch?v=r8qjNYzS24g",
+    "option_a": "Be able to learn any instrument in one day",
+    "option_b": "Be able to compose a masterpiece in any musical style on demand",
+    "category": "music",
+    "uploaded_at": "2026-10-22T19:37:16Z"
+  },
+  "wyr_0491": {
+    "youtube_id": "r9jV84ivizM",
+    "youtube_url": "https://www.youtube.com/watch?v=r9jV84ivizM",
+    "option_a": "Have a conversation with your younger self every decade",
+    "option_b": "Write a letter to your older self every decade that they receive",
+    "category": "life",
+    "uploaded_at": "2026-10-22T19:38:09Z",
+    "publish_at": "2026-10-22T23:36:36.000Z"
+  },
+  "wyr_0492": {
+    "youtube_id": "NgkWLBFpQXI",
+    "youtube_url": "https://www.youtube.com/watch?v=NgkWLBFpQXI",
+    "option_a": "Be able to think 10x faster than normal",
+    "option_b": "Be able to focus 10x more intensely than normal",
+    "category": "mental",
+    "uploaded_at": "2026-10-22T19:39:01Z",
+    "publish_at": "2026-10-23T03:36:36.000Z"
   }
 }
