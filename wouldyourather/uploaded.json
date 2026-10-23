@@ -4262,5 +4262,31 @@
     "category": "mental",
     "uploaded_at": "2026-10-22T19:39:01Z",
     "publish_at": "2026-10-23T03:36:36.000Z"
+  },
+  "wyr_0493": {
+    "youtube_id": "8ZsZ9GHHXo4",
+    "youtube_url": "https://www.youtube.com/watch?v=8ZsZ9GHHXo4",
+    "option_a": "Have a talent that emerges at exactly the right moment",
+    "option_b": "Have connections that appear exactly when you need them",
+    "category": "luck",
+    "uploaded_at": "2026-10-23T19:38:21Z"
+  },
+  "wyr_0494": {
+    "youtube_id": "nK9KownygqU",
+    "youtube_url": "https://www.youtube.com/watch?v=nK9KownygqU",
+    "option_a": "Be able to run for any position and win",
+    "option_b": "Be able to start any business and guarantee it succeeds",
+    "category": "ambition",
+    "uploaded_at": "2026-10-23T19:39:17Z",
+    "publish_at": "2026-10-23T23:37:39.000Z"
+  },
+  "wyr_0495": {
+    "youtube_id": "W3dI7hDDgkw",
+    "youtube_url": "https://www.youtube.com/watch?v=W3dI7hDDgkw",
+    "option_a": "Have the ability to detect any falsehood in written text",
+    "option_b": "Have the ability to write any text so compellingly it's impossible to ignore",
+    "category": "writing",
+    "uploaded_at": "2026-10-23T19:40:02Z",
+    "publish_at": "2026-10-24T03:37:39.000Z"
   }
 }
