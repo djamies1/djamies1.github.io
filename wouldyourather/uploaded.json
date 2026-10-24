@@ -4288,5 +4288,31 @@
     "category": "writing",
     "uploaded_at": "2026-10-23T19:40:02Z",
     "publish_at": "2026-10-24T03:37:39.000Z"
+  },
+  "wyr_0496": {
+    "youtube_id": "0ymszHBdG_M",
+    "youtube_url": "https://www.youtube.com/watch?v=0ymszHBdG_M",
+    "option_a": "Live in a world with 30-hour days",
+    "option_b": "Live in a world with 5-day weekends and 2-day workweeks",
+    "category": "time",
+    "uploaded_at": "2026-10-24T18:28:21Z"
+  },
+  "wyr_0497": {
+    "youtube_id": "AZQxyOhlFS8",
+    "youtube_url": "https://www.youtube.com/watch?v=AZQxyOhlFS8",
+    "option_a": "Have every piece of music you love available at perfect quality always",
+    "option_b": "Have every photo of your life's best memories always accessible in perfect quality",
+    "category": "media",
+    "uploaded_at": "2026-10-24T18:29:13Z",
+    "publish_at": "2026-10-24T22:26:09.000Z"
+  },
+  "wyr_0498": {
+    "youtube_id": "idQoGvkz9YA",
+    "youtube_url": "https://www.youtube.com/watch?v=idQoGvkz9YA",
+    "option_a": "Be able to sleep and wake up whenever you choose without affecting your health",
+    "option_b": "Have your sleep always be exactly as long as it needs to be automatically",
+    "category": "sleep",
+    "uploaded_at": "2026-10-24T18:31:35Z",
+    "publish_at": "2026-10-25T02:26:09.000Z"
   }
 }
