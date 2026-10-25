@@ -4314,5 +4314,31 @@
     "category": "sleep",
     "uploaded_at": "2026-10-24T18:31:35Z",
     "publish_at": "2026-10-25T02:26:09.000Z"
+  },
+  "wyr_0499": {
+    "youtube_id": "39dBA13PpiY",
+    "youtube_url": "https://www.youtube.com/watch?v=39dBA13PpiY",
+    "option_a": "Have a talent for languages that makes you multilingual in any language after one week",
+    "option_b": "Have a talent for understanding any culture deeply after one interaction",
+    "category": "cultural",
+    "uploaded_at": "2026-10-25T18:37:04Z"
+  },
+  "wyr_0500": {
+    "youtube_id": "7ZnR6-AaFss",
+    "youtube_url": "https://www.youtube.com/watch?v=7ZnR6-AaFss",
+    "option_a": "Have a gift for making people feel at home wherever you are",
+    "option_b": "Have a gift for making people feel genuinely seen and understood",
+    "category": "social",
+    "uploaded_at": "2026-10-25T18:37:46Z",
+    "publish_at": "2026-10-25T22:36:37.000Z"
+  },
+  "wyr_0501": {
+    "youtube_id": "WF1yF9LYEXs",
+    "youtube_url": "https://www.youtube.com/watch?v=WF1yF9LYEXs",
+    "option_a": "Have the courage to do anything once",
+    "option_b": "Have the patience to do anything as many times as needed",
+    "category": "character",
+    "uploaded_at": "2026-10-25T18:38:32Z",
+    "publish_at": "2026-10-26T02:36:37.000Z"
   }
 }
