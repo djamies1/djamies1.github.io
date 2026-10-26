@@ -4340,5 +4340,31 @@
     "category": "character",
     "uploaded_at": "2026-10-25T18:38:32Z",
     "publish_at": "2026-10-26T02:36:37.000Z"
+  },
+  "wyr_0502": {
+    "youtube_id": "cHztlqsjQMc",
+    "youtube_url": "https://www.youtube.com/watch?v=cHztlqsjQMc",
+    "option_a": "Always know why someone is upset with you",
+    "option_b": "Always know exactly what would make someone happy",
+    "category": "empathy",
+    "uploaded_at": "2026-10-26T20:49:06Z"
+  },
+  "wyr_0503": {
+    "youtube_id": "_FlzWjHxBpM",
+    "youtube_url": "https://www.youtube.com/watch?v=_FlzWjHxBpM",
+    "option_a": "Have a library card that grants access to any knowledge ever recorded",
+    "option_b": "Have a laboratory access card that lets you use any scientific equipment ever built",
+    "category": "knowledge",
+    "uploaded_at": "2026-10-26T20:49:57Z",
+    "publish_at": "2026-10-27T00:48:21.000Z"
+  },
+  "wyr_0504": {
+    "youtube_id": "-RBx4sQCCrA",
+    "youtube_url": "https://www.youtube.com/watch?v=-RBx4sQCCrA",
+    "option_a": "Have a best friend who is brutally honest about everything",
+    "option_b": "Have a best friend who is unfailingly supportive of everything",
+    "category": "friendship",
+    "uploaded_at": "2026-10-26T20:50:47Z",
+    "publish_at": "2026-10-27T04:48:21.000Z"
   }
 }

@@ -4274,5 +4274,28 @@
     "answer": "Bill is 40, and Bill Jr. is 12.",
     "uploaded_at": "2026-10-25T18:40:22Z",
     "publish_at": "2026-10-26T06:38:34.000Z"
+  },
+  "rdl_0559": {
+    "youtube_id": "YDSI_BIwvsw",
+    "youtube_url": "https://www.youtube.com/watch?v=YDSI_BIwvsw",
+    "question": "Even if you give this to someone else, you still get to keep it. What is it?",
+    "answer": "It is your word.",
+    "uploaded_at": "2026-10-26T20:51:26Z"
+  },
+  "rdl_0560": {
+    "youtube_id": "Zu3hC0LTnDM",
+    "youtube_url": "https://www.youtube.com/watch?v=Zu3hC0LTnDM",
+    "question": "Draw four rectangles on a piece of paper. Put nine x's in the four rectangles so that there is an uneven number of x's in each rectangle.",
+    "answer": "Draw one large rectangle. Then draw the three smaller rectangles within the large rectangle. Place three x's in each small rectangle. There will be nine x's in the large rectangle.",
+    "uploaded_at": "2026-10-26T20:52:06Z",
+    "publish_at": "2026-10-27T02:50:51.000Z"
+  },
+  "rdl_0561": {
+    "youtube_id": "VR9KpBxPkQs",
+    "youtube_url": "https://www.youtube.com/watch?v=VR9KpBxPkQs",
+    "question": "What kind of cheese is made backwards?",
+    "answer": "EDAM cheese. ( 'made' backwards is edam )",
+    "uploaded_at": "2026-10-26T20:52:56Z",
+    "publish_at": "2026-10-27T08:50:51.000Z"
   }
 }
