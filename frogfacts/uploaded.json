@@ -3418,5 +3418,25 @@
     "fact": "The Microhylid frogs of Madagascar have diversified into over 200 species on a single island.",
     "uploaded_at": "2026-10-26T20:57:21Z",
     "publish_at": "2026-10-27T08:52:57.000Z"
+  },
+  "frog_0514": {
+    "youtube_id": "iJozjoslZjg",
+    "youtube_url": "https://www.youtube.com/watch?v=iJozjoslZjg",
+    "fact": "Frogs were one of the first animals to be given an official conservation status by the IUCN, in 1996.",
+    "uploaded_at": "2026-10-27T20:23:01Z"
+  },
+  "frog_0515": {
+    "youtube_id": "xNxMoZLX0hs",
+    "youtube_url": "https://www.youtube.com/watch?v=xNxMoZLX0hs",
+    "fact": "The Cuban tree frog is the largest tree frog in North America and was accidentally introduced to Florida.",
+    "uploaded_at": "2026-10-27T20:24:05Z",
+    "publish_at": "2026-10-28T02:22:06.000Z"
+  },
+  "frog_0516": {
+    "youtube_id": "JfBMopemKws",
+    "youtube_url": "https://www.youtube.com/watch?v=JfBMopemKws",
+    "fact": "Frog spawn is vulnerable to UV radiation, and thinning ozone layers are thought to contribute to spawn mortality.",
+    "uploaded_at": "2026-10-27T20:25:09Z",
+    "publish_at": "2026-10-28T08:22:06.000Z"
   }
 }

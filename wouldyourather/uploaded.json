@@ -4366,5 +4366,31 @@
     "category": "friendship",
     "uploaded_at": "2026-10-26T20:50:47Z",
     "publish_at": "2026-10-27T04:48:21.000Z"
+  },
+  "wyr_0505": {
+    "youtube_id": "4lF3XGaNZi8",
+    "youtube_url": "https://www.youtube.com/watch?v=4lF3XGaNZi8",
+    "option_a": "Be able to experience any book as a movie in your mind as you read",
+    "option_b": "Be able to step into any movie and explore it like a world",
+    "category": "fiction",
+    "uploaded_at": "2026-10-27T20:18:48Z"
+  },
+  "wyr_0506": {
+    "youtube_id": "_a1JqPXJSbA",
+    "youtube_url": "https://www.youtube.com/watch?v=_a1JqPXJSbA",
+    "option_a": "Have zero regrets but live a very ordinary life",
+    "option_b": "Have many regrets but live an extraordinary, impactful life",
+    "category": "life",
+    "uploaded_at": "2026-10-27T20:19:23Z",
+    "publish_at": "2026-10-28T00:18:18.000Z"
+  },
+  "wyr_0507": {
+    "youtube_id": "oE1dhe7SXS4",
+    "youtube_url": "https://www.youtube.com/watch?v=oE1dhe7SXS4",
+    "option_a": "Have the charisma of the most charming person you've ever met",
+    "option_b": "Have the empathy of the most understanding person you've ever known",
+    "category": "personality",
+    "uploaded_at": "2026-10-27T20:20:09Z",
+    "publish_at": "2026-10-28T04:18:18.000Z"
   }
 }
