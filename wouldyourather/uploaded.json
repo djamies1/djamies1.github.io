@@ -4392,5 +4392,31 @@
     "category": "personality",
     "uploaded_at": "2026-10-27T20:20:09Z",
     "publish_at": "2026-10-28T04:18:18.000Z"
+  },
+  "wyr_0508": {
+    "youtube_id": "2sCorIJO4p0",
+    "youtube_url": "https://www.youtube.com/watch?v=2sCorIJO4p0",
+    "option_a": "Be able to relive your happiest memory as many times as you want",
+    "option_b": "Be able to erase your most painful memory completely",
+    "category": "memory",
+    "uploaded_at": "2026-10-28T20:41:35Z"
+  },
+  "wyr_0509": {
+    "youtube_id": "u2albQVpWqY",
+    "youtube_url": "https://www.youtube.com/watch?v=u2albQVpWqY",
+    "option_a": "Have a talent that everyone can see but nobody can explain",
+    "option_b": "Have a talent that nobody can see but changes everything you do",
+    "category": "talent",
+    "uploaded_at": "2026-10-28T20:42:28Z",
+    "publish_at": "2026-10-29T00:40:51.000Z"
+  },
+  "wyr_0510": {
+    "youtube_id": "E9_vAIf8duQ",
+    "youtube_url": "https://www.youtube.com/watch?v=E9_vAIf8duQ",
+    "option_a": "Be able to learn from watching others perfectly",
+    "option_b": "Be able to teach others anything so they learn it perfectly",
+    "category": "education",
+    "uploaded_at": "2026-10-28T20:43:19Z",
+    "publish_at": "2026-10-29T04:40:51.000Z"
   }
 }
