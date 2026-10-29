@@ -4418,5 +4418,31 @@
     "category": "education",
     "uploaded_at": "2026-10-28T20:43:19Z",
     "publish_at": "2026-10-29T04:40:51.000Z"
+  },
+  "wyr_0511": {
+    "youtube_id": "lGA_2Vg_C1g",
+    "youtube_url": "https://www.youtube.com/watch?v=lGA_2Vg_C1g",
+    "option_a": "Have a dog that can sense when you need cheering up and always succeeds",
+    "option_b": "Have a cat that predicts problems before they happen and warns you",
+    "category": "pets",
+    "uploaded_at": "2026-10-29T20:44:17Z"
+  },
+  "wyr_0512": {
+    "youtube_id": "Di8V3LiwkL8",
+    "youtube_url": "https://www.youtube.com/watch?v=Di8V3LiwkL8",
+    "option_a": "Have a voice that makes people trust you instantly",
+    "option_b": "Have a face that makes people like you instantly",
+    "category": "first impressions",
+    "uploaded_at": "2026-10-29T20:44:54Z",
+    "publish_at": "2026-10-30T00:43:45.000Z"
+  },
+  "wyr_0513": {
+    "youtube_id": "0peB5D_n0g8",
+    "youtube_url": "https://www.youtube.com/watch?v=0peB5D_n0g8",
+    "option_a": "Be able to make decisions without any doubt or second-guessing",
+    "option_b": "Always know within 24 hours if you made the right decision",
+    "category": "decisions",
+    "uploaded_at": "2026-10-29T20:45:44Z",
+    "publish_at": "2026-10-30T04:43:45.000Z"
   }
 }
