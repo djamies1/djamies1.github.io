@@ -4444,5 +4444,31 @@
     "category": "decisions",
     "uploaded_at": "2026-10-29T20:45:44Z",
     "publish_at": "2026-10-30T04:43:45.000Z"
+  },
+  "wyr_0514": {
+    "youtube_id": "Oss0DzOpAUY",
+    "youtube_url": "https://www.youtube.com/watch?v=Oss0DzOpAUY",
+    "option_a": "Have a superpower that only helps other people, never yourself",
+    "option_b": "Have a superpower that only helps yourself, never others",
+    "category": "superpowers",
+    "uploaded_at": "2026-10-30T20:16:20Z"
+  },
+  "wyr_0515": {
+    "youtube_id": "0IDY6xh6MCQ",
+    "youtube_url": "https://www.youtube.com/watch?v=0IDY6xh6MCQ",
+    "option_a": "Live in a world where art is universally valued and supported",
+    "option_b": "Live in a world where science and medicine are universally funded and accessible",
+    "category": "world",
+    "uploaded_at": "2026-10-30T20:17:04Z",
+    "publish_at": "2026-10-31T00:15:42.000Z"
+  },
+  "wyr_0516": {
+    "youtube_id": "spiUWIylL2k",
+    "youtube_url": "https://www.youtube.com/watch?v=spiUWIylL2k",
+    "option_a": "Be able to communicate your emotions perfectly through music",
+    "option_b": "Be able to communicate your thoughts perfectly through art",
+    "category": "expression",
+    "uploaded_at": "2026-10-30T20:17:55Z",
+    "publish_at": "2026-10-31T04:15:42.000Z"
   }
 }

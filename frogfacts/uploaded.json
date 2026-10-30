@@ -3478,5 +3478,25 @@
     "fact": "Some frogs can tolerate being out of water for months by entering a state called aestivation, similar to hibernation.",
     "uploaded_at": "2026-10-29T20:51:37Z",
     "publish_at": "2026-10-30T08:47:43.000Z"
+  },
+  "frog_0523": {
+    "youtube_id": "7SSPUe2tV74",
+    "youtube_url": "https://www.youtube.com/watch?v=7SSPUe2tV74",
+    "fact": "The world's most poisonous frog, the golden poison dart frog, is harmless to handle in captivity because it has no dietary source of toxins.",
+    "uploaded_at": "2026-10-30T20:21:54Z"
+  },
+  "frog_0524": {
+    "youtube_id": "3DnacONTtm4",
+    "youtube_url": "https://www.youtube.com/watch?v=3DnacONTtm4",
+    "fact": "Frogs' ears are tuned to hear the specific frequency of their own species' call to filter out background noise.",
+    "uploaded_at": "2026-10-30T20:23:33Z",
+    "publish_at": "2026-10-31T02:20:19.000Z"
+  },
+  "frog_0525": {
+    "youtube_id": "q0dwIWxcq-c",
+    "youtube_url": "https://www.youtube.com/watch?v=q0dwIWxcq-c",
+    "fact": "Some rainforest frogs use leaf litter as drums, slapping the ground with their limbs to send seismic signals to rivals.",
+    "uploaded_at": "2026-10-30T20:25:10Z",
+    "publish_at": "2026-10-31T08:20:19.000Z"
   }
 }
