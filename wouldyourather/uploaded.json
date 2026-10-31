@@ -4470,5 +4470,31 @@
     "category": "expression",
     "uploaded_at": "2026-10-30T20:17:55Z",
     "publish_at": "2026-10-31T04:15:42.000Z"
+  },
+  "wyr_0517": {
+    "youtube_id": "drgquDwIpw0",
+    "youtube_url": "https://www.youtube.com/watch?v=drgquDwIpw0",
+    "option_a": "Have free access to every sports game or event in the world",
+    "option_b": "Have free access to every scientific conference and discovery in real time",
+    "category": "access",
+    "uploaded_at": "2026-10-31T19:38:27Z"
+  },
+  "wyr_0518": {
+    "youtube_id": "lLXD0yXmh3Q",
+    "youtube_url": "https://www.youtube.com/watch?v=lLXD0yXmh3Q",
+    "option_a": "Have a personal trainer who makes you peak fit in 6 months",
+    "option_b": "Have a therapist who makes you emotionally peak healthy in 6 months",
+    "category": "health",
+    "uploaded_at": "2026-10-31T19:39:09Z",
+    "publish_at": "2026-10-31T23:37:53.000Z"
+  },
+  "wyr_0519": {
+    "youtube_id": "noqblkjYT9Y",
+    "youtube_url": "https://www.youtube.com/watch?v=noqblkjYT9Y",
+    "option_a": "Have the ability to make a friend for life anywhere you go",
+    "option_b": "Have the ability to reconnect with any lost friendship instantly",
+    "category": "friendship",
+    "uploaded_at": "2026-10-31T19:39:56Z",
+    "publish_at": "2026-11-01T03:37:53.000Z"
   }
 }
