@@ -4496,5 +4496,31 @@
     "category": "friendship",
     "uploaded_at": "2026-10-31T19:39:56Z",
     "publish_at": "2026-11-01T03:37:53.000Z"
+  },
+  "wyr_0520": {
+    "youtube_id": "b5DmDuDBTuE",
+    "youtube_url": "https://www.youtube.com/watch?v=b5DmDuDBTuE",
+    "option_a": "Have a job title that impresses everyone you meet",
+    "option_b": "Have job satisfaction that makes every Monday feel like Friday",
+    "category": "work",
+    "uploaded_at": "2026-11-01T19:58:19Z"
+  },
+  "wyr_0521": {
+    "youtube_id": "g0D9whSWieY",
+    "youtube_url": "https://www.youtube.com/watch?v=g0D9whSWieY",
+    "option_a": "Have a life with no failures but also very small successes",
+    "option_b": "Have a life with big failures but also incredible successes",
+    "category": "life",
+    "uploaded_at": "2026-11-01T19:59:16Z",
+    "publish_at": "2026-11-01T23:57:39.000Z"
+  },
+  "wyr_0522": {
+    "youtube_id": "rHvYd4RC1XI",
+    "youtube_url": "https://www.youtube.com/watch?v=rHvYd4RC1XI",
+    "option_a": "Be the world's best negotiator",
+    "option_b": "Be the world's best mediator",
+    "category": "skills",
+    "uploaded_at": "2026-11-01T20:00:09Z",
+    "publish_at": "2026-11-02T03:57:39.000Z"
   }
 }
