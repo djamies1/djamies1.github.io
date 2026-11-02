@@ -4522,5 +4522,31 @@
     "category": "skills",
     "uploaded_at": "2026-11-01T20:00:09Z",
     "publish_at": "2026-11-02T03:57:39.000Z"
+  },
+  "wyr_0523": {
+    "youtube_id": "lC9bWXszCOU",
+    "youtube_url": "https://www.youtube.com/watch?v=lC9bWXszCOU",
+    "option_a": "Have a technology that shows you the most efficient path through any day",
+    "option_b": "Have a technology that eliminates all unnecessary digital noise from your life",
+    "category": "productivity",
+    "uploaded_at": "2026-11-02T23:16:16Z"
+  },
+  "wyr_0524": {
+    "youtube_id": "vOZtYM218Tk",
+    "youtube_url": "https://www.youtube.com/watch?v=vOZtYM218Tk",
+    "option_a": "Have the ability to experience what it's like to be any animal for an hour",
+    "option_b": "Have the ability to experience what it's like to be any other person for an hour",
+    "category": "empathy",
+    "uploaded_at": "2026-11-02T23:17:05Z",
+    "publish_at": "2026-11-03T03:15:38.000Z"
+  },
+  "wyr_0525": {
+    "youtube_id": "H5EyF7FQ2gc",
+    "youtube_url": "https://www.youtube.com/watch?v=H5EyF7FQ2gc",
+    "option_a": "Have a creative power that generates unlimited original ideas",
+    "option_b": "Have an execution power that completes any project perfectly once started",
+    "category": "creativity",
+    "uploaded_at": "2026-11-02T23:17:53Z",
+    "publish_at": "2026-11-03T07:15:38.000Z"
   }
 }
