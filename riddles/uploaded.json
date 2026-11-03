@@ -4458,5 +4458,28 @@
     "answer": "The day is Thursday!",
     "uploaded_at": "2026-11-02T23:19:56Z",
     "publish_at": "2026-11-03T11:17:57.000Z"
+  },
+  "rdl_0583": {
+    "youtube_id": "ssLytKLnqvk",
+    "youtube_url": "https://www.youtube.com/watch?v=ssLytKLnqvk",
+    "question": "Which word that begins with the letter I, and by adding the letter A, becomes another word that is pronounced the same?",
+    "answer": "Isle and Aisle.",
+    "uploaded_at": "2026-11-03T21:24:10Z"
+  },
+  "rdl_0584": {
+    "youtube_id": "xmpNn8KeujY",
+    "youtube_url": "https://www.youtube.com/watch?v=xmpNn8KeujY",
+    "question": "Which fruit does not belong in this group: Apple, Grape, Banana, Cherry, or Pear?",
+    "answer": "The Banana. It's the only one that needs to be peeled before eating.",
+    "uploaded_at": "2026-11-03T21:24:45Z",
+    "publish_at": "2026-11-04T03:23:37.000Z"
+  },
+  "rdl_0585": {
+    "youtube_id": "xMQJcuVVKV8",
+    "youtube_url": "https://www.youtube.com/watch?v=xMQJcuVVKV8",
+    "question": "Which of the following words doesn't belong in the group and why? CORSET, COSTER, SECTOR, ESCORT, COURTS",
+    "answer": "Courts. All of the others are anagrams of each other.",
+    "uploaded_at": "2026-11-03T21:25:26Z",
+    "publish_at": "2026-11-04T09:23:37.000Z"
   }
 }

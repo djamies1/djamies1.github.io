@@ -4548,5 +4548,31 @@
     "category": "creativity",
     "uploaded_at": "2026-11-02T23:17:53Z",
     "publish_at": "2026-11-03T07:15:38.000Z"
+  },
+  "wyr_0526": {
+    "youtube_id": "ka5PpH3VZpw",
+    "youtube_url": "https://www.youtube.com/watch?v=ka5PpH3VZpw",
+    "option_a": "Be immune to embarrassment",
+    "option_b": "Be immune to self-doubt",
+    "category": "psychology",
+    "uploaded_at": "2026-11-03T21:22:02Z"
+  },
+  "wyr_0527": {
+    "youtube_id": "KRmV0vuoqtw",
+    "youtube_url": "https://www.youtube.com/watch?v=KRmV0vuoqtw",
+    "option_a": "Have the ability to create a perfect ecosystem anywhere",
+    "option_b": "Have the ability to restore any extinct species",
+    "category": "nature",
+    "uploaded_at": "2026-11-03T21:22:49Z",
+    "publish_at": "2026-11-04T01:21:24.000Z"
+  },
+  "wyr_0528": {
+    "youtube_id": "XZOQJTMRIvE",
+    "youtube_url": "https://www.youtube.com/watch?v=XZOQJTMRIvE",
+    "option_a": "Have a long life with many average experiences",
+    "option_b": "Have a shorter life with a few extraordinary ones",
+    "category": "life",
+    "uploaded_at": "2026-11-03T21:23:34Z",
+    "publish_at": "2026-11-04T05:21:24.000Z"
   }
 }
