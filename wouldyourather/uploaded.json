@@ -4574,5 +4574,31 @@
     "category": "life",
     "uploaded_at": "2026-11-03T21:23:34Z",
     "publish_at": "2026-11-04T05:21:24.000Z"
+  },
+  "wyr_0529": {
+    "youtube_id": "XP0zR0yRkDk",
+    "youtube_url": "https://www.youtube.com/watch?v=XP0zR0yRkDk",
+    "option_a": "Be remembered for 1,000 years for one great thing",
+    "option_b": "Improve the lives of 1,000 people right now anonymously",
+    "category": "legacy",
+    "uploaded_at": "2026-11-04T21:37:57Z"
+  },
+  "wyr_0530": {
+    "youtube_id": "BdwfjE-7QNA",
+    "youtube_url": "https://www.youtube.com/watch?v=BdwfjE-7QNA",
+    "option_a": "Have the knowledge of a doctor, lawyer, and accountant simultaneously",
+    "option_b": "Have the practical skills of a chef, mechanic, and builder simultaneously",
+    "category": "expertise",
+    "uploaded_at": "2026-11-04T21:38:50Z",
+    "publish_at": "2026-11-05T01:37:12.000Z"
+  },
+  "wyr_0531": {
+    "youtube_id": "nD8Cp2SFxV0",
+    "youtube_url": "https://www.youtube.com/watch?v=nD8Cp2SFxV0",
+    "option_a": "Have a year where everything goes right",
+    "option_b": "Have a year where you grow incredibly from everything going wrong",
+    "category": "growth",
+    "uploaded_at": "2026-11-04T21:39:43Z",
+    "publish_at": "2026-11-05T05:37:12.000Z"
   }
 }
