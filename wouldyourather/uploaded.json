@@ -4600,5 +4600,31 @@
     "category": "growth",
     "uploaded_at": "2026-11-04T21:39:43Z",
     "publish_at": "2026-11-05T05:37:12.000Z"
+  },
+  "wyr_0532": {
+    "youtube_id": "D3BXDIg0Fv0",
+    "youtube_url": "https://www.youtube.com/watch?v=D3BXDIg0Fv0",
+    "option_a": "Be able to make your home any size you want at any moment",
+    "option_b": "Be able to make your home appear anywhere in the world at will",
+    "category": "home",
+    "uploaded_at": "2026-11-05T21:40:04Z"
+  },
+  "wyr_0533": {
+    "youtube_id": "nwD56xdbM4k",
+    "youtube_url": "https://www.youtube.com/watch?v=nwD56xdbM4k",
+    "option_a": "Have a mind that never stops generating questions",
+    "option_b": "Have a mind that always finds satisfying answers",
+    "category": "philosophy",
+    "uploaded_at": "2026-11-05T21:40:39Z",
+    "publish_at": "2026-11-06T01:39:33.000Z"
+  },
+  "wyr_0534": {
+    "youtube_id": "Q1sSTogQJEE",
+    "youtube_url": "https://www.youtube.com/watch?v=Q1sSTogQJEE",
+    "option_a": "Be able to see everyone's potential",
+    "option_b": "Be able to see everyone's true character",
+    "category": "perception",
+    "uploaded_at": "2026-11-05T21:41:27Z",
+    "publish_at": "2026-11-06T05:39:33.000Z"
   }
 }
