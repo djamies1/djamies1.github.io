@@ -4626,5 +4626,31 @@
     "category": "perception",
     "uploaded_at": "2026-11-05T21:41:27Z",
     "publish_at": "2026-11-06T05:39:33.000Z"
+  },
+  "wyr_0535": {
+    "youtube_id": "Aw4aeNYLh3Y",
+    "youtube_url": "https://www.youtube.com/watch?v=Aw4aeNYLh3Y",
+    "option_a": "Have an AI that handles all your communication",
+    "option_b": "Have an AI that handles all your scheduling",
+    "category": "AI",
+    "uploaded_at": "2026-11-06T21:09:10Z"
+  },
+  "wyr_0536": {
+    "youtube_id": "At7HKGpi01Q",
+    "youtube_url": "https://www.youtube.com/watch?v=At7HKGpi01Q",
+    "option_a": "Live in a future 200 years from now for one month",
+    "option_b": "Live in any past era of your choice for one year",
+    "category": "time travel",
+    "uploaded_at": "2026-11-06T21:09:42Z",
+    "publish_at": "2026-11-07T01:08:43.000Z"
+  },
+  "wyr_0537": {
+    "youtube_id": "T9g39alWcUk",
+    "youtube_url": "https://www.youtube.com/watch?v=T9g39alWcUk",
+    "option_a": "Have every problem in your life solved once but then return",
+    "option_b": "Have one problem in your life permanently solved forever",
+    "category": "problems",
+    "uploaded_at": "2026-11-06T21:10:19Z",
+    "publish_at": "2026-11-07T05:08:43.000Z"
   }
 }
