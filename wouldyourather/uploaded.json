@@ -4652,5 +4652,31 @@
     "category": "problems",
     "uploaded_at": "2026-11-06T21:10:19Z",
     "publish_at": "2026-11-07T05:08:43.000Z"
+  },
+  "wyr_0538": {
+    "youtube_id": "oQ7lsLLFB7M",
+    "youtube_url": "https://www.youtube.com/watch?v=oQ7lsLLFB7M",
+    "option_a": "Have a clone that lives your life while you take vacations",
+    "option_b": "Have a clone that takes all your vacations so you can experience them through their memories",
+    "category": "lifestyle",
+    "uploaded_at": "2026-11-07T19:44:03Z"
+  },
+  "wyr_0539": {
+    "youtube_id": "NPFXPYzsJRQ",
+    "youtube_url": "https://www.youtube.com/watch?v=NPFXPYzsJRQ",
+    "option_a": "Have a week where every conversation you have is deeply meaningful",
+    "option_b": "Have a week where you laugh for at least an hour every single day",
+    "category": "wellbeing",
+    "uploaded_at": "2026-11-07T19:44:52Z",
+    "publish_at": "2026-11-07T23:43:25.000Z"
+  },
+  "wyr_0540": {
+    "youtube_id": "2uIWwhW9uU4",
+    "youtube_url": "https://www.youtube.com/watch?v=2uIWwhW9uU4",
+    "option_a": "Be able to find value in every failure",
+    "option_b": "Be able to prevent the failures that don't teach you anything",
+    "category": "growth",
+    "uploaded_at": "2026-11-07T19:45:44Z",
+    "publish_at": "2026-11-08T03:43:25.000Z"
   }
 }
