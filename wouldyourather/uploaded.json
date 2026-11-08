@@ -4678,5 +4678,31 @@
     "category": "growth",
     "uploaded_at": "2026-11-07T19:45:44Z",
     "publish_at": "2026-11-08T03:43:25.000Z"
+  },
+  "wyr_0541": {
+    "youtube_id": "L4UZYIzKhmw",
+    "youtube_url": "https://www.youtube.com/watch?v=L4UZYIzKhmw",
+    "option_a": "Have the ability to stop time once per emergency",
+    "option_b": "Have the ability to undo any mistake once per year",
+    "category": "safety net",
+    "uploaded_at": "2026-11-08T20:02:40Z"
+  },
+  "wyr_0542": {
+    "youtube_id": "5GuLrQdqtlQ",
+    "youtube_url": "https://www.youtube.com/watch?v=5GuLrQdqtlQ",
+    "option_a": "Have a gift that makes everything you cook taste incredible",
+    "option_b": "Have a gift that makes everything you build last forever",
+    "category": "crafts",
+    "uploaded_at": "2026-11-08T20:03:17Z",
+    "publish_at": "2026-11-09T00:02:06.000Z"
+  },
+  "wyr_0543": {
+    "youtube_id": "hDq_3MP6ZgQ",
+    "youtube_url": "https://www.youtube.com/watch?v=hDq_3MP6ZgQ",
+    "option_a": "Have the trust of every animal on Earth",
+    "option_b": "Have the admiration of every child on Earth",
+    "category": "bonds",
+    "uploaded_at": "2026-11-08T20:04:04Z",
+    "publish_at": "2026-11-09T04:02:06.000Z"
   }
 }
