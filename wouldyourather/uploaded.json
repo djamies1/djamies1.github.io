@@ -4730,5 +4730,31 @@
     "category": "travel",
     "uploaded_at": "2026-11-09T23:56:20Z",
     "publish_at": "2026-11-10T07:54:03.000Z"
+  },
+  "wyr_0547": {
+    "youtube_id": "jPtSNbyLwSU",
+    "youtube_url": "https://www.youtube.com/watch?v=jPtSNbyLwSU",
+    "option_a": "Live in a world where art is the primary language of communication",
+    "option_b": "Live in a world where math and logic are the primary communication system",
+    "category": "world",
+    "uploaded_at": "2026-11-10T21:33:08Z"
+  },
+  "wyr_0548": {
+    "youtube_id": "KJyl3wK_JrI",
+    "youtube_url": "https://www.youtube.com/watch?v=KJyl3wK_JrI",
+    "option_a": "Have a compass that always points toward your purpose",
+    "option_b": "Have a map that shows exactly where your decisions lead",
+    "category": "guidance",
+    "uploaded_at": "2026-11-10T21:33:58Z",
+    "publish_at": "2026-11-11T01:32:28.000Z"
+  },
+  "wyr_0549": {
+    "youtube_id": "ugK2oAFsrtE",
+    "youtube_url": "https://www.youtube.com/watch?v=ugK2oAFsrtE",
+    "option_a": "Have a week with no responsibilities and unlimited resources",
+    "option_b": "Have a week where every effort you make has double the result",
+    "category": "productivity",
+    "uploaded_at": "2026-11-10T21:34:46Z",
+    "publish_at": "2026-11-11T05:32:28.000Z"
   }
 }
