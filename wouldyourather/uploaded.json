@@ -4704,5 +4704,31 @@
     "category": "bonds",
     "uploaded_at": "2026-11-08T20:04:04Z",
     "publish_at": "2026-11-09T04:02:06.000Z"
+  },
+  "wyr_0544": {
+    "youtube_id": "-uPwzUe2MTQ",
+    "youtube_url": "https://www.youtube.com/watch?v=-uPwzUe2MTQ",
+    "option_a": "Have a life full of small perfect moments",
+    "option_b": "Have a life with a few enormous defining moments",
+    "category": "philosophy",
+    "uploaded_at": "2026-11-09T23:54:42Z"
+  },
+  "wyr_0545": {
+    "youtube_id": "APy6LvF04pE",
+    "youtube_url": "https://www.youtube.com/watch?v=APy6LvF04pE",
+    "option_a": "Be able to express any complex emotion in one word",
+    "option_b": "Understand any complex situation with complete clarity instantly",
+    "category": "intelligence",
+    "uploaded_at": "2026-11-09T23:55:31Z",
+    "publish_at": "2026-11-10T03:54:03.000Z"
+  },
+  "wyr_0546": {
+    "youtube_id": "eDtO7Iy8FRQ",
+    "youtube_url": "https://www.youtube.com/watch?v=eDtO7Iy8FRQ",
+    "option_a": "Have unlimited free travel but can only travel alone",
+    "option_b": "Have one paid trip anywhere with the perfect travel companion",
+    "category": "travel",
+    "uploaded_at": "2026-11-09T23:56:20Z",
+    "publish_at": "2026-11-10T07:54:03.000Z"
   }
 }

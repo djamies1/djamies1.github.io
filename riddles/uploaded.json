@@ -4596,5 +4596,28 @@
     "answer": "Just ask the merry-go-round operator to stop!",
     "uploaded_at": "2026-11-08T20:06:05Z",
     "publish_at": "2026-11-09T08:04:07.000Z"
+  },
+  "rdl_0601": {
+    "youtube_id": "TUpA1ioCXwQ",
+    "youtube_url": "https://www.youtube.com/watch?v=TUpA1ioCXwQ",
+    "question": "What does an Aardark like on its pizza?",
+    "answer": "Ant-chovies.",
+    "uploaded_at": "2026-11-09T23:56:55Z"
+  },
+  "rdl_0602": {
+    "youtube_id": "5D8HKF0JDtM",
+    "youtube_url": "https://www.youtube.com/watch?v=5D8HKF0JDtM",
+    "question": "A big person and a small person are going to fish. The big person is not the small person's father but the small person is the big person's son. What is the relationship between the two?",
+    "answer": "The big person is the small person's mother.",
+    "uploaded_at": "2026-11-09T23:57:34Z",
+    "publish_at": "2026-11-10T05:56:23.000Z"
+  },
+  "rdl_0603": {
+    "youtube_id": "fkhgoFSKwJk",
+    "youtube_url": "https://www.youtube.com/watch?v=fkhgoFSKwJk",
+    "question": "What goes in hard and comes out soft and mushy?",
+    "answer": "A stick of gum.",
+    "uploaded_at": "2026-11-09T23:58:20Z",
+    "publish_at": "2026-11-10T11:56:23.000Z"
   }
 }
