@@ -4756,5 +4756,31 @@
     "category": "productivity",
     "uploaded_at": "2026-11-10T21:34:46Z",
     "publish_at": "2026-11-11T05:32:28.000Z"
+  },
+  "wyr_0550": {
+    "youtube_id": "sssRjJ7Iq0k",
+    "youtube_url": "https://www.youtube.com/watch?v=sssRjJ7Iq0k",
+    "option_a": "Have the ability to experience peace of mind on demand",
+    "option_b": "Have the ability to experience joy on demand",
+    "category": "wellbeing",
+    "uploaded_at": "2026-11-11T22:22:07Z"
+  },
+  "wyr_0551": {
+    "youtube_id": "PMhvrjswLco",
+    "youtube_url": "https://www.youtube.com/watch?v=PMhvrjswLco",
+    "option_a": "Have everything you need and nothing more",
+    "option_b": "Have more than you need but never quite enough",
+    "category": "philosophy",
+    "uploaded_at": "2026-11-11T22:22:45Z",
+    "publish_at": "2026-11-12T02:21:37.000Z"
+  },
+  "wyr_0552": {
+    "youtube_id": "kJ_lsXB31-8",
+    "youtube_url": "https://www.youtube.com/watch?v=kJ_lsXB31-8",
+    "option_a": "Be loved by many who don't truly know you",
+    "option_b": "Be truly known by a few who genuinely love you",
+    "category": "relationships",
+    "uploaded_at": "2026-11-11T22:23:32Z",
+    "publish_at": "2026-11-12T06:21:37.000Z"
   }
 }
